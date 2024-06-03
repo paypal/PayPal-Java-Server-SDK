@@ -3,7 +3,7 @@
 // The latest documentation can always be found in https://go/epx-nodejs-pipeline
 
 // noinspection GroovyUnusedAssignment
-@Library('nodejsPipeline')_ // always use the latest
+@Library('mavenPipeline')_ // always use the latest
 
 nodejsGitflowReleasePipeline {
   mainBranch = 'main'
