@@ -1,0 +1,14 @@
+#!/usr/bin/env groovy
+// This file manages the CI jobs for a Nodejs Application
+// The latest documentation can always be found in https://go/epx-nodejs-pipeline
+
+// noinspection GroovyUnusedAssignment
+@Library('mavenPipeline')_ // always use the latest
+
+mavenGitflowReleasePipeline {
+  mainBranch = 'main'
+  disableLintStage = true
+  disableTestStages = true
+  disableSonarQubeStage = true
+  disablePublishStage = true
+}
