@@ -10,4 +10,5 @@ mavenGitflowReleasePipeline {
   disableLintStage = true
   disableTestStages = true
   disableSonarQubeStage = true
+  disablePublishStage = true
 }
