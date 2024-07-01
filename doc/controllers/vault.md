@@ -36,12 +36,6 @@ CompletableFuture<PaymentTokenResponse> paymentTokensCreateAsync(
 | `payPalRequestId` | `String` | Header, Required | The server stores keys for 3 hours. |
 | `body` | [`PaymentTokenRequest`](../../doc/models/payment-token-request.md) | Body, Required | Payment Token creation with a financial instrument and an optional customer_id. |
 
-## Requires scope
-
-### Oauth2
-
-`https://uri.paypal.com/services/vault/payment-tokens/readwrite`
-
 ## Response Type
 
 [`PaymentTokenResponse`](../../doc/models/payment-token-response.md)
@@ -99,12 +93,6 @@ CompletableFuture<CustomerVaultPaymentTokensResponse> customerPaymentTokensGetAs
 | `page` | `Integer` | Query, Optional | A non-negative, non-zero integer representing the page of the results. |
 | `totalRequired` | `Boolean` | Query, Optional | A boolean indicating total number of items (total_items) and pages (total_pages) are expected to be returned in the response. |
 
-## Requires scope
-
-### Oauth2
-
-`https://uri.paypal.com/services/vault/payment-tokens/readwrite`
-
 ## Response Type
 
 [`CustomerVaultPaymentTokensResponse`](../../doc/models/customer-vault-payment-tokens-response.md)
@@ -154,12 +142,6 @@ CompletableFuture<PaymentTokenResponse> paymentTokensGetAsync(
 |  --- | --- | --- | --- |
 | `id` | `String` | Template, Required | ID of the setup token. |
 
-## Requires scope
-
-### Oauth2
-
-`https://uri.paypal.com/services/vault/payment-tokens/readwrite`
-
 ## Response Type
 
 [`PaymentTokenResponse`](../../doc/models/payment-token-response.md)
@@ -204,12 +186,6 @@ CompletableFuture<Void> paymentTokensDeleteAsync(
 |  --- | --- | --- | --- |
 | `id` | `String` | Template, Required | ID of the setup token. |
 
-## Requires scope
-
-### Oauth2
-
-`https://uri.paypal.com/services/vault/payment-tokens/readwrite`
-
 ## Response Type
 
 `void`
@@ -253,12 +229,6 @@ CompletableFuture<SetupTokenResponse> setupTokensCreateAsync(
 |  --- | --- | --- | --- |
 | `payPalRequestId` | `String` | Header, Required | The server stores keys for 3 hours. |
 | `body` | [`SetupTokenRequest`](../../doc/models/setup-token-request.md) | Body, Required | Setup Token creation with a instrument type optional financial instrument details and customer_id. |
-
-## Requires scope
-
-### Oauth2
-
-`https://uri.paypal.com/services/vault/payment-tokens/read`
 
 ## Response Type
 
@@ -312,12 +282,6 @@ CompletableFuture<SetupTokenResponse> setupTokensGetAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `id` | `String` | Template, Required | ID of the setup token. |
-
-## Requires scope
-
-### Oauth2
-
-`https://uri.paypal.com/services/vault/payment-tokens/read`
 
 ## Response Type
 

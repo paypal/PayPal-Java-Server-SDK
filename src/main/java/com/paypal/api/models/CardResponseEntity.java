@@ -23,6 +23,8 @@ public class CardResponseEntity {
     private CardVerificationDetails verification;
     private NetworkTransactionReferenceEntity networkTransactionReference;
     private AuthenticationResponse authenticationResult;
+    private BinDetails binDetails;
+    private CardType type;
 
     /**
      * Default constructor.
@@ -42,6 +44,8 @@ public class CardResponseEntity {
      * @param  networkTransactionReference  NetworkTransactionReferenceEntity value for
      *         networkTransactionReference.
      * @param  authenticationResult  AuthenticationResponse value for authenticationResult.
+     * @param  binDetails  BinDetails value for binDetails.
+     * @param  type  CardType value for type.
      */
     public CardResponseEntity(
             String name,
@@ -52,7 +56,9 @@ public class CardResponseEntity {
             String verificationStatus,
             CardVerificationDetails verification,
             NetworkTransactionReferenceEntity networkTransactionReference,
-            AuthenticationResponse authenticationResult) {
+            AuthenticationResponse authenticationResult,
+            BinDetails binDetails,
+            CardType type) {
         this.name = name;
         this.lastDigits = lastDigits;
         this.brand = brand;
@@ -62,6 +68,8 @@ public class CardResponseEntity {
         this.verification = verification;
         this.networkTransactionReference = networkTransactionReference;
         this.authenticationResult = authenticationResult;
+        this.binDetails = binDetails;
+        this.type = type;
     }
 
     /**
@@ -256,6 +264,48 @@ public class CardResponseEntity {
     }
 
     /**
+     * Getter for BinDetails.
+     * Bank Identification Number (BIN) details used to fund a payment.
+     * @return Returns the BinDetails
+     */
+    @JsonGetter("bin_details")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public BinDetails getBinDetails() {
+        return binDetails;
+    }
+
+    /**
+     * Setter for BinDetails.
+     * Bank Identification Number (BIN) details used to fund a payment.
+     * @param binDetails Value for BinDetails
+     */
+    @JsonSetter("bin_details")
+    public void setBinDetails(BinDetails binDetails) {
+        this.binDetails = binDetails;
+    }
+
+    /**
+     * Getter for Type.
+     * Type of card. i.e Credit, Debit and so on.
+     * @return Returns the CardType
+     */
+    @JsonGetter("type")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public CardType getType() {
+        return type;
+    }
+
+    /**
+     * Setter for Type.
+     * Type of card. i.e Credit, Debit and so on.
+     * @param type Value for CardType
+     */
+    @JsonSetter("type")
+    public void setType(CardType type) {
+        this.type = type;
+    }
+
+    /**
      * Converts this CardResponseEntity into string format.
      * @return String representation of this class
      */
@@ -265,7 +315,8 @@ public class CardResponseEntity {
                 + brand + ", expiry=" + expiry + ", billingAddress=" + billingAddress
                 + ", verificationStatus=" + verificationStatus + ", verification=" + verification
                 + ", networkTransactionReference=" + networkTransactionReference
-                + ", authenticationResult=" + authenticationResult + "]";
+                + ", authenticationResult=" + authenticationResult + ", binDetails=" + binDetails
+                + ", type=" + type + "]";
     }
 
     /**
@@ -283,7 +334,9 @@ public class CardResponseEntity {
                 .verificationStatus(getVerificationStatus())
                 .verification(getVerification())
                 .networkTransactionReference(getNetworkTransactionReference())
-                .authenticationResult(getAuthenticationResult());
+                .authenticationResult(getAuthenticationResult())
+                .binDetails(getBinDetails())
+                .type(getType());
         return builder;
     }
 
@@ -300,6 +353,8 @@ public class CardResponseEntity {
         private CardVerificationDetails verification;
         private NetworkTransactionReferenceEntity networkTransactionReference;
         private AuthenticationResponse authenticationResult;
+        private BinDetails binDetails;
+        private CardType type;
 
 
 
@@ -396,13 +451,33 @@ public class CardResponseEntity {
         }
 
         /**
+         * Setter for binDetails.
+         * @param  binDetails  BinDetails value for binDetails.
+         * @return Builder
+         */
+        public Builder binDetails(BinDetails binDetails) {
+            this.binDetails = binDetails;
+            return this;
+        }
+
+        /**
+         * Setter for type.
+         * @param  type  CardType value for type.
+         * @return Builder
+         */
+        public Builder type(CardType type) {
+            this.type = type;
+            return this;
+        }
+
+        /**
          * Builds a new {@link CardResponseEntity} object using the set fields.
          * @return {@link CardResponseEntity}
          */
         public CardResponseEntity build() {
             return new CardResponseEntity(name, lastDigits, brand, expiry, billingAddress,
                     verificationStatus, verification, networkTransactionReference,
-                    authenticationResult);
+                    authenticationResult, binDetails, type);
         }
     }
 }

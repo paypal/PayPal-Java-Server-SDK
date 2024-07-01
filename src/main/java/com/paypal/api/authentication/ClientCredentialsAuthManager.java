@@ -9,7 +9,6 @@ package com.paypal.api.authentication;
 import com.paypal.api.ClientCredentialsAuth;
 import com.paypal.api.controllers.OAuthAuthorizationController;
 import com.paypal.api.exceptions.ApiException;
-import com.paypal.api.models.OAuthScope;
 import com.paypal.api.models.OAuthToken;
 import com.paypal.api.models.RequestTokenInput;
 import io.apimatic.core.GlobalConfiguration;
@@ -17,11 +16,8 @@ import io.apimatic.core.authentication.HeaderAuth;
 import io.apimatic.coreinterfaces.http.request.Request;
 import java.io.IOException;
 import java.util.Base64;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
@@ -93,31 +89,18 @@ public class ClientCredentialsAuthManager extends HeaderAuth implements ClientCr
     }
 
     /**
-     * List of OAuthScope value for oAuthScopes.
-     * @return oAuthScopes
-     */
-    public List<OAuthScope> getOAuthScopes() {
-        return authModel.getOAuthScopes();
-    }
-
-    /**
      * Checks if provided credentials matched with existing ones.
      * @param oAuthClientId String value for credentials.
      * @param oAuthClientSecret String value for credentials.
      * @param oAuthToken OAuthToken value for credentials.
-     * @param oAuthScopes List of OAuthScope value for credentials.
      * @return true if credentials matched.
      */
-    public boolean equals(String oAuthClientId, String oAuthClientSecret, OAuthToken oAuthToken,
-            List<OAuthScope> oAuthScopes) {
+    public boolean equals(String oAuthClientId, String oAuthClientSecret, OAuthToken oAuthToken) {
         return oAuthClientId.equals(getOAuthClientId())
                 && oAuthClientSecret.equals(getOAuthClientSecret())
                 && ((getOAuthToken() == null && oAuthToken == null)
                         || (getOAuthToken() != null && oAuthToken != null
-                                && oAuthToken.toString().equals(getOAuthToken().toString())))
-                && ((getOAuthScopes() == null && oAuthScopes == null)
-                        || (getOAuthScopes() != null && oAuthScopes != null
-                                && oAuthScopes.equals(getOAuthScopes())));
+                                && oAuthToken.toString().equals(getOAuthToken().toString())));
     }
 
     /**
@@ -128,7 +111,7 @@ public class ClientCredentialsAuthManager extends HeaderAuth implements ClientCr
     public String toString() {
         return "ClientCredentialsAuthManager [" + "oAuthClientId=" + getOAuthClientId()
                 + ", oAuthClientSecret=" + getOAuthClientSecret() + ", oAuthToken="
-                + getOAuthToken() + ", oAuthScopes=" + getOAuthScopes() + "]";
+                + getOAuthToken() + "]";
     }
 
     /**
@@ -143,7 +126,7 @@ public class ClientCredentialsAuthManager extends HeaderAuth implements ClientCr
 
         RequestTokenInput input = new RequestTokenInput.Builder()
                 .authorization(getBasicAuthForClient())
-                .scope(stringJoin(getOAuthScopes(), " "))
+                .scope(null)
                 .build();
         return oAuthApi.requestTokenAsync(
             input,
@@ -171,7 +154,7 @@ public class ClientCredentialsAuthManager extends HeaderAuth implements ClientCr
 
         RequestTokenInput input = new RequestTokenInput.Builder()
                 .authorization(getBasicAuthForClient())
-                .scope(stringJoin(getOAuthScopes(), " "))
+                .scope(null)
                 .build();
         OAuthToken token = oAuthApi.requestToken(
             input,
@@ -200,27 +183,6 @@ public class ClientCredentialsAuthManager extends HeaderAuth implements ClientCr
         return "Basic " + new String(Base64.getEncoder().encodeToString(val.getBytes()));
     }
 
-    /**
-     * Join string collection elements using delimiter.
-     * @param col String collection to join.
-     * @param delim Delimiter.
-     * @return String joined by delimiter.
-     */
-    private String stringJoin(Collection<?> col, String delim) {
-        if (col == null) {
-            return null;
-        }
-        StringBuilder sb = new StringBuilder();
-        Iterator<?> iter = col.iterator();
-        if (iter.hasNext()) {
-            sb.append(iter.next().toString());
-        }
-        while (iter.hasNext()) {
-            sb.append(delim);
-            sb.append(iter.next().toString());
-        }
-        return sb.toString();
-    }
 
     /**
      * Has the OAuth token expired?.
@@ -235,13 +197,14 @@ public class ClientCredentialsAuthManager extends HeaderAuth implements ClientCr
      * @param oAuthToken The OAuth token for whose expiry is to check.
      * @return True if expired
      */
-    private boolean isTokenExpired(OAuthToken oAuthToken) {
+    public boolean isTokenExpired(OAuthToken oAuthToken) {
         if (oAuthToken == null) {
             throw new IllegalStateException("OAuth token is missing.");
         }
 
         return oAuthToken.getExpiry() != null 
-            && oAuthToken.getExpiry() < (System.currentTimeMillis() / 1000L); 
+            && oAuthToken.getExpiry() - authModel.getOAuthClockSkew()
+                < (System.currentTimeMillis() / 1000L);
     }
 
     /**

@@ -23,6 +23,8 @@ public class CardPaymentToken {
     private CardVerificationDetails verification;
     private NetworkTransactionReferenceEntity networkTransactionReference;
     private AuthenticationResponse authenticationResult;
+    private BinDetails binDetails;
+    private CardType type;
     private Object networkToken;
 
     /**
@@ -43,6 +45,8 @@ public class CardPaymentToken {
      * @param  networkTransactionReference  NetworkTransactionReferenceEntity value for
      *         networkTransactionReference.
      * @param  authenticationResult  AuthenticationResponse value for authenticationResult.
+     * @param  binDetails  BinDetails value for binDetails.
+     * @param  type  CardType value for type.
      * @param  networkToken  Object value for networkToken.
      */
     public CardPaymentToken(
@@ -55,6 +59,8 @@ public class CardPaymentToken {
             CardVerificationDetails verification,
             NetworkTransactionReferenceEntity networkTransactionReference,
             AuthenticationResponse authenticationResult,
+            BinDetails binDetails,
+            CardType type,
             Object networkToken) {
         this.name = name;
         this.lastDigits = lastDigits;
@@ -65,6 +71,8 @@ public class CardPaymentToken {
         this.verification = verification;
         this.networkTransactionReference = networkTransactionReference;
         this.authenticationResult = authenticationResult;
+        this.binDetails = binDetails;
+        this.type = type;
         this.networkToken = networkToken;
     }
 
@@ -260,6 +268,48 @@ public class CardPaymentToken {
     }
 
     /**
+     * Getter for BinDetails.
+     * Bank Identification Number (BIN) details used to fund a payment.
+     * @return Returns the BinDetails
+     */
+    @JsonGetter("bin_details")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public BinDetails getBinDetails() {
+        return binDetails;
+    }
+
+    /**
+     * Setter for BinDetails.
+     * Bank Identification Number (BIN) details used to fund a payment.
+     * @param binDetails Value for BinDetails
+     */
+    @JsonSetter("bin_details")
+    public void setBinDetails(BinDetails binDetails) {
+        this.binDetails = binDetails;
+    }
+
+    /**
+     * Getter for Type.
+     * Type of card. i.e Credit, Debit and so on.
+     * @return Returns the CardType
+     */
+    @JsonGetter("type")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public CardType getType() {
+        return type;
+    }
+
+    /**
+     * Setter for Type.
+     * Type of card. i.e Credit, Debit and so on.
+     * @param type Value for CardType
+     */
+    @JsonSetter("type")
+    public void setType(CardType type) {
+        this.type = type;
+    }
+
+    /**
      * Getter for NetworkToken.
      * @return Returns the Object
      */
@@ -288,8 +338,8 @@ public class CardPaymentToken {
                 + brand + ", expiry=" + expiry + ", billingAddress=" + billingAddress
                 + ", verificationStatus=" + verificationStatus + ", verification=" + verification
                 + ", networkTransactionReference=" + networkTransactionReference
-                + ", authenticationResult=" + authenticationResult + ", networkToken="
-                + networkToken + "]";
+                + ", authenticationResult=" + authenticationResult + ", binDetails=" + binDetails
+                + ", type=" + type + ", networkToken=" + networkToken + "]";
     }
 
     /**
@@ -308,6 +358,8 @@ public class CardPaymentToken {
                 .verification(getVerification())
                 .networkTransactionReference(getNetworkTransactionReference())
                 .authenticationResult(getAuthenticationResult())
+                .binDetails(getBinDetails())
+                .type(getType())
                 .networkToken(getNetworkToken());
         return builder;
     }
@@ -325,6 +377,8 @@ public class CardPaymentToken {
         private CardVerificationDetails verification;
         private NetworkTransactionReferenceEntity networkTransactionReference;
         private AuthenticationResponse authenticationResult;
+        private BinDetails binDetails;
+        private CardType type;
         private Object networkToken;
 
 
@@ -422,6 +476,26 @@ public class CardPaymentToken {
         }
 
         /**
+         * Setter for binDetails.
+         * @param  binDetails  BinDetails value for binDetails.
+         * @return Builder
+         */
+        public Builder binDetails(BinDetails binDetails) {
+            this.binDetails = binDetails;
+            return this;
+        }
+
+        /**
+         * Setter for type.
+         * @param  type  CardType value for type.
+         * @return Builder
+         */
+        public Builder type(CardType type) {
+            this.type = type;
+            return this;
+        }
+
+        /**
          * Setter for networkToken.
          * @param  networkToken  Object value for networkToken.
          * @return Builder
@@ -438,7 +512,7 @@ public class CardPaymentToken {
         public CardPaymentToken build() {
             return new CardPaymentToken(name, lastDigits, brand, expiry, billingAddress,
                     verificationStatus, verification, networkTransactionReference,
-                    authenticationResult, networkToken);
+                    authenticationResult, binDetails, type, networkToken);
         }
     }
 }

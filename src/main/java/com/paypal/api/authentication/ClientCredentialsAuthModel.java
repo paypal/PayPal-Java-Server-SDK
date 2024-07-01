@@ -7,9 +7,7 @@
 package com.paypal.api.authentication;
 
 import com.paypal.api.ClientCredentialsAuth;
-import com.paypal.api.models.OAuthScope;
 import com.paypal.api.models.OAuthToken;
-import java.util.List;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 
@@ -20,23 +18,23 @@ public class ClientCredentialsAuthModel {
     private String oAuthClientId;
     private String oAuthClientSecret;
     private OAuthToken oAuthToken;
-    private List<OAuthScope> oAuthScopes;
     private BiFunction<OAuthToken, ClientCredentialsAuth, OAuthToken> oAuthTokenProvider;
     private Consumer<OAuthToken> oAuthOnTokenUpdate;
+    private long oAuthClockSkew;
 
     /**
      * A Constructor for ClientCredentialsAuthModel.
      */
     private ClientCredentialsAuthModel(String oAuthClientId, String oAuthClientSecret,
-            OAuthToken oAuthToken, List<OAuthScope> oAuthScopes,
+            OAuthToken oAuthToken,
             BiFunction<OAuthToken, ClientCredentialsAuth, OAuthToken> oAuthTokenProvider,
-            Consumer<OAuthToken> oAuthOnTokenUpdate) {
+            Consumer<OAuthToken> oAuthOnTokenUpdate, long oAuthClockSkew) {
         this.oAuthClientId = oAuthClientId;
         this.oAuthClientSecret = oAuthClientSecret;
         this.oAuthToken = oAuthToken;
-        this.oAuthScopes = oAuthScopes;
         this.oAuthTokenProvider = oAuthTokenProvider;
         this.oAuthOnTokenUpdate = oAuthOnTokenUpdate;
+        this.oAuthClockSkew = oAuthClockSkew;
     }
 
     /**
@@ -64,14 +62,6 @@ public class ClientCredentialsAuthModel {
     }
 
     /**
-     * Getter for oAuthScopes.
-     * @return oAuthScopes The value of OAuthScopes.
-     */
-    public List<OAuthScope> getOAuthScopes() {
-        return this.oAuthScopes;
-    }
-
-    /**
      * Getter for oAuthTokenProvider.
      * @return oAuthTokenProvider The value of oAuthTokenProvider.
      */
@@ -88,6 +78,14 @@ public class ClientCredentialsAuthModel {
     }
 
     /**
+     * Getter for oAuthClockSkew.
+     * @return oAuthClockSkew The value of oAuthClockSkew.
+     */
+    public long getOAuthClockSkew() {
+        return this.oAuthClockSkew;
+    }
+
+    /**
      * Builds a new {@link ClientCredentialsAuthModel.Builder} object.
      * Creates the instance with the state of the current auth model.
      * @return a new {@link ClientCredentialsAuthModel.Builder} object.
@@ -95,9 +93,9 @@ public class ClientCredentialsAuthModel {
     public Builder toBuilder() {
         return new Builder(getOAuthClientId(), getOAuthClientSecret())
             .oAuthToken(getOAuthToken())
-            .oAuthScopes(getOAuthScopes())
             .oAuthTokenProvider(getOAuthTokenProvider())
-            .oAuthOnTokenUpdate(getOAuthOnTokenUpdate());
+            .oAuthOnTokenUpdate(getOAuthOnTokenUpdate())
+            .oAuthClockSkew(getOAuthClockSkew());
     }
 
     /**
@@ -107,9 +105,9 @@ public class ClientCredentialsAuthModel {
         private String oAuthClientId;
         private String oAuthClientSecret;
         private OAuthToken oAuthToken;
-        private List<OAuthScope> oAuthScopes;
         private BiFunction<OAuthToken, ClientCredentialsAuth, OAuthToken> oAuthTokenProvider;
         private Consumer<OAuthToken> oAuthOnTokenUpdate;
+        private long oAuthClockSkew;
 
         /**
          * The constructor with required auth credentials.
@@ -168,16 +166,6 @@ public class ClientCredentialsAuthModel {
         }
 
         /**
-         * Setter for oAuthScopes.
-         * @param oAuthScopes The value of OAuthScopes.
-         * @return Builder The current instance of Builder.
-         */
-        public Builder oAuthScopes(List<OAuthScope> oAuthScopes) {
-            this.oAuthScopes = oAuthScopes;
-            return this;
-        }
-
-        /**
          * Setter for oAuthTokenProvider.
          * @param oAuthTokenProvider The value of oAuthTokenProvider.
          * @return Builder The current instance of Builder.
@@ -198,12 +186,22 @@ public class ClientCredentialsAuthModel {
         }
 
         /**
+         * Setter for oAuthClockSkew.
+         * @param oAuthClockSkew The value of oAuthClockSkew.
+         * @return Builder The current instance of Builder.
+         */
+        public Builder oAuthClockSkew(long oAuthClockSkew) {
+            this.oAuthClockSkew = oAuthClockSkew;
+            return this;
+        }
+
+        /**
          * Builds the instance of ClientCredentialsAuthModel using the provided credentials.
          * @return The instance of ClientCredentialsAuthModel.
          */
         public ClientCredentialsAuthModel build() {
             return new ClientCredentialsAuthModel(oAuthClientId, oAuthClientSecret, oAuthToken,
-                    oAuthScopes, oAuthTokenProvider, oAuthOnTokenUpdate);
+                    oAuthTokenProvider, oAuthOnTokenUpdate, oAuthClockSkew);
         }
     }
 }

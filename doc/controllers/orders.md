@@ -41,12 +41,6 @@ CompletableFuture<Order> ordersCreateAsync(
 | `payPalClientMetadataId` | `String` | Header, Optional | - |
 | `prefer` | `String` | Header, Optional | The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul> |
 
-## Requires scope
-
-### Oauth2
-
-`https://uri.paypal.com/services/payments/orders/deprecating-jssdk-migration-for-limited-merchants`, `https://uri.paypal.com/services/payments/payment`
-
 ## Response Type
 
 [`Order`](../../doc/models/order.md)
@@ -110,12 +104,6 @@ CompletableFuture<Order> ordersGetAsync(
 | `id` | `String` | Template, Required | The ID of the order that the tracking information is associated with. |
 | `fields` | `String` | Query, Optional | A comma-separated list of fields that should be returned for the order. Valid filter field is `payment_source`. |
 
-## Requires scope
-
-### Oauth2
-
-`https://uri.paypal.com/services/payments/orders/deprecating-jssdk-migration-for-limited-merchants`, `https://uri.paypal.com/services/payments/payment`
-
 ## Response Type
 
 [`Order`](../../doc/models/order.md)
@@ -162,12 +150,6 @@ CompletableFuture<Void> ordersPatchAsync(
 |  --- | --- | --- | --- |
 | `id` | `String` | Template, Required | The ID of the order that the tracking information is associated with. |
 | `body` | [`List<Patch>`](../../doc/models/patch.md) | Body, Optional | - |
-
-## Requires scope
-
-### Oauth2
-
-`https://uri.paypal.com/services/payments/orders/deprecating-jssdk-migration-for-limited-merchants`, `https://uri.paypal.com/services/payments/payment`
 
 ## Response Type
 
@@ -226,12 +208,6 @@ CompletableFuture<Order> ordersConfirmAsync(
 | `payPalClientMetadataId` | `String` | Header, Optional | - |
 | `prefer` | `String` | Header, Optional | The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul> |
 | `body` | [`ConfirmOrderRequest`](../../doc/models/confirm-order-request.md) | Body, Optional | - |
-
-## Requires scope
-
-### Oauth2
-
-`https://uri.paypal.com/services/payments/initiatepayment`, `https://uri.paypal.com/services/payments/payment`
 
 ## Response Type
 
@@ -294,12 +270,6 @@ CompletableFuture<OrderAuthorizeResponse> ordersAuthorizeAsync(
 | `payPalAuthAssertion` | `String` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see <a href="/api/rest/requests/#paypal-auth-assertion">PayPal-Auth-Assertion</a>. |
 | `body` | [`OrderAuthorizeRequest`](../../doc/models/order-authorize-request.md) | Body, Optional | - |
 
-## Requires scope
-
-### Oauth2
-
-`https://uri.paypal.com/services/payments/orders/deprecating-jssdk-migration-for-limited-merchants`, `https://uri.paypal.com/services/payments/payment`
-
 ## Response Type
 
 [`OrderAuthorizeResponse`](../../doc/models/order-authorize-response.md)
@@ -357,12 +327,6 @@ CompletableFuture<Order> ordersCaptureAsync(
 | `payPalAuthAssertion` | `String` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see <a href="/api/rest/requests/#paypal-auth-assertion">PayPal-Auth-Assertion</a>. |
 | `body` | [`OrderCaptureRequest`](../../doc/models/order-capture-request.md) | Body, Optional | - |
 
-## Requires scope
-
-### Oauth2
-
-`https://uri.paypal.com/services/payments/orders/deprecating-jssdk-migration-for-limited-merchants`, `https://uri.paypal.com/services/payments/payment`
-
 ## Response Type
 
 [`Order`](../../doc/models/order.md)
@@ -416,12 +380,6 @@ CompletableFuture<Order> ordersTrackCreateAsync(
 | `id` | `String` | Template, Required | The ID of the order that the tracking information is associated with. |
 | `body` | [`OrderTrackerRequest`](../../doc/models/order-tracker-request.md) | Body, Required | - |
 | `payPalAuthAssertion` | `String` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see <a href="/api/rest/requests/#paypal-auth-assertion">PayPal-Auth-Assertion</a>. |
-
-## Requires scope
-
-### Oauth2
-
-`https://uri.paypal.com/services/payments/payment`
 
 ## Response Type
 
@@ -479,12 +437,6 @@ CompletableFuture<Void> ordersTrackersPatchAsync(
 | `id` | `String` | Template, Required | The ID of the order that the tracking information is associated with. |
 | `trackerId` | `String` | Template, Required | The order tracking ID. |
 | `body` | [`List<Patch>`](../../doc/models/patch.md) | Body, Optional | - |
-
-## Requires scope
-
-### Oauth2
-
-`https://uri.paypal.com/services/payments/payment`
 
 ## Response Type
 

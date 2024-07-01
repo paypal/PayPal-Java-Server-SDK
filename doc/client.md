@@ -24,10 +24,6 @@ PayPalRESTAPIsClient client = new PayPalRESTAPIsClient.Builder()
             "OAuthClientId",
             "OAuthClientSecret"
         )
-        .oAuthScopes(Arrays.asList(
-                OAuthScope.HTTPS_URI_PAYPAL_COM_SERVICES_PAYMENTS_PAYMENT,
-                OAuthScope.HTTPS_URI_PAYPAL_COM_SERVICES_PAYMENTS_PAYMENT_REFERENCE_TRANSACTION
-            ))
         .build())
     .environment(Environment.SANDBOX)
     .build();

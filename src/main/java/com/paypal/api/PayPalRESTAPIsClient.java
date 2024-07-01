@@ -16,7 +16,6 @@ import com.paypal.api.http.client.HttpClientConfiguration;
 import com.paypal.api.http.client.ReadonlyHttpClientConfiguration;
 import com.paypal.api.logging.configuration.ApiLoggingConfiguration;
 import com.paypal.api.logging.configuration.ReadonlyLoggingConfiguration;
-import com.paypal.api.models.OAuthScope;
 import com.paypal.api.models.OAuthToken;
 import io.apimatic.core.GlobalConfiguration;
 import io.apimatic.coreinterfaces.authentication.Authentication;
@@ -47,7 +46,7 @@ public final class PayPalRESTAPIsClient implements Configuration {
 
     private static final CompatibilityFactory compatibilityFactory = new CompatibilityFactoryImpl();
 
-    private static String userAgent = "PayPal REST API Java SDK, Version: 0.1.0-beta, on OS {os-info}";
+    private static String userAgent = "PayPal REST API Java SDK, Version: 0.2.0-beta, on OS {os-info}";
 
     /**
      * Current API environment.
@@ -334,21 +333,6 @@ public final class PayPalRESTAPIsClient implements Configuration {
         public Builder oAuthToken(OAuthToken oAuthToken) {
             clientCredentialsAuthModel = clientCredentialsAuthModel.toBuilder()
                 .oAuthToken(oAuthToken)
-                .build();
-            return this;
-        }
-
-        /**
-         * Credentials setter for ClientCredentialsAuth.
-         * @param oAuthScopes List of OAuthScope value for oAuthScopes.
-         * @deprecated This builder method is deprecated.
-         * Use {@link #clientCredentialsAuth(ClientCredentialsAuthModel) clientCredentialsAuth} instead.
-         * @return Builder
-         */
-        @Deprecated
-        public Builder oAuthScopes(List<OAuthScope> oAuthScopes) {
-            clientCredentialsAuthModel = clientCredentialsAuthModel.toBuilder()
-                .oAuthScopes(oAuthScopes)
                 .build();
             return this;
         }

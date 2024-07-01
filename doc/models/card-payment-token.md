@@ -20,6 +20,8 @@ Full representation of a Card Payment Token including network token.
 | `Verification` | [`CardVerificationDetails`](../../doc/models/card-verification-details.md) | Optional | Card Verification details including the authorization details and 3D SECURE details. | CardVerificationDetails getVerification() | setVerification(CardVerificationDetails verification) |
 | `NetworkTransactionReference` | [`NetworkTransactionReferenceEntity`](../../doc/models/network-transaction-reference-entity.md) | Optional | Previous network transaction reference including id in response. | NetworkTransactionReferenceEntity getNetworkTransactionReference() | setNetworkTransactionReference(NetworkTransactionReferenceEntity networkTransactionReference) |
 | `AuthenticationResult` | [`AuthenticationResponse`](../../doc/models/authentication-response.md) | Optional | Results of Authentication such as 3D Secure. | AuthenticationResponse getAuthenticationResult() | setAuthenticationResult(AuthenticationResponse authenticationResult) |
+| `BinDetails` | [`BinDetails`](../../doc/models/bin-details.md) | Optional | Bank Identification Number (BIN) details used to fund a payment. | BinDetails getBinDetails() | setBinDetails(BinDetails binDetails) |
+| `Type` | [`CardType`](../../doc/models/card-type.md) | Optional | Type of card. i.e Credit, Debit and so on.<br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[A-Z_]+$` | CardType getType() | setType(CardType type) |
 | `NetworkToken` | `Object` | Optional | - | Object getNetworkToken() | setNetworkToken(Object networkToken) |
 
 ## Example (as JSON)

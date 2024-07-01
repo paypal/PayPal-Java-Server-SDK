@@ -7,10 +7,8 @@
 package com.paypal.api;
 
 import com.paypal.api.exceptions.ApiException;
-import com.paypal.api.models.OAuthScope;
 import com.paypal.api.models.OAuthToken;
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
@@ -37,21 +35,13 @@ public interface ClientCredentialsAuth {
     OAuthToken getOAuthToken();
 
     /**
-     * List of OAuthScope value for oAuthScopes.
-     * @return oAuthScopes
-     */
-    List<OAuthScope> getOAuthScopes();
-
-    /**
      * Checks if provided credentials matched with existing ones.
      * @param oAuthClientId String value for credentials.
      * @param oAuthClientSecret String value for credentials.
      * @param oAuthToken OAuthToken value for credentials.
-     * @param oAuthScopes List of OAuthScope value for credentials.
      * @return true if credentials matched.
      */
-    boolean equals(String oAuthClientId, String oAuthClientSecret, OAuthToken oAuthToken,
-            List<OAuthScope> oAuthScopes);
+    boolean equals(String oAuthClientId, String oAuthClientSecret, OAuthToken oAuthToken);
 
     /**
      * Fetch the OAuth token asynchronously.
@@ -81,4 +71,9 @@ public interface ClientCredentialsAuth {
      */
     boolean isTokenExpired();
 
+    /**
+     * Has the OAuth token expired?.
+     * @return True if expired
+     */
+    boolean isTokenExpired(OAuthToken oAuthToken);
 }

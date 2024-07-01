@@ -36,12 +36,6 @@ CompletableFuture<PaymentAuthorization> authorizationsGetAsync(
 |  --- | --- | --- | --- |
 | `authorizationId` | `String` | Template, Required | The PayPal-generated ID for the authorized payment to void. |
 
-## Requires scope
-
-### Oauth2
-
-`https://uri.paypal.com/services/payments/payment/authcapture`
-
 ## Response Type
 
 [`PaymentAuthorization`](../../doc/models/payment-authorization.md)
@@ -89,12 +83,6 @@ CompletableFuture<CapturedPayment> authorizationsCaptureAsync(
 | `payPalRequestId` | `String` | Header, Optional | The server stores keys for 45 days. |
 | `prefer` | `String` | Header, Optional | The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul> |
 | `body` | [`CaptureRequest`](../../doc/models/capture-request.md) | Body, Optional | - |
-
-## Requires scope
-
-### Oauth2
-
-`https://uri.paypal.com/services/payments/payment/authcapture`
 
 ## Response Type
 
@@ -154,12 +142,6 @@ CompletableFuture<PaymentAuthorization> authorizationsReauthorizeAsync(
 | `prefer` | `String` | Header, Optional | The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul> |
 | `body` | [`ReauthorizeRequest`](../../doc/models/reauthorize-request.md) | Body, Optional | - |
 
-## Requires scope
-
-### Oauth2
-
-`https://uri.paypal.com/services/payments/payment/authcapture`
-
 ## Response Type
 
 [`PaymentAuthorization`](../../doc/models/payment-authorization.md)
@@ -214,12 +196,6 @@ CompletableFuture<PaymentAuthorization> authorizationsVoidAsync(
 | `payPalAuthAssertion` | `String` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion).<blockquote><strong>Note:</strong>For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject.</blockquote> |
 | `prefer` | `String` | Header, Optional | The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul> |
 
-## Requires scope
-
-### Oauth2
-
-`https://uri.paypal.com/services/payments/payment/authcapture`
-
 ## Response Type
 
 [`PaymentAuthorization`](../../doc/models/payment-authorization.md)
@@ -272,12 +248,6 @@ CompletableFuture<CapturedPayment> capturesGetAsync(
 |  --- | --- | --- | --- |
 | `captureId` | `String` | Template, Required | The PayPal-generated ID for the captured payment to refund. |
 
-## Requires scope
-
-### Oauth2
-
-`https://uri.paypal.com/services/payments/payment/authcapture`
-
 ## Response Type
 
 [`CapturedPayment`](../../doc/models/captured-payment.md)
@@ -326,12 +296,6 @@ CompletableFuture<Refund> capturesRefundAsync(
 | `prefer` | `String` | Header, Optional | The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul> |
 | `payPalAuthAssertion` | `String` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion).<blockquote><strong>Note:</strong>For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject.</blockquote> |
 | `body` | [`RefundRequest`](../../doc/models/refund-request.md) | Body, Optional | - |
-
-## Requires scope
-
-### Oauth2
-
-`https://uri.paypal.com/services/payments/refund`
 
 ## Response Type
 
@@ -385,12 +349,6 @@ CompletableFuture<Refund> refundsGetAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `refundId` | `String` | Template, Required | The PayPal-generated ID for the refund for which to show details. |
-
-## Requires scope
-
-### Oauth2
-
-`https://uri.paypal.com/services/payments/refund`
 
 ## Response Type
 
