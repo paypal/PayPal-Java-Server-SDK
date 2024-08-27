@@ -131,7 +131,7 @@ public class ClientCredentialsAuthManager extends HeaderAuth implements ClientCr
         return oAuthApi.requestTokenAsync(
             input,
             aparams).thenApply(token -> {
-                return token;
+                return token.getResult();
             });
     }
 
@@ -158,7 +158,7 @@ public class ClientCredentialsAuthManager extends HeaderAuth implements ClientCr
                 .build();
         OAuthToken token = oAuthApi.requestToken(
             input,
-            aparams);
+            aparams).getResult();
 
         if (token.getExpiresIn() != null && token.getExpiresIn() != 0) {
             token.setExpiry((System.currentTimeMillis() / 1000L) + token.getExpiresIn());

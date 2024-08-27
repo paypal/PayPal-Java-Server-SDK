@@ -37,7 +37,7 @@ public class OrdersGetInput {
 
     /**
      * Getter for Id.
-     * The ID of the order that the tracking information is associated with.
+     * The ID of the order for which to show details.
      * @return Returns the String
      */
     @JsonGetter("id")
@@ -47,7 +47,7 @@ public class OrdersGetInput {
 
     /**
      * Setter for Id.
-     * The ID of the order that the tracking information is associated with.
+     * The ID of the order for which to show details.
      * @param id Value for String
      */
     @JsonSetter("id")

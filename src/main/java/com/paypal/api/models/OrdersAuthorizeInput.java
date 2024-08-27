@@ -59,7 +59,7 @@ public class OrdersAuthorizeInput {
 
     /**
      * Getter for Id.
-     * The ID of the order that the tracking information is associated with.
+     * The ID of the order for which to authorize.
      * @return Returns the String
      */
     @JsonGetter("id")
@@ -69,7 +69,7 @@ public class OrdersAuthorizeInput {
 
     /**
      * Setter for Id.
-     * The ID of the order that the tracking information is associated with.
+     * The ID of the order for which to authorize.
      * @param id Value for String
      */
     @JsonSetter("id")

@@ -12,6 +12,7 @@ import com.paypal.api.Server;
 import com.paypal.api.exceptions.ApiException;
 import com.paypal.api.exceptions.ErrorException;
 import com.paypal.api.http.request.HttpMethod;
+import com.paypal.api.http.response.ApiResponse;
 import com.paypal.api.models.AuthorizationsCaptureInput;
 import com.paypal.api.models.AuthorizationsReauthorizeInput;
 import com.paypal.api.models.AuthorizationsVoidInput;
@@ -22,6 +23,7 @@ import com.paypal.api.models.Refund;
 import io.apimatic.core.ApiCall;
 import io.apimatic.core.ErrorCase;
 import io.apimatic.core.GlobalConfiguration;
+import io.apimatic.coreinterfaces.http.request.ResponseClassType;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
@@ -41,24 +43,24 @@ public final class PaymentsController extends BaseController {
 
     /**
      * Shows details for an authorized payment, by ID.
-     * @param  authorizationId  Required parameter: The PayPal-generated ID for the authorized
-     *         payment to void.
-     * @return    Returns the PaymentAuthorization response from the API call
+     * @param  authorizationId  Required parameter: The ID of the authorized payment for which to
+     *         show details.
+     * @return    Returns the PaymentAuthorization wrapped in ApiResponse response from the API call
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
-    public PaymentAuthorization authorizationsGet(
+    public ApiResponse<PaymentAuthorization> authorizationsGet(
             final String authorizationId) throws ApiException, IOException {
         return prepareAuthorizationsGetRequest(authorizationId).execute();
     }
 
     /**
      * Shows details for an authorized payment, by ID.
-     * @param  authorizationId  Required parameter: The PayPal-generated ID for the authorized
-     *         payment to void.
-     * @return    Returns the PaymentAuthorization response from the API call
+     * @param  authorizationId  Required parameter: The ID of the authorized payment for which to
+     *         show details.
+     * @return    Returns the PaymentAuthorization wrapped in ApiResponse response from the API call
      */
-    public CompletableFuture<PaymentAuthorization> authorizationsGetAsync(
+    public CompletableFuture<ApiResponse<PaymentAuthorization>> authorizationsGetAsync(
             final String authorizationId) {
         try { 
             return prepareAuthorizationsGetRequest(authorizationId).executeAsync(); 
@@ -70,9 +72,9 @@ public final class PaymentsController extends BaseController {
     /**
      * Builds the ApiCall object for authorizationsGet.
      */
-    private ApiCall<PaymentAuthorization, ApiException> prepareAuthorizationsGetRequest(
+    private ApiCall<ApiResponse<PaymentAuthorization>, ApiException> prepareAuthorizationsGetRequest(
             final String authorizationId) throws IOException {
-        return new ApiCall.Builder<PaymentAuthorization, ApiException>()
+        return new ApiCall.Builder<ApiResponse<PaymentAuthorization>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder
                         .server(Server.ENUM_DEFAULT.value())
@@ -84,7 +86,8 @@ public final class PaymentsController extends BaseController {
                                 .add("Oauth2"))
                         .httpMethod(HttpMethod.GET))
                 .responseHandler(responseHandler -> responseHandler
-                        .deserializer(
+                        .responseClassType(ResponseClassType.API_RESPONSE)
+                        .apiResponseDeserializer(
                                 response -> ApiHelper.deserialize(response, PaymentAuthorization.class))
                         .nullify404(false)
                         .localErrorCase("401",
@@ -109,11 +112,11 @@ public final class PaymentsController extends BaseController {
     /**
      * Captures an authorized payment, by ID.
      * @param  input  AuthorizationsCaptureInput object containing request parameters
-     * @return    Returns the CapturedPayment response from the API call
+     * @return    Returns the CapturedPayment wrapped in ApiResponse response from the API call
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
-    public CapturedPayment authorizationsCapture(
+    public ApiResponse<CapturedPayment> authorizationsCapture(
             final AuthorizationsCaptureInput input) throws ApiException, IOException {
         return prepareAuthorizationsCaptureRequest(input).execute();
     }
@@ -121,9 +124,9 @@ public final class PaymentsController extends BaseController {
     /**
      * Captures an authorized payment, by ID.
      * @param  input  AuthorizationsCaptureInput object containing request parameters
-     * @return    Returns the CapturedPayment response from the API call
+     * @return    Returns the CapturedPayment wrapped in ApiResponse response from the API call
      */
-    public CompletableFuture<CapturedPayment> authorizationsCaptureAsync(
+    public CompletableFuture<ApiResponse<CapturedPayment>> authorizationsCaptureAsync(
             final AuthorizationsCaptureInput input) {
         try { 
             return prepareAuthorizationsCaptureRequest(input).executeAsync(); 
@@ -135,9 +138,9 @@ public final class PaymentsController extends BaseController {
     /**
      * Builds the ApiCall object for authorizationsCapture.
      */
-    private ApiCall<CapturedPayment, ApiException> prepareAuthorizationsCaptureRequest(
+    private ApiCall<ApiResponse<CapturedPayment>, ApiException> prepareAuthorizationsCaptureRequest(
             final AuthorizationsCaptureInput input) throws JsonProcessingException, IOException {
-        return new ApiCall.Builder<CapturedPayment, ApiException>()
+        return new ApiCall.Builder<ApiResponse<CapturedPayment>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder
                         .server(Server.ENUM_DEFAULT.value())
@@ -157,7 +160,8 @@ public final class PaymentsController extends BaseController {
                                 .add("Oauth2"))
                         .httpMethod(HttpMethod.POST))
                 .responseHandler(responseHandler -> responseHandler
-                        .deserializer(
+                        .responseClassType(ResponseClassType.API_RESPONSE)
+                        .apiResponseDeserializer(
                                 response -> ApiHelper.deserialize(response, CapturedPayment.class))
                         .nullify404(false)
                         .localErrorCase("400",
@@ -198,11 +202,11 @@ public final class PaymentsController extends BaseController {
      * USD.&lt;br/&gt;&lt;br/&gt;Supports only the `amount` request parameter.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt;
      * This request is currently not supported for Partner use cases.&lt;/blockquote&gt;.
      * @param  input  AuthorizationsReauthorizeInput object containing request parameters
-     * @return    Returns the PaymentAuthorization response from the API call
+     * @return    Returns the PaymentAuthorization wrapped in ApiResponse response from the API call
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
-    public PaymentAuthorization authorizationsReauthorize(
+    public ApiResponse<PaymentAuthorization> authorizationsReauthorize(
             final AuthorizationsReauthorizeInput input) throws ApiException, IOException {
         return prepareAuthorizationsReauthorizeRequest(input).execute();
     }
@@ -220,9 +224,9 @@ public final class PaymentsController extends BaseController {
      * USD.&lt;br/&gt;&lt;br/&gt;Supports only the `amount` request parameter.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt;
      * This request is currently not supported for Partner use cases.&lt;/blockquote&gt;.
      * @param  input  AuthorizationsReauthorizeInput object containing request parameters
-     * @return    Returns the PaymentAuthorization response from the API call
+     * @return    Returns the PaymentAuthorization wrapped in ApiResponse response from the API call
      */
-    public CompletableFuture<PaymentAuthorization> authorizationsReauthorizeAsync(
+    public CompletableFuture<ApiResponse<PaymentAuthorization>> authorizationsReauthorizeAsync(
             final AuthorizationsReauthorizeInput input) {
         try { 
             return prepareAuthorizationsReauthorizeRequest(input).executeAsync(); 
@@ -234,9 +238,9 @@ public final class PaymentsController extends BaseController {
     /**
      * Builds the ApiCall object for authorizationsReauthorize.
      */
-    private ApiCall<PaymentAuthorization, ApiException> prepareAuthorizationsReauthorizeRequest(
+    private ApiCall<ApiResponse<PaymentAuthorization>, ApiException> prepareAuthorizationsReauthorizeRequest(
             final AuthorizationsReauthorizeInput input) throws JsonProcessingException, IOException {
-        return new ApiCall.Builder<PaymentAuthorization, ApiException>()
+        return new ApiCall.Builder<ApiResponse<PaymentAuthorization>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder
                         .server(Server.ENUM_DEFAULT.value())
@@ -256,7 +260,8 @@ public final class PaymentsController extends BaseController {
                                 .add("Oauth2"))
                         .httpMethod(HttpMethod.POST))
                 .responseHandler(responseHandler -> responseHandler
-                        .deserializer(
+                        .responseClassType(ResponseClassType.API_RESPONSE)
+                        .apiResponseDeserializer(
                                 response -> ApiHelper.deserialize(response, PaymentAuthorization.class))
                         .nullify404(false)
                         .localErrorCase("400",
@@ -288,11 +293,11 @@ public final class PaymentsController extends BaseController {
      * Voids, or cancels, an authorized payment, by ID. You cannot void an authorized payment that
      * has been fully captured.
      * @param  input  AuthorizationsVoidInput object containing request parameters
-     * @return    Returns the PaymentAuthorization response from the API call
+     * @return    Returns the PaymentAuthorization wrapped in ApiResponse response from the API call
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
-    public PaymentAuthorization authorizationsVoid(
+    public ApiResponse<PaymentAuthorization> authorizationsVoid(
             final AuthorizationsVoidInput input) throws ApiException, IOException {
         return prepareAuthorizationsVoidRequest(input).execute();
     }
@@ -301,9 +306,9 @@ public final class PaymentsController extends BaseController {
      * Voids, or cancels, an authorized payment, by ID. You cannot void an authorized payment that
      * has been fully captured.
      * @param  input  AuthorizationsVoidInput object containing request parameters
-     * @return    Returns the PaymentAuthorization response from the API call
+     * @return    Returns the PaymentAuthorization wrapped in ApiResponse response from the API call
      */
-    public CompletableFuture<PaymentAuthorization> authorizationsVoidAsync(
+    public CompletableFuture<ApiResponse<PaymentAuthorization>> authorizationsVoidAsync(
             final AuthorizationsVoidInput input) {
         try { 
             return prepareAuthorizationsVoidRequest(input).executeAsync(); 
@@ -315,9 +320,9 @@ public final class PaymentsController extends BaseController {
     /**
      * Builds the ApiCall object for authorizationsVoid.
      */
-    private ApiCall<PaymentAuthorization, ApiException> prepareAuthorizationsVoidRequest(
+    private ApiCall<ApiResponse<PaymentAuthorization>, ApiException> prepareAuthorizationsVoidRequest(
             final AuthorizationsVoidInput input) throws IOException {
-        return new ApiCall.Builder<PaymentAuthorization, ApiException>()
+        return new ApiCall.Builder<ApiResponse<PaymentAuthorization>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder
                         .server(Server.ENUM_DEFAULT.value())
@@ -333,8 +338,10 @@ public final class PaymentsController extends BaseController {
                                 .add("Oauth2"))
                         .httpMethod(HttpMethod.POST))
                 .responseHandler(responseHandler -> responseHandler
-                        .deserializer(
+                        .responseClassType(ResponseClassType.API_RESPONSE)
+                        .apiResponseDeserializer(
                                 response -> ApiHelper.deserialize(response, PaymentAuthorization.class))
+                        .nullableResponseType(true)
                         .nullify404(false)
                         .localErrorCase("400",
                                  ErrorCase.setReason("The request failed because it is not well-formed or is syntactically incorrect or violates schema.",
@@ -366,24 +373,24 @@ public final class PaymentsController extends BaseController {
 
     /**
      * Shows details for a captured payment, by ID.
-     * @param  captureId  Required parameter: The PayPal-generated ID for the captured payment to
-     *         refund.
-     * @return    Returns the CapturedPayment response from the API call
+     * @param  captureId  Required parameter: The PayPal-generated ID for the captured payment for
+     *         which to show details.
+     * @return    Returns the CapturedPayment wrapped in ApiResponse response from the API call
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
-    public CapturedPayment capturesGet(
+    public ApiResponse<CapturedPayment> capturesGet(
             final String captureId) throws ApiException, IOException {
         return prepareCapturesGetRequest(captureId).execute();
     }
 
     /**
      * Shows details for a captured payment, by ID.
-     * @param  captureId  Required parameter: The PayPal-generated ID for the captured payment to
-     *         refund.
-     * @return    Returns the CapturedPayment response from the API call
+     * @param  captureId  Required parameter: The PayPal-generated ID for the captured payment for
+     *         which to show details.
+     * @return    Returns the CapturedPayment wrapped in ApiResponse response from the API call
      */
-    public CompletableFuture<CapturedPayment> capturesGetAsync(
+    public CompletableFuture<ApiResponse<CapturedPayment>> capturesGetAsync(
             final String captureId) {
         try { 
             return prepareCapturesGetRequest(captureId).executeAsync(); 
@@ -395,9 +402,9 @@ public final class PaymentsController extends BaseController {
     /**
      * Builds the ApiCall object for capturesGet.
      */
-    private ApiCall<CapturedPayment, ApiException> prepareCapturesGetRequest(
+    private ApiCall<ApiResponse<CapturedPayment>, ApiException> prepareCapturesGetRequest(
             final String captureId) throws IOException {
-        return new ApiCall.Builder<CapturedPayment, ApiException>()
+        return new ApiCall.Builder<ApiResponse<CapturedPayment>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder
                         .server(Server.ENUM_DEFAULT.value())
@@ -409,7 +416,8 @@ public final class PaymentsController extends BaseController {
                                 .add("Oauth2"))
                         .httpMethod(HttpMethod.GET))
                 .responseHandler(responseHandler -> responseHandler
-                        .deserializer(
+                        .responseClassType(ResponseClassType.API_RESPONSE)
+                        .apiResponseDeserializer(
                                 response -> ApiHelper.deserialize(response, CapturedPayment.class))
                         .nullify404(false)
                         .localErrorCase("401",
@@ -436,11 +444,11 @@ public final class PaymentsController extends BaseController {
      * request body. For a partial refund, include an &lt;code&gt;amount&lt;/code&gt; object in the JSON request
      * body.
      * @param  input  CapturesRefundInput object containing request parameters
-     * @return    Returns the Refund response from the API call
+     * @return    Returns the Refund wrapped in ApiResponse response from the API call
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
-    public Refund capturesRefund(
+    public ApiResponse<Refund> capturesRefund(
             final CapturesRefundInput input) throws ApiException, IOException {
         return prepareCapturesRefundRequest(input).execute();
     }
@@ -450,9 +458,9 @@ public final class PaymentsController extends BaseController {
      * request body. For a partial refund, include an &lt;code&gt;amount&lt;/code&gt; object in the JSON request
      * body.
      * @param  input  CapturesRefundInput object containing request parameters
-     * @return    Returns the Refund response from the API call
+     * @return    Returns the Refund wrapped in ApiResponse response from the API call
      */
-    public CompletableFuture<Refund> capturesRefundAsync(
+    public CompletableFuture<ApiResponse<Refund>> capturesRefundAsync(
             final CapturesRefundInput input) {
         try { 
             return prepareCapturesRefundRequest(input).executeAsync(); 
@@ -464,9 +472,9 @@ public final class PaymentsController extends BaseController {
     /**
      * Builds the ApiCall object for capturesRefund.
      */
-    private ApiCall<Refund, ApiException> prepareCapturesRefundRequest(
+    private ApiCall<ApiResponse<Refund>, ApiException> prepareCapturesRefundRequest(
             final CapturesRefundInput input) throws JsonProcessingException, IOException {
-        return new ApiCall.Builder<Refund, ApiException>()
+        return new ApiCall.Builder<ApiResponse<Refund>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder
                         .server(Server.ENUM_DEFAULT.value())
@@ -488,7 +496,8 @@ public final class PaymentsController extends BaseController {
                                 .add("Oauth2"))
                         .httpMethod(HttpMethod.POST))
                 .responseHandler(responseHandler -> responseHandler
-                        .deserializer(
+                        .responseClassType(ResponseClassType.API_RESPONSE)
+                        .apiResponseDeserializer(
                                 response -> ApiHelper.deserialize(response, Refund.class))
                         .nullify404(false)
                         .localErrorCase("400",
@@ -523,11 +532,11 @@ public final class PaymentsController extends BaseController {
      * Shows details for a refund, by ID.
      * @param  refundId  Required parameter: The PayPal-generated ID for the refund for which to
      *         show details.
-     * @return    Returns the Refund response from the API call
+     * @return    Returns the Refund wrapped in ApiResponse response from the API call
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
-    public Refund refundsGet(
+    public ApiResponse<Refund> refundsGet(
             final String refundId) throws ApiException, IOException {
         return prepareRefundsGetRequest(refundId).execute();
     }
@@ -536,9 +545,9 @@ public final class PaymentsController extends BaseController {
      * Shows details for a refund, by ID.
      * @param  refundId  Required parameter: The PayPal-generated ID for the refund for which to
      *         show details.
-     * @return    Returns the Refund response from the API call
+     * @return    Returns the Refund wrapped in ApiResponse response from the API call
      */
-    public CompletableFuture<Refund> refundsGetAsync(
+    public CompletableFuture<ApiResponse<Refund>> refundsGetAsync(
             final String refundId) {
         try { 
             return prepareRefundsGetRequest(refundId).executeAsync(); 
@@ -550,9 +559,9 @@ public final class PaymentsController extends BaseController {
     /**
      * Builds the ApiCall object for refundsGet.
      */
-    private ApiCall<Refund, ApiException> prepareRefundsGetRequest(
+    private ApiCall<ApiResponse<Refund>, ApiException> prepareRefundsGetRequest(
             final String refundId) throws IOException {
-        return new ApiCall.Builder<Refund, ApiException>()
+        return new ApiCall.Builder<ApiResponse<Refund>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder
                         .server(Server.ENUM_DEFAULT.value())
@@ -564,7 +573,8 @@ public final class PaymentsController extends BaseController {
                                 .add("Oauth2"))
                         .httpMethod(HttpMethod.GET))
                 .responseHandler(responseHandler -> responseHandler
-                        .deserializer(
+                        .responseClassType(ResponseClassType.API_RESPONSE)
+                        .apiResponseDeserializer(
                                 response -> ApiHelper.deserialize(response, Refund.class))
                         .nullify404(false)
                         .localErrorCase("401",

@@ -12,6 +12,7 @@ import com.paypal.api.Server;
 import com.paypal.api.exceptions.ApiException;
 import com.paypal.api.exceptions.ErrorException;
 import com.paypal.api.http.request.HttpMethod;
+import com.paypal.api.http.response.ApiResponse;
 import com.paypal.api.models.Order;
 import com.paypal.api.models.OrderAuthorizeResponse;
 import com.paypal.api.models.OrdersAuthorizeInput;
@@ -25,6 +26,7 @@ import com.paypal.api.models.OrdersTrackersPatchInput;
 import io.apimatic.core.ApiCall;
 import io.apimatic.core.ErrorCase;
 import io.apimatic.core.GlobalConfiguration;
+import io.apimatic.coreinterfaces.http.request.ResponseClassType;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
@@ -51,11 +53,11 @@ public final class OrdersController extends BaseController {
      * &lt;a href="/api/rest/reference/orders/v2/errors/#create-order"&gt;Orders v2
      * errors&lt;/a&gt;.&lt;/blockquote&gt;.
      * @param  input  OrdersCreateInput object containing request parameters
-     * @return    Returns the Order response from the API call
+     * @return    Returns the Order wrapped in ApiResponse response from the API call
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
-    public Order ordersCreate(
+    public ApiResponse<Order> ordersCreate(
             final OrdersCreateInput input) throws ApiException, IOException {
         return prepareOrdersCreateRequest(input).execute();
     }
@@ -69,9 +71,9 @@ public final class OrdersController extends BaseController {
      * &lt;a href="/api/rest/reference/orders/v2/errors/#create-order"&gt;Orders v2
      * errors&lt;/a&gt;.&lt;/blockquote&gt;.
      * @param  input  OrdersCreateInput object containing request parameters
-     * @return    Returns the Order response from the API call
+     * @return    Returns the Order wrapped in ApiResponse response from the API call
      */
-    public CompletableFuture<Order> ordersCreateAsync(
+    public CompletableFuture<ApiResponse<Order>> ordersCreateAsync(
             final OrdersCreateInput input) {
         try { 
             return prepareOrdersCreateRequest(input).executeAsync(); 
@@ -83,9 +85,9 @@ public final class OrdersController extends BaseController {
     /**
      * Builds the ApiCall object for ordersCreate.
      */
-    private ApiCall<Order, ApiException> prepareOrdersCreateRequest(
+    private ApiCall<ApiResponse<Order>, ApiException> prepareOrdersCreateRequest(
             final OrdersCreateInput input) throws JsonProcessingException, IOException {
-        return new ApiCall.Builder<Order, ApiException>()
+        return new ApiCall.Builder<ApiResponse<Order>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder
                         .server(Server.ENUM_DEFAULT.value())
@@ -107,7 +109,8 @@ public final class OrdersController extends BaseController {
                                 .add("Oauth2"))
                         .httpMethod(HttpMethod.POST))
                 .responseHandler(responseHandler -> responseHandler
-                        .deserializer(
+                        .responseClassType(ResponseClassType.API_RESPONSE)
+                        .apiResponseDeserializer(
                                 response -> ApiHelper.deserialize(response, Order.class))
                         .nullify404(false)
                         .localErrorCase("400",
@@ -131,11 +134,11 @@ public final class OrdersController extends BaseController {
      * troubleshooting, see &lt;a href="/api/rest/reference/orders/v2/errors/#get-order"&gt;Orders v2
      * errors&lt;/a&gt;.&lt;/blockquote&gt;.
      * @param  input  OrdersGetInput object containing request parameters
-     * @return    Returns the Order response from the API call
+     * @return    Returns the Order wrapped in ApiResponse response from the API call
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
-    public Order ordersGet(
+    public ApiResponse<Order> ordersGet(
             final OrdersGetInput input) throws ApiException, IOException {
         return prepareOrdersGetRequest(input).execute();
     }
@@ -145,9 +148,9 @@ public final class OrdersController extends BaseController {
      * troubleshooting, see &lt;a href="/api/rest/reference/orders/v2/errors/#get-order"&gt;Orders v2
      * errors&lt;/a&gt;.&lt;/blockquote&gt;.
      * @param  input  OrdersGetInput object containing request parameters
-     * @return    Returns the Order response from the API call
+     * @return    Returns the Order wrapped in ApiResponse response from the API call
      */
-    public CompletableFuture<Order> ordersGetAsync(
+    public CompletableFuture<ApiResponse<Order>> ordersGetAsync(
             final OrdersGetInput input) {
         try { 
             return prepareOrdersGetRequest(input).executeAsync(); 
@@ -159,9 +162,9 @@ public final class OrdersController extends BaseController {
     /**
      * Builds the ApiCall object for ordersGet.
      */
-    private ApiCall<Order, ApiException> prepareOrdersGetRequest(
+    private ApiCall<ApiResponse<Order>, ApiException> prepareOrdersGetRequest(
             final OrdersGetInput input) throws IOException {
-        return new ApiCall.Builder<Order, ApiException>()
+        return new ApiCall.Builder<ApiResponse<Order>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder
                         .server(Server.ENUM_DEFAULT.value())
@@ -175,7 +178,8 @@ public final class OrdersController extends BaseController {
                                 .add("Oauth2"))
                         .httpMethod(HttpMethod.GET))
                 .responseHandler(responseHandler -> responseHandler
-                        .deserializer(
+                        .responseClassType(ResponseClassType.API_RESPONSE)
+                        .apiResponseDeserializer(
                                 response -> ApiHelper.deserialize(response, Order.class))
                         .nullify404(false)
                         .localErrorCase("401",
@@ -238,9 +242,9 @@ public final class OrdersController extends BaseController {
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
-    public void ordersPatch(
+    public ApiResponse<Void> ordersPatch(
             final OrdersPatchInput input) throws ApiException, IOException {
-        prepareOrdersPatchRequest(input).execute();
+        return prepareOrdersPatchRequest(input).execute();
     }
 
     /**
@@ -287,9 +291,9 @@ public final class OrdersController extends BaseController {
      * remove&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;application_context.client_configuration&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace,
      * add&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;.
      * @param  input  OrdersPatchInput object containing request parameters
-     * @return    Returns the void response from the API call
+     * @return    Returns the Void wrapped in ApiResponse response from the API call
      */
-    public CompletableFuture<Void> ordersPatchAsync(
+    public CompletableFuture<ApiResponse<Void>> ordersPatchAsync(
             final OrdersPatchInput input) {
         try { 
             return prepareOrdersPatchRequest(input).executeAsync(); 
@@ -301,9 +305,9 @@ public final class OrdersController extends BaseController {
     /**
      * Builds the ApiCall object for ordersPatch.
      */
-    private ApiCall<Void, ApiException> prepareOrdersPatchRequest(
+    private ApiCall<ApiResponse<Void>, ApiException> prepareOrdersPatchRequest(
             final OrdersPatchInput input) throws JsonProcessingException, IOException {
-        return new ApiCall.Builder<Void, ApiException>()
+        return new ApiCall.Builder<ApiResponse<Void>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder
                         .server(Server.ENUM_DEFAULT.value())
@@ -318,6 +322,7 @@ public final class OrdersController extends BaseController {
                                 .add("Oauth2"))
                         .httpMethod(HttpMethod.PATCH))
                 .responseHandler(responseHandler -> responseHandler
+                        .responseClassType(ResponseClassType.API_RESPONSE)
                         .nullify404(false)
                         .localErrorCase("400",
                                  ErrorCase.setReason("Request is not well-formed, syntactically incorrect, or violates schema.",
@@ -341,11 +346,11 @@ public final class OrdersController extends BaseController {
     /**
      * Payer confirms their intent to pay for the the Order with the given payment source.
      * @param  input  OrdersConfirmInput object containing request parameters
-     * @return    Returns the Order response from the API call
+     * @return    Returns the Order wrapped in ApiResponse response from the API call
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
-    public Order ordersConfirm(
+    public ApiResponse<Order> ordersConfirm(
             final OrdersConfirmInput input) throws ApiException, IOException {
         return prepareOrdersConfirmRequest(input).execute();
     }
@@ -353,9 +358,9 @@ public final class OrdersController extends BaseController {
     /**
      * Payer confirms their intent to pay for the the Order with the given payment source.
      * @param  input  OrdersConfirmInput object containing request parameters
-     * @return    Returns the Order response from the API call
+     * @return    Returns the Order wrapped in ApiResponse response from the API call
      */
-    public CompletableFuture<Order> ordersConfirmAsync(
+    public CompletableFuture<ApiResponse<Order>> ordersConfirmAsync(
             final OrdersConfirmInput input) {
         try { 
             return prepareOrdersConfirmRequest(input).executeAsync(); 
@@ -367,9 +372,9 @@ public final class OrdersController extends BaseController {
     /**
      * Builds the ApiCall object for ordersConfirm.
      */
-    private ApiCall<Order, ApiException> prepareOrdersConfirmRequest(
+    private ApiCall<ApiResponse<Order>, ApiException> prepareOrdersConfirmRequest(
             final OrdersConfirmInput input) throws JsonProcessingException, IOException {
-        return new ApiCall.Builder<Order, ApiException>()
+        return new ApiCall.Builder<ApiResponse<Order>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder
                         .server(Server.ENUM_DEFAULT.value())
@@ -389,7 +394,8 @@ public final class OrdersController extends BaseController {
                                 .add("Oauth2"))
                         .httpMethod(HttpMethod.POST))
                 .responseHandler(responseHandler -> responseHandler
-                        .deserializer(
+                        .responseClassType(ResponseClassType.API_RESPONSE)
+                        .apiResponseDeserializer(
                                 response -> ApiHelper.deserialize(response, Order.class))
                         .nullify404(false)
                         .localErrorCase("400",
@@ -420,11 +426,11 @@ public final class OrdersController extends BaseController {
      * href="/api/rest/reference/orders/v2/errors/#authorize-order"&gt;Orders v2
      * errors&lt;/a&gt;.&lt;/blockquote&gt;.
      * @param  input  OrdersAuthorizeInput object containing request parameters
-     * @return    Returns the OrderAuthorizeResponse response from the API call
+     * @return    Returns the OrderAuthorizeResponse wrapped in ApiResponse response from the API call
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
-    public OrderAuthorizeResponse ordersAuthorize(
+    public ApiResponse<OrderAuthorizeResponse> ordersAuthorize(
             final OrdersAuthorizeInput input) throws ApiException, IOException {
         return prepareOrdersAuthorizeRequest(input).execute();
     }
@@ -438,9 +444,9 @@ public final class OrdersController extends BaseController {
      * href="/api/rest/reference/orders/v2/errors/#authorize-order"&gt;Orders v2
      * errors&lt;/a&gt;.&lt;/blockquote&gt;.
      * @param  input  OrdersAuthorizeInput object containing request parameters
-     * @return    Returns the OrderAuthorizeResponse response from the API call
+     * @return    Returns the OrderAuthorizeResponse wrapped in ApiResponse response from the API call
      */
-    public CompletableFuture<OrderAuthorizeResponse> ordersAuthorizeAsync(
+    public CompletableFuture<ApiResponse<OrderAuthorizeResponse>> ordersAuthorizeAsync(
             final OrdersAuthorizeInput input) {
         try { 
             return prepareOrdersAuthorizeRequest(input).executeAsync(); 
@@ -452,9 +458,9 @@ public final class OrdersController extends BaseController {
     /**
      * Builds the ApiCall object for ordersAuthorize.
      */
-    private ApiCall<OrderAuthorizeResponse, ApiException> prepareOrdersAuthorizeRequest(
+    private ApiCall<ApiResponse<OrderAuthorizeResponse>, ApiException> prepareOrdersAuthorizeRequest(
             final OrdersAuthorizeInput input) throws JsonProcessingException, IOException {
-        return new ApiCall.Builder<OrderAuthorizeResponse, ApiException>()
+        return new ApiCall.Builder<ApiResponse<OrderAuthorizeResponse>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder
                         .server(Server.ENUM_DEFAULT.value())
@@ -478,7 +484,8 @@ public final class OrdersController extends BaseController {
                                 .add("Oauth2"))
                         .httpMethod(HttpMethod.POST))
                 .responseHandler(responseHandler -> responseHandler
-                        .deserializer(
+                        .responseClassType(ResponseClassType.API_RESPONSE)
+                        .apiResponseDeserializer(
                                 response -> ApiHelper.deserialize(response, OrderAuthorizeResponse.class))
                         .nullify404(false)
                         .localErrorCase("400",
@@ -515,11 +522,11 @@ public final class OrdersController extends BaseController {
      * href="/api/rest/reference/orders/v2/errors/#capture-order"&gt;Orders v2
      * errors&lt;/a&gt;.&lt;/blockquote&gt;.
      * @param  input  OrdersCaptureInput object containing request parameters
-     * @return    Returns the Order response from the API call
+     * @return    Returns the Order wrapped in ApiResponse response from the API call
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
-    public Order ordersCapture(
+    public ApiResponse<Order> ordersCapture(
             final OrdersCaptureInput input) throws ApiException, IOException {
         return prepareOrdersCaptureRequest(input).execute();
     }
@@ -533,9 +540,9 @@ public final class OrdersController extends BaseController {
      * href="/api/rest/reference/orders/v2/errors/#capture-order"&gt;Orders v2
      * errors&lt;/a&gt;.&lt;/blockquote&gt;.
      * @param  input  OrdersCaptureInput object containing request parameters
-     * @return    Returns the Order response from the API call
+     * @return    Returns the Order wrapped in ApiResponse response from the API call
      */
-    public CompletableFuture<Order> ordersCaptureAsync(
+    public CompletableFuture<ApiResponse<Order>> ordersCaptureAsync(
             final OrdersCaptureInput input) {
         try { 
             return prepareOrdersCaptureRequest(input).executeAsync(); 
@@ -547,9 +554,9 @@ public final class OrdersController extends BaseController {
     /**
      * Builds the ApiCall object for ordersCapture.
      */
-    private ApiCall<Order, ApiException> prepareOrdersCaptureRequest(
+    private ApiCall<ApiResponse<Order>, ApiException> prepareOrdersCaptureRequest(
             final OrdersCaptureInput input) throws JsonProcessingException, IOException {
-        return new ApiCall.Builder<Order, ApiException>()
+        return new ApiCall.Builder<ApiResponse<Order>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder
                         .server(Server.ENUM_DEFAULT.value())
@@ -573,7 +580,8 @@ public final class OrdersController extends BaseController {
                                 .add("Oauth2"))
                         .httpMethod(HttpMethod.POST))
                 .responseHandler(responseHandler -> responseHandler
-                        .deserializer(
+                        .responseClassType(ResponseClassType.API_RESPONSE)
+                        .apiResponseDeserializer(
                                 response -> ApiHelper.deserialize(response, Order.class))
                         .nullify404(false)
                         .localErrorCase("400",
@@ -604,11 +612,11 @@ public final class OrdersController extends BaseController {
     /**
      * Adds tracking information for an Order.
      * @param  input  OrdersTrackCreateInput object containing request parameters
-     * @return    Returns the Order response from the API call
+     * @return    Returns the Order wrapped in ApiResponse response from the API call
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
-    public Order ordersTrackCreate(
+    public ApiResponse<Order> ordersTrackCreate(
             final OrdersTrackCreateInput input) throws ApiException, IOException {
         return prepareOrdersTrackCreateRequest(input).execute();
     }
@@ -616,9 +624,9 @@ public final class OrdersController extends BaseController {
     /**
      * Adds tracking information for an Order.
      * @param  input  OrdersTrackCreateInput object containing request parameters
-     * @return    Returns the Order response from the API call
+     * @return    Returns the Order wrapped in ApiResponse response from the API call
      */
-    public CompletableFuture<Order> ordersTrackCreateAsync(
+    public CompletableFuture<ApiResponse<Order>> ordersTrackCreateAsync(
             final OrdersTrackCreateInput input) {
         try { 
             return prepareOrdersTrackCreateRequest(input).executeAsync(); 
@@ -630,9 +638,9 @@ public final class OrdersController extends BaseController {
     /**
      * Builds the ApiCall object for ordersTrackCreate.
      */
-    private ApiCall<Order, ApiException> prepareOrdersTrackCreateRequest(
+    private ApiCall<ApiResponse<Order>, ApiException> prepareOrdersTrackCreateRequest(
             final OrdersTrackCreateInput input) throws JsonProcessingException, IOException {
-        return new ApiCall.Builder<Order, ApiException>()
+        return new ApiCall.Builder<ApiResponse<Order>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder
                         .server(Server.ENUM_DEFAULT.value())
@@ -650,7 +658,8 @@ public final class OrdersController extends BaseController {
                                 .add("Oauth2"))
                         .httpMethod(HttpMethod.POST))
                 .responseHandler(responseHandler -> responseHandler
-                        .deserializer(
+                        .responseClassType(ResponseClassType.API_RESPONSE)
+                        .apiResponseDeserializer(
                                 response -> ApiHelper.deserialize(response, Order.class))
                         .nullify404(false)
                         .localErrorCase("400",
@@ -687,9 +696,9 @@ public final class OrdersController extends BaseController {
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
-    public void ordersTrackersPatch(
+    public ApiResponse<Void> ordersTrackersPatch(
             final OrdersTrackersPatchInput input) throws ApiException, IOException {
-        prepareOrdersTrackersPatchRequest(input).execute();
+        return prepareOrdersTrackersPatchRequest(input).execute();
     }
 
     /**
@@ -701,9 +710,9 @@ public final class OrdersController extends BaseController {
      * add&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;status&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace&lt;/td&gt;&lt;td&gt;Only patching
      * status to CANCELLED is currently supported.&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;.
      * @param  input  OrdersTrackersPatchInput object containing request parameters
-     * @return    Returns the void response from the API call
+     * @return    Returns the Void wrapped in ApiResponse response from the API call
      */
-    public CompletableFuture<Void> ordersTrackersPatchAsync(
+    public CompletableFuture<ApiResponse<Void>> ordersTrackersPatchAsync(
             final OrdersTrackersPatchInput input) {
         try { 
             return prepareOrdersTrackersPatchRequest(input).executeAsync(); 
@@ -715,9 +724,9 @@ public final class OrdersController extends BaseController {
     /**
      * Builds the ApiCall object for ordersTrackersPatch.
      */
-    private ApiCall<Void, ApiException> prepareOrdersTrackersPatchRequest(
+    private ApiCall<ApiResponse<Void>, ApiException> prepareOrdersTrackersPatchRequest(
             final OrdersTrackersPatchInput input) throws JsonProcessingException, IOException {
-        return new ApiCall.Builder<Void, ApiException>()
+        return new ApiCall.Builder<ApiResponse<Void>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder
                         .server(Server.ENUM_DEFAULT.value())
@@ -734,6 +743,7 @@ public final class OrdersController extends BaseController {
                                 .add("Oauth2"))
                         .httpMethod(HttpMethod.PATCH))
                 .responseHandler(responseHandler -> responseHandler
+                        .responseClassType(ResponseClassType.API_RESPONSE)
                         .nullify404(false)
                         .localErrorCase("400",
                                  ErrorCase.setReason("Request is not well-formed, syntactically incorrect, or violates schema.",

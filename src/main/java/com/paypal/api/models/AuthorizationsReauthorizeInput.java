@@ -51,7 +51,7 @@ public class AuthorizationsReauthorizeInput {
 
     /**
      * Getter for AuthorizationId.
-     * The PayPal-generated ID for the authorized payment to void.
+     * The PayPal-generated ID for the authorized payment to reauthorize.
      * @return Returns the String
      */
     @JsonGetter("authorization_id")
@@ -61,7 +61,7 @@ public class AuthorizationsReauthorizeInput {
 
     /**
      * Setter for AuthorizationId.
-     * The PayPal-generated ID for the authorized payment to void.
+     * The PayPal-generated ID for the authorized payment to reauthorize.
      * @param authorizationId Value for String
      */
     @JsonSetter("authorization_id")

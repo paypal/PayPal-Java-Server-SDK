@@ -8,7 +8,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.paypal.sdk</groupId>
   <artifactId>paypal-rest-api-sdk</artifactId>
-  <version>0.2.0-beta</version>
+  <version>0.3.0-beta</version>
   <packaging>jar</packaging>
   <name>PayPalRESTAPIsLib</name>
   <properties>
@@ -20,17 +20,17 @@
     <dependency>
       <groupId>io.apimatic</groupId>
       <artifactId>core-interfaces</artifactId>
-      <version>[0.3, 0.4)</version>
+      <version>[0.3.1, 0.4)</version>
     </dependency>
     <dependency>
       <groupId>io.apimatic</groupId>
       <artifactId>core</artifactId>
-      <version>[0.6, 0.7)</version>
+      <version>[0.6.4, 0.7)</version>
     </dependency>
     <dependency>
       <groupId>io.apimatic</groupId>
       <artifactId>okhttp-client-adapter</artifactId>
-      <version>[0.3, 0.4)</version>
+      <version>[0.3.1, 0.4)</version>
     </dependency>
   </dependencies>
   <build>

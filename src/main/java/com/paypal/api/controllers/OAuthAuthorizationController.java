@@ -11,11 +11,13 @@ import com.paypal.api.Server;
 import com.paypal.api.exceptions.ApiException;
 import com.paypal.api.exceptions.OAuthProviderException;
 import com.paypal.api.http.request.HttpMethod;
+import com.paypal.api.http.response.ApiResponse;
 import com.paypal.api.models.OAuthToken;
 import com.paypal.api.models.RequestTokenInput;
 import io.apimatic.core.ApiCall;
 import io.apimatic.core.ErrorCase;
 import io.apimatic.core.GlobalConfiguration;
+import io.apimatic.coreinterfaces.http.request.ResponseClassType;
 import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
@@ -38,11 +40,11 @@ public final class OAuthAuthorizationController extends BaseController {
      * Create a new OAuth 2 token.
      * @param  input  RequestTokenInput object containing request parameters
      * @param    fieldParameters    Additional optional form parameters are supported by this endpoint
-     * @return    Returns the OAuthToken response from the API call
+     * @return    Returns the OAuthToken wrapped in ApiResponse response from the API call
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
-    public OAuthToken requestToken(
+    public ApiResponse<OAuthToken> requestToken(
             final RequestTokenInput input,
             final Map<String, Object> fieldParameters) throws ApiException, IOException {
         return prepareRequestTokenRequest(input, fieldParameters).execute();
@@ -52,9 +54,9 @@ public final class OAuthAuthorizationController extends BaseController {
      * Create a new OAuth 2 token.
      * @param  input  RequestTokenInput object containing request parameters
      * @param    fieldParameters    Additional optional form parameters are supported by this endpoint
-     * @return    Returns the OAuthToken response from the API call
+     * @return    Returns the OAuthToken wrapped in ApiResponse response from the API call
      */
-    public CompletableFuture<OAuthToken> requestTokenAsync(
+    public CompletableFuture<ApiResponse<OAuthToken>> requestTokenAsync(
             final RequestTokenInput input,
             final Map<String, Object> fieldParameters) {
         try { 
@@ -67,10 +69,10 @@ public final class OAuthAuthorizationController extends BaseController {
     /**
      * Builds the ApiCall object for requestToken.
      */
-    private ApiCall<OAuthToken, ApiException> prepareRequestTokenRequest(
+    private ApiCall<ApiResponse<OAuthToken>, ApiException> prepareRequestTokenRequest(
             final RequestTokenInput input,
             final Map<String, Object> fieldParameters) throws IOException {
-        return new ApiCall.Builder<OAuthToken, ApiException>()
+        return new ApiCall.Builder<ApiResponse<OAuthToken>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder
                         .server(Server.ENUM_DEFAULT.value())
@@ -85,7 +87,8 @@ public final class OAuthAuthorizationController extends BaseController {
                         .headerParam(param -> param.key("accept").value("application/json"))
                         .httpMethod(HttpMethod.POST))
                 .responseHandler(responseHandler -> responseHandler
-                        .deserializer(
+                        .responseClassType(ResponseClassType.API_RESPONSE)
+                        .apiResponseDeserializer(
                                 response -> ApiHelper.deserialize(response, OAuthToken.class))
                         .nullify404(false)
                         .localErrorCase("400",

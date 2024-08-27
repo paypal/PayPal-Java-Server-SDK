@@ -51,7 +51,7 @@ public class OrdersConfirmInput {
 
     /**
      * Getter for Id.
-     * The ID of the order that the tracking information is associated with.
+     * The ID of the order for which the payer confirms their intent to pay.
      * @return Returns the String
      */
     @JsonGetter("id")
@@ -61,7 +61,7 @@ public class OrdersConfirmInput {
 
     /**
      * Setter for Id.
-     * The ID of the order that the tracking information is associated with.
+     * The ID of the order for which the payer confirms their intent to pay.
      * @param id Value for String
      */
     @JsonSetter("id")

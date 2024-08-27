@@ -11,6 +11,7 @@ import com.paypal.api.http.client.HttpContext;
 import com.paypal.api.http.request.HttpBodyRequest;
 import com.paypal.api.http.request.HttpMethod;
 import com.paypal.api.http.request.HttpRequest;
+import com.paypal.api.http.response.ApiResponse;
 import com.paypal.api.http.response.HttpResponse;
 import com.paypal.api.http.response.HttpStringResponse;
 import io.apimatic.coreinterfaces.compatibility.CompatibilityFactory;
@@ -82,7 +83,7 @@ public class CompatibilityFactoryImpl implements CompatibilityFactory {
 
     @Override
     public <T> ApiResponseType<T> createApiResponse(int statusCode, HttpHeaders headers, T result) {
-          return null;
+         return new ApiResponse<T>(statusCode, (Headers) headers, result);
     }
 
 }

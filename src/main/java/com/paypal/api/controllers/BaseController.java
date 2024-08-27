@@ -7,6 +7,7 @@
 package com.paypal.api.controllers;
 
 import com.paypal.api.exceptions.ApiException;
+import com.paypal.api.http.response.ApiResponse;
 import io.apimatic.core.ErrorCase;
 import io.apimatic.core.GlobalConfiguration;
 import io.apimatic.coreinterfaces.http.HttpClient;

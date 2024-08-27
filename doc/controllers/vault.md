@@ -25,7 +25,7 @@ VaultController vaultController = client.getVaultController();
 Creates a Payment Token from the given payment source and adds it to the Vault of the associated customer.
 
 ```java
-CompletableFuture<PaymentTokenResponse> paymentTokensCreateAsync(
+CompletableFuture<ApiResponse<PaymentTokenResponse>> paymentTokensCreateAsync(
     final PaymentTokensCreateInput input)
 ```
 
@@ -80,7 +80,7 @@ vaultController.paymentTokensCreateAsync(paymentTokensCreateInput).thenAccept(re
 Returns all payment tokens for a customer.
 
 ```java
-CompletableFuture<CustomerVaultPaymentTokensResponse> customerPaymentTokensGetAsync(
+CompletableFuture<ApiResponse<CustomerVaultPaymentTokensResponse>> customerPaymentTokensGetAsync(
     final CustomerPaymentTokensGetInput input)
 ```
 
@@ -132,7 +132,7 @@ vaultController.customerPaymentTokensGetAsync(customerPaymentTokensGetInput).the
 Returns a readable representation of vaulted payment source associated with the payment token id.
 
 ```java
-CompletableFuture<PaymentTokenResponse> paymentTokensGetAsync(
+CompletableFuture<ApiResponse<PaymentTokenResponse>> paymentTokensGetAsync(
     final String id)
 ```
 
@@ -140,7 +140,7 @@ CompletableFuture<PaymentTokenResponse> paymentTokensGetAsync(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `id` | `String` | Template, Required | ID of the setup token. |
+| `id` | `String` | Template, Required | ID of the payment token. |
 
 ## Response Type
 
@@ -176,7 +176,7 @@ vaultController.paymentTokensGetAsync(id).thenAccept(result -> {
 Delete the payment token associated with the payment token id.
 
 ```java
-CompletableFuture<Void> paymentTokensDeleteAsync(
+CompletableFuture<ApiResponse<Void>> paymentTokensDeleteAsync(
     final String id)
 ```
 
@@ -184,7 +184,7 @@ CompletableFuture<Void> paymentTokensDeleteAsync(
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `id` | `String` | Template, Required | ID of the setup token. |
+| `id` | `String` | Template, Required | ID of the payment token. |
 
 ## Response Type
 
@@ -219,7 +219,7 @@ vaultController.paymentTokensDeleteAsync(id).thenAccept(result -> {
 Creates a Setup Token from the given payment source and adds it to the Vault of the associated customer.
 
 ```java
-CompletableFuture<SetupTokenResponse> setupTokensCreateAsync(
+CompletableFuture<ApiResponse<SetupTokenResponse>> setupTokensCreateAsync(
     final SetupTokensCreateInput input)
 ```
 
@@ -273,7 +273,7 @@ vaultController.setupTokensCreateAsync(setupTokensCreateInput).thenAccept(result
 Returns a readable representation of temporarily vaulted payment source associated with the setup token id.
 
 ```java
-CompletableFuture<SetupTokenResponse> setupTokensGetAsync(
+CompletableFuture<ApiResponse<SetupTokenResponse>> setupTokensGetAsync(
     final String id)
 ```
 

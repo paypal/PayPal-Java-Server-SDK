@@ -43,7 +43,7 @@ public class OrdersPatchInput {
 
     /**
      * Getter for Id.
-     * The ID of the order that the tracking information is associated with.
+     * The ID of the order to update.
      * @return Returns the String
      */
     @JsonGetter("id")
@@ -53,7 +53,7 @@ public class OrdersPatchInput {
 
     /**
      * Setter for Id.
-     * The ID of the order that the tracking information is associated with.
+     * The ID of the order to update.
      * @param id Value for String
      */
     @JsonSetter("id")
