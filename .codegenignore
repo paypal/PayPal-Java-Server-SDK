@@ -1,0 +1,4 @@
+/src/test/java/com/paypal/api/UnitTests/**
+/src/test/java/com/paypal/api/e2e/**
+.gitignore
+.github/**
