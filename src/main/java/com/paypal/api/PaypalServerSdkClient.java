@@ -45,7 +45,7 @@ public final class PaypalServerSDKClient implements Configuration {
 
     private static final CompatibilityFactory compatibilityFactory = new CompatibilityFactoryImpl();
 
-    private static String userAgent = "PayPal REST API Java SDK, Version: 0.5.0, on OS {os-info}";
+    private static String userAgent = "PayPal REST API Java SDK, Version: 0.5.1, on OS {os-info}";
 
     /**
      * Current API environment.
