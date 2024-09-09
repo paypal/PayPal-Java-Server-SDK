@@ -146,7 +146,7 @@
         <configuration>
           <archive>
             <manifestEntries>
-              <Automatic-Module-Name>com.paypal.api</Automatic-Module-Name>
+              <Automatic-Module-Name>com.paypal.sdk</Automatic-Module-Name>
             </manifestEntries>
           </archive>
         </configuration>

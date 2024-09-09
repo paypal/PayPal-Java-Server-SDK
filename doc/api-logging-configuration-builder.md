@@ -78,7 +78,7 @@ The following example uses the `LoggerFactory.getLogger` to get the underlying l
 ```java
 package examples;
 
-import com.paypal.api.PaypalServerSDKClient;
+import com.paypal.sdk.PaypalServerSDKClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.event.Level;
