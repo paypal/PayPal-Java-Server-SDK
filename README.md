@@ -1,5 +1,5 @@
 
-# Getting Started with Paypal Server SDK
+# Getting Started with PayPal REST APIs
 
 ## Introduction
 
@@ -38,7 +38,7 @@ The following parameters are configurable for the API Client:
 The API client can be initialized as follows:
 
 ```java
-PaypalServerSDKClient client = new PaypalServerSDKClient.Builder()
+PayPalRESTAPIsClient client = new PayPalRESTAPIsClient.Builder()
     .loggingConfig(builder -> builder
             .level(Level.DEBUG)
             .requestConfig(logConfigBuilder -> logConfigBuilder.body(true))
