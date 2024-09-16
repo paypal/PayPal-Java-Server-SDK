@@ -1,8 +1,8 @@
 package com.paypal.api.e2e;
 
-import com.paypal.api.Environment;
-import com.paypal.api.PayPalRESTAPIsClient;
-import com.paypal.api.authentication.ClientCredentialsAuthModel;
+import com.paypal.sdk.Environment;
+import com.paypal.sdk.PaypalServerSDKClient;
+import com.paypal.sdk.authentication.ClientCredentialsAuthModel;
 
 import io.github.cdimascio.dotenv.Dotenv;
 
@@ -30,8 +30,8 @@ public class E2ETestsBase {
     /**
      * Create test configuration from Environment variables.
      */
-    protected static PayPalRESTAPIsClient createConfigurationFromEnvironment() {
-        PayPalRESTAPIsClient.Builder builder = new PayPalRESTAPIsClient.Builder();
+    protected static PaypalServerSDKClient createConfigurationFromEnvironment() {
+        PaypalServerSDKClient.Builder builder = new PaypalServerSDKClient.Builder();
         Dotenv dotenv = Dotenv.load();
 
         final String environment = "Sandbox";
@@ -56,9 +56,9 @@ public class E2ETestsBase {
     /**
      * Create test configuration.
      */
-    protected static PayPalRESTAPIsClient createConfiguration() {
+    protected static PaypalServerSDKClient createConfiguration() {
         // Set Configuration parameters for test execution
-        PayPalRESTAPIsClient config = createConfigurationFromEnvironment();
+        PaypalServerSDKClient config = createConfigurationFromEnvironment();
         config = config.newBuilder()
                 .loggingConfig(builder -> builder
                         .level(Level.DEBUG)

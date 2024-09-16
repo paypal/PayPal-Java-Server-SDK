@@ -10,26 +10,26 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.paypal.api.PayPalRESTAPIsClient;
-import com.paypal.api.controllers.VaultController;
-import com.paypal.api.exceptions.ApiException;
-import com.paypal.api.exceptions.ErrorException;
-import com.paypal.api.http.response.ApiResponse;
-import com.paypal.api.models.CustomerPaymentTokensGetInput;
-import com.paypal.api.models.PaymentTokenRequest;
-import com.paypal.api.models.PaymentTokenRequestPaymentSource;
-import com.paypal.api.models.PaymentTokensCreateInput;
-import com.paypal.api.models.SetupTokenRequest;
-import com.paypal.api.models.SetupTokenRequestPaymentSource;
-import com.paypal.api.models.SetupTokensCreateInput;
-import com.paypal.api.models.TokenType;
-import com.paypal.api.models.VaultTokenRequest;
+import com.paypal.sdk.PaypalServerSDKClient;
+import com.paypal.sdk.controllers.VaultController;
+import com.paypal.sdk.exceptions.ApiException;
+import com.paypal.sdk.exceptions.ErrorException;
+import com.paypal.sdk.http.response.ApiResponse;
+import com.paypal.sdk.models.CustomerPaymentTokensGetInput;
+import com.paypal.sdk.models.PaymentTokenRequest;
+import com.paypal.sdk.models.PaymentTokenRequestPaymentSource;
+import com.paypal.sdk.models.PaymentTokensCreateInput;
+import com.paypal.sdk.models.SetupTokenRequest;
+import com.paypal.sdk.models.SetupTokenRequestPaymentSource;
+import com.paypal.sdk.models.SetupTokensCreateInput;
+import com.paypal.sdk.models.TokenRequestType;
+import com.paypal.sdk.models.VaultTokenRequest;
 
 public class VaultControllerTest extends BaseControllerTest {
   /**
    * Client instance.
    */
-  private static PayPalRESTAPIsClient client;
+  private static PaypalServerSDKClient client;
 
   /**
    * Controller instance (for all tests).
@@ -140,7 +140,7 @@ public class VaultControllerTest extends BaseControllerTest {
             new PaymentTokenRequestPaymentSource.Builder()
                 .token(new VaultTokenRequest.Builder(
                     nonExistentPaymentId,
-                    TokenType.BILLING_AGREEMENT)
+                    TokenRequestType.BILLING_AGREEMENT)
                     .build())
                 .build())
             .build())
