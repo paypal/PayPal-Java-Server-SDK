@@ -14,9 +14,9 @@ import java.util.TreeMap;
 
 
 /**
- * PayPalPaymentTokenUsageType to be used.
+ * PaypalPaymentTokenUsageType to be used.
  */
-public enum PayPalPaymentTokenUsageType {
+public enum PaypalPaymentTokenUsageType {
     MERCHANT,
 
     PLATFORM,
@@ -27,7 +27,7 @@ public enum PayPalPaymentTokenUsageType {
     _UNKNOWN;
 
 
-    private static TreeMap<String, PayPalPaymentTokenUsageType> valueMap = new TreeMap<>();
+    private static TreeMap<String, PaypalPaymentTokenUsageType> valueMap = new TreeMap<>();
     private String value;
 
     static {
@@ -46,8 +46,8 @@ public enum PayPalPaymentTokenUsageType {
      * @throws IOException when provided value is not mapped to any enum member.
      */
     @JsonCreator
-    public static PayPalPaymentTokenUsageType constructFromString(String toConvert) throws IOException {
-        PayPalPaymentTokenUsageType enumValue = fromString(toConvert);
+    public static PaypalPaymentTokenUsageType constructFromString(String toConvert) throws IOException {
+        PaypalPaymentTokenUsageType enumValue = fromString(toConvert);
         if (enumValue == null) {
             throw new IOException("Unable to create enum instance with value: " + toConvert);
         }
@@ -59,7 +59,7 @@ public enum PayPalPaymentTokenUsageType {
      * @param toConvert String value to get enum member.
      * @return The enum member against the given string value.
      */
-    public static PayPalPaymentTokenUsageType fromString(String toConvert) {
+    public static PaypalPaymentTokenUsageType fromString(String toConvert) {
         if (!valueMap.containsKey(toConvert)) {
             return _UNKNOWN;
         }
@@ -87,16 +87,16 @@ public enum PayPalPaymentTokenUsageType {
     }
 
     /**
-     * Convert list of PayPalPaymentTokenUsageType values to list of string values.
-     * @param toConvert The list of PayPalPaymentTokenUsageType values to convert.
+     * Convert list of PaypalPaymentTokenUsageType values to list of string values.
+     * @param toConvert The list of PaypalPaymentTokenUsageType values to convert.
      * @return List of representative string values.
      */
-    public static List<String> toValue(List<PayPalPaymentTokenUsageType> toConvert) {
+    public static List<String> toValue(List<PaypalPaymentTokenUsageType> toConvert) {
         if (toConvert == null) {
             return null;
         }
         List<String> convertedValues = new ArrayList<>();
-        for (PayPalPaymentTokenUsageType enumValue : toConvert) {
+        for (PaypalPaymentTokenUsageType enumValue : toConvert) {
             convertedValues.add(enumValue.value);
         }
         return convertedValues;

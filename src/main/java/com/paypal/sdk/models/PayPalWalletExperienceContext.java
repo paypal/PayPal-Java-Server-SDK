@@ -11,25 +11,25 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 /**
- * This is a model class for PayPalWalletExperienceContext type.
+ * This is a model class for PaypalWalletExperienceContext type.
  */
-public class PayPalWalletExperienceContext {
+public class PaypalWalletExperienceContext {
     private String brandName;
     private String locale;
     private ShippingPreference shippingPreference;
     private String returnUrl;
     private String cancelUrl;
-    private PayPalExperienceLandingPage landingPage;
-    private PayPalExperienceUserAction userAction;
+    private PaypalExperienceLandingPage landingPage;
+    private PaypalExperienceUserAction userAction;
     private PayeePaymentMethodPreference paymentMethodPreference;
 
     /**
      * Default constructor.
      */
-    public PayPalWalletExperienceContext() {
+    public PaypalWalletExperienceContext() {
         shippingPreference = ShippingPreference.GET_FROM_FILE;
-        landingPage = PayPalExperienceLandingPage.NO_PREFERENCE;
-        userAction = PayPalExperienceUserAction.CONTINUE;
+        landingPage = PaypalExperienceLandingPage.NO_PREFERENCE;
+        userAction = PaypalExperienceUserAction.CONTINUE;
         paymentMethodPreference = PayeePaymentMethodPreference.UNRESTRICTED;
     }
 
@@ -40,19 +40,19 @@ public class PayPalWalletExperienceContext {
      * @param  shippingPreference  ShippingPreference value for shippingPreference.
      * @param  returnUrl  String value for returnUrl.
      * @param  cancelUrl  String value for cancelUrl.
-     * @param  landingPage  PayPalExperienceLandingPage value for landingPage.
-     * @param  userAction  PayPalExperienceUserAction value for userAction.
+     * @param  landingPage  PaypalExperienceLandingPage value for landingPage.
+     * @param  userAction  PaypalExperienceUserAction value for userAction.
      * @param  paymentMethodPreference  PayeePaymentMethodPreference value for
      *         paymentMethodPreference.
      */
-    public PayPalWalletExperienceContext(
+    public PaypalWalletExperienceContext(
             String brandName,
             String locale,
             ShippingPreference shippingPreference,
             String returnUrl,
             String cancelUrl,
-            PayPalExperienceLandingPage landingPage,
-            PayPalExperienceUserAction userAction,
+            PaypalExperienceLandingPage landingPage,
+            PaypalExperienceUserAction userAction,
             PayeePaymentMethodPreference paymentMethodPreference) {
         this.brandName = brandName;
         this.locale = locale;
@@ -186,42 +186,42 @@ public class PayPalWalletExperienceContext {
     /**
      * Getter for LandingPage.
      * The type of landing page to show on the PayPal site for customer checkout.
-     * @return Returns the PayPalExperienceLandingPage
+     * @return Returns the PaypalExperienceLandingPage
      */
     @JsonGetter("landing_page")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public PayPalExperienceLandingPage getLandingPage() {
+    public PaypalExperienceLandingPage getLandingPage() {
         return landingPage;
     }
 
     /**
      * Setter for LandingPage.
      * The type of landing page to show on the PayPal site for customer checkout.
-     * @param landingPage Value for PayPalExperienceLandingPage
+     * @param landingPage Value for PaypalExperienceLandingPage
      */
     @JsonSetter("landing_page")
-    public void setLandingPage(PayPalExperienceLandingPage landingPage) {
+    public void setLandingPage(PaypalExperienceLandingPage landingPage) {
         this.landingPage = landingPage;
     }
 
     /**
      * Getter for UserAction.
      * Configures a &lt;strong&gt;Continue&lt;/strong&gt; or &lt;strong&gt;Pay Now&lt;/strong&gt; checkout flow.
-     * @return Returns the PayPalExperienceUserAction
+     * @return Returns the PaypalExperienceUserAction
      */
     @JsonGetter("user_action")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public PayPalExperienceUserAction getUserAction() {
+    public PaypalExperienceUserAction getUserAction() {
         return userAction;
     }
 
     /**
      * Setter for UserAction.
      * Configures a &lt;strong&gt;Continue&lt;/strong&gt; or &lt;strong&gt;Pay Now&lt;/strong&gt; checkout flow.
-     * @param userAction Value for PayPalExperienceUserAction
+     * @param userAction Value for PaypalExperienceUserAction
      */
     @JsonSetter("user_action")
-    public void setUserAction(PayPalExperienceUserAction userAction) {
+    public void setUserAction(PaypalExperienceUserAction userAction) {
         this.userAction = userAction;
     }
 
@@ -247,21 +247,21 @@ public class PayPalWalletExperienceContext {
     }
 
     /**
-     * Converts this PayPalWalletExperienceContext into string format.
+     * Converts this PaypalWalletExperienceContext into string format.
      * @return String representation of this class
      */
     @Override
     public String toString() {
-        return "PayPalWalletExperienceContext [" + "brandName=" + brandName + ", locale=" + locale
+        return "PaypalWalletExperienceContext [" + "brandName=" + brandName + ", locale=" + locale
                 + ", shippingPreference=" + shippingPreference + ", returnUrl=" + returnUrl
                 + ", cancelUrl=" + cancelUrl + ", landingPage=" + landingPage + ", userAction="
                 + userAction + ", paymentMethodPreference=" + paymentMethodPreference + "]";
     }
 
     /**
-     * Builds a new {@link PayPalWalletExperienceContext.Builder} object.
+     * Builds a new {@link PaypalWalletExperienceContext.Builder} object.
      * Creates the instance with the state of the current model.
-     * @return a new {@link PayPalWalletExperienceContext.Builder} object
+     * @return a new {@link PaypalWalletExperienceContext.Builder} object
      */
     public Builder toBuilder() {
         Builder builder = new Builder()
@@ -277,7 +277,7 @@ public class PayPalWalletExperienceContext {
     }
 
     /**
-     * Class to build instances of {@link PayPalWalletExperienceContext}.
+     * Class to build instances of {@link PaypalWalletExperienceContext}.
      */
     public static class Builder {
         private String brandName;
@@ -285,8 +285,8 @@ public class PayPalWalletExperienceContext {
         private ShippingPreference shippingPreference = ShippingPreference.GET_FROM_FILE;
         private String returnUrl;
         private String cancelUrl;
-        private PayPalExperienceLandingPage landingPage = PayPalExperienceLandingPage.NO_PREFERENCE;
-        private PayPalExperienceUserAction userAction = PayPalExperienceUserAction.CONTINUE;
+        private PaypalExperienceLandingPage landingPage = PaypalExperienceLandingPage.NO_PREFERENCE;
+        private PaypalExperienceUserAction userAction = PaypalExperienceUserAction.CONTINUE;
         private PayeePaymentMethodPreference paymentMethodPreference =
                 PayeePaymentMethodPreference.UNRESTRICTED;
 
@@ -344,20 +344,20 @@ public class PayPalWalletExperienceContext {
 
         /**
          * Setter for landingPage.
-         * @param  landingPage  PayPalExperienceLandingPage value for landingPage.
+         * @param  landingPage  PaypalExperienceLandingPage value for landingPage.
          * @return Builder
          */
-        public Builder landingPage(PayPalExperienceLandingPage landingPage) {
+        public Builder landingPage(PaypalExperienceLandingPage landingPage) {
             this.landingPage = landingPage;
             return this;
         }
 
         /**
          * Setter for userAction.
-         * @param  userAction  PayPalExperienceUserAction value for userAction.
+         * @param  userAction  PaypalExperienceUserAction value for userAction.
          * @return Builder
          */
-        public Builder userAction(PayPalExperienceUserAction userAction) {
+        public Builder userAction(PaypalExperienceUserAction userAction) {
             this.userAction = userAction;
             return this;
         }
@@ -375,11 +375,11 @@ public class PayPalWalletExperienceContext {
         }
 
         /**
-         * Builds a new {@link PayPalWalletExperienceContext} object using the set fields.
-         * @return {@link PayPalWalletExperienceContext}
+         * Builds a new {@link PaypalWalletExperienceContext} object using the set fields.
+         * @return {@link PaypalWalletExperienceContext}
          */
-        public PayPalWalletExperienceContext build() {
-            return new PayPalWalletExperienceContext(brandName, locale, shippingPreference,
+        public PaypalWalletExperienceContext build() {
+            return new PaypalWalletExperienceContext(brandName, locale, shippingPreference,
                     returnUrl, cancelUrl, landingPage, userAction, paymentMethodPreference);
         }
     }

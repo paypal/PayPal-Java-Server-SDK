@@ -14,9 +14,9 @@ import java.util.TreeMap;
 
 
 /**
- * PayPalExperienceLandingPage to be used.
+ * PaypalExperienceLandingPage to be used.
  */
-public enum PayPalExperienceLandingPage {
+public enum PaypalExperienceLandingPage {
     LOGIN,
 
     GUEST_CHECKOUT,
@@ -29,7 +29,7 @@ public enum PayPalExperienceLandingPage {
     _UNKNOWN;
 
 
-    private static TreeMap<String, PayPalExperienceLandingPage> valueMap = new TreeMap<>();
+    private static TreeMap<String, PaypalExperienceLandingPage> valueMap = new TreeMap<>();
     private String value;
 
     static {
@@ -50,8 +50,8 @@ public enum PayPalExperienceLandingPage {
      * @throws IOException when provided value is not mapped to any enum member.
      */
     @JsonCreator
-    public static PayPalExperienceLandingPage constructFromString(String toConvert) throws IOException {
-        PayPalExperienceLandingPage enumValue = fromString(toConvert);
+    public static PaypalExperienceLandingPage constructFromString(String toConvert) throws IOException {
+        PaypalExperienceLandingPage enumValue = fromString(toConvert);
         if (enumValue == null) {
             throw new IOException("Unable to create enum instance with value: " + toConvert);
         }
@@ -63,7 +63,7 @@ public enum PayPalExperienceLandingPage {
      * @param toConvert String value to get enum member.
      * @return The enum member against the given string value.
      */
-    public static PayPalExperienceLandingPage fromString(String toConvert) {
+    public static PaypalExperienceLandingPage fromString(String toConvert) {
         if (!valueMap.containsKey(toConvert)) {
             return _UNKNOWN;
         }
@@ -91,16 +91,16 @@ public enum PayPalExperienceLandingPage {
     }
 
     /**
-     * Convert list of PayPalExperienceLandingPage values to list of string values.
-     * @param toConvert The list of PayPalExperienceLandingPage values to convert.
+     * Convert list of PaypalExperienceLandingPage values to list of string values.
+     * @param toConvert The list of PaypalExperienceLandingPage values to convert.
      * @return List of representative string values.
      */
-    public static List<String> toValue(List<PayPalExperienceLandingPage> toConvert) {
+    public static List<String> toValue(List<PaypalExperienceLandingPage> toConvert) {
         if (toConvert == null) {
             return null;
         }
         List<String> convertedValues = new ArrayList<>();
-        for (PayPalExperienceLandingPage enumValue : toConvert) {
+        for (PaypalExperienceLandingPage enumValue : toConvert) {
             convertedValues.add(enumValue.value);
         }
         return convertedValues;

@@ -11,39 +11,39 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 /**
- * This is a model class for PayPalWalletVaultInstruction type.
+ * This is a model class for PaypalWalletVaultInstruction type.
  */
-public class PayPalWalletVaultInstruction {
+public class PaypalWalletVaultInstruction {
     private StoreInVaultInstruction storeInVault;
     private String description;
-    private PayPalPaymentTokenUsagePattern usagePattern;
-    private PayPalPaymentTokenUsageType usageType;
-    private PayPalPaymentTokenCustomerType customerType;
+    private PaypalPaymentTokenUsagePattern usagePattern;
+    private PaypalPaymentTokenUsageType usageType;
+    private PaypalPaymentTokenCustomerType customerType;
     private Boolean permitMultiplePaymentTokens;
 
     /**
      * Default constructor.
      */
-    public PayPalWalletVaultInstruction() {
-        customerType = PayPalPaymentTokenCustomerType.CONSUMER;
+    public PaypalWalletVaultInstruction() {
+        customerType = PaypalPaymentTokenCustomerType.CONSUMER;
         permitMultiplePaymentTokens = false;
     }
 
     /**
      * Initialization constructor.
-     * @param  usageType  PayPalPaymentTokenUsageType value for usageType.
+     * @param  usageType  PaypalPaymentTokenUsageType value for usageType.
      * @param  storeInVault  StoreInVaultInstruction value for storeInVault.
      * @param  description  String value for description.
-     * @param  usagePattern  PayPalPaymentTokenUsagePattern value for usagePattern.
-     * @param  customerType  PayPalPaymentTokenCustomerType value for customerType.
+     * @param  usagePattern  PaypalPaymentTokenUsagePattern value for usagePattern.
+     * @param  customerType  PaypalPaymentTokenCustomerType value for customerType.
      * @param  permitMultiplePaymentTokens  Boolean value for permitMultiplePaymentTokens.
      */
-    public PayPalWalletVaultInstruction(
-            PayPalPaymentTokenUsageType usageType,
+    public PaypalWalletVaultInstruction(
+            PaypalPaymentTokenUsageType usageType,
             StoreInVaultInstruction storeInVault,
             String description,
-            PayPalPaymentTokenUsagePattern usagePattern,
-            PayPalPaymentTokenCustomerType customerType,
+            PaypalPaymentTokenUsagePattern usagePattern,
+            PaypalPaymentTokenCustomerType customerType,
             Boolean permitMultiplePaymentTokens) {
         this.storeInVault = storeInVault;
         this.description = description;
@@ -100,41 +100,41 @@ public class PayPalWalletVaultInstruction {
     /**
      * Getter for UsagePattern.
      * Expected business/pricing model for the billing agreement.
-     * @return Returns the PayPalPaymentTokenUsagePattern
+     * @return Returns the PaypalPaymentTokenUsagePattern
      */
     @JsonGetter("usage_pattern")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public PayPalPaymentTokenUsagePattern getUsagePattern() {
+    public PaypalPaymentTokenUsagePattern getUsagePattern() {
         return usagePattern;
     }
 
     /**
      * Setter for UsagePattern.
      * Expected business/pricing model for the billing agreement.
-     * @param usagePattern Value for PayPalPaymentTokenUsagePattern
+     * @param usagePattern Value for PaypalPaymentTokenUsagePattern
      */
     @JsonSetter("usage_pattern")
-    public void setUsagePattern(PayPalPaymentTokenUsagePattern usagePattern) {
+    public void setUsagePattern(PaypalPaymentTokenUsagePattern usagePattern) {
         this.usagePattern = usagePattern;
     }
 
     /**
      * Getter for UsageType.
      * The usage type associated with the PayPal payment token.
-     * @return Returns the PayPalPaymentTokenUsageType
+     * @return Returns the PaypalPaymentTokenUsageType
      */
     @JsonGetter("usage_type")
-    public PayPalPaymentTokenUsageType getUsageType() {
+    public PaypalPaymentTokenUsageType getUsageType() {
         return usageType;
     }
 
     /**
      * Setter for UsageType.
      * The usage type associated with the PayPal payment token.
-     * @param usageType Value for PayPalPaymentTokenUsageType
+     * @param usageType Value for PaypalPaymentTokenUsageType
      */
     @JsonSetter("usage_type")
-    public void setUsageType(PayPalPaymentTokenUsageType usageType) {
+    public void setUsageType(PaypalPaymentTokenUsageType usageType) {
         this.usageType = usageType;
     }
 
@@ -142,11 +142,11 @@ public class PayPalWalletVaultInstruction {
      * Getter for CustomerType.
      * The customer type associated with the PayPal payment token. This is to indicate whether the
      * customer acting on the merchant / platform is either a business or a consumer.
-     * @return Returns the PayPalPaymentTokenCustomerType
+     * @return Returns the PaypalPaymentTokenCustomerType
      */
     @JsonGetter("customer_type")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public PayPalPaymentTokenCustomerType getCustomerType() {
+    public PaypalPaymentTokenCustomerType getCustomerType() {
         return customerType;
     }
 
@@ -154,10 +154,10 @@ public class PayPalWalletVaultInstruction {
      * Setter for CustomerType.
      * The customer type associated with the PayPal payment token. This is to indicate whether the
      * customer acting on the merchant / platform is either a business or a consumer.
-     * @param customerType Value for PayPalPaymentTokenCustomerType
+     * @param customerType Value for PaypalPaymentTokenCustomerType
      */
     @JsonSetter("customer_type")
-    public void setCustomerType(PayPalPaymentTokenCustomerType customerType) {
+    public void setCustomerType(PaypalPaymentTokenCustomerType customerType) {
         this.customerType = customerType;
     }
 
@@ -193,21 +193,21 @@ public class PayPalWalletVaultInstruction {
     }
 
     /**
-     * Converts this PayPalWalletVaultInstruction into string format.
+     * Converts this PaypalWalletVaultInstruction into string format.
      * @return String representation of this class
      */
     @Override
     public String toString() {
-        return "PayPalWalletVaultInstruction [" + "usageType=" + usageType + ", storeInVault="
+        return "PaypalWalletVaultInstruction [" + "usageType=" + usageType + ", storeInVault="
                 + storeInVault + ", description=" + description + ", usagePattern=" + usagePattern
                 + ", customerType=" + customerType + ", permitMultiplePaymentTokens="
                 + permitMultiplePaymentTokens + "]";
     }
 
     /**
-     * Builds a new {@link PayPalWalletVaultInstruction.Builder} object.
+     * Builds a new {@link PaypalWalletVaultInstruction.Builder} object.
      * Creates the instance with the state of the current model.
-     * @return a new {@link PayPalWalletVaultInstruction.Builder} object
+     * @return a new {@link PaypalWalletVaultInstruction.Builder} object
      */
     public Builder toBuilder() {
         Builder builder = new Builder(usageType)
@@ -220,15 +220,15 @@ public class PayPalWalletVaultInstruction {
     }
 
     /**
-     * Class to build instances of {@link PayPalWalletVaultInstruction}.
+     * Class to build instances of {@link PaypalWalletVaultInstruction}.
      */
     public static class Builder {
-        private PayPalPaymentTokenUsageType usageType;
+        private PaypalPaymentTokenUsageType usageType;
         private StoreInVaultInstruction storeInVault;
         private String description;
-        private PayPalPaymentTokenUsagePattern usagePattern;
-        private PayPalPaymentTokenCustomerType customerType =
-                PayPalPaymentTokenCustomerType.CONSUMER;
+        private PaypalPaymentTokenUsagePattern usagePattern;
+        private PaypalPaymentTokenCustomerType customerType =
+                PaypalPaymentTokenCustomerType.CONSUMER;
         private Boolean permitMultiplePaymentTokens = false;
 
         /**
@@ -239,18 +239,18 @@ public class PayPalWalletVaultInstruction {
 
         /**
          * Initialization constructor.
-         * @param  usageType  PayPalPaymentTokenUsageType value for usageType.
+         * @param  usageType  PaypalPaymentTokenUsageType value for usageType.
          */
-        public Builder(PayPalPaymentTokenUsageType usageType) {
+        public Builder(PaypalPaymentTokenUsageType usageType) {
             this.usageType = usageType;
         }
 
         /**
          * Setter for usageType.
-         * @param  usageType  PayPalPaymentTokenUsageType value for usageType.
+         * @param  usageType  PaypalPaymentTokenUsageType value for usageType.
          * @return Builder
          */
-        public Builder usageType(PayPalPaymentTokenUsageType usageType) {
+        public Builder usageType(PaypalPaymentTokenUsageType usageType) {
             this.usageType = usageType;
             return this;
         }
@@ -277,20 +277,20 @@ public class PayPalWalletVaultInstruction {
 
         /**
          * Setter for usagePattern.
-         * @param  usagePattern  PayPalPaymentTokenUsagePattern value for usagePattern.
+         * @param  usagePattern  PaypalPaymentTokenUsagePattern value for usagePattern.
          * @return Builder
          */
-        public Builder usagePattern(PayPalPaymentTokenUsagePattern usagePattern) {
+        public Builder usagePattern(PaypalPaymentTokenUsagePattern usagePattern) {
             this.usagePattern = usagePattern;
             return this;
         }
 
         /**
          * Setter for customerType.
-         * @param  customerType  PayPalPaymentTokenCustomerType value for customerType.
+         * @param  customerType  PaypalPaymentTokenCustomerType value for customerType.
          * @return Builder
          */
-        public Builder customerType(PayPalPaymentTokenCustomerType customerType) {
+        public Builder customerType(PaypalPaymentTokenCustomerType customerType) {
             this.customerType = customerType;
             return this;
         }
@@ -306,11 +306,11 @@ public class PayPalWalletVaultInstruction {
         }
 
         /**
-         * Builds a new {@link PayPalWalletVaultInstruction} object using the set fields.
-         * @return {@link PayPalWalletVaultInstruction}
+         * Builds a new {@link PaypalWalletVaultInstruction} object using the set fields.
+         * @return {@link PaypalWalletVaultInstruction}
          */
-        public PayPalWalletVaultInstruction build() {
-            return new PayPalWalletVaultInstruction(usageType, storeInVault, description,
+        public PaypalWalletVaultInstruction build() {
+            return new PaypalWalletVaultInstruction(usageType, storeInVault, description,
                     usagePattern, customerType, permitMultiplePaymentTokens);
         }
     }

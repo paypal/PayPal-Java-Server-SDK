@@ -11,9 +11,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 /**
- * This is a model class for IDEALPaymentObject type.
+ * This is a model class for IdealPaymentObject type.
  */
-public class IDEALPaymentObject {
+public class IdealPaymentObject {
     private String name;
     private String countryCode;
     private String bic;
@@ -22,7 +22,7 @@ public class IDEALPaymentObject {
     /**
      * Default constructor.
      */
-    public IDEALPaymentObject() {
+    public IdealPaymentObject() {
     }
 
     /**
@@ -32,7 +32,7 @@ public class IDEALPaymentObject {
      * @param  bic  String value for bic.
      * @param  ibanLastChars  String value for ibanLastChars.
      */
-    public IDEALPaymentObject(
+    public IdealPaymentObject(
             String name,
             String countryCode,
             String bic,
@@ -138,19 +138,19 @@ public class IDEALPaymentObject {
     }
 
     /**
-     * Converts this IDEALPaymentObject into string format.
+     * Converts this IdealPaymentObject into string format.
      * @return String representation of this class
      */
     @Override
     public String toString() {
-        return "IDEALPaymentObject [" + "name=" + name + ", countryCode=" + countryCode + ", bic="
+        return "IdealPaymentObject [" + "name=" + name + ", countryCode=" + countryCode + ", bic="
                 + bic + ", ibanLastChars=" + ibanLastChars + "]";
     }
 
     /**
-     * Builds a new {@link IDEALPaymentObject.Builder} object.
+     * Builds a new {@link IdealPaymentObject.Builder} object.
      * Creates the instance with the state of the current model.
-     * @return a new {@link IDEALPaymentObject.Builder} object
+     * @return a new {@link IdealPaymentObject.Builder} object
      */
     public Builder toBuilder() {
         Builder builder = new Builder()
@@ -162,7 +162,7 @@ public class IDEALPaymentObject {
     }
 
     /**
-     * Class to build instances of {@link IDEALPaymentObject}.
+     * Class to build instances of {@link IdealPaymentObject}.
      */
     public static class Builder {
         private String name;
@@ -213,11 +213,11 @@ public class IDEALPaymentObject {
         }
 
         /**
-         * Builds a new {@link IDEALPaymentObject} object using the set fields.
-         * @return {@link IDEALPaymentObject}
+         * Builds a new {@link IdealPaymentObject} object using the set fields.
+         * @return {@link IdealPaymentObject}
          */
-        public IDEALPaymentObject build() {
-            return new IDEALPaymentObject(name, countryCode, bic, ibanLastChars);
+        public IdealPaymentObject build() {
+            return new IdealPaymentObject(name, countryCode, bic, ibanLastChars);
         }
     }
 }

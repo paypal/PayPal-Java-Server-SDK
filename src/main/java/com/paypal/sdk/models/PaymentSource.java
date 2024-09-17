@@ -16,13 +16,13 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 public class PaymentSource {
     private CardRequest card;
     private Token token;
-    private PayPalWallet paypal;
+    private PaypalWallet paypal;
     private BancontactPaymentRequest bancontact;
     private BLIKPaymentRequest blik;
     private EPSPaymentRequest eps;
     private GiropayPaymentRequest giropay;
-    private IDEALPaymentRequest ideal;
-    private MyBankPaymentRequest mybank;
+    private IdealPaymentRequest ideal;
+    private MybankPaymentRequest mybank;
     private P24PaymentRequest p24;
     private SofortPaymentRequest sofort;
     private TrustlyPaymentRequest trustly;
@@ -40,13 +40,13 @@ public class PaymentSource {
      * Initialization constructor.
      * @param  card  CardRequest value for card.
      * @param  token  Token value for token.
-     * @param  paypal  PayPalWallet value for paypal.
+     * @param  paypal  PaypalWallet value for paypal.
      * @param  bancontact  BancontactPaymentRequest value for bancontact.
      * @param  blik  BLIKPaymentRequest value for blik.
      * @param  eps  EPSPaymentRequest value for eps.
      * @param  giropay  GiropayPaymentRequest value for giropay.
-     * @param  ideal  IDEALPaymentRequest value for ideal.
-     * @param  mybank  MyBankPaymentRequest value for mybank.
+     * @param  ideal  IdealPaymentRequest value for ideal.
+     * @param  mybank  MybankPaymentRequest value for mybank.
      * @param  p24  P24PaymentRequest value for p24.
      * @param  sofort  SofortPaymentRequest value for sofort.
      * @param  trustly  TrustlyPaymentRequest value for trustly.
@@ -57,13 +57,13 @@ public class PaymentSource {
     public PaymentSource(
             CardRequest card,
             Token token,
-            PayPalWallet paypal,
+            PaypalWallet paypal,
             BancontactPaymentRequest bancontact,
             BLIKPaymentRequest blik,
             EPSPaymentRequest eps,
             GiropayPaymentRequest giropay,
-            IDEALPaymentRequest ideal,
-            MyBankPaymentRequest mybank,
+            IdealPaymentRequest ideal,
+            MybankPaymentRequest mybank,
             P24PaymentRequest p24,
             SofortPaymentRequest sofort,
             TrustlyPaymentRequest trustly,
@@ -146,21 +146,21 @@ public class PaymentSource {
     /**
      * Getter for Paypal.
      * A resource that identifies a PayPal Wallet is used for payment.
-     * @return Returns the PayPalWallet
+     * @return Returns the PaypalWallet
      */
     @JsonGetter("paypal")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public PayPalWallet getPaypal() {
+    public PaypalWallet getPaypal() {
         return paypal;
     }
 
     /**
      * Setter for Paypal.
      * A resource that identifies a PayPal Wallet is used for payment.
-     * @param paypal Value for PayPalWallet
+     * @param paypal Value for PaypalWallet
      */
     @JsonSetter("paypal")
-    public void setPaypal(PayPalWallet paypal) {
+    public void setPaypal(PaypalWallet paypal) {
         this.paypal = paypal;
     }
 
@@ -251,42 +251,42 @@ public class PaymentSource {
     /**
      * Getter for Ideal.
      * Information needed to pay using iDEAL.
-     * @return Returns the IDEALPaymentRequest
+     * @return Returns the IdealPaymentRequest
      */
     @JsonGetter("ideal")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public IDEALPaymentRequest getIdeal() {
+    public IdealPaymentRequest getIdeal() {
         return ideal;
     }
 
     /**
      * Setter for Ideal.
      * Information needed to pay using iDEAL.
-     * @param ideal Value for IDEALPaymentRequest
+     * @param ideal Value for IdealPaymentRequest
      */
     @JsonSetter("ideal")
-    public void setIdeal(IDEALPaymentRequest ideal) {
+    public void setIdeal(IdealPaymentRequest ideal) {
         this.ideal = ideal;
     }
 
     /**
      * Getter for Mybank.
      * Information needed to pay using MyBank.
-     * @return Returns the MyBankPaymentRequest
+     * @return Returns the MybankPaymentRequest
      */
     @JsonGetter("mybank")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public MyBankPaymentRequest getMybank() {
+    public MybankPaymentRequest getMybank() {
         return mybank;
     }
 
     /**
      * Setter for Mybank.
      * Information needed to pay using MyBank.
-     * @param mybank Value for MyBankPaymentRequest
+     * @param mybank Value for MybankPaymentRequest
      */
     @JsonSetter("mybank")
-    public void setMybank(MyBankPaymentRequest mybank) {
+    public void setMybank(MybankPaymentRequest mybank) {
         this.mybank = mybank;
     }
 
@@ -460,13 +460,13 @@ public class PaymentSource {
     public static class Builder {
         private CardRequest card;
         private Token token;
-        private PayPalWallet paypal;
+        private PaypalWallet paypal;
         private BancontactPaymentRequest bancontact;
         private BLIKPaymentRequest blik;
         private EPSPaymentRequest eps;
         private GiropayPaymentRequest giropay;
-        private IDEALPaymentRequest ideal;
-        private MyBankPaymentRequest mybank;
+        private IdealPaymentRequest ideal;
+        private MybankPaymentRequest mybank;
         private P24PaymentRequest p24;
         private SofortPaymentRequest sofort;
         private TrustlyPaymentRequest trustly;
@@ -498,10 +498,10 @@ public class PaymentSource {
 
         /**
          * Setter for paypal.
-         * @param  paypal  PayPalWallet value for paypal.
+         * @param  paypal  PaypalWallet value for paypal.
          * @return Builder
          */
-        public Builder paypal(PayPalWallet paypal) {
+        public Builder paypal(PaypalWallet paypal) {
             this.paypal = paypal;
             return this;
         }
@@ -548,20 +548,20 @@ public class PaymentSource {
 
         /**
          * Setter for ideal.
-         * @param  ideal  IDEALPaymentRequest value for ideal.
+         * @param  ideal  IdealPaymentRequest value for ideal.
          * @return Builder
          */
-        public Builder ideal(IDEALPaymentRequest ideal) {
+        public Builder ideal(IdealPaymentRequest ideal) {
             this.ideal = ideal;
             return this;
         }
 
         /**
          * Setter for mybank.
-         * @param  mybank  MyBankPaymentRequest value for mybank.
+         * @param  mybank  MybankPaymentRequest value for mybank.
          * @return Builder
          */
-        public Builder mybank(MyBankPaymentRequest mybank) {
+        public Builder mybank(MybankPaymentRequest mybank) {
             this.mybank = mybank;
             return this;
         }

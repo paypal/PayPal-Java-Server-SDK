@@ -12,25 +12,25 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import java.util.List;
 
 /**
- * This is a model class for PayPalWalletAttributesResponse type.
+ * This is a model class for PaypalWalletAttributesResponse type.
  */
-public class PayPalWalletAttributesResponse {
-    private PayPalWalletVaultResponse vault;
+public class PaypalWalletAttributesResponse {
+    private PaypalWalletVaultResponse vault;
     private List<CobrandedCard> cobrandedCards;
 
     /**
      * Default constructor.
      */
-    public PayPalWalletAttributesResponse() {
+    public PaypalWalletAttributesResponse() {
     }
 
     /**
      * Initialization constructor.
-     * @param  vault  PayPalWalletVaultResponse value for vault.
+     * @param  vault  PaypalWalletVaultResponse value for vault.
      * @param  cobrandedCards  List of CobrandedCard value for cobrandedCards.
      */
-    public PayPalWalletAttributesResponse(
-            PayPalWalletVaultResponse vault,
+    public PaypalWalletAttributesResponse(
+            PaypalWalletVaultResponse vault,
             List<CobrandedCard> cobrandedCards) {
         this.vault = vault;
         this.cobrandedCards = cobrandedCards;
@@ -39,21 +39,21 @@ public class PayPalWalletAttributesResponse {
     /**
      * Getter for Vault.
      * The details about a saved PayPal Wallet payment source.
-     * @return Returns the PayPalWalletVaultResponse
+     * @return Returns the PaypalWalletVaultResponse
      */
     @JsonGetter("vault")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public PayPalWalletVaultResponse getVault() {
+    public PaypalWalletVaultResponse getVault() {
         return vault;
     }
 
     /**
      * Setter for Vault.
      * The details about a saved PayPal Wallet payment source.
-     * @param vault Value for PayPalWalletVaultResponse
+     * @param vault Value for PaypalWalletVaultResponse
      */
     @JsonSetter("vault")
-    public void setVault(PayPalWalletVaultResponse vault) {
+    public void setVault(PaypalWalletVaultResponse vault) {
         this.vault = vault;
     }
 
@@ -83,19 +83,19 @@ public class PayPalWalletAttributesResponse {
     }
 
     /**
-     * Converts this PayPalWalletAttributesResponse into string format.
+     * Converts this PaypalWalletAttributesResponse into string format.
      * @return String representation of this class
      */
     @Override
     public String toString() {
-        return "PayPalWalletAttributesResponse [" + "vault=" + vault + ", cobrandedCards="
+        return "PaypalWalletAttributesResponse [" + "vault=" + vault + ", cobrandedCards="
                 + cobrandedCards + "]";
     }
 
     /**
-     * Builds a new {@link PayPalWalletAttributesResponse.Builder} object.
+     * Builds a new {@link PaypalWalletAttributesResponse.Builder} object.
      * Creates the instance with the state of the current model.
-     * @return a new {@link PayPalWalletAttributesResponse.Builder} object
+     * @return a new {@link PaypalWalletAttributesResponse.Builder} object
      */
     public Builder toBuilder() {
         Builder builder = new Builder()
@@ -105,20 +105,20 @@ public class PayPalWalletAttributesResponse {
     }
 
     /**
-     * Class to build instances of {@link PayPalWalletAttributesResponse}.
+     * Class to build instances of {@link PaypalWalletAttributesResponse}.
      */
     public static class Builder {
-        private PayPalWalletVaultResponse vault;
+        private PaypalWalletVaultResponse vault;
         private List<CobrandedCard> cobrandedCards;
 
 
 
         /**
          * Setter for vault.
-         * @param  vault  PayPalWalletVaultResponse value for vault.
+         * @param  vault  PaypalWalletVaultResponse value for vault.
          * @return Builder
          */
-        public Builder vault(PayPalWalletVaultResponse vault) {
+        public Builder vault(PaypalWalletVaultResponse vault) {
             this.vault = vault;
             return this;
         }
@@ -134,11 +134,11 @@ public class PayPalWalletAttributesResponse {
         }
 
         /**
-         * Builds a new {@link PayPalWalletAttributesResponse} object using the set fields.
-         * @return {@link PayPalWalletAttributesResponse}
+         * Builds a new {@link PaypalWalletAttributesResponse} object using the set fields.
+         * @return {@link PaypalWalletAttributesResponse}
          */
-        public PayPalWalletAttributesResponse build() {
-            return new PayPalWalletAttributesResponse(vault, cobrandedCards);
+        public PaypalWalletAttributesResponse build() {
+            return new PaypalWalletAttributesResponse(vault, cobrandedCards);
         }
     }
 }

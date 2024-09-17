@@ -1,11 +1,11 @@
 
-# Pay Pal Wallet
+# Paypal Wallet
 
 A resource that identifies a PayPal Wallet is used for payment.
 
 ## Structure
 
-`PayPalWallet`
+`PaypalWallet`
 
 ## Fields
 
@@ -18,8 +18,8 @@ A resource that identifies a PayPal Wallet is used for payment.
 | `BirthDate` | `String` | Optional | The stand-alone date, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). To represent special legal values, such as a date of birth, you should use dates with no associated time or time-zone data. Whenever possible, use the standard `date_time` type. This regular expression does not validate all dates. For example, February 31 is valid and nothing is known about leap years.<br>**Constraints**: *Minimum Length*: `10`, *Maximum Length*: `10`, *Pattern*: `^[0-9]{4}-(0[1-9]\|1[0-2])-(0[1-9]\|[1-2][0-9]\|3[0-1])$` | String getBirthDate() | setBirthDate(String birthDate) |
 | `TaxInfo` | [`TaxInfo`](../../doc/models/tax-info.md) | Optional | The tax ID of the customer. The customer is also known as the payer. Both `tax_id` and `tax_id_type` are required. | TaxInfo getTaxInfo() | setTaxInfo(TaxInfo taxInfo) |
 | `Address` | [`Address`](../../doc/models/address.md) | Optional | The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute). | Address getAddress() | setAddress(Address address) |
-| `Attributes` | [`PayPalWalletAttributes`](../../doc/models/pay-pal-wallet-attributes.md) | Optional | Additional attributes associated with the use of this PayPal Wallet. | PayPalWalletAttributes getAttributes() | setAttributes(PayPalWalletAttributes attributes) |
-| `ExperienceContext` | [`PayPalWalletExperienceContext`](../../doc/models/pay-pal-wallet-experience-context.md) | Optional | Customizes the payer experience during the approval process for payment with PayPal.<blockquote><strong>Note:</strong> Partners and Marketplaces might configure <code>brand_name</code> and <code>shipping_preference</code> during partner account setup, which overrides the request values.</blockquote> | PayPalWalletExperienceContext getExperienceContext() | setExperienceContext(PayPalWalletExperienceContext experienceContext) |
+| `Attributes` | [`PaypalWalletAttributes`](../../doc/models/paypal-wallet-attributes.md) | Optional | Additional attributes associated with the use of this PayPal Wallet. | PaypalWalletAttributes getAttributes() | setAttributes(PaypalWalletAttributes attributes) |
+| `ExperienceContext` | [`PaypalWalletExperienceContext`](../../doc/models/paypal-wallet-experience-context.md) | Optional | Customizes the payer experience during the approval process for payment with PayPal.<blockquote><strong>Note:</strong> Partners and Marketplaces might configure <code>brand_name</code> and <code>shipping_preference</code> during partner account setup, which overrides the request values.</blockquote> | PaypalWalletExperienceContext getExperienceContext() | setExperienceContext(PaypalWalletExperienceContext experienceContext) |
 | `BillingAgreementId` | `String` | Optional | The PayPal billing agreement ID. References an approved recurring payment for goods or services.<br>**Constraints**: *Minimum Length*: `2`, *Maximum Length*: `128`, *Pattern*: `^[a-zA-Z0-9-]+$` | String getBillingAgreementId() | setBillingAgreementId(String billingAgreementId) |
 
 ## Example (as JSON)

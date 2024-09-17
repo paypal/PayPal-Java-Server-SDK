@@ -16,10 +16,10 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 public class OrdersCaptureInput {
     private String id;
     private String contentType;
-    private String payPalRequestId;
+    private String paypalRequestId;
     private String prefer;
-    private String payPalClientMetadataId;
-    private String payPalAuthAssertion;
+    private String paypalClientMetadataId;
+    private String paypalAuthAssertion;
     private OrderCaptureRequest body;
 
     /**
@@ -34,26 +34,26 @@ public class OrdersCaptureInput {
      * Initialization constructor.
      * @param  id  String value for id.
      * @param  contentType  String value for contentType.
-     * @param  payPalRequestId  String value for payPalRequestId.
+     * @param  paypalRequestId  String value for paypalRequestId.
      * @param  prefer  String value for prefer.
-     * @param  payPalClientMetadataId  String value for payPalClientMetadataId.
-     * @param  payPalAuthAssertion  String value for payPalAuthAssertion.
+     * @param  paypalClientMetadataId  String value for paypalClientMetadataId.
+     * @param  paypalAuthAssertion  String value for paypalAuthAssertion.
      * @param  body  OrderCaptureRequest value for body.
      */
     public OrdersCaptureInput(
             String id,
             String contentType,
-            String payPalRequestId,
+            String paypalRequestId,
             String prefer,
-            String payPalClientMetadataId,
-            String payPalAuthAssertion,
+            String paypalClientMetadataId,
+            String paypalAuthAssertion,
             OrderCaptureRequest body) {
         this.id = id;
         this.contentType = contentType;
-        this.payPalRequestId = payPalRequestId;
+        this.paypalRequestId = paypalRequestId;
         this.prefer = prefer;
-        this.payPalClientMetadataId = payPalClientMetadataId;
-        this.payPalAuthAssertion = payPalAuthAssertion;
+        this.paypalClientMetadataId = paypalClientMetadataId;
+        this.paypalAuthAssertion = paypalAuthAssertion;
         this.body = body;
     }
 
@@ -96,26 +96,26 @@ public class OrdersCaptureInput {
     }
 
     /**
-     * Getter for PayPalRequestId.
+     * Getter for PaypalRequestId.
      * The server stores keys for 6 hours. The API callers can request the times to up to 72 hours
      * by speaking to their Account Manager.
      * @return Returns the String
      */
     @JsonGetter("PayPal-Request-Id")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public String getPayPalRequestId() {
-        return payPalRequestId;
+    public String getPaypalRequestId() {
+        return paypalRequestId;
     }
 
     /**
-     * Setter for PayPalRequestId.
+     * Setter for PaypalRequestId.
      * The server stores keys for 6 hours. The API callers can request the times to up to 72 hours
      * by speaking to their Account Manager.
-     * @param payPalRequestId Value for String
+     * @param paypalRequestId Value for String
      */
     @JsonSetter("PayPal-Request-Id")
-    public void setPayPalRequestId(String payPalRequestId) {
-        this.payPalRequestId = payPalRequestId;
+    public void setPaypalRequestId(String paypalRequestId) {
+        this.paypalRequestId = paypalRequestId;
     }
 
     /**
@@ -150,26 +150,26 @@ public class OrdersCaptureInput {
     }
 
     /**
-     * Getter for PayPalClientMetadataId.
+     * Getter for PaypalClientMetadataId.
      * @return Returns the String
      */
     @JsonGetter("PayPal-Client-Metadata-Id")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public String getPayPalClientMetadataId() {
-        return payPalClientMetadataId;
+    public String getPaypalClientMetadataId() {
+        return paypalClientMetadataId;
     }
 
     /**
-     * Setter for PayPalClientMetadataId.
-     * @param payPalClientMetadataId Value for String
+     * Setter for PaypalClientMetadataId.
+     * @param paypalClientMetadataId Value for String
      */
     @JsonSetter("PayPal-Client-Metadata-Id")
-    public void setPayPalClientMetadataId(String payPalClientMetadataId) {
-        this.payPalClientMetadataId = payPalClientMetadataId;
+    public void setPaypalClientMetadataId(String paypalClientMetadataId) {
+        this.paypalClientMetadataId = paypalClientMetadataId;
     }
 
     /**
-     * Getter for PayPalAuthAssertion.
+     * Getter for PaypalAuthAssertion.
      * An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For
      * details, see &lt;a
      * href="https://developer.paypal.com/api/rest/requests/#paypal-auth-assertion"&gt;PayPal-Auth-Assertion&lt;/a&gt;.
@@ -177,20 +177,20 @@ public class OrdersCaptureInput {
      */
     @JsonGetter("PayPal-Auth-Assertion")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public String getPayPalAuthAssertion() {
-        return payPalAuthAssertion;
+    public String getPaypalAuthAssertion() {
+        return paypalAuthAssertion;
     }
 
     /**
-     * Setter for PayPalAuthAssertion.
+     * Setter for PaypalAuthAssertion.
      * An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For
      * details, see &lt;a
      * href="https://developer.paypal.com/api/rest/requests/#paypal-auth-assertion"&gt;PayPal-Auth-Assertion&lt;/a&gt;.
-     * @param payPalAuthAssertion Value for String
+     * @param paypalAuthAssertion Value for String
      */
     @JsonSetter("PayPal-Auth-Assertion")
-    public void setPayPalAuthAssertion(String payPalAuthAssertion) {
-        this.payPalAuthAssertion = payPalAuthAssertion;
+    public void setPaypalAuthAssertion(String paypalAuthAssertion) {
+        this.paypalAuthAssertion = paypalAuthAssertion;
     }
 
     /**
@@ -219,9 +219,9 @@ public class OrdersCaptureInput {
     @Override
     public String toString() {
         return "OrdersCaptureInput [" + "id=" + id + ", contentType=" + contentType
-                + ", payPalRequestId=" + payPalRequestId + ", prefer=" + prefer
-                + ", payPalClientMetadataId=" + payPalClientMetadataId + ", payPalAuthAssertion="
-                + payPalAuthAssertion + ", body=" + body + "]";
+                + ", paypalRequestId=" + paypalRequestId + ", prefer=" + prefer
+                + ", paypalClientMetadataId=" + paypalClientMetadataId + ", paypalAuthAssertion="
+                + paypalAuthAssertion + ", body=" + body + "]";
     }
 
     /**
@@ -231,10 +231,10 @@ public class OrdersCaptureInput {
      */
     public Builder toBuilder() {
         Builder builder = new Builder(id, contentType)
-                .payPalRequestId(getPayPalRequestId())
+                .paypalRequestId(getPaypalRequestId())
                 .prefer(getPrefer())
-                .payPalClientMetadataId(getPayPalClientMetadataId())
-                .payPalAuthAssertion(getPayPalAuthAssertion())
+                .paypalClientMetadataId(getPaypalClientMetadataId())
+                .paypalAuthAssertion(getPaypalAuthAssertion())
                 .body(getBody());
         return builder;
     }
@@ -245,10 +245,10 @@ public class OrdersCaptureInput {
     public static class Builder {
         private String id;
         private String contentType = "application/json";
-        private String payPalRequestId;
+        private String paypalRequestId;
         private String prefer = "return=minimal";
-        private String payPalClientMetadataId;
-        private String payPalAuthAssertion;
+        private String paypalClientMetadataId;
+        private String paypalAuthAssertion;
         private OrderCaptureRequest body;
 
         /**
@@ -288,12 +288,12 @@ public class OrdersCaptureInput {
         }
 
         /**
-         * Setter for payPalRequestId.
-         * @param  payPalRequestId  String value for payPalRequestId.
+         * Setter for paypalRequestId.
+         * @param  paypalRequestId  String value for paypalRequestId.
          * @return Builder
          */
-        public Builder payPalRequestId(String payPalRequestId) {
-            this.payPalRequestId = payPalRequestId;
+        public Builder paypalRequestId(String paypalRequestId) {
+            this.paypalRequestId = paypalRequestId;
             return this;
         }
 
@@ -308,22 +308,22 @@ public class OrdersCaptureInput {
         }
 
         /**
-         * Setter for payPalClientMetadataId.
-         * @param  payPalClientMetadataId  String value for payPalClientMetadataId.
+         * Setter for paypalClientMetadataId.
+         * @param  paypalClientMetadataId  String value for paypalClientMetadataId.
          * @return Builder
          */
-        public Builder payPalClientMetadataId(String payPalClientMetadataId) {
-            this.payPalClientMetadataId = payPalClientMetadataId;
+        public Builder paypalClientMetadataId(String paypalClientMetadataId) {
+            this.paypalClientMetadataId = paypalClientMetadataId;
             return this;
         }
 
         /**
-         * Setter for payPalAuthAssertion.
-         * @param  payPalAuthAssertion  String value for payPalAuthAssertion.
+         * Setter for paypalAuthAssertion.
+         * @param  paypalAuthAssertion  String value for paypalAuthAssertion.
          * @return Builder
          */
-        public Builder payPalAuthAssertion(String payPalAuthAssertion) {
-            this.payPalAuthAssertion = payPalAuthAssertion;
+        public Builder paypalAuthAssertion(String paypalAuthAssertion) {
+            this.paypalAuthAssertion = paypalAuthAssertion;
             return this;
         }
 
@@ -342,8 +342,8 @@ public class OrdersCaptureInput {
          * @return {@link OrdersCaptureInput}
          */
         public OrdersCaptureInput build() {
-            return new OrdersCaptureInput(id, contentType, payPalRequestId, prefer,
-                    payPalClientMetadataId, payPalAuthAssertion, body);
+            return new OrdersCaptureInput(id, contentType, paypalRequestId, prefer,
+                    paypalClientMetadataId, paypalAuthAssertion, body);
         }
     }
 }

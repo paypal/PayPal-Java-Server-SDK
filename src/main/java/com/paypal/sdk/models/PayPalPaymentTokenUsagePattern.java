@@ -14,9 +14,9 @@ import java.util.TreeMap;
 
 
 /**
- * PayPalPaymentTokenUsagePattern to be used.
+ * PaypalPaymentTokenUsagePattern to be used.
  */
-public enum PayPalPaymentTokenUsagePattern {
+public enum PaypalPaymentTokenUsagePattern {
     IMMEDIATE,
 
     DEFERRED,
@@ -35,7 +35,7 @@ public enum PayPalPaymentTokenUsagePattern {
     _UNKNOWN;
 
 
-    private static TreeMap<String, PayPalPaymentTokenUsagePattern> valueMap = new TreeMap<>();
+    private static TreeMap<String, PaypalPaymentTokenUsagePattern> valueMap = new TreeMap<>();
     private String value;
 
     static {
@@ -62,8 +62,8 @@ public enum PayPalPaymentTokenUsagePattern {
      * @throws IOException when provided value is not mapped to any enum member.
      */
     @JsonCreator
-    public static PayPalPaymentTokenUsagePattern constructFromString(String toConvert) throws IOException {
-        PayPalPaymentTokenUsagePattern enumValue = fromString(toConvert);
+    public static PaypalPaymentTokenUsagePattern constructFromString(String toConvert) throws IOException {
+        PaypalPaymentTokenUsagePattern enumValue = fromString(toConvert);
         if (enumValue == null) {
             throw new IOException("Unable to create enum instance with value: " + toConvert);
         }
@@ -75,7 +75,7 @@ public enum PayPalPaymentTokenUsagePattern {
      * @param toConvert String value to get enum member.
      * @return The enum member against the given string value.
      */
-    public static PayPalPaymentTokenUsagePattern fromString(String toConvert) {
+    public static PaypalPaymentTokenUsagePattern fromString(String toConvert) {
         if (!valueMap.containsKey(toConvert)) {
             return _UNKNOWN;
         }
@@ -103,16 +103,16 @@ public enum PayPalPaymentTokenUsagePattern {
     }
 
     /**
-     * Convert list of PayPalPaymentTokenUsagePattern values to list of string values.
-     * @param toConvert The list of PayPalPaymentTokenUsagePattern values to convert.
+     * Convert list of PaypalPaymentTokenUsagePattern values to list of string values.
+     * @param toConvert The list of PaypalPaymentTokenUsagePattern values to convert.
      * @return List of representative string values.
      */
-    public static List<String> toValue(List<PayPalPaymentTokenUsagePattern> toConvert) {
+    public static List<String> toValue(List<PaypalPaymentTokenUsagePattern> toConvert) {
         if (toConvert == null) {
             return null;
         }
         List<String> convertedValues = new ArrayList<>();
-        for (PayPalPaymentTokenUsagePattern enumValue : toConvert) {
+        for (PaypalPaymentTokenUsagePattern enumValue : toConvert) {
             convertedValues.add(enumValue.value);
         }
         return convertedValues;

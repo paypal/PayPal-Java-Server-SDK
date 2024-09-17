@@ -14,9 +14,9 @@ import java.util.TreeMap;
 
 
 /**
- * PayPalExperienceUserAction to be used.
+ * PaypalExperienceUserAction to be used.
  */
-public enum PayPalExperienceUserAction {
+public enum PaypalExperienceUserAction {
     CONTINUE,
 
     PAY_NOW,
@@ -27,7 +27,7 @@ public enum PayPalExperienceUserAction {
     _UNKNOWN;
 
 
-    private static TreeMap<String, PayPalExperienceUserAction> valueMap = new TreeMap<>();
+    private static TreeMap<String, PaypalExperienceUserAction> valueMap = new TreeMap<>();
     private String value;
 
     static {
@@ -46,8 +46,8 @@ public enum PayPalExperienceUserAction {
      * @throws IOException when provided value is not mapped to any enum member.
      */
     @JsonCreator
-    public static PayPalExperienceUserAction constructFromString(String toConvert) throws IOException {
-        PayPalExperienceUserAction enumValue = fromString(toConvert);
+    public static PaypalExperienceUserAction constructFromString(String toConvert) throws IOException {
+        PaypalExperienceUserAction enumValue = fromString(toConvert);
         if (enumValue == null) {
             throw new IOException("Unable to create enum instance with value: " + toConvert);
         }
@@ -59,7 +59,7 @@ public enum PayPalExperienceUserAction {
      * @param toConvert String value to get enum member.
      * @return The enum member against the given string value.
      */
-    public static PayPalExperienceUserAction fromString(String toConvert) {
+    public static PaypalExperienceUserAction fromString(String toConvert) {
         if (!valueMap.containsKey(toConvert)) {
             return _UNKNOWN;
         }
@@ -87,16 +87,16 @@ public enum PayPalExperienceUserAction {
     }
 
     /**
-     * Convert list of PayPalExperienceUserAction values to list of string values.
-     * @param toConvert The list of PayPalExperienceUserAction values to convert.
+     * Convert list of PaypalExperienceUserAction values to list of string values.
+     * @param toConvert The list of PaypalExperienceUserAction values to convert.
      * @return List of representative string values.
      */
-    public static List<String> toValue(List<PayPalExperienceUserAction> toConvert) {
+    public static List<String> toValue(List<PaypalExperienceUserAction> toConvert) {
         if (toConvert == null) {
             return null;
         }
         List<String> convertedValues = new ArrayList<>();
-        for (PayPalExperienceUserAction enumValue : toConvert) {
+        for (PaypalExperienceUserAction enumValue : toConvert) {
             convertedValues.add(enumValue.value);
         }
         return convertedValues;

@@ -11,9 +11,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 /**
- * This is a model class for PayPalWalletCustomerRequest type.
+ * This is a model class for PaypalWalletCustomerRequest type.
  */
-public class PayPalWalletCustomerRequest {
+public class PaypalWalletCustomerRequest {
     private String id;
     private String emailAddress;
     private PhoneWithType phone;
@@ -22,7 +22,7 @@ public class PayPalWalletCustomerRequest {
     /**
      * Default constructor.
      */
-    public PayPalWalletCustomerRequest() {
+    public PaypalWalletCustomerRequest() {
     }
 
     /**
@@ -32,7 +32,7 @@ public class PayPalWalletCustomerRequest {
      * @param  phone  PhoneWithType value for phone.
      * @param  merchantCustomerId  String value for merchantCustomerId.
      */
-    public PayPalWalletCustomerRequest(
+    public PaypalWalletCustomerRequest(
             String id,
             String emailAddress,
             PhoneWithType phone,
@@ -138,19 +138,19 @@ public class PayPalWalletCustomerRequest {
     }
 
     /**
-     * Converts this PayPalWalletCustomerRequest into string format.
+     * Converts this PaypalWalletCustomerRequest into string format.
      * @return String representation of this class
      */
     @Override
     public String toString() {
-        return "PayPalWalletCustomerRequest [" + "id=" + id + ", emailAddress=" + emailAddress
+        return "PaypalWalletCustomerRequest [" + "id=" + id + ", emailAddress=" + emailAddress
                 + ", phone=" + phone + ", merchantCustomerId=" + merchantCustomerId + "]";
     }
 
     /**
-     * Builds a new {@link PayPalWalletCustomerRequest.Builder} object.
+     * Builds a new {@link PaypalWalletCustomerRequest.Builder} object.
      * Creates the instance with the state of the current model.
-     * @return a new {@link PayPalWalletCustomerRequest.Builder} object
+     * @return a new {@link PaypalWalletCustomerRequest.Builder} object
      */
     public Builder toBuilder() {
         Builder builder = new Builder()
@@ -162,7 +162,7 @@ public class PayPalWalletCustomerRequest {
     }
 
     /**
-     * Class to build instances of {@link PayPalWalletCustomerRequest}.
+     * Class to build instances of {@link PaypalWalletCustomerRequest}.
      */
     public static class Builder {
         private String id;
@@ -213,11 +213,11 @@ public class PayPalWalletCustomerRequest {
         }
 
         /**
-         * Builds a new {@link PayPalWalletCustomerRequest} object using the set fields.
-         * @return {@link PayPalWalletCustomerRequest}
+         * Builds a new {@link PaypalWalletCustomerRequest} object using the set fields.
+         * @return {@link PaypalWalletCustomerRequest}
          */
-        public PayPalWalletCustomerRequest build() {
-            return new PayPalWalletCustomerRequest(id, emailAddress, phone, merchantCustomerId);
+        public PaypalWalletCustomerRequest build() {
+            return new PaypalWalletCustomerRequest(id, emailAddress, phone, merchantCustomerId);
         }
     }
 }

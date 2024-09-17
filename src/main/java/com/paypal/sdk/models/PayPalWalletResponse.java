@@ -11,12 +11,12 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 /**
- * This is a model class for PayPalWalletResponse type.
+ * This is a model class for PaypalWalletResponse type.
  */
-public class PayPalWalletResponse {
+public class PaypalWalletResponse {
     private String emailAddress;
     private String accountId;
-    private PayPalWalletAccountVerificationStatus accountStatus;
+    private PaypalWalletAccountVerificationStatus accountStatus;
     private Name name;
     private PhoneType phoneType;
     private PhoneNumber phoneNumber;
@@ -24,19 +24,19 @@ public class PayPalWalletResponse {
     private String businessName;
     private TaxInfo taxInfo;
     private Address address;
-    private PayPalWalletAttributesResponse attributes;
+    private PaypalWalletAttributesResponse attributes;
 
     /**
      * Default constructor.
      */
-    public PayPalWalletResponse() {
+    public PaypalWalletResponse() {
     }
 
     /**
      * Initialization constructor.
      * @param  emailAddress  String value for emailAddress.
      * @param  accountId  String value for accountId.
-     * @param  accountStatus  PayPalWalletAccountVerificationStatus value for accountStatus.
+     * @param  accountStatus  PaypalWalletAccountVerificationStatus value for accountStatus.
      * @param  name  Name value for name.
      * @param  phoneType  PhoneType value for phoneType.
      * @param  phoneNumber  PhoneNumber value for phoneNumber.
@@ -44,12 +44,12 @@ public class PayPalWalletResponse {
      * @param  businessName  String value for businessName.
      * @param  taxInfo  TaxInfo value for taxInfo.
      * @param  address  Address value for address.
-     * @param  attributes  PayPalWalletAttributesResponse value for attributes.
+     * @param  attributes  PaypalWalletAttributesResponse value for attributes.
      */
-    public PayPalWalletResponse(
+    public PaypalWalletResponse(
             String emailAddress,
             String accountId,
-            PayPalWalletAccountVerificationStatus accountStatus,
+            PaypalWalletAccountVerificationStatus accountStatus,
             Name name,
             PhoneType phoneType,
             PhoneNumber phoneNumber,
@@ -57,7 +57,7 @@ public class PayPalWalletResponse {
             String businessName,
             TaxInfo taxInfo,
             Address address,
-            PayPalWalletAttributesResponse attributes) {
+            PaypalWalletAttributesResponse attributes) {
         this.emailAddress = emailAddress;
         this.accountId = accountId;
         this.accountStatus = accountStatus;
@@ -127,11 +127,11 @@ public class PayPalWalletResponse {
      * Getter for AccountStatus.
      * The account status indicates whether the buyer has verified the financial details associated
      * with their PayPal account.
-     * @return Returns the PayPalWalletAccountVerificationStatus
+     * @return Returns the PaypalWalletAccountVerificationStatus
      */
     @JsonGetter("account_status")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public PayPalWalletAccountVerificationStatus getAccountStatus() {
+    public PaypalWalletAccountVerificationStatus getAccountStatus() {
         return accountStatus;
     }
 
@@ -139,10 +139,10 @@ public class PayPalWalletResponse {
      * Setter for AccountStatus.
      * The account status indicates whether the buyer has verified the financial details associated
      * with their PayPal account.
-     * @param accountStatus Value for PayPalWalletAccountVerificationStatus
+     * @param accountStatus Value for PaypalWalletAccountVerificationStatus
      */
     @JsonSetter("account_status")
-    public void setAccountStatus(PayPalWalletAccountVerificationStatus accountStatus) {
+    public void setAccountStatus(PaypalWalletAccountVerificationStatus accountStatus) {
         this.accountStatus = accountStatus;
     }
 
@@ -314,31 +314,31 @@ public class PayPalWalletResponse {
     /**
      * Getter for Attributes.
      * Additional attributes associated with the use of a PayPal Wallet.
-     * @return Returns the PayPalWalletAttributesResponse
+     * @return Returns the PaypalWalletAttributesResponse
      */
     @JsonGetter("attributes")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public PayPalWalletAttributesResponse getAttributes() {
+    public PaypalWalletAttributesResponse getAttributes() {
         return attributes;
     }
 
     /**
      * Setter for Attributes.
      * Additional attributes associated with the use of a PayPal Wallet.
-     * @param attributes Value for PayPalWalletAttributesResponse
+     * @param attributes Value for PaypalWalletAttributesResponse
      */
     @JsonSetter("attributes")
-    public void setAttributes(PayPalWalletAttributesResponse attributes) {
+    public void setAttributes(PaypalWalletAttributesResponse attributes) {
         this.attributes = attributes;
     }
 
     /**
-     * Converts this PayPalWalletResponse into string format.
+     * Converts this PaypalWalletResponse into string format.
      * @return String representation of this class
      */
     @Override
     public String toString() {
-        return "PayPalWalletResponse [" + "emailAddress=" + emailAddress + ", accountId="
+        return "PaypalWalletResponse [" + "emailAddress=" + emailAddress + ", accountId="
                 + accountId + ", accountStatus=" + accountStatus + ", name=" + name + ", phoneType="
                 + phoneType + ", phoneNumber=" + phoneNumber + ", birthDate=" + birthDate
                 + ", businessName=" + businessName + ", taxInfo=" + taxInfo + ", address=" + address
@@ -346,9 +346,9 @@ public class PayPalWalletResponse {
     }
 
     /**
-     * Builds a new {@link PayPalWalletResponse.Builder} object.
+     * Builds a new {@link PaypalWalletResponse.Builder} object.
      * Creates the instance with the state of the current model.
-     * @return a new {@link PayPalWalletResponse.Builder} object
+     * @return a new {@link PaypalWalletResponse.Builder} object
      */
     public Builder toBuilder() {
         Builder builder = new Builder()
@@ -367,12 +367,12 @@ public class PayPalWalletResponse {
     }
 
     /**
-     * Class to build instances of {@link PayPalWalletResponse}.
+     * Class to build instances of {@link PaypalWalletResponse}.
      */
     public static class Builder {
         private String emailAddress;
         private String accountId;
-        private PayPalWalletAccountVerificationStatus accountStatus;
+        private PaypalWalletAccountVerificationStatus accountStatus;
         private Name name;
         private PhoneType phoneType;
         private PhoneNumber phoneNumber;
@@ -380,7 +380,7 @@ public class PayPalWalletResponse {
         private String businessName;
         private TaxInfo taxInfo;
         private Address address;
-        private PayPalWalletAttributesResponse attributes;
+        private PaypalWalletAttributesResponse attributes;
 
 
 
@@ -406,10 +406,10 @@ public class PayPalWalletResponse {
 
         /**
          * Setter for accountStatus.
-         * @param  accountStatus  PayPalWalletAccountVerificationStatus value for accountStatus.
+         * @param  accountStatus  PaypalWalletAccountVerificationStatus value for accountStatus.
          * @return Builder
          */
-        public Builder accountStatus(PayPalWalletAccountVerificationStatus accountStatus) {
+        public Builder accountStatus(PaypalWalletAccountVerificationStatus accountStatus) {
             this.accountStatus = accountStatus;
             return this;
         }
@@ -486,20 +486,20 @@ public class PayPalWalletResponse {
 
         /**
          * Setter for attributes.
-         * @param  attributes  PayPalWalletAttributesResponse value for attributes.
+         * @param  attributes  PaypalWalletAttributesResponse value for attributes.
          * @return Builder
          */
-        public Builder attributes(PayPalWalletAttributesResponse attributes) {
+        public Builder attributes(PaypalWalletAttributesResponse attributes) {
             this.attributes = attributes;
             return this;
         }
 
         /**
-         * Builds a new {@link PayPalWalletResponse} object using the set fields.
-         * @return {@link PayPalWalletResponse}
+         * Builds a new {@link PaypalWalletResponse} object using the set fields.
+         * @return {@link PaypalWalletResponse}
          */
-        public PayPalWalletResponse build() {
-            return new PayPalWalletResponse(emailAddress, accountId, accountStatus, name, phoneType,
+        public PaypalWalletResponse build() {
+            return new PaypalWalletResponse(emailAddress, accountId, accountStatus, name, phoneType,
                     phoneNumber, birthDate, businessName, taxInfo, address, attributes);
         }
     }

@@ -80,7 +80,7 @@ CompletableFuture<ApiResponse<CapturedPayment>> authorizationsCaptureAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `authorizationId` | `String` | Template, Required | The PayPal-generated ID for the authorized payment to capture. |
-| `payPalRequestId` | `String` | Header, Optional | The server stores keys for 45 days. |
+| `paypalRequestId` | `String` | Header, Optional | The server stores keys for 45 days. |
 | `prefer` | `String` | Header, Optional | The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul><br>**Default**: `"return=minimal"` |
 | `body` | [`CaptureRequest`](../../doc/models/capture-request.md) | Body, Optional | - |
 
@@ -139,7 +139,7 @@ CompletableFuture<ApiResponse<PaymentAuthorization>> authorizationsReauthorizeAs
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `authorizationId` | `String` | Template, Required | The PayPal-generated ID for the authorized payment to reauthorize. |
-| `payPalRequestId` | `String` | Header, Optional | The server stores keys for 45 days. |
+| `paypalRequestId` | `String` | Header, Optional | The server stores keys for 45 days. |
 | `prefer` | `String` | Header, Optional | The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul><br>**Default**: `"return=minimal"` |
 | `body` | [`ReauthorizeRequest`](../../doc/models/reauthorize-request.md) | Body, Optional | - |
 
@@ -194,7 +194,7 @@ CompletableFuture<ApiResponse<PaymentAuthorization>> authorizationsVoidAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `authorizationId` | `String` | Template, Required | The PayPal-generated ID for the authorized payment to void. |
-| `payPalAuthAssertion` | `String` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion).<blockquote><strong>Note:</strong>For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject.</blockquote> |
+| `paypalAuthAssertion` | `String` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion).<blockquote><strong>Note:</strong>For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject.</blockquote> |
 | `prefer` | `String` | Header, Optional | The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul><br>**Default**: `"return=minimal"` |
 
 ## Response Type
@@ -293,9 +293,9 @@ CompletableFuture<ApiResponse<Refund>> capturesRefundAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `captureId` | `String` | Template, Required | The PayPal-generated ID for the captured payment to refund. |
-| `payPalRequestId` | `String` | Header, Optional | The server stores keys for 45 days. |
+| `paypalRequestId` | `String` | Header, Optional | The server stores keys for 45 days. |
 | `prefer` | `String` | Header, Optional | The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul><br>**Default**: `"return=minimal"` |
-| `payPalAuthAssertion` | `String` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion).<blockquote><strong>Note:</strong>For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject.</blockquote> |
+| `paypalAuthAssertion` | `String` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion).<blockquote><strong>Note:</strong>For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject.</blockquote> |
 | `body` | [`RefundRequest`](../../doc/models/refund-request.md) | Body, Optional | - |
 
 ## Response Type

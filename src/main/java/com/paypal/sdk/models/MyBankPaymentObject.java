@@ -11,9 +11,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 /**
- * This is a model class for MyBankPaymentObject type.
+ * This is a model class for MybankPaymentObject type.
  */
-public class MyBankPaymentObject {
+public class MybankPaymentObject {
     private String name;
     private String countryCode;
     private String bic;
@@ -22,7 +22,7 @@ public class MyBankPaymentObject {
     /**
      * Default constructor.
      */
-    public MyBankPaymentObject() {
+    public MybankPaymentObject() {
     }
 
     /**
@@ -32,7 +32,7 @@ public class MyBankPaymentObject {
      * @param  bic  String value for bic.
      * @param  ibanLastChars  String value for ibanLastChars.
      */
-    public MyBankPaymentObject(
+    public MybankPaymentObject(
             String name,
             String countryCode,
             String bic,
@@ -138,19 +138,19 @@ public class MyBankPaymentObject {
     }
 
     /**
-     * Converts this MyBankPaymentObject into string format.
+     * Converts this MybankPaymentObject into string format.
      * @return String representation of this class
      */
     @Override
     public String toString() {
-        return "MyBankPaymentObject [" + "name=" + name + ", countryCode=" + countryCode + ", bic="
+        return "MybankPaymentObject [" + "name=" + name + ", countryCode=" + countryCode + ", bic="
                 + bic + ", ibanLastChars=" + ibanLastChars + "]";
     }
 
     /**
-     * Builds a new {@link MyBankPaymentObject.Builder} object.
+     * Builds a new {@link MybankPaymentObject.Builder} object.
      * Creates the instance with the state of the current model.
-     * @return a new {@link MyBankPaymentObject.Builder} object
+     * @return a new {@link MybankPaymentObject.Builder} object
      */
     public Builder toBuilder() {
         Builder builder = new Builder()
@@ -162,7 +162,7 @@ public class MyBankPaymentObject {
     }
 
     /**
-     * Class to build instances of {@link MyBankPaymentObject}.
+     * Class to build instances of {@link MybankPaymentObject}.
      */
     public static class Builder {
         private String name;
@@ -213,11 +213,11 @@ public class MyBankPaymentObject {
         }
 
         /**
-         * Builds a new {@link MyBankPaymentObject} object using the set fields.
-         * @return {@link MyBankPaymentObject}
+         * Builds a new {@link MybankPaymentObject} object using the set fields.
+         * @return {@link MybankPaymentObject}
          */
-        public MyBankPaymentObject build() {
-            return new MyBankPaymentObject(name, countryCode, bic, ibanLastChars);
+        public MybankPaymentObject build() {
+            return new MybankPaymentObject(name, countryCode, bic, ibanLastChars);
         }
     }
 }

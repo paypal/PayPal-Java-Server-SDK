@@ -12,32 +12,32 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import java.util.List;
 
 /**
- * This is a model class for PayPalWalletVaultResponse type.
+ * This is a model class for PaypalWalletVaultResponse type.
  */
-public class PayPalWalletVaultResponse {
+public class PaypalWalletVaultResponse {
     private String id;
-    private PayPalWalletVaultStatus status;
+    private PaypalWalletVaultStatus status;
     private List<LinkDescription> links;
-    private PayPalWalletCustomer customer;
+    private PaypalWalletCustomer customer;
 
     /**
      * Default constructor.
      */
-    public PayPalWalletVaultResponse() {
+    public PaypalWalletVaultResponse() {
     }
 
     /**
      * Initialization constructor.
      * @param  id  String value for id.
-     * @param  status  PayPalWalletVaultStatus value for status.
+     * @param  status  PaypalWalletVaultStatus value for status.
      * @param  links  List of LinkDescription value for links.
-     * @param  customer  PayPalWalletCustomer value for customer.
+     * @param  customer  PaypalWalletCustomer value for customer.
      */
-    public PayPalWalletVaultResponse(
+    public PaypalWalletVaultResponse(
             String id,
-            PayPalWalletVaultStatus status,
+            PaypalWalletVaultStatus status,
             List<LinkDescription> links,
-            PayPalWalletCustomer customer) {
+            PaypalWalletCustomer customer) {
         this.id = id;
         this.status = status;
         this.links = links;
@@ -68,21 +68,21 @@ public class PayPalWalletVaultResponse {
     /**
      * Getter for Status.
      * The vault status.
-     * @return Returns the PayPalWalletVaultStatus
+     * @return Returns the PaypalWalletVaultStatus
      */
     @JsonGetter("status")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public PayPalWalletVaultStatus getStatus() {
+    public PaypalWalletVaultStatus getStatus() {
         return status;
     }
 
     /**
      * Setter for Status.
      * The vault status.
-     * @param status Value for PayPalWalletVaultStatus
+     * @param status Value for PaypalWalletVaultStatus
      */
     @JsonSetter("status")
-    public void setStatus(PayPalWalletVaultStatus status) {
+    public void setStatus(PaypalWalletVaultStatus status) {
         this.status = status;
     }
 
@@ -110,38 +110,38 @@ public class PayPalWalletVaultResponse {
     /**
      * Getter for Customer.
      * The details about a customer in PayPal's system of record.
-     * @return Returns the PayPalWalletCustomer
+     * @return Returns the PaypalWalletCustomer
      */
     @JsonGetter("customer")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public PayPalWalletCustomer getCustomer() {
+    public PaypalWalletCustomer getCustomer() {
         return customer;
     }
 
     /**
      * Setter for Customer.
      * The details about a customer in PayPal's system of record.
-     * @param customer Value for PayPalWalletCustomer
+     * @param customer Value for PaypalWalletCustomer
      */
     @JsonSetter("customer")
-    public void setCustomer(PayPalWalletCustomer customer) {
+    public void setCustomer(PaypalWalletCustomer customer) {
         this.customer = customer;
     }
 
     /**
-     * Converts this PayPalWalletVaultResponse into string format.
+     * Converts this PaypalWalletVaultResponse into string format.
      * @return String representation of this class
      */
     @Override
     public String toString() {
-        return "PayPalWalletVaultResponse [" + "id=" + id + ", status=" + status + ", links="
+        return "PaypalWalletVaultResponse [" + "id=" + id + ", status=" + status + ", links="
                 + links + ", customer=" + customer + "]";
     }
 
     /**
-     * Builds a new {@link PayPalWalletVaultResponse.Builder} object.
+     * Builds a new {@link PaypalWalletVaultResponse.Builder} object.
      * Creates the instance with the state of the current model.
-     * @return a new {@link PayPalWalletVaultResponse.Builder} object
+     * @return a new {@link PaypalWalletVaultResponse.Builder} object
      */
     public Builder toBuilder() {
         Builder builder = new Builder()
@@ -153,13 +153,13 @@ public class PayPalWalletVaultResponse {
     }
 
     /**
-     * Class to build instances of {@link PayPalWalletVaultResponse}.
+     * Class to build instances of {@link PaypalWalletVaultResponse}.
      */
     public static class Builder {
         private String id;
-        private PayPalWalletVaultStatus status;
+        private PaypalWalletVaultStatus status;
         private List<LinkDescription> links;
-        private PayPalWalletCustomer customer;
+        private PaypalWalletCustomer customer;
 
 
 
@@ -175,10 +175,10 @@ public class PayPalWalletVaultResponse {
 
         /**
          * Setter for status.
-         * @param  status  PayPalWalletVaultStatus value for status.
+         * @param  status  PaypalWalletVaultStatus value for status.
          * @return Builder
          */
-        public Builder status(PayPalWalletVaultStatus status) {
+        public Builder status(PaypalWalletVaultStatus status) {
             this.status = status;
             return this;
         }
@@ -195,20 +195,20 @@ public class PayPalWalletVaultResponse {
 
         /**
          * Setter for customer.
-         * @param  customer  PayPalWalletCustomer value for customer.
+         * @param  customer  PaypalWalletCustomer value for customer.
          * @return Builder
          */
-        public Builder customer(PayPalWalletCustomer customer) {
+        public Builder customer(PaypalWalletCustomer customer) {
             this.customer = customer;
             return this;
         }
 
         /**
-         * Builds a new {@link PayPalWalletVaultResponse} object using the set fields.
-         * @return {@link PayPalWalletVaultResponse}
+         * Builds a new {@link PaypalWalletVaultResponse} object using the set fields.
+         * @return {@link PaypalWalletVaultResponse}
          */
-        public PayPalWalletVaultResponse build() {
-            return new PayPalWalletVaultResponse(id, status, links, customer);
+        public PaypalWalletVaultResponse build() {
+            return new PaypalWalletVaultResponse(id, status, links, customer);
         }
     }
 }

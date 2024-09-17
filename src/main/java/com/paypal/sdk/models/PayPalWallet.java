@@ -11,9 +11,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 /**
- * This is a model class for PayPalWallet type.
+ * This is a model class for PaypalWallet type.
  */
-public class PayPalWallet {
+public class PaypalWallet {
     private String vaultId;
     private String emailAddress;
     private Name name;
@@ -21,14 +21,14 @@ public class PayPalWallet {
     private String birthDate;
     private TaxInfo taxInfo;
     private Address address;
-    private PayPalWalletAttributes attributes;
-    private PayPalWalletExperienceContext experienceContext;
+    private PaypalWalletAttributes attributes;
+    private PaypalWalletExperienceContext experienceContext;
     private String billingAgreementId;
 
     /**
      * Default constructor.
      */
-    public PayPalWallet() {
+    public PaypalWallet() {
     }
 
     /**
@@ -40,11 +40,11 @@ public class PayPalWallet {
      * @param  birthDate  String value for birthDate.
      * @param  taxInfo  TaxInfo value for taxInfo.
      * @param  address  Address value for address.
-     * @param  attributes  PayPalWalletAttributes value for attributes.
-     * @param  experienceContext  PayPalWalletExperienceContext value for experienceContext.
+     * @param  attributes  PaypalWalletAttributes value for attributes.
+     * @param  experienceContext  PaypalWalletExperienceContext value for experienceContext.
      * @param  billingAgreementId  String value for billingAgreementId.
      */
-    public PayPalWallet(
+    public PaypalWallet(
             String vaultId,
             String emailAddress,
             Name name,
@@ -52,8 +52,8 @@ public class PayPalWallet {
             String birthDate,
             TaxInfo taxInfo,
             Address address,
-            PayPalWalletAttributes attributes,
-            PayPalWalletExperienceContext experienceContext,
+            PaypalWalletAttributes attributes,
+            PaypalWalletExperienceContext experienceContext,
             String billingAgreementId) {
         this.vaultId = vaultId;
         this.emailAddress = emailAddress;
@@ -241,21 +241,21 @@ public class PayPalWallet {
     /**
      * Getter for Attributes.
      * Additional attributes associated with the use of this PayPal Wallet.
-     * @return Returns the PayPalWalletAttributes
+     * @return Returns the PaypalWalletAttributes
      */
     @JsonGetter("attributes")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public PayPalWalletAttributes getAttributes() {
+    public PaypalWalletAttributes getAttributes() {
         return attributes;
     }
 
     /**
      * Setter for Attributes.
      * Additional attributes associated with the use of this PayPal Wallet.
-     * @param attributes Value for PayPalWalletAttributes
+     * @param attributes Value for PaypalWalletAttributes
      */
     @JsonSetter("attributes")
-    public void setAttributes(PayPalWalletAttributes attributes) {
+    public void setAttributes(PaypalWalletAttributes attributes) {
         this.attributes = attributes;
     }
 
@@ -265,11 +265,11 @@ public class PayPalWallet {
      * PayPal.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; Partners and Marketplaces might configure
      * &lt;code&gt;brand_name&lt;/code&gt; and &lt;code&gt;shipping_preference&lt;/code&gt; during partner account setup,
      * which overrides the request values.&lt;/blockquote&gt;
-     * @return Returns the PayPalWalletExperienceContext
+     * @return Returns the PaypalWalletExperienceContext
      */
     @JsonGetter("experience_context")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public PayPalWalletExperienceContext getExperienceContext() {
+    public PaypalWalletExperienceContext getExperienceContext() {
         return experienceContext;
     }
 
@@ -279,10 +279,10 @@ public class PayPalWallet {
      * PayPal.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; Partners and Marketplaces might configure
      * &lt;code&gt;brand_name&lt;/code&gt; and &lt;code&gt;shipping_preference&lt;/code&gt; during partner account setup,
      * which overrides the request values.&lt;/blockquote&gt;
-     * @param experienceContext Value for PayPalWalletExperienceContext
+     * @param experienceContext Value for PaypalWalletExperienceContext
      */
     @JsonSetter("experience_context")
-    public void setExperienceContext(PayPalWalletExperienceContext experienceContext) {
+    public void setExperienceContext(PaypalWalletExperienceContext experienceContext) {
         this.experienceContext = experienceContext;
     }
 
@@ -310,12 +310,12 @@ public class PayPalWallet {
     }
 
     /**
-     * Converts this PayPalWallet into string format.
+     * Converts this PaypalWallet into string format.
      * @return String representation of this class
      */
     @Override
     public String toString() {
-        return "PayPalWallet [" + "vaultId=" + vaultId + ", emailAddress=" + emailAddress
+        return "PaypalWallet [" + "vaultId=" + vaultId + ", emailAddress=" + emailAddress
                 + ", name=" + name + ", phone=" + phone + ", birthDate=" + birthDate + ", taxInfo="
                 + taxInfo + ", address=" + address + ", attributes=" + attributes
                 + ", experienceContext=" + experienceContext + ", billingAgreementId="
@@ -323,9 +323,9 @@ public class PayPalWallet {
     }
 
     /**
-     * Builds a new {@link PayPalWallet.Builder} object.
+     * Builds a new {@link PaypalWallet.Builder} object.
      * Creates the instance with the state of the current model.
-     * @return a new {@link PayPalWallet.Builder} object
+     * @return a new {@link PaypalWallet.Builder} object
      */
     public Builder toBuilder() {
         Builder builder = new Builder()
@@ -343,7 +343,7 @@ public class PayPalWallet {
     }
 
     /**
-     * Class to build instances of {@link PayPalWallet}.
+     * Class to build instances of {@link PaypalWallet}.
      */
     public static class Builder {
         private String vaultId;
@@ -353,8 +353,8 @@ public class PayPalWallet {
         private String birthDate;
         private TaxInfo taxInfo;
         private Address address;
-        private PayPalWalletAttributes attributes;
-        private PayPalWalletExperienceContext experienceContext;
+        private PaypalWalletAttributes attributes;
+        private PaypalWalletExperienceContext experienceContext;
         private String billingAgreementId;
 
 
@@ -431,20 +431,20 @@ public class PayPalWallet {
 
         /**
          * Setter for attributes.
-         * @param  attributes  PayPalWalletAttributes value for attributes.
+         * @param  attributes  PaypalWalletAttributes value for attributes.
          * @return Builder
          */
-        public Builder attributes(PayPalWalletAttributes attributes) {
+        public Builder attributes(PaypalWalletAttributes attributes) {
             this.attributes = attributes;
             return this;
         }
 
         /**
          * Setter for experienceContext.
-         * @param  experienceContext  PayPalWalletExperienceContext value for experienceContext.
+         * @param  experienceContext  PaypalWalletExperienceContext value for experienceContext.
          * @return Builder
          */
-        public Builder experienceContext(PayPalWalletExperienceContext experienceContext) {
+        public Builder experienceContext(PaypalWalletExperienceContext experienceContext) {
             this.experienceContext = experienceContext;
             return this;
         }
@@ -460,11 +460,11 @@ public class PayPalWallet {
         }
 
         /**
-         * Builds a new {@link PayPalWallet} object using the set fields.
-         * @return {@link PayPalWallet}
+         * Builds a new {@link PaypalWallet} object using the set fields.
+         * @return {@link PaypalWallet}
          */
-        public PayPalWallet build() {
-            return new PayPalWallet(vaultId, emailAddress, name, phone, birthDate, taxInfo, address,
+        public PaypalWallet build() {
+            return new PaypalWallet(vaultId, emailAddress, name, phone, birthDate, taxInfo, address,
                     attributes, experienceContext, billingAgreementId);
         }
     }

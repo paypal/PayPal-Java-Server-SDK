@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 public class OrdersConfirmInput {
     private String id;
     private String contentType;
-    private String payPalClientMetadataId;
+    private String paypalClientMetadataId;
     private String prefer;
     private ConfirmOrderRequest body;
 
@@ -32,19 +32,19 @@ public class OrdersConfirmInput {
      * Initialization constructor.
      * @param  id  String value for id.
      * @param  contentType  String value for contentType.
-     * @param  payPalClientMetadataId  String value for payPalClientMetadataId.
+     * @param  paypalClientMetadataId  String value for paypalClientMetadataId.
      * @param  prefer  String value for prefer.
      * @param  body  ConfirmOrderRequest value for body.
      */
     public OrdersConfirmInput(
             String id,
             String contentType,
-            String payPalClientMetadataId,
+            String paypalClientMetadataId,
             String prefer,
             ConfirmOrderRequest body) {
         this.id = id;
         this.contentType = contentType;
-        this.payPalClientMetadataId = payPalClientMetadataId;
+        this.paypalClientMetadataId = paypalClientMetadataId;
         this.prefer = prefer;
         this.body = body;
     }
@@ -88,22 +88,22 @@ public class OrdersConfirmInput {
     }
 
     /**
-     * Getter for PayPalClientMetadataId.
+     * Getter for PaypalClientMetadataId.
      * @return Returns the String
      */
     @JsonGetter("PayPal-Client-Metadata-Id")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public String getPayPalClientMetadataId() {
-        return payPalClientMetadataId;
+    public String getPaypalClientMetadataId() {
+        return paypalClientMetadataId;
     }
 
     /**
-     * Setter for PayPalClientMetadataId.
-     * @param payPalClientMetadataId Value for String
+     * Setter for PaypalClientMetadataId.
+     * @param paypalClientMetadataId Value for String
      */
     @JsonSetter("PayPal-Client-Metadata-Id")
-    public void setPayPalClientMetadataId(String payPalClientMetadataId) {
-        this.payPalClientMetadataId = payPalClientMetadataId;
+    public void setPaypalClientMetadataId(String paypalClientMetadataId) {
+        this.paypalClientMetadataId = paypalClientMetadataId;
     }
 
     /**
@@ -163,7 +163,7 @@ public class OrdersConfirmInput {
     @Override
     public String toString() {
         return "OrdersConfirmInput [" + "id=" + id + ", contentType=" + contentType
-                + ", payPalClientMetadataId=" + payPalClientMetadataId + ", prefer=" + prefer
+                + ", paypalClientMetadataId=" + paypalClientMetadataId + ", prefer=" + prefer
                 + ", body=" + body + "]";
     }
 
@@ -174,7 +174,7 @@ public class OrdersConfirmInput {
      */
     public Builder toBuilder() {
         Builder builder = new Builder(id, contentType)
-                .payPalClientMetadataId(getPayPalClientMetadataId())
+                .paypalClientMetadataId(getPaypalClientMetadataId())
                 .prefer(getPrefer())
                 .body(getBody());
         return builder;
@@ -186,7 +186,7 @@ public class OrdersConfirmInput {
     public static class Builder {
         private String id;
         private String contentType = "application/json";
-        private String payPalClientMetadataId;
+        private String paypalClientMetadataId;
         private String prefer = "return=minimal";
         private ConfirmOrderRequest body;
 
@@ -227,12 +227,12 @@ public class OrdersConfirmInput {
         }
 
         /**
-         * Setter for payPalClientMetadataId.
-         * @param  payPalClientMetadataId  String value for payPalClientMetadataId.
+         * Setter for paypalClientMetadataId.
+         * @param  paypalClientMetadataId  String value for paypalClientMetadataId.
          * @return Builder
          */
-        public Builder payPalClientMetadataId(String payPalClientMetadataId) {
-            this.payPalClientMetadataId = payPalClientMetadataId;
+        public Builder paypalClientMetadataId(String paypalClientMetadataId) {
+            this.paypalClientMetadataId = paypalClientMetadataId;
             return this;
         }
 
@@ -261,7 +261,7 @@ public class OrdersConfirmInput {
          * @return {@link OrdersConfirmInput}
          */
         public OrdersConfirmInput build() {
-            return new OrdersConfirmInput(id, contentType, payPalClientMetadataId, prefer, body);
+            return new OrdersConfirmInput(id, contentType, paypalClientMetadataId, prefer, body);
         }
     }
 }

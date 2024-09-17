@@ -11,81 +11,81 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 /**
- * This is a model class for PayPalWalletAttributes type.
+ * This is a model class for PaypalWalletAttributes type.
  */
-public class PayPalWalletAttributes {
-    private PayPalWalletCustomerRequest customer;
-    private PayPalWalletVaultInstruction vault;
+public class PaypalWalletAttributes {
+    private PaypalWalletCustomerRequest customer;
+    private PaypalWalletVaultInstruction vault;
 
     /**
      * Default constructor.
      */
-    public PayPalWalletAttributes() {
+    public PaypalWalletAttributes() {
     }
 
     /**
      * Initialization constructor.
-     * @param  customer  PayPalWalletCustomerRequest value for customer.
-     * @param  vault  PayPalWalletVaultInstruction value for vault.
+     * @param  customer  PaypalWalletCustomerRequest value for customer.
+     * @param  vault  PaypalWalletVaultInstruction value for vault.
      */
-    public PayPalWalletAttributes(
-            PayPalWalletCustomerRequest customer,
-            PayPalWalletVaultInstruction vault) {
+    public PaypalWalletAttributes(
+            PaypalWalletCustomerRequest customer,
+            PaypalWalletVaultInstruction vault) {
         this.customer = customer;
         this.vault = vault;
     }
 
     /**
      * Getter for Customer.
-     * @return Returns the PayPalWalletCustomerRequest
+     * @return Returns the PaypalWalletCustomerRequest
      */
     @JsonGetter("customer")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public PayPalWalletCustomerRequest getCustomer() {
+    public PaypalWalletCustomerRequest getCustomer() {
         return customer;
     }
 
     /**
      * Setter for Customer.
-     * @param customer Value for PayPalWalletCustomerRequest
+     * @param customer Value for PaypalWalletCustomerRequest
      */
     @JsonSetter("customer")
-    public void setCustomer(PayPalWalletCustomerRequest customer) {
+    public void setCustomer(PaypalWalletCustomerRequest customer) {
         this.customer = customer;
     }
 
     /**
      * Getter for Vault.
-     * @return Returns the PayPalWalletVaultInstruction
+     * @return Returns the PaypalWalletVaultInstruction
      */
     @JsonGetter("vault")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public PayPalWalletVaultInstruction getVault() {
+    public PaypalWalletVaultInstruction getVault() {
         return vault;
     }
 
     /**
      * Setter for Vault.
-     * @param vault Value for PayPalWalletVaultInstruction
+     * @param vault Value for PaypalWalletVaultInstruction
      */
     @JsonSetter("vault")
-    public void setVault(PayPalWalletVaultInstruction vault) {
+    public void setVault(PaypalWalletVaultInstruction vault) {
         this.vault = vault;
     }
 
     /**
-     * Converts this PayPalWalletAttributes into string format.
+     * Converts this PaypalWalletAttributes into string format.
      * @return String representation of this class
      */
     @Override
     public String toString() {
-        return "PayPalWalletAttributes [" + "customer=" + customer + ", vault=" + vault + "]";
+        return "PaypalWalletAttributes [" + "customer=" + customer + ", vault=" + vault + "]";
     }
 
     /**
-     * Builds a new {@link PayPalWalletAttributes.Builder} object.
+     * Builds a new {@link PaypalWalletAttributes.Builder} object.
      * Creates the instance with the state of the current model.
-     * @return a new {@link PayPalWalletAttributes.Builder} object
+     * @return a new {@link PaypalWalletAttributes.Builder} object
      */
     public Builder toBuilder() {
         Builder builder = new Builder()
@@ -95,40 +95,40 @@ public class PayPalWalletAttributes {
     }
 
     /**
-     * Class to build instances of {@link PayPalWalletAttributes}.
+     * Class to build instances of {@link PaypalWalletAttributes}.
      */
     public static class Builder {
-        private PayPalWalletCustomerRequest customer;
-        private PayPalWalletVaultInstruction vault;
+        private PaypalWalletCustomerRequest customer;
+        private PaypalWalletVaultInstruction vault;
 
 
 
         /**
          * Setter for customer.
-         * @param  customer  PayPalWalletCustomerRequest value for customer.
+         * @param  customer  PaypalWalletCustomerRequest value for customer.
          * @return Builder
          */
-        public Builder customer(PayPalWalletCustomerRequest customer) {
+        public Builder customer(PaypalWalletCustomerRequest customer) {
             this.customer = customer;
             return this;
         }
 
         /**
          * Setter for vault.
-         * @param  vault  PayPalWalletVaultInstruction value for vault.
+         * @param  vault  PaypalWalletVaultInstruction value for vault.
          * @return Builder
          */
-        public Builder vault(PayPalWalletVaultInstruction vault) {
+        public Builder vault(PaypalWalletVaultInstruction vault) {
             this.vault = vault;
             return this;
         }
 
         /**
-         * Builds a new {@link PayPalWalletAttributes} object using the set fields.
-         * @return {@link PayPalWalletAttributes}
+         * Builds a new {@link PaypalWalletAttributes} object using the set fields.
+         * @return {@link PaypalWalletAttributes}
          */
-        public PayPalWalletAttributes build() {
-            return new PayPalWalletAttributes(customer, vault);
+        public PaypalWalletAttributes build() {
+            return new PaypalWalletAttributes(customer, vault);
         }
     }
 }

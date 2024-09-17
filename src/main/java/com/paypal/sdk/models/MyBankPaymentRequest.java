@@ -11,9 +11,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 /**
- * This is a model class for MyBankPaymentRequest type.
+ * This is a model class for MybankPaymentRequest type.
  */
-public class MyBankPaymentRequest {
+public class MybankPaymentRequest {
     private String name;
     private String countryCode;
     private ExperienceContext experienceContext;
@@ -21,7 +21,7 @@ public class MyBankPaymentRequest {
     /**
      * Default constructor.
      */
-    public MyBankPaymentRequest() {
+    public MybankPaymentRequest() {
     }
 
     /**
@@ -30,7 +30,7 @@ public class MyBankPaymentRequest {
      * @param  countryCode  String value for countryCode.
      * @param  experienceContext  ExperienceContext value for experienceContext.
      */
-    public MyBankPaymentRequest(
+    public MybankPaymentRequest(
             String name,
             String countryCode,
             ExperienceContext experienceContext) {
@@ -109,19 +109,19 @@ public class MyBankPaymentRequest {
     }
 
     /**
-     * Converts this MyBankPaymentRequest into string format.
+     * Converts this MybankPaymentRequest into string format.
      * @return String representation of this class
      */
     @Override
     public String toString() {
-        return "MyBankPaymentRequest [" + "name=" + name + ", countryCode=" + countryCode
+        return "MybankPaymentRequest [" + "name=" + name + ", countryCode=" + countryCode
                 + ", experienceContext=" + experienceContext + "]";
     }
 
     /**
-     * Builds a new {@link MyBankPaymentRequest.Builder} object.
+     * Builds a new {@link MybankPaymentRequest.Builder} object.
      * Creates the instance with the state of the current model.
-     * @return a new {@link MyBankPaymentRequest.Builder} object
+     * @return a new {@link MybankPaymentRequest.Builder} object
      */
     public Builder toBuilder() {
         Builder builder = new Builder(name, countryCode)
@@ -130,7 +130,7 @@ public class MyBankPaymentRequest {
     }
 
     /**
-     * Class to build instances of {@link MyBankPaymentRequest}.
+     * Class to build instances of {@link MybankPaymentRequest}.
      */
     public static class Builder {
         private String name;
@@ -184,11 +184,11 @@ public class MyBankPaymentRequest {
         }
 
         /**
-         * Builds a new {@link MyBankPaymentRequest} object using the set fields.
-         * @return {@link MyBankPaymentRequest}
+         * Builds a new {@link MybankPaymentRequest} object using the set fields.
+         * @return {@link MybankPaymentRequest}
          */
-        public MyBankPaymentRequest build() {
-            return new MyBankPaymentRequest(name, countryCode, experienceContext);
+        public MybankPaymentRequest build() {
+            return new MybankPaymentRequest(name, countryCode, experienceContext);
         }
     }
 }

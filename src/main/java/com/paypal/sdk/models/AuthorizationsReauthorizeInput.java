@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 public class AuthorizationsReauthorizeInput {
     private String authorizationId;
     private String contentType;
-    private String payPalRequestId;
+    private String paypalRequestId;
     private String prefer;
     private ReauthorizeRequest body;
 
@@ -32,19 +32,19 @@ public class AuthorizationsReauthorizeInput {
      * Initialization constructor.
      * @param  authorizationId  String value for authorizationId.
      * @param  contentType  String value for contentType.
-     * @param  payPalRequestId  String value for payPalRequestId.
+     * @param  paypalRequestId  String value for paypalRequestId.
      * @param  prefer  String value for prefer.
      * @param  body  ReauthorizeRequest value for body.
      */
     public AuthorizationsReauthorizeInput(
             String authorizationId,
             String contentType,
-            String payPalRequestId,
+            String paypalRequestId,
             String prefer,
             ReauthorizeRequest body) {
         this.authorizationId = authorizationId;
         this.contentType = contentType;
-        this.payPalRequestId = payPalRequestId;
+        this.paypalRequestId = paypalRequestId;
         this.prefer = prefer;
         this.body = body;
     }
@@ -88,24 +88,24 @@ public class AuthorizationsReauthorizeInput {
     }
 
     /**
-     * Getter for PayPalRequestId.
+     * Getter for PaypalRequestId.
      * The server stores keys for 45 days.
      * @return Returns the String
      */
     @JsonGetter("PayPal-Request-Id")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public String getPayPalRequestId() {
-        return payPalRequestId;
+    public String getPaypalRequestId() {
+        return paypalRequestId;
     }
 
     /**
-     * Setter for PayPalRequestId.
+     * Setter for PaypalRequestId.
      * The server stores keys for 45 days.
-     * @param payPalRequestId Value for String
+     * @param paypalRequestId Value for String
      */
     @JsonSetter("PayPal-Request-Id")
-    public void setPayPalRequestId(String payPalRequestId) {
-        this.payPalRequestId = payPalRequestId;
+    public void setPaypalRequestId(String paypalRequestId) {
+        this.paypalRequestId = paypalRequestId;
     }
 
     /**
@@ -165,7 +165,7 @@ public class AuthorizationsReauthorizeInput {
     @Override
     public String toString() {
         return "AuthorizationsReauthorizeInput [" + "authorizationId=" + authorizationId
-                + ", contentType=" + contentType + ", payPalRequestId=" + payPalRequestId
+                + ", contentType=" + contentType + ", paypalRequestId=" + paypalRequestId
                 + ", prefer=" + prefer + ", body=" + body + "]";
     }
 
@@ -176,7 +176,7 @@ public class AuthorizationsReauthorizeInput {
      */
     public Builder toBuilder() {
         Builder builder = new Builder(authorizationId, contentType)
-                .payPalRequestId(getPayPalRequestId())
+                .paypalRequestId(getPaypalRequestId())
                 .prefer(getPrefer())
                 .body(getBody());
         return builder;
@@ -188,7 +188,7 @@ public class AuthorizationsReauthorizeInput {
     public static class Builder {
         private String authorizationId;
         private String contentType = "application/json";
-        private String payPalRequestId;
+        private String paypalRequestId;
         private String prefer = "return=minimal";
         private ReauthorizeRequest body;
 
@@ -229,12 +229,12 @@ public class AuthorizationsReauthorizeInput {
         }
 
         /**
-         * Setter for payPalRequestId.
-         * @param  payPalRequestId  String value for payPalRequestId.
+         * Setter for paypalRequestId.
+         * @param  paypalRequestId  String value for paypalRequestId.
          * @return Builder
          */
-        public Builder payPalRequestId(String payPalRequestId) {
-            this.payPalRequestId = payPalRequestId;
+        public Builder paypalRequestId(String paypalRequestId) {
+            this.paypalRequestId = paypalRequestId;
             return this;
         }
 
@@ -263,7 +263,7 @@ public class AuthorizationsReauthorizeInput {
          * @return {@link AuthorizationsReauthorizeInput}
          */
         public AuthorizationsReauthorizeInput build() {
-            return new AuthorizationsReauthorizeInput(authorizationId, contentType, payPalRequestId,
+            return new AuthorizationsReauthorizeInput(authorizationId, contentType, paypalRequestId,
                     prefer, body);
         }
     }

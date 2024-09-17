@@ -11,9 +11,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 /**
- * This is a model class for VaultPayPalWalletRequest type.
+ * This is a model class for VaultPaypalWalletRequest type.
  */
-public class VaultPayPalWalletRequest {
+public class VaultPaypalWalletRequest {
     private String description;
     private VaultedDigitalWalletShippingDetails shipping;
     private Boolean permitMultiplePaymentTokens;
@@ -24,7 +24,7 @@ public class VaultPayPalWalletRequest {
     /**
      * Default constructor.
      */
-    public VaultPayPalWalletRequest() {
+    public VaultPaypalWalletRequest() {
         permitMultiplePaymentTokens = false;
     }
 
@@ -37,7 +37,7 @@ public class VaultPayPalWalletRequest {
      * @param  customerType  String value for customerType.
      * @param  experienceContext  VaultExperienceContext value for experienceContext.
      */
-    public VaultPayPalWalletRequest(
+    public VaultPaypalWalletRequest(
             String description,
             VaultedDigitalWalletShippingDetails shipping,
             Boolean permitMultiplePaymentTokens,
@@ -193,21 +193,21 @@ public class VaultPayPalWalletRequest {
     }
 
     /**
-     * Converts this VaultPayPalWalletRequest into string format.
+     * Converts this VaultPaypalWalletRequest into string format.
      * @return String representation of this class
      */
     @Override
     public String toString() {
-        return "VaultPayPalWalletRequest [" + "description=" + description + ", shipping="
+        return "VaultPaypalWalletRequest [" + "description=" + description + ", shipping="
                 + shipping + ", permitMultiplePaymentTokens=" + permitMultiplePaymentTokens
                 + ", usageType=" + usageType + ", customerType=" + customerType
                 + ", experienceContext=" + experienceContext + "]";
     }
 
     /**
-     * Builds a new {@link VaultPayPalWalletRequest.Builder} object.
+     * Builds a new {@link VaultPaypalWalletRequest.Builder} object.
      * Creates the instance with the state of the current model.
-     * @return a new {@link VaultPayPalWalletRequest.Builder} object
+     * @return a new {@link VaultPaypalWalletRequest.Builder} object
      */
     public Builder toBuilder() {
         Builder builder = new Builder()
@@ -221,7 +221,7 @@ public class VaultPayPalWalletRequest {
     }
 
     /**
-     * Class to build instances of {@link VaultPayPalWalletRequest}.
+     * Class to build instances of {@link VaultPaypalWalletRequest}.
      */
     public static class Builder {
         private String description;
@@ -294,11 +294,11 @@ public class VaultPayPalWalletRequest {
         }
 
         /**
-         * Builds a new {@link VaultPayPalWalletRequest} object using the set fields.
-         * @return {@link VaultPayPalWalletRequest}
+         * Builds a new {@link VaultPaypalWalletRequest} object using the set fields.
+         * @return {@link VaultPaypalWalletRequest}
          */
-        public VaultPayPalWalletRequest build() {
-            return new VaultPayPalWalletRequest(description, shipping, permitMultiplePaymentTokens,
+        public VaultPaypalWalletRequest build() {
+            return new VaultPaypalWalletRequest(description, shipping, permitMultiplePaymentTokens,
                     usageType, customerType, experienceContext);
         }
     }

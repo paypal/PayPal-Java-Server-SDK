@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 public class OrderCaptureRequestPaymentSource {
     private CardRequest card;
     private Token token;
-    private PayPalWallet paypal;
+    private PaypalWallet paypal;
     private ApplePayRequest applePay;
     private GooglePayRequest googlePay;
     private VenmoWalletRequest venmo;
@@ -31,7 +31,7 @@ public class OrderCaptureRequestPaymentSource {
      * Initialization constructor.
      * @param  card  CardRequest value for card.
      * @param  token  Token value for token.
-     * @param  paypal  PayPalWallet value for paypal.
+     * @param  paypal  PaypalWallet value for paypal.
      * @param  applePay  ApplePayRequest value for applePay.
      * @param  googlePay  GooglePayRequest value for googlePay.
      * @param  venmo  VenmoWalletRequest value for venmo.
@@ -39,7 +39,7 @@ public class OrderCaptureRequestPaymentSource {
     public OrderCaptureRequestPaymentSource(
             CardRequest card,
             Token token,
-            PayPalWallet paypal,
+            PaypalWallet paypal,
             ApplePayRequest applePay,
             GooglePayRequest googlePay,
             VenmoWalletRequest venmo) {
@@ -110,21 +110,21 @@ public class OrderCaptureRequestPaymentSource {
     /**
      * Getter for Paypal.
      * A resource that identifies a PayPal Wallet is used for payment.
-     * @return Returns the PayPalWallet
+     * @return Returns the PaypalWallet
      */
     @JsonGetter("paypal")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public PayPalWallet getPaypal() {
+    public PaypalWallet getPaypal() {
         return paypal;
     }
 
     /**
      * Setter for Paypal.
      * A resource that identifies a PayPal Wallet is used for payment.
-     * @param paypal Value for PayPalWallet
+     * @param paypal Value for PaypalWallet
      */
     @JsonSetter("paypal")
-    public void setPaypal(PayPalWallet paypal) {
+    public void setPaypal(PaypalWallet paypal) {
         this.paypal = paypal;
     }
 
@@ -224,7 +224,7 @@ public class OrderCaptureRequestPaymentSource {
     public static class Builder {
         private CardRequest card;
         private Token token;
-        private PayPalWallet paypal;
+        private PaypalWallet paypal;
         private ApplePayRequest applePay;
         private GooglePayRequest googlePay;
         private VenmoWalletRequest venmo;
@@ -253,10 +253,10 @@ public class OrderCaptureRequestPaymentSource {
 
         /**
          * Setter for paypal.
-         * @param  paypal  PayPalWallet value for paypal.
+         * @param  paypal  PaypalWallet value for paypal.
          * @return Builder
          */
-        public Builder paypal(PayPalWallet paypal) {
+        public Builder paypal(PaypalWallet paypal) {
             this.paypal = paypal;
             return this;
         }

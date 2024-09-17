@@ -14,9 +14,9 @@ import java.util.TreeMap;
 
 
 /**
- * PayPalWalletVaultStatus to be used.
+ * PaypalWalletVaultStatus to be used.
  */
-public enum PayPalWalletVaultStatus {
+public enum PaypalWalletVaultStatus {
     VAULTED,
 
     CREATED,
@@ -29,7 +29,7 @@ public enum PayPalWalletVaultStatus {
     _UNKNOWN;
 
 
-    private static TreeMap<String, PayPalWalletVaultStatus> valueMap = new TreeMap<>();
+    private static TreeMap<String, PaypalWalletVaultStatus> valueMap = new TreeMap<>();
     private String value;
 
     static {
@@ -50,8 +50,8 @@ public enum PayPalWalletVaultStatus {
      * @throws IOException when provided value is not mapped to any enum member.
      */
     @JsonCreator
-    public static PayPalWalletVaultStatus constructFromString(String toConvert) throws IOException {
-        PayPalWalletVaultStatus enumValue = fromString(toConvert);
+    public static PaypalWalletVaultStatus constructFromString(String toConvert) throws IOException {
+        PaypalWalletVaultStatus enumValue = fromString(toConvert);
         if (enumValue == null) {
             throw new IOException("Unable to create enum instance with value: " + toConvert);
         }
@@ -63,7 +63,7 @@ public enum PayPalWalletVaultStatus {
      * @param toConvert String value to get enum member.
      * @return The enum member against the given string value.
      */
-    public static PayPalWalletVaultStatus fromString(String toConvert) {
+    public static PaypalWalletVaultStatus fromString(String toConvert) {
         if (!valueMap.containsKey(toConvert)) {
             return _UNKNOWN;
         }
@@ -91,16 +91,16 @@ public enum PayPalWalletVaultStatus {
     }
 
     /**
-     * Convert list of PayPalWalletVaultStatus values to list of string values.
-     * @param toConvert The list of PayPalWalletVaultStatus values to convert.
+     * Convert list of PaypalWalletVaultStatus values to list of string values.
+     * @param toConvert The list of PaypalWalletVaultStatus values to convert.
      * @return List of representative string values.
      */
-    public static List<String> toValue(List<PayPalWalletVaultStatus> toConvert) {
+    public static List<String> toValue(List<PaypalWalletVaultStatus> toConvert) {
         if (toConvert == null) {
             return null;
         }
         List<String> convertedValues = new ArrayList<>();
-        for (PayPalWalletVaultStatus enumValue : toConvert) {
+        for (PaypalWalletVaultStatus enumValue : toConvert) {
             convertedValues.add(enumValue.value);
         }
         return convertedValues;

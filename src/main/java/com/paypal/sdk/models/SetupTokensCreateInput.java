@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
  * This is a model class for SetupTokensCreateInput type.
  */
 public class SetupTokensCreateInput {
-    private String payPalRequestId;
+    private String paypalRequestId;
     private String contentType;
     private SetupTokenRequest body;
 
@@ -26,37 +26,37 @@ public class SetupTokensCreateInput {
 
     /**
      * Initialization constructor.
-     * @param  payPalRequestId  String value for payPalRequestId.
+     * @param  paypalRequestId  String value for paypalRequestId.
      * @param  contentType  String value for contentType.
      * @param  body  SetupTokenRequest value for body.
      */
     public SetupTokensCreateInput(
-            String payPalRequestId,
+            String paypalRequestId,
             String contentType,
             SetupTokenRequest body) {
-        this.payPalRequestId = payPalRequestId;
+        this.paypalRequestId = paypalRequestId;
         this.contentType = contentType;
         this.body = body;
     }
 
     /**
-     * Getter for PayPalRequestId.
+     * Getter for PaypalRequestId.
      * The server stores keys for 3 hours.
      * @return Returns the String
      */
     @JsonGetter("PayPal-Request-Id")
-    public String getPayPalRequestId() {
-        return payPalRequestId;
+    public String getPaypalRequestId() {
+        return paypalRequestId;
     }
 
     /**
-     * Setter for PayPalRequestId.
+     * Setter for PaypalRequestId.
      * The server stores keys for 3 hours.
-     * @param payPalRequestId Value for String
+     * @param paypalRequestId Value for String
      */
     @JsonSetter("PayPal-Request-Id")
-    public void setPayPalRequestId(String payPalRequestId) {
-        this.payPalRequestId = payPalRequestId;
+    public void setPaypalRequestId(String paypalRequestId) {
+        this.paypalRequestId = paypalRequestId;
     }
 
     /**
@@ -105,7 +105,7 @@ public class SetupTokensCreateInput {
      */
     @Override
     public String toString() {
-        return "SetupTokensCreateInput [" + "payPalRequestId=" + payPalRequestId + ", contentType="
+        return "SetupTokensCreateInput [" + "paypalRequestId=" + paypalRequestId + ", contentType="
                 + contentType + ", body=" + body + "]";
     }
 
@@ -115,7 +115,7 @@ public class SetupTokensCreateInput {
      * @return a new {@link SetupTokensCreateInput.Builder} object
      */
     public Builder toBuilder() {
-        Builder builder = new Builder(payPalRequestId, contentType, body);
+        Builder builder = new Builder(paypalRequestId, contentType, body);
         return builder;
     }
 
@@ -123,7 +123,7 @@ public class SetupTokensCreateInput {
      * Class to build instances of {@link SetupTokensCreateInput}.
      */
     public static class Builder {
-        private String payPalRequestId;
+        private String paypalRequestId;
         private String contentType = "application/json";
         private SetupTokenRequest body;
 
@@ -135,23 +135,23 @@ public class SetupTokensCreateInput {
 
         /**
          * Initialization constructor.
-         * @param  payPalRequestId  String value for payPalRequestId.
+         * @param  paypalRequestId  String value for paypalRequestId.
          * @param  contentType  String value for contentType.
          * @param  body  SetupTokenRequest value for body.
          */
-        public Builder(String payPalRequestId, String contentType, SetupTokenRequest body) {
-            this.payPalRequestId = payPalRequestId;
+        public Builder(String paypalRequestId, String contentType, SetupTokenRequest body) {
+            this.paypalRequestId = paypalRequestId;
             this.contentType = contentType;
             this.body = body;
         }
 
         /**
-         * Setter for payPalRequestId.
-         * @param  payPalRequestId  String value for payPalRequestId.
+         * Setter for paypalRequestId.
+         * @param  paypalRequestId  String value for paypalRequestId.
          * @return Builder
          */
-        public Builder payPalRequestId(String payPalRequestId) {
-            this.payPalRequestId = payPalRequestId;
+        public Builder paypalRequestId(String paypalRequestId) {
+            this.paypalRequestId = paypalRequestId;
             return this;
         }
 
@@ -180,7 +180,7 @@ public class SetupTokensCreateInput {
          * @return {@link SetupTokensCreateInput}
          */
         public SetupTokensCreateInput build() {
-            return new SetupTokensCreateInput(payPalRequestId, contentType, body);
+            return new SetupTokensCreateInput(paypalRequestId, contentType, body);
         }
     }
 }

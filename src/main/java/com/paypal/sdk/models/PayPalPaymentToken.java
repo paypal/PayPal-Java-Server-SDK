@@ -11,9 +11,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 /**
- * This is a model class for PayPalPaymentToken type.
+ * This is a model class for PaypalPaymentToken type.
  */
-public class PayPalPaymentToken {
+public class PaypalPaymentToken {
     private String description;
     private VaultedDigitalWalletShippingDetails shipping;
     private Boolean permitMultiplePaymentTokens;
@@ -30,7 +30,7 @@ public class PayPalPaymentToken {
     /**
      * Default constructor.
      */
-    public PayPalPaymentToken() {
+    public PaypalPaymentToken() {
         permitMultiplePaymentTokens = false;
     }
 
@@ -49,7 +49,7 @@ public class PayPalPaymentToken {
      * @param  accountId  String value for accountId.
      * @param  phoneNumber  Phone value for phoneNumber.
      */
-    public PayPalPaymentToken(
+    public PaypalPaymentToken(
             String description,
             VaultedDigitalWalletShippingDetails shipping,
             Boolean permitMultiplePaymentTokens,
@@ -357,12 +357,12 @@ public class PayPalPaymentToken {
     }
 
     /**
-     * Converts this PayPalPaymentToken into string format.
+     * Converts this PaypalPaymentToken into string format.
      * @return String representation of this class
      */
     @Override
     public String toString() {
-        return "PayPalPaymentToken [" + "description=" + description + ", shipping=" + shipping
+        return "PaypalPaymentToken [" + "description=" + description + ", shipping=" + shipping
                 + ", permitMultiplePaymentTokens=" + permitMultiplePaymentTokens + ", usageType="
                 + usageType + ", customerType=" + customerType + ", emailAddress=" + emailAddress
                 + ", payerId=" + payerId + ", name=" + name + ", phone=" + phone + ", address="
@@ -370,9 +370,9 @@ public class PayPalPaymentToken {
     }
 
     /**
-     * Builds a new {@link PayPalPaymentToken.Builder} object.
+     * Builds a new {@link PaypalPaymentToken.Builder} object.
      * Creates the instance with the state of the current model.
-     * @return a new {@link PayPalPaymentToken.Builder} object
+     * @return a new {@link PaypalPaymentToken.Builder} object
      */
     public Builder toBuilder() {
         Builder builder = new Builder()
@@ -392,7 +392,7 @@ public class PayPalPaymentToken {
     }
 
     /**
-     * Class to build instances of {@link PayPalPaymentToken}.
+     * Class to build instances of {@link PaypalPaymentToken}.
      */
     public static class Builder {
         private String description;
@@ -531,11 +531,11 @@ public class PayPalPaymentToken {
         }
 
         /**
-         * Builds a new {@link PayPalPaymentToken} object using the set fields.
-         * @return {@link PayPalPaymentToken}
+         * Builds a new {@link PaypalPaymentToken} object using the set fields.
+         * @return {@link PaypalPaymentToken}
          */
-        public PayPalPaymentToken build() {
-            return new PayPalPaymentToken(description, shipping, permitMultiplePaymentTokens,
+        public PaypalPaymentToken build() {
+            return new PaypalPaymentToken(description, shipping, permitMultiplePaymentTokens,
                     usageType, customerType, emailAddress, payerId, name, phone, address, accountId,
                     phoneNumber);
         }

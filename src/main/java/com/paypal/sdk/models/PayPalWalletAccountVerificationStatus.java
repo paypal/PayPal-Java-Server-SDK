@@ -14,9 +14,9 @@ import java.util.TreeMap;
 
 
 /**
- * PayPalWalletAccountVerificationStatus to be used.
+ * PaypalWalletAccountVerificationStatus to be used.
  */
-public enum PayPalWalletAccountVerificationStatus {
+public enum PaypalWalletAccountVerificationStatus {
     VERIFIED,
 
     UNVERIFIED,
@@ -27,7 +27,7 @@ public enum PayPalWalletAccountVerificationStatus {
     _UNKNOWN;
 
 
-    private static TreeMap<String, PayPalWalletAccountVerificationStatus> valueMap = new TreeMap<>();
+    private static TreeMap<String, PaypalWalletAccountVerificationStatus> valueMap = new TreeMap<>();
     private String value;
 
     static {
@@ -46,8 +46,8 @@ public enum PayPalWalletAccountVerificationStatus {
      * @throws IOException when provided value is not mapped to any enum member.
      */
     @JsonCreator
-    public static PayPalWalletAccountVerificationStatus constructFromString(String toConvert) throws IOException {
-        PayPalWalletAccountVerificationStatus enumValue = fromString(toConvert);
+    public static PaypalWalletAccountVerificationStatus constructFromString(String toConvert) throws IOException {
+        PaypalWalletAccountVerificationStatus enumValue = fromString(toConvert);
         if (enumValue == null) {
             throw new IOException("Unable to create enum instance with value: " + toConvert);
         }
@@ -59,7 +59,7 @@ public enum PayPalWalletAccountVerificationStatus {
      * @param toConvert String value to get enum member.
      * @return The enum member against the given string value.
      */
-    public static PayPalWalletAccountVerificationStatus fromString(String toConvert) {
+    public static PaypalWalletAccountVerificationStatus fromString(String toConvert) {
         if (!valueMap.containsKey(toConvert)) {
             return _UNKNOWN;
         }
@@ -87,16 +87,16 @@ public enum PayPalWalletAccountVerificationStatus {
     }
 
     /**
-     * Convert list of PayPalWalletAccountVerificationStatus values to list of string values.
-     * @param toConvert The list of PayPalWalletAccountVerificationStatus values to convert.
+     * Convert list of PaypalWalletAccountVerificationStatus values to list of string values.
+     * @param toConvert The list of PaypalWalletAccountVerificationStatus values to convert.
      * @return List of representative string values.
      */
-    public static List<String> toValue(List<PayPalWalletAccountVerificationStatus> toConvert) {
+    public static List<String> toValue(List<PaypalWalletAccountVerificationStatus> toConvert) {
         if (toConvert == null) {
             return null;
         }
         List<String> convertedValues = new ArrayList<>();
-        for (PayPalWalletAccountVerificationStatus enumValue : toConvert) {
+        for (PaypalWalletAccountVerificationStatus enumValue : toConvert) {
             convertedValues.add(enumValue.value);
         }
         return convertedValues;
