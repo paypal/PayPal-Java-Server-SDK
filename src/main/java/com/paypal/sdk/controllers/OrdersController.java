@@ -204,7 +204,7 @@ public final class OrdersController extends BaseController {
      * `COMPLETED` status.&lt;br/&gt;&lt;br/&gt;To make an update, you must provide a `reference_id`. If you
      * omit this value with an order that contains only one purchase unit, PayPal sets the value to
      * `default` which enables you to use the path:
-     * &lt;code&gt;\"/purchase_units/{@literal @}reference_id=='default'/{attribute-or-object}\"&lt;/code&gt;. Merchants
+     * &lt;code&gt;\\"/purchase_units/{@literal @}reference_id=='default'/{attribute-or-object}\\"&lt;/code&gt;. Merchants
      * and partners can add Level 2 and 3 data to payments to reduce risk and payment processing
      * costs. For more information about processing payments, see &lt;a
      * href="https://developer.paypal.com/docs/checkout/advanced/processing/"&gt;checkout&lt;/a&gt; or &lt;a
@@ -257,7 +257,7 @@ public final class OrdersController extends BaseController {
      * `COMPLETED` status.&lt;br/&gt;&lt;br/&gt;To make an update, you must provide a `reference_id`. If you
      * omit this value with an order that contains only one purchase unit, PayPal sets the value to
      * `default` which enables you to use the path:
-     * &lt;code&gt;\"/purchase_units/{@literal @}reference_id=='default'/{attribute-or-object}\"&lt;/code&gt;. Merchants
+     * &lt;code&gt;\\"/purchase_units/{@literal @}reference_id=='default'/{attribute-or-object}\\"&lt;/code&gt;. Merchants
      * and partners can add Level 2 and 3 data to payments to reduce risk and payment processing
      * costs. For more information about processing payments, see &lt;a
      * href="https://developer.paypal.com/docs/checkout/advanced/processing/"&gt;checkout&lt;/a&gt; or &lt;a
