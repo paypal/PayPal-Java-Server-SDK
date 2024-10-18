@@ -12,7 +12,7 @@ The vaulted payment method details.
 | Name | Type | Tags | Description | Getter | Setter |
 |  --- | --- | --- | --- | --- | --- |
 | `Card` | [`CardPaymentToken`](../../doc/models/card-payment-token.md) | Optional | Full representation of a Card Payment Token including network token. | CardPaymentToken getCard() | setCard(CardPaymentToken card) |
-| `Paypal` | [`PayPalPaymentToken`](../../doc/models/pay-pal-payment-token.md) | Optional | - | PayPalPaymentToken getPaypal() | setPaypal(PayPalPaymentToken paypal) |
+| `Paypal` | [`PaypalPaymentToken`](../../doc/models/paypal-payment-token.md) | Optional | - | PaypalPaymentToken getPaypal() | setPaypal(PaypalPaymentToken paypal) |
 | `Venmo` | [`VenmoPaymentToken`](../../doc/models/venmo-payment-token.md) | Optional | - | VenmoPaymentToken getVenmo() | setVenmo(VenmoPaymentToken venmo) |
 | `ApplePay` | [`ApplePayPaymentToken`](../../doc/models/apple-pay-payment-token.md) | Optional | A resource representing a response for Apple Pay. | ApplePayPaymentToken getApplePay() | setApplePay(ApplePayPaymentToken applePay) |
 | `Bank` | `JsonObject` | Optional | Full representation of a Bank Payment Token. | JsonObject getBank() | setBank(JsonObject bank) |
