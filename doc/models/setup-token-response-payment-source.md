@@ -12,7 +12,7 @@ The setup payment method details.
 | Name | Type | Tags | Description | Getter | Setter |
 |  --- | --- | --- | --- | --- | --- |
 | `Card` | [`SetupTokenResponseCard`](../../doc/models/setup-token-response-card.md) | Optional | - | SetupTokenResponseCard getCard() | setCard(SetupTokenResponseCard card) |
-| `Paypal` | [`PayPalPaymentToken`](../../doc/models/pay-pal-payment-token.md) | Optional | - | PayPalPaymentToken getPaypal() | setPaypal(PayPalPaymentToken paypal) |
+| `Paypal` | [`PaypalPaymentToken`](../../doc/models/paypal-payment-token.md) | Optional | - | PaypalPaymentToken getPaypal() | setPaypal(PaypalPaymentToken paypal) |
 | `Venmo` | [`VenmoPaymentToken`](../../doc/models/venmo-payment-token.md) | Optional | - | VenmoPaymentToken getVenmo() | setVenmo(VenmoPaymentToken venmo) |
 
 ## Example (as JSON)

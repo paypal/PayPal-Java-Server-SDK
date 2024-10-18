@@ -12,67 +12,12 @@ VaultController vaultController = client.getVaultController();
 
 ## Methods
 
-* [Payment-Tokens Create](../../doc/controllers/vault.md#payment-tokens-create)
 * [Customer Payment-Tokens Get](../../doc/controllers/vault.md#customer-payment-tokens-get)
 * [Payment-Tokens Get](../../doc/controllers/vault.md#payment-tokens-get)
-* [Payment-Tokens Delete](../../doc/controllers/vault.md#payment-tokens-delete)
+* [Payment-Tokens Create](../../doc/controllers/vault.md#payment-tokens-create)
 * [Setup-Tokens Create](../../doc/controllers/vault.md#setup-tokens-create)
+* [Payment-Tokens Delete](../../doc/controllers/vault.md#payment-tokens-delete)
 * [Setup-Tokens Get](../../doc/controllers/vault.md#setup-tokens-get)
-
-
-# Payment-Tokens Create
-
-Creates a Payment Token from the given payment source and adds it to the Vault of the associated customer.
-
-```java
-CompletableFuture<ApiResponse<PaymentTokenResponse>> paymentTokensCreateAsync(
-    final PaymentTokensCreateInput input)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `payPalRequestId` | `String` | Header, Required | The server stores keys for 3 hours. |
-| `body` | [`PaymentTokenRequest`](../../doc/models/payment-token-request.md) | Body, Required | Payment Token creation with a financial instrument and an optional customer_id. |
-
-## Response Type
-
-[`PaymentTokenResponse`](../../doc/models/payment-token-response.md)
-
-## Example Usage
-
-```java
-PaymentTokensCreateInput paymentTokensCreateInput = new PaymentTokensCreateInput.Builder(
-    "PayPal-Request-Id6",
-    null,
-    new PaymentTokenRequest.Builder(
-        new PaymentTokenRequestPaymentSource.Builder()
-            .build()
-    )
-    .build()
-)
-.build();
-
-vaultController.paymentTokensCreateAsync(paymentTokensCreateInput).thenAccept(result -> {
-    // TODO success callback handler
-    System.out.println(result);
-}).exceptionally(exception -> {
-    // TODO failure callback handler
-    exception.printStackTrace();
-    return null;
-});
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Request is not well-formed, syntactically incorrect, or violates schema. | [`ErrorException`](../../doc/models/error-exception.md) |
-| 403 | Authorization failed due to insufficient permissions. | [`ErrorException`](../../doc/models/error-exception.md) |
-| 404 | Request contains reference to resources that do not exist. | [`ErrorException`](../../doc/models/error-exception.md) |
-| 422 | The requested action could not be performed, semantically incorrect, or failed business validation. | [`ErrorException`](../../doc/models/error-exception.md) |
-| 500 | An internal server error has occurred. | [`ErrorException`](../../doc/models/error-exception.md) |
 
 
 # Customer Payment-Tokens Get
@@ -171,6 +116,115 @@ vaultController.paymentTokensGetAsync(id).thenAccept(result -> {
 | 500 | An internal server error has occurred. | [`ErrorException`](../../doc/models/error-exception.md) |
 
 
+# Payment-Tokens Create
+
+Creates a Payment Token from the given payment source and adds it to the Vault of the associated customer.
+
+```java
+CompletableFuture<ApiResponse<PaymentTokenResponse>> paymentTokensCreateAsync(
+    final PaymentTokensCreateInput input)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `paypalRequestId` | `String` | Header, Required | The server stores keys for 3 hours. |
+| `body` | [`PaymentTokenRequest`](../../doc/models/payment-token-request.md) | Body, Required | Payment Token creation with a financial instrument and an optional customer_id. |
+
+## Response Type
+
+[`PaymentTokenResponse`](../../doc/models/payment-token-response.md)
+
+## Example Usage
+
+```java
+PaymentTokensCreateInput paymentTokensCreateInput = new PaymentTokensCreateInput.Builder(
+    "PayPal-Request-Id6",
+    null,
+    new PaymentTokenRequest.Builder(
+        new PaymentTokenRequestPaymentSource.Builder()
+            .build()
+    )
+    .build()
+)
+.build();
+
+vaultController.paymentTokensCreateAsync(paymentTokensCreateInput).thenAccept(result -> {
+    // TODO success callback handler
+    System.out.println(result);
+}).exceptionally(exception -> {
+    // TODO failure callback handler
+    exception.printStackTrace();
+    return null;
+});
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Request is not well-formed, syntactically incorrect, or violates schema. | [`ErrorException`](../../doc/models/error-exception.md) |
+| 403 | Authorization failed due to insufficient permissions. | [`ErrorException`](../../doc/models/error-exception.md) |
+| 404 | Request contains reference to resources that do not exist. | [`ErrorException`](../../doc/models/error-exception.md) |
+| 422 | The requested action could not be performed, semantically incorrect, or failed business validation. | [`ErrorException`](../../doc/models/error-exception.md) |
+| 500 | An internal server error has occurred. | [`ErrorException`](../../doc/models/error-exception.md) |
+
+
+# Setup-Tokens Create
+
+Creates a Setup Token from the given payment source and adds it to the Vault of the associated customer.
+
+```java
+CompletableFuture<ApiResponse<SetupTokenResponse>> setupTokensCreateAsync(
+    final SetupTokensCreateInput input)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `paypalRequestId` | `String` | Header, Required | The server stores keys for 3 hours. |
+| `body` | [`SetupTokenRequest`](../../doc/models/setup-token-request.md) | Body, Required | Setup Token creation with a instrument type optional financial instrument details and customer_id. |
+
+## Response Type
+
+[`SetupTokenResponse`](../../doc/models/setup-token-response.md)
+
+## Example Usage
+
+```java
+SetupTokensCreateInput setupTokensCreateInput = new SetupTokensCreateInput.Builder(
+    "PayPal-Request-Id6",
+    null,
+    new SetupTokenRequest.Builder(
+        new SetupTokenRequestPaymentSource.Builder()
+            .build()
+    )
+    .build()
+)
+.build();
+
+vaultController.setupTokensCreateAsync(setupTokensCreateInput).thenAccept(result -> {
+    // TODO success callback handler
+    System.out.println(result);
+}).exceptionally(exception -> {
+    // TODO failure callback handler
+    exception.printStackTrace();
+    return null;
+});
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Request is not well-formed, syntactically incorrect, or violates schema. | [`ErrorException`](../../doc/models/error-exception.md) |
+| 403 | Authorization failed due to insufficient permissions. | [`ErrorException`](../../doc/models/error-exception.md) |
+| 422 | The requested action could not be performed, semantically incorrect, or failed business validation. | [`ErrorException`](../../doc/models/error-exception.md) |
+| 500 | An internal server error has occurred. | [`ErrorException`](../../doc/models/error-exception.md) |
+
+
 # Payment-Tokens Delete
 
 Delete the payment token associated with the payment token id.
@@ -211,60 +265,6 @@ vaultController.paymentTokensDeleteAsync(id).thenAccept(result -> {
 |  --- | --- | --- |
 | 400 | Request is not well-formed, syntactically incorrect, or violates schema. | [`ErrorException`](../../doc/models/error-exception.md) |
 | 403 | Authorization failed due to insufficient permissions. | [`ErrorException`](../../doc/models/error-exception.md) |
-| 500 | An internal server error has occurred. | [`ErrorException`](../../doc/models/error-exception.md) |
-
-
-# Setup-Tokens Create
-
-Creates a Setup Token from the given payment source and adds it to the Vault of the associated customer.
-
-```java
-CompletableFuture<ApiResponse<SetupTokenResponse>> setupTokensCreateAsync(
-    final SetupTokensCreateInput input)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `payPalRequestId` | `String` | Header, Required | The server stores keys for 3 hours. |
-| `body` | [`SetupTokenRequest`](../../doc/models/setup-token-request.md) | Body, Required | Setup Token creation with a instrument type optional financial instrument details and customer_id. |
-
-## Response Type
-
-[`SetupTokenResponse`](../../doc/models/setup-token-response.md)
-
-## Example Usage
-
-```java
-SetupTokensCreateInput setupTokensCreateInput = new SetupTokensCreateInput.Builder(
-    "PayPal-Request-Id6",
-    null,
-    new SetupTokenRequest.Builder(
-        new SetupTokenRequestPaymentSource.Builder()
-            .build()
-    )
-    .build()
-)
-.build();
-
-vaultController.setupTokensCreateAsync(setupTokensCreateInput).thenAccept(result -> {
-    // TODO success callback handler
-    System.out.println(result);
-}).exceptionally(exception -> {
-    // TODO failure callback handler
-    exception.printStackTrace();
-    return null;
-});
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Request is not well-formed, syntactically incorrect, or violates schema. | [`ErrorException`](../../doc/models/error-exception.md) |
-| 403 | Authorization failed due to insufficient permissions. | [`ErrorException`](../../doc/models/error-exception.md) |
-| 422 | The requested action could not be performed, semantically incorrect, or failed business validation. | [`ErrorException`](../../doc/models/error-exception.md) |
 | 500 | An internal server error has occurred. | [`ErrorException`](../../doc/models/error-exception.md) |
 
 
