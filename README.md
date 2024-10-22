@@ -1,5 +1,5 @@
 
-# Getting Started with Paypal Server SDK
+# Getting Started with PayPal Server SDK
 
 ## Introduction
 
@@ -30,30 +30,30 @@ Install the SDK by adding the following dependency in your project's pom.xml fil
 <dependency>
   <groupId>com.paypal.sdk</groupId>
   <artifactId>paypal-server-sdk</artifactId>
-  <version>0.5.2</version>
+  <version>0.6.0</version>
 </dependency>
 ```
 
 You can also view the package at:
-https://central.sonatype.com/artifact/com.paypal.sdk/paypal-server-sdk/0.5.2
+https://central.sonatype.com/artifact/com.paypal.sdk/paypal-server-sdk/0.6.0
 
 ## Initialize the API Client
 
-**_Note:_** Documentation for the client can be found [here.](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.5.2/doc/client.md)
+**_Note:_** Documentation for the client can be found [here.](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.6.0/doc/client.md)
 
 The following parameters are configurable for the API Client:
 
 | Parameter | Type | Description |
 |  --- | --- | --- |
 | `environment` | `Environment` | The API environment. <br> **Default: `Environment.SANDBOX`** |
-| `httpClientConfig` | [`Consumer<HttpClientConfiguration.Builder>`](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.5.2/doc/http-client-configuration-builder.md) | Set up Http Client Configuration instance. |
-| `loggingConfig` | [`Consumer<ApiLoggingConfiguration.Builder>`](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.5.2/doc/api-logging-configuration-builder.md) | Set up Logging Configuration instance. |
-| `clientCredentialsAuth` | [`ClientCredentialsAuth`](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.5.2/doc/auth/oauth-2-client-credentials-grant.md) | The Credentials Setter for OAuth 2 Client Credentials Grant |
+| `httpClientConfig` | [`Consumer<HttpClientConfiguration.Builder>`](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.6.0/doc/http-client-configuration-builder.md) | Set up Http Client Configuration instance. |
+| `loggingConfig` | [`Consumer<ApiLoggingConfiguration.Builder>`](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.6.0/doc/api-logging-configuration-builder.md) | Set up Logging Configuration instance. |
+| `clientCredentialsAuth` | [`ClientCredentialsAuth`](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.6.0/doc/auth/oauth-2-client-credentials-grant.md) | The Credentials Setter for OAuth 2 Client Credentials Grant |
 
 The API client can be initialized as follows:
 
 ```java
-PaypalServerSDKClient client = new PaypalServerSDKClient.Builder()
+PaypalServerSdkClient client = new PaypalServerSdkClient.Builder()
     .loggingConfig(builder -> builder
             .level(Level.DEBUG)
             .requestConfig(logConfigBuilder -> logConfigBuilder.body(true))
@@ -92,30 +92,30 @@ The SDK can be configured to use a different environment for making API calls. A
 
 This API uses the following authentication schemes.
 
-* [`Oauth2 (OAuth 2 Client Credentials Grant)`](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.5.2/doc/auth/oauth-2-client-credentials-grant.md)
+* [`Oauth2 (OAuth 2 Client Credentials Grant)`](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.6.0/doc/auth/oauth-2-client-credentials-grant.md)
 
 ## List of APIs
 
-* [Orders](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.5.2/doc/controllers/orders.md)
-* [Payments](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.5.2/doc/controllers/payments.md)
-* [Vault](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.5.2/doc/controllers/vault.md)
+* [Orders](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.6.0/doc/controllers/orders.md)
+* [Payments](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.6.0/doc/controllers/payments.md)
+* [Vault](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.6.0/doc/controllers/vault.md)
 
 ## Classes Documentation
 
-* [Utility Classes](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.5.2/doc/utility-classes.md)
-* [HttpRequest](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.5.2/doc/http-request.md)
-* [HttpResponse](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.5.2/doc/http-response.md)
-* [HttpStringResponse](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.5.2/doc/http-string-response.md)
-* [HttpContext](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.5.2/doc/http-context.md)
-* [HttpBodyRequest](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.5.2/doc/http-body-request.md)
-* [HttpCallback Interface](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.5.2/doc/http-callback-interface.md)
-* [Headers](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.5.2/doc/headers.md)
-* [ApiException](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.5.2/doc/api-exception.md)
-* [Configuration Interface](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.5.2/doc/configuration-interface.md)
-* [HttpClientConfiguration](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.5.2/doc/http-client-configuration.md)
-* [HttpClientConfiguration.Builder](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.5.2/doc/http-client-configuration-builder.md)
-* [ApiLoggingConfiguration](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.5.2/doc/api-logging-configuration.md)
-* [ApiLoggingConfiguration.Builder](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.5.2/doc/api-logging-configuration-builder.md)
-* [ApiRequestLoggingConfiguration.Builder](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.5.2/doc/api-request-logging-configuration-builder.md)
-* [ApiResponseLoggingConfiguration.Builder](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.5.2/doc/api-response-logging-configuration-builder.md)
+* [Utility Classes](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.6.0/doc/utility-classes.md)
+* [HttpRequest](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.6.0/doc/http-request.md)
+* [HttpResponse](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.6.0/doc/http-response.md)
+* [HttpStringResponse](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.6.0/doc/http-string-response.md)
+* [HttpContext](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.6.0/doc/http-context.md)
+* [HttpBodyRequest](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.6.0/doc/http-body-request.md)
+* [HttpCallback Interface](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.6.0/doc/http-callback-interface.md)
+* [Headers](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.6.0/doc/headers.md)
+* [ApiException](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.6.0/doc/api-exception.md)
+* [Configuration Interface](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.6.0/doc/configuration-interface.md)
+* [HttpClientConfiguration](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.6.0/doc/http-client-configuration.md)
+* [HttpClientConfiguration.Builder](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.6.0/doc/http-client-configuration-builder.md)
+* [ApiLoggingConfiguration](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.6.0/doc/api-logging-configuration.md)
+* [ApiLoggingConfiguration.Builder](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.6.0/doc/api-logging-configuration-builder.md)
+* [ApiRequestLoggingConfiguration.Builder](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.6.0/doc/api-request-logging-configuration-builder.md)
+* [ApiResponseLoggingConfiguration.Builder](https://www.github.com/paypal/PayPal-Java-Server-SDK/tree/0.6.0/doc/api-response-logging-configuration-builder.md)
 

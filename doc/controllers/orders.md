@@ -12,14 +12,128 @@ OrdersController ordersController = client.getOrdersController();
 
 ## Methods
 
-* [Orders Create](../../doc/controllers/orders.md#orders-create)
-* [Orders Get](../../doc/controllers/orders.md#orders-get)
-* [Orders Patch](../../doc/controllers/orders.md#orders-patch)
-* [Orders Confirm](../../doc/controllers/orders.md#orders-confirm)
 * [Orders Authorize](../../doc/controllers/orders.md#orders-authorize)
-* [Orders Capture](../../doc/controllers/orders.md#orders-capture)
 * [Orders Track Create](../../doc/controllers/orders.md#orders-track-create)
+* [Orders Create](../../doc/controllers/orders.md#orders-create)
+* [Orders Patch](../../doc/controllers/orders.md#orders-patch)
+* [Orders Capture](../../doc/controllers/orders.md#orders-capture)
+* [Orders Get](../../doc/controllers/orders.md#orders-get)
+* [Orders Confirm](../../doc/controllers/orders.md#orders-confirm)
 * [Orders Trackers Patch](../../doc/controllers/orders.md#orders-trackers-patch)
+
+
+# Orders Authorize
+
+Authorizes payment for an order. To successfully authorize payment for an order, the buyer must first approve the order or a valid payment_source must be provided in the request. A buyer can approve the order upon being redirected to the rel:approve URL that was returned in the HATEOAS links in the create order response.<blockquote><strong>Note:</strong> For error handling and troubleshooting, see <a href="https://developer.paypal.com/api/rest/reference/orders/v2/errors/#authorize-order">Orders v2 errors</a>.</blockquote>
+
+```java
+CompletableFuture<ApiResponse<OrderAuthorizeResponse>> ordersAuthorizeAsync(
+    final OrdersAuthorizeInput input)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `id` | `String` | Template, Required | The ID of the order for which to authorize.<br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36`, *Pattern*: `^[A-Z0-9]+$` |
+| `paypalRequestId` | `String` | Header, Optional | The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager.<br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `108` |
+| `prefer` | `String` | Header, Optional | The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul><br>**Default**: `"return=minimal"`<br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `25`, *Pattern*: `^[a-zA-Z=,-]*$` |
+| `paypalClientMetadataId` | `String` | Header, Optional | **Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36` |
+| `paypalAuthAssertion` | `String` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see <a href="https://developer.paypal.com/api/rest/requests/#paypal-auth-assertion">PayPal-Auth-Assertion</a>. |
+| `body` | [`OrderAuthorizeRequest`](../../doc/models/order-authorize-request.md) | Body, Optional | - |
+
+## Response Type
+
+[`OrderAuthorizeResponse`](../../doc/models/order-authorize-response.md)
+
+## Example Usage
+
+```java
+OrdersAuthorizeInput ordersAuthorizeInput = new OrdersAuthorizeInput.Builder(
+    "id0",
+    null
+)
+.prefer("return=minimal")
+.build();
+
+ordersController.ordersAuthorizeAsync(ordersAuthorizeInput).thenAccept(result -> {
+    // TODO success callback handler
+    System.out.println(result);
+}).exceptionally(exception -> {
+    // TODO failure callback handler
+    exception.printStackTrace();
+    return null;
+});
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Request is not well-formed, syntactically incorrect, or violates schema. | [`ErrorException`](../../doc/models/error-exception.md) |
+| 401 | Authentication failed due to missing authorization header, or invalid authentication credentials. | [`ErrorException`](../../doc/models/error-exception.md) |
+| 403 | The authorized payment failed due to insufficient permissions. | [`ErrorException`](../../doc/models/error-exception.md) |
+| 404 | The specified resource does not exist. | [`ErrorException`](../../doc/models/error-exception.md) |
+| 422 | The requested action could not be performed, semantically incorrect, or failed business validation. | [`ErrorException`](../../doc/models/error-exception.md) |
+| 500 | An internal server error has occurred. | [`ErrorException`](../../doc/models/error-exception.md) |
+| Default | The error response. | [`ErrorException`](../../doc/models/error-exception.md) |
+
+
+# Orders Track Create
+
+Adds tracking information for an Order.
+
+```java
+CompletableFuture<ApiResponse<Order>> ordersTrackCreateAsync(
+    final OrdersTrackCreateInput input)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `id` | `String` | Template, Required | The ID of the order that the tracking information is associated with.<br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36`, *Pattern*: `^[A-Z0-9]+$` |
+| `body` | [`OrderTrackerRequest`](../../doc/models/order-tracker-request.md) | Body, Required | - |
+| `paypalAuthAssertion` | `String` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see <a href="https://developer.paypal.com/api/rest/requests/#paypal-auth-assertion">PayPal-Auth-Assertion</a>. |
+
+## Response Type
+
+[`Order`](../../doc/models/order.md)
+
+## Example Usage
+
+```java
+OrdersTrackCreateInput ordersTrackCreateInput = new OrdersTrackCreateInput.Builder(
+    "id0",
+    null,
+    new OrderTrackerRequest.Builder(
+        "capture_id8"
+    )
+    .notifyPayer(false)
+    .build()
+)
+.build();
+
+ordersController.ordersTrackCreateAsync(ordersTrackCreateInput).thenAccept(result -> {
+    // TODO success callback handler
+    System.out.println(result);
+}).exceptionally(exception -> {
+    // TODO failure callback handler
+    exception.printStackTrace();
+    return null;
+});
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 400 | Request is not well-formed, syntactically incorrect, or violates schema. | [`ErrorException`](../../doc/models/error-exception.md) |
+| 403 | Authorization failed due to insufficient permissions. | [`ErrorException`](../../doc/models/error-exception.md) |
+| 404 | The specified resource does not exist. | [`ErrorException`](../../doc/models/error-exception.md) |
+| 422 | The requested action could not be performed, semantically incorrect, or failed business validation. | [`ErrorException`](../../doc/models/error-exception.md) |
+| 500 | An internal server error has occurred. | [`ErrorException`](../../doc/models/error-exception.md) |
+| Default | The error response. | [`ErrorException`](../../doc/models/error-exception.md) |
 
 
 # Orders Create
@@ -36,9 +150,9 @@ CompletableFuture<ApiResponse<Order>> ordersCreateAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`OrderRequest`](../../doc/models/order-request.md) | Body, Required | - |
-| `payPalRequestId` | `String` | Header, Optional | The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager.<br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `108` |
-| `payPalPartnerAttributionId` | `String` | Header, Optional | **Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36` |
-| `payPalClientMetadataId` | `String` | Header, Optional | **Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36` |
+| `paypalRequestId` | `String` | Header, Optional | The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager.<br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `108` |
+| `paypalPartnerAttributionId` | `String` | Header, Optional | **Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36` |
+| `paypalClientMetadataId` | `String` | Header, Optional | **Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36` |
 | `prefer` | `String` | Header, Optional | The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul><br>**Default**: `"return=minimal"`<br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `25`, *Pattern*: `^[a-zA-Z=,-]*$` |
 
 ## Response Type
@@ -85,53 +199,6 @@ ordersController.ordersCreateAsync(ordersCreateInput).thenAccept(result -> {
 | 400 | Request is not well-formed, syntactically incorrect, or violates schema. | [`ErrorException`](../../doc/models/error-exception.md) |
 | 401 | Authentication failed due to missing authorization header, or invalid authentication credentials. | [`ErrorException`](../../doc/models/error-exception.md) |
 | 422 | The requested action could not be performed, semantically incorrect, or failed business validation. | [`ErrorException`](../../doc/models/error-exception.md) |
-| Default | The error response. | [`ErrorException`](../../doc/models/error-exception.md) |
-
-
-# Orders Get
-
-Shows details for an order, by ID.<blockquote><strong>Note:</strong> For error handling and troubleshooting, see <a href="https://developer.paypal.com/api/rest/reference/orders/v2/errors/#get-order">Orders v2 errors</a>.</blockquote>
-
-```java
-CompletableFuture<ApiResponse<Order>> ordersGetAsync(
-    final OrdersGetInput input)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `id` | `String` | Template, Required | The ID of the order for which to show details.<br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36`, *Pattern*: `^[A-Z0-9]+$` |
-| `fields` | `String` | Query, Optional | A comma-separated list of fields that should be returned for the order. Valid filter field is `payment_source`.<br>**Constraints**: *Pattern*: `^[a-z_]*$` |
-
-## Response Type
-
-[`Order`](../../doc/models/order.md)
-
-## Example Usage
-
-```java
-OrdersGetInput ordersGetInput = new OrdersGetInput.Builder(
-    "id0"
-)
-.build();
-
-ordersController.ordersGetAsync(ordersGetInput).thenAccept(result -> {
-    // TODO success callback handler
-    System.out.println(result);
-}).exceptionally(exception -> {
-    // TODO failure callback handler
-    exception.printStackTrace();
-    return null;
-});
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 401 | Authentication failed due to missing authorization header, or invalid authentication credentials. | [`ErrorException`](../../doc/models/error-exception.md) |
-| 404 | The specified resource does not exist. | [`ErrorException`](../../doc/models/error-exception.md) |
 | Default | The error response. | [`ErrorException`](../../doc/models/error-exception.md) |
 
 
@@ -191,122 +258,6 @@ ordersController.ordersPatchAsync(ordersPatchInput).thenAccept(result -> {
 | Default | The error response. | [`ErrorException`](../../doc/models/error-exception.md) |
 
 
-# Orders Confirm
-
-Payer confirms their intent to pay for the the Order with the given payment source.
-
-```java
-CompletableFuture<ApiResponse<Order>> ordersConfirmAsync(
-    final OrdersConfirmInput input)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `id` | `String` | Template, Required | The ID of the order for which the payer confirms their intent to pay.<br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36`, *Pattern*: `^[A-Z0-9]+$` |
-| `payPalClientMetadataId` | `String` | Header, Optional | **Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36` |
-| `prefer` | `String` | Header, Optional | The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul><br>**Default**: `"return=minimal"`<br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `25`, *Pattern*: `^[a-zA-Z=]*$` |
-| `body` | [`ConfirmOrderRequest`](../../doc/models/confirm-order-request.md) | Body, Optional | - |
-
-## Response Type
-
-[`Order`](../../doc/models/order.md)
-
-## Example Usage
-
-```java
-OrdersConfirmInput ordersConfirmInput = new OrdersConfirmInput.Builder(
-    "id0",
-    null
-)
-.prefer("return=minimal")
-.body(new ConfirmOrderRequest.Builder(
-        new PaymentSource.Builder()
-            .build()
-    )
-    .processingInstruction(ProcessingInstruction.NO_INSTRUCTION)
-    .build())
-.build();
-
-ordersController.ordersConfirmAsync(ordersConfirmInput).thenAccept(result -> {
-    // TODO success callback handler
-    System.out.println(result);
-}).exceptionally(exception -> {
-    // TODO failure callback handler
-    exception.printStackTrace();
-    return null;
-});
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Request is not well-formed, syntactically incorrect, or violates schema. | [`ErrorException`](../../doc/models/error-exception.md) |
-| 403 | Authorization failed due to insufficient permissions. | [`ErrorException`](../../doc/models/error-exception.md) |
-| 422 | The requested action could not be performed, semantically incorrect, or failed business validation. | [`ErrorException`](../../doc/models/error-exception.md) |
-| 500 | An internal server error has occurred. | [`ErrorException`](../../doc/models/error-exception.md) |
-| Default | The error response. | [`ErrorException`](../../doc/models/error-exception.md) |
-
-
-# Orders Authorize
-
-Authorizes payment for an order. To successfully authorize payment for an order, the buyer must first approve the order or a valid payment_source must be provided in the request. A buyer can approve the order upon being redirected to the rel:approve URL that was returned in the HATEOAS links in the create order response.<blockquote><strong>Note:</strong> For error handling and troubleshooting, see <a href="https://developer.paypal.com/api/rest/reference/orders/v2/errors/#authorize-order">Orders v2 errors</a>.</blockquote>
-
-```java
-CompletableFuture<ApiResponse<OrderAuthorizeResponse>> ordersAuthorizeAsync(
-    final OrdersAuthorizeInput input)
-```
-
-## Parameters
-
-| Parameter | Type | Tags | Description |
-|  --- | --- | --- | --- |
-| `id` | `String` | Template, Required | The ID of the order for which to authorize.<br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36`, *Pattern*: `^[A-Z0-9]+$` |
-| `payPalRequestId` | `String` | Header, Optional | The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager.<br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `108` |
-| `prefer` | `String` | Header, Optional | The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul><br>**Default**: `"return=minimal"`<br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `25`, *Pattern*: `^[a-zA-Z=,-]*$` |
-| `payPalClientMetadataId` | `String` | Header, Optional | **Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36` |
-| `payPalAuthAssertion` | `String` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see <a href="https://developer.paypal.com/api/rest/requests/#paypal-auth-assertion">PayPal-Auth-Assertion</a>. |
-| `body` | [`OrderAuthorizeRequest`](../../doc/models/order-authorize-request.md) | Body, Optional | - |
-
-## Response Type
-
-[`OrderAuthorizeResponse`](../../doc/models/order-authorize-response.md)
-
-## Example Usage
-
-```java
-OrdersAuthorizeInput ordersAuthorizeInput = new OrdersAuthorizeInput.Builder(
-    "id0",
-    null
-)
-.prefer("return=minimal")
-.build();
-
-ordersController.ordersAuthorizeAsync(ordersAuthorizeInput).thenAccept(result -> {
-    // TODO success callback handler
-    System.out.println(result);
-}).exceptionally(exception -> {
-    // TODO failure callback handler
-    exception.printStackTrace();
-    return null;
-});
-```
-
-## Errors
-
-| HTTP Status Code | Error Description | Exception Class |
-|  --- | --- | --- |
-| 400 | Request is not well-formed, syntactically incorrect, or violates schema. | [`ErrorException`](../../doc/models/error-exception.md) |
-| 401 | Authentication failed due to missing authorization header, or invalid authentication credentials. | [`ErrorException`](../../doc/models/error-exception.md) |
-| 403 | The authorized payment failed due to insufficient permissions. | [`ErrorException`](../../doc/models/error-exception.md) |
-| 404 | The specified resource does not exist. | [`ErrorException`](../../doc/models/error-exception.md) |
-| 422 | The requested action could not be performed, semantically incorrect, or failed business validation. | [`ErrorException`](../../doc/models/error-exception.md) |
-| 500 | An internal server error has occurred. | [`ErrorException`](../../doc/models/error-exception.md) |
-| Default | The error response. | [`ErrorException`](../../doc/models/error-exception.md) |
-
-
 # Orders Capture
 
 Captures payment for an order. To successfully capture payment for an order, the buyer must first approve the order or a valid payment_source must be provided in the request. A buyer can approve the order upon being redirected to the rel:approve URL that was returned in the HATEOAS links in the create order response.<blockquote><strong>Note:</strong> For error handling and troubleshooting, see <a href="https://developer.paypal.com/api/rest/reference/orders/v2/errors/#capture-order">Orders v2 errors</a>.</blockquote>
@@ -321,10 +272,10 @@ CompletableFuture<ApiResponse<Order>> ordersCaptureAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `id` | `String` | Template, Required | The ID of the order for which to capture a payment.<br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36`, *Pattern*: `^[A-Z0-9]+$` |
-| `payPalRequestId` | `String` | Header, Optional | The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager.<br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `108` |
+| `paypalRequestId` | `String` | Header, Optional | The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager.<br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `108` |
 | `prefer` | `String` | Header, Optional | The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul><br>**Default**: `"return=minimal"`<br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `25`, *Pattern*: `^[a-zA-Z=,-]*$` |
-| `payPalClientMetadataId` | `String` | Header, Optional | **Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36` |
-| `payPalAuthAssertion` | `String` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see <a href="https://developer.paypal.com/api/rest/requests/#paypal-auth-assertion">PayPal-Auth-Assertion</a>. |
+| `paypalClientMetadataId` | `String` | Header, Optional | **Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36` |
+| `paypalAuthAssertion` | `String` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see <a href="https://developer.paypal.com/api/rest/requests/#paypal-auth-assertion">PayPal-Auth-Assertion</a>. |
 | `body` | [`OrderCaptureRequest`](../../doc/models/order-capture-request.md) | Body, Optional | - |
 
 ## Response Type
@@ -364,22 +315,21 @@ ordersController.ordersCaptureAsync(ordersCaptureInput).thenAccept(result -> {
 | Default | The error response. | [`ErrorException`](../../doc/models/error-exception.md) |
 
 
-# Orders Track Create
+# Orders Get
 
-Adds tracking information for an Order.
+Shows details for an order, by ID.<blockquote><strong>Note:</strong> For error handling and troubleshooting, see <a href="https://developer.paypal.com/api/rest/reference/orders/v2/errors/#get-order">Orders v2 errors</a>.</blockquote>
 
 ```java
-CompletableFuture<ApiResponse<Order>> ordersTrackCreateAsync(
-    final OrdersTrackCreateInput input)
+CompletableFuture<ApiResponse<Order>> ordersGetAsync(
+    final OrdersGetInput input)
 ```
 
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `id` | `String` | Template, Required | The ID of the order that the tracking information is associated with.<br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36`, *Pattern*: `^[A-Z0-9]+$` |
-| `body` | [`OrderTrackerRequest`](../../doc/models/order-tracker-request.md) | Body, Required | - |
-| `payPalAuthAssertion` | `String` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see <a href="https://developer.paypal.com/api/rest/requests/#paypal-auth-assertion">PayPal-Auth-Assertion</a>. |
+| `id` | `String` | Template, Required | The ID of the order for which to show details.<br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36`, *Pattern*: `^[A-Z0-9]+$` |
+| `fields` | `String` | Query, Optional | A comma-separated list of fields that should be returned for the order. Valid filter field is `payment_source`.<br>**Constraints**: *Pattern*: `^[a-z_]*$` |
 
 ## Response Type
 
@@ -388,18 +338,69 @@ CompletableFuture<ApiResponse<Order>> ordersTrackCreateAsync(
 ## Example Usage
 
 ```java
-OrdersTrackCreateInput ordersTrackCreateInput = new OrdersTrackCreateInput.Builder(
-    "id0",
-    null,
-    new OrderTrackerRequest.Builder(
-        "capture_id8"
-    )
-    .notifyPayer(false)
-    .build()
+OrdersGetInput ordersGetInput = new OrdersGetInput.Builder(
+    "id0"
 )
 .build();
 
-ordersController.ordersTrackCreateAsync(ordersTrackCreateInput).thenAccept(result -> {
+ordersController.ordersGetAsync(ordersGetInput).thenAccept(result -> {
+    // TODO success callback handler
+    System.out.println(result);
+}).exceptionally(exception -> {
+    // TODO failure callback handler
+    exception.printStackTrace();
+    return null;
+});
+```
+
+## Errors
+
+| HTTP Status Code | Error Description | Exception Class |
+|  --- | --- | --- |
+| 401 | Authentication failed due to missing authorization header, or invalid authentication credentials. | [`ErrorException`](../../doc/models/error-exception.md) |
+| 404 | The specified resource does not exist. | [`ErrorException`](../../doc/models/error-exception.md) |
+| Default | The error response. | [`ErrorException`](../../doc/models/error-exception.md) |
+
+
+# Orders Confirm
+
+Payer confirms their intent to pay for the the Order with the given payment source.
+
+```java
+CompletableFuture<ApiResponse<Order>> ordersConfirmAsync(
+    final OrdersConfirmInput input)
+```
+
+## Parameters
+
+| Parameter | Type | Tags | Description |
+|  --- | --- | --- | --- |
+| `id` | `String` | Template, Required | The ID of the order for which the payer confirms their intent to pay.<br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36`, *Pattern*: `^[A-Z0-9]+$` |
+| `paypalClientMetadataId` | `String` | Header, Optional | **Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36` |
+| `prefer` | `String` | Header, Optional | The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul><br>**Default**: `"return=minimal"`<br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `25`, *Pattern*: `^[a-zA-Z=]*$` |
+| `body` | [`ConfirmOrderRequest`](../../doc/models/confirm-order-request.md) | Body, Optional | - |
+
+## Response Type
+
+[`Order`](../../doc/models/order.md)
+
+## Example Usage
+
+```java
+OrdersConfirmInput ordersConfirmInput = new OrdersConfirmInput.Builder(
+    "id0",
+    null
+)
+.prefer("return=minimal")
+.body(new ConfirmOrderRequest.Builder(
+        new PaymentSource.Builder()
+            .build()
+    )
+    .processingInstruction(ProcessingInstruction.NO_INSTRUCTION)
+    .build())
+.build();
+
+ordersController.ordersConfirmAsync(ordersConfirmInput).thenAccept(result -> {
     // TODO success callback handler
     System.out.println(result);
 }).exceptionally(exception -> {
@@ -415,7 +416,6 @@ ordersController.ordersTrackCreateAsync(ordersTrackCreateInput).thenAccept(resul
 |  --- | --- | --- |
 | 400 | Request is not well-formed, syntactically incorrect, or violates schema. | [`ErrorException`](../../doc/models/error-exception.md) |
 | 403 | Authorization failed due to insufficient permissions. | [`ErrorException`](../../doc/models/error-exception.md) |
-| 404 | The specified resource does not exist. | [`ErrorException`](../../doc/models/error-exception.md) |
 | 422 | The requested action could not be performed, semantically incorrect, or failed business validation. | [`ErrorException`](../../doc/models/error-exception.md) |
 | 500 | An internal server error has occurred. | [`ErrorException`](../../doc/models/error-exception.md) |
 | Default | The error response. | [`ErrorException`](../../doc/models/error-exception.md) |
