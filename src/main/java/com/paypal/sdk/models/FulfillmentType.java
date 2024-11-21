@@ -14,12 +14,16 @@ import java.util.TreeMap;
 
 
 /**
- * ProcessingInstruction to be used.
+ * FulfillmentType to be used.
  */
-public enum ProcessingInstruction {
-    ORDER_COMPLETE_ON_PAYMENT_APPROVAL,
+public enum FulfillmentType {
+    SHIPPING,
 
-    NO_INSTRUCTION,
+    PICKUP_IN_PERSON,
+
+    PICKUP_IN_STORE,
+
+    PICKUP_FROM_PERSON,
 
     /**
      * Unknown values will be mapped by this enum member
@@ -27,16 +31,20 @@ public enum ProcessingInstruction {
     _UNKNOWN;
 
 
-    private static TreeMap<String, ProcessingInstruction> valueMap = new TreeMap<>();
+    private static TreeMap<String, FulfillmentType> valueMap = new TreeMap<>();
     private String value;
 
     static {
-        ORDER_COMPLETE_ON_PAYMENT_APPROVAL.value = "ORDER_COMPLETE_ON_PAYMENT_APPROVAL";
-        NO_INSTRUCTION.value = "NO_INSTRUCTION";
+        SHIPPING.value = "SHIPPING";
+        PICKUP_IN_PERSON.value = "PICKUP_IN_PERSON";
+        PICKUP_IN_STORE.value = "PICKUP_IN_STORE";
+        PICKUP_FROM_PERSON.value = "PICKUP_FROM_PERSON";
         _UNKNOWN.value = null;
 
-        valueMap.put("ORDER_COMPLETE_ON_PAYMENT_APPROVAL", ORDER_COMPLETE_ON_PAYMENT_APPROVAL);
-        valueMap.put("NO_INSTRUCTION", NO_INSTRUCTION);
+        valueMap.put("SHIPPING", SHIPPING);
+        valueMap.put("PICKUP_IN_PERSON", PICKUP_IN_PERSON);
+        valueMap.put("PICKUP_IN_STORE", PICKUP_IN_STORE);
+        valueMap.put("PICKUP_FROM_PERSON", PICKUP_FROM_PERSON);
     }
 
     /**
@@ -46,8 +54,8 @@ public enum ProcessingInstruction {
      * @throws IOException when provided value is not mapped to any enum member.
      */
     @JsonCreator
-    public static ProcessingInstruction constructFromString(String toConvert) throws IOException {
-        ProcessingInstruction enumValue = fromString(toConvert);
+    public static FulfillmentType constructFromString(String toConvert) throws IOException {
+        FulfillmentType enumValue = fromString(toConvert);
         if (enumValue == null) {
             throw new IOException("Unable to create enum instance with value: " + toConvert);
         }
@@ -59,7 +67,7 @@ public enum ProcessingInstruction {
      * @param toConvert String value to get enum member.
      * @return The enum member against the given string value.
      */
-    public static ProcessingInstruction fromString(String toConvert) {
+    public static FulfillmentType fromString(String toConvert) {
         if (!valueMap.containsKey(toConvert)) {
             return _UNKNOWN;
         }
@@ -87,16 +95,16 @@ public enum ProcessingInstruction {
     }
 
     /**
-     * Convert list of ProcessingInstruction values to list of string values.
-     * @param toConvert The list of ProcessingInstruction values to convert.
+     * Convert list of FulfillmentType values to list of string values.
+     * @param toConvert The list of FulfillmentType values to convert.
      * @return List of representative string values.
      */
-    public static List<String> toValue(List<ProcessingInstruction> toConvert) {
+    public static List<String> toValue(List<FulfillmentType> toConvert) {
         if (toConvert == null) {
             return null;
         }
         List<String> convertedValues = new ArrayList<>();
-        for (ProcessingInstruction enumValue : toConvert) {
+        for (FulfillmentType enumValue : toConvert) {
             convertedValues.add(enumValue.value);
         }
         return convertedValues;

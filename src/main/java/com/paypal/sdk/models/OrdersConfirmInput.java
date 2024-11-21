@@ -17,6 +17,7 @@ public class OrdersConfirmInput {
     private String id;
     private String contentType;
     private String paypalClientMetadataId;
+    private String paypalAuthAssertion;
     private String prefer;
     private ConfirmOrderRequest body;
 
@@ -33,6 +34,7 @@ public class OrdersConfirmInput {
      * @param  id  String value for id.
      * @param  contentType  String value for contentType.
      * @param  paypalClientMetadataId  String value for paypalClientMetadataId.
+     * @param  paypalAuthAssertion  String value for paypalAuthAssertion.
      * @param  prefer  String value for prefer.
      * @param  body  ConfirmOrderRequest value for body.
      */
@@ -40,11 +42,13 @@ public class OrdersConfirmInput {
             String id,
             String contentType,
             String paypalClientMetadataId,
+            String paypalAuthAssertion,
             String prefer,
             ConfirmOrderRequest body) {
         this.id = id;
         this.contentType = contentType;
         this.paypalClientMetadataId = paypalClientMetadataId;
+        this.paypalAuthAssertion = paypalAuthAssertion;
         this.prefer = prefer;
         this.body = body;
     }
@@ -107,6 +111,31 @@ public class OrdersConfirmInput {
     }
 
     /**
+     * Getter for PaypalAuthAssertion.
+     * An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For
+     * details, see &lt;a
+     * href="https://developer.paypal.com/api/rest/requests/#paypal-auth-assertion"&gt;PayPal-Auth-Assertion&lt;/a&gt;.
+     * @return Returns the String
+     */
+    @JsonGetter("PayPal-Auth-Assertion")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public String getPaypalAuthAssertion() {
+        return paypalAuthAssertion;
+    }
+
+    /**
+     * Setter for PaypalAuthAssertion.
+     * An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For
+     * details, see &lt;a
+     * href="https://developer.paypal.com/api/rest/requests/#paypal-auth-assertion"&gt;PayPal-Auth-Assertion&lt;/a&gt;.
+     * @param paypalAuthAssertion Value for String
+     */
+    @JsonSetter("PayPal-Auth-Assertion")
+    public void setPaypalAuthAssertion(String paypalAuthAssertion) {
+        this.paypalAuthAssertion = paypalAuthAssertion;
+    }
+
+    /**
      * Getter for Prefer.
      * The preferred server response upon successful completion of the request. Value
      * is:&lt;ul&gt;&lt;li&gt;&lt;code&gt;return=minimal&lt;/code&gt;. The server returns a minimal response to optimize
@@ -163,8 +192,8 @@ public class OrdersConfirmInput {
     @Override
     public String toString() {
         return "OrdersConfirmInput [" + "id=" + id + ", contentType=" + contentType
-                + ", paypalClientMetadataId=" + paypalClientMetadataId + ", prefer=" + prefer
-                + ", body=" + body + "]";
+                + ", paypalClientMetadataId=" + paypalClientMetadataId + ", paypalAuthAssertion="
+                + paypalAuthAssertion + ", prefer=" + prefer + ", body=" + body + "]";
     }
 
     /**
@@ -175,6 +204,7 @@ public class OrdersConfirmInput {
     public Builder toBuilder() {
         Builder builder = new Builder(id, contentType)
                 .paypalClientMetadataId(getPaypalClientMetadataId())
+                .paypalAuthAssertion(getPaypalAuthAssertion())
                 .prefer(getPrefer())
                 .body(getBody());
         return builder;
@@ -187,6 +217,7 @@ public class OrdersConfirmInput {
         private String id;
         private String contentType = "application/json";
         private String paypalClientMetadataId;
+        private String paypalAuthAssertion;
         private String prefer = "return=minimal";
         private ConfirmOrderRequest body;
 
@@ -237,6 +268,16 @@ public class OrdersConfirmInput {
         }
 
         /**
+         * Setter for paypalAuthAssertion.
+         * @param  paypalAuthAssertion  String value for paypalAuthAssertion.
+         * @return Builder
+         */
+        public Builder paypalAuthAssertion(String paypalAuthAssertion) {
+            this.paypalAuthAssertion = paypalAuthAssertion;
+            return this;
+        }
+
+        /**
          * Setter for prefer.
          * @param  prefer  String value for prefer.
          * @return Builder
@@ -261,7 +302,8 @@ public class OrdersConfirmInput {
          * @return {@link OrdersConfirmInput}
          */
         public OrdersConfirmInput build() {
-            return new OrdersConfirmInput(id, contentType, paypalClientMetadataId, prefer, body);
+            return new OrdersConfirmInput(id, contentType, paypalClientMetadataId,
+                    paypalAuthAssertion, prefer, body);
         }
     }
 }

@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 public class AuthorizationsVoidInput {
     private String authorizationId;
     private String paypalAuthAssertion;
+    private String paypalRequestId;
     private String prefer;
 
     /**
@@ -29,14 +30,17 @@ public class AuthorizationsVoidInput {
      * Initialization constructor.
      * @param  authorizationId  String value for authorizationId.
      * @param  paypalAuthAssertion  String value for paypalAuthAssertion.
+     * @param  paypalRequestId  String value for paypalRequestId.
      * @param  prefer  String value for prefer.
      */
     public AuthorizationsVoidInput(
             String authorizationId,
             String paypalAuthAssertion,
+            String paypalRequestId,
             String prefer) {
         this.authorizationId = authorizationId;
         this.paypalAuthAssertion = paypalAuthAssertion;
+        this.paypalRequestId = paypalRequestId;
         this.prefer = prefer;
     }
 
@@ -92,6 +96,27 @@ public class AuthorizationsVoidInput {
     }
 
     /**
+     * Getter for PaypalRequestId.
+     * The server stores keys for 45 days.
+     * @return Returns the String
+     */
+    @JsonGetter("PayPal-Request-Id")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public String getPaypalRequestId() {
+        return paypalRequestId;
+    }
+
+    /**
+     * Setter for PaypalRequestId.
+     * The server stores keys for 45 days.
+     * @param paypalRequestId Value for String
+     */
+    @JsonSetter("PayPal-Request-Id")
+    public void setPaypalRequestId(String paypalRequestId) {
+        this.paypalRequestId = paypalRequestId;
+    }
+
+    /**
      * Getter for Prefer.
      * The preferred server response upon successful completion of the request. Value
      * is:&lt;ul&gt;&lt;li&gt;&lt;code&gt;return=minimal&lt;/code&gt;. The server returns a minimal response to optimize
@@ -129,7 +154,8 @@ public class AuthorizationsVoidInput {
     @Override
     public String toString() {
         return "AuthorizationsVoidInput [" + "authorizationId=" + authorizationId
-                + ", paypalAuthAssertion=" + paypalAuthAssertion + ", prefer=" + prefer + "]";
+                + ", paypalAuthAssertion=" + paypalAuthAssertion + ", paypalRequestId="
+                + paypalRequestId + ", prefer=" + prefer + "]";
     }
 
     /**
@@ -140,6 +166,7 @@ public class AuthorizationsVoidInput {
     public Builder toBuilder() {
         Builder builder = new Builder(authorizationId)
                 .paypalAuthAssertion(getPaypalAuthAssertion())
+                .paypalRequestId(getPaypalRequestId())
                 .prefer(getPrefer());
         return builder;
     }
@@ -150,6 +177,7 @@ public class AuthorizationsVoidInput {
     public static class Builder {
         private String authorizationId;
         private String paypalAuthAssertion;
+        private String paypalRequestId;
         private String prefer = "return=minimal";
 
         /**
@@ -187,6 +215,16 @@ public class AuthorizationsVoidInput {
         }
 
         /**
+         * Setter for paypalRequestId.
+         * @param  paypalRequestId  String value for paypalRequestId.
+         * @return Builder
+         */
+        public Builder paypalRequestId(String paypalRequestId) {
+            this.paypalRequestId = paypalRequestId;
+            return this;
+        }
+
+        /**
          * Setter for prefer.
          * @param  prefer  String value for prefer.
          * @return Builder
@@ -201,7 +239,8 @@ public class AuthorizationsVoidInput {
          * @return {@link AuthorizationsVoidInput}
          */
         public AuthorizationsVoidInput build() {
-            return new AuthorizationsVoidInput(authorizationId, paypalAuthAssertion, prefer);
+            return new AuthorizationsVoidInput(authorizationId, paypalAuthAssertion,
+                    paypalRequestId, prefer);
         }
     }
 }
