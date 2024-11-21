@@ -2569,6 +2569,222 @@ public enum ShipmentCarrier {
 
     SPEEDY,
 
+    ZOOM_RED,
+
+    NAVLUNGO,
+
+    CASTLEPARCELS,
+
+    WEEE,
+
+    PACKALY,
+
+    YUNHUIPOST,
+
+    YOUPARCEL,
+
+    LEMAN,
+
+    MOOVIN,
+
+    URB_IT,
+
+    MULTIENTREGAPANAMA,
+
+    JUSDASR,
+
+    DISCOUNTPOST,
+
+    RHENUS_UK,
+
+    SWISHIP_JP,
+
+    GLS_US,
+
+    SMTL,
+
+    EMEGA,
+
+    EXPRESSONE_SV,
+
+    HEPSIJET,
+
+    WELIVERY,
+
+    BRINGER,
+
+    EASYROUTES,
+
+    MRW,
+
+    RPM,
+
+    DPD_PRT,
+
+    GLS_ROMANIA,
+
+    LMPARCEL,
+
+    GTAGSM,
+
+    DOMINO,
+
+    ESHIPPER,
+
+    TRANSPAK,
+
+    XINDUS,
+
+    AOYUE,
+
+    EASYPARCEL,
+
+    EXPRESSONE,
+
+    SENDEO_KARGO,
+
+    SPEEDAF,
+
+    ETOWER,
+
+    GCX,
+
+    NINJAVAN_VN,
+
+    ALLEGRO,
+
+    JUMPPOINT,
+
+    SHIPGLOBAL_US,
+
+    KINISI,
+
+    OAKH,
+
+    AWEST,
+
+    BARSAN,
+
+    ENERGOLOGISTIC,
+
+    MADROOEX,
+
+    GOBOLT,
+
+    SWISS_UNIVERSAL_EXPRESS,
+
+    IORDIRECT,
+
+    XMSZM,
+
+    GLS_HUN,
+
+    SENDY,
+
+    BRAUNSEXPRESS,
+
+    GRANDSLAMEXPRESS,
+
+    XGS,
+
+    OTSCHILE,
+
+    PACK_UP,
+
+    PARCELSTARS,
+
+    TEAMEXPRESSLLC,
+
+    ASYADEXPRESS,
+
+    TDN,
+
+    EARLYBIRD,
+
+    CACESA,
+
+    PARCELJET,
+
+    MNG_KARGO,
+
+    SUPERPACKLINE,
+
+    SPEEDX,
+
+    VESYL,
+
+    SKYKING,
+
+    DIRMENSAJERIA,
+
+    NETLOGIXGROUP,
+
+    ZYOU,
+
+    JAWAR,
+
+    AGSYSTEMS,
+
+    GPS,
+
+    PTT_KARGO,
+
+    MAERGO,
+
+    ARIHANTCOURIER,
+
+    VTFE,
+
+    YUNANT,
+
+    URBIFY,
+
+    PACK_MAN,
+
+    LIEFERGRUN,
+
+    OBIBOX,
+
+    PAIKEDA,
+
+    SCOTTY,
+
+    INTELCOM_CA,
+
+    SWE,
+
+    ASENDIA,
+
+    DPD_AT,
+
+    RELAY,
+
+    ATA,
+
+    SKYEXPRESS_INTERNATIONAL,
+
+    SURAT_KARGO,
+
+    SGLINK,
+
+    FLEETOPTICSINC,
+
+    SHOPLINE,
+
+    PIGGYSHIP,
+
+    LOGOIX,
+
+    KOLAY_GELSIN,
+
+    ASSOCIATED_COURIERS,
+
+    UPS_CHECKER,
+
+    WINESHIPPING,
+
+    SPEDISCI,
+
     /**
      * Unknown values will be mapped by this enum member
      */
@@ -3855,6 +4071,114 @@ public enum ShipmentCarrier {
         LOGINEXT_WEBHOOK.value = "LOGINEXT_WEBHOOK";
         EMS.value = "EMS";
         SPEEDY.value = "SPEEDY";
+        ZOOM_RED.value = "ZOOM_RED";
+        NAVLUNGO.value = "NAVLUNGO";
+        CASTLEPARCELS.value = "CASTLEPARCELS";
+        WEEE.value = "WEEE";
+        PACKALY.value = "PACKALY";
+        YUNHUIPOST.value = "YUNHUIPOST";
+        YOUPARCEL.value = "YOUPARCEL";
+        LEMAN.value = "LEMAN";
+        MOOVIN.value = "MOOVIN";
+        URB_IT.value = "URB_IT";
+        MULTIENTREGAPANAMA.value = "MULTIENTREGAPANAMA";
+        JUSDASR.value = "JUSDASR";
+        DISCOUNTPOST.value = "DISCOUNTPOST";
+        RHENUS_UK.value = "RHENUS_UK";
+        SWISHIP_JP.value = "SWISHIP_JP";
+        GLS_US.value = "GLS_US";
+        SMTL.value = "SMTL";
+        EMEGA.value = "EMEGA";
+        EXPRESSONE_SV.value = "EXPRESSONE_SV";
+        HEPSIJET.value = "HEPSIJET";
+        WELIVERY.value = "WELIVERY";
+        BRINGER.value = "BRINGER";
+        EASYROUTES.value = "EASYROUTES";
+        MRW.value = "MRW";
+        RPM.value = "RPM";
+        DPD_PRT.value = "DPD_PRT";
+        GLS_ROMANIA.value = "GLS_ROMANIA";
+        LMPARCEL.value = "LMPARCEL";
+        GTAGSM.value = "GTAGSM";
+        DOMINO.value = "DOMINO";
+        ESHIPPER.value = "ESHIPPER";
+        TRANSPAK.value = "TRANSPAK";
+        XINDUS.value = "XINDUS";
+        AOYUE.value = "AOYUE";
+        EASYPARCEL.value = "EASYPARCEL";
+        EXPRESSONE.value = "EXPRESSONE";
+        SENDEO_KARGO.value = "SENDEO_KARGO";
+        SPEEDAF.value = "SPEEDAF";
+        ETOWER.value = "ETOWER";
+        GCX.value = "GCX";
+        NINJAVAN_VN.value = "NINJAVAN_VN";
+        ALLEGRO.value = "ALLEGRO";
+        JUMPPOINT.value = "JUMPPOINT";
+        SHIPGLOBAL_US.value = "SHIPGLOBAL_US";
+        KINISI.value = "KINISI";
+        OAKH.value = "OAKH";
+        AWEST.value = "AWEST";
+        BARSAN.value = "BARSAN";
+        ENERGOLOGISTIC.value = "ENERGOLOGISTIC";
+        MADROOEX.value = "MADROOEX";
+        GOBOLT.value = "GOBOLT";
+        SWISS_UNIVERSAL_EXPRESS.value = "SWISS_UNIVERSAL_EXPRESS";
+        IORDIRECT.value = "IORDIRECT";
+        XMSZM.value = "XMSZM";
+        GLS_HUN.value = "GLS_HUN";
+        SENDY.value = "SENDY";
+        BRAUNSEXPRESS.value = "BRAUNSEXPRESS";
+        GRANDSLAMEXPRESS.value = "GRANDSLAMEXPRESS";
+        XGS.value = "XGS";
+        OTSCHILE.value = "OTSCHILE";
+        PACK_UP.value = "PACK_UP";
+        PARCELSTARS.value = "PARCELSTARS";
+        TEAMEXPRESSLLC.value = "TEAMEXPRESSLLC";
+        ASYADEXPRESS.value = "ASYADEXPRESS";
+        TDN.value = "TDN";
+        EARLYBIRD.value = "EARLYBIRD";
+        CACESA.value = "CACESA";
+        PARCELJET.value = "PARCELJET";
+        MNG_KARGO.value = "MNG_KARGO";
+        SUPERPACKLINE.value = "SUPERPACKLINE";
+        SPEEDX.value = "SPEEDX";
+        VESYL.value = "VESYL";
+        SKYKING.value = "SKYKING";
+        DIRMENSAJERIA.value = "DIRMENSAJERIA";
+        NETLOGIXGROUP.value = "NETLOGIXGROUP";
+        ZYOU.value = "ZYOU";
+        JAWAR.value = "JAWAR";
+        AGSYSTEMS.value = "AGSYSTEMS";
+        GPS.value = "GPS";
+        PTT_KARGO.value = "PTT_KARGO";
+        MAERGO.value = "MAERGO";
+        ARIHANTCOURIER.value = "ARIHANTCOURIER";
+        VTFE.value = "VTFE";
+        YUNANT.value = "YUNANT";
+        URBIFY.value = "URBIFY";
+        PACK_MAN.value = "PACK_MAN";
+        LIEFERGRUN.value = "LIEFERGRUN";
+        OBIBOX.value = "OBIBOX";
+        PAIKEDA.value = "PAIKEDA";
+        SCOTTY.value = "SCOTTY";
+        INTELCOM_CA.value = "INTELCOM_CA";
+        SWE.value = "SWE";
+        ASENDIA.value = "ASENDIA";
+        DPD_AT.value = "DPD_AT";
+        RELAY.value = "RELAY";
+        ATA.value = "ATA";
+        SKYEXPRESS_INTERNATIONAL.value = "SKYEXPRESS_INTERNATIONAL";
+        SURAT_KARGO.value = "SURAT_KARGO";
+        SGLINK.value = "SGLINK";
+        FLEETOPTICSINC.value = "FLEETOPTICSINC";
+        SHOPLINE.value = "SHOPLINE";
+        PIGGYSHIP.value = "PIGGYSHIP";
+        LOGOIX.value = "LOGOIX";
+        KOLAY_GELSIN.value = "KOLAY_GELSIN";
+        ASSOCIATED_COURIERS.value = "ASSOCIATED_COURIERS";
+        UPS_CHECKER.value = "UPS_CHECKER";
+        WINESHIPPING.value = "WINESHIPPING";
+        SPEDISCI.value = "SPEDISCI";
         _UNKNOWN.value = null;
 
         valueMap.put("DPD_RU", DPD_RU);
@@ -5133,6 +5457,114 @@ public enum ShipmentCarrier {
         valueMap.put("LOGINEXT_WEBHOOK", LOGINEXT_WEBHOOK);
         valueMap.put("EMS", EMS);
         valueMap.put("SPEEDY", SPEEDY);
+        valueMap.put("ZOOM_RED", ZOOM_RED);
+        valueMap.put("NAVLUNGO", NAVLUNGO);
+        valueMap.put("CASTLEPARCELS", CASTLEPARCELS);
+        valueMap.put("WEEE", WEEE);
+        valueMap.put("PACKALY", PACKALY);
+        valueMap.put("YUNHUIPOST", YUNHUIPOST);
+        valueMap.put("YOUPARCEL", YOUPARCEL);
+        valueMap.put("LEMAN", LEMAN);
+        valueMap.put("MOOVIN", MOOVIN);
+        valueMap.put("URB_IT", URB_IT);
+        valueMap.put("MULTIENTREGAPANAMA", MULTIENTREGAPANAMA);
+        valueMap.put("JUSDASR", JUSDASR);
+        valueMap.put("DISCOUNTPOST", DISCOUNTPOST);
+        valueMap.put("RHENUS_UK", RHENUS_UK);
+        valueMap.put("SWISHIP_JP", SWISHIP_JP);
+        valueMap.put("GLS_US", GLS_US);
+        valueMap.put("SMTL", SMTL);
+        valueMap.put("EMEGA", EMEGA);
+        valueMap.put("EXPRESSONE_SV", EXPRESSONE_SV);
+        valueMap.put("HEPSIJET", HEPSIJET);
+        valueMap.put("WELIVERY", WELIVERY);
+        valueMap.put("BRINGER", BRINGER);
+        valueMap.put("EASYROUTES", EASYROUTES);
+        valueMap.put("MRW", MRW);
+        valueMap.put("RPM", RPM);
+        valueMap.put("DPD_PRT", DPD_PRT);
+        valueMap.put("GLS_ROMANIA", GLS_ROMANIA);
+        valueMap.put("LMPARCEL", LMPARCEL);
+        valueMap.put("GTAGSM", GTAGSM);
+        valueMap.put("DOMINO", DOMINO);
+        valueMap.put("ESHIPPER", ESHIPPER);
+        valueMap.put("TRANSPAK", TRANSPAK);
+        valueMap.put("XINDUS", XINDUS);
+        valueMap.put("AOYUE", AOYUE);
+        valueMap.put("EASYPARCEL", EASYPARCEL);
+        valueMap.put("EXPRESSONE", EXPRESSONE);
+        valueMap.put("SENDEO_KARGO", SENDEO_KARGO);
+        valueMap.put("SPEEDAF", SPEEDAF);
+        valueMap.put("ETOWER", ETOWER);
+        valueMap.put("GCX", GCX);
+        valueMap.put("NINJAVAN_VN", NINJAVAN_VN);
+        valueMap.put("ALLEGRO", ALLEGRO);
+        valueMap.put("JUMPPOINT", JUMPPOINT);
+        valueMap.put("SHIPGLOBAL_US", SHIPGLOBAL_US);
+        valueMap.put("KINISI", KINISI);
+        valueMap.put("OAKH", OAKH);
+        valueMap.put("AWEST", AWEST);
+        valueMap.put("BARSAN", BARSAN);
+        valueMap.put("ENERGOLOGISTIC", ENERGOLOGISTIC);
+        valueMap.put("MADROOEX", MADROOEX);
+        valueMap.put("GOBOLT", GOBOLT);
+        valueMap.put("SWISS_UNIVERSAL_EXPRESS", SWISS_UNIVERSAL_EXPRESS);
+        valueMap.put("IORDIRECT", IORDIRECT);
+        valueMap.put("XMSZM", XMSZM);
+        valueMap.put("GLS_HUN", GLS_HUN);
+        valueMap.put("SENDY", SENDY);
+        valueMap.put("BRAUNSEXPRESS", BRAUNSEXPRESS);
+        valueMap.put("GRANDSLAMEXPRESS", GRANDSLAMEXPRESS);
+        valueMap.put("XGS", XGS);
+        valueMap.put("OTSCHILE", OTSCHILE);
+        valueMap.put("PACK_UP", PACK_UP);
+        valueMap.put("PARCELSTARS", PARCELSTARS);
+        valueMap.put("TEAMEXPRESSLLC", TEAMEXPRESSLLC);
+        valueMap.put("ASYADEXPRESS", ASYADEXPRESS);
+        valueMap.put("TDN", TDN);
+        valueMap.put("EARLYBIRD", EARLYBIRD);
+        valueMap.put("CACESA", CACESA);
+        valueMap.put("PARCELJET", PARCELJET);
+        valueMap.put("MNG_KARGO", MNG_KARGO);
+        valueMap.put("SUPERPACKLINE", SUPERPACKLINE);
+        valueMap.put("SPEEDX", SPEEDX);
+        valueMap.put("VESYL", VESYL);
+        valueMap.put("SKYKING", SKYKING);
+        valueMap.put("DIRMENSAJERIA", DIRMENSAJERIA);
+        valueMap.put("NETLOGIXGROUP", NETLOGIXGROUP);
+        valueMap.put("ZYOU", ZYOU);
+        valueMap.put("JAWAR", JAWAR);
+        valueMap.put("AGSYSTEMS", AGSYSTEMS);
+        valueMap.put("GPS", GPS);
+        valueMap.put("PTT_KARGO", PTT_KARGO);
+        valueMap.put("MAERGO", MAERGO);
+        valueMap.put("ARIHANTCOURIER", ARIHANTCOURIER);
+        valueMap.put("VTFE", VTFE);
+        valueMap.put("YUNANT", YUNANT);
+        valueMap.put("URBIFY", URBIFY);
+        valueMap.put("PACK_MAN", PACK_MAN);
+        valueMap.put("LIEFERGRUN", LIEFERGRUN);
+        valueMap.put("OBIBOX", OBIBOX);
+        valueMap.put("PAIKEDA", PAIKEDA);
+        valueMap.put("SCOTTY", SCOTTY);
+        valueMap.put("INTELCOM_CA", INTELCOM_CA);
+        valueMap.put("SWE", SWE);
+        valueMap.put("ASENDIA", ASENDIA);
+        valueMap.put("DPD_AT", DPD_AT);
+        valueMap.put("RELAY", RELAY);
+        valueMap.put("ATA", ATA);
+        valueMap.put("SKYEXPRESS_INTERNATIONAL", SKYEXPRESS_INTERNATIONAL);
+        valueMap.put("SURAT_KARGO", SURAT_KARGO);
+        valueMap.put("SGLINK", SGLINK);
+        valueMap.put("FLEETOPTICSINC", FLEETOPTICSINC);
+        valueMap.put("SHOPLINE", SHOPLINE);
+        valueMap.put("PIGGYSHIP", PIGGYSHIP);
+        valueMap.put("LOGOIX", LOGOIX);
+        valueMap.put("KOLAY_GELSIN", KOLAY_GELSIN);
+        valueMap.put("ASSOCIATED_COURIERS", ASSOCIATED_COURIERS);
+        valueMap.put("UPS_CHECKER", UPS_CHECKER);
+        valueMap.put("WINESHIPPING", WINESHIPPING);
+        valueMap.put("SPEDISCI", SPEDISCI);
     }
 
     /**

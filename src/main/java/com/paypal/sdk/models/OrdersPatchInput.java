@@ -17,6 +17,7 @@ import java.util.List;
 public class OrdersPatchInput {
     private String id;
     private String contentType;
+    private String paypalAuthAssertion;
     private List<Patch> body;
 
     /**
@@ -30,14 +31,17 @@ public class OrdersPatchInput {
      * Initialization constructor.
      * @param  id  String value for id.
      * @param  contentType  String value for contentType.
+     * @param  paypalAuthAssertion  String value for paypalAuthAssertion.
      * @param  body  List of Patch value for body.
      */
     public OrdersPatchInput(
             String id,
             String contentType,
+            String paypalAuthAssertion,
             List<Patch> body) {
         this.id = id;
         this.contentType = contentType;
+        this.paypalAuthAssertion = paypalAuthAssertion;
         this.body = body;
     }
 
@@ -80,6 +84,31 @@ public class OrdersPatchInput {
     }
 
     /**
+     * Getter for PaypalAuthAssertion.
+     * An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For
+     * details, see &lt;a
+     * href="https://developer.paypal.com/api/rest/requests/#paypal-auth-assertion"&gt;PayPal-Auth-Assertion&lt;/a&gt;.
+     * @return Returns the String
+     */
+    @JsonGetter("PayPal-Auth-Assertion")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public String getPaypalAuthAssertion() {
+        return paypalAuthAssertion;
+    }
+
+    /**
+     * Setter for PaypalAuthAssertion.
+     * An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For
+     * details, see &lt;a
+     * href="https://developer.paypal.com/api/rest/requests/#paypal-auth-assertion"&gt;PayPal-Auth-Assertion&lt;/a&gt;.
+     * @param paypalAuthAssertion Value for String
+     */
+    @JsonSetter("PayPal-Auth-Assertion")
+    public void setPaypalAuthAssertion(String paypalAuthAssertion) {
+        this.paypalAuthAssertion = paypalAuthAssertion;
+    }
+
+    /**
      * Getter for Body.
      * @return Returns the List of Patch
      */
@@ -104,8 +133,8 @@ public class OrdersPatchInput {
      */
     @Override
     public String toString() {
-        return "OrdersPatchInput [" + "id=" + id + ", contentType=" + contentType + ", body=" + body
-                + "]";
+        return "OrdersPatchInput [" + "id=" + id + ", contentType=" + contentType
+                + ", paypalAuthAssertion=" + paypalAuthAssertion + ", body=" + body + "]";
     }
 
     /**
@@ -115,6 +144,7 @@ public class OrdersPatchInput {
      */
     public Builder toBuilder() {
         Builder builder = new Builder(id, contentType)
+                .paypalAuthAssertion(getPaypalAuthAssertion())
                 .body(getBody());
         return builder;
     }
@@ -125,6 +155,7 @@ public class OrdersPatchInput {
     public static class Builder {
         private String id;
         private String contentType = "application/json";
+        private String paypalAuthAssertion;
         private List<Patch> body;
 
         /**
@@ -164,6 +195,16 @@ public class OrdersPatchInput {
         }
 
         /**
+         * Setter for paypalAuthAssertion.
+         * @param  paypalAuthAssertion  String value for paypalAuthAssertion.
+         * @return Builder
+         */
+        public Builder paypalAuthAssertion(String paypalAuthAssertion) {
+            this.paypalAuthAssertion = paypalAuthAssertion;
+            return this;
+        }
+
+        /**
          * Setter for body.
          * @param  body  List of Patch value for body.
          * @return Builder
@@ -178,7 +219,7 @@ public class OrdersPatchInput {
          * @return {@link OrdersPatchInput}
          */
         public OrdersPatchInput build() {
-            return new OrdersPatchInput(id, contentType, body);
+            return new OrdersPatchInput(id, contentType, paypalAuthAssertion, body);
         }
     }
 }

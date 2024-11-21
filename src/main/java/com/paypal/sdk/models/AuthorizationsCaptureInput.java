@@ -18,6 +18,7 @@ public class AuthorizationsCaptureInput {
     private String contentType;
     private String paypalRequestId;
     private String prefer;
+    private String paypalAuthAssertion;
     private CaptureRequest body;
 
     /**
@@ -34,6 +35,7 @@ public class AuthorizationsCaptureInput {
      * @param  contentType  String value for contentType.
      * @param  paypalRequestId  String value for paypalRequestId.
      * @param  prefer  String value for prefer.
+     * @param  paypalAuthAssertion  String value for paypalAuthAssertion.
      * @param  body  CaptureRequest value for body.
      */
     public AuthorizationsCaptureInput(
@@ -41,11 +43,13 @@ public class AuthorizationsCaptureInput {
             String contentType,
             String paypalRequestId,
             String prefer,
+            String paypalAuthAssertion,
             CaptureRequest body) {
         this.authorizationId = authorizationId;
         this.contentType = contentType;
         this.paypalRequestId = paypalRequestId;
         this.prefer = prefer;
+        this.paypalAuthAssertion = paypalAuthAssertion;
         this.body = body;
     }
 
@@ -140,6 +144,37 @@ public class AuthorizationsCaptureInput {
     }
 
     /**
+     * Getter for PaypalAuthAssertion.
+     * An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For
+     * details, see
+     * [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion).&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt;For
+     * three party transactions in which a partner is managing the API calls on behalf of a
+     * merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header
+     * or an access token with target_subject.&lt;/blockquote&gt;
+     * @return Returns the String
+     */
+    @JsonGetter("PayPal-Auth-Assertion")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public String getPaypalAuthAssertion() {
+        return paypalAuthAssertion;
+    }
+
+    /**
+     * Setter for PaypalAuthAssertion.
+     * An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For
+     * details, see
+     * [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion).&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt;For
+     * three party transactions in which a partner is managing the API calls on behalf of a
+     * merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header
+     * or an access token with target_subject.&lt;/blockquote&gt;
+     * @param paypalAuthAssertion Value for String
+     */
+    @JsonSetter("PayPal-Auth-Assertion")
+    public void setPaypalAuthAssertion(String paypalAuthAssertion) {
+        this.paypalAuthAssertion = paypalAuthAssertion;
+    }
+
+    /**
      * Getter for Body.
      * @return Returns the CaptureRequest
      */
@@ -166,7 +201,8 @@ public class AuthorizationsCaptureInput {
     public String toString() {
         return "AuthorizationsCaptureInput [" + "authorizationId=" + authorizationId
                 + ", contentType=" + contentType + ", paypalRequestId=" + paypalRequestId
-                + ", prefer=" + prefer + ", body=" + body + "]";
+                + ", prefer=" + prefer + ", paypalAuthAssertion=" + paypalAuthAssertion + ", body="
+                + body + "]";
     }
 
     /**
@@ -178,6 +214,7 @@ public class AuthorizationsCaptureInput {
         Builder builder = new Builder(authorizationId, contentType)
                 .paypalRequestId(getPaypalRequestId())
                 .prefer(getPrefer())
+                .paypalAuthAssertion(getPaypalAuthAssertion())
                 .body(getBody());
         return builder;
     }
@@ -190,6 +227,7 @@ public class AuthorizationsCaptureInput {
         private String contentType = "application/json";
         private String paypalRequestId;
         private String prefer = "return=minimal";
+        private String paypalAuthAssertion;
         private CaptureRequest body;
 
         /**
@@ -249,6 +287,16 @@ public class AuthorizationsCaptureInput {
         }
 
         /**
+         * Setter for paypalAuthAssertion.
+         * @param  paypalAuthAssertion  String value for paypalAuthAssertion.
+         * @return Builder
+         */
+        public Builder paypalAuthAssertion(String paypalAuthAssertion) {
+            this.paypalAuthAssertion = paypalAuthAssertion;
+            return this;
+        }
+
+        /**
          * Setter for body.
          * @param  body  CaptureRequest value for body.
          * @return Builder
@@ -264,7 +312,7 @@ public class AuthorizationsCaptureInput {
          */
         public AuthorizationsCaptureInput build() {
             return new AuthorizationsCaptureInput(authorizationId, contentType, paypalRequestId,
-                    prefer, body);
+                    prefer, paypalAuthAssertion, body);
         }
     }
 }

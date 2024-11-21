@@ -20,6 +20,7 @@ public class OrdersCreateInput {
     private String paypalPartnerAttributionId;
     private String paypalClientMetadataId;
     private String prefer;
+    private String paypalAuthAssertion;
 
     /**
      * Default constructor.
@@ -37,6 +38,7 @@ public class OrdersCreateInput {
      * @param  paypalPartnerAttributionId  String value for paypalPartnerAttributionId.
      * @param  paypalClientMetadataId  String value for paypalClientMetadataId.
      * @param  prefer  String value for prefer.
+     * @param  paypalAuthAssertion  String value for paypalAuthAssertion.
      */
     public OrdersCreateInput(
             String contentType,
@@ -44,13 +46,15 @@ public class OrdersCreateInput {
             String paypalRequestId,
             String paypalPartnerAttributionId,
             String paypalClientMetadataId,
-            String prefer) {
+            String prefer,
+            String paypalAuthAssertion) {
         this.contentType = contentType;
         this.body = body;
         this.paypalRequestId = paypalRequestId;
         this.paypalPartnerAttributionId = paypalPartnerAttributionId;
         this.paypalClientMetadataId = paypalClientMetadataId;
         this.prefer = prefer;
+        this.paypalAuthAssertion = paypalAuthAssertion;
     }
 
     /**
@@ -92,7 +96,9 @@ public class OrdersCreateInput {
     /**
      * Getter for PaypalRequestId.
      * The server stores keys for 6 hours. The API callers can request the times to up to 72 hours
-     * by speaking to their Account Manager.
+     * by speaking to their Account Manager. It is mandatory for all single-step create order calls
+     * (E.g. Create Order Request with payment source information like Card, PayPal.vault_id,
+     * PayPal.billing_agreement_id, etc).
      * @return Returns the String
      */
     @JsonGetter("PayPal-Request-Id")
@@ -104,7 +110,9 @@ public class OrdersCreateInput {
     /**
      * Setter for PaypalRequestId.
      * The server stores keys for 6 hours. The API callers can request the times to up to 72 hours
-     * by speaking to their Account Manager.
+     * by speaking to their Account Manager. It is mandatory for all single-step create order calls
+     * (E.g. Create Order Request with payment source information like Card, PayPal.vault_id,
+     * PayPal.billing_agreement_id, etc).
      * @param paypalRequestId Value for String
      */
     @JsonSetter("PayPal-Request-Id")
@@ -182,6 +190,31 @@ public class OrdersCreateInput {
     }
 
     /**
+     * Getter for PaypalAuthAssertion.
+     * An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For
+     * details, see &lt;a
+     * href="https://developer.paypal.com/api/rest/requests/#paypal-auth-assertion"&gt;PayPal-Auth-Assertion&lt;/a&gt;.
+     * @return Returns the String
+     */
+    @JsonGetter("PayPal-Auth-Assertion")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public String getPaypalAuthAssertion() {
+        return paypalAuthAssertion;
+    }
+
+    /**
+     * Setter for PaypalAuthAssertion.
+     * An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For
+     * details, see &lt;a
+     * href="https://developer.paypal.com/api/rest/requests/#paypal-auth-assertion"&gt;PayPal-Auth-Assertion&lt;/a&gt;.
+     * @param paypalAuthAssertion Value for String
+     */
+    @JsonSetter("PayPal-Auth-Assertion")
+    public void setPaypalAuthAssertion(String paypalAuthAssertion) {
+        this.paypalAuthAssertion = paypalAuthAssertion;
+    }
+
+    /**
      * Converts this OrdersCreateInput into string format.
      * @return String representation of this class
      */
@@ -190,7 +223,7 @@ public class OrdersCreateInput {
         return "OrdersCreateInput [" + "contentType=" + contentType + ", body=" + body
                 + ", paypalRequestId=" + paypalRequestId + ", paypalPartnerAttributionId="
                 + paypalPartnerAttributionId + ", paypalClientMetadataId=" + paypalClientMetadataId
-                + ", prefer=" + prefer + "]";
+                + ", prefer=" + prefer + ", paypalAuthAssertion=" + paypalAuthAssertion + "]";
     }
 
     /**
@@ -203,7 +236,8 @@ public class OrdersCreateInput {
                 .paypalRequestId(getPaypalRequestId())
                 .paypalPartnerAttributionId(getPaypalPartnerAttributionId())
                 .paypalClientMetadataId(getPaypalClientMetadataId())
-                .prefer(getPrefer());
+                .prefer(getPrefer())
+                .paypalAuthAssertion(getPaypalAuthAssertion());
         return builder;
     }
 
@@ -217,6 +251,7 @@ public class OrdersCreateInput {
         private String paypalPartnerAttributionId;
         private String paypalClientMetadataId;
         private String prefer = "return=minimal";
+        private String paypalAuthAssertion;
 
         /**
          * Initialization constructor.
@@ -295,12 +330,23 @@ public class OrdersCreateInput {
         }
 
         /**
+         * Setter for paypalAuthAssertion.
+         * @param  paypalAuthAssertion  String value for paypalAuthAssertion.
+         * @return Builder
+         */
+        public Builder paypalAuthAssertion(String paypalAuthAssertion) {
+            this.paypalAuthAssertion = paypalAuthAssertion;
+            return this;
+        }
+
+        /**
          * Builds a new {@link OrdersCreateInput} object using the set fields.
          * @return {@link OrdersCreateInput}
          */
         public OrdersCreateInput build() {
             return new OrdersCreateInput(contentType, body, paypalRequestId,
-                    paypalPartnerAttributionId, paypalClientMetadataId, prefer);
+                    paypalPartnerAttributionId, paypalClientMetadataId, prefer,
+                    paypalAuthAssertion);
         }
     }
 }

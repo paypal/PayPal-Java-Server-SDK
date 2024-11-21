@@ -15,6 +15,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
  */
 public class OrdersGetInput {
     private String id;
+    private String paypalAuthAssertion;
     private String fields;
 
     /**
@@ -26,12 +27,15 @@ public class OrdersGetInput {
     /**
      * Initialization constructor.
      * @param  id  String value for id.
+     * @param  paypalAuthAssertion  String value for paypalAuthAssertion.
      * @param  fields  String value for fields.
      */
     public OrdersGetInput(
             String id,
+            String paypalAuthAssertion,
             String fields) {
         this.id = id;
+        this.paypalAuthAssertion = paypalAuthAssertion;
         this.fields = fields;
     }
 
@@ -53,6 +57,31 @@ public class OrdersGetInput {
     @JsonSetter("id")
     public void setId(String id) {
         this.id = id;
+    }
+
+    /**
+     * Getter for PaypalAuthAssertion.
+     * An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For
+     * details, see &lt;a
+     * href="https://developer.paypal.com/api/rest/requests/#paypal-auth-assertion"&gt;PayPal-Auth-Assertion&lt;/a&gt;.
+     * @return Returns the String
+     */
+    @JsonGetter("PayPal-Auth-Assertion")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public String getPaypalAuthAssertion() {
+        return paypalAuthAssertion;
+    }
+
+    /**
+     * Setter for PaypalAuthAssertion.
+     * An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For
+     * details, see &lt;a
+     * href="https://developer.paypal.com/api/rest/requests/#paypal-auth-assertion"&gt;PayPal-Auth-Assertion&lt;/a&gt;.
+     * @param paypalAuthAssertion Value for String
+     */
+    @JsonSetter("PayPal-Auth-Assertion")
+    public void setPaypalAuthAssertion(String paypalAuthAssertion) {
+        this.paypalAuthAssertion = paypalAuthAssertion;
     }
 
     /**
@@ -84,7 +113,8 @@ public class OrdersGetInput {
      */
     @Override
     public String toString() {
-        return "OrdersGetInput [" + "id=" + id + ", fields=" + fields + "]";
+        return "OrdersGetInput [" + "id=" + id + ", paypalAuthAssertion=" + paypalAuthAssertion
+                + ", fields=" + fields + "]";
     }
 
     /**
@@ -94,6 +124,7 @@ public class OrdersGetInput {
      */
     public Builder toBuilder() {
         Builder builder = new Builder(id)
+                .paypalAuthAssertion(getPaypalAuthAssertion())
                 .fields(getFields());
         return builder;
     }
@@ -103,6 +134,7 @@ public class OrdersGetInput {
      */
     public static class Builder {
         private String id;
+        private String paypalAuthAssertion;
         private String fields;
 
         /**
@@ -130,6 +162,16 @@ public class OrdersGetInput {
         }
 
         /**
+         * Setter for paypalAuthAssertion.
+         * @param  paypalAuthAssertion  String value for paypalAuthAssertion.
+         * @return Builder
+         */
+        public Builder paypalAuthAssertion(String paypalAuthAssertion) {
+            this.paypalAuthAssertion = paypalAuthAssertion;
+            return this;
+        }
+
+        /**
          * Setter for fields.
          * @param  fields  String value for fields.
          * @return Builder
@@ -144,7 +186,7 @@ public class OrdersGetInput {
          * @return {@link OrdersGetInput}
          */
         public OrdersGetInput build() {
-            return new OrdersGetInput(id, fields);
+            return new OrdersGetInput(id, paypalAuthAssertion, fields);
         }
     }
 }

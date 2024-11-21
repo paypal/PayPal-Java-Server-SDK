@@ -18,6 +18,7 @@ public class OrdersTrackersPatchInput {
     private String id;
     private String trackerId;
     private String contentType;
+    private String paypalAuthAssertion;
     private List<Patch> body;
 
     /**
@@ -32,16 +33,19 @@ public class OrdersTrackersPatchInput {
      * @param  id  String value for id.
      * @param  trackerId  String value for trackerId.
      * @param  contentType  String value for contentType.
+     * @param  paypalAuthAssertion  String value for paypalAuthAssertion.
      * @param  body  List of Patch value for body.
      */
     public OrdersTrackersPatchInput(
             String id,
             String trackerId,
             String contentType,
+            String paypalAuthAssertion,
             List<Patch> body) {
         this.id = id;
         this.trackerId = trackerId;
         this.contentType = contentType;
+        this.paypalAuthAssertion = paypalAuthAssertion;
         this.body = body;
     }
 
@@ -104,6 +108,31 @@ public class OrdersTrackersPatchInput {
     }
 
     /**
+     * Getter for PaypalAuthAssertion.
+     * An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For
+     * details, see &lt;a
+     * href="https://developer.paypal.com/api/rest/requests/#paypal-auth-assertion"&gt;PayPal-Auth-Assertion&lt;/a&gt;.
+     * @return Returns the String
+     */
+    @JsonGetter("PayPal-Auth-Assertion")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public String getPaypalAuthAssertion() {
+        return paypalAuthAssertion;
+    }
+
+    /**
+     * Setter for PaypalAuthAssertion.
+     * An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For
+     * details, see &lt;a
+     * href="https://developer.paypal.com/api/rest/requests/#paypal-auth-assertion"&gt;PayPal-Auth-Assertion&lt;/a&gt;.
+     * @param paypalAuthAssertion Value for String
+     */
+    @JsonSetter("PayPal-Auth-Assertion")
+    public void setPaypalAuthAssertion(String paypalAuthAssertion) {
+        this.paypalAuthAssertion = paypalAuthAssertion;
+    }
+
+    /**
      * Getter for Body.
      * @return Returns the List of Patch
      */
@@ -129,7 +158,8 @@ public class OrdersTrackersPatchInput {
     @Override
     public String toString() {
         return "OrdersTrackersPatchInput [" + "id=" + id + ", trackerId=" + trackerId
-                + ", contentType=" + contentType + ", body=" + body + "]";
+                + ", contentType=" + contentType + ", paypalAuthAssertion=" + paypalAuthAssertion
+                + ", body=" + body + "]";
     }
 
     /**
@@ -139,6 +169,7 @@ public class OrdersTrackersPatchInput {
      */
     public Builder toBuilder() {
         Builder builder = new Builder(id, trackerId, contentType)
+                .paypalAuthAssertion(getPaypalAuthAssertion())
                 .body(getBody());
         return builder;
     }
@@ -150,6 +181,7 @@ public class OrdersTrackersPatchInput {
         private String id;
         private String trackerId;
         private String contentType = "application/json";
+        private String paypalAuthAssertion;
         private List<Patch> body;
 
         /**
@@ -201,6 +233,16 @@ public class OrdersTrackersPatchInput {
         }
 
         /**
+         * Setter for paypalAuthAssertion.
+         * @param  paypalAuthAssertion  String value for paypalAuthAssertion.
+         * @return Builder
+         */
+        public Builder paypalAuthAssertion(String paypalAuthAssertion) {
+            this.paypalAuthAssertion = paypalAuthAssertion;
+            return this;
+        }
+
+        /**
          * Setter for body.
          * @param  body  List of Patch value for body.
          * @return Builder
@@ -215,7 +257,8 @@ public class OrdersTrackersPatchInput {
          * @return {@link OrdersTrackersPatchInput}
          */
         public OrdersTrackersPatchInput build() {
-            return new OrdersTrackersPatchInput(id, trackerId, contentType, body);
+            return new OrdersTrackersPatchInput(id, trackerId, contentType, paypalAuthAssertion,
+                    body);
         }
     }
 }

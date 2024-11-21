@@ -9,6 +9,7 @@ package com.paypal.sdk.models;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import com.paypal.sdk.utilities.JsonValue;
 import java.util.List;
 
 /**
@@ -20,7 +21,7 @@ public class Order {
     private String id;
     private PaymentSourceResponse paymentSource;
     private CheckoutPaymentIntent intent;
-    private ProcessingInstruction processingInstruction;
+    private JsonValue processingInstruction;
     private Payer payer;
     private List<PurchaseUnit> purchaseUnits;
     private OrderStatus status;
@@ -30,7 +31,6 @@ public class Order {
      * Default constructor.
      */
     public Order() {
-        processingInstruction = ProcessingInstruction.NO_INSTRUCTION;
     }
 
     /**
@@ -40,7 +40,7 @@ public class Order {
      * @param  id  String value for id.
      * @param  paymentSource  PaymentSourceResponse value for paymentSource.
      * @param  intent  CheckoutPaymentIntent value for intent.
-     * @param  processingInstruction  ProcessingInstruction value for processingInstruction.
+     * @param  processingInstruction  JsonValue value for processingInstruction.
      * @param  payer  Payer value for payer.
      * @param  purchaseUnits  List of PurchaseUnit value for purchaseUnits.
      * @param  status  OrderStatus value for status.
@@ -52,7 +52,7 @@ public class Order {
             String id,
             PaymentSourceResponse paymentSource,
             CheckoutPaymentIntent intent,
-            ProcessingInstruction processingInstruction,
+            JsonValue processingInstruction,
             Payer payer,
             List<PurchaseUnit> purchaseUnits,
             OrderStatus status,
@@ -190,22 +190,20 @@ public class Order {
 
     /**
      * Getter for ProcessingInstruction.
-     * The instruction to process an order.
-     * @return Returns the ProcessingInstruction
+     * @return Returns the JsonValue
      */
     @JsonGetter("processing_instruction")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public ProcessingInstruction getProcessingInstruction() {
+    public JsonValue getProcessingInstruction() {
         return processingInstruction;
     }
 
     /**
      * Setter for ProcessingInstruction.
-     * The instruction to process an order.
-     * @param processingInstruction Value for ProcessingInstruction
+     * @param processingInstruction Value for JsonValue
      */
     @JsonSetter("processing_instruction")
-    public void setProcessingInstruction(ProcessingInstruction processingInstruction) {
+    public void setProcessingInstruction(JsonValue processingInstruction) {
         this.processingInstruction = processingInstruction;
     }
 
@@ -277,9 +275,9 @@ public class Order {
     /**
      * Getter for Links.
      * An array of request-related HATEOAS links. To complete payer approval, use the `approve` link
-     * to redirect the payer. The API caller has 3 hours (default setting, this which can be changed
+     * to redirect the payer. The API caller has 6 hours (default setting, this which can be changed
      * by your account manager to 24/48/72 hours to accommodate your use case) from the time the
-     * order is created, to redirect your payer. Once redirected, the API caller has 3 hours for the
+     * order is created, to redirect your payer. Once redirected, the API caller has 6 hours for the
      * payer to approve the order and either authorize or capture the order. If you are not using
      * the PayPal JavaScript SDK to initiate PayPal Checkout (in context) ensure that you include
      * `application_context.return_url` is specified or you will get "We're sorry, Things don't
@@ -295,9 +293,9 @@ public class Order {
     /**
      * Setter for Links.
      * An array of request-related HATEOAS links. To complete payer approval, use the `approve` link
-     * to redirect the payer. The API caller has 3 hours (default setting, this which can be changed
+     * to redirect the payer. The API caller has 6 hours (default setting, this which can be changed
      * by your account manager to 24/48/72 hours to accommodate your use case) from the time the
-     * order is created, to redirect your payer. Once redirected, the API caller has 3 hours for the
+     * order is created, to redirect your payer. Once redirected, the API caller has 6 hours for the
      * payer to approve the order and either authorize or capture the order. If you are not using
      * the PayPal JavaScript SDK to initiate PayPal Checkout (in context) ensure that you include
      * `application_context.return_url` is specified or you will get "We're sorry, Things don't
@@ -351,7 +349,7 @@ public class Order {
         private String id;
         private PaymentSourceResponse paymentSource;
         private CheckoutPaymentIntent intent;
-        private ProcessingInstruction processingInstruction = ProcessingInstruction.NO_INSTRUCTION;
+        private JsonValue processingInstruction;
         private Payer payer;
         private List<PurchaseUnit> purchaseUnits;
         private OrderStatus status;
@@ -411,10 +409,10 @@ public class Order {
 
         /**
          * Setter for processingInstruction.
-         * @param  processingInstruction  ProcessingInstruction value for processingInstruction.
+         * @param  processingInstruction  JsonValue value for processingInstruction.
          * @return Builder
          */
-        public Builder processingInstruction(ProcessingInstruction processingInstruction) {
+        public Builder processingInstruction(JsonValue processingInstruction) {
             this.processingInstruction = processingInstruction;
             return this;
         }

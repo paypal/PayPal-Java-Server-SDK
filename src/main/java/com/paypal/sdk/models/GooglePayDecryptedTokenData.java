@@ -17,6 +17,7 @@ public class GooglePayDecryptedTokenData {
     private String messageId;
     private String messageExpiration;
     private GooglePayPaymentMethod paymentMethod;
+    private GooglePayCard card;
     private GooglePayAuthenticationMethod authenticationMethod;
     private String cryptogram;
     private String eciIndicator;
@@ -30,6 +31,7 @@ public class GooglePayDecryptedTokenData {
     /**
      * Initialization constructor.
      * @param  paymentMethod  GooglePayPaymentMethod value for paymentMethod.
+     * @param  card  GooglePayCard value for card.
      * @param  authenticationMethod  GooglePayAuthenticationMethod value for authenticationMethod.
      * @param  messageId  String value for messageId.
      * @param  messageExpiration  String value for messageExpiration.
@@ -38,6 +40,7 @@ public class GooglePayDecryptedTokenData {
      */
     public GooglePayDecryptedTokenData(
             GooglePayPaymentMethod paymentMethod,
+            GooglePayCard card,
             GooglePayAuthenticationMethod authenticationMethod,
             String messageId,
             String messageExpiration,
@@ -46,6 +49,7 @@ public class GooglePayDecryptedTokenData {
         this.messageId = messageId;
         this.messageExpiration = messageExpiration;
         this.paymentMethod = paymentMethod;
+        this.card = card;
         this.authenticationMethod = authenticationMethod;
         this.cryptogram = cryptogram;
         this.eciIndicator = eciIndicator;
@@ -115,6 +119,26 @@ public class GooglePayDecryptedTokenData {
     @JsonSetter("payment_method")
     public void setPaymentMethod(GooglePayPaymentMethod paymentMethod) {
         this.paymentMethod = paymentMethod;
+    }
+
+    /**
+     * Getter for Card.
+     * The payment card used to fund a Google Pay payment. Can be a credit or debit card.
+     * @return Returns the GooglePayCard
+     */
+    @JsonGetter("card")
+    public GooglePayCard getCard() {
+        return card;
+    }
+
+    /**
+     * Setter for Card.
+     * The payment card used to fund a Google Pay payment. Can be a credit or debit card.
+     * @param card Value for GooglePayCard
+     */
+    @JsonSetter("card")
+    public void setCard(GooglePayCard card) {
+        this.card = card;
     }
 
     /**
@@ -189,7 +213,7 @@ public class GooglePayDecryptedTokenData {
      */
     @Override
     public String toString() {
-        return "GooglePayDecryptedTokenData [" + "paymentMethod=" + paymentMethod
+        return "GooglePayDecryptedTokenData [" + "paymentMethod=" + paymentMethod + ", card=" + card
                 + ", authenticationMethod=" + authenticationMethod + ", messageId=" + messageId
                 + ", messageExpiration=" + messageExpiration + ", cryptogram=" + cryptogram
                 + ", eciIndicator=" + eciIndicator + "]";
@@ -201,7 +225,7 @@ public class GooglePayDecryptedTokenData {
      * @return a new {@link GooglePayDecryptedTokenData.Builder} object
      */
     public Builder toBuilder() {
-        Builder builder = new Builder(paymentMethod, authenticationMethod)
+        Builder builder = new Builder(paymentMethod, card, authenticationMethod)
                 .messageId(getMessageId())
                 .messageExpiration(getMessageExpiration())
                 .cryptogram(getCryptogram())
@@ -214,6 +238,7 @@ public class GooglePayDecryptedTokenData {
      */
     public static class Builder {
         private GooglePayPaymentMethod paymentMethod;
+        private GooglePayCard card;
         private GooglePayAuthenticationMethod authenticationMethod;
         private String messageId;
         private String messageExpiration;
@@ -229,12 +254,14 @@ public class GooglePayDecryptedTokenData {
         /**
          * Initialization constructor.
          * @param  paymentMethod  GooglePayPaymentMethod value for paymentMethod.
+         * @param  card  GooglePayCard value for card.
          * @param  authenticationMethod  GooglePayAuthenticationMethod value for
          *         authenticationMethod.
          */
-        public Builder(GooglePayPaymentMethod paymentMethod,
+        public Builder(GooglePayPaymentMethod paymentMethod, GooglePayCard card,
                 GooglePayAuthenticationMethod authenticationMethod) {
             this.paymentMethod = paymentMethod;
+            this.card = card;
             this.authenticationMethod = authenticationMethod;
         }
 
@@ -245,6 +272,16 @@ public class GooglePayDecryptedTokenData {
          */
         public Builder paymentMethod(GooglePayPaymentMethod paymentMethod) {
             this.paymentMethod = paymentMethod;
+            return this;
+        }
+
+        /**
+         * Setter for card.
+         * @param  card  GooglePayCard value for card.
+         * @return Builder
+         */
+        public Builder card(GooglePayCard card) {
+            this.card = card;
             return this;
         }
 
@@ -304,8 +341,8 @@ public class GooglePayDecryptedTokenData {
          * @return {@link GooglePayDecryptedTokenData}
          */
         public GooglePayDecryptedTokenData build() {
-            return new GooglePayDecryptedTokenData(paymentMethod, authenticationMethod, messageId,
-                    messageExpiration, cryptogram, eciIndicator);
+            return new GooglePayDecryptedTokenData(paymentMethod, card, authenticationMethod,
+                    messageId, messageExpiration, cryptogram, eciIndicator);
         }
     }
 }

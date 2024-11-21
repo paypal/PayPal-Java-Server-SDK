@@ -9,6 +9,7 @@ package com.paypal.sdk.models;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import com.paypal.sdk.utilities.JsonValue;
 import java.util.List;
 
 /**
@@ -20,7 +21,7 @@ public class OrderAuthorizeResponse {
     private String id;
     private OrderAuthorizeResponsePaymentSource paymentSource;
     private CheckoutPaymentIntent intent;
-    private ProcessingInstruction processingInstruction;
+    private JsonValue processingInstruction;
     private Payer payer;
     private List<PurchaseUnit> purchaseUnits;
     private OrderStatus status;
@@ -30,7 +31,6 @@ public class OrderAuthorizeResponse {
      * Default constructor.
      */
     public OrderAuthorizeResponse() {
-        processingInstruction = ProcessingInstruction.NO_INSTRUCTION;
     }
 
     /**
@@ -40,7 +40,7 @@ public class OrderAuthorizeResponse {
      * @param  id  String value for id.
      * @param  paymentSource  OrderAuthorizeResponsePaymentSource value for paymentSource.
      * @param  intent  CheckoutPaymentIntent value for intent.
-     * @param  processingInstruction  ProcessingInstruction value for processingInstruction.
+     * @param  processingInstruction  JsonValue value for processingInstruction.
      * @param  payer  Payer value for payer.
      * @param  purchaseUnits  List of PurchaseUnit value for purchaseUnits.
      * @param  status  OrderStatus value for status.
@@ -52,7 +52,7 @@ public class OrderAuthorizeResponse {
             String id,
             OrderAuthorizeResponsePaymentSource paymentSource,
             CheckoutPaymentIntent intent,
-            ProcessingInstruction processingInstruction,
+            JsonValue processingInstruction,
             Payer payer,
             List<PurchaseUnit> purchaseUnits,
             OrderStatus status,
@@ -190,22 +190,20 @@ public class OrderAuthorizeResponse {
 
     /**
      * Getter for ProcessingInstruction.
-     * The instruction to process an order.
-     * @return Returns the ProcessingInstruction
+     * @return Returns the JsonValue
      */
     @JsonGetter("processing_instruction")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public ProcessingInstruction getProcessingInstruction() {
+    public JsonValue getProcessingInstruction() {
         return processingInstruction;
     }
 
     /**
      * Setter for ProcessingInstruction.
-     * The instruction to process an order.
-     * @param processingInstruction Value for ProcessingInstruction
+     * @param processingInstruction Value for JsonValue
      */
     @JsonSetter("processing_instruction")
-    public void setProcessingInstruction(ProcessingInstruction processingInstruction) {
+    public void setProcessingInstruction(JsonValue processingInstruction) {
         this.processingInstruction = processingInstruction;
     }
 
@@ -341,7 +339,7 @@ public class OrderAuthorizeResponse {
         private String id;
         private OrderAuthorizeResponsePaymentSource paymentSource;
         private CheckoutPaymentIntent intent;
-        private ProcessingInstruction processingInstruction = ProcessingInstruction.NO_INSTRUCTION;
+        private JsonValue processingInstruction;
         private Payer payer;
         private List<PurchaseUnit> purchaseUnits;
         private OrderStatus status;
@@ -401,10 +399,10 @@ public class OrderAuthorizeResponse {
 
         /**
          * Setter for processingInstruction.
-         * @param  processingInstruction  ProcessingInstruction value for processingInstruction.
+         * @param  processingInstruction  JsonValue value for processingInstruction.
          * @return Builder
          */
-        public Builder processingInstruction(ProcessingInstruction processingInstruction) {
+        public Builder processingInstruction(JsonValue processingInstruction) {
             this.processingInstruction = processingInstruction;
             return this;
         }

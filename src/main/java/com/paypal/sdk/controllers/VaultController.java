@@ -41,6 +41,78 @@ public final class VaultController extends BaseController {
     }
 
     /**
+     * Creates a Payment Token from the given payment source and adds it to the Vault of the
+     * associated customer.
+     * @param  input  PaymentTokensCreateInput object containing request parameters
+     * @return    Returns the PaymentTokenResponse wrapped in ApiResponse response from the API call
+     * @throws    ApiException    Represents error response from the server.
+     * @throws    IOException    Signals that an I/O exception of some sort has occurred.
+     */
+    public ApiResponse<PaymentTokenResponse> paymentTokensCreate(
+            final PaymentTokensCreateInput input) throws ApiException, IOException {
+        return preparePaymentTokensCreateRequest(input).execute();
+    }
+
+    /**
+     * Creates a Payment Token from the given payment source and adds it to the Vault of the
+     * associated customer.
+     * @param  input  PaymentTokensCreateInput object containing request parameters
+     * @return    Returns the PaymentTokenResponse wrapped in ApiResponse response from the API call
+     */
+    public CompletableFuture<ApiResponse<PaymentTokenResponse>> paymentTokensCreateAsync(
+            final PaymentTokensCreateInput input) {
+        try { 
+            return preparePaymentTokensCreateRequest(input).executeAsync(); 
+        } catch (Exception e) {  
+            throw new CompletionException(e); 
+        }
+    }
+
+    /**
+     * Builds the ApiCall object for paymentTokensCreate.
+     */
+    private ApiCall<ApiResponse<PaymentTokenResponse>, ApiException> preparePaymentTokensCreateRequest(
+            final PaymentTokensCreateInput input) throws JsonProcessingException, IOException {
+        return new ApiCall.Builder<ApiResponse<PaymentTokenResponse>, ApiException>()
+                .globalConfig(getGlobalConfiguration())
+                .requestBuilder(requestBuilder -> requestBuilder
+                        .server(Server.ENUM_DEFAULT.value())
+                        .path("/v3/vault/payment-tokens")
+                        .bodyParam(param -> param.value(input.getBody()))
+                        .bodySerializer(() ->  ApiHelper.serialize(input.getBody()))
+                        .headerParam(param -> param.key("PayPal-Request-Id")
+                                .value(input.getPaypalRequestId()).isRequired(false))
+                        .headerParam(param -> param.key("Content-Type")
+                                .value("application/json").isRequired(false))
+                        .headerParam(param -> param.key("accept").value("application/json"))
+                        .withAuth(auth -> auth
+                                .add("Oauth2"))
+                        .httpMethod(HttpMethod.POST))
+                .responseHandler(responseHandler -> responseHandler
+                        .responseClassType(ResponseClassType.API_RESPONSE)
+                        .apiResponseDeserializer(
+                                response -> ApiHelper.deserialize(response, PaymentTokenResponse.class))
+                        .nullify404(false)
+                        .localErrorCase("400",
+                                 ErrorCase.setReason("Request is not well-formed, syntactically incorrect, or violates schema.",
+                                (reason, context) -> new ErrorException(reason, context)))
+                        .localErrorCase("403",
+                                 ErrorCase.setReason("Authorization failed due to insufficient permissions.",
+                                (reason, context) -> new ErrorException(reason, context)))
+                        .localErrorCase("404",
+                                 ErrorCase.setReason("Request contains reference to resources that do not exist.",
+                                (reason, context) -> new ErrorException(reason, context)))
+                        .localErrorCase("422",
+                                 ErrorCase.setReason("The requested action could not be performed, semantically incorrect, or failed business validation.",
+                                (reason, context) -> new ErrorException(reason, context)))
+                        .localErrorCase("500",
+                                 ErrorCase.setReason("An internal server error has occurred.",
+                                (reason, context) -> new ErrorException(reason, context)))
+                        .globalErrorCase(GLOBAL_ERROR_CASES))
+                .build();
+    }
+
+    /**
      * Returns all payment tokens for a customer.
      * @param  input  CustomerPaymentTokensGetInput object containing request parameters
      * @return    Returns the CustomerVaultPaymentTokensResponse wrapped in ApiResponse response from the API call
@@ -172,69 +244,53 @@ public final class VaultController extends BaseController {
     }
 
     /**
-     * Creates a Payment Token from the given payment source and adds it to the Vault of the
-     * associated customer.
-     * @param  input  PaymentTokensCreateInput object containing request parameters
-     * @return    Returns the PaymentTokenResponse wrapped in ApiResponse response from the API call
+     * Delete the payment token associated with the payment token id.
+     * @param  id  Required parameter: ID of the payment token.
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
-    public ApiResponse<PaymentTokenResponse> paymentTokensCreate(
-            final PaymentTokensCreateInput input) throws ApiException, IOException {
-        return preparePaymentTokensCreateRequest(input).execute();
+    public ApiResponse<Void> paymentTokensDelete(
+            final String id) throws ApiException, IOException {
+        return preparePaymentTokensDeleteRequest(id).execute();
     }
 
     /**
-     * Creates a Payment Token from the given payment source and adds it to the Vault of the
-     * associated customer.
-     * @param  input  PaymentTokensCreateInput object containing request parameters
-     * @return    Returns the PaymentTokenResponse wrapped in ApiResponse response from the API call
+     * Delete the payment token associated with the payment token id.
+     * @param  id  Required parameter: ID of the payment token.
+     * @return    Returns the Void wrapped in ApiResponse response from the API call
      */
-    public CompletableFuture<ApiResponse<PaymentTokenResponse>> paymentTokensCreateAsync(
-            final PaymentTokensCreateInput input) {
+    public CompletableFuture<ApiResponse<Void>> paymentTokensDeleteAsync(
+            final String id) {
         try { 
-            return preparePaymentTokensCreateRequest(input).executeAsync(); 
+            return preparePaymentTokensDeleteRequest(id).executeAsync(); 
         } catch (Exception e) {  
             throw new CompletionException(e); 
         }
     }
 
     /**
-     * Builds the ApiCall object for paymentTokensCreate.
+     * Builds the ApiCall object for paymentTokensDelete.
      */
-    private ApiCall<ApiResponse<PaymentTokenResponse>, ApiException> preparePaymentTokensCreateRequest(
-            final PaymentTokensCreateInput input) throws JsonProcessingException, IOException {
-        return new ApiCall.Builder<ApiResponse<PaymentTokenResponse>, ApiException>()
+    private ApiCall<ApiResponse<Void>, ApiException> preparePaymentTokensDeleteRequest(
+            final String id) throws IOException {
+        return new ApiCall.Builder<ApiResponse<Void>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder
                         .server(Server.ENUM_DEFAULT.value())
-                        .path("/v3/vault/payment-tokens")
-                        .bodyParam(param -> param.value(input.getBody()))
-                        .bodySerializer(() ->  ApiHelper.serialize(input.getBody()))
-                        .headerParam(param -> param.key("PayPal-Request-Id")
-                                .value(input.getPaypalRequestId()).isRequired(false))
-                        .headerParam(param -> param.key("Content-Type")
-                                .value("application/json").isRequired(false))
-                        .headerParam(param -> param.key("accept").value("application/json"))
+                        .path("/v3/vault/payment-tokens/{id}")
+                        .templateParam(param -> param.key("id").value(id)
+                                .shouldEncode(true))
                         .withAuth(auth -> auth
                                 .add("Oauth2"))
-                        .httpMethod(HttpMethod.POST))
+                        .httpMethod(HttpMethod.DELETE))
                 .responseHandler(responseHandler -> responseHandler
                         .responseClassType(ResponseClassType.API_RESPONSE)
-                        .apiResponseDeserializer(
-                                response -> ApiHelper.deserialize(response, PaymentTokenResponse.class))
                         .nullify404(false)
                         .localErrorCase("400",
                                  ErrorCase.setReason("Request is not well-formed, syntactically incorrect, or violates schema.",
                                 (reason, context) -> new ErrorException(reason, context)))
                         .localErrorCase("403",
                                  ErrorCase.setReason("Authorization failed due to insufficient permissions.",
-                                (reason, context) -> new ErrorException(reason, context)))
-                        .localErrorCase("404",
-                                 ErrorCase.setReason("Request contains reference to resources that do not exist.",
-                                (reason, context) -> new ErrorException(reason, context)))
-                        .localErrorCase("422",
-                                 ErrorCase.setReason("The requested action could not be performed, semantically incorrect, or failed business validation.",
                                 (reason, context) -> new ErrorException(reason, context)))
                         .localErrorCase("500",
                                  ErrorCase.setReason("An internal server error has occurred.",
@@ -304,62 +360,6 @@ public final class VaultController extends BaseController {
                                 (reason, context) -> new ErrorException(reason, context)))
                         .localErrorCase("422",
                                  ErrorCase.setReason("The requested action could not be performed, semantically incorrect, or failed business validation.",
-                                (reason, context) -> new ErrorException(reason, context)))
-                        .localErrorCase("500",
-                                 ErrorCase.setReason("An internal server error has occurred.",
-                                (reason, context) -> new ErrorException(reason, context)))
-                        .globalErrorCase(GLOBAL_ERROR_CASES))
-                .build();
-    }
-
-    /**
-     * Delete the payment token associated with the payment token id.
-     * @param  id  Required parameter: ID of the payment token.
-     * @throws    ApiException    Represents error response from the server.
-     * @throws    IOException    Signals that an I/O exception of some sort has occurred.
-     */
-    public ApiResponse<Void> paymentTokensDelete(
-            final String id) throws ApiException, IOException {
-        return preparePaymentTokensDeleteRequest(id).execute();
-    }
-
-    /**
-     * Delete the payment token associated with the payment token id.
-     * @param  id  Required parameter: ID of the payment token.
-     * @return    Returns the Void wrapped in ApiResponse response from the API call
-     */
-    public CompletableFuture<ApiResponse<Void>> paymentTokensDeleteAsync(
-            final String id) {
-        try { 
-            return preparePaymentTokensDeleteRequest(id).executeAsync(); 
-        } catch (Exception e) {  
-            throw new CompletionException(e); 
-        }
-    }
-
-    /**
-     * Builds the ApiCall object for paymentTokensDelete.
-     */
-    private ApiCall<ApiResponse<Void>, ApiException> preparePaymentTokensDeleteRequest(
-            final String id) throws IOException {
-        return new ApiCall.Builder<ApiResponse<Void>, ApiException>()
-                .globalConfig(getGlobalConfiguration())
-                .requestBuilder(requestBuilder -> requestBuilder
-                        .server(Server.ENUM_DEFAULT.value())
-                        .path("/v3/vault/payment-tokens/{id}")
-                        .templateParam(param -> param.key("id").value(id)
-                                .shouldEncode(true))
-                        .withAuth(auth -> auth
-                                .add("Oauth2"))
-                        .httpMethod(HttpMethod.DELETE))
-                .responseHandler(responseHandler -> responseHandler
-                        .responseClassType(ResponseClassType.API_RESPONSE)
-                        .nullify404(false)
-                        .localErrorCase("400",
-                                 ErrorCase.setReason("Request is not well-formed, syntactically incorrect, or violates schema.",
-                                (reason, context) -> new ErrorException(reason, context)))
-                        .localErrorCase("403",
-                                 ErrorCase.setReason("Authorization failed due to insufficient permissions.",
                                 (reason, context) -> new ErrorException(reason, context)))
                         .localErrorCase("500",
                                  ErrorCase.setReason("An internal server error has occurred.",

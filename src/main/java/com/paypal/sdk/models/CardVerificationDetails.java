@@ -9,6 +9,7 @@ package com.paypal.sdk.models;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import com.paypal.sdk.utilities.JsonValue;
 
 /**
  * This is a model class for CardVerificationDetails type.
@@ -20,6 +21,7 @@ public class CardVerificationDetails {
     private String time;
     private Money amount;
     private CardVerificationProcessorResponse processorResponse;
+    private JsonValue threeDSecure;
 
     /**
      * Default constructor.
@@ -35,6 +37,7 @@ public class CardVerificationDetails {
      * @param  time  String value for time.
      * @param  amount  Money value for amount.
      * @param  processorResponse  CardVerificationProcessorResponse value for processorResponse.
+     * @param  threeDSecure  JsonValue value for threeDSecure.
      */
     public CardVerificationDetails(
             String networkTransactionId,
@@ -42,13 +45,15 @@ public class CardVerificationDetails {
             CardBrand network,
             String time,
             Money amount,
-            CardVerificationProcessorResponse processorResponse) {
+            CardVerificationProcessorResponse processorResponse,
+            JsonValue threeDSecure) {
         this.networkTransactionId = networkTransactionId;
         this.date = date;
         this.network = network;
         this.time = time;
         this.amount = amount;
         this.processorResponse = processorResponse;
+        this.threeDSecure = threeDSecure;
     }
 
     /**
@@ -190,6 +195,31 @@ public class CardVerificationDetails {
     }
 
     /**
+     * Getter for ThreeDSecure.
+     * DEPRECATED. This field is DEPRECATED. Please find the 3D secure authentication data in
+     * 'three_d_secure' object under 'authentication_result' object instead of the 'verification'
+     * field.
+     * @return Returns the JsonValue
+     */
+    @JsonGetter("three_d_secure")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public JsonValue getThreeDSecure() {
+        return threeDSecure;
+    }
+
+    /**
+     * Setter for ThreeDSecure.
+     * DEPRECATED. This field is DEPRECATED. Please find the 3D secure authentication data in
+     * 'three_d_secure' object under 'authentication_result' object instead of the 'verification'
+     * field.
+     * @param threeDSecure Value for JsonValue
+     */
+    @JsonSetter("three_d_secure")
+    public void setThreeDSecure(JsonValue threeDSecure) {
+        this.threeDSecure = threeDSecure;
+    }
+
+    /**
      * Converts this CardVerificationDetails into string format.
      * @return String representation of this class
      */
@@ -197,7 +227,8 @@ public class CardVerificationDetails {
     public String toString() {
         return "CardVerificationDetails [" + "networkTransactionId=" + networkTransactionId
                 + ", date=" + date + ", network=" + network + ", time=" + time + ", amount="
-                + amount + ", processorResponse=" + processorResponse + "]";
+                + amount + ", processorResponse=" + processorResponse + ", threeDSecure="
+                + threeDSecure + "]";
     }
 
     /**
@@ -212,7 +243,8 @@ public class CardVerificationDetails {
                 .network(getNetwork())
                 .time(getTime())
                 .amount(getAmount())
-                .processorResponse(getProcessorResponse());
+                .processorResponse(getProcessorResponse())
+                .threeDSecure(getThreeDSecure());
         return builder;
     }
 
@@ -226,6 +258,7 @@ public class CardVerificationDetails {
         private String time;
         private Money amount;
         private CardVerificationProcessorResponse processorResponse;
+        private JsonValue threeDSecure;
 
 
 
@@ -290,12 +323,22 @@ public class CardVerificationDetails {
         }
 
         /**
+         * Setter for threeDSecure.
+         * @param  threeDSecure  JsonValue value for threeDSecure.
+         * @return Builder
+         */
+        public Builder threeDSecure(JsonValue threeDSecure) {
+            this.threeDSecure = threeDSecure;
+            return this;
+        }
+
+        /**
          * Builds a new {@link CardVerificationDetails} object using the set fields.
          * @return {@link CardVerificationDetails}
          */
         public CardVerificationDetails build() {
             return new CardVerificationDetails(networkTransactionId, date, network, time, amount,
-                    processorResponse);
+                    processorResponse, threeDSecure);
         }
     }
 }

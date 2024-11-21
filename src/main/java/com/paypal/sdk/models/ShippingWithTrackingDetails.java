@@ -17,7 +17,7 @@ import java.util.List;
 public class ShippingWithTrackingDetails {
     private ShippingName name;
     private PhoneNumberWithCountryCode phoneNumber;
-    private FullfillmentType type;
+    private FulfillmentType type;
     private List<ShippingOption> options;
     private Address address;
     private List<OrderTrackerResponse> trackers;
@@ -32,7 +32,7 @@ public class ShippingWithTrackingDetails {
      * Initialization constructor.
      * @param  name  ShippingName value for name.
      * @param  phoneNumber  PhoneNumberWithCountryCode value for phoneNumber.
-     * @param  type  FullfillmentType value for type.
+     * @param  type  FulfillmentType value for type.
      * @param  options  List of ShippingOption value for options.
      * @param  address  Address value for address.
      * @param  trackers  List of OrderTrackerResponse value for trackers.
@@ -40,7 +40,7 @@ public class ShippingWithTrackingDetails {
     public ShippingWithTrackingDetails(
             ShippingName name,
             PhoneNumberWithCountryCode phoneNumber,
-            FullfillmentType type,
+            FulfillmentType type,
             List<ShippingOption> options,
             Address address,
             List<OrderTrackerResponse> trackers) {
@@ -100,11 +100,11 @@ public class ShippingWithTrackingDetails {
      * Getter for Type.
      * A classification for the method of purchase fulfillment (e.g shipping, in-store pickup, etc).
      * Either `type` or `options` may be present, but not both.
-     * @return Returns the FullfillmentType
+     * @return Returns the FulfillmentType
      */
     @JsonGetter("type")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public FullfillmentType getType() {
+    public FulfillmentType getType() {
         return type;
     }
 
@@ -112,10 +112,10 @@ public class ShippingWithTrackingDetails {
      * Setter for Type.
      * A classification for the method of purchase fulfillment (e.g shipping, in-store pickup, etc).
      * Either `type` or `options` may be present, but not both.
-     * @param type Value for FullfillmentType
+     * @param type Value for FulfillmentType
      */
     @JsonSetter("type")
-    public void setType(FullfillmentType type) {
+    public void setType(FulfillmentType type) {
         this.type = type;
     }
 
@@ -223,7 +223,7 @@ public class ShippingWithTrackingDetails {
     public static class Builder {
         private ShippingName name;
         private PhoneNumberWithCountryCode phoneNumber;
-        private FullfillmentType type;
+        private FulfillmentType type;
         private List<ShippingOption> options;
         private Address address;
         private List<OrderTrackerResponse> trackers;
@@ -252,10 +252,10 @@ public class ShippingWithTrackingDetails {
 
         /**
          * Setter for type.
-         * @param  type  FullfillmentType value for type.
+         * @param  type  FulfillmentType value for type.
          * @return Builder
          */
-        public Builder type(FullfillmentType type) {
+        public Builder type(FulfillmentType type) {
             this.type = type;
             return this;
         }

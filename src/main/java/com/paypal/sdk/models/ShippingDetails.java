@@ -17,7 +17,7 @@ import java.util.List;
 public class ShippingDetails {
     private ShippingName name;
     private PhoneNumberWithCountryCode phoneNumber;
-    private FullfillmentType type;
+    private FulfillmentType type;
     private List<ShippingOption> options;
     private Address address;
 
@@ -31,14 +31,14 @@ public class ShippingDetails {
      * Initialization constructor.
      * @param  name  ShippingName value for name.
      * @param  phoneNumber  PhoneNumberWithCountryCode value for phoneNumber.
-     * @param  type  FullfillmentType value for type.
+     * @param  type  FulfillmentType value for type.
      * @param  options  List of ShippingOption value for options.
      * @param  address  Address value for address.
      */
     public ShippingDetails(
             ShippingName name,
             PhoneNumberWithCountryCode phoneNumber,
-            FullfillmentType type,
+            FulfillmentType type,
             List<ShippingOption> options,
             Address address) {
         this.name = name;
@@ -96,11 +96,11 @@ public class ShippingDetails {
      * Getter for Type.
      * A classification for the method of purchase fulfillment (e.g shipping, in-store pickup, etc).
      * Either `type` or `options` may be present, but not both.
-     * @return Returns the FullfillmentType
+     * @return Returns the FulfillmentType
      */
     @JsonGetter("type")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public FullfillmentType getType() {
+    public FulfillmentType getType() {
         return type;
     }
 
@@ -108,10 +108,10 @@ public class ShippingDetails {
      * Setter for Type.
      * A classification for the method of purchase fulfillment (e.g shipping, in-store pickup, etc).
      * Either `type` or `options` may be present, but not both.
-     * @param type Value for FullfillmentType
+     * @param type Value for FulfillmentType
      */
     @JsonSetter("type")
-    public void setType(FullfillmentType type) {
+    public void setType(FulfillmentType type) {
         this.type = type;
     }
 
@@ -196,7 +196,7 @@ public class ShippingDetails {
     public static class Builder {
         private ShippingName name;
         private PhoneNumberWithCountryCode phoneNumber;
-        private FullfillmentType type;
+        private FulfillmentType type;
         private List<ShippingOption> options;
         private Address address;
 
@@ -224,10 +224,10 @@ public class ShippingDetails {
 
         /**
          * Setter for type.
-         * @param  type  FullfillmentType value for type.
+         * @param  type  FulfillmentType value for type.
          * @return Builder
          */
-        public Builder type(FullfillmentType type) {
+        public Builder type(FulfillmentType type) {
             this.type = type;
             return this;
         }

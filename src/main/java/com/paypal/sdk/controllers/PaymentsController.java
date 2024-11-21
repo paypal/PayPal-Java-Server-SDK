@@ -14,12 +14,14 @@ import com.paypal.sdk.exceptions.ErrorException;
 import com.paypal.sdk.http.request.HttpMethod;
 import com.paypal.sdk.http.response.ApiResponse;
 import com.paypal.sdk.models.AuthorizationsCaptureInput;
+import com.paypal.sdk.models.AuthorizationsGetInput;
 import com.paypal.sdk.models.AuthorizationsReauthorizeInput;
 import com.paypal.sdk.models.AuthorizationsVoidInput;
 import com.paypal.sdk.models.CapturedPayment;
 import com.paypal.sdk.models.CapturesRefundInput;
 import com.paypal.sdk.models.PaymentAuthorization;
 import com.paypal.sdk.models.Refund;
+import com.paypal.sdk.models.RefundsGetInput;
 import io.apimatic.core.ApiCall;
 import io.apimatic.core.ErrorCase;
 import io.apimatic.core.GlobalConfiguration;
@@ -43,27 +45,25 @@ public final class PaymentsController extends BaseController {
 
     /**
      * Shows details for an authorized payment, by ID.
-     * @param  authorizationId  Required parameter: The ID of the authorized payment for which to
-     *         show details.
+     * @param  input  AuthorizationsGetInput object containing request parameters
      * @return    Returns the PaymentAuthorization wrapped in ApiResponse response from the API call
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
     public ApiResponse<PaymentAuthorization> authorizationsGet(
-            final String authorizationId) throws ApiException, IOException {
-        return prepareAuthorizationsGetRequest(authorizationId).execute();
+            final AuthorizationsGetInput input) throws ApiException, IOException {
+        return prepareAuthorizationsGetRequest(input).execute();
     }
 
     /**
      * Shows details for an authorized payment, by ID.
-     * @param  authorizationId  Required parameter: The ID of the authorized payment for which to
-     *         show details.
+     * @param  input  AuthorizationsGetInput object containing request parameters
      * @return    Returns the PaymentAuthorization wrapped in ApiResponse response from the API call
      */
     public CompletableFuture<ApiResponse<PaymentAuthorization>> authorizationsGetAsync(
-            final String authorizationId) {
+            final AuthorizationsGetInput input) {
         try { 
-            return prepareAuthorizationsGetRequest(authorizationId).executeAsync(); 
+            return prepareAuthorizationsGetRequest(input).executeAsync(); 
         } catch (Exception e) {  
             throw new CompletionException(e); 
         }
@@ -73,14 +73,16 @@ public final class PaymentsController extends BaseController {
      * Builds the ApiCall object for authorizationsGet.
      */
     private ApiCall<ApiResponse<PaymentAuthorization>, ApiException> prepareAuthorizationsGetRequest(
-            final String authorizationId) throws IOException {
+            final AuthorizationsGetInput input) throws IOException {
         return new ApiCall.Builder<ApiResponse<PaymentAuthorization>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder
                         .server(Server.ENUM_DEFAULT.value())
                         .path("/v2/payments/authorizations/{authorization_id}")
-                        .templateParam(param -> param.key("authorization_id").value(authorizationId)
+                        .templateParam(param -> param.key("authorization_id").value(input.getAuthorizationId())
                                 .shouldEncode(true))
+                        .headerParam(param -> param.key("PayPal-Auth-Assertion")
+                                .value(input.getPaypalAuthAssertion()).isRequired(false))
                         .headerParam(param -> param.key("accept").value("application/json"))
                         .withAuth(auth -> auth
                                 .add("Oauth2"))
@@ -92,9 +94,6 @@ public final class PaymentsController extends BaseController {
                         .nullify404(false)
                         .localErrorCase("401",
                                  ErrorCase.setReason("Authentication failed due to missing authorization header, or invalid authentication credentials.",
-                                (reason, context) -> new ErrorException(reason, context)))
-                        .localErrorCase("403",
-                                 ErrorCase.setReason("The request failed because the caller has insufficient permissions.",
                                 (reason, context) -> new ErrorException(reason, context)))
                         .localErrorCase("404",
                                  ErrorCase.setReason("The request failed because the resource does not exist.",
@@ -155,6 +154,8 @@ public final class PaymentsController extends BaseController {
                                 .value(input.getPaypalRequestId()).isRequired(false))
                         .headerParam(param -> param.key("Prefer")
                                 .value(input.getPrefer()).isRequired(false))
+                        .headerParam(param -> param.key("PayPal-Auth-Assertion")
+                                .value(input.getPaypalAuthAssertion()).isRequired(false))
                         .headerParam(param -> param.key("accept").value("application/json"))
                         .withAuth(auth -> auth
                                 .add("Oauth2"))
@@ -181,88 +182,6 @@ public final class PaymentsController extends BaseController {
                                 (reason, context) -> new ErrorException(reason, context)))
                         .localErrorCase("422",
                                  ErrorCase.setReason("The request failed because it is semantically incorrect or failed business validation.",
-                                (reason, context) -> new ErrorException(reason, context)))
-                        .localErrorCase("500",
-                                 ErrorCase.setReason("The request failed because an internal server error occurred.",
-                                (reason, context) -> new ApiException(reason, context)))
-                        .localErrorCase(ErrorCase.DEFAULT,
-                                 ErrorCase.setReason("The error response.",
-                                (reason, context) -> new ErrorException(reason, context)))
-                        .globalErrorCase(GLOBAL_ERROR_CASES))
-                .build();
-    }
-
-    /**
-     * Voids, or cancels, an authorized payment, by ID. You cannot void an authorized payment that
-     * has been fully captured.
-     * @param  input  AuthorizationsVoidInput object containing request parameters
-     * @return    Returns the PaymentAuthorization wrapped in ApiResponse response from the API call
-     * @throws    ApiException    Represents error response from the server.
-     * @throws    IOException    Signals that an I/O exception of some sort has occurred.
-     */
-    public ApiResponse<PaymentAuthorization> authorizationsVoid(
-            final AuthorizationsVoidInput input) throws ApiException, IOException {
-        return prepareAuthorizationsVoidRequest(input).execute();
-    }
-
-    /**
-     * Voids, or cancels, an authorized payment, by ID. You cannot void an authorized payment that
-     * has been fully captured.
-     * @param  input  AuthorizationsVoidInput object containing request parameters
-     * @return    Returns the PaymentAuthorization wrapped in ApiResponse response from the API call
-     */
-    public CompletableFuture<ApiResponse<PaymentAuthorization>> authorizationsVoidAsync(
-            final AuthorizationsVoidInput input) {
-        try { 
-            return prepareAuthorizationsVoidRequest(input).executeAsync(); 
-        } catch (Exception e) {  
-            throw new CompletionException(e); 
-        }
-    }
-
-    /**
-     * Builds the ApiCall object for authorizationsVoid.
-     */
-    private ApiCall<ApiResponse<PaymentAuthorization>, ApiException> prepareAuthorizationsVoidRequest(
-            final AuthorizationsVoidInput input) throws IOException {
-        return new ApiCall.Builder<ApiResponse<PaymentAuthorization>, ApiException>()
-                .globalConfig(getGlobalConfiguration())
-                .requestBuilder(requestBuilder -> requestBuilder
-                        .server(Server.ENUM_DEFAULT.value())
-                        .path("/v2/payments/authorizations/{authorization_id}/void")
-                        .templateParam(param -> param.key("authorization_id").value(input.getAuthorizationId())
-                                .shouldEncode(true))
-                        .headerParam(param -> param.key("PayPal-Auth-Assertion")
-                                .value(input.getPaypalAuthAssertion()).isRequired(false))
-                        .headerParam(param -> param.key("Prefer")
-                                .value(input.getPrefer()).isRequired(false))
-                        .headerParam(param -> param.key("accept").value("application/json"))
-                        .withAuth(auth -> auth
-                                .add("Oauth2"))
-                        .httpMethod(HttpMethod.POST))
-                .responseHandler(responseHandler -> responseHandler
-                        .responseClassType(ResponseClassType.API_RESPONSE)
-                        .apiResponseDeserializer(
-                                response -> ApiHelper.deserialize(response, PaymentAuthorization.class))
-                        .nullableResponseType(true)
-                        .nullify404(false)
-                        .localErrorCase("400",
-                                 ErrorCase.setReason("The request failed because it is not well-formed or is syntactically incorrect or violates schema.",
-                                (reason, context) -> new ErrorException(reason, context)))
-                        .localErrorCase("401",
-                                 ErrorCase.setReason("Authentication failed due to missing authorization header, or invalid authentication credentials.",
-                                (reason, context) -> new ErrorException(reason, context)))
-                        .localErrorCase("403",
-                                 ErrorCase.setReason("The request failed because the caller has insufficient permissions.",
-                                (reason, context) -> new ErrorException(reason, context)))
-                        .localErrorCase("404",
-                                 ErrorCase.setReason("The request failed because the resource does not exist.",
-                                (reason, context) -> new ErrorException(reason, context)))
-                        .localErrorCase("409",
-                                 ErrorCase.setReason("The request failed because a previous call for the given resource is in progress.",
-                                (reason, context) -> new ErrorException(reason, context)))
-                        .localErrorCase("422",
-                                 ErrorCase.setReason("The request failed because it either is semantically incorrect or failed business validation.",
                                 (reason, context) -> new ErrorException(reason, context)))
                         .localErrorCase("500",
                                  ErrorCase.setReason("The request failed because an internal server error occurred.",
@@ -340,6 +259,8 @@ public final class PaymentsController extends BaseController {
                                 .value(input.getPaypalRequestId()).isRequired(false))
                         .headerParam(param -> param.key("Prefer")
                                 .value(input.getPrefer()).isRequired(false))
+                        .headerParam(param -> param.key("PayPal-Auth-Assertion")
+                                .value(input.getPaypalAuthAssertion()).isRequired(false))
                         .headerParam(param -> param.key("accept").value("application/json"))
                         .withAuth(auth -> auth
                                 .add("Oauth2"))
@@ -355,11 +276,89 @@ public final class PaymentsController extends BaseController {
                         .localErrorCase("401",
                                  ErrorCase.setReason("Authentication failed due to missing authorization header, or invalid authentication credentials.",
                                 (reason, context) -> new ErrorException(reason, context)))
+                        .localErrorCase("404",
+                                 ErrorCase.setReason("The request failed because the resource does not exist.",
+                                (reason, context) -> new ErrorException(reason, context)))
+                        .localErrorCase("422",
+                                 ErrorCase.setReason("The request failed because it either is semantically incorrect or failed business validation.",
+                                (reason, context) -> new ErrorException(reason, context)))
+                        .localErrorCase("500",
+                                 ErrorCase.setReason("The request failed because an internal server error occurred.",
+                                (reason, context) -> new ApiException(reason, context)))
+                        .localErrorCase(ErrorCase.DEFAULT,
+                                 ErrorCase.setReason("The error response.",
+                                (reason, context) -> new ErrorException(reason, context)))
+                        .globalErrorCase(GLOBAL_ERROR_CASES))
+                .build();
+    }
+
+    /**
+     * Voids, or cancels, an authorized payment, by ID. You cannot void an authorized payment that
+     * has been fully captured.
+     * @param  input  AuthorizationsVoidInput object containing request parameters
+     * @return    Returns the PaymentAuthorization wrapped in ApiResponse response from the API call
+     * @throws    ApiException    Represents error response from the server.
+     * @throws    IOException    Signals that an I/O exception of some sort has occurred.
+     */
+    public ApiResponse<PaymentAuthorization> authorizationsVoid(
+            final AuthorizationsVoidInput input) throws ApiException, IOException {
+        return prepareAuthorizationsVoidRequest(input).execute();
+    }
+
+    /**
+     * Voids, or cancels, an authorized payment, by ID. You cannot void an authorized payment that
+     * has been fully captured.
+     * @param  input  AuthorizationsVoidInput object containing request parameters
+     * @return    Returns the PaymentAuthorization wrapped in ApiResponse response from the API call
+     */
+    public CompletableFuture<ApiResponse<PaymentAuthorization>> authorizationsVoidAsync(
+            final AuthorizationsVoidInput input) {
+        try { 
+            return prepareAuthorizationsVoidRequest(input).executeAsync(); 
+        } catch (Exception e) {  
+            throw new CompletionException(e); 
+        }
+    }
+
+    /**
+     * Builds the ApiCall object for authorizationsVoid.
+     */
+    private ApiCall<ApiResponse<PaymentAuthorization>, ApiException> prepareAuthorizationsVoidRequest(
+            final AuthorizationsVoidInput input) throws IOException {
+        return new ApiCall.Builder<ApiResponse<PaymentAuthorization>, ApiException>()
+                .globalConfig(getGlobalConfiguration())
+                .requestBuilder(requestBuilder -> requestBuilder
+                        .server(Server.ENUM_DEFAULT.value())
+                        .path("/v2/payments/authorizations/{authorization_id}/void")
+                        .templateParam(param -> param.key("authorization_id").value(input.getAuthorizationId())
+                                .shouldEncode(true))
+                        .headerParam(param -> param.key("PayPal-Auth-Assertion")
+                                .value(input.getPaypalAuthAssertion()).isRequired(false))
+                        .headerParam(param -> param.key("PayPal-Request-Id")
+                                .value(input.getPaypalRequestId()).isRequired(false))
+                        .headerParam(param -> param.key("Prefer")
+                                .value(input.getPrefer()).isRequired(false))
+                        .headerParam(param -> param.key("accept").value("application/json"))
+                        .withAuth(auth -> auth
+                                .add("Oauth2"))
+                        .httpMethod(HttpMethod.POST))
+                .responseHandler(responseHandler -> responseHandler
+                        .responseClassType(ResponseClassType.API_RESPONSE)
+                        .apiResponseDeserializer(
+                                response -> ApiHelper.deserialize(response, PaymentAuthorization.class))
+                        .nullableResponseType(true)
+                        .nullify404(false)
+                        .localErrorCase("401",
+                                 ErrorCase.setReason("Authentication failed due to missing authorization header, or invalid authentication credentials.",
+                                (reason, context) -> new ErrorException(reason, context)))
                         .localErrorCase("403",
                                  ErrorCase.setReason("The request failed because the caller has insufficient permissions.",
                                 (reason, context) -> new ErrorException(reason, context)))
                         .localErrorCase("404",
                                  ErrorCase.setReason("The request failed because the resource does not exist.",
+                                (reason, context) -> new ErrorException(reason, context)))
+                        .localErrorCase("409",
+                                 ErrorCase.setReason("The request failed because a previous call for the given resource is in progress.",
                                 (reason, context) -> new ErrorException(reason, context)))
                         .localErrorCase("422",
                                  ErrorCase.setReason("The request failed because it either is semantically incorrect or failed business validation.",
@@ -533,27 +532,25 @@ public final class PaymentsController extends BaseController {
 
     /**
      * Shows details for a refund, by ID.
-     * @param  refundId  Required parameter: The PayPal-generated ID for the refund for which to
-     *         show details.
+     * @param  input  RefundsGetInput object containing request parameters
      * @return    Returns the Refund wrapped in ApiResponse response from the API call
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
     public ApiResponse<Refund> refundsGet(
-            final String refundId) throws ApiException, IOException {
-        return prepareRefundsGetRequest(refundId).execute();
+            final RefundsGetInput input) throws ApiException, IOException {
+        return prepareRefundsGetRequest(input).execute();
     }
 
     /**
      * Shows details for a refund, by ID.
-     * @param  refundId  Required parameter: The PayPal-generated ID for the refund for which to
-     *         show details.
+     * @param  input  RefundsGetInput object containing request parameters
      * @return    Returns the Refund wrapped in ApiResponse response from the API call
      */
     public CompletableFuture<ApiResponse<Refund>> refundsGetAsync(
-            final String refundId) {
+            final RefundsGetInput input) {
         try { 
-            return prepareRefundsGetRequest(refundId).executeAsync(); 
+            return prepareRefundsGetRequest(input).executeAsync(); 
         } catch (Exception e) {  
             throw new CompletionException(e); 
         }
@@ -563,14 +560,16 @@ public final class PaymentsController extends BaseController {
      * Builds the ApiCall object for refundsGet.
      */
     private ApiCall<ApiResponse<Refund>, ApiException> prepareRefundsGetRequest(
-            final String refundId) throws IOException {
+            final RefundsGetInput input) throws IOException {
         return new ApiCall.Builder<ApiResponse<Refund>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder
                         .server(Server.ENUM_DEFAULT.value())
                         .path("/v2/payments/refunds/{refund_id}")
-                        .templateParam(param -> param.key("refund_id").value(refundId)
+                        .templateParam(param -> param.key("refund_id").value(input.getRefundId())
                                 .shouldEncode(true))
+                        .headerParam(param -> param.key("PayPal-Auth-Assertion")
+                                .value(input.getPaypalAuthAssertion()).isRequired(false))
                         .headerParam(param -> param.key("accept").value("application/json"))
                         .withAuth(auth -> auth
                                 .add("Oauth2"))

@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
  */
 public class VaultedDigitalWalletShippingDetails {
     private ShippingName name;
-    private FullfillmentType type;
+    private FulfillmentType type;
     private Address address;
 
     /**
@@ -27,12 +27,12 @@ public class VaultedDigitalWalletShippingDetails {
     /**
      * Initialization constructor.
      * @param  name  ShippingName value for name.
-     * @param  type  FullfillmentType value for type.
+     * @param  type  FulfillmentType value for type.
      * @param  address  Address value for address.
      */
     public VaultedDigitalWalletShippingDetails(
             ShippingName name,
-            FullfillmentType type,
+            FulfillmentType type,
             Address address) {
         this.name = name;
         this.type = type;
@@ -64,11 +64,11 @@ public class VaultedDigitalWalletShippingDetails {
      * Getter for Type.
      * A classification for the method of purchase fulfillment (e.g shipping, in-store pickup, etc).
      * Either `type` or `options` may be present, but not both.
-     * @return Returns the FullfillmentType
+     * @return Returns the FulfillmentType
      */
     @JsonGetter("type")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public FullfillmentType getType() {
+    public FulfillmentType getType() {
         return type;
     }
 
@@ -76,10 +76,10 @@ public class VaultedDigitalWalletShippingDetails {
      * Setter for Type.
      * A classification for the method of purchase fulfillment (e.g shipping, in-store pickup, etc).
      * Either `type` or `options` may be present, but not both.
-     * @param type Value for FullfillmentType
+     * @param type Value for FulfillmentType
      */
     @JsonSetter("type")
-    public void setType(FullfillmentType type) {
+    public void setType(FulfillmentType type) {
         this.type = type;
     }
 
@@ -138,7 +138,7 @@ public class VaultedDigitalWalletShippingDetails {
      */
     public static class Builder {
         private ShippingName name;
-        private FullfillmentType type;
+        private FulfillmentType type;
         private Address address;
 
 
@@ -155,10 +155,10 @@ public class VaultedDigitalWalletShippingDetails {
 
         /**
          * Setter for type.
-         * @param  type  FullfillmentType value for type.
+         * @param  type  FulfillmentType value for type.
          * @return Builder
          */
-        public Builder type(FullfillmentType type) {
+        public Builder type(FulfillmentType type) {
             this.type = type;
             return this;
         }
