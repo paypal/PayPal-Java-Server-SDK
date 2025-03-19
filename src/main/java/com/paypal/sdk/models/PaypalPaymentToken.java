@@ -15,10 +15,11 @@ import com.fasterxml.jackson.annotation.JsonSetter;
  */
 public class PaypalPaymentToken {
     private String description;
+    private UsagePattern usagePattern;
     private VaultedDigitalWalletShippingDetails shipping;
     private Boolean permitMultiplePaymentTokens;
-    private String usageType;
-    private String customerType;
+    private PaypalPaymentTokenUsageType usageType;
+    private PaypalPaymentTokenCustomerType customerType;
     private String emailAddress;
     private String payerId;
     private Name name;
@@ -37,10 +38,11 @@ public class PaypalPaymentToken {
     /**
      * Initialization constructor.
      * @param  description  String value for description.
+     * @param  usagePattern  UsagePattern value for usagePattern.
      * @param  shipping  VaultedDigitalWalletShippingDetails value for shipping.
      * @param  permitMultiplePaymentTokens  Boolean value for permitMultiplePaymentTokens.
-     * @param  usageType  String value for usageType.
-     * @param  customerType  String value for customerType.
+     * @param  usageType  PaypalPaymentTokenUsageType value for usageType.
+     * @param  customerType  PaypalPaymentTokenCustomerType value for customerType.
      * @param  emailAddress  String value for emailAddress.
      * @param  payerId  String value for payerId.
      * @param  name  Name value for name.
@@ -51,10 +53,11 @@ public class PaypalPaymentToken {
      */
     public PaypalPaymentToken(
             String description,
+            UsagePattern usagePattern,
             VaultedDigitalWalletShippingDetails shipping,
             Boolean permitMultiplePaymentTokens,
-            String usageType,
-            String customerType,
+            PaypalPaymentTokenUsageType usageType,
+            PaypalPaymentTokenCustomerType customerType,
             String emailAddress,
             String payerId,
             Name name,
@@ -63,6 +66,7 @@ public class PaypalPaymentToken {
             String accountId,
             Phone phoneNumber) {
         this.description = description;
+        this.usagePattern = usagePattern;
         this.shipping = shipping;
         this.permitMultiplePaymentTokens = permitMultiplePaymentTokens;
         this.usageType = usageType;
@@ -97,6 +101,27 @@ public class PaypalPaymentToken {
     @JsonSetter("description")
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    /**
+     * Getter for UsagePattern.
+     * Expected business/charge model for the billing agreement.
+     * @return Returns the UsagePattern
+     */
+    @JsonGetter("usage_pattern")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public UsagePattern getUsagePattern() {
+        return usagePattern;
+    }
+
+    /**
+     * Setter for UsagePattern.
+     * Expected business/charge model for the billing agreement.
+     * @param usagePattern Value for UsagePattern
+     */
+    @JsonSetter("usage_pattern")
+    public void setUsagePattern(UsagePattern usagePattern) {
+        this.usagePattern = usagePattern;
     }
 
     /**
@@ -154,21 +179,21 @@ public class PaypalPaymentToken {
     /**
      * Getter for UsageType.
      * The usage type associated with a digital wallet payment token.
-     * @return Returns the String
+     * @return Returns the PaypalPaymentTokenUsageType
      */
     @JsonGetter("usage_type")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public String getUsageType() {
+    public PaypalPaymentTokenUsageType getUsageType() {
         return usageType;
     }
 
     /**
      * Setter for UsageType.
      * The usage type associated with a digital wallet payment token.
-     * @param usageType Value for String
+     * @param usageType Value for PaypalPaymentTokenUsageType
      */
     @JsonSetter("usage_type")
-    public void setUsageType(String usageType) {
+    public void setUsageType(PaypalPaymentTokenUsageType usageType) {
         this.usageType = usageType;
     }
 
@@ -176,11 +201,11 @@ public class PaypalPaymentToken {
      * Getter for CustomerType.
      * The customer type associated with a digital wallet payment token. This is to indicate whether
      * the customer acting on the merchant / platform is either a business or a consumer.
-     * @return Returns the String
+     * @return Returns the PaypalPaymentTokenCustomerType
      */
     @JsonGetter("customer_type")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public String getCustomerType() {
+    public PaypalPaymentTokenCustomerType getCustomerType() {
         return customerType;
     }
 
@@ -188,19 +213,18 @@ public class PaypalPaymentToken {
      * Setter for CustomerType.
      * The customer type associated with a digital wallet payment token. This is to indicate whether
      * the customer acting on the merchant / platform is either a business or a consumer.
-     * @param customerType Value for String
+     * @param customerType Value for PaypalPaymentTokenCustomerType
      */
     @JsonSetter("customer_type")
-    public void setCustomerType(String customerType) {
+    public void setCustomerType(PaypalPaymentTokenCustomerType customerType) {
         this.customerType = customerType;
     }
 
     /**
      * Getter for EmailAddress.
-     * The internationalized email address.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; Up to 64 characters
-     * are allowed before and 255 characters are allowed after the &lt;code&gt;{@literal @}&lt;/code&gt; sign. However, the
-     * generally accepted maximum length for an email address is 254 characters. The pattern
-     * verifies that an unquoted &lt;code&gt;{@literal @}&lt;/code&gt; sign exists.&lt;/blockquote&gt;
+     * The internationalized email address. Note: Up to 64 characters are allowed before and 255
+     * characters are allowed after the {@literal @} sign. However, the generally accepted maximum length for
+     * an email address is 254 characters. The pattern verifies that an unquoted {@literal @} sign exists.
      * @return Returns the String
      */
     @JsonGetter("email_address")
@@ -211,10 +235,9 @@ public class PaypalPaymentToken {
 
     /**
      * Setter for EmailAddress.
-     * The internationalized email address.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; Up to 64 characters
-     * are allowed before and 255 characters are allowed after the &lt;code&gt;{@literal @}&lt;/code&gt; sign. However, the
-     * generally accepted maximum length for an email address is 254 characters. The pattern
-     * verifies that an unquoted &lt;code&gt;{@literal @}&lt;/code&gt; sign exists.&lt;/blockquote&gt;
+     * The internationalized email address. Note: Up to 64 characters are allowed before and 255
+     * characters are allowed after the {@literal @} sign. However, the generally accepted maximum length for
+     * an email address is 254 characters. The pattern verifies that an unquoted {@literal @} sign exists.
      * @param emailAddress Value for String
      */
     @JsonSetter("email_address")
@@ -362,11 +385,12 @@ public class PaypalPaymentToken {
      */
     @Override
     public String toString() {
-        return "PaypalPaymentToken [" + "description=" + description + ", shipping=" + shipping
-                + ", permitMultiplePaymentTokens=" + permitMultiplePaymentTokens + ", usageType="
-                + usageType + ", customerType=" + customerType + ", emailAddress=" + emailAddress
-                + ", payerId=" + payerId + ", name=" + name + ", phone=" + phone + ", address="
-                + address + ", accountId=" + accountId + ", phoneNumber=" + phoneNumber + "]";
+        return "PaypalPaymentToken [" + "description=" + description + ", usagePattern="
+                + usagePattern + ", shipping=" + shipping + ", permitMultiplePaymentTokens="
+                + permitMultiplePaymentTokens + ", usageType=" + usageType + ", customerType="
+                + customerType + ", emailAddress=" + emailAddress + ", payerId=" + payerId
+                + ", name=" + name + ", phone=" + phone + ", address=" + address + ", accountId="
+                + accountId + ", phoneNumber=" + phoneNumber + "]";
     }
 
     /**
@@ -377,6 +401,7 @@ public class PaypalPaymentToken {
     public Builder toBuilder() {
         Builder builder = new Builder()
                 .description(getDescription())
+                .usagePattern(getUsagePattern())
                 .shipping(getShipping())
                 .permitMultiplePaymentTokens(getPermitMultiplePaymentTokens())
                 .usageType(getUsageType())
@@ -396,10 +421,11 @@ public class PaypalPaymentToken {
      */
     public static class Builder {
         private String description;
+        private UsagePattern usagePattern;
         private VaultedDigitalWalletShippingDetails shipping;
         private Boolean permitMultiplePaymentTokens = false;
-        private String usageType;
-        private String customerType;
+        private PaypalPaymentTokenUsageType usageType;
+        private PaypalPaymentTokenCustomerType customerType;
         private String emailAddress;
         private String payerId;
         private Name name;
@@ -417,6 +443,16 @@ public class PaypalPaymentToken {
          */
         public Builder description(String description) {
             this.description = description;
+            return this;
+        }
+
+        /**
+         * Setter for usagePattern.
+         * @param  usagePattern  UsagePattern value for usagePattern.
+         * @return Builder
+         */
+        public Builder usagePattern(UsagePattern usagePattern) {
+            this.usagePattern = usagePattern;
             return this;
         }
 
@@ -442,20 +478,20 @@ public class PaypalPaymentToken {
 
         /**
          * Setter for usageType.
-         * @param  usageType  String value for usageType.
+         * @param  usageType  PaypalPaymentTokenUsageType value for usageType.
          * @return Builder
          */
-        public Builder usageType(String usageType) {
+        public Builder usageType(PaypalPaymentTokenUsageType usageType) {
             this.usageType = usageType;
             return this;
         }
 
         /**
          * Setter for customerType.
-         * @param  customerType  String value for customerType.
+         * @param  customerType  PaypalPaymentTokenCustomerType value for customerType.
          * @return Builder
          */
-        public Builder customerType(String customerType) {
+        public Builder customerType(PaypalPaymentTokenCustomerType customerType) {
             this.customerType = customerType;
             return this;
         }
@@ -535,9 +571,9 @@ public class PaypalPaymentToken {
          * @return {@link PaypalPaymentToken}
          */
         public PaypalPaymentToken build() {
-            return new PaypalPaymentToken(description, shipping, permitMultiplePaymentTokens,
-                    usageType, customerType, emailAddress, payerId, name, phone, address, accountId,
-                    phoneNumber);
+            return new PaypalPaymentToken(description, usagePattern, shipping,
+                    permitMultiplePaymentTokens, usageType, customerType, emailAddress, payerId,
+                    name, phone, address, accountId, phoneNumber);
         }
     }
 }

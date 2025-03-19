@@ -17,33 +17,75 @@ import java.util.TreeMap;
  * CvvCode to be used.
  */
 public enum CvvCode {
-    E,
+    /**
+     * For Visa, Mastercard, Discover, or American Express, error - unrecognized or unknown response.
+     */
+    CVV_E,
 
-    I,
+    /**
+     * For Visa, Mastercard, Discover, or American Express, invalid or null.
+     */
+    CVV_I,
 
-    M,
+    /**
+     * For Visa, Mastercard, Discover, or American Express, the CVV2/CSC matches.
+     */
+    CVV_M,
 
-    N,
+    /**
+     * For Visa, Mastercard, Discover, or American Express, the CVV2/CSC does not match.
+     */
+    CVV_N,
 
-    P,
+    /**
+     * For Visa, Mastercard, Discover, or American Express, it was not processed.
+     */
+    CVV_P,
 
-    S,
+    /**
+     * For Visa, Mastercard, Discover, or American Express, the service is not supported.
+     */
+    CVV_S,
 
-    U,
+    /**
+     * For Visa, Mastercard, Discover, or American Express, unknown - the issuer is not certified.
+     */
+    CVV_U,
 
-    X,
+    /**
+     * For Visa, Mastercard, Discover, or American Express, no response. For Maestro, the service is not available.
+     */
+    CVV_X,
 
+    /**
+     * For Visa, Mastercard, Discover, or American Express, error.
+     */
     ENUM_ALL_OTHERS,
 
-    ENUM_0,
+    /**
+     * For Maestro, the CVV2 matched.
+     */
+    CVV_0,
 
-    ENUM_1,
+    /**
+     * For Maestro, the CVV2 did not match.
+     */
+    CVV_1,
 
-    ENUM_2,
+    /**
+     * For Maestro, the merchant has not implemented CVV2 code handling.
+     */
+    CVV_2,
 
-    ENUM_3,
+    /**
+     * For Maestro, the merchant has indicated that CVV2 is not present on card.
+     */
+    CVV_3,
 
-    ENUM_4,
+    /**
+     * For Maestro, the service is not available.
+     */
+    CVV_4,
 
     /**
      * Unknown values will be mapped by this enum member
@@ -55,36 +97,36 @@ public enum CvvCode {
     private String value;
 
     static {
-        E.value = "E";
-        I.value = "I";
-        M.value = "M";
-        N.value = "N";
-        P.value = "P";
-        S.value = "S";
-        U.value = "U";
-        X.value = "X";
+        CVV_E.value = "E";
+        CVV_I.value = "I";
+        CVV_M.value = "M";
+        CVV_N.value = "N";
+        CVV_P.value = "P";
+        CVV_S.value = "S";
+        CVV_U.value = "U";
+        CVV_X.value = "X";
         ENUM_ALL_OTHERS.value = "All others";
-        ENUM_0.value = "0";
-        ENUM_1.value = "1";
-        ENUM_2.value = "2";
-        ENUM_3.value = "3";
-        ENUM_4.value = "4";
+        CVV_0.value = "0";
+        CVV_1.value = "1";
+        CVV_2.value = "2";
+        CVV_3.value = "3";
+        CVV_4.value = "4";
         _UNKNOWN.value = null;
 
-        valueMap.put("E", E);
-        valueMap.put("I", I);
-        valueMap.put("M", M);
-        valueMap.put("N", N);
-        valueMap.put("P", P);
-        valueMap.put("S", S);
-        valueMap.put("U", U);
-        valueMap.put("X", X);
+        valueMap.put("E", CVV_E);
+        valueMap.put("I", CVV_I);
+        valueMap.put("M", CVV_M);
+        valueMap.put("N", CVV_N);
+        valueMap.put("P", CVV_P);
+        valueMap.put("S", CVV_S);
+        valueMap.put("U", CVV_U);
+        valueMap.put("X", CVV_X);
         valueMap.put("All others", ENUM_ALL_OTHERS);
-        valueMap.put("0", ENUM_0);
-        valueMap.put("1", ENUM_1);
-        valueMap.put("2", ENUM_2);
-        valueMap.put("3", ENUM_3);
-        valueMap.put("4", ENUM_4);
+        valueMap.put("0", CVV_0);
+        valueMap.put("1", CVV_1);
+        valueMap.put("2", CVV_2);
+        valueMap.put("3", CVV_3);
+        valueMap.put("4", CVV_4);
     }
 
     /**

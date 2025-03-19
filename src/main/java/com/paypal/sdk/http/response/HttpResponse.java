@@ -103,14 +103,4 @@ public class HttpResponse implements Response {
     public String getBody() {
         return body;
     }
-
-    /**
-     * Converts this HttpResponse into string format.
-     * @return String representation of this class
-     */
-    @Override
-    public String toString() {
-        return "HttpResponse [statusCode=" + statusCode + ", headers=" + headers + ", rawBody="
-                + getRawBodyString() + "]";
-    }
 }

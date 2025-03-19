@@ -15,10 +15,11 @@ import com.fasterxml.jackson.annotation.JsonSetter;
  */
 public class VaultVenmoRequest {
     private String description;
+    private UsagePattern usagePattern;
     private VaultedDigitalWalletShippingDetails shipping;
     private Boolean permitMultiplePaymentTokens;
-    private String usageType;
-    private String customerType;
+    private PaypalPaymentTokenUsageType usageType;
+    private PaypalPaymentTokenCustomerType customerType;
     private VaultVenmoExperienceContext experienceContext;
 
     /**
@@ -31,20 +32,23 @@ public class VaultVenmoRequest {
     /**
      * Initialization constructor.
      * @param  description  String value for description.
+     * @param  usagePattern  UsagePattern value for usagePattern.
      * @param  shipping  VaultedDigitalWalletShippingDetails value for shipping.
      * @param  permitMultiplePaymentTokens  Boolean value for permitMultiplePaymentTokens.
-     * @param  usageType  String value for usageType.
-     * @param  customerType  String value for customerType.
+     * @param  usageType  PaypalPaymentTokenUsageType value for usageType.
+     * @param  customerType  PaypalPaymentTokenCustomerType value for customerType.
      * @param  experienceContext  VaultVenmoExperienceContext value for experienceContext.
      */
     public VaultVenmoRequest(
             String description,
+            UsagePattern usagePattern,
             VaultedDigitalWalletShippingDetails shipping,
             Boolean permitMultiplePaymentTokens,
-            String usageType,
-            String customerType,
+            PaypalPaymentTokenUsageType usageType,
+            PaypalPaymentTokenCustomerType customerType,
             VaultVenmoExperienceContext experienceContext) {
         this.description = description;
+        this.usagePattern = usagePattern;
         this.shipping = shipping;
         this.permitMultiplePaymentTokens = permitMultiplePaymentTokens;
         this.usageType = usageType;
@@ -73,6 +77,27 @@ public class VaultVenmoRequest {
     @JsonSetter("description")
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    /**
+     * Getter for UsagePattern.
+     * Expected business/charge model for the billing agreement.
+     * @return Returns the UsagePattern
+     */
+    @JsonGetter("usage_pattern")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public UsagePattern getUsagePattern() {
+        return usagePattern;
+    }
+
+    /**
+     * Setter for UsagePattern.
+     * Expected business/charge model for the billing agreement.
+     * @param usagePattern Value for UsagePattern
+     */
+    @JsonSetter("usage_pattern")
+    public void setUsagePattern(UsagePattern usagePattern) {
+        this.usagePattern = usagePattern;
     }
 
     /**
@@ -130,21 +155,21 @@ public class VaultVenmoRequest {
     /**
      * Getter for UsageType.
      * The usage type associated with a digital wallet payment token.
-     * @return Returns the String
+     * @return Returns the PaypalPaymentTokenUsageType
      */
     @JsonGetter("usage_type")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public String getUsageType() {
+    public PaypalPaymentTokenUsageType getUsageType() {
         return usageType;
     }
 
     /**
      * Setter for UsageType.
      * The usage type associated with a digital wallet payment token.
-     * @param usageType Value for String
+     * @param usageType Value for PaypalPaymentTokenUsageType
      */
     @JsonSetter("usage_type")
-    public void setUsageType(String usageType) {
+    public void setUsageType(PaypalPaymentTokenUsageType usageType) {
         this.usageType = usageType;
     }
 
@@ -152,11 +177,11 @@ public class VaultVenmoRequest {
      * Getter for CustomerType.
      * The customer type associated with a digital wallet payment token. This is to indicate whether
      * the customer acting on the merchant / platform is either a business or a consumer.
-     * @return Returns the String
+     * @return Returns the PaypalPaymentTokenCustomerType
      */
     @JsonGetter("customer_type")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public String getCustomerType() {
+    public PaypalPaymentTokenCustomerType getCustomerType() {
         return customerType;
     }
 
@@ -164,10 +189,10 @@ public class VaultVenmoRequest {
      * Setter for CustomerType.
      * The customer type associated with a digital wallet payment token. This is to indicate whether
      * the customer acting on the merchant / platform is either a business or a consumer.
-     * @param customerType Value for String
+     * @param customerType Value for PaypalPaymentTokenCustomerType
      */
     @JsonSetter("customer_type")
-    public void setCustomerType(String customerType) {
+    public void setCustomerType(PaypalPaymentTokenCustomerType customerType) {
         this.customerType = customerType;
     }
 
@@ -198,10 +223,10 @@ public class VaultVenmoRequest {
      */
     @Override
     public String toString() {
-        return "VaultVenmoRequest [" + "description=" + description + ", shipping=" + shipping
-                + ", permitMultiplePaymentTokens=" + permitMultiplePaymentTokens + ", usageType="
-                + usageType + ", customerType=" + customerType + ", experienceContext="
-                + experienceContext + "]";
+        return "VaultVenmoRequest [" + "description=" + description + ", usagePattern="
+                + usagePattern + ", shipping=" + shipping + ", permitMultiplePaymentTokens="
+                + permitMultiplePaymentTokens + ", usageType=" + usageType + ", customerType="
+                + customerType + ", experienceContext=" + experienceContext + "]";
     }
 
     /**
@@ -212,6 +237,7 @@ public class VaultVenmoRequest {
     public Builder toBuilder() {
         Builder builder = new Builder()
                 .description(getDescription())
+                .usagePattern(getUsagePattern())
                 .shipping(getShipping())
                 .permitMultiplePaymentTokens(getPermitMultiplePaymentTokens())
                 .usageType(getUsageType())
@@ -225,10 +251,11 @@ public class VaultVenmoRequest {
      */
     public static class Builder {
         private String description;
+        private UsagePattern usagePattern;
         private VaultedDigitalWalletShippingDetails shipping;
         private Boolean permitMultiplePaymentTokens = false;
-        private String usageType;
-        private String customerType;
+        private PaypalPaymentTokenUsageType usageType;
+        private PaypalPaymentTokenCustomerType customerType;
         private VaultVenmoExperienceContext experienceContext;
 
 
@@ -240,6 +267,16 @@ public class VaultVenmoRequest {
          */
         public Builder description(String description) {
             this.description = description;
+            return this;
+        }
+
+        /**
+         * Setter for usagePattern.
+         * @param  usagePattern  UsagePattern value for usagePattern.
+         * @return Builder
+         */
+        public Builder usagePattern(UsagePattern usagePattern) {
+            this.usagePattern = usagePattern;
             return this;
         }
 
@@ -265,20 +302,20 @@ public class VaultVenmoRequest {
 
         /**
          * Setter for usageType.
-         * @param  usageType  String value for usageType.
+         * @param  usageType  PaypalPaymentTokenUsageType value for usageType.
          * @return Builder
          */
-        public Builder usageType(String usageType) {
+        public Builder usageType(PaypalPaymentTokenUsageType usageType) {
             this.usageType = usageType;
             return this;
         }
 
         /**
          * Setter for customerType.
-         * @param  customerType  String value for customerType.
+         * @param  customerType  PaypalPaymentTokenCustomerType value for customerType.
          * @return Builder
          */
-        public Builder customerType(String customerType) {
+        public Builder customerType(PaypalPaymentTokenCustomerType customerType) {
             this.customerType = customerType;
             return this;
         }
@@ -298,8 +335,8 @@ public class VaultVenmoRequest {
          * @return {@link VaultVenmoRequest}
          */
         public VaultVenmoRequest build() {
-            return new VaultVenmoRequest(description, shipping, permitMultiplePaymentTokens,
-                    usageType, customerType, experienceContext);
+            return new VaultVenmoRequest(description, usagePattern, shipping,
+                    permitMultiplePaymentTokens, usageType, customerType, experienceContext);
         }
     }
 }

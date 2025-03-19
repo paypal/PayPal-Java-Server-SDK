@@ -17,8 +17,14 @@ import java.util.TreeMap;
  * OrderTrackerStatus to be used.
  */
 public enum OrderTrackerStatus {
+    /**
+     * The shipment was cancelled and the tracking number no longer applies.
+     */
     CANCELLED,
 
+    /**
+     * The merchant has assigned a tracking number to the items being shipped from the Order. This does not correspond to the carrier's actual status for the shipment. The latest status of the parcel must be retrieved from the carrier.
+     */
     SHIPPED,
 
     /**

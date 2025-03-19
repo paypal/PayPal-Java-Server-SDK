@@ -12,22 +12,22 @@ PaymentsController paymentsController = client.getPaymentsController();
 
 ## Methods
 
-* [Authorizations Get](../../doc/controllers/payments.md#authorizations-get)
-* [Authorizations Capture](../../doc/controllers/payments.md#authorizations-capture)
-* [Authorizations Reauthorize](../../doc/controllers/payments.md#authorizations-reauthorize)
-* [Authorizations Void](../../doc/controllers/payments.md#authorizations-void)
-* [Captures Get](../../doc/controllers/payments.md#captures-get)
-* [Captures Refund](../../doc/controllers/payments.md#captures-refund)
-* [Refunds Get](../../doc/controllers/payments.md#refunds-get)
+* [Get Authorized Payment](../../doc/controllers/payments.md#get-authorized-payment)
+* [Capture Authorized Payment](../../doc/controllers/payments.md#capture-authorized-payment)
+* [Reauthorize Payment](../../doc/controllers/payments.md#reauthorize-payment)
+* [Void Payment](../../doc/controllers/payments.md#void-payment)
+* [Get Captured Payment](../../doc/controllers/payments.md#get-captured-payment)
+* [Refund Captured Payment](../../doc/controllers/payments.md#refund-captured-payment)
+* [Get Refund](../../doc/controllers/payments.md#get-refund)
 
 
-# Authorizations Get
+# Get Authorized Payment
 
 Shows details for an authorized payment, by ID.
 
 ```java
-CompletableFuture<ApiResponse<PaymentAuthorization>> authorizationsGetAsync(
-    final AuthorizationsGetInput input)
+CompletableFuture<ApiResponse<PaymentAuthorization>> getAuthorizedPaymentAsync(
+    final GetAuthorizedPaymentInput input)
 ```
 
 ## Parameters
@@ -35,21 +35,22 @@ CompletableFuture<ApiResponse<PaymentAuthorization>> authorizationsGetAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `authorizationId` | `String` | Template, Required | The ID of the authorized payment for which to show details. |
-| `paypalAuthAssertion` | `String` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion).<blockquote><strong>Note:</strong>For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject.</blockquote> |
+| `paypalMockResponse` | `String` | Header, Optional | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant. |
+| `paypalAuthAssertion` | `String` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion). Note:For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject. |
 
 ## Response Type
 
-[`PaymentAuthorization`](../../doc/models/payment-authorization.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `getResult()` getter of this instance returns the response data which is of type [`PaymentAuthorization`](../../doc/models/payment-authorization.md).
 
 ## Example Usage
 
 ```java
-AuthorizationsGetInput authorizationsGetInput = new AuthorizationsGetInput.Builder(
+GetAuthorizedPaymentInput getAuthorizedPaymentInput = new GetAuthorizedPaymentInput.Builder(
     "authorization_id8"
 )
 .build();
 
-paymentsController.authorizationsGetAsync(authorizationsGetInput).thenAccept(result -> {
+paymentsController.getAuthorizedPaymentAsync(getAuthorizedPaymentInput).thenAccept(result -> {
     // TODO success callback handler
     System.out.println(result);
 }).exceptionally(exception -> {
@@ -69,13 +70,13 @@ paymentsController.authorizationsGetAsync(authorizationsGetInput).thenAccept(res
 | Default | The error response. | [`ErrorException`](../../doc/models/error-exception.md) |
 
 
-# Authorizations Capture
+# Capture Authorized Payment
 
 Captures an authorized payment, by ID.
 
 ```java
-CompletableFuture<ApiResponse<CapturedPayment>> authorizationsCaptureAsync(
-    final AuthorizationsCaptureInput input)
+CompletableFuture<ApiResponse<CapturedPayment>> captureAuthorizedPaymentAsync(
+    final CaptureAuthorizedPaymentInput input)
 ```
 
 ## Parameters
@@ -83,19 +84,20 @@ CompletableFuture<ApiResponse<CapturedPayment>> authorizationsCaptureAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `authorizationId` | `String` | Template, Required | The PayPal-generated ID for the authorized payment to capture. |
+| `paypalMockResponse` | `String` | Header, Optional | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant. |
 | `paypalRequestId` | `String` | Header, Optional | The server stores keys for 45 days. |
-| `prefer` | `String` | Header, Optional | The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul><br>**Default**: `"return=minimal"` |
-| `paypalAuthAssertion` | `String` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion).<blockquote><strong>Note:</strong>For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject.</blockquote> |
+| `prefer` | `String` | Header, Optional | The preferred server response upon successful completion of the request. Value is: return=minimal. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the id, status and HATEOAS links. return=representation. The server returns a complete resource representation, including the current state of the resource.<br>**Default**: `"return=minimal"` |
+| `paypalAuthAssertion` | `String` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion). Note:For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject. |
 | `body` | [`CaptureRequest`](../../doc/models/capture-request.md) | Body, Optional | - |
 
 ## Response Type
 
-[`CapturedPayment`](../../doc/models/captured-payment.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `getResult()` getter of this instance returns the response data which is of type [`CapturedPayment`](../../doc/models/captured-payment.md).
 
 ## Example Usage
 
 ```java
-AuthorizationsCaptureInput authorizationsCaptureInput = new AuthorizationsCaptureInput.Builder(
+CaptureAuthorizedPaymentInput captureAuthorizedPaymentInput = new CaptureAuthorizedPaymentInput.Builder(
     "authorization_id8",
     null
 )
@@ -105,7 +107,7 @@ AuthorizationsCaptureInput authorizationsCaptureInput = new AuthorizationsCaptur
         .build())
 .build();
 
-paymentsController.authorizationsCaptureAsync(authorizationsCaptureInput).thenAccept(result -> {
+paymentsController.captureAuthorizedPaymentAsync(captureAuthorizedPaymentInput).thenAccept(result -> {
     // TODO success callback handler
     System.out.println(result);
 }).exceptionally(exception -> {
@@ -129,13 +131,13 @@ paymentsController.authorizationsCaptureAsync(authorizationsCaptureInput).thenAc
 | Default | The error response. | [`ErrorException`](../../doc/models/error-exception.md) |
 
 
-# Authorizations Reauthorize
+# Reauthorize Payment
 
-Reauthorizes an authorized PayPal account payment, by ID. To ensure that funds are still available, reauthorize a payment after its initial three-day honor period expires. Within the 29-day authorization period, you can issue multiple re-authorizations after the honor period expires.<br/><br/>If 30 days have transpired since the date of the original authorization, you must create an authorized payment instead of reauthorizing the original authorized payment.<br/><br/>A reauthorized payment itself has a new honor period of three days.<br/><br/>You can reauthorize an authorized payment from 4 to 29 days after the 3-day honor period. The allowed amount depends on context and geography, for example in US it is up to 115% of the original authorized amount, not to exceed an increase of $75 USD.<br/><br/>Supports only the `amount` request parameter.<blockquote><strong>Note:</strong> This request is currently not supported for Partner use cases.</blockquote>
+Reauthorizes an authorized PayPal account payment, by ID. To ensure that funds are still available, reauthorize a payment after its initial three-day honor period expires. Within the 29-day authorization period, you can issue multiple re-authorizations after the honor period expires. If 30 days have transpired since the date of the original authorization, you must create an authorized payment instead of reauthorizing the original authorized payment. A reauthorized payment itself has a new honor period of three days. You can reauthorize an authorized payment from 4 to 29 days after the 3-day honor period. The allowed amount depends on context and geography, for example in US it is up to 115% of the original authorized amount, not to exceed an increase of $75 USD. Supports only the `amount` request parameter. Note: This request is currently not supported for Partner use cases.
 
 ```java
-CompletableFuture<ApiResponse<PaymentAuthorization>> authorizationsReauthorizeAsync(
-    final AuthorizationsReauthorizeInput input)
+CompletableFuture<ApiResponse<PaymentAuthorization>> reauthorizePaymentAsync(
+    final ReauthorizePaymentInput input)
 ```
 
 ## Parameters
@@ -144,25 +146,25 @@ CompletableFuture<ApiResponse<PaymentAuthorization>> authorizationsReauthorizeAs
 |  --- | --- | --- | --- |
 | `authorizationId` | `String` | Template, Required | The PayPal-generated ID for the authorized payment to reauthorize. |
 | `paypalRequestId` | `String` | Header, Optional | The server stores keys for 45 days. |
-| `prefer` | `String` | Header, Optional | The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul><br>**Default**: `"return=minimal"` |
-| `paypalAuthAssertion` | `String` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion).<blockquote><strong>Note:</strong>For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject.</blockquote> |
+| `prefer` | `String` | Header, Optional | The preferred server response upon successful completion of the request. Value is: return=minimal. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the id, status and HATEOAS links. return=representation. The server returns a complete resource representation, including the current state of the resource.<br>**Default**: `"return=minimal"` |
+| `paypalAuthAssertion` | `String` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion). Note:For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject. |
 | `body` | [`ReauthorizeRequest`](../../doc/models/reauthorize-request.md) | Body, Optional | - |
 
 ## Response Type
 
-[`PaymentAuthorization`](../../doc/models/payment-authorization.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `getResult()` getter of this instance returns the response data which is of type [`PaymentAuthorization`](../../doc/models/payment-authorization.md).
 
 ## Example Usage
 
 ```java
-AuthorizationsReauthorizeInput authorizationsReauthorizeInput = new AuthorizationsReauthorizeInput.Builder(
+ReauthorizePaymentInput reauthorizePaymentInput = new ReauthorizePaymentInput.Builder(
     "authorization_id8",
     null
 )
 .prefer("return=minimal")
 .build();
 
-paymentsController.authorizationsReauthorizeAsync(authorizationsReauthorizeInput).thenAccept(result -> {
+paymentsController.reauthorizePaymentAsync(reauthorizePaymentInput).thenAccept(result -> {
     // TODO success callback handler
     System.out.println(result);
 }).exceptionally(exception -> {
@@ -184,13 +186,13 @@ paymentsController.authorizationsReauthorizeAsync(authorizationsReauthorizeInput
 | Default | The error response. | [`ErrorException`](../../doc/models/error-exception.md) |
 
 
-# Authorizations Void
+# Void Payment
 
 Voids, or cancels, an authorized payment, by ID. You cannot void an authorized payment that has been fully captured.
 
 ```java
-CompletableFuture<ApiResponse<PaymentAuthorization>> authorizationsVoidAsync(
-    final AuthorizationsVoidInput input)
+CompletableFuture<ApiResponse<PaymentAuthorization>> voidPaymentAsync(
+    final VoidPaymentInput input)
 ```
 
 ## Parameters
@@ -198,24 +200,25 @@ CompletableFuture<ApiResponse<PaymentAuthorization>> authorizationsVoidAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `authorizationId` | `String` | Template, Required | The PayPal-generated ID for the authorized payment to void. |
-| `paypalAuthAssertion` | `String` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion).<blockquote><strong>Note:</strong>For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject.</blockquote> |
+| `paypalMockResponse` | `String` | Header, Optional | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant. |
+| `paypalAuthAssertion` | `String` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion). Note:For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject. |
 | `paypalRequestId` | `String` | Header, Optional | The server stores keys for 45 days. |
-| `prefer` | `String` | Header, Optional | The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul><br>**Default**: `"return=minimal"` |
+| `prefer` | `String` | Header, Optional | The preferred server response upon successful completion of the request. Value is: return=minimal. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the id, status and HATEOAS links. return=representation. The server returns a complete resource representation, including the current state of the resource.<br>**Default**: `"return=minimal"` |
 
 ## Response Type
 
-[`PaymentAuthorization`](../../doc/models/payment-authorization.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `getResult()` getter of this instance returns the response data which is of type [`PaymentAuthorization`](../../doc/models/payment-authorization.md).
 
 ## Example Usage
 
 ```java
-AuthorizationsVoidInput authorizationsVoidInput = new AuthorizationsVoidInput.Builder(
+VoidPaymentInput voidPaymentInput = new VoidPaymentInput.Builder(
     "authorization_id8"
 )
 .prefer("return=minimal")
 .build();
 
-paymentsController.authorizationsVoidAsync(authorizationsVoidInput).thenAccept(result -> {
+paymentsController.voidPaymentAsync(voidPaymentInput).thenAccept(result -> {
     // TODO success callback handler
     System.out.println(result);
 }).exceptionally(exception -> {
@@ -238,13 +241,13 @@ paymentsController.authorizationsVoidAsync(authorizationsVoidInput).thenAccept(r
 | Default | The error response. | [`ErrorException`](../../doc/models/error-exception.md) |
 
 
-# Captures Get
+# Get Captured Payment
 
 Shows details for a captured payment, by ID.
 
 ```java
-CompletableFuture<ApiResponse<CapturedPayment>> capturesGetAsync(
-    final String captureId)
+CompletableFuture<ApiResponse<CapturedPayment>> getCapturedPaymentAsync(
+    final GetCapturedPaymentInput input)
 ```
 
 ## Parameters
@@ -252,17 +255,21 @@ CompletableFuture<ApiResponse<CapturedPayment>> capturesGetAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `captureId` | `String` | Template, Required | The PayPal-generated ID for the captured payment for which to show details. |
+| `paypalMockResponse` | `String` | Header, Optional | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant. |
 
 ## Response Type
 
-[`CapturedPayment`](../../doc/models/captured-payment.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `getResult()` getter of this instance returns the response data which is of type [`CapturedPayment`](../../doc/models/captured-payment.md).
 
 ## Example Usage
 
 ```java
-String captureId = "capture_id2";
+GetCapturedPaymentInput getCapturedPaymentInput = new GetCapturedPaymentInput.Builder(
+    "capture_id2"
+)
+.build();
 
-paymentsController.capturesGetAsync(captureId).thenAccept(result -> {
+paymentsController.getCapturedPaymentAsync(getCapturedPaymentInput).thenAccept(result -> {
     // TODO success callback handler
     System.out.println(result);
 }).exceptionally(exception -> {
@@ -283,13 +290,13 @@ paymentsController.capturesGetAsync(captureId).thenAccept(result -> {
 | Default | The error response. | [`ErrorException`](../../doc/models/error-exception.md) |
 
 
-# Captures Refund
+# Refund Captured Payment
 
-Refunds a captured payment, by ID. For a full refund, include an empty payload in the JSON request body. For a partial refund, include an <code>amount</code> object in the JSON request body.
+Refunds a captured payment, by ID. For a full refund, include an empty payload in the JSON request body. For a partial refund, include an amount object in the JSON request body.
 
 ```java
-CompletableFuture<ApiResponse<Refund>> capturesRefundAsync(
-    final CapturesRefundInput input)
+CompletableFuture<ApiResponse<Refund>> refundCapturedPaymentAsync(
+    final RefundCapturedPaymentInput input)
 ```
 
 ## Parameters
@@ -297,26 +304,27 @@ CompletableFuture<ApiResponse<Refund>> capturesRefundAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `captureId` | `String` | Template, Required | The PayPal-generated ID for the captured payment to refund. |
+| `paypalMockResponse` | `String` | Header, Optional | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant. |
 | `paypalRequestId` | `String` | Header, Optional | The server stores keys for 45 days. |
-| `prefer` | `String` | Header, Optional | The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul><br>**Default**: `"return=minimal"` |
-| `paypalAuthAssertion` | `String` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion).<blockquote><strong>Note:</strong>For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject.</blockquote> |
+| `prefer` | `String` | Header, Optional | The preferred server response upon successful completion of the request. Value is: return=minimal. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the id, status and HATEOAS links. return=representation. The server returns a complete resource representation, including the current state of the resource.<br>**Default**: `"return=minimal"` |
+| `paypalAuthAssertion` | `String` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion). Note:For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject. |
 | `body` | [`RefundRequest`](../../doc/models/refund-request.md) | Body, Optional | - |
 
 ## Response Type
 
-[`Refund`](../../doc/models/refund.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `getResult()` getter of this instance returns the response data which is of type [`Refund`](../../doc/models/refund.md).
 
 ## Example Usage
 
 ```java
-CapturesRefundInput capturesRefundInput = new CapturesRefundInput.Builder(
+RefundCapturedPaymentInput refundCapturedPaymentInput = new RefundCapturedPaymentInput.Builder(
     "capture_id2",
     null
 )
 .prefer("return=minimal")
 .build();
 
-paymentsController.capturesRefundAsync(capturesRefundInput).thenAccept(result -> {
+paymentsController.refundCapturedPaymentAsync(refundCapturedPaymentInput).thenAccept(result -> {
     // TODO success callback handler
     System.out.println(result);
 }).exceptionally(exception -> {
@@ -340,13 +348,13 @@ paymentsController.capturesRefundAsync(capturesRefundInput).thenAccept(result ->
 | Default | The error response. | [`ErrorException`](../../doc/models/error-exception.md) |
 
 
-# Refunds Get
+# Get Refund
 
 Shows details for a refund, by ID.
 
 ```java
-CompletableFuture<ApiResponse<Refund>> refundsGetAsync(
-    final RefundsGetInput input)
+CompletableFuture<ApiResponse<Refund>> getRefundAsync(
+    final GetRefundInput input)
 ```
 
 ## Parameters
@@ -354,21 +362,22 @@ CompletableFuture<ApiResponse<Refund>> refundsGetAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `refundId` | `String` | Template, Required | The PayPal-generated ID for the refund for which to show details. |
-| `paypalAuthAssertion` | `String` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion).<blockquote><strong>Note:</strong>For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject.</blockquote> |
+| `paypalMockResponse` | `String` | Header, Optional | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant. |
+| `paypalAuthAssertion` | `String` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion). Note:For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject. |
 
 ## Response Type
 
-[`Refund`](../../doc/models/refund.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `getResult()` getter of this instance returns the response data which is of type [`Refund`](../../doc/models/refund.md).
 
 ## Example Usage
 
 ```java
-RefundsGetInput refundsGetInput = new RefundsGetInput.Builder(
+GetRefundInput getRefundInput = new GetRefundInput.Builder(
     "refund_id4"
 )
 .build();
 
-paymentsController.refundsGetAsync(refundsGetInput).thenAccept(result -> {
+paymentsController.getRefundAsync(getRefundInput).thenAccept(result -> {
     // TODO success callback handler
     System.out.println(result);
 }).exceptionally(exception -> {

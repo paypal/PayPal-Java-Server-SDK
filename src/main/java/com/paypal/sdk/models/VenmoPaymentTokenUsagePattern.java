@@ -17,16 +17,34 @@ import java.util.TreeMap;
  * VenmoPaymentTokenUsagePattern to be used.
  */
 public enum VenmoPaymentTokenUsagePattern {
+    /**
+     * On-demand instant payments – non-recurring, pre-paid, variable amount, variable frequency.
+     */
     IMMEDIATE,
 
+    /**
+     * Pay after use, non-recurring post-paid, variable amount, irregular frequency.
+     */
     DEFERRED,
 
+    /**
+     * Pay upfront fixed or variable amount on a fixed date before the goods/service is delivered.
+     */
     RECURRING_PREPAID,
 
+    /**
+     * Pay on a fixed date based on usage or consumption after the goods/service is delivered.
+     */
     RECURRING_POSTPAID,
 
+    /**
+     * Charge payer when the set amount is reached or monthly billing cycle, whichever comes first, before the goods/service is delivered.
+     */
     THRESHOLD_PREPAID,
 
+    /**
+     * Charge payer when the set amount is reached or monthly billing cycle, whichever comes first, after the goods/service is delivered.
+     */
     THRESHOLD_POSTPAID,
 
     /**

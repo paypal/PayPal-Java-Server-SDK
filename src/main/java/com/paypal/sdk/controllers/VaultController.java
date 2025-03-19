@@ -13,12 +13,12 @@ import com.paypal.sdk.exceptions.ApiException;
 import com.paypal.sdk.exceptions.ErrorException;
 import com.paypal.sdk.http.request.HttpMethod;
 import com.paypal.sdk.http.response.ApiResponse;
-import com.paypal.sdk.models.CustomerPaymentTokensGetInput;
+import com.paypal.sdk.models.CreatePaymentTokenInput;
+import com.paypal.sdk.models.CreateSetupTokenInput;
 import com.paypal.sdk.models.CustomerVaultPaymentTokensResponse;
+import com.paypal.sdk.models.ListCustomerPaymentTokensInput;
 import com.paypal.sdk.models.PaymentTokenResponse;
-import com.paypal.sdk.models.PaymentTokensCreateInput;
 import com.paypal.sdk.models.SetupTokenResponse;
-import com.paypal.sdk.models.SetupTokensCreateInput;
 import io.apimatic.core.ApiCall;
 import io.apimatic.core.ErrorCase;
 import io.apimatic.core.GlobalConfiguration;
@@ -43,36 +43,36 @@ public final class VaultController extends BaseController {
     /**
      * Creates a Payment Token from the given payment source and adds it to the Vault of the
      * associated customer.
-     * @param  input  PaymentTokensCreateInput object containing request parameters
+     * @param  input  CreatePaymentTokenInput object containing request parameters
      * @return    Returns the PaymentTokenResponse wrapped in ApiResponse response from the API call
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
-    public ApiResponse<PaymentTokenResponse> paymentTokensCreate(
-            final PaymentTokensCreateInput input) throws ApiException, IOException {
-        return preparePaymentTokensCreateRequest(input).execute();
+    public ApiResponse<PaymentTokenResponse> createPaymentToken(
+            final CreatePaymentTokenInput input) throws ApiException, IOException {
+        return prepareCreatePaymentTokenRequest(input).execute();
     }
 
     /**
      * Creates a Payment Token from the given payment source and adds it to the Vault of the
      * associated customer.
-     * @param  input  PaymentTokensCreateInput object containing request parameters
+     * @param  input  CreatePaymentTokenInput object containing request parameters
      * @return    Returns the PaymentTokenResponse wrapped in ApiResponse response from the API call
      */
-    public CompletableFuture<ApiResponse<PaymentTokenResponse>> paymentTokensCreateAsync(
-            final PaymentTokensCreateInput input) {
+    public CompletableFuture<ApiResponse<PaymentTokenResponse>> createPaymentTokenAsync(
+            final CreatePaymentTokenInput input) {
         try { 
-            return preparePaymentTokensCreateRequest(input).executeAsync(); 
+            return prepareCreatePaymentTokenRequest(input).executeAsync(); 
         } catch (Exception e) {  
             throw new CompletionException(e); 
         }
     }
 
     /**
-     * Builds the ApiCall object for paymentTokensCreate.
+     * Builds the ApiCall object for createPaymentToken.
      */
-    private ApiCall<ApiResponse<PaymentTokenResponse>, ApiException> preparePaymentTokensCreateRequest(
-            final PaymentTokensCreateInput input) throws JsonProcessingException, IOException {
+    private ApiCall<ApiResponse<PaymentTokenResponse>, ApiException> prepareCreatePaymentTokenRequest(
+            final CreatePaymentTokenInput input) throws JsonProcessingException, IOException {
         return new ApiCall.Builder<ApiResponse<PaymentTokenResponse>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder
@@ -80,10 +80,10 @@ public final class VaultController extends BaseController {
                         .path("/v3/vault/payment-tokens")
                         .bodyParam(param -> param.value(input.getBody()))
                         .bodySerializer(() ->  ApiHelper.serialize(input.getBody()))
-                        .headerParam(param -> param.key("PayPal-Request-Id")
-                                .value(input.getPaypalRequestId()).isRequired(false))
                         .headerParam(param -> param.key("Content-Type")
                                 .value("application/json").isRequired(false))
+                        .headerParam(param -> param.key("PayPal-Request-Id")
+                                .value(input.getPaypalRequestId()).isRequired(false))
                         .headerParam(param -> param.key("accept").value("application/json"))
                         .withAuth(auth -> auth
                                 .add("Oauth2"))
@@ -114,35 +114,35 @@ public final class VaultController extends BaseController {
 
     /**
      * Returns all payment tokens for a customer.
-     * @param  input  CustomerPaymentTokensGetInput object containing request parameters
+     * @param  input  ListCustomerPaymentTokensInput object containing request parameters
      * @return    Returns the CustomerVaultPaymentTokensResponse wrapped in ApiResponse response from the API call
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
-    public ApiResponse<CustomerVaultPaymentTokensResponse> customerPaymentTokensGet(
-            final CustomerPaymentTokensGetInput input) throws ApiException, IOException {
-        return prepareCustomerPaymentTokensGetRequest(input).execute();
+    public ApiResponse<CustomerVaultPaymentTokensResponse> listCustomerPaymentTokens(
+            final ListCustomerPaymentTokensInput input) throws ApiException, IOException {
+        return prepareListCustomerPaymentTokensRequest(input).execute();
     }
 
     /**
      * Returns all payment tokens for a customer.
-     * @param  input  CustomerPaymentTokensGetInput object containing request parameters
+     * @param  input  ListCustomerPaymentTokensInput object containing request parameters
      * @return    Returns the CustomerVaultPaymentTokensResponse wrapped in ApiResponse response from the API call
      */
-    public CompletableFuture<ApiResponse<CustomerVaultPaymentTokensResponse>> customerPaymentTokensGetAsync(
-            final CustomerPaymentTokensGetInput input) {
+    public CompletableFuture<ApiResponse<CustomerVaultPaymentTokensResponse>> listCustomerPaymentTokensAsync(
+            final ListCustomerPaymentTokensInput input) {
         try { 
-            return prepareCustomerPaymentTokensGetRequest(input).executeAsync(); 
+            return prepareListCustomerPaymentTokensRequest(input).executeAsync(); 
         } catch (Exception e) {  
             throw new CompletionException(e); 
         }
     }
 
     /**
-     * Builds the ApiCall object for customerPaymentTokensGet.
+     * Builds the ApiCall object for listCustomerPaymentTokens.
      */
-    private ApiCall<ApiResponse<CustomerVaultPaymentTokensResponse>, ApiException> prepareCustomerPaymentTokensGetRequest(
-            final CustomerPaymentTokensGetInput input) throws IOException {
+    private ApiCall<ApiResponse<CustomerVaultPaymentTokensResponse>, ApiException> prepareListCustomerPaymentTokensRequest(
+            final ListCustomerPaymentTokensInput input) throws IOException {
         return new ApiCall.Builder<ApiResponse<CustomerVaultPaymentTokensResponse>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder
@@ -186,9 +186,9 @@ public final class VaultController extends BaseController {
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
-    public ApiResponse<PaymentTokenResponse> paymentTokensGet(
+    public ApiResponse<PaymentTokenResponse> getPaymentToken(
             final String id) throws ApiException, IOException {
-        return preparePaymentTokensGetRequest(id).execute();
+        return prepareGetPaymentTokenRequest(id).execute();
     }
 
     /**
@@ -197,19 +197,19 @@ public final class VaultController extends BaseController {
      * @param  id  Required parameter: ID of the payment token.
      * @return    Returns the PaymentTokenResponse wrapped in ApiResponse response from the API call
      */
-    public CompletableFuture<ApiResponse<PaymentTokenResponse>> paymentTokensGetAsync(
+    public CompletableFuture<ApiResponse<PaymentTokenResponse>> getPaymentTokenAsync(
             final String id) {
         try { 
-            return preparePaymentTokensGetRequest(id).executeAsync(); 
+            return prepareGetPaymentTokenRequest(id).executeAsync(); 
         } catch (Exception e) {  
             throw new CompletionException(e); 
         }
     }
 
     /**
-     * Builds the ApiCall object for paymentTokensGet.
+     * Builds the ApiCall object for getPaymentToken.
      */
-    private ApiCall<ApiResponse<PaymentTokenResponse>, ApiException> preparePaymentTokensGetRequest(
+    private ApiCall<ApiResponse<PaymentTokenResponse>, ApiException> prepareGetPaymentTokenRequest(
             final String id) throws IOException {
         return new ApiCall.Builder<ApiResponse<PaymentTokenResponse>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
@@ -249,9 +249,9 @@ public final class VaultController extends BaseController {
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
-    public ApiResponse<Void> paymentTokensDelete(
+    public ApiResponse<Void> deletePaymentToken(
             final String id) throws ApiException, IOException {
-        return preparePaymentTokensDeleteRequest(id).execute();
+        return prepareDeletePaymentTokenRequest(id).execute();
     }
 
     /**
@@ -259,19 +259,19 @@ public final class VaultController extends BaseController {
      * @param  id  Required parameter: ID of the payment token.
      * @return    Returns the Void wrapped in ApiResponse response from the API call
      */
-    public CompletableFuture<ApiResponse<Void>> paymentTokensDeleteAsync(
+    public CompletableFuture<ApiResponse<Void>> deletePaymentTokenAsync(
             final String id) {
         try { 
-            return preparePaymentTokensDeleteRequest(id).executeAsync(); 
+            return prepareDeletePaymentTokenRequest(id).executeAsync(); 
         } catch (Exception e) {  
             throw new CompletionException(e); 
         }
     }
 
     /**
-     * Builds the ApiCall object for paymentTokensDelete.
+     * Builds the ApiCall object for deletePaymentToken.
      */
-    private ApiCall<ApiResponse<Void>, ApiException> preparePaymentTokensDeleteRequest(
+    private ApiCall<ApiResponse<Void>, ApiException> prepareDeletePaymentTokenRequest(
             final String id) throws IOException {
         return new ApiCall.Builder<ApiResponse<Void>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
@@ -302,36 +302,36 @@ public final class VaultController extends BaseController {
     /**
      * Creates a Setup Token from the given payment source and adds it to the Vault of the
      * associated customer.
-     * @param  input  SetupTokensCreateInput object containing request parameters
+     * @param  input  CreateSetupTokenInput object containing request parameters
      * @return    Returns the SetupTokenResponse wrapped in ApiResponse response from the API call
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
-    public ApiResponse<SetupTokenResponse> setupTokensCreate(
-            final SetupTokensCreateInput input) throws ApiException, IOException {
-        return prepareSetupTokensCreateRequest(input).execute();
+    public ApiResponse<SetupTokenResponse> createSetupToken(
+            final CreateSetupTokenInput input) throws ApiException, IOException {
+        return prepareCreateSetupTokenRequest(input).execute();
     }
 
     /**
      * Creates a Setup Token from the given payment source and adds it to the Vault of the
      * associated customer.
-     * @param  input  SetupTokensCreateInput object containing request parameters
+     * @param  input  CreateSetupTokenInput object containing request parameters
      * @return    Returns the SetupTokenResponse wrapped in ApiResponse response from the API call
      */
-    public CompletableFuture<ApiResponse<SetupTokenResponse>> setupTokensCreateAsync(
-            final SetupTokensCreateInput input) {
+    public CompletableFuture<ApiResponse<SetupTokenResponse>> createSetupTokenAsync(
+            final CreateSetupTokenInput input) {
         try { 
-            return prepareSetupTokensCreateRequest(input).executeAsync(); 
+            return prepareCreateSetupTokenRequest(input).executeAsync(); 
         } catch (Exception e) {  
             throw new CompletionException(e); 
         }
     }
 
     /**
-     * Builds the ApiCall object for setupTokensCreate.
+     * Builds the ApiCall object for createSetupToken.
      */
-    private ApiCall<ApiResponse<SetupTokenResponse>, ApiException> prepareSetupTokensCreateRequest(
-            final SetupTokensCreateInput input) throws JsonProcessingException, IOException {
+    private ApiCall<ApiResponse<SetupTokenResponse>, ApiException> prepareCreateSetupTokenRequest(
+            final CreateSetupTokenInput input) throws JsonProcessingException, IOException {
         return new ApiCall.Builder<ApiResponse<SetupTokenResponse>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder
@@ -339,10 +339,10 @@ public final class VaultController extends BaseController {
                         .path("/v3/vault/setup-tokens")
                         .bodyParam(param -> param.value(input.getBody()))
                         .bodySerializer(() ->  ApiHelper.serialize(input.getBody()))
-                        .headerParam(param -> param.key("PayPal-Request-Id")
-                                .value(input.getPaypalRequestId()).isRequired(false))
                         .headerParam(param -> param.key("Content-Type")
                                 .value("application/json").isRequired(false))
+                        .headerParam(param -> param.key("PayPal-Request-Id")
+                                .value(input.getPaypalRequestId()).isRequired(false))
                         .headerParam(param -> param.key("accept").value("application/json"))
                         .withAuth(auth -> auth
                                 .add("Oauth2"))
@@ -376,9 +376,9 @@ public final class VaultController extends BaseController {
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
-    public ApiResponse<SetupTokenResponse> setupTokensGet(
+    public ApiResponse<SetupTokenResponse> getSetupToken(
             final String id) throws ApiException, IOException {
-        return prepareSetupTokensGetRequest(id).execute();
+        return prepareGetSetupTokenRequest(id).execute();
     }
 
     /**
@@ -387,19 +387,19 @@ public final class VaultController extends BaseController {
      * @param  id  Required parameter: ID of the setup token.
      * @return    Returns the SetupTokenResponse wrapped in ApiResponse response from the API call
      */
-    public CompletableFuture<ApiResponse<SetupTokenResponse>> setupTokensGetAsync(
+    public CompletableFuture<ApiResponse<SetupTokenResponse>> getSetupTokenAsync(
             final String id) {
         try { 
-            return prepareSetupTokensGetRequest(id).executeAsync(); 
+            return prepareGetSetupTokenRequest(id).executeAsync(); 
         } catch (Exception e) {  
             throw new CompletionException(e); 
         }
     }
 
     /**
-     * Builds the ApiCall object for setupTokensGet.
+     * Builds the ApiCall object for getSetupToken.
      */
-    private ApiCall<ApiResponse<SetupTokenResponse>, ApiException> prepareSetupTokensGetRequest(
+    private ApiCall<ApiResponse<SetupTokenResponse>, ApiException> prepareGetSetupTokenRequest(
             final String id) throws IOException {
         return new ApiCall.Builder<ApiResponse<SetupTokenResponse>, ApiException>()
                 .globalConfig(getGlobalConfiguration())

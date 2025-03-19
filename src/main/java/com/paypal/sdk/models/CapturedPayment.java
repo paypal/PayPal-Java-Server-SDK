@@ -27,11 +27,11 @@ public class CapturedPayment {
     private SellerReceivableBreakdown sellerReceivableBreakdown;
     private DisbursementMode disbursementMode;
     private List<LinkDescription> links;
-    private ProcessorResponse processorResponse;
+    private PaymentsProcessorResponse processorResponse;
     private String createTime;
     private String updateTime;
     private PaymentSupplementaryData supplementaryData;
-    private Payee payee;
+    private PayeeBase payee;
 
     /**
      * Default constructor.
@@ -57,11 +57,11 @@ public class CapturedPayment {
      *         sellerReceivableBreakdown.
      * @param  disbursementMode  DisbursementMode value for disbursementMode.
      * @param  links  List of LinkDescription value for links.
-     * @param  processorResponse  ProcessorResponse value for processorResponse.
+     * @param  processorResponse  PaymentsProcessorResponse value for processorResponse.
      * @param  createTime  String value for createTime.
      * @param  updateTime  String value for updateTime.
      * @param  supplementaryData  PaymentSupplementaryData value for supplementaryData.
-     * @param  payee  Payee value for payee.
+     * @param  payee  PayeeBase value for payee.
      */
     public CapturedPayment(
             CaptureStatus status,
@@ -76,11 +76,11 @@ public class CapturedPayment {
             SellerReceivableBreakdown sellerReceivableBreakdown,
             DisbursementMode disbursementMode,
             List<LinkDescription> links,
-            ProcessorResponse processorResponse,
+            PaymentsProcessorResponse processorResponse,
             String createTime,
             String updateTime,
             PaymentSupplementaryData supplementaryData,
-            Payee payee) {
+            PayeeBase payee) {
         this.status = status;
         this.statusDetails = statusDetails;
         this.id = id;
@@ -368,11 +368,11 @@ public class CapturedPayment {
      * Getter for ProcessorResponse.
      * The processor response information for payment requests, such as direct credit card
      * transactions.
-     * @return Returns the ProcessorResponse
+     * @return Returns the PaymentsProcessorResponse
      */
     @JsonGetter("processor_response")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public ProcessorResponse getProcessorResponse() {
+    public PaymentsProcessorResponse getProcessorResponse() {
         return processorResponse;
     }
 
@@ -380,10 +380,10 @@ public class CapturedPayment {
      * Setter for ProcessorResponse.
      * The processor response information for payment requests, such as direct credit card
      * transactions.
-     * @param processorResponse Value for ProcessorResponse
+     * @param processorResponse Value for PaymentsProcessorResponse
      */
     @JsonSetter("processor_response")
-    public void setProcessorResponse(ProcessorResponse processorResponse) {
+    public void setProcessorResponse(PaymentsProcessorResponse processorResponse) {
         this.processorResponse = processorResponse;
     }
 
@@ -391,8 +391,8 @@ public class CapturedPayment {
      * Getter for CreateTime.
      * The date and time, in [Internet date and time
      * format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while
-     * fractional seconds are optional.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; The regular expression
-     * provides guidance but does not reject all invalid dates.&lt;/blockquote&gt;
+     * fractional seconds are optional. Note: The regular expression provides guidance but does not
+     * reject all invalid dates.
      * @return Returns the String
      */
     @JsonGetter("create_time")
@@ -405,8 +405,8 @@ public class CapturedPayment {
      * Setter for CreateTime.
      * The date and time, in [Internet date and time
      * format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while
-     * fractional seconds are optional.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; The regular expression
-     * provides guidance but does not reject all invalid dates.&lt;/blockquote&gt;
+     * fractional seconds are optional. Note: The regular expression provides guidance but does not
+     * reject all invalid dates.
      * @param createTime Value for String
      */
     @JsonSetter("create_time")
@@ -418,8 +418,8 @@ public class CapturedPayment {
      * Getter for UpdateTime.
      * The date and time, in [Internet date and time
      * format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while
-     * fractional seconds are optional.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; The regular expression
-     * provides guidance but does not reject all invalid dates.&lt;/blockquote&gt;
+     * fractional seconds are optional. Note: The regular expression provides guidance but does not
+     * reject all invalid dates.
      * @return Returns the String
      */
     @JsonGetter("update_time")
@@ -432,8 +432,8 @@ public class CapturedPayment {
      * Setter for UpdateTime.
      * The date and time, in [Internet date and time
      * format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while
-     * fractional seconds are optional.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; The regular expression
-     * provides guidance but does not reject all invalid dates.&lt;/blockquote&gt;
+     * fractional seconds are optional. Note: The regular expression provides guidance but does not
+     * reject all invalid dates.
      * @param updateTime Value for String
      */
     @JsonSetter("update_time")
@@ -466,11 +466,11 @@ public class CapturedPayment {
      * Getter for Payee.
      * The details for the merchant who receives the funds and fulfills the order. The merchant is
      * also known as the payee.
-     * @return Returns the Payee
+     * @return Returns the PayeeBase
      */
     @JsonGetter("payee")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public Payee getPayee() {
+    public PayeeBase getPayee() {
         return payee;
     }
 
@@ -478,10 +478,10 @@ public class CapturedPayment {
      * Setter for Payee.
      * The details for the merchant who receives the funds and fulfills the order. The merchant is
      * also known as the payee.
-     * @param payee Value for Payee
+     * @param payee Value for PayeeBase
      */
     @JsonSetter("payee")
-    public void setPayee(Payee payee) {
+    public void setPayee(PayeeBase payee) {
         this.payee = payee;
     }
 
@@ -544,11 +544,11 @@ public class CapturedPayment {
         private SellerReceivableBreakdown sellerReceivableBreakdown;
         private DisbursementMode disbursementMode = DisbursementMode.INSTANT;
         private List<LinkDescription> links;
-        private ProcessorResponse processorResponse;
+        private PaymentsProcessorResponse processorResponse;
         private String createTime;
         private String updateTime;
         private PaymentSupplementaryData supplementaryData;
-        private Payee payee;
+        private PayeeBase payee;
 
 
 
@@ -678,10 +678,10 @@ public class CapturedPayment {
 
         /**
          * Setter for processorResponse.
-         * @param  processorResponse  ProcessorResponse value for processorResponse.
+         * @param  processorResponse  PaymentsProcessorResponse value for processorResponse.
          * @return Builder
          */
-        public Builder processorResponse(ProcessorResponse processorResponse) {
+        public Builder processorResponse(PaymentsProcessorResponse processorResponse) {
             this.processorResponse = processorResponse;
             return this;
         }
@@ -718,10 +718,10 @@ public class CapturedPayment {
 
         /**
          * Setter for payee.
-         * @param  payee  Payee value for payee.
+         * @param  payee  PayeeBase value for payee.
          * @return Builder
          */
-        public Builder payee(Payee payee) {
+        public Builder payee(PayeeBase payee) {
             this.payee = payee;
             return this;
         }

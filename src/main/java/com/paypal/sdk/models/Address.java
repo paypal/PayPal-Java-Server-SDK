@@ -122,9 +122,8 @@ public class Address {
      * Getter for AdminArea1.
      * The highest-level sub-division in a country, which is usually a province, state, or
      * ISO-3166-2 subdivision. This data is formatted for postal delivery, for example, `CA` and not
-     * `California`. Value, by country, is:&lt;ul&gt;&lt;li&gt;UK. A county.&lt;/li&gt;&lt;li&gt;US. A
-     * state.&lt;/li&gt;&lt;li&gt;Canada. A province.&lt;/li&gt;&lt;li&gt;Japan. A prefecture.&lt;/li&gt;&lt;li&gt;Switzerland. A
-     * *kanton*.&lt;/li&gt;&lt;/ul&gt;
+     * `California`. Value, by country, is: UK. A county. US. A state. Canada. A province. Japan. A
+     * prefecture. Switzerland. A *kanton*.
      * @return Returns the String
      */
     @JsonGetter("admin_area_1")
@@ -137,9 +136,8 @@ public class Address {
      * Setter for AdminArea1.
      * The highest-level sub-division in a country, which is usually a province, state, or
      * ISO-3166-2 subdivision. This data is formatted for postal delivery, for example, `CA` and not
-     * `California`. Value, by country, is:&lt;ul&gt;&lt;li&gt;UK. A county.&lt;/li&gt;&lt;li&gt;US. A
-     * state.&lt;/li&gt;&lt;li&gt;Canada. A province.&lt;/li&gt;&lt;li&gt;Japan. A prefecture.&lt;/li&gt;&lt;li&gt;Switzerland. A
-     * *kanton*.&lt;/li&gt;&lt;/ul&gt;
+     * `California`. Value, by country, is: UK. A county. US. A state. Canada. A province. Japan. A
+     * prefecture. Switzerland. A *kanton*.
      * @param adminArea1 Value for String
      */
     @JsonSetter("admin_area_1")
@@ -173,10 +171,9 @@ public class Address {
     /**
      * Getter for CountryCode.
      * The [2-character ISO 3166-1 code](/api/rest/reference/country-codes/) that identifies the
-     * country or region.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; The country code for Great Britain is
-     * &lt;code&gt;GB&lt;/code&gt; and not &lt;code&gt;UK&lt;/code&gt; as used in the top-level domain names for that
-     * country. Use the `C2` country code for China worldwide for comparable uncontrolled price
-     * (CUP) method, bank card, and cross-border transactions.&lt;/blockquote&gt;
+     * country or region. Note: The country code for Great Britain is GB and not UK as used in the
+     * top-level domain names for that country. Use the `C2` country code for China worldwide for
+     * comparable uncontrolled price (CUP) method, bank card, and cross-border transactions.
      * @return Returns the String
      */
     @JsonGetter("country_code")
@@ -187,10 +184,9 @@ public class Address {
     /**
      * Setter for CountryCode.
      * The [2-character ISO 3166-1 code](/api/rest/reference/country-codes/) that identifies the
-     * country or region.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; The country code for Great Britain is
-     * &lt;code&gt;GB&lt;/code&gt; and not &lt;code&gt;UK&lt;/code&gt; as used in the top-level domain names for that
-     * country. Use the `C2` country code for China worldwide for comparable uncontrolled price
-     * (CUP) method, bank card, and cross-border transactions.&lt;/blockquote&gt;
+     * country or region. Note: The country code for Great Britain is GB and not UK as used in the
+     * top-level domain names for that country. Use the `C2` country code for China worldwide for
+     * comparable uncontrolled price (CUP) method, bank card, and cross-border transactions.
      * @param countryCode Value for String
      */
     @JsonSetter("country_code")

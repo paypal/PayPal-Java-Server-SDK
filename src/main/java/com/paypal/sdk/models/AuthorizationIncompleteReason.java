@@ -17,8 +17,14 @@ import java.util.TreeMap;
  * AuthorizationIncompleteReason to be used.
  */
 public enum AuthorizationIncompleteReason {
+    /**
+     * Authorization is pending manual review.
+     */
     PENDING_REVIEW,
 
+    /**
+     * Risk Filter set by the payee failed for the transaction.
+     */
     DECLINED_BY_RISK_FRAUD_FILTERS,
 
     /**

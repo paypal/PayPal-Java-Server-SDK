@@ -9,7 +9,6 @@ package com.paypal.sdk.models;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import com.paypal.sdk.utilities.JsonValue;
 
 /**
  * This is a model class for PaymentTokenRequestCard type.
@@ -21,7 +20,6 @@ public class PaymentTokenRequestCard {
     private String securityCode;
     private CardBrand brand;
     private Address billingAddress;
-    private JsonValue networkTransactionReference;
 
     /**
      * Default constructor.
@@ -37,7 +35,6 @@ public class PaymentTokenRequestCard {
      * @param  securityCode  String value for securityCode.
      * @param  brand  CardBrand value for brand.
      * @param  billingAddress  Address value for billingAddress.
-     * @param  networkTransactionReference  JsonValue value for networkTransactionReference.
      */
     public PaymentTokenRequestCard(
             String name,
@@ -45,15 +42,13 @@ public class PaymentTokenRequestCard {
             String expiry,
             String securityCode,
             CardBrand brand,
-            Address billingAddress,
-            JsonValue networkTransactionReference) {
+            Address billingAddress) {
         this.name = name;
         this.number = number;
         this.expiry = expiry;
         this.securityCode = securityCode;
         this.brand = brand;
         this.billingAddress = billingAddress;
-        this.networkTransactionReference = networkTransactionReference;
     }
 
     /**
@@ -193,25 +188,6 @@ public class PaymentTokenRequestCard {
     }
 
     /**
-     * Getter for NetworkTransactionReference.
-     * @return Returns the JsonValue
-     */
-    @JsonGetter("network_transaction_reference")
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    public JsonValue getNetworkTransactionReference() {
-        return networkTransactionReference;
-    }
-
-    /**
-     * Setter for NetworkTransactionReference.
-     * @param networkTransactionReference Value for JsonValue
-     */
-    @JsonSetter("network_transaction_reference")
-    public void setNetworkTransactionReference(JsonValue networkTransactionReference) {
-        this.networkTransactionReference = networkTransactionReference;
-    }
-
-    /**
      * Converts this PaymentTokenRequestCard into string format.
      * @return String representation of this class
      */
@@ -219,8 +195,7 @@ public class PaymentTokenRequestCard {
     public String toString() {
         return "PaymentTokenRequestCard [" + "name=" + name + ", number=" + number + ", expiry="
                 + expiry + ", securityCode=" + securityCode + ", brand=" + brand
-                + ", billingAddress=" + billingAddress + ", networkTransactionReference="
-                + networkTransactionReference + "]";
+                + ", billingAddress=" + billingAddress + "]";
     }
 
     /**
@@ -235,8 +210,7 @@ public class PaymentTokenRequestCard {
                 .expiry(getExpiry())
                 .securityCode(getSecurityCode())
                 .brand(getBrand())
-                .billingAddress(getBillingAddress())
-                .networkTransactionReference(getNetworkTransactionReference());
+                .billingAddress(getBillingAddress());
         return builder;
     }
 
@@ -250,7 +224,6 @@ public class PaymentTokenRequestCard {
         private String securityCode;
         private CardBrand brand;
         private Address billingAddress;
-        private JsonValue networkTransactionReference;
 
 
 
@@ -315,22 +288,12 @@ public class PaymentTokenRequestCard {
         }
 
         /**
-         * Setter for networkTransactionReference.
-         * @param  networkTransactionReference  JsonValue value for networkTransactionReference.
-         * @return Builder
-         */
-        public Builder networkTransactionReference(JsonValue networkTransactionReference) {
-            this.networkTransactionReference = networkTransactionReference;
-            return this;
-        }
-
-        /**
          * Builds a new {@link PaymentTokenRequestCard} object using the set fields.
          * @return {@link PaymentTokenRequestCard}
          */
         public PaymentTokenRequestCard build() {
             return new PaymentTokenRequestCard(name, number, expiry, securityCode, brand,
-                    billingAddress, networkTransactionReference);
+                    billingAddress);
         }
     }
 }

@@ -62,4 +62,13 @@ public class FileWrapper implements CoreFileWrapper {
     public String getContentType() {
         return contentType;
     }
+
+    /**
+     * Converts FileWrapper object into string format.
+     * @return String representation of this class
+     */
+    @Override
+    public String toString() {
+        return "FileWrapper [fileName=" + (file != null ? file.getName() : "") + ", contentType=" + contentType + "]";
+    }
 }

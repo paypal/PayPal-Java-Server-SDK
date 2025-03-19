@@ -93,4 +93,15 @@ public class OAuthProviderException extends ApiException {
     private void setErrorUri(String errorUri) {
         this.errorUri = errorUri;
     }
+
+    /**
+     * Converts this OAuthProviderException into string format.
+     * @return String representation of this class
+     */
+    @Override
+    public String toString() {
+        return "OAuthProviderException [" + "statusCode=" + getResponseCode() + ", message="
+                + getMessage() + ", error=" + error + ", errorDescription=" + errorDescription
+                + ", errorUri=" + errorUri + "]";
+    }
 }

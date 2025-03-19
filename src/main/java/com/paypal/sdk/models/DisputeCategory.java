@@ -17,8 +17,14 @@ import java.util.TreeMap;
  * DisputeCategory to be used.
  */
 public enum DisputeCategory {
+    /**
+     * The payer paid for an item that they did not receive.
+     */
     ITEM_NOT_RECEIVED,
 
+    /**
+     * The payer did not authorize the payment.
+     */
     UNAUTHORIZED_TRANSACTION,
 
     /**

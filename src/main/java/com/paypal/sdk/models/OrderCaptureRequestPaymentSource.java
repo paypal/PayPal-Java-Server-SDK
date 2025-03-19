@@ -53,14 +53,10 @@ public class OrderCaptureRequestPaymentSource {
 
     /**
      * Getter for Card.
-     * The payment card to use to fund a payment. Can be a credit or debit
-     * card.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; Passing card number, cvv and expiry directly via the
-     * API requires &lt;a
-     * href="https://www.pcisecuritystandards.org/pci_security/completing_self_assessment"&gt; PCI SAQ
-     * D compliance&lt;/a&gt;. &lt;br&gt;*PayPal offers a mechanism by which you do not have to take on the
-     * &lt;strong&gt;PCI SAQ D&lt;/strong&gt; burden by using hosted fields - refer to &lt;a
-     * href="https://developer.paypal.com/docs/checkout/advanced/integrate/"&gt;this Integration
-     * Guide&lt;/a&gt;*.&lt;/blockquote&gt;
+     * The payment card to use to fund a payment. Can be a credit or debit card. Note: Passing card
+     * number, cvv and expiry directly via the API requires PCI SAQ D compliance. *PayPal offers a
+     * mechanism by which you do not have to take on the PCI SAQ D burden by using hosted fields -
+     * refer to this Integration Guide*.
      * @return Returns the CardRequest
      */
     @JsonGetter("card")
@@ -71,14 +67,10 @@ public class OrderCaptureRequestPaymentSource {
 
     /**
      * Setter for Card.
-     * The payment card to use to fund a payment. Can be a credit or debit
-     * card.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; Passing card number, cvv and expiry directly via the
-     * API requires &lt;a
-     * href="https://www.pcisecuritystandards.org/pci_security/completing_self_assessment"&gt; PCI SAQ
-     * D compliance&lt;/a&gt;. &lt;br&gt;*PayPal offers a mechanism by which you do not have to take on the
-     * &lt;strong&gt;PCI SAQ D&lt;/strong&gt; burden by using hosted fields - refer to &lt;a
-     * href="https://developer.paypal.com/docs/checkout/advanced/integrate/"&gt;this Integration
-     * Guide&lt;/a&gt;*.&lt;/blockquote&gt;
+     * The payment card to use to fund a payment. Can be a credit or debit card. Note: Passing card
+     * number, cvv and expiry directly via the API requires PCI SAQ D compliance. *PayPal offers a
+     * mechanism by which you do not have to take on the PCI SAQ D burden by using hosted fields -
+     * refer to this Integration Guide*.
      * @param card Value for CardRequest
      */
     @JsonSetter("card")

@@ -25,6 +25,7 @@ public class CardResponse {
     private CardFromRequest fromRequest;
     private String expiry;
     private BinDetails binDetails;
+    private CardStoredCredential storedCredential;
 
     /**
      * Default constructor.
@@ -44,6 +45,7 @@ public class CardResponse {
      * @param  fromRequest  CardFromRequest value for fromRequest.
      * @param  expiry  String value for expiry.
      * @param  binDetails  BinDetails value for binDetails.
+     * @param  storedCredential  CardStoredCredential value for storedCredential.
      */
     public CardResponse(
             String name,
@@ -55,7 +57,8 @@ public class CardResponse {
             CardAttributesResponse attributes,
             CardFromRequest fromRequest,
             String expiry,
-            BinDetails binDetails) {
+            BinDetails binDetails,
+            CardStoredCredential storedCredential) {
         this.name = name;
         this.lastDigits = lastDigits;
         this.brand = brand;
@@ -66,6 +69,7 @@ public class CardResponse {
         this.fromRequest = fromRequest;
         this.expiry = expiry;
         this.binDetails = binDetails;
+        this.storedCredential = storedCredential;
     }
 
     /**
@@ -281,6 +285,41 @@ public class CardResponse {
     }
 
     /**
+     * Getter for StoredCredential.
+     * Provides additional details to process a payment using a `card` that has been stored or is
+     * intended to be stored (also referred to as stored_credential or card-on-file). Parameter
+     * compatibility: `payment_type=ONE_TIME` is compatible only with `payment_initiator=CUSTOMER`.
+     * `usage=FIRST` is compatible only with `payment_initiator=CUSTOMER`.
+     * `previous_transaction_reference` or `previous_network_transaction_reference` is compatible
+     * only with `payment_initiator=MERCHANT`. Only one of the parameters -
+     * `previous_transaction_reference` and `previous_network_transaction_reference` - can be
+     * present in the request.
+     * @return Returns the CardStoredCredential
+     */
+    @JsonGetter("stored_credential")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public CardStoredCredential getStoredCredential() {
+        return storedCredential;
+    }
+
+    /**
+     * Setter for StoredCredential.
+     * Provides additional details to process a payment using a `card` that has been stored or is
+     * intended to be stored (also referred to as stored_credential or card-on-file). Parameter
+     * compatibility: `payment_type=ONE_TIME` is compatible only with `payment_initiator=CUSTOMER`.
+     * `usage=FIRST` is compatible only with `payment_initiator=CUSTOMER`.
+     * `previous_transaction_reference` or `previous_network_transaction_reference` is compatible
+     * only with `payment_initiator=MERCHANT`. Only one of the parameters -
+     * `previous_transaction_reference` and `previous_network_transaction_reference` - can be
+     * present in the request.
+     * @param storedCredential Value for CardStoredCredential
+     */
+    @JsonSetter("stored_credential")
+    public void setStoredCredential(CardStoredCredential storedCredential) {
+        this.storedCredential = storedCredential;
+    }
+
+    /**
      * Converts this CardResponse into string format.
      * @return String representation of this class
      */
@@ -290,7 +329,7 @@ public class CardResponse {
                 + ", availableNetworks=" + availableNetworks + ", type=" + type
                 + ", authenticationResult=" + authenticationResult + ", attributes=" + attributes
                 + ", fromRequest=" + fromRequest + ", expiry=" + expiry + ", binDetails="
-                + binDetails + "]";
+                + binDetails + ", storedCredential=" + storedCredential + "]";
     }
 
     /**
@@ -309,7 +348,8 @@ public class CardResponse {
                 .attributes(getAttributes())
                 .fromRequest(getFromRequest())
                 .expiry(getExpiry())
-                .binDetails(getBinDetails());
+                .binDetails(getBinDetails())
+                .storedCredential(getStoredCredential());
         return builder;
     }
 
@@ -327,6 +367,7 @@ public class CardResponse {
         private CardFromRequest fromRequest;
         private String expiry;
         private BinDetails binDetails;
+        private CardStoredCredential storedCredential;
 
 
 
@@ -431,12 +472,23 @@ public class CardResponse {
         }
 
         /**
+         * Setter for storedCredential.
+         * @param  storedCredential  CardStoredCredential value for storedCredential.
+         * @return Builder
+         */
+        public Builder storedCredential(CardStoredCredential storedCredential) {
+            this.storedCredential = storedCredential;
+            return this;
+        }
+
+        /**
          * Builds a new {@link CardResponse} object using the set fields.
          * @return {@link CardResponse}
          */
         public CardResponse build() {
             return new CardResponse(name, lastDigits, brand, availableNetworks, type,
-                    authenticationResult, attributes, fromRequest, expiry, binDetails);
+                    authenticationResult, attributes, fromRequest, expiry, binDetails,
+                    storedCredential);
         }
     }
 }

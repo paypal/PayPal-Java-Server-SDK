@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 public class TrustlyPaymentObject {
     private String name;
     private String countryCode;
+    private String email;
     private String bic;
     private String ibanLastChars;
 
@@ -29,16 +30,19 @@ public class TrustlyPaymentObject {
      * Initialization constructor.
      * @param  name  String value for name.
      * @param  countryCode  String value for countryCode.
+     * @param  email  String value for email.
      * @param  bic  String value for bic.
      * @param  ibanLastChars  String value for ibanLastChars.
      */
     public TrustlyPaymentObject(
             String name,
             String countryCode,
+            String email,
             String bic,
             String ibanLastChars) {
         this.name = name;
         this.countryCode = countryCode;
+        this.email = email;
         this.bic = bic;
         this.ibanLastChars = ibanLastChars;
     }
@@ -67,10 +71,9 @@ public class TrustlyPaymentObject {
     /**
      * Getter for CountryCode.
      * The [two-character ISO 3166-1 code](/api/rest/reference/country-codes/) that identifies the
-     * country or region.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; The country code for Great Britain is
-     * &lt;code&gt;GB&lt;/code&gt; and not &lt;code&gt;UK&lt;/code&gt; as used in the top-level domain names for that
-     * country. Use the `C2` country code for China worldwide for comparable uncontrolled price
-     * (CUP) method, bank card, and cross-border transactions.&lt;/blockquote&gt;
+     * country or region. Note: The country code for Great Britain is GB and not UK as used in the
+     * top-level domain names for that country. Use the `C2` country code for China worldwide for
+     * comparable uncontrolled price (CUP) method, bank card, and cross-border transactions.
      * @return Returns the String
      */
     @JsonGetter("country_code")
@@ -82,15 +85,39 @@ public class TrustlyPaymentObject {
     /**
      * Setter for CountryCode.
      * The [two-character ISO 3166-1 code](/api/rest/reference/country-codes/) that identifies the
-     * country or region.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; The country code for Great Britain is
-     * &lt;code&gt;GB&lt;/code&gt; and not &lt;code&gt;UK&lt;/code&gt; as used in the top-level domain names for that
-     * country. Use the `C2` country code for China worldwide for comparable uncontrolled price
-     * (CUP) method, bank card, and cross-border transactions.&lt;/blockquote&gt;
+     * country or region. Note: The country code for Great Britain is GB and not UK as used in the
+     * top-level domain names for that country. Use the `C2` country code for China worldwide for
+     * comparable uncontrolled price (CUP) method, bank card, and cross-border transactions.
      * @param countryCode Value for String
      */
     @JsonSetter("country_code")
     public void setCountryCode(String countryCode) {
         this.countryCode = countryCode;
+    }
+
+    /**
+     * Getter for Email.
+     * The internationalized email address. Note: Up to 64 characters are allowed before and 255
+     * characters are allowed after the {@literal @} sign. However, the generally accepted maximum length for
+     * an email address is 254 characters. The pattern verifies that an unquoted {@literal @} sign exists.
+     * @return Returns the String
+     */
+    @JsonGetter("email")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * Setter for Email.
+     * The internationalized email address. Note: Up to 64 characters are allowed before and 255
+     * characters are allowed after the {@literal @} sign. However, the generally accepted maximum length for
+     * an email address is 254 characters. The pattern verifies that an unquoted {@literal @} sign exists.
+     * @param email Value for String
+     */
+    @JsonSetter("email")
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     /**
@@ -143,8 +170,8 @@ public class TrustlyPaymentObject {
      */
     @Override
     public String toString() {
-        return "TrustlyPaymentObject [" + "name=" + name + ", countryCode=" + countryCode + ", bic="
-                + bic + ", ibanLastChars=" + ibanLastChars + "]";
+        return "TrustlyPaymentObject [" + "name=" + name + ", countryCode=" + countryCode
+                + ", email=" + email + ", bic=" + bic + ", ibanLastChars=" + ibanLastChars + "]";
     }
 
     /**
@@ -156,6 +183,7 @@ public class TrustlyPaymentObject {
         Builder builder = new Builder()
                 .name(getName())
                 .countryCode(getCountryCode())
+                .email(getEmail())
                 .bic(getBic())
                 .ibanLastChars(getIbanLastChars());
         return builder;
@@ -167,6 +195,7 @@ public class TrustlyPaymentObject {
     public static class Builder {
         private String name;
         private String countryCode;
+        private String email;
         private String bic;
         private String ibanLastChars;
 
@@ -189,6 +218,16 @@ public class TrustlyPaymentObject {
          */
         public Builder countryCode(String countryCode) {
             this.countryCode = countryCode;
+            return this;
+        }
+
+        /**
+         * Setter for email.
+         * @param  email  String value for email.
+         * @return Builder
+         */
+        public Builder email(String email) {
+            this.email = email;
             return this;
         }
 
@@ -217,7 +256,7 @@ public class TrustlyPaymentObject {
          * @return {@link TrustlyPaymentObject}
          */
         public TrustlyPaymentObject build() {
-            return new TrustlyPaymentObject(name, countryCode, bic, ibanLastChars);
+            return new TrustlyPaymentObject(name, countryCode, email, bic, ibanLastChars);
         }
     }
 }

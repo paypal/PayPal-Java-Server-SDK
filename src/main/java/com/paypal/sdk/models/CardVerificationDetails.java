@@ -58,8 +58,8 @@ public class CardVerificationDetails {
 
     /**
      * Getter for NetworkTransactionId.
-     * Transaction Identifier as given by the network to indicate a previously executed CIT
-     * authorization. Only present when authorization is successful for a verification.
+     * DEPRECATED. This field is DEPRECATED. Please find the network transaction id data in the 'id'
+     * field under the 'network_transaction_reference' object instead of the 'verification' object.
      * @return Returns the String
      */
     @JsonGetter("network_transaction_id")
@@ -70,8 +70,8 @@ public class CardVerificationDetails {
 
     /**
      * Setter for NetworkTransactionId.
-     * Transaction Identifier as given by the network to indicate a previously executed CIT
-     * authorization. Only present when authorization is successful for a verification.
+     * DEPRECATED. This field is DEPRECATED. Please find the network transaction id data in the 'id'
+     * field under the 'network_transaction_reference' object instead of the 'verification' object.
      * @param networkTransactionId Value for String
      */
     @JsonSetter("network_transaction_id")
@@ -81,8 +81,8 @@ public class CardVerificationDetails {
 
     /**
      * Getter for Date.
-     * The date that the transaction was authorized by the scheme. This field may not be returned
-     * for all networks. MasterCard refers to this field as "BankNet reference date".
+     * DEPRECATED. This field is DEPRECATED. Please find the date data in the 'date' field under the
+     * 'network_transaction_reference' object instead of the 'verification' object.
      * @return Returns the String
      */
     @JsonGetter("date")
@@ -93,8 +93,8 @@ public class CardVerificationDetails {
 
     /**
      * Setter for Date.
-     * The date that the transaction was authorized by the scheme. This field may not be returned
-     * for all networks. MasterCard refers to this field as "BankNet reference date".
+     * DEPRECATED. This field is DEPRECATED. Please find the date data in the 'date' field under the
+     * 'network_transaction_reference' object instead of the 'verification' object.
      * @param date Value for String
      */
     @JsonSetter("date")
@@ -127,8 +127,8 @@ public class CardVerificationDetails {
      * Getter for Time.
      * The date and time, in [Internet date and time
      * format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while
-     * fractional seconds are optional.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; The regular expression
-     * provides guidance but does not reject all invalid dates.&lt;/blockquote&gt;
+     * fractional seconds are optional. Note: The regular expression provides guidance but does not
+     * reject all invalid dates.
      * @return Returns the String
      */
     @JsonGetter("time")
@@ -141,8 +141,8 @@ public class CardVerificationDetails {
      * Setter for Time.
      * The date and time, in [Internet date and time
      * format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while
-     * fractional seconds are optional.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; The regular expression
-     * provides guidance but does not reject all invalid dates.&lt;/blockquote&gt;
+     * fractional seconds are optional. Note: The regular expression provides guidance but does not
+     * reject all invalid dates.
      * @param time Value for String
      */
     @JsonSetter("time")
@@ -196,9 +196,9 @@ public class CardVerificationDetails {
 
     /**
      * Getter for ThreeDSecure.
-     * DEPRECATED. This field is DEPRECATED. Please find the 3D secure authentication data in
-     * 'three_d_secure' object under 'authentication_result' object instead of the 'verification'
-     * field.
+     * DEPRECATED. This field is DEPRECATED. Please find the 3D secure authentication data in the
+     * 'three_d_secure' object under the 'authentication_result' object instead of the
+     * 'verification' object.
      * @return Returns the JsonValue
      */
     @JsonGetter("three_d_secure")
@@ -209,9 +209,9 @@ public class CardVerificationDetails {
 
     /**
      * Setter for ThreeDSecure.
-     * DEPRECATED. This field is DEPRECATED. Please find the 3D secure authentication data in
-     * 'three_d_secure' object under 'authentication_result' object instead of the 'verification'
-     * field.
+     * DEPRECATED. This field is DEPRECATED. Please find the 3D secure authentication data in the
+     * 'three_d_secure' object under the 'authentication_result' object instead of the
+     * 'verification' object.
      * @param threeDSecure Value for JsonValue
      */
     @JsonSetter("three_d_secure")

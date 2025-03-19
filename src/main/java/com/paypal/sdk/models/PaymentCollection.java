@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class PaymentCollection {
     private List<AuthorizationWithAdditionalData> authorizations;
-    private List<Capture> captures;
+    private List<OrdersCapture> captures;
     private List<Refund> refunds;
 
     /**
@@ -28,12 +28,12 @@ public class PaymentCollection {
     /**
      * Initialization constructor.
      * @param  authorizations  List of AuthorizationWithAdditionalData value for authorizations.
-     * @param  captures  List of Capture value for captures.
+     * @param  captures  List of OrdersCapture value for captures.
      * @param  refunds  List of Refund value for refunds.
      */
     public PaymentCollection(
             List<AuthorizationWithAdditionalData> authorizations,
-            List<Capture> captures,
+            List<OrdersCapture> captures,
             List<Refund> refunds) {
         this.authorizations = authorizations;
         this.captures = captures;
@@ -67,11 +67,11 @@ public class PaymentCollection {
      * Getter for Captures.
      * An array of captured payments for a purchase unit. A purchase unit can have zero or more
      * captured payments.
-     * @return Returns the List of Capture
+     * @return Returns the List of OrdersCapture
      */
     @JsonGetter("captures")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public List<Capture> getCaptures() {
+    public List<OrdersCapture> getCaptures() {
         return captures;
     }
 
@@ -79,10 +79,10 @@ public class PaymentCollection {
      * Setter for Captures.
      * An array of captured payments for a purchase unit. A purchase unit can have zero or more
      * captured payments.
-     * @param captures Value for List of Capture
+     * @param captures Value for List of OrdersCapture
      */
     @JsonSetter("captures")
-    public void setCaptures(List<Capture> captures) {
+    public void setCaptures(List<OrdersCapture> captures) {
         this.captures = captures;
     }
 
@@ -135,7 +135,7 @@ public class PaymentCollection {
      */
     public static class Builder {
         private List<AuthorizationWithAdditionalData> authorizations;
-        private List<Capture> captures;
+        private List<OrdersCapture> captures;
         private List<Refund> refunds;
 
 
@@ -152,10 +152,10 @@ public class PaymentCollection {
 
         /**
          * Setter for captures.
-         * @param  captures  List of Capture value for captures.
+         * @param  captures  List of OrdersCapture value for captures.
          * @return Builder
          */
-        public Builder captures(List<Capture> captures) {
+        public Builder captures(List<OrdersCapture> captures) {
             this.captures = captures;
             return this;
         }

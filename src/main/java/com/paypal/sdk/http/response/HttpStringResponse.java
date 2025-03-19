@@ -24,14 +24,4 @@ public class HttpStringResponse extends HttpResponse {
     public HttpStringResponse(int code, Headers headers, InputStream rawBody, String body) {
         super(code, headers, rawBody, body);
     }
-
-    /**
-     * Converts this HttpStringResponse into string format.
-     * @return String representation of this class
-     */
-    @Override
-    public String toString() {
-        return "HttpStringResponse [statusCode=" + getStatusCode() + ", headers=" + getHeaders()
-                + ", body=" + getBody() + "]";
-    }
 }

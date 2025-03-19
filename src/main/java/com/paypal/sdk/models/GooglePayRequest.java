@@ -20,7 +20,6 @@ public class GooglePayRequest {
     private GooglePayRequestCard card;
     private GooglePayDecryptedTokenData decryptedToken;
     private AssuranceDetails assuranceDetails;
-    private GooglePayCardAttributes attributes;
 
     /**
      * Default constructor.
@@ -36,7 +35,6 @@ public class GooglePayRequest {
      * @param  card  GooglePayRequestCard value for card.
      * @param  decryptedToken  GooglePayDecryptedTokenData value for decryptedToken.
      * @param  assuranceDetails  AssuranceDetails value for assuranceDetails.
-     * @param  attributes  GooglePayCardAttributes value for attributes.
      */
     public GooglePayRequest(
             String name,
@@ -44,15 +42,13 @@ public class GooglePayRequest {
             PhoneNumberWithCountryCode phoneNumber,
             GooglePayRequestCard card,
             GooglePayDecryptedTokenData decryptedToken,
-            AssuranceDetails assuranceDetails,
-            GooglePayCardAttributes attributes) {
+            AssuranceDetails assuranceDetails) {
         this.name = name;
         this.emailAddress = emailAddress;
         this.phoneNumber = phoneNumber;
         this.card = card;
         this.decryptedToken = decryptedToken;
         this.assuranceDetails = assuranceDetails;
-        this.attributes = attributes;
     }
 
     /**
@@ -78,10 +74,9 @@ public class GooglePayRequest {
 
     /**
      * Getter for EmailAddress.
-     * The internationalized email address.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; Up to 64 characters
-     * are allowed before and 255 characters are allowed after the &lt;code&gt;{@literal @}&lt;/code&gt; sign. However, the
-     * generally accepted maximum length for an email address is 254 characters. The pattern
-     * verifies that an unquoted &lt;code&gt;{@literal @}&lt;/code&gt; sign exists.&lt;/blockquote&gt;
+     * The internationalized email address. Note: Up to 64 characters are allowed before and 255
+     * characters are allowed after the {@literal @} sign. However, the generally accepted maximum length for
+     * an email address is 254 characters. The pattern verifies that an unquoted {@literal @} sign exists.
      * @return Returns the String
      */
     @JsonGetter("email_address")
@@ -92,10 +87,9 @@ public class GooglePayRequest {
 
     /**
      * Setter for EmailAddress.
-     * The internationalized email address.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; Up to 64 characters
-     * are allowed before and 255 characters are allowed after the &lt;code&gt;{@literal @}&lt;/code&gt; sign. However, the
-     * generally accepted maximum length for an email address is 254 characters. The pattern
-     * verifies that an unquoted &lt;code&gt;{@literal @}&lt;/code&gt; sign exists.&lt;/blockquote&gt;
+     * The internationalized email address. Note: Up to 64 characters are allowed before and 255
+     * characters are allowed after the {@literal @} sign. However, the generally accepted maximum length for
+     * an email address is 254 characters. The pattern verifies that an unquoted {@literal @} sign exists.
      * @param emailAddress Value for String
      */
     @JsonSetter("email_address")
@@ -194,27 +188,6 @@ public class GooglePayRequest {
     }
 
     /**
-     * Getter for Attributes.
-     * Additional attributes associated with the use of this card.
-     * @return Returns the GooglePayCardAttributes
-     */
-    @JsonGetter("attributes")
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    public GooglePayCardAttributes getAttributes() {
-        return attributes;
-    }
-
-    /**
-     * Setter for Attributes.
-     * Additional attributes associated with the use of this card.
-     * @param attributes Value for GooglePayCardAttributes
-     */
-    @JsonSetter("attributes")
-    public void setAttributes(GooglePayCardAttributes attributes) {
-        this.attributes = attributes;
-    }
-
-    /**
      * Converts this GooglePayRequest into string format.
      * @return String representation of this class
      */
@@ -222,8 +195,7 @@ public class GooglePayRequest {
     public String toString() {
         return "GooglePayRequest [" + "name=" + name + ", emailAddress=" + emailAddress
                 + ", phoneNumber=" + phoneNumber + ", card=" + card + ", decryptedToken="
-                + decryptedToken + ", assuranceDetails=" + assuranceDetails + ", attributes="
-                + attributes + "]";
+                + decryptedToken + ", assuranceDetails=" + assuranceDetails + "]";
     }
 
     /**
@@ -238,8 +210,7 @@ public class GooglePayRequest {
                 .phoneNumber(getPhoneNumber())
                 .card(getCard())
                 .decryptedToken(getDecryptedToken())
-                .assuranceDetails(getAssuranceDetails())
-                .attributes(getAttributes());
+                .assuranceDetails(getAssuranceDetails());
         return builder;
     }
 
@@ -253,7 +224,6 @@ public class GooglePayRequest {
         private GooglePayRequestCard card;
         private GooglePayDecryptedTokenData decryptedToken;
         private AssuranceDetails assuranceDetails;
-        private GooglePayCardAttributes attributes;
 
 
 
@@ -318,22 +288,12 @@ public class GooglePayRequest {
         }
 
         /**
-         * Setter for attributes.
-         * @param  attributes  GooglePayCardAttributes value for attributes.
-         * @return Builder
-         */
-        public Builder attributes(GooglePayCardAttributes attributes) {
-            this.attributes = attributes;
-            return this;
-        }
-
-        /**
          * Builds a new {@link GooglePayRequest} object using the set fields.
          * @return {@link GooglePayRequest}
          */
         public GooglePayRequest build() {
             return new GooglePayRequest(name, emailAddress, phoneNumber, card, decryptedToken,
-                    assuranceDetails, attributes);
+                    assuranceDetails);
         }
     }
 }

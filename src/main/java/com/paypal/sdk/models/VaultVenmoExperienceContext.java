@@ -15,27 +15,28 @@ import com.fasterxml.jackson.annotation.JsonSetter;
  */
 public class VaultVenmoExperienceContext {
     private String brandName;
-    private String shippingPreference;
-    private String vaultInstruction;
+    private OrderApplicationContextShippingPreference shippingPreference;
+    private VaultInstructionAction vaultInstruction;
 
     /**
      * Default constructor.
      */
     public VaultVenmoExperienceContext() {
-        shippingPreference = "GET_FROM_FILE";
-        vaultInstruction = "ON_CREATE_PAYMENT_TOKENS";
+        shippingPreference = OrderApplicationContextShippingPreference.GET_FROM_FILE;
+        vaultInstruction = VaultInstructionAction.ON_CREATE_PAYMENT_TOKENS;
     }
 
     /**
      * Initialization constructor.
      * @param  brandName  String value for brandName.
-     * @param  shippingPreference  String value for shippingPreference.
-     * @param  vaultInstruction  String value for vaultInstruction.
+     * @param  shippingPreference  OrderApplicationContextShippingPreference value for
+     *         shippingPreference.
+     * @param  vaultInstruction  VaultInstructionAction value for vaultInstruction.
      */
     public VaultVenmoExperienceContext(
             String brandName,
-            String shippingPreference,
-            String vaultInstruction) {
+            OrderApplicationContextShippingPreference shippingPreference,
+            VaultInstructionAction vaultInstruction) {
         this.brandName = brandName;
         this.shippingPreference = shippingPreference;
         this.vaultInstruction = vaultInstruction;
@@ -67,42 +68,42 @@ public class VaultVenmoExperienceContext {
     /**
      * Getter for ShippingPreference.
      * The shipping preference. This only applies to PayPal payment source.
-     * @return Returns the String
+     * @return Returns the OrderApplicationContextShippingPreference
      */
     @JsonGetter("shipping_preference")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public String getShippingPreference() {
+    public OrderApplicationContextShippingPreference getShippingPreference() {
         return shippingPreference;
     }
 
     /**
      * Setter for ShippingPreference.
      * The shipping preference. This only applies to PayPal payment source.
-     * @param shippingPreference Value for String
+     * @param shippingPreference Value for OrderApplicationContextShippingPreference
      */
     @JsonSetter("shipping_preference")
-    public void setShippingPreference(String shippingPreference) {
+    public void setShippingPreference(OrderApplicationContextShippingPreference shippingPreference) {
         this.shippingPreference = shippingPreference;
     }
 
     /**
      * Getter for VaultInstruction.
      * Vault Instruction on action to be performed after a successful payer approval.
-     * @return Returns the String
+     * @return Returns the VaultInstructionAction
      */
     @JsonGetter("vault_instruction")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public String getVaultInstruction() {
+    public VaultInstructionAction getVaultInstruction() {
         return vaultInstruction;
     }
 
     /**
      * Setter for VaultInstruction.
      * Vault Instruction on action to be performed after a successful payer approval.
-     * @param vaultInstruction Value for String
+     * @param vaultInstruction Value for VaultInstructionAction
      */
     @JsonSetter("vault_instruction")
-    public void setVaultInstruction(String vaultInstruction) {
+    public void setVaultInstruction(VaultInstructionAction vaultInstruction) {
         this.vaultInstruction = vaultInstruction;
     }
 
@@ -134,8 +135,10 @@ public class VaultVenmoExperienceContext {
      */
     public static class Builder {
         private String brandName;
-        private String shippingPreference = "GET_FROM_FILE";
-        private String vaultInstruction = "ON_CREATE_PAYMENT_TOKENS";
+        private OrderApplicationContextShippingPreference shippingPreference =
+                OrderApplicationContextShippingPreference.GET_FROM_FILE;
+        private VaultInstructionAction vaultInstruction =
+                VaultInstructionAction.ON_CREATE_PAYMENT_TOKENS;
 
 
 
@@ -151,20 +154,22 @@ public class VaultVenmoExperienceContext {
 
         /**
          * Setter for shippingPreference.
-         * @param  shippingPreference  String value for shippingPreference.
+         * @param  shippingPreference  OrderApplicationContextShippingPreference value for
+         *         shippingPreference.
          * @return Builder
          */
-        public Builder shippingPreference(String shippingPreference) {
+        public Builder shippingPreference(
+                OrderApplicationContextShippingPreference shippingPreference) {
             this.shippingPreference = shippingPreference;
             return this;
         }
 
         /**
          * Setter for vaultInstruction.
-         * @param  vaultInstruction  String value for vaultInstruction.
+         * @param  vaultInstruction  VaultInstructionAction value for vaultInstruction.
          * @return Builder
          */
-        public Builder vaultInstruction(String vaultInstruction) {
+        public Builder vaultInstruction(VaultInstructionAction vaultInstruction) {
             this.vaultInstruction = vaultInstruction;
             return this;
         }

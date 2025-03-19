@@ -17,16 +17,34 @@ import java.util.TreeMap;
  * EciFlag to be used.
  */
 public enum EciFlag {
+    /**
+     * Mastercard non-3-D Secure transaction.
+     */
     MASTERCARD_NON_3D_SECURE_TRANSACTION,
 
+    /**
+     * Mastercard attempted authentication transaction.
+     */
     MASTERCARD_ATTEMPTED_AUTHENTICATION_TRANSACTION,
 
+    /**
+     * Mastercard fully authenticated transaction.
+     */
     MASTERCARD_FULLY_AUTHENTICATED_TRANSACTION,
 
+    /**
+     * VISA, AMEX, JCB, DINERS CLUB fully authenticated transaction.
+     */
     FULLY_AUTHENTICATED_TRANSACTION,
 
+    /**
+     * VISA, AMEX, JCB, DINERS CLUB attempted authentication transaction.
+     */
     ATTEMPTED_AUTHENTICATION_TRANSACTION,
 
+    /**
+     * VISA, AMEX, JCB, DINERS CLUB non-3-D Secure transaction.
+     */
     NON_3D_SECURE_TRANSACTION,
 
     /**

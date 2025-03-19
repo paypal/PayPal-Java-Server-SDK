@@ -16,8 +16,6 @@ public class ApiException extends CoreApiException {
     //UID for serialization
     private static final long serialVersionUID = 1L;
 
-    //private fields
-
     /**
      * Initialization constructor.
      * @param reason The reason for throwing exception
@@ -34,5 +32,14 @@ public class ApiException extends CoreApiException {
      */
     public ApiException(String reason, Context context) {
         super(reason, context);
+    }
+
+    /**
+     * Converts this ApiException into string format.
+     * @return String representation of this class
+     */
+    @Override
+    public String toString() {
+        return "ApiException [" + "statusCode=" + getResponseCode() + ", message=" + getMessage() + "]";
     }
 }
