@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
  */
 public class VaultTokenRequest {
     private String id;
-    private TokenRequestType type;
+    private VaultTokenRequestType type;
 
     /**
      * Default constructor.
@@ -25,11 +25,11 @@ public class VaultTokenRequest {
     /**
      * Initialization constructor.
      * @param  id  String value for id.
-     * @param  type  TokenRequestType value for type.
+     * @param  type  VaultTokenRequestType value for type.
      */
     public VaultTokenRequest(
             String id,
-            TokenRequestType type) {
+            VaultTokenRequestType type) {
         this.id = id;
         this.type = type;
     }
@@ -57,20 +57,20 @@ public class VaultTokenRequest {
     /**
      * Getter for Type.
      * The tokenization method that generated the ID.
-     * @return Returns the TokenRequestType
+     * @return Returns the VaultTokenRequestType
      */
     @JsonGetter("type")
-    public TokenRequestType getType() {
+    public VaultTokenRequestType getType() {
         return type;
     }
 
     /**
      * Setter for Type.
      * The tokenization method that generated the ID.
-     * @param type Value for TokenRequestType
+     * @param type Value for VaultTokenRequestType
      */
     @JsonSetter("type")
-    public void setType(TokenRequestType type) {
+    public void setType(VaultTokenRequestType type) {
         this.type = type;
     }
 
@@ -98,7 +98,7 @@ public class VaultTokenRequest {
      */
     public static class Builder {
         private String id;
-        private TokenRequestType type;
+        private VaultTokenRequestType type;
 
         /**
          * Initialization constructor.
@@ -109,9 +109,9 @@ public class VaultTokenRequest {
         /**
          * Initialization constructor.
          * @param  id  String value for id.
-         * @param  type  TokenRequestType value for type.
+         * @param  type  VaultTokenRequestType value for type.
          */
-        public Builder(String id, TokenRequestType type) {
+        public Builder(String id, VaultTokenRequestType type) {
             this.id = id;
             this.type = type;
         }
@@ -128,10 +128,10 @@ public class VaultTokenRequest {
 
         /**
          * Setter for type.
-         * @param  type  TokenRequestType value for type.
+         * @param  type  VaultTokenRequestType value for type.
          * @return Builder
          */
-        public Builder type(TokenRequestType type) {
+        public Builder type(VaultTokenRequestType type) {
             this.type = type;
             return this;
         }

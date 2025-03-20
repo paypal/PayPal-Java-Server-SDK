@@ -81,7 +81,7 @@ public class OrderTrackerRequest {
      * in the global list. Choose the carrier for your country. If the carrier is not available for
      * your country, choose the global version of the carrier. If your carrier name is not in the
      * list, set `carrier` to `OTHER` and set carrier name in `carrier_name_other`. For allowed
-     * values, see &lt;a href="/docs/tracking/reference/carriers/"&gt;Carriers&lt;/a&gt;.
+     * values, see Carriers.
      * @return Returns the ShipmentCarrier
      */
     @JsonGetter("carrier")
@@ -97,7 +97,7 @@ public class OrderTrackerRequest {
      * in the global list. Choose the carrier for your country. If the carrier is not available for
      * your country, choose the global version of the carrier. If your carrier name is not in the
      * list, set `carrier` to `OTHER` and set carrier name in `carrier_name_other`. For allowed
-     * values, see &lt;a href="/docs/tracking/reference/carriers/"&gt;Carriers&lt;/a&gt;.
+     * values, see Carriers.
      * @param carrier Value for ShipmentCarrier
      */
     @JsonSetter("carrier")
@@ -150,8 +150,10 @@ public class OrderTrackerRequest {
 
     /**
      * Getter for NotifyPayer.
-     * If true, sends an email notification to the payer of the PayPal transaction. The email
-     * contains the tracking information that was uploaded through the API.
+     * If true, PayPal will send an email notification to the payer of the PayPal transaction. The
+     * email contains the tracking details provided through the Orders tracking API request.
+     * Independent of any value passed for `notify_payer`, the payer may receive tracking
+     * notifications within the PayPal app, based on the user's notification preferences.
      * @return Returns the Boolean
      */
     @JsonGetter("notify_payer")
@@ -162,8 +164,10 @@ public class OrderTrackerRequest {
 
     /**
      * Setter for NotifyPayer.
-     * If true, sends an email notification to the payer of the PayPal transaction. The email
-     * contains the tracking information that was uploaded through the API.
+     * If true, PayPal will send an email notification to the payer of the PayPal transaction. The
+     * email contains the tracking details provided through the Orders tracking API request.
+     * Independent of any value passed for `notify_payer`, the payer may receive tracking
+     * notifications within the PayPal app, based on the user's notification preferences.
      * @param notifyPayer Value for Boolean
      */
     @JsonSetter("notify_payer")

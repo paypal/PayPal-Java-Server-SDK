@@ -17,6 +17,9 @@ import java.util.TreeMap;
  * RefundIncompleteReason to be used.
  */
 public enum RefundIncompleteReason {
+    /**
+     * The customer's account is funded through an eCheck, which has not yet cleared.
+     */
     ECHECK,
 
     /**

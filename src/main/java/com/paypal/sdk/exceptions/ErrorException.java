@@ -133,4 +133,15 @@ public class ErrorException extends ApiException {
     private void setLinks(List<LinkDescription> links) {
         this.links = links;
     }
+
+    /**
+     * Converts this ErrorException into string format.
+     * @return String representation of this class
+     */
+    @Override
+    public String toString() {
+        return "ErrorException [" + "statusCode=" + getResponseCode() + ", message=" + getMessage()
+                + ", name=" + name + ", message=" + message + ", debugId=" + debugId + ", details="
+                + details + ", links=" + links + "]";
+    }
 }

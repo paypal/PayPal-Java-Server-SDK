@@ -17,8 +17,14 @@ import java.util.TreeMap;
  * PaypalPaymentTokenCustomerType to be used.
  */
 public enum PaypalPaymentTokenCustomerType {
+    /**
+     * The customer vaulting the PayPal payment token is a consumer on the merchant / platform.
+     */
     CONSUMER,
 
+    /**
+     * The customer vaulting the PayPal payment token is a business on merchant / platform.
+     */
     BUSINESS,
 
     /**

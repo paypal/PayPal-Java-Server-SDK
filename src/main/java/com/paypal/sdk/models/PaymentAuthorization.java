@@ -28,7 +28,7 @@ public class PaymentAuthorization {
     private String createTime;
     private String updateTime;
     private PaymentSupplementaryData supplementaryData;
-    private Payee payee;
+    private PayeeBase payee;
 
     /**
      * Default constructor.
@@ -52,7 +52,7 @@ public class PaymentAuthorization {
      * @param  createTime  String value for createTime.
      * @param  updateTime  String value for updateTime.
      * @param  supplementaryData  PaymentSupplementaryData value for supplementaryData.
-     * @param  payee  Payee value for payee.
+     * @param  payee  PayeeBase value for payee.
      */
     public PaymentAuthorization(
             AuthorizationStatus status,
@@ -68,7 +68,7 @@ public class PaymentAuthorization {
             String createTime,
             String updateTime,
             PaymentSupplementaryData supplementaryData,
-            Payee payee) {
+            PayeeBase payee) {
         this.status = status;
         this.statusDetails = statusDetails;
         this.id = id;
@@ -263,8 +263,8 @@ public class PaymentAuthorization {
      * Getter for ExpirationTime.
      * The date and time, in [Internet date and time
      * format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while
-     * fractional seconds are optional.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; The regular expression
-     * provides guidance but does not reject all invalid dates.&lt;/blockquote&gt;
+     * fractional seconds are optional. Note: The regular expression provides guidance but does not
+     * reject all invalid dates.
      * @return Returns the String
      */
     @JsonGetter("expiration_time")
@@ -277,8 +277,8 @@ public class PaymentAuthorization {
      * Setter for ExpirationTime.
      * The date and time, in [Internet date and time
      * format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while
-     * fractional seconds are optional.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; The regular expression
-     * provides guidance but does not reject all invalid dates.&lt;/blockquote&gt;
+     * fractional seconds are optional. Note: The regular expression provides guidance but does not
+     * reject all invalid dates.
      * @param expirationTime Value for String
      */
     @JsonSetter("expiration_time")
@@ -311,8 +311,8 @@ public class PaymentAuthorization {
      * Getter for CreateTime.
      * The date and time, in [Internet date and time
      * format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while
-     * fractional seconds are optional.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; The regular expression
-     * provides guidance but does not reject all invalid dates.&lt;/blockquote&gt;
+     * fractional seconds are optional. Note: The regular expression provides guidance but does not
+     * reject all invalid dates.
      * @return Returns the String
      */
     @JsonGetter("create_time")
@@ -325,8 +325,8 @@ public class PaymentAuthorization {
      * Setter for CreateTime.
      * The date and time, in [Internet date and time
      * format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while
-     * fractional seconds are optional.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; The regular expression
-     * provides guidance but does not reject all invalid dates.&lt;/blockquote&gt;
+     * fractional seconds are optional. Note: The regular expression provides guidance but does not
+     * reject all invalid dates.
      * @param createTime Value for String
      */
     @JsonSetter("create_time")
@@ -338,8 +338,8 @@ public class PaymentAuthorization {
      * Getter for UpdateTime.
      * The date and time, in [Internet date and time
      * format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while
-     * fractional seconds are optional.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; The regular expression
-     * provides guidance but does not reject all invalid dates.&lt;/blockquote&gt;
+     * fractional seconds are optional. Note: The regular expression provides guidance but does not
+     * reject all invalid dates.
      * @return Returns the String
      */
     @JsonGetter("update_time")
@@ -352,8 +352,8 @@ public class PaymentAuthorization {
      * Setter for UpdateTime.
      * The date and time, in [Internet date and time
      * format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while
-     * fractional seconds are optional.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; The regular expression
-     * provides guidance but does not reject all invalid dates.&lt;/blockquote&gt;
+     * fractional seconds are optional. Note: The regular expression provides guidance but does not
+     * reject all invalid dates.
      * @param updateTime Value for String
      */
     @JsonSetter("update_time")
@@ -386,11 +386,11 @@ public class PaymentAuthorization {
      * Getter for Payee.
      * The details for the merchant who receives the funds and fulfills the order. The merchant is
      * also known as the payee.
-     * @return Returns the Payee
+     * @return Returns the PayeeBase
      */
     @JsonGetter("payee")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public Payee getPayee() {
+    public PayeeBase getPayee() {
         return payee;
     }
 
@@ -398,10 +398,10 @@ public class PaymentAuthorization {
      * Setter for Payee.
      * The details for the merchant who receives the funds and fulfills the order. The merchant is
      * also known as the payee.
-     * @param payee Value for Payee
+     * @param payee Value for PayeeBase
      */
     @JsonSetter("payee")
-    public void setPayee(Payee payee) {
+    public void setPayee(PayeeBase payee) {
         this.payee = payee;
     }
 
@@ -460,7 +460,7 @@ public class PaymentAuthorization {
         private String createTime;
         private String updateTime;
         private PaymentSupplementaryData supplementaryData;
-        private Payee payee;
+        private PayeeBase payee;
 
 
 
@@ -598,10 +598,10 @@ public class PaymentAuthorization {
 
         /**
          * Setter for payee.
-         * @param  payee  Payee value for payee.
+         * @param  payee  PayeeBase value for payee.
          * @return Builder
          */
-        public Builder payee(Payee payee) {
+        public Builder payee(PayeeBase payee) {
             this.payee = payee;
             return this;
         }

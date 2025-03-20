@@ -136,10 +136,9 @@ public class OrderRequest {
 
     /**
      * Getter for ApplicationContext.
-     * Customizes the payer experience during the approval process for the payment with
-     * PayPal.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; Partners and Marketplaces might configure
-     * &lt;code&gt;brand_name&lt;/code&gt; and &lt;code&gt;shipping_preference&lt;/code&gt; during partner account setup,
-     * which overrides the request values.&lt;/blockquote&gt;
+     * Customizes the payer experience during the approval process for the payment with PayPal.
+     * Note: Partners and Marketplaces might configure brand_name and shipping_preference during
+     * partner account setup, which overrides the request values.
      * @return Returns the OrderApplicationContext
      */
     @JsonGetter("application_context")
@@ -150,10 +149,9 @@ public class OrderRequest {
 
     /**
      * Setter for ApplicationContext.
-     * Customizes the payer experience during the approval process for the payment with
-     * PayPal.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; Partners and Marketplaces might configure
-     * &lt;code&gt;brand_name&lt;/code&gt; and &lt;code&gt;shipping_preference&lt;/code&gt; during partner account setup,
-     * which overrides the request values.&lt;/blockquote&gt;
+     * Customizes the payer experience during the approval process for the payment with PayPal.
+     * Note: Partners and Marketplaces might configure brand_name and shipping_preference during
+     * partner account setup, which overrides the request values.
      * @param applicationContext Value for OrderApplicationContext
      */
     @JsonSetter("application_context")

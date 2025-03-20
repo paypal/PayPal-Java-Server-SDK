@@ -17,10 +17,19 @@ import java.util.TreeMap;
  * LiabilityShiftIndicator to be used.
  */
 public enum LiabilityShiftIndicator {
+    /**
+     * Liability is with the merchant.
+     */
     NO,
 
+    /**
+     * Liability may shift to the card issuer.
+     */
     POSSIBLE,
 
+    /**
+     * The authentication system is not available.
+     */
     UNKNOWN,
 
     /**

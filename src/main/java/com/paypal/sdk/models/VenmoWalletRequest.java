@@ -68,10 +68,9 @@ public class VenmoWalletRequest {
 
     /**
      * Getter for EmailAddress.
-     * The internationalized email address.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; Up to 64 characters
-     * are allowed before and 255 characters are allowed after the &lt;code&gt;{@literal @}&lt;/code&gt; sign. However, the
-     * generally accepted maximum length for an email address is 254 characters. The pattern
-     * verifies that an unquoted &lt;code&gt;{@literal @}&lt;/code&gt; sign exists.&lt;/blockquote&gt;
+     * The internationalized email address. Note: Up to 64 characters are allowed before and 255
+     * characters are allowed after the {@literal @} sign. However, the generally accepted maximum length for
+     * an email address is 254 characters. The pattern verifies that an unquoted {@literal @} sign exists.
      * @return Returns the String
      */
     @JsonGetter("email_address")
@@ -82,10 +81,9 @@ public class VenmoWalletRequest {
 
     /**
      * Setter for EmailAddress.
-     * The internationalized email address.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; Up to 64 characters
-     * are allowed before and 255 characters are allowed after the &lt;code&gt;{@literal @}&lt;/code&gt; sign. However, the
-     * generally accepted maximum length for an email address is 254 characters. The pattern
-     * verifies that an unquoted &lt;code&gt;{@literal @}&lt;/code&gt; sign exists.&lt;/blockquote&gt;
+     * The internationalized email address. Note: Up to 64 characters are allowed before and 255
+     * characters are allowed after the {@literal @} sign. However, the generally accepted maximum length for
+     * an email address is 254 characters. The pattern verifies that an unquoted {@literal @} sign exists.
      * @param emailAddress Value for String
      */
     @JsonSetter("email_address")
@@ -95,10 +93,9 @@ public class VenmoWalletRequest {
 
     /**
      * Getter for ExperienceContext.
-     * Customizes the buyer experience during the approval process for payment with
-     * Venmo.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; Partners and Marketplaces might configure
-     * &lt;code&gt;shipping_preference&lt;/code&gt; during partner account setup, which overrides the request
-     * values.&lt;/blockquote&gt;
+     * Customizes the buyer experience during the approval process for payment with Venmo. Note:
+     * Partners and Marketplaces might configure shipping_preference during partner account setup,
+     * which overrides the request values.
      * @return Returns the VenmoWalletExperienceContext
      */
     @JsonGetter("experience_context")
@@ -109,10 +106,9 @@ public class VenmoWalletRequest {
 
     /**
      * Setter for ExperienceContext.
-     * Customizes the buyer experience during the approval process for payment with
-     * Venmo.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; Partners and Marketplaces might configure
-     * &lt;code&gt;shipping_preference&lt;/code&gt; during partner account setup, which overrides the request
-     * values.&lt;/blockquote&gt;
+     * Customizes the buyer experience during the approval process for payment with Venmo. Note:
+     * Partners and Marketplaces might configure shipping_preference during partner account setup,
+     * which overrides the request values.
      * @param experienceContext Value for VenmoWalletExperienceContext
      */
     @JsonSetter("experience_context")

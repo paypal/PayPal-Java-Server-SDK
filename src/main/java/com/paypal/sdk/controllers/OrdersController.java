@@ -13,16 +13,16 @@ import com.paypal.sdk.exceptions.ApiException;
 import com.paypal.sdk.exceptions.ErrorException;
 import com.paypal.sdk.http.request.HttpMethod;
 import com.paypal.sdk.http.response.ApiResponse;
+import com.paypal.sdk.models.AuthorizeOrderInput;
+import com.paypal.sdk.models.CaptureOrderInput;
+import com.paypal.sdk.models.ConfirmOrderInput;
+import com.paypal.sdk.models.CreateOrderInput;
+import com.paypal.sdk.models.CreateOrderTrackingInput;
+import com.paypal.sdk.models.GetOrderInput;
 import com.paypal.sdk.models.Order;
 import com.paypal.sdk.models.OrderAuthorizeResponse;
-import com.paypal.sdk.models.OrdersAuthorizeInput;
-import com.paypal.sdk.models.OrdersCaptureInput;
-import com.paypal.sdk.models.OrdersConfirmInput;
-import com.paypal.sdk.models.OrdersCreateInput;
-import com.paypal.sdk.models.OrdersGetInput;
-import com.paypal.sdk.models.OrdersPatchInput;
-import com.paypal.sdk.models.OrdersTrackCreateInput;
-import com.paypal.sdk.models.OrdersTrackersPatchInput;
+import com.paypal.sdk.models.PatchOrderInput;
+import com.paypal.sdk.models.UpdateOrderTrackingInput;
 import io.apimatic.core.ApiCall;
 import io.apimatic.core.ErrorCase;
 import io.apimatic.core.GlobalConfiguration;
@@ -46,49 +46,41 @@ public final class OrdersController extends BaseController {
 
     /**
      * Creates an order. Merchants and partners can add Level 2 and 3 data to payments to reduce
-     * risk and payment processing costs. For more information about processing payments, see &lt;a
-     * href="https://developer.paypal.com/docs/checkout/advanced/processing/"&gt;checkout&lt;/a&gt; or &lt;a
-     * href="https://developer.paypal.com/docs/multiparty/checkout/advanced/processing/"&gt;multiparty
-     * checkout&lt;/a&gt;.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; For error handling and troubleshooting, see
-     * &lt;a
-     * href="https://developer.paypal.com/api/rest/reference/orders/v2/errors/#create-order"&gt;Orders
-     * v2 errors&lt;/a&gt;.&lt;/blockquote&gt;.
-     * @param  input  OrdersCreateInput object containing request parameters
+     * risk and payment processing costs. For more information about processing payments, see
+     * checkout or multiparty checkout. Note: For error handling and troubleshooting, see Orders v2
+     * errors.
+     * @param  input  CreateOrderInput object containing request parameters
      * @return    Returns the Order wrapped in ApiResponse response from the API call
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
-    public ApiResponse<Order> ordersCreate(
-            final OrdersCreateInput input) throws ApiException, IOException {
-        return prepareOrdersCreateRequest(input).execute();
+    public ApiResponse<Order> createOrder(
+            final CreateOrderInput input) throws ApiException, IOException {
+        return prepareCreateOrderRequest(input).execute();
     }
 
     /**
      * Creates an order. Merchants and partners can add Level 2 and 3 data to payments to reduce
-     * risk and payment processing costs. For more information about processing payments, see &lt;a
-     * href="https://developer.paypal.com/docs/checkout/advanced/processing/"&gt;checkout&lt;/a&gt; or &lt;a
-     * href="https://developer.paypal.com/docs/multiparty/checkout/advanced/processing/"&gt;multiparty
-     * checkout&lt;/a&gt;.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; For error handling and troubleshooting, see
-     * &lt;a
-     * href="https://developer.paypal.com/api/rest/reference/orders/v2/errors/#create-order"&gt;Orders
-     * v2 errors&lt;/a&gt;.&lt;/blockquote&gt;.
-     * @param  input  OrdersCreateInput object containing request parameters
+     * risk and payment processing costs. For more information about processing payments, see
+     * checkout or multiparty checkout. Note: For error handling and troubleshooting, see Orders v2
+     * errors.
+     * @param  input  CreateOrderInput object containing request parameters
      * @return    Returns the Order wrapped in ApiResponse response from the API call
      */
-    public CompletableFuture<ApiResponse<Order>> ordersCreateAsync(
-            final OrdersCreateInput input) {
+    public CompletableFuture<ApiResponse<Order>> createOrderAsync(
+            final CreateOrderInput input) {
         try { 
-            return prepareOrdersCreateRequest(input).executeAsync(); 
+            return prepareCreateOrderRequest(input).executeAsync(); 
         } catch (Exception e) {  
             throw new CompletionException(e); 
         }
     }
 
     /**
-     * Builds the ApiCall object for ordersCreate.
+     * Builds the ApiCall object for createOrder.
      */
-    private ApiCall<ApiResponse<Order>, ApiException> prepareOrdersCreateRequest(
-            final OrdersCreateInput input) throws JsonProcessingException, IOException {
+    private ApiCall<ApiResponse<Order>, ApiException> prepareCreateOrderRequest(
+            final CreateOrderInput input) throws JsonProcessingException, IOException {
         return new ApiCall.Builder<ApiResponse<Order>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder
@@ -98,6 +90,8 @@ public final class OrdersController extends BaseController {
                         .bodySerializer(() ->  ApiHelper.serialize(input.getBody()))
                         .headerParam(param -> param.key("Content-Type")
                                 .value("application/json").isRequired(false))
+                        .headerParam(param -> param.key("PayPal-Mock-Response")
+                                .value(input.getPaypalMockResponse()).isRequired(false))
                         .headerParam(param -> param.key("PayPal-Request-Id")
                                 .value(input.getPaypalRequestId()).isRequired(false))
                         .headerParam(param -> param.key("PayPal-Partner-Attribution-Id")
@@ -134,42 +128,38 @@ public final class OrdersController extends BaseController {
     }
 
     /**
-     * Shows details for an order, by ID.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; For error handling and
-     * troubleshooting, see &lt;a
-     * href="https://developer.paypal.com/api/rest/reference/orders/v2/errors/#get-order"&gt;Orders v2
-     * errors&lt;/a&gt;.&lt;/blockquote&gt;.
-     * @param  input  OrdersGetInput object containing request parameters
+     * Shows details for an order, by ID. Note: For error handling and troubleshooting, see Orders
+     * v2 errors.
+     * @param  input  GetOrderInput object containing request parameters
      * @return    Returns the Order wrapped in ApiResponse response from the API call
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
-    public ApiResponse<Order> ordersGet(
-            final OrdersGetInput input) throws ApiException, IOException {
-        return prepareOrdersGetRequest(input).execute();
+    public ApiResponse<Order> getOrder(
+            final GetOrderInput input) throws ApiException, IOException {
+        return prepareGetOrderRequest(input).execute();
     }
 
     /**
-     * Shows details for an order, by ID.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; For error handling and
-     * troubleshooting, see &lt;a
-     * href="https://developer.paypal.com/api/rest/reference/orders/v2/errors/#get-order"&gt;Orders v2
-     * errors&lt;/a&gt;.&lt;/blockquote&gt;.
-     * @param  input  OrdersGetInput object containing request parameters
+     * Shows details for an order, by ID. Note: For error handling and troubleshooting, see Orders
+     * v2 errors.
+     * @param  input  GetOrderInput object containing request parameters
      * @return    Returns the Order wrapped in ApiResponse response from the API call
      */
-    public CompletableFuture<ApiResponse<Order>> ordersGetAsync(
-            final OrdersGetInput input) {
+    public CompletableFuture<ApiResponse<Order>> getOrderAsync(
+            final GetOrderInput input) {
         try { 
-            return prepareOrdersGetRequest(input).executeAsync(); 
+            return prepareGetOrderRequest(input).executeAsync(); 
         } catch (Exception e) {  
             throw new CompletionException(e); 
         }
     }
 
     /**
-     * Builds the ApiCall object for ordersGet.
+     * Builds the ApiCall object for getOrder.
      */
-    private ApiCall<ApiResponse<Order>, ApiException> prepareOrdersGetRequest(
-            final OrdersGetInput input) throws IOException {
+    private ApiCall<ApiResponse<Order>, ApiException> prepareGetOrderRequest(
+            final GetOrderInput input) throws IOException {
         return new ApiCall.Builder<ApiResponse<Order>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder
@@ -179,6 +169,8 @@ public final class OrdersController extends BaseController {
                                 .value(input.getFields()).isRequired(false))
                         .templateParam(param -> param.key("id").value(input.getId())
                                 .shouldEncode(true))
+                        .headerParam(param -> param.key("PayPal-Mock-Response")
+                                .value(input.getPaypalMockResponse()).isRequired(false))
                         .headerParam(param -> param.key("PayPal-Auth-Assertion")
                                 .value(input.getPaypalAuthAssertion()).isRequired(false))
                         .headerParam(param -> param.key("accept").value("application/json"))
@@ -205,118 +197,78 @@ public final class OrdersController extends BaseController {
 
     /**
      * Updates an order with a `CREATED` or `APPROVED` status. You cannot update an order with the
-     * `COMPLETED` status.&lt;br/&gt;&lt;br/&gt;To make an update, you must provide a `reference_id`. If you
-     * omit this value with an order that contains only one purchase unit, PayPal sets the value to
-     * `default` which enables you to use the path:
-     * &lt;code&gt;\\"/purchase_units/{@literal @}reference_id=='default'/{attribute-or-object}\\"&lt;/code&gt;. Merchants
-     * and partners can add Level 2 and 3 data to payments to reduce risk and payment processing
-     * costs. For more information about processing payments, see &lt;a
-     * href="https://developer.paypal.com/docs/checkout/advanced/processing/"&gt;checkout&lt;/a&gt; or &lt;a
-     * href="https://developer.paypal.com/docs/multiparty/checkout/advanced/processing/"&gt;multiparty
-     * checkout&lt;/a&gt;.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; For error handling and troubleshooting, see
-     * &lt;a
-     * href="https://developer.paypal.com/api/rest/reference/orders/v2/errors/#patch-order"&gt;Orders
-     * v2 errors&lt;/a&gt;.&lt;/blockquote&gt;Patchable attributes or
-     * objects:&lt;br/&gt;&lt;br/&gt;&lt;table&gt;&lt;thead&gt;&lt;th&gt;Attribute&lt;/th&gt;&lt;th&gt;Op&lt;/th&gt;&lt;th&gt;Notes&lt;/th&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;intent&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;payer&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace,
-     * add&lt;/td&gt;&lt;td&gt;Using replace op for &lt;code&gt;payer&lt;/code&gt; will replace the whole &lt;code&gt;payer&lt;/code&gt;
-     * object with the value sent in
-     * request.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;purchase_units&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace,
-     * add&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;purchase_units[].custom_id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace, add,
-     * remove&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;purchase_units[].description&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace,
-     * add,
-     * remove&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;purchase_units[].payee.email&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;purchase_units[].shipping.name&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace,
-     * add&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;purchase_units[].shipping.email_address&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace,
-     * add&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;purchase_units[].shipping.phone_number&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace,
-     * add&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;purchase_units[].shipping.options&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace,
-     * add&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;purchase_units[].shipping.address&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace,
-     * add&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;purchase_units[].shipping.type&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace,
-     * add&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;purchase_units[].soft_descriptor&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace,
-     * remove&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;purchase_units[].amount&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;purchase_units[].items&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace,
-     * add,
-     * remove&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;purchase_units[].invoice_id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace,
-     * add,
-     * remove&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;purchase_units[].payment_instruction&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;purchase_units[].payment_instruction.disbursement_mode&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace&lt;/td&gt;&lt;td&gt;By
-     * default, &lt;code&gt;disbursement_mode&lt;/code&gt; is
-     * &lt;code&gt;INSTANT&lt;/code&gt;.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;purchase_units[].payment_instruction.payee_receivable_fx_rate_id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace,
-     * add,
-     * remove&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;purchase_units[].payment_instruction.platform_fees&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace,
-     * add,
-     * remove&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;purchase_units[].supplementary_data.airline&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace,
-     * add,
-     * remove&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;purchase_units[].supplementary_data.card&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace,
-     * add,
-     * remove&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;application_context.client_configuration&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace,
-     * add&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;.
-     * @param  input  OrdersPatchInput object containing request parameters
+     * `COMPLETED` status. To make an update, you must provide a `reference_id`. If you omit this
+     * value with an order that contains only one purchase unit, PayPal sets the value to `default`
+     * which enables you to use the path:
+     * \\"/purchase_units/{@literal @}reference_id=='default'/{attribute-or-object}\\". Merchants and partners
+     * can add Level 2 and 3 data to payments to reduce risk and payment processing costs. For more
+     * information about processing payments, see checkout or multiparty checkout. Note: For error
+     * handling and troubleshooting, see Orders v2 errors. Patchable attributes or objects:
+     * Attribute Op Notes intent replace payer replace, add Using replace op for payer will replace
+     * the whole payer object with the value sent in request. purchase_units replace, add
+     * purchase_units[].custom_id replace, add, remove purchase_units[].description replace, add,
+     * remove purchase_units[].payee.email replace purchase_units[].shipping.name replace, add
+     * purchase_units[].shipping.email_address replace, add purchase_units[].shipping.phone_number
+     * replace, add purchase_units[].shipping.options replace, add purchase_units[].shipping.address
+     * replace, add purchase_units[].shipping.type replace, add purchase_units[].soft_descriptor
+     * replace, remove purchase_units[].amount replace purchase_units[].items replace, add, remove
+     * purchase_units[].invoice_id replace, add, remove purchase_units[].payment_instruction replace
+     * purchase_units[].payment_instruction.disbursement_mode replace By default, disbursement_mode
+     * is INSTANT. purchase_units[].payment_instruction.payee_receivable_fx_rate_id replace, add,
+     * remove purchase_units[].payment_instruction.platform_fees replace, add, remove
+     * purchase_units[].supplementary_data.airline replace, add, remove
+     * purchase_units[].supplementary_data.card replace, add, remove
+     * application_context.client_configuration replace, add.
+     * @param  input  PatchOrderInput object containing request parameters
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
-    public ApiResponse<Void> ordersPatch(
-            final OrdersPatchInput input) throws ApiException, IOException {
-        return prepareOrdersPatchRequest(input).execute();
+    public ApiResponse<Void> patchOrder(
+            final PatchOrderInput input) throws ApiException, IOException {
+        return preparePatchOrderRequest(input).execute();
     }
 
     /**
      * Updates an order with a `CREATED` or `APPROVED` status. You cannot update an order with the
-     * `COMPLETED` status.&lt;br/&gt;&lt;br/&gt;To make an update, you must provide a `reference_id`. If you
-     * omit this value with an order that contains only one purchase unit, PayPal sets the value to
-     * `default` which enables you to use the path:
-     * &lt;code&gt;\\"/purchase_units/{@literal @}reference_id=='default'/{attribute-or-object}\\"&lt;/code&gt;. Merchants
-     * and partners can add Level 2 and 3 data to payments to reduce risk and payment processing
-     * costs. For more information about processing payments, see &lt;a
-     * href="https://developer.paypal.com/docs/checkout/advanced/processing/"&gt;checkout&lt;/a&gt; or &lt;a
-     * href="https://developer.paypal.com/docs/multiparty/checkout/advanced/processing/"&gt;multiparty
-     * checkout&lt;/a&gt;.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; For error handling and troubleshooting, see
-     * &lt;a
-     * href="https://developer.paypal.com/api/rest/reference/orders/v2/errors/#patch-order"&gt;Orders
-     * v2 errors&lt;/a&gt;.&lt;/blockquote&gt;Patchable attributes or
-     * objects:&lt;br/&gt;&lt;br/&gt;&lt;table&gt;&lt;thead&gt;&lt;th&gt;Attribute&lt;/th&gt;&lt;th&gt;Op&lt;/th&gt;&lt;th&gt;Notes&lt;/th&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;intent&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;payer&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace,
-     * add&lt;/td&gt;&lt;td&gt;Using replace op for &lt;code&gt;payer&lt;/code&gt; will replace the whole &lt;code&gt;payer&lt;/code&gt;
-     * object with the value sent in
-     * request.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;purchase_units&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace,
-     * add&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;purchase_units[].custom_id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace, add,
-     * remove&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;purchase_units[].description&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace,
-     * add,
-     * remove&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;purchase_units[].payee.email&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;purchase_units[].shipping.name&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace,
-     * add&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;purchase_units[].shipping.email_address&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace,
-     * add&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;purchase_units[].shipping.phone_number&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace,
-     * add&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;purchase_units[].shipping.options&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace,
-     * add&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;purchase_units[].shipping.address&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace,
-     * add&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;purchase_units[].shipping.type&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace,
-     * add&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;purchase_units[].soft_descriptor&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace,
-     * remove&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;purchase_units[].amount&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;purchase_units[].items&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace,
-     * add,
-     * remove&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;purchase_units[].invoice_id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace,
-     * add,
-     * remove&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;purchase_units[].payment_instruction&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;purchase_units[].payment_instruction.disbursement_mode&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace&lt;/td&gt;&lt;td&gt;By
-     * default, &lt;code&gt;disbursement_mode&lt;/code&gt; is
-     * &lt;code&gt;INSTANT&lt;/code&gt;.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;purchase_units[].payment_instruction.payee_receivable_fx_rate_id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace,
-     * add,
-     * remove&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;purchase_units[].payment_instruction.platform_fees&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace,
-     * add,
-     * remove&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;purchase_units[].supplementary_data.airline&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace,
-     * add,
-     * remove&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;purchase_units[].supplementary_data.card&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace,
-     * add,
-     * remove&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;application_context.client_configuration&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace,
-     * add&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;.
-     * @param  input  OrdersPatchInput object containing request parameters
+     * `COMPLETED` status. To make an update, you must provide a `reference_id`. If you omit this
+     * value with an order that contains only one purchase unit, PayPal sets the value to `default`
+     * which enables you to use the path:
+     * \\"/purchase_units/{@literal @}reference_id=='default'/{attribute-or-object}\\". Merchants and partners
+     * can add Level 2 and 3 data to payments to reduce risk and payment processing costs. For more
+     * information about processing payments, see checkout or multiparty checkout. Note: For error
+     * handling and troubleshooting, see Orders v2 errors. Patchable attributes or objects:
+     * Attribute Op Notes intent replace payer replace, add Using replace op for payer will replace
+     * the whole payer object with the value sent in request. purchase_units replace, add
+     * purchase_units[].custom_id replace, add, remove purchase_units[].description replace, add,
+     * remove purchase_units[].payee.email replace purchase_units[].shipping.name replace, add
+     * purchase_units[].shipping.email_address replace, add purchase_units[].shipping.phone_number
+     * replace, add purchase_units[].shipping.options replace, add purchase_units[].shipping.address
+     * replace, add purchase_units[].shipping.type replace, add purchase_units[].soft_descriptor
+     * replace, remove purchase_units[].amount replace purchase_units[].items replace, add, remove
+     * purchase_units[].invoice_id replace, add, remove purchase_units[].payment_instruction replace
+     * purchase_units[].payment_instruction.disbursement_mode replace By default, disbursement_mode
+     * is INSTANT. purchase_units[].payment_instruction.payee_receivable_fx_rate_id replace, add,
+     * remove purchase_units[].payment_instruction.platform_fees replace, add, remove
+     * purchase_units[].supplementary_data.airline replace, add, remove
+     * purchase_units[].supplementary_data.card replace, add, remove
+     * application_context.client_configuration replace, add.
+     * @param  input  PatchOrderInput object containing request parameters
      * @return    Returns the Void wrapped in ApiResponse response from the API call
      */
-    public CompletableFuture<ApiResponse<Void>> ordersPatchAsync(
-            final OrdersPatchInput input) {
+    public CompletableFuture<ApiResponse<Void>> patchOrderAsync(
+            final PatchOrderInput input) {
         try { 
-            return prepareOrdersPatchRequest(input).executeAsync(); 
+            return preparePatchOrderRequest(input).executeAsync(); 
         } catch (Exception e) {  
             throw new CompletionException(e); 
         }
     }
 
     /**
-     * Builds the ApiCall object for ordersPatch.
+     * Builds the ApiCall object for patchOrder.
      */
-    private ApiCall<ApiResponse<Void>, ApiException> prepareOrdersPatchRequest(
-            final OrdersPatchInput input) throws JsonProcessingException, IOException {
+    private ApiCall<ApiResponse<Void>, ApiException> preparePatchOrderRequest(
+            final PatchOrderInput input) throws JsonProcessingException, IOException {
         return new ApiCall.Builder<ApiResponse<Void>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder
@@ -328,6 +280,8 @@ public final class OrdersController extends BaseController {
                                 .shouldEncode(true))
                         .headerParam(param -> param.key("Content-Type")
                                 .value("application/json").isRequired(false))
+                        .headerParam(param -> param.key("PayPal-Mock-Response")
+                                .value(input.getPaypalMockResponse()).isRequired(false))
                         .headerParam(param -> param.key("PayPal-Auth-Assertion")
                                 .value(input.getPaypalAuthAssertion()).isRequired(false))
                         .withAuth(auth -> auth
@@ -357,35 +311,35 @@ public final class OrdersController extends BaseController {
 
     /**
      * Payer confirms their intent to pay for the the Order with the given payment source.
-     * @param  input  OrdersConfirmInput object containing request parameters
+     * @param  input  ConfirmOrderInput object containing request parameters
      * @return    Returns the Order wrapped in ApiResponse response from the API call
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
-    public ApiResponse<Order> ordersConfirm(
-            final OrdersConfirmInput input) throws ApiException, IOException {
-        return prepareOrdersConfirmRequest(input).execute();
+    public ApiResponse<Order> confirmOrder(
+            final ConfirmOrderInput input) throws ApiException, IOException {
+        return prepareConfirmOrderRequest(input).execute();
     }
 
     /**
      * Payer confirms their intent to pay for the the Order with the given payment source.
-     * @param  input  OrdersConfirmInput object containing request parameters
+     * @param  input  ConfirmOrderInput object containing request parameters
      * @return    Returns the Order wrapped in ApiResponse response from the API call
      */
-    public CompletableFuture<ApiResponse<Order>> ordersConfirmAsync(
-            final OrdersConfirmInput input) {
+    public CompletableFuture<ApiResponse<Order>> confirmOrderAsync(
+            final ConfirmOrderInput input) {
         try { 
-            return prepareOrdersConfirmRequest(input).executeAsync(); 
+            return prepareConfirmOrderRequest(input).executeAsync(); 
         } catch (Exception e) {  
             throw new CompletionException(e); 
         }
     }
 
     /**
-     * Builds the ApiCall object for ordersConfirm.
+     * Builds the ApiCall object for confirmOrder.
      */
-    private ApiCall<ApiResponse<Order>, ApiException> prepareOrdersConfirmRequest(
-            final OrdersConfirmInput input) throws JsonProcessingException, IOException {
+    private ApiCall<ApiResponse<Order>, ApiException> prepareConfirmOrderRequest(
+            final ConfirmOrderInput input) throws JsonProcessingException, IOException {
         return new ApiCall.Builder<ApiResponse<Order>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder
@@ -435,45 +389,41 @@ public final class OrdersController extends BaseController {
      * Authorizes payment for an order. To successfully authorize payment for an order, the buyer
      * must first approve the order or a valid payment_source must be provided in the request. A
      * buyer can approve the order upon being redirected to the rel:approve URL that was returned in
-     * the HATEOAS links in the create order response.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; For error
-     * handling and troubleshooting, see &lt;a
-     * href="https://developer.paypal.com/api/rest/reference/orders/v2/errors/#authorize-order"&gt;Orders
-     * v2 errors&lt;/a&gt;.&lt;/blockquote&gt;.
-     * @param  input  OrdersAuthorizeInput object containing request parameters
+     * the HATEOAS links in the create order response. Note: For error handling and troubleshooting,
+     * see Orders v2 errors.
+     * @param  input  AuthorizeOrderInput object containing request parameters
      * @return    Returns the OrderAuthorizeResponse wrapped in ApiResponse response from the API call
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
-    public ApiResponse<OrderAuthorizeResponse> ordersAuthorize(
-            final OrdersAuthorizeInput input) throws ApiException, IOException {
-        return prepareOrdersAuthorizeRequest(input).execute();
+    public ApiResponse<OrderAuthorizeResponse> authorizeOrder(
+            final AuthorizeOrderInput input) throws ApiException, IOException {
+        return prepareAuthorizeOrderRequest(input).execute();
     }
 
     /**
      * Authorizes payment for an order. To successfully authorize payment for an order, the buyer
      * must first approve the order or a valid payment_source must be provided in the request. A
      * buyer can approve the order upon being redirected to the rel:approve URL that was returned in
-     * the HATEOAS links in the create order response.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; For error
-     * handling and troubleshooting, see &lt;a
-     * href="https://developer.paypal.com/api/rest/reference/orders/v2/errors/#authorize-order"&gt;Orders
-     * v2 errors&lt;/a&gt;.&lt;/blockquote&gt;.
-     * @param  input  OrdersAuthorizeInput object containing request parameters
+     * the HATEOAS links in the create order response. Note: For error handling and troubleshooting,
+     * see Orders v2 errors.
+     * @param  input  AuthorizeOrderInput object containing request parameters
      * @return    Returns the OrderAuthorizeResponse wrapped in ApiResponse response from the API call
      */
-    public CompletableFuture<ApiResponse<OrderAuthorizeResponse>> ordersAuthorizeAsync(
-            final OrdersAuthorizeInput input) {
+    public CompletableFuture<ApiResponse<OrderAuthorizeResponse>> authorizeOrderAsync(
+            final AuthorizeOrderInput input) {
         try { 
-            return prepareOrdersAuthorizeRequest(input).executeAsync(); 
+            return prepareAuthorizeOrderRequest(input).executeAsync(); 
         } catch (Exception e) {  
             throw new CompletionException(e); 
         }
     }
 
     /**
-     * Builds the ApiCall object for ordersAuthorize.
+     * Builds the ApiCall object for authorizeOrder.
      */
-    private ApiCall<ApiResponse<OrderAuthorizeResponse>, ApiException> prepareOrdersAuthorizeRequest(
-            final OrdersAuthorizeInput input) throws JsonProcessingException, IOException {
+    private ApiCall<ApiResponse<OrderAuthorizeResponse>, ApiException> prepareAuthorizeOrderRequest(
+            final AuthorizeOrderInput input) throws JsonProcessingException, IOException {
         return new ApiCall.Builder<ApiResponse<OrderAuthorizeResponse>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder
@@ -485,6 +435,8 @@ public final class OrdersController extends BaseController {
                                 .shouldEncode(true))
                         .headerParam(param -> param.key("Content-Type")
                                 .value("application/json").isRequired(false))
+                        .headerParam(param -> param.key("PayPal-Mock-Response")
+                                .value(input.getPaypalMockResponse()).isRequired(false))
                         .headerParam(param -> param.key("PayPal-Request-Id")
                                 .value(input.getPaypalRequestId()).isRequired(false))
                         .headerParam(param -> param.key("Prefer")
@@ -531,45 +483,41 @@ public final class OrdersController extends BaseController {
      * Captures payment for an order. To successfully capture payment for an order, the buyer must
      * first approve the order or a valid payment_source must be provided in the request. A buyer
      * can approve the order upon being redirected to the rel:approve URL that was returned in the
-     * HATEOAS links in the create order response.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; For error
-     * handling and troubleshooting, see &lt;a
-     * href="https://developer.paypal.com/api/rest/reference/orders/v2/errors/#capture-order"&gt;Orders
-     * v2 errors&lt;/a&gt;.&lt;/blockquote&gt;.
-     * @param  input  OrdersCaptureInput object containing request parameters
+     * HATEOAS links in the create order response. Note: For error handling and troubleshooting, see
+     * Orders v2 errors.
+     * @param  input  CaptureOrderInput object containing request parameters
      * @return    Returns the Order wrapped in ApiResponse response from the API call
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
-    public ApiResponse<Order> ordersCapture(
-            final OrdersCaptureInput input) throws ApiException, IOException {
-        return prepareOrdersCaptureRequest(input).execute();
+    public ApiResponse<Order> captureOrder(
+            final CaptureOrderInput input) throws ApiException, IOException {
+        return prepareCaptureOrderRequest(input).execute();
     }
 
     /**
      * Captures payment for an order. To successfully capture payment for an order, the buyer must
      * first approve the order or a valid payment_source must be provided in the request. A buyer
      * can approve the order upon being redirected to the rel:approve URL that was returned in the
-     * HATEOAS links in the create order response.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; For error
-     * handling and troubleshooting, see &lt;a
-     * href="https://developer.paypal.com/api/rest/reference/orders/v2/errors/#capture-order"&gt;Orders
-     * v2 errors&lt;/a&gt;.&lt;/blockquote&gt;.
-     * @param  input  OrdersCaptureInput object containing request parameters
+     * HATEOAS links in the create order response. Note: For error handling and troubleshooting, see
+     * Orders v2 errors.
+     * @param  input  CaptureOrderInput object containing request parameters
      * @return    Returns the Order wrapped in ApiResponse response from the API call
      */
-    public CompletableFuture<ApiResponse<Order>> ordersCaptureAsync(
-            final OrdersCaptureInput input) {
+    public CompletableFuture<ApiResponse<Order>> captureOrderAsync(
+            final CaptureOrderInput input) {
         try { 
-            return prepareOrdersCaptureRequest(input).executeAsync(); 
+            return prepareCaptureOrderRequest(input).executeAsync(); 
         } catch (Exception e) {  
             throw new CompletionException(e); 
         }
     }
 
     /**
-     * Builds the ApiCall object for ordersCapture.
+     * Builds the ApiCall object for captureOrder.
      */
-    private ApiCall<ApiResponse<Order>, ApiException> prepareOrdersCaptureRequest(
-            final OrdersCaptureInput input) throws JsonProcessingException, IOException {
+    private ApiCall<ApiResponse<Order>, ApiException> prepareCaptureOrderRequest(
+            final CaptureOrderInput input) throws JsonProcessingException, IOException {
         return new ApiCall.Builder<ApiResponse<Order>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder
@@ -581,6 +529,8 @@ public final class OrdersController extends BaseController {
                                 .shouldEncode(true))
                         .headerParam(param -> param.key("Content-Type")
                                 .value("application/json").isRequired(false))
+                        .headerParam(param -> param.key("PayPal-Mock-Response")
+                                .value(input.getPaypalMockResponse()).isRequired(false))
                         .headerParam(param -> param.key("PayPal-Request-Id")
                                 .value(input.getPaypalRequestId()).isRequired(false))
                         .headerParam(param -> param.key("Prefer")
@@ -625,35 +575,35 @@ public final class OrdersController extends BaseController {
 
     /**
      * Adds tracking information for an Order.
-     * @param  input  OrdersTrackCreateInput object containing request parameters
+     * @param  input  CreateOrderTrackingInput object containing request parameters
      * @return    Returns the Order wrapped in ApiResponse response from the API call
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
-    public ApiResponse<Order> ordersTrackCreate(
-            final OrdersTrackCreateInput input) throws ApiException, IOException {
-        return prepareOrdersTrackCreateRequest(input).execute();
+    public ApiResponse<Order> createOrderTracking(
+            final CreateOrderTrackingInput input) throws ApiException, IOException {
+        return prepareCreateOrderTrackingRequest(input).execute();
     }
 
     /**
      * Adds tracking information for an Order.
-     * @param  input  OrdersTrackCreateInput object containing request parameters
+     * @param  input  CreateOrderTrackingInput object containing request parameters
      * @return    Returns the Order wrapped in ApiResponse response from the API call
      */
-    public CompletableFuture<ApiResponse<Order>> ordersTrackCreateAsync(
-            final OrdersTrackCreateInput input) {
+    public CompletableFuture<ApiResponse<Order>> createOrderTrackingAsync(
+            final CreateOrderTrackingInput input) {
         try { 
-            return prepareOrdersTrackCreateRequest(input).executeAsync(); 
+            return prepareCreateOrderTrackingRequest(input).executeAsync(); 
         } catch (Exception e) {  
             throw new CompletionException(e); 
         }
     }
 
     /**
-     * Builds the ApiCall object for ordersTrackCreate.
+     * Builds the ApiCall object for createOrderTracking.
      */
-    private ApiCall<ApiResponse<Order>, ApiException> prepareOrdersTrackCreateRequest(
-            final OrdersTrackCreateInput input) throws JsonProcessingException, IOException {
+    private ApiCall<ApiResponse<Order>, ApiException> prepareCreateOrderTrackingRequest(
+            final CreateOrderTrackingInput input) throws JsonProcessingException, IOException {
         return new ApiCall.Builder<ApiResponse<Order>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder
@@ -700,46 +650,40 @@ public final class OrdersController extends BaseController {
 
     /**
      * Updates or cancels the tracking information for a PayPal order, by ID. Updatable attributes
-     * or
-     * objects:&lt;br/&gt;&lt;br/&gt;&lt;table&gt;&lt;thead&gt;&lt;th&gt;Attribute&lt;/th&gt;&lt;th&gt;Op&lt;/th&gt;&lt;th&gt;Notes&lt;/th&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;items&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace&lt;/td&gt;&lt;td&gt;Using
-     * replace op for &lt;code&gt;items&lt;/code&gt; will replace the entire &lt;code&gt;items&lt;/code&gt; object with the
-     * value sent in request.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;notify_payer&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace,
-     * add&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;status&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace&lt;/td&gt;&lt;td&gt;Only patching
-     * status to CANCELLED is currently supported.&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;.
-     * @param  input  OrdersTrackersPatchInput object containing request parameters
+     * or objects: Attribute Op Notes items replace Using replace op for items will replace the
+     * entire items object with the value sent in request. notify_payer replace, add status replace
+     * Only patching status to CANCELLED is currently supported.
+     * @param  input  UpdateOrderTrackingInput object containing request parameters
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
-    public ApiResponse<Void> ordersTrackersPatch(
-            final OrdersTrackersPatchInput input) throws ApiException, IOException {
-        return prepareOrdersTrackersPatchRequest(input).execute();
+    public ApiResponse<Void> updateOrderTracking(
+            final UpdateOrderTrackingInput input) throws ApiException, IOException {
+        return prepareUpdateOrderTrackingRequest(input).execute();
     }
 
     /**
      * Updates or cancels the tracking information for a PayPal order, by ID. Updatable attributes
-     * or
-     * objects:&lt;br/&gt;&lt;br/&gt;&lt;table&gt;&lt;thead&gt;&lt;th&gt;Attribute&lt;/th&gt;&lt;th&gt;Op&lt;/th&gt;&lt;th&gt;Notes&lt;/th&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;items&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace&lt;/td&gt;&lt;td&gt;Using
-     * replace op for &lt;code&gt;items&lt;/code&gt; will replace the entire &lt;code&gt;items&lt;/code&gt; object with the
-     * value sent in request.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;notify_payer&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace,
-     * add&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;status&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace&lt;/td&gt;&lt;td&gt;Only patching
-     * status to CANCELLED is currently supported.&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;.
-     * @param  input  OrdersTrackersPatchInput object containing request parameters
+     * or objects: Attribute Op Notes items replace Using replace op for items will replace the
+     * entire items object with the value sent in request. notify_payer replace, add status replace
+     * Only patching status to CANCELLED is currently supported.
+     * @param  input  UpdateOrderTrackingInput object containing request parameters
      * @return    Returns the Void wrapped in ApiResponse response from the API call
      */
-    public CompletableFuture<ApiResponse<Void>> ordersTrackersPatchAsync(
-            final OrdersTrackersPatchInput input) {
+    public CompletableFuture<ApiResponse<Void>> updateOrderTrackingAsync(
+            final UpdateOrderTrackingInput input) {
         try { 
-            return prepareOrdersTrackersPatchRequest(input).executeAsync(); 
+            return prepareUpdateOrderTrackingRequest(input).executeAsync(); 
         } catch (Exception e) {  
             throw new CompletionException(e); 
         }
     }
 
     /**
-     * Builds the ApiCall object for ordersTrackersPatch.
+     * Builds the ApiCall object for updateOrderTracking.
      */
-    private ApiCall<ApiResponse<Void>, ApiException> prepareOrdersTrackersPatchRequest(
-            final OrdersTrackersPatchInput input) throws JsonProcessingException, IOException {
+    private ApiCall<ApiResponse<Void>, ApiException> prepareUpdateOrderTrackingRequest(
+            final UpdateOrderTrackingInput input) throws JsonProcessingException, IOException {
         return new ApiCall.Builder<ApiResponse<Void>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder

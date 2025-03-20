@@ -16,9 +16,8 @@ import java.util.List;
  */
 public class SetupTokenResponse {
     private String id;
-    private Integer ordinal;
-    private CustomerRequest customer;
-    private String status;
+    private Customer customer;
+    private PaymentTokenStatus status;
     private SetupTokenResponsePaymentSource paymentSource;
     private List<LinkDescription> links;
 
@@ -26,27 +25,24 @@ public class SetupTokenResponse {
      * Default constructor.
      */
     public SetupTokenResponse() {
-        status = "CREATED";
+        status = PaymentTokenStatus.CREATED;
     }
 
     /**
      * Initialization constructor.
      * @param  id  String value for id.
-     * @param  ordinal  Integer value for ordinal.
-     * @param  customer  CustomerRequest value for customer.
-     * @param  status  String value for status.
+     * @param  customer  Customer value for customer.
+     * @param  status  PaymentTokenStatus value for status.
      * @param  paymentSource  SetupTokenResponsePaymentSource value for paymentSource.
      * @param  links  List of LinkDescription value for links.
      */
     public SetupTokenResponse(
             String id,
-            Integer ordinal,
-            CustomerRequest customer,
-            String status,
+            Customer customer,
+            PaymentTokenStatus status,
             SetupTokenResponsePaymentSource paymentSource,
             List<LinkDescription> links) {
         this.id = id;
-        this.ordinal = ordinal;
         this.customer = customer;
         this.status = status;
         this.paymentSource = paymentSource;
@@ -75,65 +71,46 @@ public class SetupTokenResponse {
     }
 
     /**
-     * Getter for Ordinal.
-     * Ordinal number for sorting.
-     * @return Returns the Integer
-     */
-    @JsonGetter("ordinal")
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    public Integer getOrdinal() {
-        return ordinal;
-    }
-
-    /**
-     * Setter for Ordinal.
-     * Ordinal number for sorting.
-     * @param ordinal Value for Integer
-     */
-    @JsonSetter("ordinal")
-    public void setOrdinal(Integer ordinal) {
-        this.ordinal = ordinal;
-    }
-
-    /**
      * Getter for Customer.
-     * Customer in merchant's or partner's system of records.
-     * @return Returns the CustomerRequest
+     * This object defines a customer in your system. Use it to manage customer profiles, save
+     * payment methods and contact details.
+     * @return Returns the Customer
      */
     @JsonGetter("customer")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public CustomerRequest getCustomer() {
+    public Customer getCustomer() {
         return customer;
     }
 
     /**
      * Setter for Customer.
-     * Customer in merchant's or partner's system of records.
-     * @param customer Value for CustomerRequest
+     * This object defines a customer in your system. Use it to manage customer profiles, save
+     * payment methods and contact details.
+     * @param customer Value for Customer
      */
     @JsonSetter("customer")
-    public void setCustomer(CustomerRequest customer) {
+    public void setCustomer(Customer customer) {
         this.customer = customer;
     }
 
     /**
      * Getter for Status.
      * The status of the payment token.
-     * @return Returns the String
+     * @return Returns the PaymentTokenStatus
      */
     @JsonGetter("status")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public String getStatus() {
+    public PaymentTokenStatus getStatus() {
         return status;
     }
 
     /**
      * Setter for Status.
      * The status of the payment token.
-     * @param status Value for String
+     * @param status Value for PaymentTokenStatus
      */
     @JsonSetter("status")
-    public void setStatus(String status) {
+    public void setStatus(PaymentTokenStatus status) {
         this.status = status;
     }
 
@@ -185,9 +162,8 @@ public class SetupTokenResponse {
      */
     @Override
     public String toString() {
-        return "SetupTokenResponse [" + "id=" + id + ", ordinal=" + ordinal + ", customer="
-                + customer + ", status=" + status + ", paymentSource=" + paymentSource + ", links="
-                + links + "]";
+        return "SetupTokenResponse [" + "id=" + id + ", customer=" + customer + ", status=" + status
+                + ", paymentSource=" + paymentSource + ", links=" + links + "]";
     }
 
     /**
@@ -198,7 +174,6 @@ public class SetupTokenResponse {
     public Builder toBuilder() {
         Builder builder = new Builder()
                 .id(getId())
-                .ordinal(getOrdinal())
                 .customer(getCustomer())
                 .status(getStatus())
                 .paymentSource(getPaymentSource())
@@ -211,9 +186,8 @@ public class SetupTokenResponse {
      */
     public static class Builder {
         private String id;
-        private Integer ordinal;
-        private CustomerRequest customer;
-        private String status = "CREATED";
+        private Customer customer;
+        private PaymentTokenStatus status = PaymentTokenStatus.CREATED;
         private SetupTokenResponsePaymentSource paymentSource;
         private List<LinkDescription> links;
 
@@ -230,31 +204,21 @@ public class SetupTokenResponse {
         }
 
         /**
-         * Setter for ordinal.
-         * @param  ordinal  Integer value for ordinal.
-         * @return Builder
-         */
-        public Builder ordinal(Integer ordinal) {
-            this.ordinal = ordinal;
-            return this;
-        }
-
-        /**
          * Setter for customer.
-         * @param  customer  CustomerRequest value for customer.
+         * @param  customer  Customer value for customer.
          * @return Builder
          */
-        public Builder customer(CustomerRequest customer) {
+        public Builder customer(Customer customer) {
             this.customer = customer;
             return this;
         }
 
         /**
          * Setter for status.
-         * @param  status  String value for status.
+         * @param  status  PaymentTokenStatus value for status.
          * @return Builder
          */
-        public Builder status(String status) {
+        public Builder status(PaymentTokenStatus status) {
             this.status = status;
             return this;
         }
@@ -284,7 +248,7 @@ public class SetupTokenResponse {
          * @return {@link SetupTokenResponse}
          */
         public SetupTokenResponse build() {
-            return new SetupTokenResponse(id, ordinal, customer, status, paymentSource, links);
+            return new SetupTokenResponse(id, customer, status, paymentSource, links);
         }
     }
 }

@@ -17,19 +17,19 @@ import java.util.TreeMap;
  * UpcType to be used.
  */
 public enum UpcType {
-    UPCA,
+    UPC_A,
 
-    UPCB,
+    UPC_B,
 
-    UPCC,
+    UPC_C,
 
-    UPCD,
+    UPC_D,
 
-    UPCE,
+    UPC_E,
 
-    UPC2,
+    UPC_2,
 
-    UPC5,
+    UPC_5,
 
     /**
      * Unknown values will be mapped by this enum member
@@ -41,22 +41,22 @@ public enum UpcType {
     private String value;
 
     static {
-        UPCA.value = "UPC-A";
-        UPCB.value = "UPC-B";
-        UPCC.value = "UPC-C";
-        UPCD.value = "UPC-D";
-        UPCE.value = "UPC-E";
-        UPC2.value = "UPC-2";
-        UPC5.value = "UPC-5";
+        UPC_A.value = "UPC-A";
+        UPC_B.value = "UPC-B";
+        UPC_C.value = "UPC-C";
+        UPC_D.value = "UPC-D";
+        UPC_E.value = "UPC-E";
+        UPC_2.value = "UPC-2";
+        UPC_5.value = "UPC-5";
         _UNKNOWN.value = null;
 
-        valueMap.put("UPC-A", UPCA);
-        valueMap.put("UPC-B", UPCB);
-        valueMap.put("UPC-C", UPCC);
-        valueMap.put("UPC-D", UPCD);
-        valueMap.put("UPC-E", UPCE);
-        valueMap.put("UPC-2", UPC2);
-        valueMap.put("UPC-5", UPC5);
+        valueMap.put("UPC-A", UPC_A);
+        valueMap.put("UPC-B", UPC_B);
+        valueMap.put("UPC-C", UPC_C);
+        valueMap.put("UPC-D", UPC_D);
+        valueMap.put("UPC-E", UPC_E);
+        valueMap.put("UPC-2", UPC_2);
+        valueMap.put("UPC-5", UPC_5);
     }
 
     /**

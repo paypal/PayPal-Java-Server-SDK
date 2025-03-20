@@ -146,14 +146,13 @@ public class OrderConfirmApplicationContext {
     /**
      * Getter for StoredPaymentSource.
      * Provides additional details to process a payment using a `payment_source` that has been
-     * stored or is intended to be stored (also referred to as stored_credential or
-     * card-on-file).&lt;br/&gt;Parameter compatibility:&lt;br/&gt;&lt;ul&gt;&lt;li&gt;`payment_type=ONE_TIME` is compatible
-     * only with `payment_initiator=CUSTOMER`.&lt;/li&gt;&lt;li&gt;`usage=FIRST` is compatible only with
-     * `payment_initiator=CUSTOMER`.&lt;/li&gt;&lt;li&gt;`previous_transaction_reference` or
+     * stored or is intended to be stored (also referred to as stored_credential or card-on-file).
+     * Parameter compatibility: `payment_type=ONE_TIME` is compatible only with
+     * `payment_initiator=CUSTOMER`. `usage=FIRST` is compatible only with
+     * `payment_initiator=CUSTOMER`. `previous_transaction_reference` or
      * `previous_network_transaction_reference` is compatible only with
-     * `payment_initiator=MERCHANT`.&lt;/li&gt;&lt;li&gt;Only one of the parameters -
-     * `previous_transaction_reference` and `previous_network_transaction_reference` - can be
-     * present in the request.&lt;/li&gt;&lt;/ul&gt;
+     * `payment_initiator=MERCHANT`. Only one of the parameters - `previous_transaction_reference`
+     * and `previous_network_transaction_reference` - can be present in the request.
      * @return Returns the StoredPaymentSource
      */
     @JsonGetter("stored_payment_source")
@@ -165,14 +164,13 @@ public class OrderConfirmApplicationContext {
     /**
      * Setter for StoredPaymentSource.
      * Provides additional details to process a payment using a `payment_source` that has been
-     * stored or is intended to be stored (also referred to as stored_credential or
-     * card-on-file).&lt;br/&gt;Parameter compatibility:&lt;br/&gt;&lt;ul&gt;&lt;li&gt;`payment_type=ONE_TIME` is compatible
-     * only with `payment_initiator=CUSTOMER`.&lt;/li&gt;&lt;li&gt;`usage=FIRST` is compatible only with
-     * `payment_initiator=CUSTOMER`.&lt;/li&gt;&lt;li&gt;`previous_transaction_reference` or
+     * stored or is intended to be stored (also referred to as stored_credential or card-on-file).
+     * Parameter compatibility: `payment_type=ONE_TIME` is compatible only with
+     * `payment_initiator=CUSTOMER`. `usage=FIRST` is compatible only with
+     * `payment_initiator=CUSTOMER`. `previous_transaction_reference` or
      * `previous_network_transaction_reference` is compatible only with
-     * `payment_initiator=MERCHANT`.&lt;/li&gt;&lt;li&gt;Only one of the parameters -
-     * `previous_transaction_reference` and `previous_network_transaction_reference` - can be
-     * present in the request.&lt;/li&gt;&lt;/ul&gt;
+     * `payment_initiator=MERCHANT`. Only one of the parameters - `previous_transaction_reference`
+     * and `previous_network_transaction_reference` - can be present in the request.
      * @param storedPaymentSource Value for StoredPaymentSource
      */
     @JsonSetter("stored_payment_source")

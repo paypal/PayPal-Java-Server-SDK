@@ -18,7 +18,7 @@ import java.util.List;
 public class PurchaseUnit {
     private String referenceId;
     private AmountWithBreakdown amount;
-    private Payee payee;
+    private PayeeBase payee;
     private PaymentInstruction paymentInstruction;
     private String description;
     private String customId;
@@ -41,7 +41,7 @@ public class PurchaseUnit {
      * Initialization constructor.
      * @param  referenceId  String value for referenceId.
      * @param  amount  AmountWithBreakdown value for amount.
-     * @param  payee  Payee value for payee.
+     * @param  payee  PayeeBase value for payee.
      * @param  paymentInstruction  PaymentInstruction value for paymentInstruction.
      * @param  description  String value for description.
      * @param  customId  String value for customId.
@@ -57,7 +57,7 @@ public class PurchaseUnit {
     public PurchaseUnit(
             String referenceId,
             AmountWithBreakdown amount,
-            Payee payee,
+            PayeeBase payee,
             PaymentInstruction paymentInstruction,
             String description,
             String customId,
@@ -89,9 +89,8 @@ public class PurchaseUnit {
      * Getter for ReferenceId.
      * The API caller-provided external ID for the purchase unit. Required for multiple purchase
      * units when you must update the order through `PATCH`. If you omit this value and the order
-     * contains only one purchase unit, PayPal sets this value to `default`.
-     * &lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; If there are multiple purchase units,
-     * &lt;code&gt;reference_id&lt;/code&gt; is required for each purchase unit.&lt;/blockquote&gt;
+     * contains only one purchase unit, PayPal sets this value to `default`. Note: If there are
+     * multiple purchase units, reference_id is required for each purchase unit.
      * @return Returns the String
      */
     @JsonGetter("reference_id")
@@ -104,9 +103,8 @@ public class PurchaseUnit {
      * Setter for ReferenceId.
      * The API caller-provided external ID for the purchase unit. Required for multiple purchase
      * units when you must update the order through `PATCH`. If you omit this value and the order
-     * contains only one purchase unit, PayPal sets this value to `default`.
-     * &lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; If there are multiple purchase units,
-     * &lt;code&gt;reference_id&lt;/code&gt; is required for each purchase unit.&lt;/blockquote&gt;
+     * contains only one purchase unit, PayPal sets this value to `default`. Note: If there are
+     * multiple purchase units, reference_id is required for each purchase unit.
      * @param referenceId Value for String
      */
     @JsonSetter("reference_id")
@@ -117,12 +115,11 @@ public class PurchaseUnit {
     /**
      * Getter for Amount.
      * The total order amount with an optional breakdown that provides details, such as the total
-     * item amount, total tax amount, shipping, handling, insurance, and discounts, if any.&lt;br/&gt;If
-     * you specify `amount.breakdown`, the amount equals `item_total` plus `tax_total` plus
-     * `shipping` plus `handling` plus `insurance` minus `shipping_discount` minus discount.&lt;br/&gt;The
-     * amount must be a positive number. For listed of supported currencies and decimal precision,
-     * see the PayPal REST APIs &lt;a href="/docs/integration/direct/rest/currency-codes/"&gt;Currency
-     * Codes&lt;/a&gt;.
+     * item amount, total tax amount, shipping, handling, insurance, and discounts, if any. If you
+     * specify `amount.breakdown`, the amount equals `item_total` plus `tax_total` plus `shipping`
+     * plus `handling` plus `insurance` minus `shipping_discount` minus discount. The amount must be
+     * a positive number. For listed of supported currencies and decimal precision, see the PayPal
+     * REST APIs Currency Codes.
      * @return Returns the AmountWithBreakdown
      */
     @JsonGetter("amount")
@@ -134,12 +131,11 @@ public class PurchaseUnit {
     /**
      * Setter for Amount.
      * The total order amount with an optional breakdown that provides details, such as the total
-     * item amount, total tax amount, shipping, handling, insurance, and discounts, if any.&lt;br/&gt;If
-     * you specify `amount.breakdown`, the amount equals `item_total` plus `tax_total` plus
-     * `shipping` plus `handling` plus `insurance` minus `shipping_discount` minus discount.&lt;br/&gt;The
-     * amount must be a positive number. For listed of supported currencies and decimal precision,
-     * see the PayPal REST APIs &lt;a href="/docs/integration/direct/rest/currency-codes/"&gt;Currency
-     * Codes&lt;/a&gt;.
+     * item amount, total tax amount, shipping, handling, insurance, and discounts, if any. If you
+     * specify `amount.breakdown`, the amount equals `item_total` plus `tax_total` plus `shipping`
+     * plus `handling` plus `insurance` minus `shipping_discount` minus discount. The amount must be
+     * a positive number. For listed of supported currencies and decimal precision, see the PayPal
+     * REST APIs Currency Codes.
      * @param amount Value for AmountWithBreakdown
      */
     @JsonSetter("amount")
@@ -151,11 +147,11 @@ public class PurchaseUnit {
      * Getter for Payee.
      * The merchant who receives the funds and fulfills the order. The merchant is also known as the
      * payee.
-     * @return Returns the Payee
+     * @return Returns the PayeeBase
      */
     @JsonGetter("payee")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public Payee getPayee() {
+    public PayeeBase getPayee() {
         return payee;
     }
 
@@ -163,10 +159,10 @@ public class PurchaseUnit {
      * Setter for Payee.
      * The merchant who receives the funds and fulfills the order. The merchant is also known as the
      * payee.
-     * @param payee Value for Payee
+     * @param payee Value for PayeeBase
      */
     @JsonSetter("payee")
-    public void setPayee(Payee payee) {
+    public void setPayee(PayeeBase payee) {
         this.payee = payee;
     }
 
@@ -264,7 +260,7 @@ public class PurchaseUnit {
      * transaction history and the emails that the payer receives. In addition, this ID is available
      * in transaction and settlement reports that merchants and API callers can use to reconcile
      * transactions. This ID is only available when an order is saved by calling
-     * &lt;code&gt;v2/checkout/orders/id/save&lt;/code&gt;.
+     * v2/checkout/orders/id/save.
      * @return Returns the String
      */
     @JsonGetter("id")
@@ -279,7 +275,7 @@ public class PurchaseUnit {
      * transaction history and the emails that the payer receives. In addition, this ID is available
      * in transaction and settlement reports that merchants and API callers can use to reconcile
      * transactions. This ID is only available when an order is saved by calling
-     * &lt;code&gt;v2/checkout/orders/id/save&lt;/code&gt;.
+     * v2/checkout/orders/id/save.
      * @param id Value for String
      */
     @JsonSetter("id")
@@ -291,16 +287,14 @@ public class PurchaseUnit {
      * Getter for SoftDescriptor.
      * The payment descriptor on account transactions on the customer's credit card statement, that
      * PayPal sends to processors. The maximum length of the soft descriptor information that you
-     * can pass in the API field is 22 characters, in the following format:&lt;code&gt;22 - len(PAYPAL *
-     * (8)) - len(&lt;var&gt;Descriptor in Payment Receiving Preferences of Merchant account&lt;/var&gt; +
-     * 1)&lt;/code&gt;The PAYPAL prefix uses 8 characters.&lt;br/&gt;&lt;br/&gt;The soft descriptor supports the
-     * following ASCII characters:&lt;ul&gt;&lt;li&gt;Alphanumeric
-     * characters&lt;/li&gt;&lt;li&gt;Dashes&lt;/li&gt;&lt;li&gt;Asterisks&lt;/li&gt;&lt;li&gt;Periods (.)&lt;/li&gt;&lt;li&gt;Spaces&lt;/li&gt;&lt;/ul&gt;For
-     * Wallet payments marketplace integrations:&lt;ul&gt;&lt;li&gt;The merchant descriptor in the Payment
-     * Receiving Preferences must be the marketplace name.&lt;/li&gt;&lt;li&gt;You can't use the remaining space
-     * to show the customer service number.&lt;/li&gt;&lt;li&gt;The remaining spaces can be a combination of
-     * seller name and country.&lt;/li&gt;&lt;/ul&gt;&lt;br/&gt;For unbranded payments (Direct Card) marketplace
-     * integrations, use a combination of the seller name and phone number.
+     * can pass in the API field is 22 characters, in the following format:22 - len(PAYPAL * (8)) -
+     * len(Descriptor in Payment Receiving Preferences of Merchant account + 1)The PAYPAL prefix
+     * uses 8 characters. The soft descriptor supports the following ASCII characters: Alphanumeric
+     * characters Dashes Asterisks Periods (.) Spaces For Wallet payments marketplace integrations:
+     * The merchant descriptor in the Payment Receiving Preferences must be the marketplace name.
+     * You can't use the remaining space to show the customer service number. The remaining spaces
+     * can be a combination of seller name and country. For unbranded payments (Direct Card)
+     * marketplace integrations, use a combination of the seller name and phone number.
      * @return Returns the String
      */
     @JsonGetter("soft_descriptor")
@@ -313,16 +307,14 @@ public class PurchaseUnit {
      * Setter for SoftDescriptor.
      * The payment descriptor on account transactions on the customer's credit card statement, that
      * PayPal sends to processors. The maximum length of the soft descriptor information that you
-     * can pass in the API field is 22 characters, in the following format:&lt;code&gt;22 - len(PAYPAL *
-     * (8)) - len(&lt;var&gt;Descriptor in Payment Receiving Preferences of Merchant account&lt;/var&gt; +
-     * 1)&lt;/code&gt;The PAYPAL prefix uses 8 characters.&lt;br/&gt;&lt;br/&gt;The soft descriptor supports the
-     * following ASCII characters:&lt;ul&gt;&lt;li&gt;Alphanumeric
-     * characters&lt;/li&gt;&lt;li&gt;Dashes&lt;/li&gt;&lt;li&gt;Asterisks&lt;/li&gt;&lt;li&gt;Periods (.)&lt;/li&gt;&lt;li&gt;Spaces&lt;/li&gt;&lt;/ul&gt;For
-     * Wallet payments marketplace integrations:&lt;ul&gt;&lt;li&gt;The merchant descriptor in the Payment
-     * Receiving Preferences must be the marketplace name.&lt;/li&gt;&lt;li&gt;You can't use the remaining space
-     * to show the customer service number.&lt;/li&gt;&lt;li&gt;The remaining spaces can be a combination of
-     * seller name and country.&lt;/li&gt;&lt;/ul&gt;&lt;br/&gt;For unbranded payments (Direct Card) marketplace
-     * integrations, use a combination of the seller name and phone number.
+     * can pass in the API field is 22 characters, in the following format:22 - len(PAYPAL * (8)) -
+     * len(Descriptor in Payment Receiving Preferences of Merchant account + 1)The PAYPAL prefix
+     * uses 8 characters. The soft descriptor supports the following ASCII characters: Alphanumeric
+     * characters Dashes Asterisks Periods (.) Spaces For Wallet payments marketplace integrations:
+     * The merchant descriptor in the Payment Receiving Preferences must be the marketplace name.
+     * You can't use the remaining space to show the customer service number. The remaining spaces
+     * can be a combination of seller name and country. For unbranded payments (Direct Card)
+     * marketplace integrations, use a combination of the seller name and phone number.
      * @param softDescriptor Value for String
      */
     @JsonSetter("soft_descriptor")
@@ -485,7 +477,7 @@ public class PurchaseUnit {
     public static class Builder {
         private String referenceId;
         private AmountWithBreakdown amount;
-        private Payee payee;
+        private PayeeBase payee;
         private PaymentInstruction paymentInstruction;
         private String description;
         private String customId;
@@ -522,10 +514,10 @@ public class PurchaseUnit {
 
         /**
          * Setter for payee.
-         * @param  payee  Payee value for payee.
+         * @param  payee  PayeeBase value for payee.
          * @return Builder
          */
-        public Builder payee(Payee payee) {
+        public Builder payee(PayeeBase payee) {
             this.payee = payee;
             return this;
         }

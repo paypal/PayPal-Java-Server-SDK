@@ -17,8 +17,14 @@ import java.util.TreeMap;
  * PayeePaymentMethodPreference to be used.
  */
 public enum PayeePaymentMethodPreference {
+    /**
+     * Accepts any type of payment from the customer.
+     */
     UNRESTRICTED,
 
+    /**
+     * Accepts only immediate payment from the customer. For example, credit card, PayPal balance, or instant ACH. Ensures that at the time of capture, the payment does not have the `pending` status.
+     */
     IMMEDIATE_PAYMENT_REQUIRED,
 
     /**

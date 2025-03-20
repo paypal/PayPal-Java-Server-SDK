@@ -17,7 +17,7 @@ import java.util.List;
 public class PurchaseUnitRequest {
     private String referenceId;
     private AmountWithBreakdown amount;
-    private Payee payee;
+    private PayeeBase payee;
     private PaymentInstruction paymentInstruction;
     private String description;
     private String customId;
@@ -37,7 +37,7 @@ public class PurchaseUnitRequest {
      * Initialization constructor.
      * @param  amount  AmountWithBreakdown value for amount.
      * @param  referenceId  String value for referenceId.
-     * @param  payee  Payee value for payee.
+     * @param  payee  PayeeBase value for payee.
      * @param  paymentInstruction  PaymentInstruction value for paymentInstruction.
      * @param  description  String value for description.
      * @param  customId  String value for customId.
@@ -50,7 +50,7 @@ public class PurchaseUnitRequest {
     public PurchaseUnitRequest(
             AmountWithBreakdown amount,
             String referenceId,
-            Payee payee,
+            PayeeBase payee,
             PaymentInstruction paymentInstruction,
             String description,
             String customId,
@@ -100,12 +100,11 @@ public class PurchaseUnitRequest {
     /**
      * Getter for Amount.
      * The total order amount with an optional breakdown that provides details, such as the total
-     * item amount, total tax amount, shipping, handling, insurance, and discounts, if any.&lt;br/&gt;If
-     * you specify `amount.breakdown`, the amount equals `item_total` plus `tax_total` plus
-     * `shipping` plus `handling` plus `insurance` minus `shipping_discount` minus discount.&lt;br/&gt;The
-     * amount must be a positive number. For listed of supported currencies and decimal precision,
-     * see the PayPal REST APIs &lt;a href="/docs/integration/direct/rest/currency-codes/"&gt;Currency
-     * Codes&lt;/a&gt;.
+     * item amount, total tax amount, shipping, handling, insurance, and discounts, if any. If you
+     * specify `amount.breakdown`, the amount equals `item_total` plus `tax_total` plus `shipping`
+     * plus `handling` plus `insurance` minus `shipping_discount` minus discount. The amount must be
+     * a positive number. For listed of supported currencies and decimal precision, see the PayPal
+     * REST APIs Currency Codes.
      * @return Returns the AmountWithBreakdown
      */
     @JsonGetter("amount")
@@ -116,12 +115,11 @@ public class PurchaseUnitRequest {
     /**
      * Setter for Amount.
      * The total order amount with an optional breakdown that provides details, such as the total
-     * item amount, total tax amount, shipping, handling, insurance, and discounts, if any.&lt;br/&gt;If
-     * you specify `amount.breakdown`, the amount equals `item_total` plus `tax_total` plus
-     * `shipping` plus `handling` plus `insurance` minus `shipping_discount` minus discount.&lt;br/&gt;The
-     * amount must be a positive number. For listed of supported currencies and decimal precision,
-     * see the PayPal REST APIs &lt;a href="/docs/integration/direct/rest/currency-codes/"&gt;Currency
-     * Codes&lt;/a&gt;.
+     * item amount, total tax amount, shipping, handling, insurance, and discounts, if any. If you
+     * specify `amount.breakdown`, the amount equals `item_total` plus `tax_total` plus `shipping`
+     * plus `handling` plus `insurance` minus `shipping_discount` minus discount. The amount must be
+     * a positive number. For listed of supported currencies and decimal precision, see the PayPal
+     * REST APIs Currency Codes.
      * @param amount Value for AmountWithBreakdown
      */
     @JsonSetter("amount")
@@ -133,11 +131,11 @@ public class PurchaseUnitRequest {
      * Getter for Payee.
      * The merchant who receives the funds and fulfills the order. The merchant is also known as the
      * payee.
-     * @return Returns the Payee
+     * @return Returns the PayeeBase
      */
     @JsonGetter("payee")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public Payee getPayee() {
+    public PayeeBase getPayee() {
         return payee;
     }
 
@@ -145,10 +143,10 @@ public class PurchaseUnitRequest {
      * Setter for Payee.
      * The merchant who receives the funds and fulfills the order. The merchant is also known as the
      * payee.
-     * @param payee Value for Payee
+     * @param payee Value for PayeeBase
      */
     @JsonSetter("payee")
-    public void setPayee(Payee payee) {
+    public void setPayee(PayeeBase payee) {
         this.payee = payee;
     }
 
@@ -251,18 +249,16 @@ public class PurchaseUnitRequest {
     /**
      * Getter for SoftDescriptor.
      * The soft descriptor is the dynamic text used to construct the statement descriptor that
-     * appears on a payer's card statement.&lt;br&gt;&lt;br&gt;If an Order is paid using the "PayPal Wallet",
-     * the statement descriptor will appear in following format on the payer's card statement:
-     * &lt;code&gt;&lt;var&gt;PAYPAL_prefix&lt;/var&gt;+(space)+&lt;var&gt;merchant_descriptor&lt;/var&gt;+(space)+
-     * &lt;var&gt;soft_descriptor&lt;/var&gt;&lt;/code&gt;&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; The merchant descriptor
-     * is the descriptor of the merchant’s payment receiving preferences which can be seen by
-     * logging into the merchant account
-     * https://www.sandbox.paypal.com/businessprofile/settings/info/edit&lt;/blockquote&gt;The
-     * &lt;code&gt;PAYPAL&lt;/code&gt; prefix uses 8 characters. Only the first 22 characters will be displayed
-     * in the statement. &lt;br&gt;For example, if:&lt;ul&gt;&lt;li&gt;The PayPal prefix toggle is &lt;code&gt;PAYPAL
-     * *&lt;/code&gt;.&lt;/li&gt;&lt;li&gt;The merchant descriptor in the profile is &lt;code&gt;Janes
-     * Gift&lt;/code&gt;.&lt;/li&gt;&lt;li&gt;The soft descriptor is &lt;code&gt;800-123-1234&lt;/code&gt;.&lt;/li&gt;&lt;/ul&gt;Then, the
-     * statement descriptor on the card is &lt;code&gt;PAYPAL * Janes Gift 80&lt;/code&gt;.
+     * appears on a payer's card statement. If an Order is paid using the "PayPal Wallet", the
+     * statement descriptor will appear in following format on the payer's card statement:
+     * PAYPAL_prefix+(space)+merchant_descriptor+(space)+ soft_descriptor Note: The merchant
+     * descriptor is the descriptor of the merchant’s payment receiving preferences which can be
+     * seen by logging into the merchant account
+     * https://www.sandbox.paypal.com/businessprofile/settings/info/edit The PAYPAL prefix uses 8
+     * characters. Only the first 22 characters will be displayed in the statement. For example, if:
+     * The PayPal prefix toggle is PAYPAL *. The merchant descriptor in the profile is Janes Gift.
+     * The soft descriptor is 800-123-1234. Then, the statement descriptor on the card is PAYPAL *
+     * Janes Gift 80.
      * @return Returns the String
      */
     @JsonGetter("soft_descriptor")
@@ -274,18 +270,16 @@ public class PurchaseUnitRequest {
     /**
      * Setter for SoftDescriptor.
      * The soft descriptor is the dynamic text used to construct the statement descriptor that
-     * appears on a payer's card statement.&lt;br&gt;&lt;br&gt;If an Order is paid using the "PayPal Wallet",
-     * the statement descriptor will appear in following format on the payer's card statement:
-     * &lt;code&gt;&lt;var&gt;PAYPAL_prefix&lt;/var&gt;+(space)+&lt;var&gt;merchant_descriptor&lt;/var&gt;+(space)+
-     * &lt;var&gt;soft_descriptor&lt;/var&gt;&lt;/code&gt;&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; The merchant descriptor
-     * is the descriptor of the merchant’s payment receiving preferences which can be seen by
-     * logging into the merchant account
-     * https://www.sandbox.paypal.com/businessprofile/settings/info/edit&lt;/blockquote&gt;The
-     * &lt;code&gt;PAYPAL&lt;/code&gt; prefix uses 8 characters. Only the first 22 characters will be displayed
-     * in the statement. &lt;br&gt;For example, if:&lt;ul&gt;&lt;li&gt;The PayPal prefix toggle is &lt;code&gt;PAYPAL
-     * *&lt;/code&gt;.&lt;/li&gt;&lt;li&gt;The merchant descriptor in the profile is &lt;code&gt;Janes
-     * Gift&lt;/code&gt;.&lt;/li&gt;&lt;li&gt;The soft descriptor is &lt;code&gt;800-123-1234&lt;/code&gt;.&lt;/li&gt;&lt;/ul&gt;Then, the
-     * statement descriptor on the card is &lt;code&gt;PAYPAL * Janes Gift 80&lt;/code&gt;.
+     * appears on a payer's card statement. If an Order is paid using the "PayPal Wallet", the
+     * statement descriptor will appear in following format on the payer's card statement:
+     * PAYPAL_prefix+(space)+merchant_descriptor+(space)+ soft_descriptor Note: The merchant
+     * descriptor is the descriptor of the merchant’s payment receiving preferences which can be
+     * seen by logging into the merchant account
+     * https://www.sandbox.paypal.com/businessprofile/settings/info/edit The PAYPAL prefix uses 8
+     * characters. Only the first 22 characters will be displayed in the statement. For example, if:
+     * The PayPal prefix toggle is PAYPAL *. The merchant descriptor in the profile is Janes Gift.
+     * The soft descriptor is 800-123-1234. Then, the statement descriptor on the card is PAYPAL *
+     * Janes Gift 80.
      * @param softDescriptor Value for String
      */
     @JsonSetter("soft_descriptor")
@@ -399,7 +393,7 @@ public class PurchaseUnitRequest {
     public static class Builder {
         private AmountWithBreakdown amount;
         private String referenceId;
-        private Payee payee;
+        private PayeeBase payee;
         private PaymentInstruction paymentInstruction;
         private String description;
         private String customId;
@@ -445,10 +439,10 @@ public class PurchaseUnitRequest {
 
         /**
          * Setter for payee.
-         * @param  payee  Payee value for payee.
+         * @param  payee  PayeeBase value for payee.
          * @return Builder
          */
-        public Builder payee(Payee payee) {
+        public Builder payee(PayeeBase payee) {
             this.payee = payee;
             return this;
         }

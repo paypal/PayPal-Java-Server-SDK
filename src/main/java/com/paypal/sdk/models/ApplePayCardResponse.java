@@ -25,6 +25,7 @@ public class ApplePayCardResponse {
     private CardFromRequest fromRequest;
     private String expiry;
     private BinDetails binDetails;
+    private CardStoredCredential storedCredential;
     private Address billingAddress;
     private String countryCode;
 
@@ -46,6 +47,7 @@ public class ApplePayCardResponse {
      * @param  fromRequest  CardFromRequest value for fromRequest.
      * @param  expiry  String value for expiry.
      * @param  binDetails  BinDetails value for binDetails.
+     * @param  storedCredential  CardStoredCredential value for storedCredential.
      * @param  billingAddress  Address value for billingAddress.
      * @param  countryCode  String value for countryCode.
      */
@@ -60,6 +62,7 @@ public class ApplePayCardResponse {
             CardFromRequest fromRequest,
             String expiry,
             BinDetails binDetails,
+            CardStoredCredential storedCredential,
             Address billingAddress,
             String countryCode) {
         this.name = name;
@@ -72,6 +75,7 @@ public class ApplePayCardResponse {
         this.fromRequest = fromRequest;
         this.expiry = expiry;
         this.binDetails = binDetails;
+        this.storedCredential = storedCredential;
         this.billingAddress = billingAddress;
         this.countryCode = countryCode;
     }
@@ -289,6 +293,41 @@ public class ApplePayCardResponse {
     }
 
     /**
+     * Getter for StoredCredential.
+     * Provides additional details to process a payment using a `card` that has been stored or is
+     * intended to be stored (also referred to as stored_credential or card-on-file). Parameter
+     * compatibility: `payment_type=ONE_TIME` is compatible only with `payment_initiator=CUSTOMER`.
+     * `usage=FIRST` is compatible only with `payment_initiator=CUSTOMER`.
+     * `previous_transaction_reference` or `previous_network_transaction_reference` is compatible
+     * only with `payment_initiator=MERCHANT`. Only one of the parameters -
+     * `previous_transaction_reference` and `previous_network_transaction_reference` - can be
+     * present in the request.
+     * @return Returns the CardStoredCredential
+     */
+    @JsonGetter("stored_credential")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public CardStoredCredential getStoredCredential() {
+        return storedCredential;
+    }
+
+    /**
+     * Setter for StoredCredential.
+     * Provides additional details to process a payment using a `card` that has been stored or is
+     * intended to be stored (also referred to as stored_credential or card-on-file). Parameter
+     * compatibility: `payment_type=ONE_TIME` is compatible only with `payment_initiator=CUSTOMER`.
+     * `usage=FIRST` is compatible only with `payment_initiator=CUSTOMER`.
+     * `previous_transaction_reference` or `previous_network_transaction_reference` is compatible
+     * only with `payment_initiator=MERCHANT`. Only one of the parameters -
+     * `previous_transaction_reference` and `previous_network_transaction_reference` - can be
+     * present in the request.
+     * @param storedCredential Value for CardStoredCredential
+     */
+    @JsonSetter("stored_credential")
+    public void setStoredCredential(CardStoredCredential storedCredential) {
+        this.storedCredential = storedCredential;
+    }
+
+    /**
      * Getter for BillingAddress.
      * The portable international postal address. Maps to
      * [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata)
@@ -318,10 +357,9 @@ public class ApplePayCardResponse {
     /**
      * Getter for CountryCode.
      * The [two-character ISO 3166-1 code](/api/rest/reference/country-codes/) that identifies the
-     * country or region.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; The country code for Great Britain is
-     * &lt;code&gt;GB&lt;/code&gt; and not &lt;code&gt;UK&lt;/code&gt; as used in the top-level domain names for that
-     * country. Use the `C2` country code for China worldwide for comparable uncontrolled price
-     * (CUP) method, bank card, and cross-border transactions.&lt;/blockquote&gt;
+     * country or region. Note: The country code for Great Britain is GB and not UK as used in the
+     * top-level domain names for that country. Use the `C2` country code for China worldwide for
+     * comparable uncontrolled price (CUP) method, bank card, and cross-border transactions.
      * @return Returns the String
      */
     @JsonGetter("country_code")
@@ -333,10 +371,9 @@ public class ApplePayCardResponse {
     /**
      * Setter for CountryCode.
      * The [two-character ISO 3166-1 code](/api/rest/reference/country-codes/) that identifies the
-     * country or region.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; The country code for Great Britain is
-     * &lt;code&gt;GB&lt;/code&gt; and not &lt;code&gt;UK&lt;/code&gt; as used in the top-level domain names for that
-     * country. Use the `C2` country code for China worldwide for comparable uncontrolled price
-     * (CUP) method, bank card, and cross-border transactions.&lt;/blockquote&gt;
+     * country or region. Note: The country code for Great Britain is GB and not UK as used in the
+     * top-level domain names for that country. Use the `C2` country code for China worldwide for
+     * comparable uncontrolled price (CUP) method, bank card, and cross-border transactions.
      * @param countryCode Value for String
      */
     @JsonSetter("country_code")
@@ -354,8 +391,8 @@ public class ApplePayCardResponse {
                 + brand + ", availableNetworks=" + availableNetworks + ", type=" + type
                 + ", authenticationResult=" + authenticationResult + ", attributes=" + attributes
                 + ", fromRequest=" + fromRequest + ", expiry=" + expiry + ", binDetails="
-                + binDetails + ", billingAddress=" + billingAddress + ", countryCode=" + countryCode
-                + "]";
+                + binDetails + ", storedCredential=" + storedCredential + ", billingAddress="
+                + billingAddress + ", countryCode=" + countryCode + "]";
     }
 
     /**
@@ -375,6 +412,7 @@ public class ApplePayCardResponse {
                 .fromRequest(getFromRequest())
                 .expiry(getExpiry())
                 .binDetails(getBinDetails())
+                .storedCredential(getStoredCredential())
                 .billingAddress(getBillingAddress())
                 .countryCode(getCountryCode());
         return builder;
@@ -394,6 +432,7 @@ public class ApplePayCardResponse {
         private CardFromRequest fromRequest;
         private String expiry;
         private BinDetails binDetails;
+        private CardStoredCredential storedCredential;
         private Address billingAddress;
         private String countryCode;
 
@@ -500,6 +539,16 @@ public class ApplePayCardResponse {
         }
 
         /**
+         * Setter for storedCredential.
+         * @param  storedCredential  CardStoredCredential value for storedCredential.
+         * @return Builder
+         */
+        public Builder storedCredential(CardStoredCredential storedCredential) {
+            this.storedCredential = storedCredential;
+            return this;
+        }
+
+        /**
          * Setter for billingAddress.
          * @param  billingAddress  Address value for billingAddress.
          * @return Builder
@@ -526,7 +575,7 @@ public class ApplePayCardResponse {
         public ApplePayCardResponse build() {
             return new ApplePayCardResponse(name, lastDigits, brand, availableNetworks, type,
                     authenticationResult, attributes, fromRequest, expiry, binDetails,
-                    billingAddress, countryCode);
+                    storedCredential, billingAddress, countryCode);
         }
     }
 }

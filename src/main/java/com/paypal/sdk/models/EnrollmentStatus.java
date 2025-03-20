@@ -17,13 +17,25 @@ import java.util.TreeMap;
  * EnrollmentStatus to be used.
  */
 public enum EnrollmentStatus {
-    Y,
+    /**
+     * Yes. The bank is participating in 3-D Secure protocol and will return the ACSUrl.
+     */
+    ENROLLED,
 
-    N,
+    /**
+     * No. The bank is not participating in 3-D Secure protocol.
+     */
+    NOTENROLLED,
 
-    U,
+    /**
+     * Unavailable. The DS or ACS is not available for authentication at the time of the request.
+     */
+    UNAVAILABLE,
 
-    B,
+    /**
+     * Bypass. The merchant authentication rule is triggered to bypass authentication.
+     */
+    BYPASS,
 
     /**
      * Unknown values will be mapped by this enum member
@@ -35,16 +47,16 @@ public enum EnrollmentStatus {
     private String value;
 
     static {
-        Y.value = "Y";
-        N.value = "N";
-        U.value = "U";
-        B.value = "B";
+        ENROLLED.value = "Y";
+        NOTENROLLED.value = "N";
+        UNAVAILABLE.value = "U";
+        BYPASS.value = "B";
         _UNKNOWN.value = null;
 
-        valueMap.put("Y", Y);
-        valueMap.put("N", N);
-        valueMap.put("U", U);
-        valueMap.put("B", B);
+        valueMap.put("Y", ENROLLED);
+        valueMap.put("N", NOTENROLLED);
+        valueMap.put("U", UNAVAILABLE);
+        valueMap.put("B", BYPASS);
     }
 
     /**

@@ -17,8 +17,14 @@ import java.util.TreeMap;
  * TaxIdType to be used.
  */
 public enum TaxIdType {
+    /**
+     * The individual tax ID type, typically is 11 characters long.
+     */
     BR_CPF,
 
+    /**
+     * The business tax ID type, typically is 14 characters long.
+     */
     BR_CNPJ,
 
     /**

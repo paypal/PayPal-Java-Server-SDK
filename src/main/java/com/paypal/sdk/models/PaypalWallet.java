@@ -24,6 +24,7 @@ public class PaypalWallet {
     private PaypalWalletAttributes attributes;
     private PaypalWalletExperienceContext experienceContext;
     private String billingAgreementId;
+    private PaypalWalletStoredCredential storedCredential;
 
     /**
      * Default constructor.
@@ -43,6 +44,7 @@ public class PaypalWallet {
      * @param  attributes  PaypalWalletAttributes value for attributes.
      * @param  experienceContext  PaypalWalletExperienceContext value for experienceContext.
      * @param  billingAgreementId  String value for billingAgreementId.
+     * @param  storedCredential  PaypalWalletStoredCredential value for storedCredential.
      */
     public PaypalWallet(
             String vaultId,
@@ -54,7 +56,8 @@ public class PaypalWallet {
             Address address,
             PaypalWalletAttributes attributes,
             PaypalWalletExperienceContext experienceContext,
-            String billingAgreementId) {
+            String billingAgreementId,
+            PaypalWalletStoredCredential storedCredential) {
         this.vaultId = vaultId;
         this.emailAddress = emailAddress;
         this.name = name;
@@ -65,6 +68,7 @@ public class PaypalWallet {
         this.attributes = attributes;
         this.experienceContext = experienceContext;
         this.billingAgreementId = billingAgreementId;
+        this.storedCredential = storedCredential;
     }
 
     /**
@@ -92,10 +96,9 @@ public class PaypalWallet {
 
     /**
      * Getter for EmailAddress.
-     * The internationalized email address.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; Up to 64 characters
-     * are allowed before and 255 characters are allowed after the &lt;code&gt;{@literal @}&lt;/code&gt; sign. However, the
-     * generally accepted maximum length for an email address is 254 characters. The pattern
-     * verifies that an unquoted &lt;code&gt;{@literal @}&lt;/code&gt; sign exists.&lt;/blockquote&gt;
+     * The internationalized email address. Note: Up to 64 characters are allowed before and 255
+     * characters are allowed after the {@literal @} sign. However, the generally accepted maximum length for
+     * an email address is 254 characters. The pattern verifies that an unquoted {@literal @} sign exists.
      * @return Returns the String
      */
     @JsonGetter("email_address")
@@ -106,10 +109,9 @@ public class PaypalWallet {
 
     /**
      * Setter for EmailAddress.
-     * The internationalized email address.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; Up to 64 characters
-     * are allowed before and 255 characters are allowed after the &lt;code&gt;{@literal @}&lt;/code&gt; sign. However, the
-     * generally accepted maximum length for an email address is 254 characters. The pattern
-     * verifies that an unquoted &lt;code&gt;{@literal @}&lt;/code&gt; sign exists.&lt;/blockquote&gt;
+     * The internationalized email address. Note: Up to 64 characters are allowed before and 255
+     * characters are allowed after the {@literal @} sign. However, the generally accepted maximum length for
+     * an email address is 254 characters. The pattern verifies that an unquoted {@literal @} sign exists.
      * @param emailAddress Value for String
      */
     @JsonSetter("email_address")
@@ -261,10 +263,9 @@ public class PaypalWallet {
 
     /**
      * Getter for ExperienceContext.
-     * Customizes the payer experience during the approval process for payment with
-     * PayPal.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; Partners and Marketplaces might configure
-     * &lt;code&gt;brand_name&lt;/code&gt; and &lt;code&gt;shipping_preference&lt;/code&gt; during partner account setup,
-     * which overrides the request values.&lt;/blockquote&gt;
+     * Customizes the payer experience during the approval process for payment with PayPal. Note:
+     * Partners and Marketplaces might configure brand_name and shipping_preference during partner
+     * account setup, which overrides the request values.
      * @return Returns the PaypalWalletExperienceContext
      */
     @JsonGetter("experience_context")
@@ -275,10 +276,9 @@ public class PaypalWallet {
 
     /**
      * Setter for ExperienceContext.
-     * Customizes the payer experience during the approval process for payment with
-     * PayPal.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; Partners and Marketplaces might configure
-     * &lt;code&gt;brand_name&lt;/code&gt; and &lt;code&gt;shipping_preference&lt;/code&gt; during partner account setup,
-     * which overrides the request values.&lt;/blockquote&gt;
+     * Customizes the payer experience during the approval process for payment with PayPal. Note:
+     * Partners and Marketplaces might configure brand_name and shipping_preference during partner
+     * account setup, which overrides the request values.
      * @param experienceContext Value for PaypalWalletExperienceContext
      */
     @JsonSetter("experience_context")
@@ -310,6 +310,29 @@ public class PaypalWallet {
     }
 
     /**
+     * Getter for StoredCredential.
+     * Provides additional details to process a payment using the PayPal wallet billing agreement or
+     * a vaulted payment method that has been stored or is intended to be stored.
+     * @return Returns the PaypalWalletStoredCredential
+     */
+    @JsonGetter("stored_credential")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public PaypalWalletStoredCredential getStoredCredential() {
+        return storedCredential;
+    }
+
+    /**
+     * Setter for StoredCredential.
+     * Provides additional details to process a payment using the PayPal wallet billing agreement or
+     * a vaulted payment method that has been stored or is intended to be stored.
+     * @param storedCredential Value for PaypalWalletStoredCredential
+     */
+    @JsonSetter("stored_credential")
+    public void setStoredCredential(PaypalWalletStoredCredential storedCredential) {
+        this.storedCredential = storedCredential;
+    }
+
+    /**
      * Converts this PaypalWallet into string format.
      * @return String representation of this class
      */
@@ -319,7 +342,7 @@ public class PaypalWallet {
                 + ", name=" + name + ", phone=" + phone + ", birthDate=" + birthDate + ", taxInfo="
                 + taxInfo + ", address=" + address + ", attributes=" + attributes
                 + ", experienceContext=" + experienceContext + ", billingAgreementId="
-                + billingAgreementId + "]";
+                + billingAgreementId + ", storedCredential=" + storedCredential + "]";
     }
 
     /**
@@ -338,7 +361,8 @@ public class PaypalWallet {
                 .address(getAddress())
                 .attributes(getAttributes())
                 .experienceContext(getExperienceContext())
-                .billingAgreementId(getBillingAgreementId());
+                .billingAgreementId(getBillingAgreementId())
+                .storedCredential(getStoredCredential());
         return builder;
     }
 
@@ -356,6 +380,7 @@ public class PaypalWallet {
         private PaypalWalletAttributes attributes;
         private PaypalWalletExperienceContext experienceContext;
         private String billingAgreementId;
+        private PaypalWalletStoredCredential storedCredential;
 
 
 
@@ -460,12 +485,22 @@ public class PaypalWallet {
         }
 
         /**
+         * Setter for storedCredential.
+         * @param  storedCredential  PaypalWalletStoredCredential value for storedCredential.
+         * @return Builder
+         */
+        public Builder storedCredential(PaypalWalletStoredCredential storedCredential) {
+            this.storedCredential = storedCredential;
+            return this;
+        }
+
+        /**
          * Builds a new {@link PaypalWallet} object using the set fields.
          * @return {@link PaypalWallet}
          */
         public PaypalWallet build() {
             return new PaypalWallet(vaultId, emailAddress, name, phone, birthDate, taxInfo, address,
-                    attributes, experienceContext, billingAgreementId);
+                    attributes, experienceContext, billingAgreementId, storedCredential);
         }
     }
 }

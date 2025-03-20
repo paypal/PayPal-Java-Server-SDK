@@ -18,13 +18,13 @@ public class SetupTokenCardExperienceContext {
     private String locale;
     private String returnUrl;
     private String cancelUrl;
-    private String vaultInstruction;
+    private VaultInstructionAction vaultInstruction;
 
     /**
      * Default constructor.
      */
     public SetupTokenCardExperienceContext() {
-        vaultInstruction = "ON_CREATE_PAYMENT_TOKENS";
+        vaultInstruction = VaultInstructionAction.ON_CREATE_PAYMENT_TOKENS;
     }
 
     /**
@@ -33,14 +33,14 @@ public class SetupTokenCardExperienceContext {
      * @param  locale  String value for locale.
      * @param  returnUrl  String value for returnUrl.
      * @param  cancelUrl  String value for cancelUrl.
-     * @param  vaultInstruction  String value for vaultInstruction.
+     * @param  vaultInstruction  VaultInstructionAction value for vaultInstruction.
      */
     public SetupTokenCardExperienceContext(
             String brandName,
             String locale,
             String returnUrl,
             String cancelUrl,
-            String vaultInstruction) {
+            VaultInstructionAction vaultInstruction) {
         this.brandName = brandName;
         this.locale = locale;
         this.returnUrl = returnUrl;
@@ -153,21 +153,21 @@ public class SetupTokenCardExperienceContext {
     /**
      * Getter for VaultInstruction.
      * Vault Instruction on action to be performed after a successful payer approval.
-     * @return Returns the String
+     * @return Returns the VaultInstructionAction
      */
     @JsonGetter("vault_instruction")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public String getVaultInstruction() {
+    public VaultInstructionAction getVaultInstruction() {
         return vaultInstruction;
     }
 
     /**
      * Setter for VaultInstruction.
      * Vault Instruction on action to be performed after a successful payer approval.
-     * @param vaultInstruction Value for String
+     * @param vaultInstruction Value for VaultInstructionAction
      */
     @JsonSetter("vault_instruction")
-    public void setVaultInstruction(String vaultInstruction) {
+    public void setVaultInstruction(VaultInstructionAction vaultInstruction) {
         this.vaultInstruction = vaultInstruction;
     }
 
@@ -205,7 +205,8 @@ public class SetupTokenCardExperienceContext {
         private String locale;
         private String returnUrl;
         private String cancelUrl;
-        private String vaultInstruction = "ON_CREATE_PAYMENT_TOKENS";
+        private VaultInstructionAction vaultInstruction =
+                VaultInstructionAction.ON_CREATE_PAYMENT_TOKENS;
 
 
 
@@ -251,10 +252,10 @@ public class SetupTokenCardExperienceContext {
 
         /**
          * Setter for vaultInstruction.
-         * @param  vaultInstruction  String value for vaultInstruction.
+         * @param  vaultInstruction  VaultInstructionAction value for vaultInstruction.
          * @return Builder
          */
-        public Builder vaultInstruction(String vaultInstruction) {
+        public Builder vaultInstruction(VaultInstructionAction vaultInstruction) {
             this.vaultInstruction = vaultInstruction;
             return this;
         }

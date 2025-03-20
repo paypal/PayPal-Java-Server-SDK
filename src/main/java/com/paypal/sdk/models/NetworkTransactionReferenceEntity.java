@@ -119,8 +119,8 @@ public class NetworkTransactionReferenceEntity {
      * Getter for Time.
      * The date and time, in [Internet date and time
      * format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while
-     * fractional seconds are optional.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; The regular expression
-     * provides guidance but does not reject all invalid dates.&lt;/blockquote&gt;
+     * fractional seconds are optional. Note: The regular expression provides guidance but does not
+     * reject all invalid dates.
      * @return Returns the String
      */
     @JsonGetter("time")
@@ -133,8 +133,8 @@ public class NetworkTransactionReferenceEntity {
      * Setter for Time.
      * The date and time, in [Internet date and time
      * format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while
-     * fractional seconds are optional.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; The regular expression
-     * provides guidance but does not reject all invalid dates.&lt;/blockquote&gt;
+     * fractional seconds are optional. Note: The regular expression provides guidance but does not
+     * reject all invalid dates.
      * @param time Value for String
      */
     @JsonSetter("time")

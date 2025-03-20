@@ -13,15 +13,16 @@ import com.paypal.sdk.exceptions.ApiException;
 import com.paypal.sdk.exceptions.ErrorException;
 import com.paypal.sdk.http.request.HttpMethod;
 import com.paypal.sdk.http.response.ApiResponse;
-import com.paypal.sdk.models.AuthorizationsCaptureInput;
-import com.paypal.sdk.models.AuthorizationsGetInput;
-import com.paypal.sdk.models.AuthorizationsReauthorizeInput;
-import com.paypal.sdk.models.AuthorizationsVoidInput;
+import com.paypal.sdk.models.CaptureAuthorizedPaymentInput;
 import com.paypal.sdk.models.CapturedPayment;
-import com.paypal.sdk.models.CapturesRefundInput;
+import com.paypal.sdk.models.GetAuthorizedPaymentInput;
+import com.paypal.sdk.models.GetCapturedPaymentInput;
+import com.paypal.sdk.models.GetRefundInput;
 import com.paypal.sdk.models.PaymentAuthorization;
+import com.paypal.sdk.models.ReauthorizePaymentInput;
 import com.paypal.sdk.models.Refund;
-import com.paypal.sdk.models.RefundsGetInput;
+import com.paypal.sdk.models.RefundCapturedPaymentInput;
+import com.paypal.sdk.models.VoidPaymentInput;
 import io.apimatic.core.ApiCall;
 import io.apimatic.core.ErrorCase;
 import io.apimatic.core.GlobalConfiguration;
@@ -45,35 +46,35 @@ public final class PaymentsController extends BaseController {
 
     /**
      * Shows details for an authorized payment, by ID.
-     * @param  input  AuthorizationsGetInput object containing request parameters
+     * @param  input  GetAuthorizedPaymentInput object containing request parameters
      * @return    Returns the PaymentAuthorization wrapped in ApiResponse response from the API call
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
-    public ApiResponse<PaymentAuthorization> authorizationsGet(
-            final AuthorizationsGetInput input) throws ApiException, IOException {
-        return prepareAuthorizationsGetRequest(input).execute();
+    public ApiResponse<PaymentAuthorization> getAuthorizedPayment(
+            final GetAuthorizedPaymentInput input) throws ApiException, IOException {
+        return prepareGetAuthorizedPaymentRequest(input).execute();
     }
 
     /**
      * Shows details for an authorized payment, by ID.
-     * @param  input  AuthorizationsGetInput object containing request parameters
+     * @param  input  GetAuthorizedPaymentInput object containing request parameters
      * @return    Returns the PaymentAuthorization wrapped in ApiResponse response from the API call
      */
-    public CompletableFuture<ApiResponse<PaymentAuthorization>> authorizationsGetAsync(
-            final AuthorizationsGetInput input) {
+    public CompletableFuture<ApiResponse<PaymentAuthorization>> getAuthorizedPaymentAsync(
+            final GetAuthorizedPaymentInput input) {
         try { 
-            return prepareAuthorizationsGetRequest(input).executeAsync(); 
+            return prepareGetAuthorizedPaymentRequest(input).executeAsync(); 
         } catch (Exception e) {  
             throw new CompletionException(e); 
         }
     }
 
     /**
-     * Builds the ApiCall object for authorizationsGet.
+     * Builds the ApiCall object for getAuthorizedPayment.
      */
-    private ApiCall<ApiResponse<PaymentAuthorization>, ApiException> prepareAuthorizationsGetRequest(
-            final AuthorizationsGetInput input) throws IOException {
+    private ApiCall<ApiResponse<PaymentAuthorization>, ApiException> prepareGetAuthorizedPaymentRequest(
+            final GetAuthorizedPaymentInput input) throws IOException {
         return new ApiCall.Builder<ApiResponse<PaymentAuthorization>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder
@@ -81,6 +82,8 @@ public final class PaymentsController extends BaseController {
                         .path("/v2/payments/authorizations/{authorization_id}")
                         .templateParam(param -> param.key("authorization_id").value(input.getAuthorizationId())
                                 .shouldEncode(true))
+                        .headerParam(param -> param.key("PayPal-Mock-Response")
+                                .value(input.getPaypalMockResponse()).isRequired(false))
                         .headerParam(param -> param.key("PayPal-Auth-Assertion")
                                 .value(input.getPaypalAuthAssertion()).isRequired(false))
                         .headerParam(param -> param.key("accept").value("application/json"))
@@ -110,35 +113,35 @@ public final class PaymentsController extends BaseController {
 
     /**
      * Captures an authorized payment, by ID.
-     * @param  input  AuthorizationsCaptureInput object containing request parameters
+     * @param  input  CaptureAuthorizedPaymentInput object containing request parameters
      * @return    Returns the CapturedPayment wrapped in ApiResponse response from the API call
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
-    public ApiResponse<CapturedPayment> authorizationsCapture(
-            final AuthorizationsCaptureInput input) throws ApiException, IOException {
-        return prepareAuthorizationsCaptureRequest(input).execute();
+    public ApiResponse<CapturedPayment> captureAuthorizedPayment(
+            final CaptureAuthorizedPaymentInput input) throws ApiException, IOException {
+        return prepareCaptureAuthorizedPaymentRequest(input).execute();
     }
 
     /**
      * Captures an authorized payment, by ID.
-     * @param  input  AuthorizationsCaptureInput object containing request parameters
+     * @param  input  CaptureAuthorizedPaymentInput object containing request parameters
      * @return    Returns the CapturedPayment wrapped in ApiResponse response from the API call
      */
-    public CompletableFuture<ApiResponse<CapturedPayment>> authorizationsCaptureAsync(
-            final AuthorizationsCaptureInput input) {
+    public CompletableFuture<ApiResponse<CapturedPayment>> captureAuthorizedPaymentAsync(
+            final CaptureAuthorizedPaymentInput input) {
         try { 
-            return prepareAuthorizationsCaptureRequest(input).executeAsync(); 
+            return prepareCaptureAuthorizedPaymentRequest(input).executeAsync(); 
         } catch (Exception e) {  
             throw new CompletionException(e); 
         }
     }
 
     /**
-     * Builds the ApiCall object for authorizationsCapture.
+     * Builds the ApiCall object for captureAuthorizedPayment.
      */
-    private ApiCall<ApiResponse<CapturedPayment>, ApiException> prepareAuthorizationsCaptureRequest(
-            final AuthorizationsCaptureInput input) throws JsonProcessingException, IOException {
+    private ApiCall<ApiResponse<CapturedPayment>, ApiException> prepareCaptureAuthorizedPaymentRequest(
+            final CaptureAuthorizedPaymentInput input) throws JsonProcessingException, IOException {
         return new ApiCall.Builder<ApiResponse<CapturedPayment>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder
@@ -150,6 +153,8 @@ public final class PaymentsController extends BaseController {
                                 .shouldEncode(true))
                         .headerParam(param -> param.key("Content-Type")
                                 .value("application/json").isRequired(false))
+                        .headerParam(param -> param.key("PayPal-Mock-Response")
+                                .value(input.getPaypalMockResponse()).isRequired(false))
                         .headerParam(param -> param.key("PayPal-Request-Id")
                                 .value(input.getPaypalRequestId()).isRequired(false))
                         .headerParam(param -> param.key("Prefer")
@@ -197,53 +202,51 @@ public final class PaymentsController extends BaseController {
      * Reauthorizes an authorized PayPal account payment, by ID. To ensure that funds are still
      * available, reauthorize a payment after its initial three-day honor period expires. Within the
      * 29-day authorization period, you can issue multiple re-authorizations after the honor period
-     * expires.&lt;br/&gt;&lt;br/&gt;If 30 days have transpired since the date of the original authorization,
-     * you must create an authorized payment instead of reauthorizing the original authorized
-     * payment.&lt;br/&gt;&lt;br/&gt;A reauthorized payment itself has a new honor period of three
-     * days.&lt;br/&gt;&lt;br/&gt;You can reauthorize an authorized payment from 4 to 29 days after the 3-day
-     * honor period. The allowed amount depends on context and geography, for example in US it is up
-     * to 115% of the original authorized amount, not to exceed an increase of $75
-     * USD.&lt;br/&gt;&lt;br/&gt;Supports only the `amount` request parameter.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt;
-     * This request is currently not supported for Partner use cases.&lt;/blockquote&gt;.
-     * @param  input  AuthorizationsReauthorizeInput object containing request parameters
+     * expires. If 30 days have transpired since the date of the original authorization, you must
+     * create an authorized payment instead of reauthorizing the original authorized payment. A
+     * reauthorized payment itself has a new honor period of three days. You can reauthorize an
+     * authorized payment from 4 to 29 days after the 3-day honor period. The allowed amount depends
+     * on context and geography, for example in US it is up to 115% of the original authorized
+     * amount, not to exceed an increase of $75 USD. Supports only the `amount` request parameter.
+     * Note: This request is currently not supported for Partner use cases.
+     * @param  input  ReauthorizePaymentInput object containing request parameters
      * @return    Returns the PaymentAuthorization wrapped in ApiResponse response from the API call
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
-    public ApiResponse<PaymentAuthorization> authorizationsReauthorize(
-            final AuthorizationsReauthorizeInput input) throws ApiException, IOException {
-        return prepareAuthorizationsReauthorizeRequest(input).execute();
+    public ApiResponse<PaymentAuthorization> reauthorizePayment(
+            final ReauthorizePaymentInput input) throws ApiException, IOException {
+        return prepareReauthorizePaymentRequest(input).execute();
     }
 
     /**
      * Reauthorizes an authorized PayPal account payment, by ID. To ensure that funds are still
      * available, reauthorize a payment after its initial three-day honor period expires. Within the
      * 29-day authorization period, you can issue multiple re-authorizations after the honor period
-     * expires.&lt;br/&gt;&lt;br/&gt;If 30 days have transpired since the date of the original authorization,
-     * you must create an authorized payment instead of reauthorizing the original authorized
-     * payment.&lt;br/&gt;&lt;br/&gt;A reauthorized payment itself has a new honor period of three
-     * days.&lt;br/&gt;&lt;br/&gt;You can reauthorize an authorized payment from 4 to 29 days after the 3-day
-     * honor period. The allowed amount depends on context and geography, for example in US it is up
-     * to 115% of the original authorized amount, not to exceed an increase of $75
-     * USD.&lt;br/&gt;&lt;br/&gt;Supports only the `amount` request parameter.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt;
-     * This request is currently not supported for Partner use cases.&lt;/blockquote&gt;.
-     * @param  input  AuthorizationsReauthorizeInput object containing request parameters
+     * expires. If 30 days have transpired since the date of the original authorization, you must
+     * create an authorized payment instead of reauthorizing the original authorized payment. A
+     * reauthorized payment itself has a new honor period of three days. You can reauthorize an
+     * authorized payment from 4 to 29 days after the 3-day honor period. The allowed amount depends
+     * on context and geography, for example in US it is up to 115% of the original authorized
+     * amount, not to exceed an increase of $75 USD. Supports only the `amount` request parameter.
+     * Note: This request is currently not supported for Partner use cases.
+     * @param  input  ReauthorizePaymentInput object containing request parameters
      * @return    Returns the PaymentAuthorization wrapped in ApiResponse response from the API call
      */
-    public CompletableFuture<ApiResponse<PaymentAuthorization>> authorizationsReauthorizeAsync(
-            final AuthorizationsReauthorizeInput input) {
+    public CompletableFuture<ApiResponse<PaymentAuthorization>> reauthorizePaymentAsync(
+            final ReauthorizePaymentInput input) {
         try { 
-            return prepareAuthorizationsReauthorizeRequest(input).executeAsync(); 
+            return prepareReauthorizePaymentRequest(input).executeAsync(); 
         } catch (Exception e) {  
             throw new CompletionException(e); 
         }
     }
 
     /**
-     * Builds the ApiCall object for authorizationsReauthorize.
+     * Builds the ApiCall object for reauthorizePayment.
      */
-    private ApiCall<ApiResponse<PaymentAuthorization>, ApiException> prepareAuthorizationsReauthorizeRequest(
-            final AuthorizationsReauthorizeInput input) throws JsonProcessingException, IOException {
+    private ApiCall<ApiResponse<PaymentAuthorization>, ApiException> prepareReauthorizePaymentRequest(
+            final ReauthorizePaymentInput input) throws JsonProcessingException, IOException {
         return new ApiCall.Builder<ApiResponse<PaymentAuthorization>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder
@@ -295,36 +298,36 @@ public final class PaymentsController extends BaseController {
     /**
      * Voids, or cancels, an authorized payment, by ID. You cannot void an authorized payment that
      * has been fully captured.
-     * @param  input  AuthorizationsVoidInput object containing request parameters
+     * @param  input  VoidPaymentInput object containing request parameters
      * @return    Returns the PaymentAuthorization wrapped in ApiResponse response from the API call
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
-    public ApiResponse<PaymentAuthorization> authorizationsVoid(
-            final AuthorizationsVoidInput input) throws ApiException, IOException {
-        return prepareAuthorizationsVoidRequest(input).execute();
+    public ApiResponse<PaymentAuthorization> voidPayment(
+            final VoidPaymentInput input) throws ApiException, IOException {
+        return prepareVoidPaymentRequest(input).execute();
     }
 
     /**
      * Voids, or cancels, an authorized payment, by ID. You cannot void an authorized payment that
      * has been fully captured.
-     * @param  input  AuthorizationsVoidInput object containing request parameters
+     * @param  input  VoidPaymentInput object containing request parameters
      * @return    Returns the PaymentAuthorization wrapped in ApiResponse response from the API call
      */
-    public CompletableFuture<ApiResponse<PaymentAuthorization>> authorizationsVoidAsync(
-            final AuthorizationsVoidInput input) {
+    public CompletableFuture<ApiResponse<PaymentAuthorization>> voidPaymentAsync(
+            final VoidPaymentInput input) {
         try { 
-            return prepareAuthorizationsVoidRequest(input).executeAsync(); 
+            return prepareVoidPaymentRequest(input).executeAsync(); 
         } catch (Exception e) {  
             throw new CompletionException(e); 
         }
     }
 
     /**
-     * Builds the ApiCall object for authorizationsVoid.
+     * Builds the ApiCall object for voidPayment.
      */
-    private ApiCall<ApiResponse<PaymentAuthorization>, ApiException> prepareAuthorizationsVoidRequest(
-            final AuthorizationsVoidInput input) throws IOException {
+    private ApiCall<ApiResponse<PaymentAuthorization>, ApiException> prepareVoidPaymentRequest(
+            final VoidPaymentInput input) throws IOException {
         return new ApiCall.Builder<ApiResponse<PaymentAuthorization>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder
@@ -332,6 +335,8 @@ public final class PaymentsController extends BaseController {
                         .path("/v2/payments/authorizations/{authorization_id}/void")
                         .templateParam(param -> param.key("authorization_id").value(input.getAuthorizationId())
                                 .shouldEncode(true))
+                        .headerParam(param -> param.key("PayPal-Mock-Response")
+                                .value(input.getPaypalMockResponse()).isRequired(false))
                         .headerParam(param -> param.key("PayPal-Auth-Assertion")
                                 .value(input.getPaypalAuthAssertion()).isRequired(false))
                         .headerParam(param -> param.key("PayPal-Request-Id")
@@ -375,44 +380,44 @@ public final class PaymentsController extends BaseController {
 
     /**
      * Shows details for a captured payment, by ID.
-     * @param  captureId  Required parameter: The PayPal-generated ID for the captured payment for
-     *         which to show details.
+     * @param  input  GetCapturedPaymentInput object containing request parameters
      * @return    Returns the CapturedPayment wrapped in ApiResponse response from the API call
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
-    public ApiResponse<CapturedPayment> capturesGet(
-            final String captureId) throws ApiException, IOException {
-        return prepareCapturesGetRequest(captureId).execute();
+    public ApiResponse<CapturedPayment> getCapturedPayment(
+            final GetCapturedPaymentInput input) throws ApiException, IOException {
+        return prepareGetCapturedPaymentRequest(input).execute();
     }
 
     /**
      * Shows details for a captured payment, by ID.
-     * @param  captureId  Required parameter: The PayPal-generated ID for the captured payment for
-     *         which to show details.
+     * @param  input  GetCapturedPaymentInput object containing request parameters
      * @return    Returns the CapturedPayment wrapped in ApiResponse response from the API call
      */
-    public CompletableFuture<ApiResponse<CapturedPayment>> capturesGetAsync(
-            final String captureId) {
+    public CompletableFuture<ApiResponse<CapturedPayment>> getCapturedPaymentAsync(
+            final GetCapturedPaymentInput input) {
         try { 
-            return prepareCapturesGetRequest(captureId).executeAsync(); 
+            return prepareGetCapturedPaymentRequest(input).executeAsync(); 
         } catch (Exception e) {  
             throw new CompletionException(e); 
         }
     }
 
     /**
-     * Builds the ApiCall object for capturesGet.
+     * Builds the ApiCall object for getCapturedPayment.
      */
-    private ApiCall<ApiResponse<CapturedPayment>, ApiException> prepareCapturesGetRequest(
-            final String captureId) throws IOException {
+    private ApiCall<ApiResponse<CapturedPayment>, ApiException> prepareGetCapturedPaymentRequest(
+            final GetCapturedPaymentInput input) throws IOException {
         return new ApiCall.Builder<ApiResponse<CapturedPayment>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder
                         .server(Server.ENUM_DEFAULT.value())
                         .path("/v2/payments/captures/{capture_id}")
-                        .templateParam(param -> param.key("capture_id").value(captureId)
+                        .templateParam(param -> param.key("capture_id").value(input.getCaptureId())
                                 .shouldEncode(true))
+                        .headerParam(param -> param.key("PayPal-Mock-Response")
+                                .value(input.getPaypalMockResponse()).isRequired(false))
                         .headerParam(param -> param.key("accept").value("application/json"))
                         .withAuth(auth -> auth
                                 .add("Oauth2"))
@@ -443,39 +448,37 @@ public final class PaymentsController extends BaseController {
 
     /**
      * Refunds a captured payment, by ID. For a full refund, include an empty payload in the JSON
-     * request body. For a partial refund, include an &lt;code&gt;amount&lt;/code&gt; object in the JSON request
-     * body.
-     * @param  input  CapturesRefundInput object containing request parameters
+     * request body. For a partial refund, include an amount object in the JSON request body.
+     * @param  input  RefundCapturedPaymentInput object containing request parameters
      * @return    Returns the Refund wrapped in ApiResponse response from the API call
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
-    public ApiResponse<Refund> capturesRefund(
-            final CapturesRefundInput input) throws ApiException, IOException {
-        return prepareCapturesRefundRequest(input).execute();
+    public ApiResponse<Refund> refundCapturedPayment(
+            final RefundCapturedPaymentInput input) throws ApiException, IOException {
+        return prepareRefundCapturedPaymentRequest(input).execute();
     }
 
     /**
      * Refunds a captured payment, by ID. For a full refund, include an empty payload in the JSON
-     * request body. For a partial refund, include an &lt;code&gt;amount&lt;/code&gt; object in the JSON request
-     * body.
-     * @param  input  CapturesRefundInput object containing request parameters
+     * request body. For a partial refund, include an amount object in the JSON request body.
+     * @param  input  RefundCapturedPaymentInput object containing request parameters
      * @return    Returns the Refund wrapped in ApiResponse response from the API call
      */
-    public CompletableFuture<ApiResponse<Refund>> capturesRefundAsync(
-            final CapturesRefundInput input) {
+    public CompletableFuture<ApiResponse<Refund>> refundCapturedPaymentAsync(
+            final RefundCapturedPaymentInput input) {
         try { 
-            return prepareCapturesRefundRequest(input).executeAsync(); 
+            return prepareRefundCapturedPaymentRequest(input).executeAsync(); 
         } catch (Exception e) {  
             throw new CompletionException(e); 
         }
     }
 
     /**
-     * Builds the ApiCall object for capturesRefund.
+     * Builds the ApiCall object for refundCapturedPayment.
      */
-    private ApiCall<ApiResponse<Refund>, ApiException> prepareCapturesRefundRequest(
-            final CapturesRefundInput input) throws JsonProcessingException, IOException {
+    private ApiCall<ApiResponse<Refund>, ApiException> prepareRefundCapturedPaymentRequest(
+            final RefundCapturedPaymentInput input) throws JsonProcessingException, IOException {
         return new ApiCall.Builder<ApiResponse<Refund>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder
@@ -487,6 +490,8 @@ public final class PaymentsController extends BaseController {
                                 .shouldEncode(true))
                         .headerParam(param -> param.key("Content-Type")
                                 .value("application/json").isRequired(false))
+                        .headerParam(param -> param.key("PayPal-Mock-Response")
+                                .value(input.getPaypalMockResponse()).isRequired(false))
                         .headerParam(param -> param.key("PayPal-Request-Id")
                                 .value(input.getPaypalRequestId()).isRequired(false))
                         .headerParam(param -> param.key("Prefer")
@@ -532,35 +537,35 @@ public final class PaymentsController extends BaseController {
 
     /**
      * Shows details for a refund, by ID.
-     * @param  input  RefundsGetInput object containing request parameters
+     * @param  input  GetRefundInput object containing request parameters
      * @return    Returns the Refund wrapped in ApiResponse response from the API call
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
-    public ApiResponse<Refund> refundsGet(
-            final RefundsGetInput input) throws ApiException, IOException {
-        return prepareRefundsGetRequest(input).execute();
+    public ApiResponse<Refund> getRefund(
+            final GetRefundInput input) throws ApiException, IOException {
+        return prepareGetRefundRequest(input).execute();
     }
 
     /**
      * Shows details for a refund, by ID.
-     * @param  input  RefundsGetInput object containing request parameters
+     * @param  input  GetRefundInput object containing request parameters
      * @return    Returns the Refund wrapped in ApiResponse response from the API call
      */
-    public CompletableFuture<ApiResponse<Refund>> refundsGetAsync(
-            final RefundsGetInput input) {
+    public CompletableFuture<ApiResponse<Refund>> getRefundAsync(
+            final GetRefundInput input) {
         try { 
-            return prepareRefundsGetRequest(input).executeAsync(); 
+            return prepareGetRefundRequest(input).executeAsync(); 
         } catch (Exception e) {  
             throw new CompletionException(e); 
         }
     }
 
     /**
-     * Builds the ApiCall object for refundsGet.
+     * Builds the ApiCall object for getRefund.
      */
-    private ApiCall<ApiResponse<Refund>, ApiException> prepareRefundsGetRequest(
-            final RefundsGetInput input) throws IOException {
+    private ApiCall<ApiResponse<Refund>, ApiException> prepareGetRefundRequest(
+            final GetRefundInput input) throws IOException {
         return new ApiCall.Builder<ApiResponse<Refund>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder
@@ -568,6 +573,8 @@ public final class PaymentsController extends BaseController {
                         .path("/v2/payments/refunds/{refund_id}")
                         .templateParam(param -> param.key("refund_id").value(input.getRefundId())
                                 .shouldEncode(true))
+                        .headerParam(param -> param.key("PayPal-Mock-Response")
+                                .value(input.getPaypalMockResponse()).isRequired(false))
                         .headerParam(param -> param.key("PayPal-Auth-Assertion")
                                 .value(input.getPaypalAuthAssertion()).isRequired(false))
                         .headerParam(param -> param.key("accept").value("application/json"))

@@ -17,7 +17,7 @@ import java.util.List;
 public class CustomerVaultPaymentTokensResponse {
     private Integer totalItems;
     private Integer totalPages;
-    private CustomerRequest customer;
+    private VaultResponseCustomer customer;
     private List<PaymentTokenResponse> paymentTokens;
     private List<LinkDescription> links;
 
@@ -31,14 +31,14 @@ public class CustomerVaultPaymentTokensResponse {
      * Initialization constructor.
      * @param  totalItems  Integer value for totalItems.
      * @param  totalPages  Integer value for totalPages.
-     * @param  customer  CustomerRequest value for customer.
+     * @param  customer  VaultResponseCustomer value for customer.
      * @param  paymentTokens  List of PaymentTokenResponse value for paymentTokens.
      * @param  links  List of LinkDescription value for links.
      */
     public CustomerVaultPaymentTokensResponse(
             Integer totalItems,
             Integer totalPages,
-            CustomerRequest customer,
+            VaultResponseCustomer customer,
             List<PaymentTokenResponse> paymentTokens,
             List<LinkDescription> links) {
         this.totalItems = totalItems;
@@ -92,22 +92,24 @@ public class CustomerVaultPaymentTokensResponse {
 
     /**
      * Getter for Customer.
-     * Customer in merchant's or partner's system of records.
-     * @return Returns the CustomerRequest
+     * This object defines a customer in your system. Use it to manage customer profiles, save
+     * payment methods and contact details.
+     * @return Returns the VaultResponseCustomer
      */
     @JsonGetter("customer")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public CustomerRequest getCustomer() {
+    public VaultResponseCustomer getCustomer() {
         return customer;
     }
 
     /**
      * Setter for Customer.
-     * Customer in merchant's or partner's system of records.
-     * @param customer Value for CustomerRequest
+     * This object defines a customer in your system. Use it to manage customer profiles, save
+     * payment methods and contact details.
+     * @param customer Value for VaultResponseCustomer
      */
     @JsonSetter("customer")
-    public void setCustomer(CustomerRequest customer) {
+    public void setCustomer(VaultResponseCustomer customer) {
         this.customer = customer;
     }
 
@@ -183,7 +185,7 @@ public class CustomerVaultPaymentTokensResponse {
     public static class Builder {
         private Integer totalItems;
         private Integer totalPages;
-        private CustomerRequest customer;
+        private VaultResponseCustomer customer;
         private List<PaymentTokenResponse> paymentTokens;
         private List<LinkDescription> links;
 
@@ -211,10 +213,10 @@ public class CustomerVaultPaymentTokensResponse {
 
         /**
          * Setter for customer.
-         * @param  customer  CustomerRequest value for customer.
+         * @param  customer  VaultResponseCustomer value for customer.
          * @return Builder
          */
-        public Builder customer(CustomerRequest customer) {
+        public Builder customer(VaultResponseCustomer customer) {
             this.customer = customer;
             return this;
         }

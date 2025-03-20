@@ -25,6 +25,7 @@ public class PaypalWalletResponse {
     private TaxInfo taxInfo;
     private Address address;
     private PaypalWalletAttributesResponse attributes;
+    private PaypalWalletStoredCredential storedCredential;
 
     /**
      * Default constructor.
@@ -45,6 +46,7 @@ public class PaypalWalletResponse {
      * @param  taxInfo  TaxInfo value for taxInfo.
      * @param  address  Address value for address.
      * @param  attributes  PaypalWalletAttributesResponse value for attributes.
+     * @param  storedCredential  PaypalWalletStoredCredential value for storedCredential.
      */
     public PaypalWalletResponse(
             String emailAddress,
@@ -57,7 +59,8 @@ public class PaypalWalletResponse {
             String businessName,
             TaxInfo taxInfo,
             Address address,
-            PaypalWalletAttributesResponse attributes) {
+            PaypalWalletAttributesResponse attributes,
+            PaypalWalletStoredCredential storedCredential) {
         this.emailAddress = emailAddress;
         this.accountId = accountId;
         this.accountStatus = accountStatus;
@@ -69,14 +72,14 @@ public class PaypalWalletResponse {
         this.taxInfo = taxInfo;
         this.address = address;
         this.attributes = attributes;
+        this.storedCredential = storedCredential;
     }
 
     /**
      * Getter for EmailAddress.
-     * The internationalized email address.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; Up to 64 characters
-     * are allowed before and 255 characters are allowed after the &lt;code&gt;{@literal @}&lt;/code&gt; sign. However, the
-     * generally accepted maximum length for an email address is 254 characters. The pattern
-     * verifies that an unquoted &lt;code&gt;{@literal @}&lt;/code&gt; sign exists.&lt;/blockquote&gt;
+     * The internationalized email address. Note: Up to 64 characters are allowed before and 255
+     * characters are allowed after the {@literal @} sign. However, the generally accepted maximum length for
+     * an email address is 254 characters. The pattern verifies that an unquoted {@literal @} sign exists.
      * @return Returns the String
      */
     @JsonGetter("email_address")
@@ -87,10 +90,9 @@ public class PaypalWalletResponse {
 
     /**
      * Setter for EmailAddress.
-     * The internationalized email address.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; Up to 64 characters
-     * are allowed before and 255 characters are allowed after the &lt;code&gt;{@literal @}&lt;/code&gt; sign. However, the
-     * generally accepted maximum length for an email address is 254 characters. The pattern
-     * verifies that an unquoted &lt;code&gt;{@literal @}&lt;/code&gt; sign exists.&lt;/blockquote&gt;
+     * The internationalized email address. Note: Up to 64 characters are allowed before and 255
+     * characters are allowed after the {@literal @} sign. However, the generally accepted maximum length for
+     * an email address is 254 characters. The pattern verifies that an unquoted {@literal @} sign exists.
      * @param emailAddress Value for String
      */
     @JsonSetter("email_address")
@@ -333,6 +335,29 @@ public class PaypalWalletResponse {
     }
 
     /**
+     * Getter for StoredCredential.
+     * Provides additional details to process a payment using the PayPal wallet billing agreement or
+     * a vaulted payment method that has been stored or is intended to be stored.
+     * @return Returns the PaypalWalletStoredCredential
+     */
+    @JsonGetter("stored_credential")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public PaypalWalletStoredCredential getStoredCredential() {
+        return storedCredential;
+    }
+
+    /**
+     * Setter for StoredCredential.
+     * Provides additional details to process a payment using the PayPal wallet billing agreement or
+     * a vaulted payment method that has been stored or is intended to be stored.
+     * @param storedCredential Value for PaypalWalletStoredCredential
+     */
+    @JsonSetter("stored_credential")
+    public void setStoredCredential(PaypalWalletStoredCredential storedCredential) {
+        this.storedCredential = storedCredential;
+    }
+
+    /**
      * Converts this PaypalWalletResponse into string format.
      * @return String representation of this class
      */
@@ -342,7 +367,7 @@ public class PaypalWalletResponse {
                 + accountId + ", accountStatus=" + accountStatus + ", name=" + name + ", phoneType="
                 + phoneType + ", phoneNumber=" + phoneNumber + ", birthDate=" + birthDate
                 + ", businessName=" + businessName + ", taxInfo=" + taxInfo + ", address=" + address
-                + ", attributes=" + attributes + "]";
+                + ", attributes=" + attributes + ", storedCredential=" + storedCredential + "]";
     }
 
     /**
@@ -362,7 +387,8 @@ public class PaypalWalletResponse {
                 .businessName(getBusinessName())
                 .taxInfo(getTaxInfo())
                 .address(getAddress())
-                .attributes(getAttributes());
+                .attributes(getAttributes())
+                .storedCredential(getStoredCredential());
         return builder;
     }
 
@@ -381,6 +407,7 @@ public class PaypalWalletResponse {
         private TaxInfo taxInfo;
         private Address address;
         private PaypalWalletAttributesResponse attributes;
+        private PaypalWalletStoredCredential storedCredential;
 
 
 
@@ -495,12 +522,23 @@ public class PaypalWalletResponse {
         }
 
         /**
+         * Setter for storedCredential.
+         * @param  storedCredential  PaypalWalletStoredCredential value for storedCredential.
+         * @return Builder
+         */
+        public Builder storedCredential(PaypalWalletStoredCredential storedCredential) {
+            this.storedCredential = storedCredential;
+            return this;
+        }
+
+        /**
          * Builds a new {@link PaypalWalletResponse} object using the set fields.
          * @return {@link PaypalWalletResponse}
          */
         public PaypalWalletResponse build() {
             return new PaypalWalletResponse(emailAddress, accountId, accountStatus, name, phoneType,
-                    phoneNumber, birthDate, businessName, taxInfo, address, attributes);
+                    phoneNumber, birthDate, businessName, taxInfo, address, attributes,
+                    storedCredential);
         }
     }
 }
