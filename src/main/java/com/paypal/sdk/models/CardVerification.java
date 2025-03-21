@@ -14,42 +14,42 @@ import com.fasterxml.jackson.annotation.JsonSetter;
  * This is a model class for CardVerification type.
  */
 public class CardVerification {
-    private CardVerificationMethod method;
+    private OrdersCardVerificationMethod method;
 
     /**
      * Default constructor.
      */
     public CardVerification() {
-        method = CardVerificationMethod.SCA_WHEN_REQUIRED;
+        method = OrdersCardVerificationMethod.SCA_WHEN_REQUIRED;
     }
 
     /**
      * Initialization constructor.
-     * @param  method  CardVerificationMethod value for method.
+     * @param  method  OrdersCardVerificationMethod value for method.
      */
     public CardVerification(
-            CardVerificationMethod method) {
+            OrdersCardVerificationMethod method) {
         this.method = method;
     }
 
     /**
      * Getter for Method.
      * The method used for card verification.
-     * @return Returns the CardVerificationMethod
+     * @return Returns the OrdersCardVerificationMethod
      */
     @JsonGetter("method")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public CardVerificationMethod getMethod() {
+    public OrdersCardVerificationMethod getMethod() {
         return method;
     }
 
     /**
      * Setter for Method.
      * The method used for card verification.
-     * @param method Value for CardVerificationMethod
+     * @param method Value for OrdersCardVerificationMethod
      */
     @JsonSetter("method")
-    public void setMethod(CardVerificationMethod method) {
+    public void setMethod(OrdersCardVerificationMethod method) {
         this.method = method;
     }
 
@@ -77,16 +77,17 @@ public class CardVerification {
      * Class to build instances of {@link CardVerification}.
      */
     public static class Builder {
-        private CardVerificationMethod method = CardVerificationMethod.SCA_WHEN_REQUIRED;
+        private OrdersCardVerificationMethod method =
+                OrdersCardVerificationMethod.SCA_WHEN_REQUIRED;
 
 
 
         /**
          * Setter for method.
-         * @param  method  CardVerificationMethod value for method.
+         * @param  method  OrdersCardVerificationMethod value for method.
          * @return Builder
          */
-        public Builder method(CardVerificationMethod method) {
+        public Builder method(OrdersCardVerificationMethod method) {
             this.method = method;
             return this;
         }

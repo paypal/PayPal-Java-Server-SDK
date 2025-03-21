@@ -140,8 +140,8 @@ public class OrderTrackerResponse {
      * Getter for CreateTime.
      * The date and time, in [Internet date and time
      * format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while
-     * fractional seconds are optional.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; The regular expression
-     * provides guidance but does not reject all invalid dates.&lt;/blockquote&gt;
+     * fractional seconds are optional. Note: The regular expression provides guidance but does not
+     * reject all invalid dates.
      * @return Returns the String
      */
     @JsonGetter("create_time")
@@ -154,8 +154,8 @@ public class OrderTrackerResponse {
      * Setter for CreateTime.
      * The date and time, in [Internet date and time
      * format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while
-     * fractional seconds are optional.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; The regular expression
-     * provides guidance but does not reject all invalid dates.&lt;/blockquote&gt;
+     * fractional seconds are optional. Note: The regular expression provides guidance but does not
+     * reject all invalid dates.
      * @param createTime Value for String
      */
     @JsonSetter("create_time")
@@ -167,8 +167,8 @@ public class OrderTrackerResponse {
      * Getter for UpdateTime.
      * The date and time, in [Internet date and time
      * format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while
-     * fractional seconds are optional.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; The regular expression
-     * provides guidance but does not reject all invalid dates.&lt;/blockquote&gt;
+     * fractional seconds are optional. Note: The regular expression provides guidance but does not
+     * reject all invalid dates.
      * @return Returns the String
      */
     @JsonGetter("update_time")
@@ -181,8 +181,8 @@ public class OrderTrackerResponse {
      * Setter for UpdateTime.
      * The date and time, in [Internet date and time
      * format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while
-     * fractional seconds are optional.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; The regular expression
-     * provides guidance but does not reject all invalid dates.&lt;/blockquote&gt;
+     * fractional seconds are optional. Note: The regular expression provides guidance but does not
+     * reject all invalid dates.
      * @param updateTime Value for String
      */
     @JsonSetter("update_time")

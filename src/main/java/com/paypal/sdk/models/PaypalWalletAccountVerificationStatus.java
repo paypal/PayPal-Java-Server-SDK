@@ -17,8 +17,14 @@ import java.util.TreeMap;
  * PaypalWalletAccountVerificationStatus to be used.
  */
 public enum PaypalWalletAccountVerificationStatus {
+    /**
+     * The buyer has completed the verification of the financial details associated with this PayPal account. For example: confirming their bank account.
+     */
     VERIFIED,
 
+    /**
+     * The buyer has not completed the verification of the financial details associated with this PayPal account. For example: confirming their bank account.
+     */
     UNVERIFIED,
 
     /**

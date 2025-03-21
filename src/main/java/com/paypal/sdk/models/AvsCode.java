@@ -17,53 +17,125 @@ import java.util.TreeMap;
  * AvsCode to be used.
  */
 public enum AvsCode {
-    A,
+    /**
+     * For Visa, Mastercard, or Discover transactions, the address matches but the zip code does not match. For American Express transactions, the card holder address is correct.
+     */
+    AVS_A,
 
-    B,
+    /**
+     * For Visa, Mastercard, or Discover transactions, the address matches. International A.
+     */
+    AVS_B,
 
-    C,
+    /**
+     * For Visa, Mastercard, or Discover transactions, no values match. International N.
+     */
+    AVS_C,
 
-    D,
+    /**
+     * For Visa, Mastercard, or Discover transactions, the address and postal code match. International X.
+     */
+    AVS_D,
 
-    E,
+    /**
+     * For Visa, Mastercard, or Discover transactions, not allowed for Internet or phone transactions. For American Express card holder, the name is incorrect but the address and postal code match.
+     */
+    AVS_E,
 
-    F,
+    /**
+     * For Visa, Mastercard, or Discover transactions, the address and postal code match. UK-specific X. For American Express card holder, the name is incorrect but the address matches.
+     */
+    AVS_F,
 
-    G,
+    /**
+     * For Visa, Mastercard, or Discover transactions, global is unavailable. Nothing matches.
+     */
+    AVS_G,
 
-    I,
+    /**
+     * For Visa, Mastercard, or Discover transactions, international is unavailable. Not applicable.
+     */
+    AVS_I,
 
-    M,
+    /**
+     * For Visa, Mastercard, or Discover transactions, the address and postal code match. For American Express card holder, the name, address, and postal code match.
+     */
+    AVS_M,
 
-    N,
+    /**
+     * For Visa, Mastercard, or Discover transactions, nothing matches. For American Express card holder, the address and postal code are both incorrect.
+     */
+    AVS_N,
 
-    P,
+    /**
+     * For Visa, Mastercard, or Discover transactions, postal international Z. Postal code only.
+     */
+    AVS_P,
 
-    R,
+    /**
+     * For Visa, Mastercard, or Discover transactions, re-try the request. For American Express, the system is unavailable.
+     */
+    AVS_R,
 
-    S,
+    /**
+     * For Visa, Mastercard, Discover, or American Express, the service is not supported.
+     */
+    AVS_S,
 
-    U,
+    /**
+     * For Visa, Mastercard, or Discover transactions, the service is unavailable. For American Express, information is not available. For Maestro, the address is not checked or the acquirer had no response. The service is not available.
+     */
+    AVS_U,
 
-    W,
+    /**
+     * For Visa, Mastercard, or Discover transactions, whole ZIP code. For American Express, the card holder name, address, and postal code are all incorrect.
+     */
+    AVS_W,
 
-    X,
+    /**
+     * For Visa, Mastercard, or Discover transactions, exact match of the address and the nine-digit ZIP code. For American Express, the card holder name, address, and postal code are all incorrect.
+     */
+    AVS_X,
 
-    Y,
+    /**
+     * For Visa, Mastercard, or Discover transactions, the address and five-digit ZIP code match. For American Express, the card holder address and postal code are both correct.
+     */
+    AVS_Y,
 
-    Z,
+    /**
+     * For Visa, Mastercard, or Discover transactions, the five-digit ZIP code matches but no address. For American Express, only the card holder postal code is correct.
+     */
+    AVS_Z,
 
-    NULL,
+    /**
+     * For Maestro, no AVS response was obtained.
+     */
+    AVS_NULL,
 
-    ENUM_0,
+    /**
+     * For Maestro, all address information matches.
+     */
+    AVS_0,
 
-    ENUM_1,
+    /**
+     * For Maestro, none of the address information matches.
+     */
+    AVS_1,
 
-    ENUM_2,
+    /**
+     * For Maestro, part of the address information matches.
+     */
+    AVS_2,
 
-    ENUM_3,
+    /**
+     * For Maestro, the merchant did not provide AVS information. It was not processed.
+     */
+    AVS_3,
 
-    ENUM_4,
+    /**
+     * For Maestro, the address was not checked or the acquirer had no response. The service is not available.
+     */
+    AVS_4,
 
     /**
      * Unknown values will be mapped by this enum member
@@ -75,56 +147,56 @@ public enum AvsCode {
     private String value;
 
     static {
-        A.value = "A";
-        B.value = "B";
-        C.value = "C";
-        D.value = "D";
-        E.value = "E";
-        F.value = "F";
-        G.value = "G";
-        I.value = "I";
-        M.value = "M";
-        N.value = "N";
-        P.value = "P";
-        R.value = "R";
-        S.value = "S";
-        U.value = "U";
-        W.value = "W";
-        X.value = "X";
-        Y.value = "Y";
-        Z.value = "Z";
-        NULL.value = "Null";
-        ENUM_0.value = "0";
-        ENUM_1.value = "1";
-        ENUM_2.value = "2";
-        ENUM_3.value = "3";
-        ENUM_4.value = "4";
+        AVS_A.value = "A";
+        AVS_B.value = "B";
+        AVS_C.value = "C";
+        AVS_D.value = "D";
+        AVS_E.value = "E";
+        AVS_F.value = "F";
+        AVS_G.value = "G";
+        AVS_I.value = "I";
+        AVS_M.value = "M";
+        AVS_N.value = "N";
+        AVS_P.value = "P";
+        AVS_R.value = "R";
+        AVS_S.value = "S";
+        AVS_U.value = "U";
+        AVS_W.value = "W";
+        AVS_X.value = "X";
+        AVS_Y.value = "Y";
+        AVS_Z.value = "Z";
+        AVS_NULL.value = "Null";
+        AVS_0.value = "0";
+        AVS_1.value = "1";
+        AVS_2.value = "2";
+        AVS_3.value = "3";
+        AVS_4.value = "4";
         _UNKNOWN.value = null;
 
-        valueMap.put("A", A);
-        valueMap.put("B", B);
-        valueMap.put("C", C);
-        valueMap.put("D", D);
-        valueMap.put("E", E);
-        valueMap.put("F", F);
-        valueMap.put("G", G);
-        valueMap.put("I", I);
-        valueMap.put("M", M);
-        valueMap.put("N", N);
-        valueMap.put("P", P);
-        valueMap.put("R", R);
-        valueMap.put("S", S);
-        valueMap.put("U", U);
-        valueMap.put("W", W);
-        valueMap.put("X", X);
-        valueMap.put("Y", Y);
-        valueMap.put("Z", Z);
-        valueMap.put("Null", NULL);
-        valueMap.put("0", ENUM_0);
-        valueMap.put("1", ENUM_1);
-        valueMap.put("2", ENUM_2);
-        valueMap.put("3", ENUM_3);
-        valueMap.put("4", ENUM_4);
+        valueMap.put("A", AVS_A);
+        valueMap.put("B", AVS_B);
+        valueMap.put("C", AVS_C);
+        valueMap.put("D", AVS_D);
+        valueMap.put("E", AVS_E);
+        valueMap.put("F", AVS_F);
+        valueMap.put("G", AVS_G);
+        valueMap.put("I", AVS_I);
+        valueMap.put("M", AVS_M);
+        valueMap.put("N", AVS_N);
+        valueMap.put("P", AVS_P);
+        valueMap.put("R", AVS_R);
+        valueMap.put("S", AVS_S);
+        valueMap.put("U", AVS_U);
+        valueMap.put("W", AVS_W);
+        valueMap.put("X", AVS_X);
+        valueMap.put("Y", AVS_Y);
+        valueMap.put("Z", AVS_Z);
+        valueMap.put("Null", AVS_NULL);
+        valueMap.put("0", AVS_0);
+        valueMap.put("1", AVS_1);
+        valueMap.put("2", AVS_2);
+        valueMap.put("3", AVS_3);
+        valueMap.put("4", AVS_4);
     }
 
     /**

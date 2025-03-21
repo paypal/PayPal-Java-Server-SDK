@@ -9,7 +9,6 @@ package com.paypal.sdk.models;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import com.paypal.sdk.utilities.JsonValue;
 import java.util.List;
 
 /**
@@ -21,7 +20,6 @@ public class OrderAuthorizeResponse {
     private String id;
     private OrderAuthorizeResponsePaymentSource paymentSource;
     private CheckoutPaymentIntent intent;
-    private JsonValue processingInstruction;
     private Payer payer;
     private List<PurchaseUnit> purchaseUnits;
     private OrderStatus status;
@@ -40,7 +38,6 @@ public class OrderAuthorizeResponse {
      * @param  id  String value for id.
      * @param  paymentSource  OrderAuthorizeResponsePaymentSource value for paymentSource.
      * @param  intent  CheckoutPaymentIntent value for intent.
-     * @param  processingInstruction  JsonValue value for processingInstruction.
      * @param  payer  Payer value for payer.
      * @param  purchaseUnits  List of PurchaseUnit value for purchaseUnits.
      * @param  status  OrderStatus value for status.
@@ -52,7 +49,6 @@ public class OrderAuthorizeResponse {
             String id,
             OrderAuthorizeResponsePaymentSource paymentSource,
             CheckoutPaymentIntent intent,
-            JsonValue processingInstruction,
             Payer payer,
             List<PurchaseUnit> purchaseUnits,
             OrderStatus status,
@@ -62,7 +58,6 @@ public class OrderAuthorizeResponse {
         this.id = id;
         this.paymentSource = paymentSource;
         this.intent = intent;
-        this.processingInstruction = processingInstruction;
         this.payer = payer;
         this.purchaseUnits = purchaseUnits;
         this.status = status;
@@ -73,8 +68,8 @@ public class OrderAuthorizeResponse {
      * Getter for CreateTime.
      * The date and time, in [Internet date and time
      * format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while
-     * fractional seconds are optional.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; The regular expression
-     * provides guidance but does not reject all invalid dates.&lt;/blockquote&gt;
+     * fractional seconds are optional. Note: The regular expression provides guidance but does not
+     * reject all invalid dates.
      * @return Returns the String
      */
     @JsonGetter("create_time")
@@ -87,8 +82,8 @@ public class OrderAuthorizeResponse {
      * Setter for CreateTime.
      * The date and time, in [Internet date and time
      * format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while
-     * fractional seconds are optional.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; The regular expression
-     * provides guidance but does not reject all invalid dates.&lt;/blockquote&gt;
+     * fractional seconds are optional. Note: The regular expression provides guidance but does not
+     * reject all invalid dates.
      * @param createTime Value for String
      */
     @JsonSetter("create_time")
@@ -100,8 +95,8 @@ public class OrderAuthorizeResponse {
      * Getter for UpdateTime.
      * The date and time, in [Internet date and time
      * format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while
-     * fractional seconds are optional.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; The regular expression
-     * provides guidance but does not reject all invalid dates.&lt;/blockquote&gt;
+     * fractional seconds are optional. Note: The regular expression provides guidance but does not
+     * reject all invalid dates.
      * @return Returns the String
      */
     @JsonGetter("update_time")
@@ -114,8 +109,8 @@ public class OrderAuthorizeResponse {
      * Setter for UpdateTime.
      * The date and time, in [Internet date and time
      * format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while
-     * fractional seconds are optional.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; The regular expression
-     * provides guidance but does not reject all invalid dates.&lt;/blockquote&gt;
+     * fractional seconds are optional. Note: The regular expression provides guidance but does not
+     * reject all invalid dates.
      * @param updateTime Value for String
      */
     @JsonSetter("update_time")
@@ -186,25 +181,6 @@ public class OrderAuthorizeResponse {
     @JsonSetter("intent")
     public void setIntent(CheckoutPaymentIntent intent) {
         this.intent = intent;
-    }
-
-    /**
-     * Getter for ProcessingInstruction.
-     * @return Returns the JsonValue
-     */
-    @JsonGetter("processing_instruction")
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    public JsonValue getProcessingInstruction() {
-        return processingInstruction;
-    }
-
-    /**
-     * Setter for ProcessingInstruction.
-     * @param processingInstruction Value for JsonValue
-     */
-    @JsonSetter("processing_instruction")
-    public void setProcessingInstruction(JsonValue processingInstruction) {
-        this.processingInstruction = processingInstruction;
     }
 
     /**
@@ -305,9 +281,8 @@ public class OrderAuthorizeResponse {
     public String toString() {
         return "OrderAuthorizeResponse [" + "createTime=" + createTime + ", updateTime="
                 + updateTime + ", id=" + id + ", paymentSource=" + paymentSource + ", intent="
-                + intent + ", processingInstruction=" + processingInstruction + ", payer=" + payer
-                + ", purchaseUnits=" + purchaseUnits + ", status=" + status + ", links=" + links
-                + "]";
+                + intent + ", payer=" + payer + ", purchaseUnits=" + purchaseUnits + ", status="
+                + status + ", links=" + links + "]";
     }
 
     /**
@@ -322,7 +297,6 @@ public class OrderAuthorizeResponse {
                 .id(getId())
                 .paymentSource(getPaymentSource())
                 .intent(getIntent())
-                .processingInstruction(getProcessingInstruction())
                 .payer(getPayer())
                 .purchaseUnits(getPurchaseUnits())
                 .status(getStatus())
@@ -339,7 +313,6 @@ public class OrderAuthorizeResponse {
         private String id;
         private OrderAuthorizeResponsePaymentSource paymentSource;
         private CheckoutPaymentIntent intent;
-        private JsonValue processingInstruction;
         private Payer payer;
         private List<PurchaseUnit> purchaseUnits;
         private OrderStatus status;
@@ -398,16 +371,6 @@ public class OrderAuthorizeResponse {
         }
 
         /**
-         * Setter for processingInstruction.
-         * @param  processingInstruction  JsonValue value for processingInstruction.
-         * @return Builder
-         */
-        public Builder processingInstruction(JsonValue processingInstruction) {
-            this.processingInstruction = processingInstruction;
-            return this;
-        }
-
-        /**
          * Setter for payer.
          * @param  payer  Payer value for payer.
          * @return Builder
@@ -453,7 +416,7 @@ public class OrderAuthorizeResponse {
          */
         public OrderAuthorizeResponse build() {
             return new OrderAuthorizeResponse(createTime, updateTime, id, paymentSource, intent,
-                    processingInstruction, payer, purchaseUnits, status, links);
+                    payer, purchaseUnits, status, links);
         }
     }
 }

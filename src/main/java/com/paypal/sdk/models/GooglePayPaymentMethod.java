@@ -17,6 +17,9 @@ import java.util.TreeMap;
  * GooglePayPaymentMethod to be used.
  */
 public enum GooglePayPaymentMethod {
+    /**
+     * CARD is the only value that Google Pay accepts.
+     */
     CARD,
 
     /**

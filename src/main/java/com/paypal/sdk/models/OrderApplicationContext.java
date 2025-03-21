@@ -160,11 +160,11 @@ public class OrderApplicationContext {
 
     /**
      * Getter for ShippingPreference.
-     * DEPRECATED. DEPRECATED. The shipping preference:&lt;ul&gt;&lt;li&gt;Displays the shipping address to the
-     * customer.&lt;/li&gt;&lt;li&gt;Enables the customer to choose an address on the PayPal
-     * site.&lt;/li&gt;&lt;li&gt;Restricts the customer from changing the address during the payment-approval
-     * process.&lt;/li&gt;&lt;/ul&gt;. The fields in `application_context` are now available in the
-     * `experience_context` object under the `payment_source` which supports them (eg.
+     * DEPRECATED. DEPRECATED. The shipping preference: Displays the shipping address to the
+     * customer. Enables the customer to choose an address on the PayPal site. Restricts the
+     * customer from changing the address during the payment-approval process. . The fields in
+     * `application_context` are now available in the `experience_context` object under the
+     * `payment_source` which supports them (eg.
      * `payment_source.paypal.experience_context.shipping_preference`). Please specify this field in
      * the `experience_context` object instead of the `application_context` object.
      * @return Returns the OrderApplicationContextShippingPreference
@@ -177,11 +177,11 @@ public class OrderApplicationContext {
 
     /**
      * Setter for ShippingPreference.
-     * DEPRECATED. DEPRECATED. The shipping preference:&lt;ul&gt;&lt;li&gt;Displays the shipping address to the
-     * customer.&lt;/li&gt;&lt;li&gt;Enables the customer to choose an address on the PayPal
-     * site.&lt;/li&gt;&lt;li&gt;Restricts the customer from changing the address during the payment-approval
-     * process.&lt;/li&gt;&lt;/ul&gt;. The fields in `application_context` are now available in the
-     * `experience_context` object under the `payment_source` which supports them (eg.
+     * DEPRECATED. DEPRECATED. The shipping preference: Displays the shipping address to the
+     * customer. Enables the customer to choose an address on the PayPal site. Restricts the
+     * customer from changing the address during the payment-approval process. . The fields in
+     * `application_context` are now available in the `experience_context` object under the
+     * `payment_source` which supports them (eg.
      * `payment_source.paypal.experience_context.shipping_preference`). Please specify this field in
      * the `experience_context` object instead of the `application_context` object.
      * @param shippingPreference Value for OrderApplicationContextShippingPreference
@@ -193,9 +193,9 @@ public class OrderApplicationContext {
 
     /**
      * Getter for UserAction.
-     * DEPRECATED. Configures a &lt;strong&gt;Continue&lt;/strong&gt; or &lt;strong&gt;Pay Now&lt;/strong&gt; checkout flow.
-     * The fields in `application_context` are now available in the `experience_context` object
-     * under the `payment_source` which supports them (eg.
+     * DEPRECATED. Configures a Continue or Pay Now checkout flow. The fields in
+     * `application_context` are now available in the `experience_context` object under the
+     * `payment_source` which supports them (eg.
      * `payment_source.paypal.experience_context.user_action`). Please specify this field in the
      * `experience_context` object instead of the `application_context` object.
      * @return Returns the OrderApplicationContextUserAction
@@ -208,9 +208,9 @@ public class OrderApplicationContext {
 
     /**
      * Setter for UserAction.
-     * DEPRECATED. Configures a &lt;strong&gt;Continue&lt;/strong&gt; or &lt;strong&gt;Pay Now&lt;/strong&gt; checkout flow.
-     * The fields in `application_context` are now available in the `experience_context` object
-     * under the `payment_source` which supports them (eg.
+     * DEPRECATED. Configures a Continue or Pay Now checkout flow. The fields in
+     * `application_context` are now available in the `experience_context` object under the
+     * `payment_source` which supports them (eg.
      * `payment_source.paypal.experience_context.user_action`). Please specify this field in the
      * `experience_context` object instead of the `application_context` object.
      * @param userAction Value for OrderApplicationContextUserAction
@@ -302,14 +302,13 @@ public class OrderApplicationContext {
     /**
      * Getter for StoredPaymentSource.
      * Provides additional details to process a payment using a `payment_source` that has been
-     * stored or is intended to be stored (also referred to as stored_credential or
-     * card-on-file).&lt;br/&gt;Parameter compatibility:&lt;br/&gt;&lt;ul&gt;&lt;li&gt;`payment_type=ONE_TIME` is compatible
-     * only with `payment_initiator=CUSTOMER`.&lt;/li&gt;&lt;li&gt;`usage=FIRST` is compatible only with
-     * `payment_initiator=CUSTOMER`.&lt;/li&gt;&lt;li&gt;`previous_transaction_reference` or
+     * stored or is intended to be stored (also referred to as stored_credential or card-on-file).
+     * Parameter compatibility: `payment_type=ONE_TIME` is compatible only with
+     * `payment_initiator=CUSTOMER`. `usage=FIRST` is compatible only with
+     * `payment_initiator=CUSTOMER`. `previous_transaction_reference` or
      * `previous_network_transaction_reference` is compatible only with
-     * `payment_initiator=MERCHANT`.&lt;/li&gt;&lt;li&gt;Only one of the parameters -
-     * `previous_transaction_reference` and `previous_network_transaction_reference` - can be
-     * present in the request.&lt;/li&gt;&lt;/ul&gt;
+     * `payment_initiator=MERCHANT`. Only one of the parameters - `previous_transaction_reference`
+     * and `previous_network_transaction_reference` - can be present in the request.
      * @return Returns the StoredPaymentSource
      */
     @JsonGetter("stored_payment_source")
@@ -321,14 +320,13 @@ public class OrderApplicationContext {
     /**
      * Setter for StoredPaymentSource.
      * Provides additional details to process a payment using a `payment_source` that has been
-     * stored or is intended to be stored (also referred to as stored_credential or
-     * card-on-file).&lt;br/&gt;Parameter compatibility:&lt;br/&gt;&lt;ul&gt;&lt;li&gt;`payment_type=ONE_TIME` is compatible
-     * only with `payment_initiator=CUSTOMER`.&lt;/li&gt;&lt;li&gt;`usage=FIRST` is compatible only with
-     * `payment_initiator=CUSTOMER`.&lt;/li&gt;&lt;li&gt;`previous_transaction_reference` or
+     * stored or is intended to be stored (also referred to as stored_credential or card-on-file).
+     * Parameter compatibility: `payment_type=ONE_TIME` is compatible only with
+     * `payment_initiator=CUSTOMER`. `usage=FIRST` is compatible only with
+     * `payment_initiator=CUSTOMER`. `previous_transaction_reference` or
      * `previous_network_transaction_reference` is compatible only with
-     * `payment_initiator=MERCHANT`.&lt;/li&gt;&lt;li&gt;Only one of the parameters -
-     * `previous_transaction_reference` and `previous_network_transaction_reference` - can be
-     * present in the request.&lt;/li&gt;&lt;/ul&gt;
+     * `payment_initiator=MERCHANT`. Only one of the parameters - `previous_transaction_reference`
+     * and `previous_network_transaction_reference` - can be present in the request.
      * @param storedPaymentSource Value for StoredPaymentSource
      */
     @JsonSetter("stored_payment_source")

@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 public class VenmoWalletExperienceContext {
     private String brandName;
     private ShippingPreference shippingPreference;
+    private CallbackConfiguration orderUpdateCallbackConfig;
 
     /**
      * Default constructor.
@@ -28,12 +29,15 @@ public class VenmoWalletExperienceContext {
      * Initialization constructor.
      * @param  brandName  String value for brandName.
      * @param  shippingPreference  ShippingPreference value for shippingPreference.
+     * @param  orderUpdateCallbackConfig  CallbackConfiguration value for orderUpdateCallbackConfig.
      */
     public VenmoWalletExperienceContext(
             String brandName,
-            ShippingPreference shippingPreference) {
+            ShippingPreference shippingPreference,
+            CallbackConfiguration orderUpdateCallbackConfig) {
         this.brandName = brandName;
         this.shippingPreference = shippingPreference;
+        this.orderUpdateCallbackConfig = orderUpdateCallbackConfig;
     }
 
     /**
@@ -81,13 +85,35 @@ public class VenmoWalletExperienceContext {
     }
 
     /**
+     * Getter for OrderUpdateCallbackConfig.
+     * CallBack Configuration that the merchant can provide to PayPal/Venmo.
+     * @return Returns the CallbackConfiguration
+     */
+    @JsonGetter("order_update_callback_config")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public CallbackConfiguration getOrderUpdateCallbackConfig() {
+        return orderUpdateCallbackConfig;
+    }
+
+    /**
+     * Setter for OrderUpdateCallbackConfig.
+     * CallBack Configuration that the merchant can provide to PayPal/Venmo.
+     * @param orderUpdateCallbackConfig Value for CallbackConfiguration
+     */
+    @JsonSetter("order_update_callback_config")
+    public void setOrderUpdateCallbackConfig(CallbackConfiguration orderUpdateCallbackConfig) {
+        this.orderUpdateCallbackConfig = orderUpdateCallbackConfig;
+    }
+
+    /**
      * Converts this VenmoWalletExperienceContext into string format.
      * @return String representation of this class
      */
     @Override
     public String toString() {
         return "VenmoWalletExperienceContext [" + "brandName=" + brandName + ", shippingPreference="
-                + shippingPreference + "]";
+                + shippingPreference + ", orderUpdateCallbackConfig=" + orderUpdateCallbackConfig
+                + "]";
     }
 
     /**
@@ -98,7 +124,8 @@ public class VenmoWalletExperienceContext {
     public Builder toBuilder() {
         Builder builder = new Builder()
                 .brandName(getBrandName())
-                .shippingPreference(getShippingPreference());
+                .shippingPreference(getShippingPreference())
+                .orderUpdateCallbackConfig(getOrderUpdateCallbackConfig());
         return builder;
     }
 
@@ -108,6 +135,7 @@ public class VenmoWalletExperienceContext {
     public static class Builder {
         private String brandName;
         private ShippingPreference shippingPreference = ShippingPreference.GET_FROM_FILE;
+        private CallbackConfiguration orderUpdateCallbackConfig;
 
 
 
@@ -132,11 +160,24 @@ public class VenmoWalletExperienceContext {
         }
 
         /**
+         * Setter for orderUpdateCallbackConfig.
+         * @param  orderUpdateCallbackConfig  CallbackConfiguration value for
+         *         orderUpdateCallbackConfig.
+         * @return Builder
+         */
+        public Builder orderUpdateCallbackConfig(
+                CallbackConfiguration orderUpdateCallbackConfig) {
+            this.orderUpdateCallbackConfig = orderUpdateCallbackConfig;
+            return this;
+        }
+
+        /**
          * Builds a new {@link VenmoWalletExperienceContext} object using the set fields.
          * @return {@link VenmoWalletExperienceContext}
          */
         public VenmoWalletExperienceContext build() {
-            return new VenmoWalletExperienceContext(brandName, shippingPreference);
+            return new VenmoWalletExperienceContext(brandName, shippingPreference,
+                    orderUpdateCallbackConfig);
         }
     }
 }

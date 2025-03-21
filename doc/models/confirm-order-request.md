@@ -12,7 +12,6 @@ Payer confirms the intent to pay for the Order using the provided payment source
 | Name | Type | Tags | Description | Getter | Setter |
 |  --- | --- | --- | --- | --- | --- |
 | `PaymentSource` | [`PaymentSource`](../../doc/models/payment-source.md) | Required | The payment source definition. | PaymentSource getPaymentSource() | setPaymentSource(PaymentSource paymentSource) |
-| `ProcessingInstruction` | `JsonValue` | Optional | - | JsonValue getProcessingInstruction() | setProcessingInstruction(JsonValue processingInstruction) |
 | `ApplicationContext` | [`OrderConfirmApplicationContext`](../../doc/models/order-confirm-application-context.md) | Optional | Customizes the payer confirmation experience. | OrderConfirmApplicationContext getApplicationContext() | setApplicationContext(OrderConfirmApplicationContext applicationContext) |
 
 ## Example (as JSON)
@@ -85,10 +84,6 @@ Payer confirms the intent to pay for the Order using the provided payment source
         "alias_key": "alias_key4"
       }
     }
-  },
-  "processing_instruction": {
-    "key1": "val1",
-    "key2": "val2"
   },
   "application_context": {
     "brand_name": "brand_name8",

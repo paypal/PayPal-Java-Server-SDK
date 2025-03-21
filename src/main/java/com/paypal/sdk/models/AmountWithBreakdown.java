@@ -63,10 +63,10 @@ public class AmountWithBreakdown {
 
     /**
      * Getter for Value.
-     * The value, which might be:&lt;ul&gt;&lt;li&gt;An integer for currencies like `JPY` that are not typically
-     * fractional.&lt;/li&gt;&lt;li&gt;A decimal fraction for currencies like `TND` that are subdivided into
-     * thousandths.&lt;/li&gt;&lt;/ul&gt;For the required number of decimal places for a currency code, see
-     * [Currency Codes](/api/rest/reference/currency-codes/).
+     * The value, which might be: An integer for currencies like `JPY` that are not typically
+     * fractional. A decimal fraction for currencies like `TND` that are subdivided into
+     * thousandths. For the required number of decimal places for a currency code, see [Currency
+     * Codes](/api/rest/reference/currency-codes/).
      * @return Returns the String
      */
     @JsonGetter("value")
@@ -76,10 +76,10 @@ public class AmountWithBreakdown {
 
     /**
      * Setter for Value.
-     * The value, which might be:&lt;ul&gt;&lt;li&gt;An integer for currencies like `JPY` that are not typically
-     * fractional.&lt;/li&gt;&lt;li&gt;A decimal fraction for currencies like `TND` that are subdivided into
-     * thousandths.&lt;/li&gt;&lt;/ul&gt;For the required number of decimal places for a currency code, see
-     * [Currency Codes](/api/rest/reference/currency-codes/).
+     * The value, which might be: An integer for currencies like `JPY` that are not typically
+     * fractional. A decimal fraction for currencies like `TND` that are subdivided into
+     * thousandths. For the required number of decimal places for a currency code, see [Currency
+     * Codes](/api/rest/reference/currency-codes/).
      * @param value Value for String
      */
     @JsonSetter("value")

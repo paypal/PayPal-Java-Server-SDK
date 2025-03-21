@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
  * This is a model class for CardAuthenticationResponse type.
  */
 public class CardAuthenticationResponse {
-    private ThreeDSecureAuthenticationResponse threeDSecure;
+    private ThreeDSecureCardAuthenticationResponse threeDSecure;
 
     /**
      * Default constructor.
@@ -24,31 +24,31 @@ public class CardAuthenticationResponse {
 
     /**
      * Initialization constructor.
-     * @param  threeDSecure  ThreeDSecureAuthenticationResponse value for threeDSecure.
+     * @param  threeDSecure  ThreeDSecureCardAuthenticationResponse value for threeDSecure.
      */
     public CardAuthenticationResponse(
-            ThreeDSecureAuthenticationResponse threeDSecure) {
+            ThreeDSecureCardAuthenticationResponse threeDSecure) {
         this.threeDSecure = threeDSecure;
     }
 
     /**
      * Getter for ThreeDSecure.
      * Results of 3D Secure Authentication.
-     * @return Returns the ThreeDSecureAuthenticationResponse
+     * @return Returns the ThreeDSecureCardAuthenticationResponse
      */
     @JsonGetter("three_d_secure")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public ThreeDSecureAuthenticationResponse getThreeDSecure() {
+    public ThreeDSecureCardAuthenticationResponse getThreeDSecure() {
         return threeDSecure;
     }
 
     /**
      * Setter for ThreeDSecure.
      * Results of 3D Secure Authentication.
-     * @param threeDSecure Value for ThreeDSecureAuthenticationResponse
+     * @param threeDSecure Value for ThreeDSecureCardAuthenticationResponse
      */
     @JsonSetter("three_d_secure")
-    public void setThreeDSecure(ThreeDSecureAuthenticationResponse threeDSecure) {
+    public void setThreeDSecure(ThreeDSecureCardAuthenticationResponse threeDSecure) {
         this.threeDSecure = threeDSecure;
     }
 
@@ -76,16 +76,16 @@ public class CardAuthenticationResponse {
      * Class to build instances of {@link CardAuthenticationResponse}.
      */
     public static class Builder {
-        private ThreeDSecureAuthenticationResponse threeDSecure;
+        private ThreeDSecureCardAuthenticationResponse threeDSecure;
 
 
 
         /**
          * Setter for threeDSecure.
-         * @param  threeDSecure  ThreeDSecureAuthenticationResponse value for threeDSecure.
+         * @param  threeDSecure  ThreeDSecureCardAuthenticationResponse value for threeDSecure.
          * @return Builder
          */
-        public Builder threeDSecure(ThreeDSecureAuthenticationResponse threeDSecure) {
+        public Builder threeDSecure(ThreeDSecureCardAuthenticationResponse threeDSecure) {
             this.threeDSecure = threeDSecure;
             return this;
         }

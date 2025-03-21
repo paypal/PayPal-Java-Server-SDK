@@ -16,18 +16,19 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 public class PaypalWalletExperienceContext {
     private String brandName;
     private String locale;
-    private ShippingPreference shippingPreference;
+    private PaypalWalletContextShippingPreference shippingPreference;
     private String returnUrl;
     private String cancelUrl;
     private PaypalExperienceLandingPage landingPage;
     private PaypalExperienceUserAction userAction;
     private PayeePaymentMethodPreference paymentMethodPreference;
+    private CallbackConfiguration orderUpdateCallbackConfig;
 
     /**
      * Default constructor.
      */
     public PaypalWalletExperienceContext() {
-        shippingPreference = ShippingPreference.GET_FROM_FILE;
+        shippingPreference = PaypalWalletContextShippingPreference.GET_FROM_FILE;
         landingPage = PaypalExperienceLandingPage.NO_PREFERENCE;
         userAction = PaypalExperienceUserAction.CONTINUE;
         paymentMethodPreference = PayeePaymentMethodPreference.UNRESTRICTED;
@@ -37,23 +38,26 @@ public class PaypalWalletExperienceContext {
      * Initialization constructor.
      * @param  brandName  String value for brandName.
      * @param  locale  String value for locale.
-     * @param  shippingPreference  ShippingPreference value for shippingPreference.
+     * @param  shippingPreference  PaypalWalletContextShippingPreference value for
+     *         shippingPreference.
      * @param  returnUrl  String value for returnUrl.
      * @param  cancelUrl  String value for cancelUrl.
      * @param  landingPage  PaypalExperienceLandingPage value for landingPage.
      * @param  userAction  PaypalExperienceUserAction value for userAction.
      * @param  paymentMethodPreference  PayeePaymentMethodPreference value for
      *         paymentMethodPreference.
+     * @param  orderUpdateCallbackConfig  CallbackConfiguration value for orderUpdateCallbackConfig.
      */
     public PaypalWalletExperienceContext(
             String brandName,
             String locale,
-            ShippingPreference shippingPreference,
+            PaypalWalletContextShippingPreference shippingPreference,
             String returnUrl,
             String cancelUrl,
             PaypalExperienceLandingPage landingPage,
             PaypalExperienceUserAction userAction,
-            PayeePaymentMethodPreference paymentMethodPreference) {
+            PayeePaymentMethodPreference paymentMethodPreference,
+            CallbackConfiguration orderUpdateCallbackConfig) {
         this.brandName = brandName;
         this.locale = locale;
         this.shippingPreference = shippingPreference;
@@ -62,6 +66,7 @@ public class PaypalWalletExperienceContext {
         this.landingPage = landingPage;
         this.userAction = userAction;
         this.paymentMethodPreference = paymentMethodPreference;
+        this.orderUpdateCallbackConfig = orderUpdateCallbackConfig;
     }
 
     /**
@@ -123,21 +128,21 @@ public class PaypalWalletExperienceContext {
     /**
      * Getter for ShippingPreference.
      * The location from which the shipping address is derived.
-     * @return Returns the ShippingPreference
+     * @return Returns the PaypalWalletContextShippingPreference
      */
     @JsonGetter("shipping_preference")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public ShippingPreference getShippingPreference() {
+    public PaypalWalletContextShippingPreference getShippingPreference() {
         return shippingPreference;
     }
 
     /**
      * Setter for ShippingPreference.
      * The location from which the shipping address is derived.
-     * @param shippingPreference Value for ShippingPreference
+     * @param shippingPreference Value for PaypalWalletContextShippingPreference
      */
     @JsonSetter("shipping_preference")
-    public void setShippingPreference(ShippingPreference shippingPreference) {
+    public void setShippingPreference(PaypalWalletContextShippingPreference shippingPreference) {
         this.shippingPreference = shippingPreference;
     }
 
@@ -206,7 +211,7 @@ public class PaypalWalletExperienceContext {
 
     /**
      * Getter for UserAction.
-     * Configures a &lt;strong&gt;Continue&lt;/strong&gt; or &lt;strong&gt;Pay Now&lt;/strong&gt; checkout flow.
+     * Configures a Continue or Pay Now checkout flow.
      * @return Returns the PaypalExperienceUserAction
      */
     @JsonGetter("user_action")
@@ -217,7 +222,7 @@ public class PaypalWalletExperienceContext {
 
     /**
      * Setter for UserAction.
-     * Configures a &lt;strong&gt;Continue&lt;/strong&gt; or &lt;strong&gt;Pay Now&lt;/strong&gt; checkout flow.
+     * Configures a Continue or Pay Now checkout flow.
      * @param userAction Value for PaypalExperienceUserAction
      */
     @JsonSetter("user_action")
@@ -247,6 +252,27 @@ public class PaypalWalletExperienceContext {
     }
 
     /**
+     * Getter for OrderUpdateCallbackConfig.
+     * CallBack Configuration that the merchant can provide to PayPal/Venmo.
+     * @return Returns the CallbackConfiguration
+     */
+    @JsonGetter("order_update_callback_config")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public CallbackConfiguration getOrderUpdateCallbackConfig() {
+        return orderUpdateCallbackConfig;
+    }
+
+    /**
+     * Setter for OrderUpdateCallbackConfig.
+     * CallBack Configuration that the merchant can provide to PayPal/Venmo.
+     * @param orderUpdateCallbackConfig Value for CallbackConfiguration
+     */
+    @JsonSetter("order_update_callback_config")
+    public void setOrderUpdateCallbackConfig(CallbackConfiguration orderUpdateCallbackConfig) {
+        this.orderUpdateCallbackConfig = orderUpdateCallbackConfig;
+    }
+
+    /**
      * Converts this PaypalWalletExperienceContext into string format.
      * @return String representation of this class
      */
@@ -255,7 +281,8 @@ public class PaypalWalletExperienceContext {
         return "PaypalWalletExperienceContext [" + "brandName=" + brandName + ", locale=" + locale
                 + ", shippingPreference=" + shippingPreference + ", returnUrl=" + returnUrl
                 + ", cancelUrl=" + cancelUrl + ", landingPage=" + landingPage + ", userAction="
-                + userAction + ", paymentMethodPreference=" + paymentMethodPreference + "]";
+                + userAction + ", paymentMethodPreference=" + paymentMethodPreference
+                + ", orderUpdateCallbackConfig=" + orderUpdateCallbackConfig + "]";
     }
 
     /**
@@ -272,7 +299,8 @@ public class PaypalWalletExperienceContext {
                 .cancelUrl(getCancelUrl())
                 .landingPage(getLandingPage())
                 .userAction(getUserAction())
-                .paymentMethodPreference(getPaymentMethodPreference());
+                .paymentMethodPreference(getPaymentMethodPreference())
+                .orderUpdateCallbackConfig(getOrderUpdateCallbackConfig());
         return builder;
     }
 
@@ -282,13 +310,15 @@ public class PaypalWalletExperienceContext {
     public static class Builder {
         private String brandName;
         private String locale;
-        private ShippingPreference shippingPreference = ShippingPreference.GET_FROM_FILE;
+        private PaypalWalletContextShippingPreference shippingPreference =
+                PaypalWalletContextShippingPreference.GET_FROM_FILE;
         private String returnUrl;
         private String cancelUrl;
         private PaypalExperienceLandingPage landingPage = PaypalExperienceLandingPage.NO_PREFERENCE;
         private PaypalExperienceUserAction userAction = PaypalExperienceUserAction.CONTINUE;
         private PayeePaymentMethodPreference paymentMethodPreference =
                 PayeePaymentMethodPreference.UNRESTRICTED;
+        private CallbackConfiguration orderUpdateCallbackConfig;
 
 
 
@@ -314,10 +344,12 @@ public class PaypalWalletExperienceContext {
 
         /**
          * Setter for shippingPreference.
-         * @param  shippingPreference  ShippingPreference value for shippingPreference.
+         * @param  shippingPreference  PaypalWalletContextShippingPreference value for
+         *         shippingPreference.
          * @return Builder
          */
-        public Builder shippingPreference(ShippingPreference shippingPreference) {
+        public Builder shippingPreference(
+                PaypalWalletContextShippingPreference shippingPreference) {
             this.shippingPreference = shippingPreference;
             return this;
         }
@@ -375,12 +407,25 @@ public class PaypalWalletExperienceContext {
         }
 
         /**
+         * Setter for orderUpdateCallbackConfig.
+         * @param  orderUpdateCallbackConfig  CallbackConfiguration value for
+         *         orderUpdateCallbackConfig.
+         * @return Builder
+         */
+        public Builder orderUpdateCallbackConfig(
+                CallbackConfiguration orderUpdateCallbackConfig) {
+            this.orderUpdateCallbackConfig = orderUpdateCallbackConfig;
+            return this;
+        }
+
+        /**
          * Builds a new {@link PaypalWalletExperienceContext} object using the set fields.
          * @return {@link PaypalWalletExperienceContext}
          */
         public PaypalWalletExperienceContext build() {
             return new PaypalWalletExperienceContext(brandName, locale, shippingPreference,
-                    returnUrl, cancelUrl, landingPage, userAction, paymentMethodPreference);
+                    returnUrl, cancelUrl, landingPage, userAction, paymentMethodPreference,
+                    orderUpdateCallbackConfig);
         }
     }
 }

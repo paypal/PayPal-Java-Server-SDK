@@ -17,6 +17,9 @@ import java.util.TreeMap;
  * TokenType to be used.
  */
 public enum TokenType {
+    /**
+     * The PayPal billing agreement ID. References an approved recurring payment for goods or services.
+     */
     BILLING_AGREEMENT,
 
     /**

@@ -256,14 +256,13 @@ public class CardRequest {
     /**
      * Getter for StoredCredential.
      * Provides additional details to process a payment using a `card` that has been stored or is
-     * intended to be stored (also referred to as stored_credential or card-on-file).&lt;br/&gt;Parameter
-     * compatibility:&lt;br/&gt;&lt;ul&gt;&lt;li&gt;`payment_type=ONE_TIME` is compatible only with
-     * `payment_initiator=CUSTOMER`.&lt;/li&gt;&lt;li&gt;`usage=FIRST` is compatible only with
-     * `payment_initiator=CUSTOMER`.&lt;/li&gt;&lt;li&gt;`previous_transaction_reference` or
-     * `previous_network_transaction_reference` is compatible only with
-     * `payment_initiator=MERCHANT`.&lt;/li&gt;&lt;li&gt;Only one of the parameters -
+     * intended to be stored (also referred to as stored_credential or card-on-file). Parameter
+     * compatibility: `payment_type=ONE_TIME` is compatible only with `payment_initiator=CUSTOMER`.
+     * `usage=FIRST` is compatible only with `payment_initiator=CUSTOMER`.
+     * `previous_transaction_reference` or `previous_network_transaction_reference` is compatible
+     * only with `payment_initiator=MERCHANT`. Only one of the parameters -
      * `previous_transaction_reference` and `previous_network_transaction_reference` - can be
-     * present in the request.&lt;/li&gt;&lt;/ul&gt;
+     * present in the request.
      * @return Returns the CardStoredCredential
      */
     @JsonGetter("stored_credential")
@@ -275,14 +274,13 @@ public class CardRequest {
     /**
      * Setter for StoredCredential.
      * Provides additional details to process a payment using a `card` that has been stored or is
-     * intended to be stored (also referred to as stored_credential or card-on-file).&lt;br/&gt;Parameter
-     * compatibility:&lt;br/&gt;&lt;ul&gt;&lt;li&gt;`payment_type=ONE_TIME` is compatible only with
-     * `payment_initiator=CUSTOMER`.&lt;/li&gt;&lt;li&gt;`usage=FIRST` is compatible only with
-     * `payment_initiator=CUSTOMER`.&lt;/li&gt;&lt;li&gt;`previous_transaction_reference` or
-     * `previous_network_transaction_reference` is compatible only with
-     * `payment_initiator=MERCHANT`.&lt;/li&gt;&lt;li&gt;Only one of the parameters -
+     * intended to be stored (also referred to as stored_credential or card-on-file). Parameter
+     * compatibility: `payment_type=ONE_TIME` is compatible only with `payment_initiator=CUSTOMER`.
+     * `usage=FIRST` is compatible only with `payment_initiator=CUSTOMER`.
+     * `previous_transaction_reference` or `previous_network_transaction_reference` is compatible
+     * only with `payment_initiator=MERCHANT`. Only one of the parameters -
      * `previous_transaction_reference` and `previous_network_transaction_reference` - can be
-     * present in the request.&lt;/li&gt;&lt;/ul&gt;
+     * present in the request.
      * @param storedCredential Value for CardStoredCredential
      */
     @JsonSetter("stored_credential")

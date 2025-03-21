@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 public class TrustlyPaymentRequest {
     private String name;
     private String countryCode;
+    private String email;
     private ExperienceContext experienceContext;
 
     /**
@@ -28,14 +29,17 @@ public class TrustlyPaymentRequest {
      * Initialization constructor.
      * @param  name  String value for name.
      * @param  countryCode  String value for countryCode.
+     * @param  email  String value for email.
      * @param  experienceContext  ExperienceContext value for experienceContext.
      */
     public TrustlyPaymentRequest(
             String name,
             String countryCode,
+            String email,
             ExperienceContext experienceContext) {
         this.name = name;
         this.countryCode = countryCode;
+        this.email = email;
         this.experienceContext = experienceContext;
     }
 
@@ -62,10 +66,9 @@ public class TrustlyPaymentRequest {
     /**
      * Getter for CountryCode.
      * The [two-character ISO 3166-1 code](/api/rest/reference/country-codes/) that identifies the
-     * country or region.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; The country code for Great Britain is
-     * &lt;code&gt;GB&lt;/code&gt; and not &lt;code&gt;UK&lt;/code&gt; as used in the top-level domain names for that
-     * country. Use the `C2` country code for China worldwide for comparable uncontrolled price
-     * (CUP) method, bank card, and cross-border transactions.&lt;/blockquote&gt;
+     * country or region. Note: The country code for Great Britain is GB and not UK as used in the
+     * top-level domain names for that country. Use the `C2` country code for China worldwide for
+     * comparable uncontrolled price (CUP) method, bank card, and cross-border transactions.
      * @return Returns the String
      */
     @JsonGetter("country_code")
@@ -76,15 +79,38 @@ public class TrustlyPaymentRequest {
     /**
      * Setter for CountryCode.
      * The [two-character ISO 3166-1 code](/api/rest/reference/country-codes/) that identifies the
-     * country or region.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; The country code for Great Britain is
-     * &lt;code&gt;GB&lt;/code&gt; and not &lt;code&gt;UK&lt;/code&gt; as used in the top-level domain names for that
-     * country. Use the `C2` country code for China worldwide for comparable uncontrolled price
-     * (CUP) method, bank card, and cross-border transactions.&lt;/blockquote&gt;
+     * country or region. Note: The country code for Great Britain is GB and not UK as used in the
+     * top-level domain names for that country. Use the `C2` country code for China worldwide for
+     * comparable uncontrolled price (CUP) method, bank card, and cross-border transactions.
      * @param countryCode Value for String
      */
     @JsonSetter("country_code")
     public void setCountryCode(String countryCode) {
         this.countryCode = countryCode;
+    }
+
+    /**
+     * Getter for Email.
+     * The internationalized email address. Note: Up to 64 characters are allowed before and 255
+     * characters are allowed after the {@literal @} sign. However, the generally accepted maximum length for
+     * an email address is 254 characters. The pattern verifies that an unquoted {@literal @} sign exists.
+     * @return Returns the String
+     */
+    @JsonGetter("email")
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * Setter for Email.
+     * The internationalized email address. Note: Up to 64 characters are allowed before and 255
+     * characters are allowed after the {@literal @} sign. However, the generally accepted maximum length for
+     * an email address is 254 characters. The pattern verifies that an unquoted {@literal @} sign exists.
+     * @param email Value for String
+     */
+    @JsonSetter("email")
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     /**
@@ -115,7 +141,7 @@ public class TrustlyPaymentRequest {
     @Override
     public String toString() {
         return "TrustlyPaymentRequest [" + "name=" + name + ", countryCode=" + countryCode
-                + ", experienceContext=" + experienceContext + "]";
+                + ", email=" + email + ", experienceContext=" + experienceContext + "]";
     }
 
     /**
@@ -124,7 +150,7 @@ public class TrustlyPaymentRequest {
      * @return a new {@link TrustlyPaymentRequest.Builder} object
      */
     public Builder toBuilder() {
-        Builder builder = new Builder(name, countryCode)
+        Builder builder = new Builder(name, countryCode, email)
                 .experienceContext(getExperienceContext());
         return builder;
     }
@@ -135,6 +161,7 @@ public class TrustlyPaymentRequest {
     public static class Builder {
         private String name;
         private String countryCode;
+        private String email;
         private ExperienceContext experienceContext;
 
         /**
@@ -147,10 +174,12 @@ public class TrustlyPaymentRequest {
          * Initialization constructor.
          * @param  name  String value for name.
          * @param  countryCode  String value for countryCode.
+         * @param  email  String value for email.
          */
-        public Builder(String name, String countryCode) {
+        public Builder(String name, String countryCode, String email) {
             this.name = name;
             this.countryCode = countryCode;
+            this.email = email;
         }
 
         /**
@@ -174,6 +203,16 @@ public class TrustlyPaymentRequest {
         }
 
         /**
+         * Setter for email.
+         * @param  email  String value for email.
+         * @return Builder
+         */
+        public Builder email(String email) {
+            this.email = email;
+            return this;
+        }
+
+        /**
          * Setter for experienceContext.
          * @param  experienceContext  ExperienceContext value for experienceContext.
          * @return Builder
@@ -188,7 +227,7 @@ public class TrustlyPaymentRequest {
          * @return {@link TrustlyPaymentRequest}
          */
         public TrustlyPaymentRequest build() {
-            return new TrustlyPaymentRequest(name, countryCode, experienceContext);
+            return new TrustlyPaymentRequest(name, countryCode, email, experienceContext);
         }
     }
 }

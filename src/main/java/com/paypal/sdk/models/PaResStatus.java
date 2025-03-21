@@ -17,21 +17,45 @@ import java.util.TreeMap;
  * PaResStatus to be used.
  */
 public enum PaResStatus {
-    Y,
+    /**
+     * Successful authentication.
+     */
+    SUCCESSFULAUTHENTICATION,
 
-    N,
+    /**
+     * Failed authentication / account not verified / transaction denied.
+     */
+    FAILEDAUTHENTICATION,
 
-    U,
+    /**
+     * Unable to complete authentication.
+     */
+    UNABLETOCOMPLETEAUTHENTICATION,
 
-    A,
+    /**
+     * Successful attempts transaction.
+     */
+    SUCCESSFULATTEMPTSTRANSACTION,
 
-    C,
+    /**
+     * Challenge required for authentication.
+     */
+    CHALLENGEREQUIRED,
 
-    R,
+    /**
+     * Authentication rejected (merchant must not submit for authorization).
+     */
+    AUTHENTICATIONREJECTED,
 
-    D,
+    /**
+     * Challenge required; decoupled authentication confirmed.
+     */
+    DECOUPLEDAUTHENTICATION,
 
-    I,
+    /**
+     * Informational only; 3DS requestor challenge preference acknowledged.
+     */
+    INFORMATIONALONLY,
 
     /**
      * Unknown values will be mapped by this enum member
@@ -43,24 +67,24 @@ public enum PaResStatus {
     private String value;
 
     static {
-        Y.value = "Y";
-        N.value = "N";
-        U.value = "U";
-        A.value = "A";
-        C.value = "C";
-        R.value = "R";
-        D.value = "D";
-        I.value = "I";
+        SUCCESSFULAUTHENTICATION.value = "Y";
+        FAILEDAUTHENTICATION.value = "N";
+        UNABLETOCOMPLETEAUTHENTICATION.value = "U";
+        SUCCESSFULATTEMPTSTRANSACTION.value = "A";
+        CHALLENGEREQUIRED.value = "C";
+        AUTHENTICATIONREJECTED.value = "R";
+        DECOUPLEDAUTHENTICATION.value = "D";
+        INFORMATIONALONLY.value = "I";
         _UNKNOWN.value = null;
 
-        valueMap.put("Y", Y);
-        valueMap.put("N", N);
-        valueMap.put("U", U);
-        valueMap.put("A", A);
-        valueMap.put("C", C);
-        valueMap.put("R", R);
-        valueMap.put("D", D);
-        valueMap.put("I", I);
+        valueMap.put("Y", SUCCESSFULAUTHENTICATION);
+        valueMap.put("N", FAILEDAUTHENTICATION);
+        valueMap.put("U", UNABLETOCOMPLETEAUTHENTICATION);
+        valueMap.put("A", SUCCESSFULATTEMPTSTRANSACTION);
+        valueMap.put("C", CHALLENGEREQUIRED);
+        valueMap.put("R", AUTHENTICATIONREJECTED);
+        valueMap.put("D", DECOUPLEDAUTHENTICATION);
+        valueMap.put("I", INFORMATIONALONLY);
     }
 
     /**

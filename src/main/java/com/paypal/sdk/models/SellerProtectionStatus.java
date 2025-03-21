@@ -17,10 +17,19 @@ import java.util.TreeMap;
  * SellerProtectionStatus to be used.
  */
 public enum SellerProtectionStatus {
+    /**
+     * Your PayPal balance remains intact if the customer claims that they did not receive an item or the account holder claims that they did not authorize the payment.
+     */
     ELIGIBLE,
 
+    /**
+     * Your PayPal balance remains intact if the customer claims that they did not receive an item.
+     */
     PARTIALLY_ELIGIBLE,
 
+    /**
+     * This transaction is not eligible for seller protection.
+     */
     NOT_ELIGIBLE,
 
     /**

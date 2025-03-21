@@ -15,6 +15,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
  */
 public class SupplementaryData {
     private CardSupplementaryData card;
+    private RiskSupplementaryData risk;
 
     /**
      * Default constructor.
@@ -25,19 +26,20 @@ public class SupplementaryData {
     /**
      * Initialization constructor.
      * @param  card  CardSupplementaryData value for card.
+     * @param  risk  RiskSupplementaryData value for risk.
      */
     public SupplementaryData(
-            CardSupplementaryData card) {
+            CardSupplementaryData card,
+            RiskSupplementaryData risk) {
         this.card = card;
+        this.risk = risk;
     }
 
     /**
      * Getter for Card.
      * Merchants and partners can add Level 2 and 3 data to payments to reduce risk and payment
-     * processing costs. For more information about processing payments, see &lt;a
-     * href="https://developer.paypal.com/docs/checkout/advanced/processing/"&gt;checkout&lt;/a&gt; or &lt;a
-     * href="https://developer.paypal.com/docs/multiparty/checkout/advanced/processing/"&gt;multiparty
-     * checkout&lt;/a&gt;.
+     * processing costs. For more information about processing payments, see checkout or multiparty
+     * checkout.
      * @return Returns the CardSupplementaryData
      */
     @JsonGetter("card")
@@ -49,10 +51,8 @@ public class SupplementaryData {
     /**
      * Setter for Card.
      * Merchants and partners can add Level 2 and 3 data to payments to reduce risk and payment
-     * processing costs. For more information about processing payments, see &lt;a
-     * href="https://developer.paypal.com/docs/checkout/advanced/processing/"&gt;checkout&lt;/a&gt; or &lt;a
-     * href="https://developer.paypal.com/docs/multiparty/checkout/advanced/processing/"&gt;multiparty
-     * checkout&lt;/a&gt;.
+     * processing costs. For more information about processing payments, see checkout or multiparty
+     * checkout.
      * @param card Value for CardSupplementaryData
      */
     @JsonSetter("card")
@@ -61,12 +61,33 @@ public class SupplementaryData {
     }
 
     /**
+     * Getter for Risk.
+     * Additional information necessary to evaluate the risk profile of a transaction.
+     * @return Returns the RiskSupplementaryData
+     */
+    @JsonGetter("risk")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public RiskSupplementaryData getRisk() {
+        return risk;
+    }
+
+    /**
+     * Setter for Risk.
+     * Additional information necessary to evaluate the risk profile of a transaction.
+     * @param risk Value for RiskSupplementaryData
+     */
+    @JsonSetter("risk")
+    public void setRisk(RiskSupplementaryData risk) {
+        this.risk = risk;
+    }
+
+    /**
      * Converts this SupplementaryData into string format.
      * @return String representation of this class
      */
     @Override
     public String toString() {
-        return "SupplementaryData [" + "card=" + card + "]";
+        return "SupplementaryData [" + "card=" + card + ", risk=" + risk + "]";
     }
 
     /**
@@ -76,7 +97,8 @@ public class SupplementaryData {
      */
     public Builder toBuilder() {
         Builder builder = new Builder()
-                .card(getCard());
+                .card(getCard())
+                .risk(getRisk());
         return builder;
     }
 
@@ -85,6 +107,7 @@ public class SupplementaryData {
      */
     public static class Builder {
         private CardSupplementaryData card;
+        private RiskSupplementaryData risk;
 
 
 
@@ -99,11 +122,21 @@ public class SupplementaryData {
         }
 
         /**
+         * Setter for risk.
+         * @param  risk  RiskSupplementaryData value for risk.
+         * @return Builder
+         */
+        public Builder risk(RiskSupplementaryData risk) {
+            this.risk = risk;
+            return this;
+        }
+
+        /**
          * Builds a new {@link SupplementaryData} object using the set fields.
          * @return {@link SupplementaryData}
          */
         public SupplementaryData build() {
-            return new SupplementaryData(card);
+            return new SupplementaryData(card, risk);
         }
     }
 }

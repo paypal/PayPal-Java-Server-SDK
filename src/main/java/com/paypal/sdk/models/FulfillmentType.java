@@ -17,12 +17,24 @@ import java.util.TreeMap;
  * FulfillmentType to be used.
  */
 public enum FulfillmentType {
+    /**
+     * The payer intends to receive the items at a specified address.
+     */
     SHIPPING,
 
+    /**
+     * DEPRECATED. Please use "PICKUP_FROM_PERSON" instead.
+     */
     PICKUP_IN_PERSON,
 
+    /**
+     * The payer intends to pick up the item(s) from the payee's physical store. Also termed as BOPIS, "Buy Online, Pick-up in Store". Seller protection is provided with this option.
+     */
     PICKUP_IN_STORE,
 
+    /**
+     * The payer intends to pick up the item(s) from the payee in person. Also termed as BOPIP, "Buy Online, Pick-up in Person". Seller protection is not available, since the payer is receiving the item from the payee in person, and can validate the item prior to payment.
+     */
     PICKUP_FROM_PERSON,
 
     /**

@@ -17,14 +17,29 @@ import java.util.TreeMap;
  * CardType to be used.
  */
 public enum CardType {
+    /**
+     * A credit card.
+     */
     CREDIT,
 
+    /**
+     * A debit card.
+     */
     DEBIT,
 
+    /**
+     * A Prepaid card.
+     */
     PREPAID,
 
+    /**
+     * A store card.
+     */
     STORE,
 
+    /**
+     * Card type cannot be determined.
+     */
     UNKNOWN,
 
     /**

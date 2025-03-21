@@ -17,13 +17,80 @@ import java.util.TreeMap;
  * PaymentAdviceCode to be used.
  */
 public enum PaymentAdviceCode {
-    ENUM_01,
+    /**
+     * For Mastercard, expired card account upgrade or portfolio sale conversion. Obtain new account information before next billing cycle.
+     */
+    PAYMENTADVICE_01,
 
-    ENUM_02,
+    /**
+     * For Mastercard, over credit limit or insufficient funds. Retry the transaction 72 hours later. For Visa, the card holder wants to stop only one specific payment in the recurring payment relationship. The merchant must NOT resubmit the same transaction. The merchant can continue the billing process in the subsequent billing period.
+     */
+    PAYMENTADVICE_02,
 
-    ENUM_03,
+    /**
+     * For Mastercard, account closed as fraudulent. Obtain another type of payment from customer due to account being closed or fraud. Possible reason: Account closed as fraudulent. For Visa, the card holder wants to stop all recurring payment transactions for a specific merchant. Stop recurring payment requests.
+     */
+    PAYMENTADVICE_03,
 
-    ENUM_21,
+    /**
+     * For Mastercard, token requirements not fulfilled for this token type.
+     */
+    PAYMENTADVICE_04,
+
+    /**
+     * For Mastercard, the card holder has been unsuccessful at canceling recurring payment through merchant. Stop recurring payment requests. For Visa, all recurring payments were canceled for the card number requested. Stop recurring payment requests.
+     */
+    PAYMENTADVICE_21,
+
+    /**
+     * For Mastercard, merchant does not qualify for product code.
+     */
+    PAYMENTADVICE_22,
+
+    /**
+     * For Mastercard, retry after 1 hour.
+     */
+    PAYMENTADVICE_24,
+
+    /**
+     * For Mastercard, retry after 24 hours.
+     */
+    PAYMENTADVICE_25,
+
+    /**
+     * For Mastercard, retry after 2 days.
+     */
+    PAYMENTADVICE_26,
+
+    /**
+     * For Mastercard, retry after 4 days.
+     */
+    PAYMENTADVICE_27,
+
+    /**
+     * For Mastercard, retry after 6 days.
+     */
+    PAYMENTADVICE_28,
+
+    /**
+     * For Mastercard, retry after 8 days.
+     */
+    PAYMENTADVICE_29,
+
+    /**
+     * For Mastercard, retry after 10 days .
+     */
+    PAYMENTADVICE_30,
+
+    /**
+     * For Mastercard, consumer non-reloadable prepaid card.
+     */
+    PAYMENTADVICE_40,
+
+    /**
+     * For Mastercard, consumer multi-use virtual card number.
+     */
+    PAYMENTADVICE_43,
 
     /**
      * Unknown values will be mapped by this enum member
@@ -35,16 +102,38 @@ public enum PaymentAdviceCode {
     private String value;
 
     static {
-        ENUM_01.value = "01";
-        ENUM_02.value = "02";
-        ENUM_03.value = "03";
-        ENUM_21.value = "21";
+        PAYMENTADVICE_01.value = "01";
+        PAYMENTADVICE_02.value = "02";
+        PAYMENTADVICE_03.value = "03";
+        PAYMENTADVICE_04.value = "04";
+        PAYMENTADVICE_21.value = "21";
+        PAYMENTADVICE_22.value = "22";
+        PAYMENTADVICE_24.value = "24";
+        PAYMENTADVICE_25.value = "25";
+        PAYMENTADVICE_26.value = "26";
+        PAYMENTADVICE_27.value = "27";
+        PAYMENTADVICE_28.value = "28";
+        PAYMENTADVICE_29.value = "29";
+        PAYMENTADVICE_30.value = "30";
+        PAYMENTADVICE_40.value = "40";
+        PAYMENTADVICE_43.value = "43";
         _UNKNOWN.value = null;
 
-        valueMap.put("01", ENUM_01);
-        valueMap.put("02", ENUM_02);
-        valueMap.put("03", ENUM_03);
-        valueMap.put("21", ENUM_21);
+        valueMap.put("01", PAYMENTADVICE_01);
+        valueMap.put("02", PAYMENTADVICE_02);
+        valueMap.put("03", PAYMENTADVICE_03);
+        valueMap.put("04", PAYMENTADVICE_04);
+        valueMap.put("21", PAYMENTADVICE_21);
+        valueMap.put("22", PAYMENTADVICE_22);
+        valueMap.put("24", PAYMENTADVICE_24);
+        valueMap.put("25", PAYMENTADVICE_25);
+        valueMap.put("26", PAYMENTADVICE_26);
+        valueMap.put("27", PAYMENTADVICE_27);
+        valueMap.put("28", PAYMENTADVICE_28);
+        valueMap.put("29", PAYMENTADVICE_29);
+        valueMap.put("30", PAYMENTADVICE_30);
+        valueMap.put("40", PAYMENTADVICE_40);
+        valueMap.put("43", PAYMENTADVICE_43);
     }
 
     /**

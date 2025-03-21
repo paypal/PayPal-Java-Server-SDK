@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 public class PaypalWalletVaultInstruction {
     private StoreInVaultInstruction storeInVault;
     private String description;
-    private PaypalPaymentTokenUsagePattern usagePattern;
+    private UsagePattern usagePattern;
     private PaypalPaymentTokenUsageType usageType;
     private PaypalPaymentTokenCustomerType customerType;
     private Boolean permitMultiplePaymentTokens;
@@ -34,7 +34,7 @@ public class PaypalWalletVaultInstruction {
      * @param  usageType  PaypalPaymentTokenUsageType value for usageType.
      * @param  storeInVault  StoreInVaultInstruction value for storeInVault.
      * @param  description  String value for description.
-     * @param  usagePattern  PaypalPaymentTokenUsagePattern value for usagePattern.
+     * @param  usagePattern  UsagePattern value for usagePattern.
      * @param  customerType  PaypalPaymentTokenCustomerType value for customerType.
      * @param  permitMultiplePaymentTokens  Boolean value for permitMultiplePaymentTokens.
      */
@@ -42,7 +42,7 @@ public class PaypalWalletVaultInstruction {
             PaypalPaymentTokenUsageType usageType,
             StoreInVaultInstruction storeInVault,
             String description,
-            PaypalPaymentTokenUsagePattern usagePattern,
+            UsagePattern usagePattern,
             PaypalPaymentTokenCustomerType customerType,
             Boolean permitMultiplePaymentTokens) {
         this.storeInVault = storeInVault;
@@ -100,21 +100,21 @@ public class PaypalWalletVaultInstruction {
     /**
      * Getter for UsagePattern.
      * Expected business/pricing model for the billing agreement.
-     * @return Returns the PaypalPaymentTokenUsagePattern
+     * @return Returns the UsagePattern
      */
     @JsonGetter("usage_pattern")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public PaypalPaymentTokenUsagePattern getUsagePattern() {
+    public UsagePattern getUsagePattern() {
         return usagePattern;
     }
 
     /**
      * Setter for UsagePattern.
      * Expected business/pricing model for the billing agreement.
-     * @param usagePattern Value for PaypalPaymentTokenUsagePattern
+     * @param usagePattern Value for UsagePattern
      */
     @JsonSetter("usage_pattern")
-    public void setUsagePattern(PaypalPaymentTokenUsagePattern usagePattern) {
+    public void setUsagePattern(UsagePattern usagePattern) {
         this.usagePattern = usagePattern;
     }
 
@@ -226,7 +226,7 @@ public class PaypalWalletVaultInstruction {
         private PaypalPaymentTokenUsageType usageType;
         private StoreInVaultInstruction storeInVault;
         private String description;
-        private PaypalPaymentTokenUsagePattern usagePattern;
+        private UsagePattern usagePattern;
         private PaypalPaymentTokenCustomerType customerType =
                 PaypalPaymentTokenCustomerType.CONSUMER;
         private Boolean permitMultiplePaymentTokens = false;
@@ -277,10 +277,10 @@ public class PaypalWalletVaultInstruction {
 
         /**
          * Setter for usagePattern.
-         * @param  usagePattern  PaypalPaymentTokenUsagePattern value for usagePattern.
+         * @param  usagePattern  UsagePattern value for usagePattern.
          * @return Builder
          */
-        public Builder usagePattern(PaypalPaymentTokenUsagePattern usagePattern) {
+        public Builder usagePattern(UsagePattern usagePattern) {
             this.usagePattern = usagePattern;
             return this;
         }
