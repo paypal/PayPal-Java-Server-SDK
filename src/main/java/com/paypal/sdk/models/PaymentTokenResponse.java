@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class PaymentTokenResponse {
     private String id;
-    private CustomerRequest customer;
+    private CustomerResponse customer;
     private PaymentTokenResponsePaymentSource paymentSource;
     private List<LinkDescription> links;
 
@@ -29,13 +29,13 @@ public class PaymentTokenResponse {
     /**
      * Initialization constructor.
      * @param  id  String value for id.
-     * @param  customer  CustomerRequest value for customer.
+     * @param  customer  CustomerResponse value for customer.
      * @param  paymentSource  PaymentTokenResponsePaymentSource value for paymentSource.
      * @param  links  List of LinkDescription value for links.
      */
     public PaymentTokenResponse(
             String id,
-            CustomerRequest customer,
+            CustomerResponse customer,
             PaymentTokenResponsePaymentSource paymentSource,
             List<LinkDescription> links) {
         this.id = id;
@@ -67,22 +67,24 @@ public class PaymentTokenResponse {
 
     /**
      * Getter for Customer.
-     * Customer in merchant's or partner's system of records.
-     * @return Returns the CustomerRequest
+     * This object defines a customer in your system. Use it to manage customer profiles, save
+     * payment methods and contact details.
+     * @return Returns the CustomerResponse
      */
     @JsonGetter("customer")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public CustomerRequest getCustomer() {
+    public CustomerResponse getCustomer() {
         return customer;
     }
 
     /**
      * Setter for Customer.
-     * Customer in merchant's or partner's system of records.
-     * @param customer Value for CustomerRequest
+     * This object defines a customer in your system. Use it to manage customer profiles, save
+     * payment methods and contact details.
+     * @param customer Value for CustomerResponse
      */
     @JsonSetter("customer")
-    public void setCustomer(CustomerRequest customer) {
+    public void setCustomer(CustomerResponse customer) {
         this.customer = customer;
     }
 
@@ -157,7 +159,7 @@ public class PaymentTokenResponse {
      */
     public static class Builder {
         private String id;
-        private CustomerRequest customer;
+        private CustomerResponse customer;
         private PaymentTokenResponsePaymentSource paymentSource;
         private List<LinkDescription> links;
 
@@ -175,10 +177,10 @@ public class PaymentTokenResponse {
 
         /**
          * Setter for customer.
-         * @param  customer  CustomerRequest value for customer.
+         * @param  customer  CustomerResponse value for customer.
          * @return Builder
          */
-        public Builder customer(CustomerRequest customer) {
+        public Builder customer(CustomerResponse customer) {
             this.customer = customer;
             return this;
         }

@@ -15,6 +15,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
  */
 public class VaultedDigitalWalletShippingDetails {
     private ShippingName name;
+    private PhoneNumberWithCountryCode phoneNumber;
     private FulfillmentType type;
     private Address address;
 
@@ -27,14 +28,17 @@ public class VaultedDigitalWalletShippingDetails {
     /**
      * Initialization constructor.
      * @param  name  ShippingName value for name.
+     * @param  phoneNumber  PhoneNumberWithCountryCode value for phoneNumber.
      * @param  type  FulfillmentType value for type.
      * @param  address  Address value for address.
      */
     public VaultedDigitalWalletShippingDetails(
             ShippingName name,
+            PhoneNumberWithCountryCode phoneNumber,
             FulfillmentType type,
             Address address) {
         this.name = name;
+        this.phoneNumber = phoneNumber;
         this.type = type;
         this.address = address;
     }
@@ -58,6 +62,29 @@ public class VaultedDigitalWalletShippingDetails {
     @JsonSetter("name")
     public void setName(ShippingName name) {
         this.name = name;
+    }
+
+    /**
+     * Getter for PhoneNumber.
+     * The phone number, in its canonical international [E.164 numbering plan
+     * format](https://www.itu.int/rec/T-REC-E.164/en).
+     * @return Returns the PhoneNumberWithCountryCode
+     */
+    @JsonGetter("phone_number")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public PhoneNumberWithCountryCode getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    /**
+     * Setter for PhoneNumber.
+     * The phone number, in its canonical international [E.164 numbering plan
+     * format](https://www.itu.int/rec/T-REC-E.164/en).
+     * @param phoneNumber Value for PhoneNumberWithCountryCode
+     */
+    @JsonSetter("phone_number")
+    public void setPhoneNumber(PhoneNumberWithCountryCode phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     /**
@@ -116,8 +143,8 @@ public class VaultedDigitalWalletShippingDetails {
      */
     @Override
     public String toString() {
-        return "VaultedDigitalWalletShippingDetails [" + "name=" + name + ", type=" + type
-                + ", address=" + address + "]";
+        return "VaultedDigitalWalletShippingDetails [" + "name=" + name + ", phoneNumber="
+                + phoneNumber + ", type=" + type + ", address=" + address + "]";
     }
 
     /**
@@ -128,6 +155,7 @@ public class VaultedDigitalWalletShippingDetails {
     public Builder toBuilder() {
         Builder builder = new Builder()
                 .name(getName())
+                .phoneNumber(getPhoneNumber())
                 .type(getType())
                 .address(getAddress());
         return builder;
@@ -138,6 +166,7 @@ public class VaultedDigitalWalletShippingDetails {
      */
     public static class Builder {
         private ShippingName name;
+        private PhoneNumberWithCountryCode phoneNumber;
         private FulfillmentType type;
         private Address address;
 
@@ -150,6 +179,16 @@ public class VaultedDigitalWalletShippingDetails {
          */
         public Builder name(ShippingName name) {
             this.name = name;
+            return this;
+        }
+
+        /**
+         * Setter for phoneNumber.
+         * @param  phoneNumber  PhoneNumberWithCountryCode value for phoneNumber.
+         * @return Builder
+         */
+        public Builder phoneNumber(PhoneNumberWithCountryCode phoneNumber) {
+            this.phoneNumber = phoneNumber;
             return this;
         }
 
@@ -178,7 +217,7 @@ public class VaultedDigitalWalletShippingDetails {
          * @return {@link VaultedDigitalWalletShippingDetails}
          */
         public VaultedDigitalWalletShippingDetails build() {
-            return new VaultedDigitalWalletShippingDetails(name, type, address);
+            return new VaultedDigitalWalletShippingDetails(name, phoneNumber, type, address);
         }
     }
 }

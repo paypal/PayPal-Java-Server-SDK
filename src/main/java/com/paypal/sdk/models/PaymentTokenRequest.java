@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
  * This is a model class for PaymentTokenRequest type.
  */
 public class PaymentTokenRequest {
-    private CustomerRequest customer;
+    private Customer customer;
     private PaymentTokenRequestPaymentSource paymentSource;
 
     /**
@@ -26,33 +26,35 @@ public class PaymentTokenRequest {
     /**
      * Initialization constructor.
      * @param  paymentSource  PaymentTokenRequestPaymentSource value for paymentSource.
-     * @param  customer  CustomerRequest value for customer.
+     * @param  customer  Customer value for customer.
      */
     public PaymentTokenRequest(
             PaymentTokenRequestPaymentSource paymentSource,
-            CustomerRequest customer) {
+            Customer customer) {
         this.customer = customer;
         this.paymentSource = paymentSource;
     }
 
     /**
      * Getter for Customer.
-     * Customer in merchant's or partner's system of records.
-     * @return Returns the CustomerRequest
+     * This object defines a customer in your system. Use it to manage customer profiles, save
+     * payment methods and contact details.
+     * @return Returns the Customer
      */
     @JsonGetter("customer")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public CustomerRequest getCustomer() {
+    public Customer getCustomer() {
         return customer;
     }
 
     /**
      * Setter for Customer.
-     * Customer in merchant's or partner's system of records.
-     * @param customer Value for CustomerRequest
+     * This object defines a customer in your system. Use it to manage customer profiles, save
+     * payment methods and contact details.
+     * @param customer Value for Customer
      */
     @JsonSetter("customer")
-    public void setCustomer(CustomerRequest customer) {
+    public void setCustomer(Customer customer) {
         this.customer = customer;
     }
 
@@ -102,7 +104,7 @@ public class PaymentTokenRequest {
      */
     public static class Builder {
         private PaymentTokenRequestPaymentSource paymentSource;
-        private CustomerRequest customer;
+        private Customer customer;
 
         /**
          * Initialization constructor.
@@ -130,10 +132,10 @@ public class PaymentTokenRequest {
 
         /**
          * Setter for customer.
-         * @param  customer  CustomerRequest value for customer.
+         * @param  customer  Customer value for customer.
          * @return Builder
          */
-        public Builder customer(CustomerRequest customer) {
+        public Builder customer(Customer customer) {
             this.customer = customer;
             return this;
         }

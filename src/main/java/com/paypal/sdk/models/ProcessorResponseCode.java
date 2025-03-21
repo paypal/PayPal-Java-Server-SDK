@@ -17,313 +17,775 @@ import java.util.TreeMap;
  * ProcessorResponseCode to be used.
  */
 public enum ProcessorResponseCode {
-    ENUM_0000,
-
-    ENUM_00N7,
-
-    ENUM_0100,
-
-    ENUM_0390,
-
-    ENUM_0500,
-
-    ENUM_0580,
-
-    ENUM_0800,
-
-    ENUM_0880,
-
-    ENUM_0890,
-
-    ENUM_0960,
-
-    ENUM_0R00,
-
-    ENUM_1000,
-
-    ENUM_10BR,
-
-    ENUM_1300,
-
-    ENUM_1310,
-
-    ENUM_1312,
-
-    ENUM_1317,
-
-    ENUM_1320,
-
-    ENUM_1330,
-
-    ENUM_1335,
-
-    ENUM_1340,
-
-    ENUM_1350,
-
-    ENUM_1352,
-
-    ENUM_1360,
-
-    ENUM_1370,
-
-    ENUM_1380,
-
-    ENUM_1382,
-
-    ENUM_1384,
-
-    ENUM_1390,
-
-    ENUM_1393,
-
-    ENUM_5100,
-
-    ENUM_5110,
-
-    ENUM_5120,
-
-    ENUM_5130,
-
-    ENUM_5135,
-
-    ENUM_5140,
-
-    ENUM_5150,
-
-    ENUM_5160,
-
-    ENUM_5170,
-
-    ENUM_5180,
-
-    ENUM_5190,
-
-    ENUM_5200,
-
-    ENUM_5210,
-
-    ENUM_5400,
-
-    ENUM_5500,
-
-    ENUM_5650,
-
-    ENUM_5700,
-
-    ENUM_5710,
-
-    ENUM_5800,
-
-    ENUM_5900,
-
-    ENUM_5910,
-
-    ENUM_5920,
-
-    ENUM_5930,
-
-    ENUM_5950,
-
-    ENUM_6300,
-
-    ENUM_7600,
-
-    ENUM_7700,
-
-    ENUM_7710,
-
-    ENUM_7800,
-
-    ENUM_7900,
-
-    ENUM_8000,
-
-    ENUM_8010,
-
-    ENUM_8020,
-
-    ENUM_8030,
-
-    ENUM_8100,
-
-    ENUM_8110,
-
-    ENUM_8220,
-
-    ENUM_9100,
-
-    ENUM_9500,
-
-    ENUM_9510,
-
-    ENUM_9520,
-
-    ENUM_9530,
-
-    ENUM_9540,
-
-    ENUM_9600,
-
-    PCNR,
-
-    PCVV,
-
-    PP06,
-
-    PPRN,
-
-    PPAD,
-
-    PPAB,
-
-    PPAE,
-
-    PPAG,
-
-    PPAI,
-
-    PPAR,
-
-    PPAU,
-
-    PPAV,
-
-    PPAX,
-
-    PPBG,
-
-    PPC2,
-
-    PPCE,
-
-    PPCO,
-
-    PPCR,
-
-    PPCT,
-
-    PPCU,
-
-    PPD3,
-
-    PPDC,
-
-    PPDI,
-
-    PPDV,
-
-    PPDT,
-
-    PPEF,
-
-    PPEL,
-
-    PPER,
-
-    PPEX,
-
-    PPFE,
-
-    PPFI,
-
-    PPFR,
-
-    PPFV,
-
-    PPGR,
-
-    PPH1,
-
-    PPIF,
-
-    PPII,
-
-    PPIM,
-
-    PPIT,
-
-    PPLR,
-
-    PPLS,
-
-    PPMB,
-
-    PPMC,
-
-    PPMD,
-
-    PPNC,
-
-    PPNL,
-
-    PPNM,
-
-    PPNT,
-
-    PPPH,
-
-    PPPI,
-
-    PPPM,
-
-    PPQC,
-
-    PPRE,
-
-    PPRF,
-
-    PPRR,
-
-    PPS0,
-
-    PPS1,
-
-    PPS2,
-
-    PPS3,
-
-    PPS4,
-
-    PPS5,
-
-    PPS6,
-
-    PPSC,
-
-    PPSD,
-
-    PPSE,
-
-    PPTE,
-
-    PPTF,
-
-    PPTI,
-
-    PPTR,
-
-    PPTT,
-
-    PPTV,
-
-    PPUA,
-
-    PPUC,
-
-    PPUE,
-
-    PPUI,
-
-    PPUP,
-
-    PPUR,
-
-    PPVC,
-
-    PPVE,
-
-    PPVT,
+    /**
+     * APPROVED.
+     */
+    RESPONSE_0000,
+
+    /**
+     * CVV2_FAILURE_POSSIBLE_RETRY_WITH_CVV.
+     */
+    RESPONSE_00N7,
+
+    /**
+     * REFERRAL.
+     */
+    RESPONSE_0100,
+
+    /**
+     * ACCOUNT_NOT_FOUND.
+     */
+    RESPONSE_0390,
+
+    /**
+     * DO_NOT_HONOR.
+     */
+    RESPONSE_0500,
+
+    /**
+     * UNAUTHORIZED_TRANSACTION.
+     */
+    RESPONSE_0580,
+
+    /**
+     * BAD_RESPONSE_REVERSAL_REQUIRED.
+     */
+    RESPONSE_0800,
+
+    /**
+     * CRYPTOGRAPHIC_FAILURE.
+     */
+    RESPONSE_0880,
+
+    /**
+     * UNACCEPTABLE_PIN.
+     */
+    RESPONSE_0890,
+
+    /**
+     * SYSTEM_MALFUNCTION.
+     */
+    RESPONSE_0960,
+
+    /**
+     * CANCELLED_PAYMENT.
+     */
+    RESPONSE_0R00,
+
+    /**
+     * PARTIAL_AUTHORIZATION.
+     */
+    RESPONSE_1000,
+
+    /**
+     * ISSUER_REJECTED.
+     */
+    RESPONSE_10BR,
+
+    /**
+     * INVALID_DATA_FORMAT.
+     */
+    RESPONSE_1300,
+
+    /**
+     * INVALID_AMOUNT.
+     */
+    RESPONSE_1310,
+
+    /**
+     * INVALID_TRANSACTION_CARD_ISSUER_ACQUIRER.
+     */
+    RESPONSE_1312,
+
+    /**
+     * INVALID_CAPTURE_DATE.
+     */
+    RESPONSE_1317,
+
+    /**
+     * INVALID_CURRENCY_CODE.
+     */
+    RESPONSE_1320,
+
+    /**
+     * INVALID_ACCOUNT.
+     */
+    RESPONSE_1330,
+
+    /**
+     * INVALID_ACCOUNT_RECURRING.
+     */
+    RESPONSE_1335,
+
+    /**
+     * INVALID_TERMINAL.
+     */
+    RESPONSE_1340,
+
+    /**
+     * INVALID_MERCHANT.
+     */
+    RESPONSE_1350,
+
+    /**
+     * RESTRICTED_OR_INACTIVE_ACCOUNT.
+     */
+    RESPONSE_1352,
+
+    /**
+     * BAD_PROCESSING_CODE.
+     */
+    RESPONSE_1360,
+
+    /**
+     * INVALID_MCC.
+     */
+    RESPONSE_1370,
+
+    /**
+     * INVALID_EXPIRATION.
+     */
+    RESPONSE_1380,
+
+    /**
+     * INVALID_CARD_VERIFICATION_VALUE.
+     */
+    RESPONSE_1382,
+
+    /**
+     * INVALID_LIFE_CYCLE_OF_TRANSACTION.
+     */
+    RESPONSE_1384,
+
+    /**
+     * INVALID_ORDER.
+     */
+    RESPONSE_1390,
+
+    /**
+     * TRANSACTION_CANNOT_BE_COMPLETED.
+     */
+    RESPONSE_1393,
+
+    /**
+     * GENERIC_DECLINE.
+     */
+    RESPONSE_5100,
+
+    /**
+     * CVV2_FAILURE.
+     */
+    RESPONSE_5110,
+
+    /**
+     * INSUFFICIENT_FUNDS.
+     */
+    RESPONSE_5120,
+
+    /**
+     * INVALID_PIN.
+     */
+    RESPONSE_5130,
+
+    /**
+     * DECLINED_PIN_TRY_EXCEEDED.
+     */
+    RESPONSE_5135,
+
+    /**
+     * CARD_CLOSED.
+     */
+    RESPONSE_5140,
+
+    /**
+     * PICKUP_CARD_SPECIAL_CONDITIONS. Try using another card. Do not retry the same card.
+     */
+    RESPONSE_5150,
+
+    /**
+     * UNAUTHORIZED_USER.
+     */
+    RESPONSE_5160,
+
+    /**
+     * AVS_FAILURE.
+     */
+    RESPONSE_5170,
+
+    /**
+     * INVALID_OR_RESTRICTED_CARD. Try using another card. Do not retry the same card.
+     */
+    RESPONSE_5180,
+
+    /**
+     * SOFT_AVS.
+     */
+    RESPONSE_5190,
+
+    /**
+     * DUPLICATE_TRANSACTION.
+     */
+    RESPONSE_5200,
+
+    /**
+     * INVALID_TRANSACTION.
+     */
+    RESPONSE_5210,
+
+    /**
+     * EXPIRED_CARD.
+     */
+    RESPONSE_5400,
+
+    /**
+     * INCORRECT_PIN_REENTER.
+     */
+    RESPONSE_5500,
+
+    /**
+     * DECLINED_SCA_REQUIRED.
+     */
+    RESPONSE_5650,
+
+    /**
+     * TRANSACTION_NOT_PERMITTED. Outside of scope of accepted business.
+     */
+    RESPONSE_5700,
+
+    /**
+     * TX_ATTEMPTS_EXCEED_LIMIT.
+     */
+    RESPONSE_5710,
+
+    /**
+     * REVERSAL_REJECTED.
+     */
+    RESPONSE_5800,
+
+    /**
+     * INVALID_ISSUE.
+     */
+    RESPONSE_5900,
+
+    /**
+     * ISSUER_NOT_AVAILABLE_NOT_RETRIABLE.
+     */
+    RESPONSE_5910,
+
+    /**
+     * ISSUER_NOT_AVAILABLE_RETRIABLE.
+     */
+    RESPONSE_5920,
+
+    /**
+     * CARD_NOT_ACTIVATED.
+     */
+    RESPONSE_5930,
+
+    /**
+     * DECLINED_DUE_TO_UPDATED_ACCOUNT. External decline as an updated card has been issued.
+     */
+    RESPONSE_5950,
+
+    /**
+     * ACCOUNT_NOT_ON_FILE.
+     */
+    RESPONSE_6300,
+
+    /**
+     * APPROVED_NON_CAPTURE.
+     */
+    RESPONSE_7600,
+
+    /**
+     * ERROR_3DS.
+     */
+    RESPONSE_7700,
+
+    /**
+     * AUTHENTICATION_FAILED.
+     */
+    RESPONSE_7710,
+
+    /**
+     * BIN_ERROR.
+     */
+    RESPONSE_7800,
+
+    /**
+     * PIN_ERROR.
+     */
+    RESPONSE_7900,
+
+    /**
+     * PROCESSOR_SYSTEM_ERROR.
+     */
+    RESPONSE_8000,
+
+    /**
+     * HOST_KEY_ERROR.
+     */
+    RESPONSE_8010,
+
+    /**
+     * CONFIGURATION_ERROR.
+     */
+    RESPONSE_8020,
+
+    /**
+     * UNSUPPORTED_OPERATION.
+     */
+    RESPONSE_8030,
+
+    /**
+     * FATAL_COMMUNICATION_ERROR.
+     */
+    RESPONSE_8100,
+
+    /**
+     * RETRIABLE_COMMUNICATION_ERROR.
+     */
+    RESPONSE_8110,
+
+    /**
+     * SYSTEM_UNAVAILABLE.
+     */
+    RESPONSE_8220,
+
+    /**
+     * DECLINED_PLEASE_RETRY. Retry.
+     */
+    RESPONSE_9100,
+
+    /**
+     * SUSPECTED_FRAUD. Try using another card. Do not retry the same card.
+     */
+    RESPONSE_9500,
+
+    /**
+     * SECURITY_VIOLATION.
+     */
+    RESPONSE_9510,
+
+    /**
+     * LOST_OR_STOLEN. Try using another card. Do not retry the same card.
+     */
+    RESPONSE_9520,
+
+    /**
+     * HOLD_CALL_CENTER. The merchant must call the number on the back of the card. POS scenario.
+     */
+    RESPONSE_9530,
+
+    /**
+     * REFUSED_CARD.
+     */
+    RESPONSE_9540,
+
+    /**
+     * UNRECOGNIZED_RESPONSE_CODE.
+     */
+    RESPONSE_9600,
+
+    /**
+     * CONTINGENCIES_NOT_RESOLVED.
+     */
+    RESPONSE_PCNR,
+
+    /**
+     * CVV_FAILURE.
+     */
+    RESPONSE_PCVV,
+
+    /**
+     * ACCOUNT_CLOSED. A previously open account is now closed
+     */
+    RESPONSE_PP06,
+
+    /**
+     * REATTEMPT_NOT_PERMITTED.
+     */
+    RESPONSE_PPRN,
+
+    /**
+     * BILLING_ADDRESS.
+     */
+    RESPONSE_PPAD,
+
+    /**
+     * ACCOUNT_BLOCKED_BY_ISSUER.
+     */
+    RESPONSE_PPAB,
+
+    /**
+     * AMEX_DISABLED.
+     */
+    RESPONSE_PPAE,
+
+    /**
+     * ADULT_GAMING_UNSUPPORTED.
+     */
+    RESPONSE_PPAG,
+
+    /**
+     * AMOUNT_INCOMPATIBLE.
+     */
+    RESPONSE_PPAI,
+
+    /**
+     * AUTH_RESULT.
+     */
+    RESPONSE_PPAR,
+
+    /**
+     * MCC_CODE.
+     */
+    RESPONSE_PPAU,
+
+    /**
+     * ARC_AVS.
+     */
+    RESPONSE_PPAV,
+
+    /**
+     * AMOUNT_EXCEEDED.
+     */
+    RESPONSE_PPAX,
+
+    /**
+     * BAD_GAMING.
+     */
+    RESPONSE_PPBG,
+
+    /**
+     * ARC_CVV.
+     */
+    RESPONSE_PPC2,
+
+    /**
+     * CE_REGISTRATION_INCOMPLETE.
+     */
+    RESPONSE_PPCE,
+
+    /**
+     * COUNTRY.
+     */
+    RESPONSE_PPCO,
+
+    /**
+     * CREDIT_ERROR.
+     */
+    RESPONSE_PPCR,
+
+    /**
+     * CARD_TYPE_UNSUPPORTED.
+     */
+    RESPONSE_PPCT,
+
+    /**
+     * CURRENCY_USED_INVALID.
+     */
+    RESPONSE_PPCU,
+
+    /**
+     * SECURE_ERROR_3DS.
+     */
+    RESPONSE_PPD3,
+
+    /**
+     * DCC_UNSUPPORTED.
+     */
+    RESPONSE_PPDC,
+
+    /**
+     * DINERS_REJECT.
+     */
+    RESPONSE_PPDI,
+
+    /**
+     * AUTH_MESSAGE.
+     */
+    RESPONSE_PPDV,
+
+    /**
+     * DECLINE_THRESHOLD_BREACH.
+     */
+    RESPONSE_PPDT,
+
+    /**
+     * EXPIRED_FUNDING_INSTRUMENT.
+     */
+    RESPONSE_PPEF,
+
+    /**
+     * EXCEEDS_FREQUENCY_LIMIT.
+     */
+    RESPONSE_PPEL,
+
+    /**
+     * INTERNAL_SYSTEM_ERROR.
+     */
+    RESPONSE_PPER,
+
+    /**
+     * EXPIRY_DATE.
+     */
+    RESPONSE_PPEX,
+
+    /**
+     * FUNDING_SOURCE_ALREADY_EXISTS.
+     */
+    RESPONSE_PPFE,
+
+    /**
+     * INVALID_FUNDING_INSTRUMENT.
+     */
+    RESPONSE_PPFI,
+
+    /**
+     * RESTRICTED_FUNDING_INSTRUMENT.
+     */
+    RESPONSE_PPFR,
+
+    /**
+     * FIELD_VALIDATION_FAILED.
+     */
+    RESPONSE_PPFV,
+
+    /**
+     * GAMING_REFUND_ERROR.
+     */
+    RESPONSE_PPGR,
+
+    /**
+     * H1_ERROR.
+     */
+    RESPONSE_PPH1,
+
+    /**
+     * IDEMPOTENCY_FAILURE.
+     */
+    RESPONSE_PPIF,
+
+    /**
+     * INVALID_INPUT_FAILURE.
+     */
+    RESPONSE_PPII,
+
+    /**
+     * ID_MISMATCH.
+     */
+    RESPONSE_PPIM,
+
+    /**
+     * INVALID_TRACE_ID.
+     */
+    RESPONSE_PPIT,
+
+    /**
+     * LATE_REVERSAL.
+     */
+    RESPONSE_PPLR,
+
+    /**
+     * LARGE_STATUS_CODE.
+     */
+    RESPONSE_PPLS,
+
+    /**
+     * MISSING_BUSINESS_RULE_OR_DATA.
+     */
+    RESPONSE_PPMB,
+
+    /**
+     * BLOCKED_Mastercard.
+     */
+    RESPONSE_PPMC,
+
+    /**
+     * DEPRECATED The PPMD value has been deprecated.
+     */
+    RESPONSE_PPMD,
+
+    /**
+     * NOT_SUPPORTED_NRC.
+     */
+    RESPONSE_PPNC,
+
+    /**
+     * EXCEEDS_NETWORK_FREQUENCY_LIMIT.
+     */
+    RESPONSE_PPNL,
+
+    /**
+     * NO_MID_FOUND.
+     */
+    RESPONSE_PPNM,
+
+    /**
+     * NETWORK_ERROR.
+     */
+    RESPONSE_PPNT,
+
+    /**
+     * NO_PHONE_FOR_DCC_TRANSACTION.
+     */
+    RESPONSE_PPPH,
+
+    /**
+     * INVALID_PRODUCT.
+     */
+    RESPONSE_PPPI,
+
+    /**
+     * INVALID_PAYMENT_METHOD.
+     */
+    RESPONSE_PPPM,
+
+    /**
+     * QUASI_CASH_UNSUPPORTED.
+     */
+    RESPONSE_PPQC,
+
+    /**
+     * UNSUPPORT_REFUND_ON_PENDING_BC.
+     */
+    RESPONSE_PPRE,
+
+    /**
+     * INVALID_PARENT_TRANSACTION_STATUS.
+     */
+    RESPONSE_PPRF,
+
+    /**
+     * MERCHANT_NOT_REGISTERED.
+     */
+    RESPONSE_PPRR,
+
+    /**
+     * BANKAUTH_ROW_MISMATCH.
+     */
+    RESPONSE_PPS0,
+
+    /**
+     * BANKAUTH_ROW_SETTLED.
+     */
+    RESPONSE_PPS1,
+
+    /**
+     * BANKAUTH_ROW_VOIDED.
+     */
+    RESPONSE_PPS2,
+
+    /**
+     * BANKAUTH_EXPIRED.
+     */
+    RESPONSE_PPS3,
+
+    /**
+     * CURRENCY_MISMATCH.
+     */
+    RESPONSE_PPS4,
+
+    /**
+     * CREDITCARD_MISMATCH.
+     */
+    RESPONSE_PPS5,
+
+    /**
+     * AMOUNT_MISMATCH.
+     */
+    RESPONSE_PPS6,
+
+    /**
+     * ARC_SCORE.
+     */
+    RESPONSE_PPSC,
+
+    /**
+     * STATUS_DESCRIPTION.
+     */
+    RESPONSE_PPSD,
+
+    /**
+     * AMEX_DENIED.
+     */
+    RESPONSE_PPSE,
+
+    /**
+     * VERIFICATION_TOKEN_EXPIRED.
+     */
+    RESPONSE_PPTE,
+
+    /**
+     * INVALID_TRACE_REFERENCE.
+     */
+    RESPONSE_PPTF,
+
+    /**
+     * INVALID_TRANSACTION_ID.
+     */
+    RESPONSE_PPTI,
+
+    /**
+     * VERIFICATION_TOKEN_REVOKED.
+     */
+    RESPONSE_PPTR,
+
+    /**
+     * TRANSACTION_TYPE_UNSUPPORTED.
+     */
+    RESPONSE_PPTT,
+
+    /**
+     * INVALID_VERIFICATION_TOKEN.
+     */
+    RESPONSE_PPTV,
+
+    /**
+     * USER_NOT_AUTHORIZED.
+     */
+    RESPONSE_PPUA,
+
+    /**
+     * CURRENCY_CODE_UNSUPPORTED.
+     */
+    RESPONSE_PPUC,
+
+    /**
+     * UNSUPPORT_ENTITY.
+     */
+    RESPONSE_PPUE,
+
+    /**
+     * UNSUPPORT_INSTALLMENT.
+     */
+    RESPONSE_PPUI,
+
+    /**
+     * UNSUPPORT_POS_FLAG.
+     */
+    RESPONSE_PPUP,
+
+    /**
+     * UNSUPPORTED_REVERSAL.
+     */
+    RESPONSE_PPUR,
+
+    /**
+     * VALIDATE_CURRENCY.
+     */
+    RESPONSE_PPVC,
+
+    /**
+     * VALIDATION_ERROR.
+     */
+    RESPONSE_PPVE,
+
+    /**
+     * VIRTUAL_TERMINAL_UNSUPPORTED.
+     */
+    RESPONSE_PPVT,
 
     /**
      * Unknown values will be mapped by this enum member
@@ -335,316 +797,316 @@ public enum ProcessorResponseCode {
     private String value;
 
     static {
-        ENUM_0000.value = "0000";
-        ENUM_00N7.value = "00N7";
-        ENUM_0100.value = "0100";
-        ENUM_0390.value = "0390";
-        ENUM_0500.value = "0500";
-        ENUM_0580.value = "0580";
-        ENUM_0800.value = "0800";
-        ENUM_0880.value = "0880";
-        ENUM_0890.value = "0890";
-        ENUM_0960.value = "0960";
-        ENUM_0R00.value = "0R00";
-        ENUM_1000.value = "1000";
-        ENUM_10BR.value = "10BR";
-        ENUM_1300.value = "1300";
-        ENUM_1310.value = "1310";
-        ENUM_1312.value = "1312";
-        ENUM_1317.value = "1317";
-        ENUM_1320.value = "1320";
-        ENUM_1330.value = "1330";
-        ENUM_1335.value = "1335";
-        ENUM_1340.value = "1340";
-        ENUM_1350.value = "1350";
-        ENUM_1352.value = "1352";
-        ENUM_1360.value = "1360";
-        ENUM_1370.value = "1370";
-        ENUM_1380.value = "1380";
-        ENUM_1382.value = "1382";
-        ENUM_1384.value = "1384";
-        ENUM_1390.value = "1390";
-        ENUM_1393.value = "1393";
-        ENUM_5100.value = "5100";
-        ENUM_5110.value = "5110";
-        ENUM_5120.value = "5120";
-        ENUM_5130.value = "5130";
-        ENUM_5135.value = "5135";
-        ENUM_5140.value = "5140";
-        ENUM_5150.value = "5150";
-        ENUM_5160.value = "5160";
-        ENUM_5170.value = "5170";
-        ENUM_5180.value = "5180";
-        ENUM_5190.value = "5190";
-        ENUM_5200.value = "5200";
-        ENUM_5210.value = "5210";
-        ENUM_5400.value = "5400";
-        ENUM_5500.value = "5500";
-        ENUM_5650.value = "5650";
-        ENUM_5700.value = "5700";
-        ENUM_5710.value = "5710";
-        ENUM_5800.value = "5800";
-        ENUM_5900.value = "5900";
-        ENUM_5910.value = "5910";
-        ENUM_5920.value = "5920";
-        ENUM_5930.value = "5930";
-        ENUM_5950.value = "5950";
-        ENUM_6300.value = "6300";
-        ENUM_7600.value = "7600";
-        ENUM_7700.value = "7700";
-        ENUM_7710.value = "7710";
-        ENUM_7800.value = "7800";
-        ENUM_7900.value = "7900";
-        ENUM_8000.value = "8000";
-        ENUM_8010.value = "8010";
-        ENUM_8020.value = "8020";
-        ENUM_8030.value = "8030";
-        ENUM_8100.value = "8100";
-        ENUM_8110.value = "8110";
-        ENUM_8220.value = "8220";
-        ENUM_9100.value = "9100";
-        ENUM_9500.value = "9500";
-        ENUM_9510.value = "9510";
-        ENUM_9520.value = "9520";
-        ENUM_9530.value = "9530";
-        ENUM_9540.value = "9540";
-        ENUM_9600.value = "9600";
-        PCNR.value = "PCNR";
-        PCVV.value = "PCVV";
-        PP06.value = "PP06";
-        PPRN.value = "PPRN";
-        PPAD.value = "PPAD";
-        PPAB.value = "PPAB";
-        PPAE.value = "PPAE";
-        PPAG.value = "PPAG";
-        PPAI.value = "PPAI";
-        PPAR.value = "PPAR";
-        PPAU.value = "PPAU";
-        PPAV.value = "PPAV";
-        PPAX.value = "PPAX";
-        PPBG.value = "PPBG";
-        PPC2.value = "PPC2";
-        PPCE.value = "PPCE";
-        PPCO.value = "PPCO";
-        PPCR.value = "PPCR";
-        PPCT.value = "PPCT";
-        PPCU.value = "PPCU";
-        PPD3.value = "PPD3";
-        PPDC.value = "PPDC";
-        PPDI.value = "PPDI";
-        PPDV.value = "PPDV";
-        PPDT.value = "PPDT";
-        PPEF.value = "PPEF";
-        PPEL.value = "PPEL";
-        PPER.value = "PPER";
-        PPEX.value = "PPEX";
-        PPFE.value = "PPFE";
-        PPFI.value = "PPFI";
-        PPFR.value = "PPFR";
-        PPFV.value = "PPFV";
-        PPGR.value = "PPGR";
-        PPH1.value = "PPH1";
-        PPIF.value = "PPIF";
-        PPII.value = "PPII";
-        PPIM.value = "PPIM";
-        PPIT.value = "PPIT";
-        PPLR.value = "PPLR";
-        PPLS.value = "PPLS";
-        PPMB.value = "PPMB";
-        PPMC.value = "PPMC";
-        PPMD.value = "PPMD";
-        PPNC.value = "PPNC";
-        PPNL.value = "PPNL";
-        PPNM.value = "PPNM";
-        PPNT.value = "PPNT";
-        PPPH.value = "PPPH";
-        PPPI.value = "PPPI";
-        PPPM.value = "PPPM";
-        PPQC.value = "PPQC";
-        PPRE.value = "PPRE";
-        PPRF.value = "PPRF";
-        PPRR.value = "PPRR";
-        PPS0.value = "PPS0";
-        PPS1.value = "PPS1";
-        PPS2.value = "PPS2";
-        PPS3.value = "PPS3";
-        PPS4.value = "PPS4";
-        PPS5.value = "PPS5";
-        PPS6.value = "PPS6";
-        PPSC.value = "PPSC";
-        PPSD.value = "PPSD";
-        PPSE.value = "PPSE";
-        PPTE.value = "PPTE";
-        PPTF.value = "PPTF";
-        PPTI.value = "PPTI";
-        PPTR.value = "PPTR";
-        PPTT.value = "PPTT";
-        PPTV.value = "PPTV";
-        PPUA.value = "PPUA";
-        PPUC.value = "PPUC";
-        PPUE.value = "PPUE";
-        PPUI.value = "PPUI";
-        PPUP.value = "PPUP";
-        PPUR.value = "PPUR";
-        PPVC.value = "PPVC";
-        PPVE.value = "PPVE";
-        PPVT.value = "PPVT";
+        RESPONSE_0000.value = "0000";
+        RESPONSE_00N7.value = "00N7";
+        RESPONSE_0100.value = "0100";
+        RESPONSE_0390.value = "0390";
+        RESPONSE_0500.value = "0500";
+        RESPONSE_0580.value = "0580";
+        RESPONSE_0800.value = "0800";
+        RESPONSE_0880.value = "0880";
+        RESPONSE_0890.value = "0890";
+        RESPONSE_0960.value = "0960";
+        RESPONSE_0R00.value = "0R00";
+        RESPONSE_1000.value = "1000";
+        RESPONSE_10BR.value = "10BR";
+        RESPONSE_1300.value = "1300";
+        RESPONSE_1310.value = "1310";
+        RESPONSE_1312.value = "1312";
+        RESPONSE_1317.value = "1317";
+        RESPONSE_1320.value = "1320";
+        RESPONSE_1330.value = "1330";
+        RESPONSE_1335.value = "1335";
+        RESPONSE_1340.value = "1340";
+        RESPONSE_1350.value = "1350";
+        RESPONSE_1352.value = "1352";
+        RESPONSE_1360.value = "1360";
+        RESPONSE_1370.value = "1370";
+        RESPONSE_1380.value = "1380";
+        RESPONSE_1382.value = "1382";
+        RESPONSE_1384.value = "1384";
+        RESPONSE_1390.value = "1390";
+        RESPONSE_1393.value = "1393";
+        RESPONSE_5100.value = "5100";
+        RESPONSE_5110.value = "5110";
+        RESPONSE_5120.value = "5120";
+        RESPONSE_5130.value = "5130";
+        RESPONSE_5135.value = "5135";
+        RESPONSE_5140.value = "5140";
+        RESPONSE_5150.value = "5150";
+        RESPONSE_5160.value = "5160";
+        RESPONSE_5170.value = "5170";
+        RESPONSE_5180.value = "5180";
+        RESPONSE_5190.value = "5190";
+        RESPONSE_5200.value = "5200";
+        RESPONSE_5210.value = "5210";
+        RESPONSE_5400.value = "5400";
+        RESPONSE_5500.value = "5500";
+        RESPONSE_5650.value = "5650";
+        RESPONSE_5700.value = "5700";
+        RESPONSE_5710.value = "5710";
+        RESPONSE_5800.value = "5800";
+        RESPONSE_5900.value = "5900";
+        RESPONSE_5910.value = "5910";
+        RESPONSE_5920.value = "5920";
+        RESPONSE_5930.value = "5930";
+        RESPONSE_5950.value = "5950";
+        RESPONSE_6300.value = "6300";
+        RESPONSE_7600.value = "7600";
+        RESPONSE_7700.value = "7700";
+        RESPONSE_7710.value = "7710";
+        RESPONSE_7800.value = "7800";
+        RESPONSE_7900.value = "7900";
+        RESPONSE_8000.value = "8000";
+        RESPONSE_8010.value = "8010";
+        RESPONSE_8020.value = "8020";
+        RESPONSE_8030.value = "8030";
+        RESPONSE_8100.value = "8100";
+        RESPONSE_8110.value = "8110";
+        RESPONSE_8220.value = "8220";
+        RESPONSE_9100.value = "9100";
+        RESPONSE_9500.value = "9500";
+        RESPONSE_9510.value = "9510";
+        RESPONSE_9520.value = "9520";
+        RESPONSE_9530.value = "9530";
+        RESPONSE_9540.value = "9540";
+        RESPONSE_9600.value = "9600";
+        RESPONSE_PCNR.value = "PCNR";
+        RESPONSE_PCVV.value = "PCVV";
+        RESPONSE_PP06.value = "PP06";
+        RESPONSE_PPRN.value = "PPRN";
+        RESPONSE_PPAD.value = "PPAD";
+        RESPONSE_PPAB.value = "PPAB";
+        RESPONSE_PPAE.value = "PPAE";
+        RESPONSE_PPAG.value = "PPAG";
+        RESPONSE_PPAI.value = "PPAI";
+        RESPONSE_PPAR.value = "PPAR";
+        RESPONSE_PPAU.value = "PPAU";
+        RESPONSE_PPAV.value = "PPAV";
+        RESPONSE_PPAX.value = "PPAX";
+        RESPONSE_PPBG.value = "PPBG";
+        RESPONSE_PPC2.value = "PPC2";
+        RESPONSE_PPCE.value = "PPCE";
+        RESPONSE_PPCO.value = "PPCO";
+        RESPONSE_PPCR.value = "PPCR";
+        RESPONSE_PPCT.value = "PPCT";
+        RESPONSE_PPCU.value = "PPCU";
+        RESPONSE_PPD3.value = "PPD3";
+        RESPONSE_PPDC.value = "PPDC";
+        RESPONSE_PPDI.value = "PPDI";
+        RESPONSE_PPDV.value = "PPDV";
+        RESPONSE_PPDT.value = "PPDT";
+        RESPONSE_PPEF.value = "PPEF";
+        RESPONSE_PPEL.value = "PPEL";
+        RESPONSE_PPER.value = "PPER";
+        RESPONSE_PPEX.value = "PPEX";
+        RESPONSE_PPFE.value = "PPFE";
+        RESPONSE_PPFI.value = "PPFI";
+        RESPONSE_PPFR.value = "PPFR";
+        RESPONSE_PPFV.value = "PPFV";
+        RESPONSE_PPGR.value = "PPGR";
+        RESPONSE_PPH1.value = "PPH1";
+        RESPONSE_PPIF.value = "PPIF";
+        RESPONSE_PPII.value = "PPII";
+        RESPONSE_PPIM.value = "PPIM";
+        RESPONSE_PPIT.value = "PPIT";
+        RESPONSE_PPLR.value = "PPLR";
+        RESPONSE_PPLS.value = "PPLS";
+        RESPONSE_PPMB.value = "PPMB";
+        RESPONSE_PPMC.value = "PPMC";
+        RESPONSE_PPMD.value = "PPMD";
+        RESPONSE_PPNC.value = "PPNC";
+        RESPONSE_PPNL.value = "PPNL";
+        RESPONSE_PPNM.value = "PPNM";
+        RESPONSE_PPNT.value = "PPNT";
+        RESPONSE_PPPH.value = "PPPH";
+        RESPONSE_PPPI.value = "PPPI";
+        RESPONSE_PPPM.value = "PPPM";
+        RESPONSE_PPQC.value = "PPQC";
+        RESPONSE_PPRE.value = "PPRE";
+        RESPONSE_PPRF.value = "PPRF";
+        RESPONSE_PPRR.value = "PPRR";
+        RESPONSE_PPS0.value = "PPS0";
+        RESPONSE_PPS1.value = "PPS1";
+        RESPONSE_PPS2.value = "PPS2";
+        RESPONSE_PPS3.value = "PPS3";
+        RESPONSE_PPS4.value = "PPS4";
+        RESPONSE_PPS5.value = "PPS5";
+        RESPONSE_PPS6.value = "PPS6";
+        RESPONSE_PPSC.value = "PPSC";
+        RESPONSE_PPSD.value = "PPSD";
+        RESPONSE_PPSE.value = "PPSE";
+        RESPONSE_PPTE.value = "PPTE";
+        RESPONSE_PPTF.value = "PPTF";
+        RESPONSE_PPTI.value = "PPTI";
+        RESPONSE_PPTR.value = "PPTR";
+        RESPONSE_PPTT.value = "PPTT";
+        RESPONSE_PPTV.value = "PPTV";
+        RESPONSE_PPUA.value = "PPUA";
+        RESPONSE_PPUC.value = "PPUC";
+        RESPONSE_PPUE.value = "PPUE";
+        RESPONSE_PPUI.value = "PPUI";
+        RESPONSE_PPUP.value = "PPUP";
+        RESPONSE_PPUR.value = "PPUR";
+        RESPONSE_PPVC.value = "PPVC";
+        RESPONSE_PPVE.value = "PPVE";
+        RESPONSE_PPVT.value = "PPVT";
         _UNKNOWN.value = null;
 
-        valueMap.put("0000", ENUM_0000);
-        valueMap.put("00N7", ENUM_00N7);
-        valueMap.put("0100", ENUM_0100);
-        valueMap.put("0390", ENUM_0390);
-        valueMap.put("0500", ENUM_0500);
-        valueMap.put("0580", ENUM_0580);
-        valueMap.put("0800", ENUM_0800);
-        valueMap.put("0880", ENUM_0880);
-        valueMap.put("0890", ENUM_0890);
-        valueMap.put("0960", ENUM_0960);
-        valueMap.put("0R00", ENUM_0R00);
-        valueMap.put("1000", ENUM_1000);
-        valueMap.put("10BR", ENUM_10BR);
-        valueMap.put("1300", ENUM_1300);
-        valueMap.put("1310", ENUM_1310);
-        valueMap.put("1312", ENUM_1312);
-        valueMap.put("1317", ENUM_1317);
-        valueMap.put("1320", ENUM_1320);
-        valueMap.put("1330", ENUM_1330);
-        valueMap.put("1335", ENUM_1335);
-        valueMap.put("1340", ENUM_1340);
-        valueMap.put("1350", ENUM_1350);
-        valueMap.put("1352", ENUM_1352);
-        valueMap.put("1360", ENUM_1360);
-        valueMap.put("1370", ENUM_1370);
-        valueMap.put("1380", ENUM_1380);
-        valueMap.put("1382", ENUM_1382);
-        valueMap.put("1384", ENUM_1384);
-        valueMap.put("1390", ENUM_1390);
-        valueMap.put("1393", ENUM_1393);
-        valueMap.put("5100", ENUM_5100);
-        valueMap.put("5110", ENUM_5110);
-        valueMap.put("5120", ENUM_5120);
-        valueMap.put("5130", ENUM_5130);
-        valueMap.put("5135", ENUM_5135);
-        valueMap.put("5140", ENUM_5140);
-        valueMap.put("5150", ENUM_5150);
-        valueMap.put("5160", ENUM_5160);
-        valueMap.put("5170", ENUM_5170);
-        valueMap.put("5180", ENUM_5180);
-        valueMap.put("5190", ENUM_5190);
-        valueMap.put("5200", ENUM_5200);
-        valueMap.put("5210", ENUM_5210);
-        valueMap.put("5400", ENUM_5400);
-        valueMap.put("5500", ENUM_5500);
-        valueMap.put("5650", ENUM_5650);
-        valueMap.put("5700", ENUM_5700);
-        valueMap.put("5710", ENUM_5710);
-        valueMap.put("5800", ENUM_5800);
-        valueMap.put("5900", ENUM_5900);
-        valueMap.put("5910", ENUM_5910);
-        valueMap.put("5920", ENUM_5920);
-        valueMap.put("5930", ENUM_5930);
-        valueMap.put("5950", ENUM_5950);
-        valueMap.put("6300", ENUM_6300);
-        valueMap.put("7600", ENUM_7600);
-        valueMap.put("7700", ENUM_7700);
-        valueMap.put("7710", ENUM_7710);
-        valueMap.put("7800", ENUM_7800);
-        valueMap.put("7900", ENUM_7900);
-        valueMap.put("8000", ENUM_8000);
-        valueMap.put("8010", ENUM_8010);
-        valueMap.put("8020", ENUM_8020);
-        valueMap.put("8030", ENUM_8030);
-        valueMap.put("8100", ENUM_8100);
-        valueMap.put("8110", ENUM_8110);
-        valueMap.put("8220", ENUM_8220);
-        valueMap.put("9100", ENUM_9100);
-        valueMap.put("9500", ENUM_9500);
-        valueMap.put("9510", ENUM_9510);
-        valueMap.put("9520", ENUM_9520);
-        valueMap.put("9530", ENUM_9530);
-        valueMap.put("9540", ENUM_9540);
-        valueMap.put("9600", ENUM_9600);
-        valueMap.put("PCNR", PCNR);
-        valueMap.put("PCVV", PCVV);
-        valueMap.put("PP06", PP06);
-        valueMap.put("PPRN", PPRN);
-        valueMap.put("PPAD", PPAD);
-        valueMap.put("PPAB", PPAB);
-        valueMap.put("PPAE", PPAE);
-        valueMap.put("PPAG", PPAG);
-        valueMap.put("PPAI", PPAI);
-        valueMap.put("PPAR", PPAR);
-        valueMap.put("PPAU", PPAU);
-        valueMap.put("PPAV", PPAV);
-        valueMap.put("PPAX", PPAX);
-        valueMap.put("PPBG", PPBG);
-        valueMap.put("PPC2", PPC2);
-        valueMap.put("PPCE", PPCE);
-        valueMap.put("PPCO", PPCO);
-        valueMap.put("PPCR", PPCR);
-        valueMap.put("PPCT", PPCT);
-        valueMap.put("PPCU", PPCU);
-        valueMap.put("PPD3", PPD3);
-        valueMap.put("PPDC", PPDC);
-        valueMap.put("PPDI", PPDI);
-        valueMap.put("PPDV", PPDV);
-        valueMap.put("PPDT", PPDT);
-        valueMap.put("PPEF", PPEF);
-        valueMap.put("PPEL", PPEL);
-        valueMap.put("PPER", PPER);
-        valueMap.put("PPEX", PPEX);
-        valueMap.put("PPFE", PPFE);
-        valueMap.put("PPFI", PPFI);
-        valueMap.put("PPFR", PPFR);
-        valueMap.put("PPFV", PPFV);
-        valueMap.put("PPGR", PPGR);
-        valueMap.put("PPH1", PPH1);
-        valueMap.put("PPIF", PPIF);
-        valueMap.put("PPII", PPII);
-        valueMap.put("PPIM", PPIM);
-        valueMap.put("PPIT", PPIT);
-        valueMap.put("PPLR", PPLR);
-        valueMap.put("PPLS", PPLS);
-        valueMap.put("PPMB", PPMB);
-        valueMap.put("PPMC", PPMC);
-        valueMap.put("PPMD", PPMD);
-        valueMap.put("PPNC", PPNC);
-        valueMap.put("PPNL", PPNL);
-        valueMap.put("PPNM", PPNM);
-        valueMap.put("PPNT", PPNT);
-        valueMap.put("PPPH", PPPH);
-        valueMap.put("PPPI", PPPI);
-        valueMap.put("PPPM", PPPM);
-        valueMap.put("PPQC", PPQC);
-        valueMap.put("PPRE", PPRE);
-        valueMap.put("PPRF", PPRF);
-        valueMap.put("PPRR", PPRR);
-        valueMap.put("PPS0", PPS0);
-        valueMap.put("PPS1", PPS1);
-        valueMap.put("PPS2", PPS2);
-        valueMap.put("PPS3", PPS3);
-        valueMap.put("PPS4", PPS4);
-        valueMap.put("PPS5", PPS5);
-        valueMap.put("PPS6", PPS6);
-        valueMap.put("PPSC", PPSC);
-        valueMap.put("PPSD", PPSD);
-        valueMap.put("PPSE", PPSE);
-        valueMap.put("PPTE", PPTE);
-        valueMap.put("PPTF", PPTF);
-        valueMap.put("PPTI", PPTI);
-        valueMap.put("PPTR", PPTR);
-        valueMap.put("PPTT", PPTT);
-        valueMap.put("PPTV", PPTV);
-        valueMap.put("PPUA", PPUA);
-        valueMap.put("PPUC", PPUC);
-        valueMap.put("PPUE", PPUE);
-        valueMap.put("PPUI", PPUI);
-        valueMap.put("PPUP", PPUP);
-        valueMap.put("PPUR", PPUR);
-        valueMap.put("PPVC", PPVC);
-        valueMap.put("PPVE", PPVE);
-        valueMap.put("PPVT", PPVT);
+        valueMap.put("0000", RESPONSE_0000);
+        valueMap.put("00N7", RESPONSE_00N7);
+        valueMap.put("0100", RESPONSE_0100);
+        valueMap.put("0390", RESPONSE_0390);
+        valueMap.put("0500", RESPONSE_0500);
+        valueMap.put("0580", RESPONSE_0580);
+        valueMap.put("0800", RESPONSE_0800);
+        valueMap.put("0880", RESPONSE_0880);
+        valueMap.put("0890", RESPONSE_0890);
+        valueMap.put("0960", RESPONSE_0960);
+        valueMap.put("0R00", RESPONSE_0R00);
+        valueMap.put("1000", RESPONSE_1000);
+        valueMap.put("10BR", RESPONSE_10BR);
+        valueMap.put("1300", RESPONSE_1300);
+        valueMap.put("1310", RESPONSE_1310);
+        valueMap.put("1312", RESPONSE_1312);
+        valueMap.put("1317", RESPONSE_1317);
+        valueMap.put("1320", RESPONSE_1320);
+        valueMap.put("1330", RESPONSE_1330);
+        valueMap.put("1335", RESPONSE_1335);
+        valueMap.put("1340", RESPONSE_1340);
+        valueMap.put("1350", RESPONSE_1350);
+        valueMap.put("1352", RESPONSE_1352);
+        valueMap.put("1360", RESPONSE_1360);
+        valueMap.put("1370", RESPONSE_1370);
+        valueMap.put("1380", RESPONSE_1380);
+        valueMap.put("1382", RESPONSE_1382);
+        valueMap.put("1384", RESPONSE_1384);
+        valueMap.put("1390", RESPONSE_1390);
+        valueMap.put("1393", RESPONSE_1393);
+        valueMap.put("5100", RESPONSE_5100);
+        valueMap.put("5110", RESPONSE_5110);
+        valueMap.put("5120", RESPONSE_5120);
+        valueMap.put("5130", RESPONSE_5130);
+        valueMap.put("5135", RESPONSE_5135);
+        valueMap.put("5140", RESPONSE_5140);
+        valueMap.put("5150", RESPONSE_5150);
+        valueMap.put("5160", RESPONSE_5160);
+        valueMap.put("5170", RESPONSE_5170);
+        valueMap.put("5180", RESPONSE_5180);
+        valueMap.put("5190", RESPONSE_5190);
+        valueMap.put("5200", RESPONSE_5200);
+        valueMap.put("5210", RESPONSE_5210);
+        valueMap.put("5400", RESPONSE_5400);
+        valueMap.put("5500", RESPONSE_5500);
+        valueMap.put("5650", RESPONSE_5650);
+        valueMap.put("5700", RESPONSE_5700);
+        valueMap.put("5710", RESPONSE_5710);
+        valueMap.put("5800", RESPONSE_5800);
+        valueMap.put("5900", RESPONSE_5900);
+        valueMap.put("5910", RESPONSE_5910);
+        valueMap.put("5920", RESPONSE_5920);
+        valueMap.put("5930", RESPONSE_5930);
+        valueMap.put("5950", RESPONSE_5950);
+        valueMap.put("6300", RESPONSE_6300);
+        valueMap.put("7600", RESPONSE_7600);
+        valueMap.put("7700", RESPONSE_7700);
+        valueMap.put("7710", RESPONSE_7710);
+        valueMap.put("7800", RESPONSE_7800);
+        valueMap.put("7900", RESPONSE_7900);
+        valueMap.put("8000", RESPONSE_8000);
+        valueMap.put("8010", RESPONSE_8010);
+        valueMap.put("8020", RESPONSE_8020);
+        valueMap.put("8030", RESPONSE_8030);
+        valueMap.put("8100", RESPONSE_8100);
+        valueMap.put("8110", RESPONSE_8110);
+        valueMap.put("8220", RESPONSE_8220);
+        valueMap.put("9100", RESPONSE_9100);
+        valueMap.put("9500", RESPONSE_9500);
+        valueMap.put("9510", RESPONSE_9510);
+        valueMap.put("9520", RESPONSE_9520);
+        valueMap.put("9530", RESPONSE_9530);
+        valueMap.put("9540", RESPONSE_9540);
+        valueMap.put("9600", RESPONSE_9600);
+        valueMap.put("PCNR", RESPONSE_PCNR);
+        valueMap.put("PCVV", RESPONSE_PCVV);
+        valueMap.put("PP06", RESPONSE_PP06);
+        valueMap.put("PPRN", RESPONSE_PPRN);
+        valueMap.put("PPAD", RESPONSE_PPAD);
+        valueMap.put("PPAB", RESPONSE_PPAB);
+        valueMap.put("PPAE", RESPONSE_PPAE);
+        valueMap.put("PPAG", RESPONSE_PPAG);
+        valueMap.put("PPAI", RESPONSE_PPAI);
+        valueMap.put("PPAR", RESPONSE_PPAR);
+        valueMap.put("PPAU", RESPONSE_PPAU);
+        valueMap.put("PPAV", RESPONSE_PPAV);
+        valueMap.put("PPAX", RESPONSE_PPAX);
+        valueMap.put("PPBG", RESPONSE_PPBG);
+        valueMap.put("PPC2", RESPONSE_PPC2);
+        valueMap.put("PPCE", RESPONSE_PPCE);
+        valueMap.put("PPCO", RESPONSE_PPCO);
+        valueMap.put("PPCR", RESPONSE_PPCR);
+        valueMap.put("PPCT", RESPONSE_PPCT);
+        valueMap.put("PPCU", RESPONSE_PPCU);
+        valueMap.put("PPD3", RESPONSE_PPD3);
+        valueMap.put("PPDC", RESPONSE_PPDC);
+        valueMap.put("PPDI", RESPONSE_PPDI);
+        valueMap.put("PPDV", RESPONSE_PPDV);
+        valueMap.put("PPDT", RESPONSE_PPDT);
+        valueMap.put("PPEF", RESPONSE_PPEF);
+        valueMap.put("PPEL", RESPONSE_PPEL);
+        valueMap.put("PPER", RESPONSE_PPER);
+        valueMap.put("PPEX", RESPONSE_PPEX);
+        valueMap.put("PPFE", RESPONSE_PPFE);
+        valueMap.put("PPFI", RESPONSE_PPFI);
+        valueMap.put("PPFR", RESPONSE_PPFR);
+        valueMap.put("PPFV", RESPONSE_PPFV);
+        valueMap.put("PPGR", RESPONSE_PPGR);
+        valueMap.put("PPH1", RESPONSE_PPH1);
+        valueMap.put("PPIF", RESPONSE_PPIF);
+        valueMap.put("PPII", RESPONSE_PPII);
+        valueMap.put("PPIM", RESPONSE_PPIM);
+        valueMap.put("PPIT", RESPONSE_PPIT);
+        valueMap.put("PPLR", RESPONSE_PPLR);
+        valueMap.put("PPLS", RESPONSE_PPLS);
+        valueMap.put("PPMB", RESPONSE_PPMB);
+        valueMap.put("PPMC", RESPONSE_PPMC);
+        valueMap.put("PPMD", RESPONSE_PPMD);
+        valueMap.put("PPNC", RESPONSE_PPNC);
+        valueMap.put("PPNL", RESPONSE_PPNL);
+        valueMap.put("PPNM", RESPONSE_PPNM);
+        valueMap.put("PPNT", RESPONSE_PPNT);
+        valueMap.put("PPPH", RESPONSE_PPPH);
+        valueMap.put("PPPI", RESPONSE_PPPI);
+        valueMap.put("PPPM", RESPONSE_PPPM);
+        valueMap.put("PPQC", RESPONSE_PPQC);
+        valueMap.put("PPRE", RESPONSE_PPRE);
+        valueMap.put("PPRF", RESPONSE_PPRF);
+        valueMap.put("PPRR", RESPONSE_PPRR);
+        valueMap.put("PPS0", RESPONSE_PPS0);
+        valueMap.put("PPS1", RESPONSE_PPS1);
+        valueMap.put("PPS2", RESPONSE_PPS2);
+        valueMap.put("PPS3", RESPONSE_PPS3);
+        valueMap.put("PPS4", RESPONSE_PPS4);
+        valueMap.put("PPS5", RESPONSE_PPS5);
+        valueMap.put("PPS6", RESPONSE_PPS6);
+        valueMap.put("PPSC", RESPONSE_PPSC);
+        valueMap.put("PPSD", RESPONSE_PPSD);
+        valueMap.put("PPSE", RESPONSE_PPSE);
+        valueMap.put("PPTE", RESPONSE_PPTE);
+        valueMap.put("PPTF", RESPONSE_PPTF);
+        valueMap.put("PPTI", RESPONSE_PPTI);
+        valueMap.put("PPTR", RESPONSE_PPTR);
+        valueMap.put("PPTT", RESPONSE_PPTT);
+        valueMap.put("PPTV", RESPONSE_PPTV);
+        valueMap.put("PPUA", RESPONSE_PPUA);
+        valueMap.put("PPUC", RESPONSE_PPUC);
+        valueMap.put("PPUE", RESPONSE_PPUE);
+        valueMap.put("PPUI", RESPONSE_PPUI);
+        valueMap.put("PPUP", RESPONSE_PPUP);
+        valueMap.put("PPUR", RESPONSE_PPUR);
+        valueMap.put("PPVC", RESPONSE_PPVC);
+        valueMap.put("PPVE", RESPONSE_PPVE);
+        valueMap.put("PPVT", RESPONSE_PPVT);
     }
 
     /**

@@ -26,15 +26,4 @@ public class HttpBodyRequest extends HttpRequest {
              Map<String, Object> queryParams, Object body) {
         super(method, queryUrlBuilder, headers, queryParams, body);
     }
-
-    /**
-     * Converts this HttpBodyRequest into string format.
-     * @return String representation of this class
-     */
-    @Override
-    public String toString() {
-        return "HttpBodyRequest [httpMethod=" + getHttpMethod()
-                + ", headers=" + getHeaders() + ", queryUrlBuilder=" + getQueryUrl()
-                + ", queryParameters=" + getQueryParameters() + ", body=" + getBody() + "]";
-    }
 }

@@ -17,2772 +17,6884 @@ import java.util.TreeMap;
  * ShipmentCarrier to be used.
  */
 public enum ShipmentCarrier {
+    /**
+     * DPD Russia.
+     */
     DPD_RU,
 
+    /**
+     * Bulgarian Posts.
+     */
     BG_BULGARIAN_POST,
 
+    /**
+     * Koreapost (www.koreapost.go.kr).
+     */
     KR_KOREA_POST,
 
+    /**
+     * Courier IT.
+     */
     ZA_COURIERIT,
 
+    /**
+     * DPD France (formerly exapaq).
+     */
     FR_EXAPAQ,
 
+    /**
+     * Emirates Post.
+     */
     ARE_EMIRATES_POST,
 
+    /**
+     * GAC.
+     */
     GAC,
 
+    /**
+     * Geis CZ.
+     */
     GEIS,
 
+    /**
+     * SF Express.
+     */
     SF_EX,
 
+    /**
+     * Pago Logistics.
+     */
     PAGO,
 
+    /**
+     * MyHermes UK.
+     */
     MYHERMES,
 
+    /**
+     * Diamond Eurogistics Limited.
+     */
     DIAMOND_EUROGISTICS,
 
+    /**
+     * Corporate Couriers.
+     */
     CORPORATECOURIERS_WEBHOOK,
 
+    /**
+     * Bond courier.
+     */
     BOND,
 
+    /**
+     * Omni Parcel.
+     */
     OMNIPARCEL,
 
+    /**
+     * Slovenska pošta.
+     */
     SK_POSTA,
 
+    /**
+     * purolator.
+     */
     PUROLATOR,
 
+    /**
+     * Mena 360 (Fetchr).
+     */
     FETCHR_WEBHOOK,
 
+    /**
+     * TDG – The Delivery Group.
+     */
     THEDELIVERYGROUP,
 
+    /**
+     * Cello Square.
+     */
     CELLO_SQUARE,
 
+    /**
+     * TONDA GLOBAL.
+     */
     TARRIVE,
 
+    /**
+     * MDS Collivery Pty (Ltd).
+     */
     COLLIVERY,
 
+    /**
+     * Mainfreight.
+     */
     MAINFREIGHT,
 
+    /**
+     * First Flight Couriers.
+     */
     IND_FIRSTFLIGHT,
 
+    /**
+     * ACS Worldwide Express.
+     */
     ACSWORLDWIDE,
 
+    /**
+     * Amstan Logistics.
+     */
     AMSTAN,
 
+    /**
+     * OkayParcel.
+     */
     OKAYPARCEL,
 
+    /**
+     * Envialia Reference.
+     */
     ENVIALIA_REFERENCE,
 
+    /**
+     * Seur Spain.
+     */
     SEUR_ES,
 
+    /**
+     * Continental.
+     */
     CONTINENTAL,
 
+    /**
+     * FDSEXPRESS.
+     */
     FDSEXPRESS,
 
+    /**
+     * Swiship UK.
+     */
     AMAZON_FBA_SWISHIP,
 
+    /**
+     * Wyngs.
+     */
     WYNGS,
 
+    /**
+     * DHL Active Tracing.
+     */
     DHL_ACTIVE_TRACING,
 
+    /**
+     * Zyllem.
+     */
     ZYLLEM,
 
+    /**
+     * Ruston.
+     */
     RUSTON,
 
+    /**
+     * Xpost.ph.
+     */
     XPOST,
 
+    /**
+     * correos Express (www.correos.es).
+     */
     CORREOS_ES,
 
+    /**
+     * DHL France (www.dhl.com).
+     */
     DHL_FR,
 
+    /**
+     * Pan-Asia International.
+     */
     PAN_ASIA,
 
+    /**
+     * BRT couriers Italy (www.brt.it).
+     */
     BRT_IT,
 
+    /**
+     * SRE Korea (www.srekorea.co.kr).
+     */
     SRE_KOREA,
 
+    /**
+     * Spee-Dee Delivery.
+     */
     SPEEDEE,
 
+    /**
+     * TNT UK Limited (www.tnt.com).
+     */
     TNT_UK,
 
+    /**
+     * Venipak.
+     */
     VENIPAK,
 
+    /**
+     * SHREE NANDAN COURIER.
+     */
     SHREENANDANCOURIER,
 
+    /**
+     * Croshot.
+     */
     CROSHOT,
 
+    /**
+     * NIpost (www.nipost.gov.ng).
+     */
     NIPOST_NG,
 
+    /**
+     * ePost Global.
+     */
     EPST_GLBL,
 
+    /**
+     * Newgistics.
+     */
     NEWGISTICS,
 
+    /**
+     * Post of Slovenia.
+     */
     POST_SLOVENIA,
 
+    /**
+     * Jersey Post.
+     */
     JERSEY_POST,
 
+    /**
+     * Bombino Express Pvt.
+     */
     BOMBINOEXP,
 
+    /**
+     * WMG Delivery.
+     */
     WMG,
 
+    /**
+     * XQ Express.
+     */
     XQ_EXPRESS,
 
+    /**
+     * Furdeco.
+     */
     FURDECO,
 
+    /**
+     * LHT Express.
+     */
     LHT_EXPRESS,
 
+    /**
+     * South African Post Office.
+     */
     SOUTH_AFRICAN_POST_OFFICE,
 
+    /**
+     * SPOTON Logistics Pvt Ltd.
+     */
     SPOTON,
 
+    /**
+     * Dimerco Express Group.
+     */
     DIMERCO,
 
+    /**
+     * cyprus post.
+     */
     CYPRUS_POST_CYP,
 
+    /**
+     * AB Custom Group.
+     */
     ABCUSTOM,
 
+    /**
+     * deliverE.
+     */
     IND_DELIVREE,
 
+    /**
+     * Best Express.
+     */
     CN_BESTEXPRESS,
 
+    /**
+     * DX (SFTP).
+     */
     DX_SFTP,
 
+    /**
+     * PICK UPP.
+     */
     PICKUPP_MYS,
 
+    /**
+     * FMX.
+     */
     FMX,
 
+    /**
+     * Hellmann Worldwide Logistics.
+     */
     HELLMANN,
 
+    /**
+     * Ship It Asia.
+     */
     SHIP_IT_ASIA,
 
+    /**
+     * Kerry eCommerce.
+     */
     KERRY_ECOMMERCE,
 
+    /**
+     * Frete Rapido.
+     */
     FRETERAPIDO,
 
+    /**
+     * Pitney Bowes.
+     */
     PITNEY_BOWES,
 
+    /**
+     * Xpressen courier.
+     */
     XPRESSEN_DK,
 
+    /**
+     * Spanish Seur API.
+     */
     SEUR_SP_API,
 
+    /**
+     * DELIVERYONTIME LOGISTICS PVT LTD.
+     */
     DELIVERYONTIME,
 
+    /**
+     * JINSUNG TRADING.
+     */
     JINSUNG,
 
+    /**
+     * Trans Kargo Internasional.
+     */
     TRANS_KARGO,
 
+    /**
+     * Swiship DE.
+     */
     SWISHIP_DE,
 
+    /**
+     * Ivoy courier.
+     */
     IVOY_WEBHOOK,
 
+    /**
+     * Airmee couriers.
+     */
     AIRMEE_WEBHOOK,
 
+    /**
+     * dhl benelux.
+     */
     DHL_BENELUX,
 
+    /**
+     * FirstMile.
+     */
     FIRSTMILE,
 
+    /**
+     * Fastway Ireland.
+     */
     FASTWAY_IR,
 
+    /**
+     * Hua Han Logistics.
+     */
     HH_EXP,
 
+    /**
+     * Mypostonline.
+     */
     MYS_MYPOST_ONLINE,
 
+    /**
+     * THT Netherland.
+     */
     TNT_NL,
 
+    /**
+     * TIPSA courier.
+     */
     TIPSA,
 
+    /**
+     * TAQBIN Malaysia.
+     */
     TAQBIN_MY,
 
+    /**
+     * KGM Hub.
+     */
     KGMHUB,
 
+    /**
+     * Internet Express.
+     */
     INTEXPRESS,
 
+    /**
+     * Overseas Express.
+     */
     OVERSE_EXP,
 
+    /**
+     * One click delivery services.
+     */
     ONECLICK,
 
+    /**
+     * Roadbull Logistics.
+     */
     ROADRUNNER_FREIGHT,
 
+    /**
+     * GLS Croatia.
+     */
     GLS_CROTIA,
 
+    /**
+     * MRW courier.
+     */
     MRW_FTP,
 
+    /**
+     * Blue Express.
+     */
     BLUEX,
 
+    /**
+     * Daylight Transport.
+     */
     DYLT,
 
+    /**
+     * DPD Ireland.
+     */
     DPD_IR,
 
+    /**
+     * Sin Global Express.
+     */
     SIN_GLBL,
 
+    /**
+     * Tuffnells Parcels Express- Reference.
+     */
     TUFFNELLS_REFERENCE,
 
+    /**
+     * CJ Packet.
+     */
     CJPACKET,
 
+    /**
+     * Milkman courier.
+     */
     MILKMAN,
 
+    /**
+     * ASIGNA courier.
+     */
     ASIGNA,
 
+    /**
+     * One World Express.
+     */
     ONEWORLDEXPRESS,
 
+    /**
+     * RoyalShipments.
+     */
     ROYAL_MAIL,
 
+    /**
+     * Viaxpress.
+     */
     VIA_EXPRESS,
 
+    /**
+     * TIG Freight.
+     */
     TIGFREIGHT,
 
+    /**
+     * ZTO Express.
+     */
     ZTO_EXPRESS,
 
+    /**
+     * 2GO Courier.
+     */
     TWO_GO,
 
+    /**
+     * IML courier.
+     */
     IML,
 
+    /**
+     * Intel-Valley Supply chain (ShenZhen) Co. Ltd.
+     */
     INTEL_VALLEY,
 
+    /**
+     * EFS (E-commerce Fulfillment Service).
+     */
     EFS,
 
+    /**
+     * UK mail (ukmail.com).
+     */
     UK_UK_MAIL,
 
+    /**
+     * RAM courier.
+     */
     RAM,
 
+    /**
+     * Allied Express.
+     */
     ALLIEDEXPRESS,
 
+    /**
+     * APC overnight (apc-overnight.com).
+     */
     APC_OVERNIGHT,
 
+    /**
+     * Shippit.
+     */
     SHIPPIT,
 
+    /**
+     * TFM Xpress.
+     */
     TFM,
 
+    /**
+     * M Xpress Sdn Bhd.
+     */
     M_XPRESS,
 
+    /**
+     * Haidaibao (BOX).
+     */
     HDB_BOX,
 
+    /**
+     * Clevy Links.
+     */
     CLEVY_LINKS,
 
+    /**
+     * Beone Logistics.
+     */
     IBEONE,
 
+    /**
+     * Fiege Netherlands.
+     */
     FIEGE_NL,
 
+    /**
+     * KWE Global.
+     */
     KWE_GLOBAL,
 
+    /**
+     * CTC Express.
+     */
     CTC_EXPRESS,
 
-    LAO_POST,
-
+    /**
+     * Amazon Shipping.
+     */
     AMAZON,
 
+    /**
+     * Morelink.
+     */
     MORE_LINK,
 
+    /**
+     * JX courier.
+     */
     JX,
 
+    /**
+     * Easy Mail.
+     */
     EASY_MAIL,
 
+    /**
+     * A Duie Pyle.
+     */
     ADUIEPYLE,
 
+    /**
+     * Panther.
+     */
     GB_PANTHER,
 
+    /**
+     * Expresssale.
+     */
     EXPRESSSALE,
 
+    /**
+     * Detrack.
+     */
     SG_DETRACK,
 
+    /**
+     * Trunkrs courier.
+     */
     TRUNKRS_WEBHOOK,
 
+    /**
+     * Matdespatch.
+     */
     MATDESPATCH,
 
+    /**
+     * GLS Logistic Systems Canada Ltd./Dicom.
+     */
     DICOM,
 
+    /**
+     * MBW Courier Inc..
+     */
     MBW,
 
+    /**
+     * Cambodia Post.
+     */
     KHM_CAMBODIA_POST,
 
+    /**
+     * Sinotrans.
+     */
     SINOTRANS,
 
+    /**
+     * BRT Bartolini(Parcel ID).
+     */
     BRT_IT_PARCELID,
 
+    /**
+     * DHL Supply Chain APAC.
+     */
     DHL_SUPPLY_CHAIN,
 
+    /**
+     * DHL Poland.
+     */
     DHL_PL,
 
+    /**
+     * TopYou.
+     */
     TOPYOU,
 
+    /**
+     * PAL Express Limited.
+     */
     PALEXPRESS,
 
+    /**
+     * dhl Singapore.
+     */
     DHL_SG,
 
+    /**
+     * WeDo Logistics.
+     */
     CN_WEDO,
 
+    /**
+     * Fulfillme.
+     */
     FULFILLME,
 
+    /**
+     * DPD delistrack.
+     */
     DPD_DELISTRACK,
 
+    /**
+     * UPS Reference.
+     */
     UPS_REFERENCE,
 
+    /**
+     * Caribou.
+     */
     CARIBOU,
 
+    /**
+     * Locus courier.
+     */
     LOCUS_WEBHOOK,
 
+    /**
+     * DSV courier.
+     */
     DSV,
 
-    CN_GOFLY,
-
+    /**
+     * P2P TrakPak.
+     */
     P2P_TRC,
 
+    /**
+     * Direct Parcels.
+     */
     DIRECTPARCELS,
 
+    /**
+     * Nova Poshta (International).
+     */
     NOVA_POSHTA_INT,
 
+    /**
+     * FedEx® Poland Domestic.
+     */
     FEDEX_POLAND,
 
+    /**
+     * JCEX courier.
+     */
     CN_JCEX,
 
+    /**
+     * FAR international.
+     */
     FAR_INTERNATIONAL,
 
+    /**
+     * IDEX courier.
+     */
     IDEXPRESS,
 
+    /**
+     * GANGBAO Supplychain.
+     */
     GANGBAO,
 
+    /**
+     * Neway Transport.
+     */
     NEWAY,
 
+    /**
+     * PostNL International.
+     */
     POSTNL_INT_3_S,
 
+    /**
+     * RPX Indonesia.
+     */
     RPX_ID,
 
+    /**
+     * Designer Transport.
+     */
     DESIGNERTRANSPORT_WEBHOOK,
 
+    /**
+     * GLS Slovenia.
+     */
     GLS_SLOVEN,
 
+    /**
+     * Parcelled.in.
+     */
     PARCELLED_IN,
 
+    /**
+     * GSI EXPRESS.
+     */
     GSI_EXPRESS,
 
+    /**
+     * Con-way Freight.
+     */
     CON_WAY,
 
+    /**
+     * Brouwer Transport en Logistiek.
+     */
     BROUWER_TRANSPORT,
 
+    /**
+     * Captain Express International.
+     */
     CPEX,
 
+    /**
+     * Israel Post.
+     */
     ISRAEL_POST,
 
+    /**
+     * DTDC India.
+     */
     DTDC_IN,
 
+    /**
+     * PTT Post.
+     */
     PTT_POST,
 
+    /**
+     * Ximex Delivery Express.
+     */
     XDE_WEBHOOK,
 
+    /**
+     * Tolos courier.
+     */
     TOLOS,
 
+    /**
+     * Giao hàng nhanh.
+     */
     GIAO_HANG,
 
+    /**
+     * Geodis E-space.
+     */
     GEODIS_ESPACE,
 
+    /**
+     * Magyar Post.
+     */
     MAGYAR_HU,
 
+    /**
+     * DoorDash.
+     */
     DOORDASH_WEBHOOK,
 
+    /**
+     * Tiki shipment.
+     */
     TIKI_ID,
 
+    /**
+     * CJ Logistics International(Hong Kong).
+     */
     CJ_HK_INTERNATIONAL,
 
+    /**
+     * Star Track Express.
+     */
     STAR_TRACK_EXPRESS,
 
+    /**
+     * Helthjem.
+     */
     HELTHJEM,
 
+    /**
+     * SF International.
+     */
     SFB2C,
 
+    /**
+     * Freightquote by C.H. Robinson.
+     */
     FREIGHTQUOTE,
 
+    /**
+     * Landmark Global Reference.
+     */
     LANDMARK_GLOBAL_REFERENCE,
 
+    /**
+     * Parcel2Go.
+     */
     PARCEL2GO,
 
+    /**
+     * Delnext.
+     */
     DELNEXT,
 
+    /**
+     * Red Carpet Logistics.
+     */
     RCL,
 
+    /**
+     * CGS Express.
+     */
     CGS_EXPRESS,
 
+    /**
+     * Hongkong Post (www.hongkongpost.hk).
+     */
     HK_POST,
 
+    /**
+     * SAP EXPRESS.
+     */
     SAP_EXPRESS,
 
+    /**
+     * Parcel Post Singapore.
+     */
     PARCELPOST_SG,
 
+    /**
+     * HermesWorld UK.
+     */
     HERMES,
 
+    /**
+     * Safexpress.
+     */
     IND_SAFEEXPRESS,
 
+    /**
+     * Tophatter Express.
+     */
     TOPHATTEREXPRESS,
 
+    /**
+     * PT MGLOBAL LOGISTICS INDONESIA.
+     */
     MGLOBAL,
 
+    /**
+     * Averitt Express.
+     */
     AVERITT,
 
+    /**
+     * leader.
+     */
     LEADER,
 
+    /**
+     * 2ebox courier.
+     */
     _2EBOX,
 
+    /**
+     * Singapore Speedpost.
+     */
     SG_SPEEDPOST,
 
+    /**
+     * DB Schenker (www.dbschenker.com).
+     */
     DBSCHENKER_SE,
 
+    /**
+     * Israel Post Domestic.
+     */
     ISR_POST_DOMESTIC,
 
+    /**
+     * Best Way Parcel.
+     */
     BESTWAYPARCEL,
 
+    /**
+     * asendia_de.
+     */
     ASENDIA_DE,
 
+    /**
+     * nightline_uk.
+     */
     NIGHTLINE_UK,
 
+    /**
+     * taqbin_sg.
+     */
     TAQBIN_SG,
 
+    /**
+     * TCK Express.
+     */
     TCK_EXPRESS,
 
+    /**
+     * Endeavour Delivery.
+     */
     ENDEAVOUR_DELIVERY,
 
+    /**
+     * Nanjing Woyuan.
+     */
     NANJINGWOYUAN,
 
+    /**
+     * Heppner France.
+     */
     HEPPNER_FR,
 
+    /**
+     * EMPS Express.
+     */
     EMPS_CN,
 
+    /**
+     * Fonsen Logistics.
+     */
     FONSEN,
 
+    /**
+     * Pickrr.
+     */
     PICKRR,
 
+    /**
+     * APC Overnight Consignment.
+     */
     APC_OVERNIGHT_CONNUM,
 
+    /**
+     * Star Track Next Flight.
+     */
     STAR_TRACK_NEXT_FLIGHT,
 
+    /**
+     * Shanghai Aqrum Chemical Logistics Co.Ltd.
+     */
     DAJIN,
 
+    /**
+     * UPS Freight.
+     */
     UPS_FREIGHT,
 
+    /**
+     * Posta Plus.
+     */
     POSTA_PLUS,
 
+    /**
+     * CEVA LOGISTICS.
+     */
     CEVA,
 
+    /**
+     * ANSERX courier.
+     */
     ANSERX,
 
+    /**
+     * JS EXPRESS.
+     */
     JS_EXPRESS,
 
+    /**
+     * padtf.com.
+     */
     PADTF,
 
+    /**
+     * UPS Mail Innovations.
+     */
     UPS_MAIL_INNOVATIONS,
 
-    EZSHIP,
-
+    /**
+     * Sunyou Post.
+     */
     SYPOST,
 
+    /**
+     * Amazon Shipping + Amazon MCF.
+     */
     AMAZON_SHIP_MCF,
 
+    /**
+     * Yusen Logistics.
+     */
     YUSEN,
 
+    /**
+     * Bring.
+     */
     BRING,
 
+    /**
+     * SDA Italy.
+     */
     SDA_IT,
 
+    /**
+     * GBA Services Ltd.
+     */
     GBA,
 
+    /**
+     * Newegg Express.
+     */
     NEWEGGEXPRESS,
 
+    /**
+     * Speed Couriers.
+     */
     SPEEDCOURIERS_GR,
 
+    /**
+     * forrun Pvt Ltd (Arpatech Venture).
+     */
     FORRUN,
 
+    /**
+     * Pickupp.
+     */
     PICKUP,
 
+    /**
+     * ECMS International Logistics Co..
+     */
     ECMS,
 
+    /**
+     * Intelipost (TMS for LATAM).
+     */
     INTELIPOST,
 
+    /**
+     * Flash Express.
+     */
     FLASHEXPRESS,
 
+    /**
+     * STO Express.
+     */
     CN_STO,
 
+    /**
+     * SEKO Worldwide.
+     */
     SEKO_SFTP,
 
+    /**
+     * Home Delivery Solutions Ltd.
+     */
     HOME_DELIVERY_SOLUTIONS,
 
+    /**
+     * DPD Hungary.
+     */
     DPD_HGRY,
 
+    /**
+     * Kerry Express (Vietnam) Co Ltd.
+     */
     KERRYTTC_VN,
 
+    /**
+     * Joying Box.
+     */
     JOYING_BOX,
 
+    /**
+     * Total Express.
+     */
     TOTAL_EXPRESS,
 
+    /**
+     * ZJS International.
+     */
     ZJS_EXPRESS,
 
+    /**
+     * STARKEN couriers.
+     */
     STARKEN,
 
+    /**
+     * DemandShip.
+     */
     DEMANDSHIP,
 
+    /**
+     * DPEX.
+     */
     CN_DPEX,
 
+    /**
+     * AuPost China.
+     */
     AUPOST_CN,
 
+    /**
+     * Logisters.
+     */
     LOGISTERS,
 
+    /**
+     * Global Post.
+     */
     GOGLOBALPOST,
 
+    /**
+     * GLS Czech Republic.
+     */
     GLS_CZ,
 
+    /**
+     * Paack courier.
+     */
     PAACK_WEBHOOK,
 
+    /**
+     * Grab courier.
+     */
     GRAB_WEBHOOK,
 
+    /**
+     * Parcelpoint.
+     */
     PARCELPOINT,
 
+    /**
+     * iCumulus.
+     */
     ICUMULUS,
 
+    /**
+     * DAI Post.
+     */
     DAIGLOBALTRACK,
 
+    /**
+     * i-parcel.
+     */
     GLOBAL_IPARCEL,
 
+    /**
+     * Yurtici Kargo.
+     */
     YURTICI_KARGO,
 
+    /**
+     * PayPal Package.
+     */
     CN_PAYPAL_PACKAGE,
 
+    /**
+     * Parcel To Post.
+     */
     PARCEL_2_POST,
 
+    /**
+     * GLS Italy.
+     */
     GLS_IT,
 
+    /**
+     * PIL Logistics (China) Co..
+     */
     PIL_LOGISTICS,
 
+    /**
+     * Heppner Internationale Spedition GmbH &amp; Co..
+     */
     HEPPNER,
 
+    /**
+     * Go!Express and logistics.
+     */
     GENERAL_OVERNIGHT,
 
+    /**
+     * Happy 2ThePoint.
+     */
     HAPPY2POINT,
 
+    /**
+     * Chit Chats.
+     */
     CHITCHATS,
 
+    /**
+     * Smooth Couriers.
+     */
     SMOOTH,
 
+    /**
+     * CL E-Logistics Solutions Limited.
+     */
     CLE_LOGISTICS,
 
+    /**
+     * Fiege Logistics.
+     */
     FIEGE,
 
+    /**
+     * M&amp;X cargo.
+     */
     MX_CARGO,
 
+    /**
+     * Ziing Final Mile Inc.
+     */
     ZIINGFINALMILE,
 
+    /**
+     * Dayton Freight.
+     */
     DAYTON_FREIGHT,
 
+    /**
+     * TCS courier.
+     */
     TCS,
 
+    /**
+     * AEX Group.
+     */
     AEX,
 
+    /**
+     * Hermes Germany.
+     */
     HERMES_DE,
 
+    /**
+     * Routific.
+     */
     ROUTIFIC_WEBHOOK,
 
+    /**
+     * Globavend.
+     */
     GLOBAVEND,
 
+    /**
+     * CJ Logistics International.
+     */
     CJ_LOGISTICS,
 
+    /**
+     * The Pallet Network.
+     */
     PALLET_NETWORK,
 
+    /**
+     * RAF Philippines.
+     */
     RAF_PH,
 
+    /**
+     * XDP Express.
+     */
     UK_XDP,
 
+    /**
+     * Paper Express.
+     */
     PAPER_EXPRESS,
 
+    /**
+     * La Poste.
+     */
     LA_POSTE_SUIVI,
 
+    /**
+     * Paquetexpress.
+     */
     PAQUETEXPRESS,
 
+    /**
+     * liefery.
+     */
     LIEFERY,
 
+    /**
+     * Streck Transport.
+     */
     STRECK_TRANSPORT,
 
+    /**
+     * Pony express.
+     */
     PONY_EXPRESS,
 
+    /**
+     * Always Express.
+     */
     ALWAYS_EXPRESS,
 
+    /**
+     * GBS-Broker.
+     */
     GBS_BROKER,
 
+    /**
+     * City-Link Express.
+     */
     CITYLINK_MY,
 
+    /**
+     * ALLJOY SUPPLY CHAIN.
+     */
     ALLJOY,
 
+    /**
+     * yodel.
+     */
     YODEL,
 
+    /**
+     * Yodel Direct.
+     */
     YODEL_DIR,
 
+    /**
+     * STONE3PL.
+     */
     STONE3PL,
 
+    /**
+     * ParcelPal.
+     */
     PARCELPAL_WEBHOOK,
 
+    /**
+     * DHL eCommerce Asia (API).
+     */
     DHL_ECOMERCE_ASA,
 
+    /**
+     * J&amp;T Express Singapore.
+     */
     SIMPLYPOST,
 
+    /**
+     * Kua Yue Express.
+     */
     KY_EXPRESS,
 
+    /**
+     * shenzhen 1st International Logistics(Group)Co.
+     */
     SHENZHEN,
 
+    /**
+     * LaserShip.
+     */
     US_LASERSHIP,
 
+    /**
+     * ucexpress.
+     */
     UC_EXPRE,
 
+    /**
+     * DIDADI Logistics tech.
+     */
     DIDADI,
 
+    /**
+     * CJ Korea Express.
+     */
     CJ_KR,
 
+    /**
+     * DB Schenker B2B.
+     */
     DBSCHENKER_B2B,
 
+    /**
+     * MXE Express.
+     */
     MXE,
 
+    /**
+     * CAE Delivers.
+     */
     CAE_DELIVERS,
 
+    /**
+     * PFC Express.
+     */
     PFCEXPRESS,
 
+    /**
+     * Whistl.
+     */
     WHISTL,
 
+    /**
+     * WePost Sdn Bhd.
+     */
     WEPOST,
 
+    /**
+     * DHL parcel Spain(www.dhl.com).
+     */
     DHL_PARCEL_ES,
 
+    /**
+     * DD Express Courier.
+     */
     DDEXPRESS,
 
+    /**
+     * Aramex Australia (formerly Fastway AU).
+     */
     ARAMEX_AU,
 
+    /**
+     * Bneed courier.
+     */
     BNEED,
 
+    /**
+     * Kerry Express Hong Kong.
+     */
     HK_TGX,
 
+    /**
+     * Latvijas Pasts.
+     */
     LATVIJAS_PASTS,
 
+    /**
+     * ViaEurope.
+     */
     VIAEUROPE,
 
+    /**
+     * Correo Uruguayo.
+     */
     CORREO_UY,
 
+    /**
+     * Chronopost france (www.chronopost.fr).
+     */
     CHRONOPOST_FR,
 
+    /**
+     * J-Net.
+     */
     J_NET,
 
+    /**
+     * 6ls.com.
+     */
     _6LS,
 
+    /**
+     * Belpost.
+     */
     BLR_BELPOST,
 
+    /**
+     * BirdSystem.
+     */
     BIRDSYSTEM,
 
+    /**
+     * DobroPost.
+     */
     DOBROPOST,
 
+    /**
+     * Wahana express (www.wahana.com).
+     */
     WAHANA_ID,
 
+    /**
+     * Weaship.
+     */
     WEASHIP,
 
+    /**
+     * Sonic Transportation &amp; Logistics.
+     */
     SONICTL,
 
+    /**
+     * Shenzhen Jinghuada Logistics Co..
+     */
     KWT,
 
+    /**
+     * AFL LOGISTICS.
+     */
     AFLLOG_FTP,
 
+    /**
+     * SkyNet Worldwide Express.
+     */
     SKYNET_WORLDWIDE,
 
+    /**
+     * Nova Poshta (novaposhta.ua).
+     */
     NOVA_POSHTA,
 
+    /**
+     * Seino.
+     */
     SEINO,
 
+    /**
+     * SZENDEX.
+     */
     SZENDEX,
 
+    /**
+     * Bpost international.
+     */
     BPOST_INT,
 
+    /**
+     * DB Schenker Sweden.
+     */
     DBSCHENKER_SV,
 
+    /**
+     * AO Deutschland.
+     */
     AO_DEUTSCHLAND,
 
+    /**
+     * EU Fleet Solutions.
+     */
     EU_FLEET_SOLUTIONS,
 
+    /**
+     * PCF Final Mile.
+     */
     PCFCORP,
 
+    /**
+     * Link Bridge(BeiJing)international logistics co..
+     */
     LINKBRIDGE,
 
+    /**
+     * PT Prima Multi Cipta.
+     */
     PRIMAMULTICIPTA,
 
+    /**
+     * Urbanfox.
+     */
     COUREX,
 
+    /**
+     * Zajil Express Company.
+     */
     ZAJIL_EXPRESS,
 
+    /**
+     * CollectCo.
+     */
     COLLECTCO,
 
+    /**
+     * J&amp;T EXPRESS MALAYSIA.
+     */
     JTEXPRESS,
 
+    /**
+     * FedEx® UK.
+     */
     FEDEX_UK,
 
+    /**
+     * uShip courier.
+     */
     USHIP,
 
+    /**
+     * PIXSELL LOGISTICS.
+     */
     PIXSELL,
 
+    /**
+     * Shiptor.
+     */
     SHIPTOR,
 
+    /**
+     * CDEK courier.
+     */
     CDEK,
 
+    /**
+     * ViettelPost.
+     */
     VNM_VIETTELPOST,
 
+    /**
+     * CJ Century.
+     */
     CJ_CENTURY,
 
+    /**
+     * GSO(GLS-USA).
+     */
     GSO,
 
+    /**
+     * VIWO IoT.
+     */
     VIWO,
 
+    /**
+     * SKYBOX.
+     */
     SKYBOX,
 
+    /**
+     * Kerry TJ Logistics.
+     */
     KERRYTJ,
 
+    /**
+     * Nhat Tin Logistics.
+     */
     NTLOGISTICS_VN,
 
+    /**
+     * lightning monkey.
+     */
     SDH_SCM,
 
+    /**
+     * Zinc courier.
+     */
     ZINC,
 
+    /**
+     * DPE South Africa.
+     */
     DPE_SOUTH_AFRC,
 
+    /**
+     * Czech Post.
+     */
     CESKA_CZ,
 
+    /**
+     * ACS Courier.
+     */
     ACS_GR,
 
+    /**
+     * DealerSend.
+     */
     DEALERSEND,
 
+    /**
+     * Jocom.
+     */
     JOCOM,
 
+    /**
+     * CSE courier.
+     */
     CSE,
 
+    /**
+     * TForce Final Mile.
+     */
     TFORCE_FINALMILE,
 
+    /**
+     * ShipGate.
+     */
     SHIP_GATE,
 
+    /**
+     * SHIPTER.
+     */
     SHIPTER,
 
+    /**
+     * National Sameday.
+     */
     NATIONAL_SAMEDAY,
 
+    /**
+     * YunExpress.
+     */
     YUNEXPRESS,
 
+    /**
+     * AliExpress Standard Shipping.
+     */
     CAINIAO,
 
+    /**
+     * DMSMatrix.
+     */
     DMS_MATRIX,
 
+    /**
+     * Directlog (www.directlog.com.br).
+     */
     DIRECTLOG,
 
+    /**
+     * Asendia USA.
+     */
     ASENDIA_US,
 
+    /**
+     * 3JMS Logistics.
+     */
     _3JMSLOGISTICS,
 
+    /**
+     * LICCARDI EXPRESS COURIER.
+     */
     LICCARDI_EXPRESS,
 
+    /**
+     * SkyPostal.
+     */
     SKY_POSTAL,
 
+    /**
+     * cnwangtong.
+     */
     CNWANGTONG,
 
+    /**
+     * ostnord denmark.
+     */
     POSTNORD_LOGISTICS_DK,
 
+    /**
+     * Logistika.
+     */
     LOGISTIKA,
 
+    /**
+     * Celeritas Transporte.
+     */
     CELERITAS,
 
+    /**
+     * Pressio.
+     */
     PRESSIODE,
 
+    /**
+     * Shree Maruti Courier Services Pvt Ltd.
+     */
     SHREE_MARUTI,
 
+    /**
+     * Logistic Worldwide Express (LWE Honkong).
+     */
     LOGISTICSWORLDWIDE_HK,
 
+    /**
+     * eFEx (E-Commerce Fulfillment &amp; Express).
+     */
     EFEX,
 
+    /**
+     * Lotte Global Logistics.
+     */
     LOTTE,
 
+    /**
+     * Lone Star Overnight.
+     */
     LONESTAR,
 
+    /**
+     * Aprisa Express.
+     */
     APRISAEXPRESS,
 
+    /**
+     * BEL North Russia.
+     */
     BEL_RS,
 
+    /**
+     * OSM Worldwide.
+     */
     OSM_WORLDWIDE,
 
+    /**
+     * Westgate Global.
+     */
     WESTGATE_GL,
 
+    /**
+     * Fasttrack.
+     */
     FASTRACK,
 
+    /**
+     * DTD Express.
+     */
     DTD_EXPR,
 
+    /**
+     * AlfaTrex.
+     */
     ALFATREX,
 
+    /**
+     * ProMed Delivery.
+     */
     PROMEDDELIVERY,
 
+    /**
+     * Thabit Logistics.
+     */
     THABIT_LOGISTICS,
 
+    /**
+     * HCT LOGISTICS CO.LTD..
+     */
     HCT_LOGISTICS,
 
+    /**
+     * Carry-Flap Co..
+     */
     CARRY_FLAP,
 
+    /**
+     * Old Dominion Freight Line.
+     */
     US_OLD_DOMINION,
 
+    /**
+     * ANICAM BOX EXPRESS.
+     */
     ANICAM_BOX,
 
+    /**
+     * WanbExpress.
+     */
     WANBEXPRESS,
 
+    /**
+     * An Post.
+     */
     AN_POST,
 
+    /**
+     * DPD Local.
+     */
     DPD_LOCAL,
 
+    /**
+     * Stallion Express.
+     */
     STALLIONEXPRESS,
 
+    /**
+     * RaidereX.
+     */
     RAIDEREX,
 
+    /**
+     * ShopfansRU LLC.
+     */
     SHOPFANS,
 
+    /**
+     * Kyungdong Parcel.
+     */
     KYUNGDONG_PARCEL,
 
+    /**
+     * Champion Logistics.
+     */
     CHAMPION_LOGISTICS,
 
+    /**
+     * PICK UPP (Singapore).
+     */
     PICKUPP_SGP,
 
+    /**
+     * Morning Express.
+     */
     MORNING_EXPRESS,
 
+    /**
+     * NACEX.
+     */
     NACEX,
 
+    /**
+     * SortHub courier.
+     */
     THENILE_WEBHOOK,
 
+    /**
+     * Holisol.
+     */
     HOLISOL,
 
+    /**
+     * LBC EXPRESS INC..
+     */
     LBCEXPRESS_FTP,
 
+    /**
+     * KURASI.
+     */
     KURASI,
 
+    /**
+     * USF Reddaway.
+     */
     USF_REDDAWAY,
 
+    /**
+     * APG eCommerce Solutions.
+     */
     APG,
 
+    /**
+     * BoxC courier.
+     */
     CN_BOXC,
 
+    /**
+     * ECOSCOOTING.
+     */
     ECOSCOOTING,
 
+    /**
+     * Mainway.
+     */
     MAINWAY,
 
+    /**
+     * Paperfly Private Limited.
+     */
     PAPERFLY,
 
+    /**
+     * Hound Express.
+     */
     HOUNDEXPRESS,
 
+    /**
+     * Boxberry courier.
+     */
     BOX_BERRY,
 
+    /**
+     * EP-Box courier.
+     */
     EP_BOX,
 
+    /**
+     * Plus UK Logistics.
+     */
     PLUS_LOG_UK,
 
+    /**
+     * Fulfilla.
+     */
     FULFILLA,
 
+    /**
+     * ASE KARGO.
+     */
     ASE,
 
+    /**
+     * MailPlus.
+     */
     MAIL_PLUS,
 
+    /**
+     * XPO logistics.
+     */
     XPO_LOGISTICS,
 
+    /**
+     * wnDirect.
+     */
     WNDIRECT,
 
+    /**
+     * Cloudwish Asia.
+     */
     CLOUDWISH_ASIA,
 
+    /**
+     * Zeleris.
+     */
     ZELERIS,
 
+    /**
+     * Gio Express.
+     */
     GIO_EXPRESS,
 
+    /**
+     * OCS WORLDWIDE.
+     */
     OCS_WORLDWIDE,
 
+    /**
+     * ARK Logistics.
+     */
     ARK_LOGISTICS,
 
+    /**
+     * Aquiline.
+     */
     AQUILINE,
 
+    /**
+     * Pilot Freight Services.
+     */
     PILOT_FREIGHT,
 
+    /**
+     * Qwintry Logistics.
+     */
     QWINTRY,
 
+    /**
+     * Danske Fragtaend.
+     */
     DANSKE_FRAGT,
 
+    /**
+     * Carriers courier.
+     */
     CARRIERS,
 
+    /**
+     * Rivo (Air canada).
+     */
     AIR_CANADA_GLOBAL,
 
+    /**
+     * PRESIDENT TRANSNET CORP.
+     */
     PRESIDENT_TRANS,
 
+    /**
+     * STEP FORWARD FREIGHT SERVICE CO LTD.
+     */
     STEPFORWARDFS,
 
+    /**
+     * Skynet UK.
+     */
     SKYNET_UK,
 
+    /**
+     * PITT OHIO.
+     */
     PITTOHIO,
 
+    /**
+     * Correos Express.
+     */
     CORREOS_EXPRESS,
 
+    /**
+     * RL Carriers.
+     */
     RL_US,
 
-    MARA_XPRESS,
-
+    /**
+     * Destiny Transportation.
+     */
     DESTINY,
 
+    /**
+     * Yodel (www.yodel.co.uk).
+     */
     UK_YODEL,
 
+    /**
+     * CometTech.
+     */
     COMET_TECH,
 
+    /**
+     * DHL Parcel Russia.
+     */
     DHL_PARCEL_RU,
 
+    /**
+     * TNT Reference.
+     */
     TNT_REFR,
 
+    /**
+     * Shree Anjani Courier.
+     */
     SHREE_ANJANI_COURIER,
 
+    /**
+     * Mikropakket Belgium.
+     */
     MIKROPAKKET_BE,
 
+    /**
+     * RETS express.
+     */
     ETS_EXPRESS,
 
+    /**
+     * Colis Privé.
+     */
     COLIS_PRIVE,
 
+    /**
+     * Yunda Express.
+     */
     CN_YUNDA,
 
+    /**
+     * AAA Cooper.
+     */
     AAA_COOPER,
 
+    /**
+     * Rocket Parcel International.
+     */
     ROCKET_PARCEL,
 
+    /**
+     * 360 Lion Express.
+     */
     _360LION,
 
+    /**
+     * PANDU.
+     */
     PANDU,
 
+    /**
+     * PROFESSIONAL COURIERS.
+     */
     PROFESSIONAL_COURIERS,
 
+    /**
+     * FLYTEXPRESS.
+     */
     FLYTEXPRESS,
 
+    /**
+     * LOGISTICSWORLDWIDE MY.
+     */
     LOGISTICSWORLDWIDE_MY,
 
+    /**
+     * CORREOS DE ESPANA.
+     */
     CORREOS_DE_ESPANA,
 
+    /**
+     * IMX.
+     */
     IMX,
 
+    /**
+     * FOUR PX EXPRESS.
+     */
     FOUR_PX_EXPRESS,
 
+    /**
+     * XPRESSBEES.
+     */
     XPRESSBEES,
 
+    /**
+     * pickupp_vnm.
+     */
     PICKUPP_VNM,
 
+    /**
+     * startrack_express.
+     */
     STARTRACK_EXPRESS1,
 
+    /**
+     * fr_colissimo.
+     */
     FR_COLISSIMO,
 
+    /**
+     * nacex_spain_reference.
+     */
     NACEX_SPAIN_REFERENCE,
 
+    /**
+     * dhl_supply_chain_au.
+     */
     DHL_SUPPLY_CHAIN_AU,
 
+    /**
+     * Eshipping.
+     */
     ESHIPPING,
 
+    /**
+     * SHREE TIRUPATI COURIER SERVICES PVT. LTD..
+     */
     SHREETIRUPATI,
 
+    /**
+     * HX Express.
+     */
     HX_EXPRESS,
 
+    /**
+     * INDOPAKET.
+     */
     INDOPAKET,
 
+    /**
+     * 17 Post Service.
+     */
     CN_17POST,
 
+    /**
+     * K1 Express.
+     */
     K1_EXPRESS,
 
+    /**
+     * CJ GLS.
+     */
     CJ_GLS,
 
+    /**
+     * GDEX courier.
+     */
     MYS_GDEX,
 
+    /**
+     * Nationex courier.
+     */
     NATIONEX,
 
+    /**
+     * Anjun couriers.
+     */
     ANJUN,
 
+    /**
+     * FarGood.
+     */
     FARGOOD,
 
+    /**
+     * SMG Direct.
+     */
     SMG_EXPRESS,
 
+    /**
+     * RZY Express.
+     */
     RZYEXPRESS,
 
+    /**
+     * Southeastern Freight Lines.
+     */
     SEFL,
 
+    /**
+     * TNT-Click Italy.
+     */
     TNT_CLICK_IT,
 
+    /**
+     * Haidaibao.
+     */
     HDB,
 
+    /**
+     * Hipshipper.
+     */
     HIPSHIPPER,
 
+    /**
+     * RPX Logistics.
+     */
     RPXLOGISTICS,
 
+    /**
+     * Kuehne + Nagel.
+     */
     KUEHNE,
 
+    /**
+     * Nexive (TNT Post Italy).
+     */
     IT_NEXIVE,
 
+    /**
+     * PTS courier.
+     */
     PTS,
 
+    /**
+     * Swiss Post FTP.
+     */
     SWISS_POST_FTP,
 
+    /**
+     * Fastrak Services.
+     */
     FASTRK_SERV,
 
+    /**
+     * 4-72 Entregando.
+     */
     _4_72,
 
+    /**
+     * YRC courier.
+     */
     US_YRC,
 
+    /**
+     * PostNL International 3S.
+     */
     POSTNL_INTL_3S,
 
+    /**
+     * Yilian (Elian) Supply Chain.
+     */
     ELIAN_POST,
 
+    /**
+     * Cubyn.
+     */
     CUBYN,
 
+    /**
+     * Saudi Post.
+     */
     SAU_SAUDI_POST,
 
+    /**
+     * ABX Express.
+     */
     ABXEXPRESS_MY,
 
+    /**
+     * HUAHANG EXPRESS.
+     */
     HUAHAN_EXPRESS,
 
-    IND_JAYONEXPRESS,
-
+    /**
+     * Eshun international Logistic.
+     */
     ZES_EXPRESS,
 
+    /**
+     * ZeptoExpress.
+     */
     ZEPTO_EXPRESS,
 
+    /**
+     * Skynet World Wide Express South Africa.
+     */
     SKYNET_ZA,
 
+    /**
+     * Zeek2Door.
+     */
     ZEEK_2_DOOR,
 
+    /**
+     * Blink.
+     */
     BLINKLASTMILE,
 
+    /**
+     * UkrPoshta.
+     */
     POSTA_UKR,
 
+    /**
+     * C.H. Robinson Worldwide.
+     */
     CHROBINSON,
 
+    /**
+     * Post56.
+     */
     CN_POST56,
 
+    /**
+     * Courant Plus.
+     */
     COURANT_PLUS,
 
+    /**
+     * Scudex Express.
+     */
     SCUDEX_EXPRESS,
 
+    /**
+     * ShipEntegra.
+     */
     SHIPENTEGRA,
 
+    /**
+     * B2C courier Europe.
+     */
     B_TWO_C_EUROPE,
 
+    /**
+     * Cope Sensitive Freight.
+     */
     COPE,
 
+    /**
+     * Gati-KWE.
+     */
     IND_GATI,
 
+    /**
+     * WishPost.
+     */
     CN_WISHPOST,
 
+    /**
+     * NACEX Spain.
+     */
     NACEX_ES,
 
+    /**
+     * TAQBIN Hong Kong.
+     */
     TAQBIN_HK,
 
+    /**
+     * GlobalTranz.
+     */
     GLOBALTRANZ,
 
+    /**
+     * Qingdao HKD International Logistics.
+     */
     HKD,
 
+    /**
+     * BJS Distribution courier.
+     */
     BJSHOMEDELIVERY,
 
+    /**
+     * Omniva.
+     */
     OMNIVA,
 
+    /**
+     * Sutton Transport.
+     */
     SUTTON,
 
+    /**
+     * Panther Reference.
+     */
     PANTHER_REFERENCE,
 
+    /**
+     * SFC Service.
+     */
     SFCSERVICE,
 
+    /**
+     * LTL COURIER.
+     */
     LTL,
 
+    /**
+     * Park N Parcel.
+     */
     PARKNPARCEL,
 
+    /**
+     * Spring GDS.
+     */
     SPRING_GDS,
 
+    /**
+     * ECexpress.
+     */
     ECEXPRESS,
 
+    /**
+     * Interparcel Australia.
+     */
     INTERPARCEL_AU,
 
+    /**
+     * Agility.
+     */
     AGILITY,
 
+    /**
+     * XL Express.
+     */
     XL_EXPRESS,
 
+    /**
+     * Ader couriers.
+     */
     ADERONLINE,
 
+    /**
+     * Direct Couriers.
+     */
     DIRECTCOURIERS,
 
+    /**
+     * Planzer Group.
+     */
     PLANZER,
 
+    /**
+     * Sending Transporte Urgente y Comunicacion.
+     */
     SENDING,
 
+    /**
+     * Ninjavan Webhook.
+     */
     NINJAVAN_WB,
 
+    /**
+     * Nationwide Express Courier Services Bhd (www.nationwide.com.my).
+     */
     NATIONWIDE_MY,
 
+    /**
+     * Sendit.
+     */
     SENDIT,
 
+    /**
+     * Arrow XL.
+     */
     GB_ARROW,
 
+    /**
+     * GoJavas.
+     */
     IND_GOJAVAS,
 
+    /**
+     * Korea Post.
+     */
     KPOST,
 
+    /**
+     * DHL Freight.
+     */
     DHL_FREIGHT,
 
+    /**
+     * Bluecare Express Ltd.
+     */
     BLUECARE,
 
+    /**
+     * jindouyun courier.
+     */
     JINDOUYUN,
 
+    /**
+     * Trackon Couriers Pvt. Ltd.
+     */
     TRACKON,
 
+    /**
+     * Tuffnells Parcels Express.
+     */
     GB_TUFFNELLS,
 
+    /**
+     * TRUMPCARD LLC.
+     */
     TRUMPCARD,
 
+    /**
+     * eTotal Solution Limited.
+     */
     ETOTAL,
 
+    /**
+     * Zeek courier.
+     */
     SFPLUS_WEBHOOK,
 
+    /**
+     * SEKO Logistics.
+     */
     SEKOLOGISTICS,
 
+    /**
+     * Hermes Einrichtungs Service GmbH &amp; Co. KG.
+     */
     HERMES_2MANN_HANDLING,
 
+    /**
+     * DPD Local reference.
+     */
     DPD_LOCAL_REF,
 
+    /**
+     * United Delivery Service.
+     */
     UDS,
 
+    /**
+     * Specialised Freight.
+     */
     ZA_SPECIALISED_FREIGHT,
 
+    /**
+     * Kerry Express Thailand.
+     */
     THA_KERRY,
 
+    /**
+     * SEUR International.
+     */
     PRT_INT_SEUR,
 
+    /**
+     * Correios Brazil.
+     */
     BRA_CORREIOS,
 
+    /**
+     * New Zealand Post.
+     */
     NZ_NZ_POST,
 
+    /**
+     * Equick China.
+     */
     CN_EQUICK,
 
+    /**
+     * Malaysia Post EMS / Pos Laju.
+     */
     MYS_EMS,
 
+    /**
+     * Norsk Global.
+     */
     GB_NORSK,
 
+    /**
+     * MRW spain.
+     */
     ESP_MRW,
 
+    /**
+     * Packlink.
+     */
     ESP_PACKLINK,
 
+    /**
+     * Kangaroo Worldwide Express.
+     */
     KANGAROO_MY,
 
+    /**
+     * RPX Online.
+     */
     RPX,
 
+    /**
+     * XDP Express Reference.
+     */
     XDP_UK_REFERENCE,
 
+    /**
+     * ninja van (www.ninjavan.co).
+     */
     NINJAVAN_MY,
 
+    /**
+     * Adicional Logistics.
+     */
     ADICIONAL,
 
-    NINJAVAN_ID,
-
+    /**
+     * Red Carpet Logistics.
+     */
     ROADBULL,
 
+    /**
+     * Yakit courier.
+     */
     YAKIT,
 
+    /**
+     * MailAmericas.
+     */
     MAILAMERICAS,
 
+    /**
+     * Mikropakket.
+     */
     MIKROPAKKET,
 
+    /**
+     * Dynamic Logistics.
+     */
     DYNALOGIC,
 
+    /**
+     * DHL Spain(www.dhl.com).
+     */
     DHL_ES,
 
+    /**
+     * DHL Parcel NL.
+     */
     DHL_PARCEL_NL,
 
+    /**
+     * DHL Global Mail Asia (www.dhl.com).
+     */
     DHL_GLOBAL_MAIL_ASIA,
 
+    /**
+     * Dawn Wing.
+     */
     DAWN_WING,
 
+    /**
+     * Geniki Taxydromiki.
+     */
     GENIKI_GR,
 
+    /**
+     * hermesworld_uk.
+     */
     HERMESWORLD_UK,
 
+    /**
+     * Alphafast (www.alphafast.com).
+     */
     ALPHAFAST,
 
+    /**
+     * buylogic.
+     */
     BUYLOGIC,
 
+    /**
+     * Ekart logistics (ekartlogistics.com).
+     */
     EKART,
 
+    /**
+     * mexico senda express.
+     */
     MEX_SENDA,
 
+    /**
+     * SFC.
+     */
     SFC_LOGISTICS,
 
+    /**
+     * Posta Serbia.
+     */
     POST_SERBIA,
 
+    /**
+     * Delhivery India.
+     */
     IND_DELHIVERY,
 
+    /**
+     * DPD Germany.
+     */
     DE_DPD_DELISTRACK,
 
+    /**
+     * RPD2man Deliveries.
+     */
     RPD2MAN,
 
+    /**
+     * SF Express (www.sf-express.com).
+     */
     CN_SF_EXPRESS,
 
+    /**
+     * Yanwen Logistics.
+     */
     YANWEN,
 
+    /**
+     * Skynet Malaysia.
+     */
     MYS_SKYNET,
 
+    /**
+     * correos mexico.
+     */
     CORREOS_DE_MEXICO,
 
+    /**
+     * CBL Logistica.
+     */
     CBL_LOGISTICA,
 
+    /**
+     * Estafeta (www.estafeta.com).
+     */
     MEX_ESTAFETA,
 
+    /**
+     * Austrian Post (Registered).
+     */
     AU_AUSTRIAN_POST,
 
+    /**
+     * Rincos.
+     */
     RINCOS,
 
+    /**
+     * DHL Netherland.
+     */
     NLD_DHL,
 
+    /**
+     * Russian post.
+     */
     RUSSIAN_POST,
 
+    /**
+     * CouriersPlease (couriersplease.com.au).
+     */
     COURIERS_PLEASE,
 
+    /**
+     * PostNord Logistics.
+     */
     POSTNORD_LOGISTICS,
 
+    /**
+     * Fedex.
+     */
     FEDEX,
 
+    /**
+     * DPE Express.
+     */
     DPE_EXPRESS,
 
+    /**
+     * DPD.
+     */
     DPD,
 
+    /**
+     * ADSone.
+     */
     ADSONE,
 
+    /**
+     * JNE Express (Jalur Nugraha Ekakurir).
+     */
     IDN_JNE,
 
+    /**
+     * The Courier Guy.
+     */
     THECOURIERGUY,
 
+    /**
+     * CNE Express.
+     */
     CNEXPS,
 
+    /**
+     * Chronopost Portugal.
+     */
     PRT_CHRONOPOST,
 
+    /**
+     * Landmark Global.
+     */
     LANDMARK_GLOBAL,
 
+    /**
+     * DHL International.
+     */
     IT_DHL_ECOMMERCE,
 
+    /**
+     * NACEX Spain.
+     */
     ESP_NACEX,
 
+    /**
+     * CTT Portugal.
+     */
     PRT_CTT,
 
+    /**
+     * Kiala.
+     */
     BE_KIALA,
 
+    /**
+     * Asendia UK.
+     */
     ASENDIA_UK,
 
+    /**
+     * TNT global.
+     */
     GLOBAL_TNT,
 
+    /**
+     * Iceland Post.
+     */
     POSTUR_IS,
 
+    /**
+     * eParcel Korea.
+     */
     EPARCEL_KR,
 
+    /**
+     * InPost Paczkomaty.
+     */
     INPOST_PACZKOMATY,
 
+    /**
+     * Poste italiane (www.poste.it).
+     */
     IT_POSTE_ITALIA,
 
+    /**
+     * Bpost (www.bpost.be).
+     */
     BE_BPOST,
 
+    /**
+     * Poczta Polska (www.poczta-polska.pl).
+     */
     PL_POCZTA_POLSKA,
 
+    /**
+     * Malaysia Post.
+     */
     MYS_MYS_POST,
 
+    /**
+     * Singapore Post.
+     */
     SG_SG_POST,
 
+    /**
+     * Thailand Post (www.thailandpost.co.th).
+     */
     THA_THAILAND_POST,
 
+    /**
+     * LexShip.
+     */
     LEXSHIP,
 
+    /**
+     * Fastway New Zealand.
+     */
     FASTWAY_NZ,
 
+    /**
+     * DHL Supply Chain Australia.
+     */
     DHL_AU,
 
+    /**
+     * Cosmetics Now.
+     */
     COSTMETICSNOW,
 
+    /**
+     * PFL.
+     */
     PFLOGISTICS,
 
+    /**
+     * Loomis Express.
+     */
     LOOMIS_EXPRESS,
 
+    /**
+     * GLS Italy.
+     */
     GLS_ITALY,
 
+    /**
+     * Line Clear Express &amp; Logistics Sdn Bhd.
+     */
     LINE,
 
+    /**
+     * Gel Express Logistik.
+     */
     GEL_EXPRESS,
 
+    /**
+     * Huodull.
+     */
     HUODULL,
 
+    /**
+     * Ninja van Singapore.
+     */
     NINJAVAN_SG,
 
+    /**
+     * Janio Asia.
+     */
     JANIO,
 
+    /**
+     * AO Logistics.
+     */
     AO_COURIER,
 
+    /**
+     * BRT Bartolini(Sender Reference).
+     */
     BRT_IT_SENDER_REF,
 
+    /**
+     * SAILPOST.
+     */
     SAILPOST,
 
+    /**
+     * Lalamove.
+     */
     LALAMOVE,
 
+    /**
+     * NEW ZEALAND COURIERS.
+     */
     NEWZEALAND_COURIERS,
 
+    /**
+     * Etomars.
+     */
     ETOMARS,
 
+    /**
+     * VIR Transport.
+     */
     VIRTRANSPORT,
 
+    /**
+     * Wizmo.
+     */
     WIZMO,
 
+    /**
+     * Palletways.
+     */
     PALLETWAYS,
 
+    /**
+     * i-dika.
+     */
     I_DIKA,
 
+    /**
+     * CFL Logistics.
+     */
     CFL_LOGISTICS,
 
+    /**
+     * GEM Worldwide.
+     */
     GEMWORLDWIDE,
 
+    /**
+     * Tai Wan Global Business.
+     */
     GLOBAL_EXPRESS,
 
+    /**
+     * Transgroup courier.
+     */
     LOGISTYX_TRANSGROUP,
 
+    /**
+     * West Bank Courier.
+     */
     WESTBANK_COURIER,
 
+    /**
+     * Arco Spedizioni SP.
+     */
     ARCO_SPEDIZIONI,
 
+    /**
+     * YDH express.
+     */
     YDH_EXPRESS,
 
+    /**
+     * Parcelink Logistics.
+     */
     PARCELINKLOGISTICS,
 
+    /**
+     * CND Express.
+     */
     CNDEXPRESS,
 
+    /**
+     * NOX NightTimeExpress.
+     */
     NOX_NIGHT_TIME_EXPRESS,
 
+    /**
+     * Aeronet couriers.
+     */
     AERONET,
 
+    /**
+     * LTIAN EXP.
+     */
     LTIANEXP,
 
+    /**
+     * Integra2.
+     */
     INTEGRA2_FTP,
 
+    /**
+     * PARCEL ONE.
+     */
     PARCELONE,
 
+    /**
+     * Innight Express Germany GmbH (nox NachtExpress).
+     */
     NOX_NACHTEXPRESS,
 
+    /**
+     * China Post.
+     */
     CN_CHINA_POST_EMS,
 
+    /**
+     * Chukou1.
+     */
     CHUKOU1,
 
+    /**
+     * GLS General Logistics Systems Slovakia s.r.o..
+     */
     GLS_SLOV,
 
+    /**
+     * OrangeDS (Orange Distribution Solutions Inc).
+     */
     ORANGE_DS,
 
+    /**
+     * Joom Logistics.
+     */
     JOOM_LOGIS,
 
+    /**
+     * StarTrack (startrack.com.au).
+     */
     AUS_STARTRACK,
 
+    /**
+     * dhl Global.
+     */
     DHL,
 
+    /**
+     * APC postal logistics germany.
+     */
     GB_APC,
 
+    /**
+     * Bonds Courier Service (bondscouriers.com.au).
+     */
     BONDSCOURIERS,
 
+    /**
+     * Japan Post.
+     */
     JPN_JAPAN_POST,
 
+    /**
+     * United States Postal Service.
+     */
     USPS,
 
+    /**
+     * WinIt.
+     */
     WINIT,
 
+    /**
+     * OCA Argentina.
+     */
     ARG_OCA,
 
+    /**
+     * Taiwan Post.
+     */
     TW_TAIWAN_POST,
 
+    /**
+     * DMM Network.
+     */
     DMM_NETWORK,
 
+    /**
+     * TNT Express.
+     */
     TNT,
 
+    /**
+     * BH Posta (www.posta.ba).
+     */
     BH_POSTA,
 
+    /**
+     * Postnord sweden.
+     */
     SWE_POSTNORD,
 
+    /**
+     * Canada Post.
+     */
     CA_CANADA_POST,
 
+    /**
+     * Wiseloads.
+     */
     WISELOADS,
 
+    /**
+     * Asendia HonKong.
+     */
     ASENDIA_HK,
 
+    /**
+     * GLS Netherland.
+     */
     NLD_GLS,
 
+    /**
+     * Redpack.
+     */
     MEX_REDPACK,
 
+    /**
+     * Jet-Ship Worldwide.
+     */
     JET_SHIP,
 
+    /**
+     * DHL Express.
+     */
     DE_DHL_EXPRESS,
 
+    /**
+     * Ninja van Thai.
+     */
     NINJAVAN_THAI,
 
+    /**
+     * Raben Group.
+     */
     RABEN_GROUP,
 
+    /**
+     * ASM(GLS Spain).
+     */
     ESP_ASM,
 
+    /**
+     * Hrvatska posta.
+     */
     HRV_HRVATSKA,
 
+    /**
+     * Estes Express Lines.
+     */
     GLOBAL_ESTES,
 
+    /**
+     * Lietuvos pastas.
+     */
     LTU_LIETUVOS,
 
+    /**
+     * DHL Benelux.
+     */
     BEL_DHL,
 
+    /**
+     * Australia Post.
+     */
     AU_AU_POST,
 
+    /**
+     * SPEEDEX couriers.
+     */
     SPEEDEXCOURIER,
 
+    /**
+     * Colissimo.
+     */
     FR_COLIS,
 
+    /**
+     * Aramex.
+     */
     ARAMEX,
 
+    /**
+     * DPEX (www.dpex.com).
+     */
     DPEX,
 
+    /**
+     * Airpak Express.
+     */
     MYS_AIRPAK,
 
+    /**
+     * Cuckoo Express.
+     */
     CUCKOOEXPRESS,
 
+    /**
+     * DPD Poland.
+     */
     DPD_POLAND,
 
+    /**
+     * PostNL International.
+     */
     NLD_POSTNL,
 
+    /**
+     * Nim Express.
+     */
     NIM_EXPRESS,
 
+    /**
+     * Quantium.
+     */
     QUANTIUM,
 
+    /**
+     * Sendle.
+     */
     SENDLE,
 
+    /**
+     * Redur Spain.
+     */
     ESP_REDUR,
 
+    /**
+     * Matkahuolto.
+     */
     MATKAHUOLTO,
 
+    /**
+     * Cpacket couriers.
+     */
     CPACKET,
 
+    /**
+     * Posti courier.
+     */
     POSTI,
 
+    /**
+     * Hunter Express.
+     */
     HUNTER_EXPRESS,
 
+    /**
+     * Choir Express Indonesia.
+     */
     CHOIR_EXP,
 
+    /**
+     * Legion Express.
+     */
     LEGION_EXPRESS,
 
+    /**
+     * austrian post.
+     */
     AUSTRIAN_POST_EXPRESS,
 
+    /**
+     * Grupo ampm.
+     */
     GRUPO,
 
+    /**
+     * Post Roman (www.posta-romana.ro).
+     */
     POSTA_RO,
 
+    /**
+     * Interparcel UK.
+     */
     INTERPARCEL_UK,
 
+    /**
+     * ABF Freight.
+     */
     GLOBAL_ABF,
 
+    /**
+     * Posten Norge (www.posten.no).
+     */
     POSTEN_NORGE,
 
+    /**
+     * Xpert Delivery.
+     */
     XPERT_DELIVERY,
 
+    /**
+     * DHl (Reference number).
+     */
     DHL_REFR,
 
+    /**
+     * DHL HonKong.
+     */
     DHL_HK,
 
+    /**
+     * SKYNET UAE.
+     */
     SKYNET_UAE,
 
+    /**
+     * Gojek.
+     */
     GOJEK,
 
+    /**
+     * Yodel International.
+     */
     YODEL_INTNL,
 
+    /**
+     * Janco Ecommerce.
+     */
     JANCO,
 
+    /**
+     * YTO Express.
+     */
     YTO,
 
+    /**
+     * Wise Express.
+     */
     WISE_EXPRESS,
 
+    /**
+     * J&amp;T Express Vietnam.
+     */
     JTEXPRESS_VN,
 
+    /**
+     * FedEx International MailService.
+     */
     FEDEX_INTL_MLSERV,
 
+    /**
+     * VAMOX.
+     */
     VAMOX,
 
+    /**
+     * AMS Group.
+     */
     AMS_GRP,
 
+    /**
+     * DHL Japan.
+     */
     DHL_JP,
 
+    /**
+     * HR Parcel.
+     */
     HRPARCEL,
 
+    /**
+     * GESWL Express.
+     */
     GESWL,
 
+    /**
+     * Blue Star.
+     */
     BLUESTAR,
 
+    /**
+     * CDEK TR.
+     */
     CDEK_TR,
 
+    /**
+     * Innovel courier.
+     */
     DESCARTES,
 
+    /**
+     * Deltec Courier.
+     */
     DELTEC_UK,
 
+    /**
+     * DTDC express.
+     */
     DTDC_EXPRESS,
 
+    /**
+     * tourline.
+     */
     TOURLINE,
 
+    /**
+     * B&amp;H Worldwide.
+     */
     BH_WORLDWIDE,
 
+    /**
+     * OCS ANA Group.
+     */
     OCS,
 
+    /**
+     * yingnuo logistics.
+     */
     YINGNUO_LOGISTICS,
 
+    /**
+     * United Parcel Service.
+     */
     UPS,
 
+    /**
+     * Toll IPEC.
+     */
     TOLL,
 
+    /**
+     * SEUR portugal.
+     */
     PRT_SEUR,
 
+    /**
+     * DTDC Australia.
+     */
     DTDC_AU,
 
+    /**
+     * Dynamic Logistics.
+     */
     THA_DYNAMIC_LOGISTICS,
 
+    /**
+     * UBI Smart Parcel.
+     */
     UBI_LOGISTICS,
 
+    /**
+     * FedEx Cross Border.
+     */
     FEDEX_CROSSBORDER,
 
+    /**
+     * A1Post.
+     */
     A1POST,
 
+    /**
+     * Tazmanian Freight Systems.
+     */
     TAZMANIAN_FREIGHT,
 
+    /**
+     * CJ International malaysia.
+     */
     CJ_INT_MY,
 
+    /**
+     * Saia LTL Freight.
+     */
     SAIA_FREIGHT,
 
+    /**
+     * Qxpress.
+     */
     SG_QXPRESS,
 
+    /**
+     * Nhans Solutions.
+     */
     NHANS_SOLUTIONS,
 
+    /**
+     * DPD France.
+     */
     DPD_FR,
 
+    /**
+     * Coordinadora.
+     */
     COORDINADORA,
 
+    /**
+     * Grupo logistico Andreani.
+     */
     ANDREANI,
 
+    /**
+     * Doora Logistics.
+     */
     DOORA,
 
+    /**
+     * Interparcel New Zealand.
+     */
     INTERPARCEL_NZ,
 
+    /**
+     * Jam Express Philippines.
+     */
     PHL_JAMEXPRESS,
 
+    /**
+     * bel_belgium_post.
+     */
     BEL_BELGIUM_POST,
 
+    /**
+     * us_apc.
+     */
     US_APC,
 
+    /**
+     * idn_pos.
+     */
     IDN_POS,
 
+    /**
+     * fr_mondial.
+     */
     FR_MONDIAL,
 
+    /**
+     * DE DHL.
+     */
     DE_DHL,
 
+    /**
+     * hk_rpx.
+     */
     HK_RPX,
 
+    /**
+     * dhl_pieceid.
+     */
     DHL_PIECEID,
 
+    /**
+     * vnpost_ems.
+     */
     VNPOST_EMS,
 
+    /**
+     * rrdonnelley.
+     */
     RRDONNELLEY,
 
+    /**
+     * dpd_de.
+     */
     DPD_DE,
 
+    /**
+     * delcart_in.
+     */
     DELCART_IN,
 
+    /**
+     * imexglobalsolutions.
+     */
     IMEXGLOBALSOLUTIONS,
 
+    /**
+     * ACOMMERCE.
+     */
     ACOMMERCE,
 
+    /**
+     * eurodis.
+     */
     EURODIS,
 
+    /**
+     * CANPAR.
+     */
     CANPAR,
 
+    /**
+     * GLS.
+     */
     GLS,
 
+    /**
+     * Ecom Express.
+     */
     IND_ECOM,
 
+    /**
+     * Envialia.
+     */
     ESP_ENVIALIA,
 
+    /**
+     * dhl UK.
+     */
     DHL_UK,
 
+    /**
+     * SMSA Express.
+     */
     SMSA_EXPRESS,
 
+    /**
+     * TNT France.
+     */
     TNT_FR,
 
+    /**
+     * DEX-I courier.
+     */
     DEX_I,
 
+    /**
+     * Budbee courier.
+     */
     BUDBEE_WEBHOOK,
 
+    /**
+     * Copa Airlines Courier.
+     */
     COPA_COURIER,
 
+    /**
+     * Vietnam Post.
+     */
     VNM_VIETNAM_POST,
 
+    /**
+     * DPD HongKong.
+     */
     DPD_HK,
 
+    /**
+     * Toll New Zealand.
+     */
     TOLL_NZ,
 
+    /**
+     * Echo courier.
+     */
     ECHO,
 
+    /**
+     * FedEx® Freight.
+     */
     FEDEX_FR,
 
+    /**
+     * Border Express.
+     */
     BORDEREXPRESS,
 
+    /**
+     * MailPlus (Japan).
+     */
     MAILPLUS_JPN,
 
+    /**
+     * TNT UK Reference.
+     */
     TNT_UK_REFR,
 
+    /**
+     * KEC courier.
+     */
     KEC,
 
+    /**
+     * DPD Romania.
+     */
     DPD_RO,
 
+    /**
+     * TNT_JP.
+     */
     TNT_JP,
 
+    /**
+     * TH_CJ.
+     */
     TH_CJ,
 
+    /**
+     * EC_CN.
+     */
     EC_CN,
 
+    /**
+     * FASTWAY_UK.
+     */
     FASTWAY_UK,
 
+    /**
+     * FASTWAY_US.
+     */
     FASTWAY_US,
 
+    /**
+     * GLS_DE.
+     */
     GLS_DE,
 
+    /**
+     * GLS_ES.
+     */
     GLS_ES,
 
+    /**
+     * GLS_FR.
+     */
     GLS_FR,
 
+    /**
+     * MONDIAL_BE.
+     */
     MONDIAL_BE,
 
+    /**
+     * SGT_IT.
+     */
     SGT_IT,
 
+    /**
+     * TNT_CN.
+     */
     TNT_CN,
 
+    /**
+     * TNT_DE.
+     */
     TNT_DE,
 
+    /**
+     * TNT_ES.
+     */
     TNT_ES,
 
+    /**
+     * TNT_PL.
+     */
     TNT_PL,
 
+    /**
+     * PARCELFORCE.
+     */
     PARCELFORCE,
 
+    /**
+     * SWISS POST.
+     */
     SWISS_POST,
 
+    /**
+     * TOLL IPEC.
+     */
     TOLL_IPEC,
 
+    /**
+     * AIR 21.
+     */
     AIR_21,
 
+    /**
+     * AIRSPEED.
+     */
     AIRSPEED,
 
+    /**
+     * BERT.
+     */
     BERT,
 
+    /**
+     * BLUEDART.
+     */
     BLUEDART,
 
+    /**
+     * COLLECTPLUS.
+     */
     COLLECTPLUS,
 
+    /**
+     * COURIERPLUS.
+     */
     COURIERPLUS,
 
+    /**
+     * COURIER POST.
+     */
     COURIER_POST,
 
+    /**
+     * dhl_global_mail.
+     */
     DHL_GLOBAL_MAIL,
 
+    /**
+     * dpd_uk.
+     */
     DPD_UK,
 
+    /**
+     * DELTEC DE.
+     */
     DELTEC_DE,
 
+    /**
+     * deutsche_de.
+     */
     DEUTSCHE_DE,
 
+    /**
+     * DOTZOT.
+     */
     DOTZOT,
 
+    /**
+     * elta_gr.
+     */
     ELTA_GR,
 
+    /**
+     * ems_cn.
+     */
     EMS_CN,
 
+    /**
+     * ECARGO.
+     */
     ECARGO,
 
+    /**
+     * ENSENDA.
+     */
     ENSENDA,
 
+    /**
+     * fercam_it.
+     */
     FERCAM_IT,
 
+    /**
+     * fastway_za.
+     */
     FASTWAY_ZA,
 
+    /**
+     * fastway_au.
+     */
     FASTWAY_AU,
 
+    /**
+     * first_logisitcs.
+     */
     FIRST_LOGISITCS,
 
+    /**
+     * GEODIS.
+     */
     GEODIS,
 
+    /**
+     * GLOBEGISTICS.
+     */
     GLOBEGISTICS,
 
+    /**
+     * GREYHOUND.
+     */
     GREYHOUND,
 
+    /**
+     * jetship_my.
+     */
     JETSHIP_MY,
 
+    /**
+     * LION PARCEL.
+     */
     LION_PARCEL,
 
+    /**
+     * AEROFLASH.
+     */
     AEROFLASH,
 
+    /**
+     * ONTRAC.
+     */
     ONTRAC,
 
+    /**
+     * SAGAWA.
+     */
     SAGAWA,
 
+    /**
+     * SIODEMKA.
+     */
     SIODEMKA,
 
+    /**
+     * startrack.
+     */
     STARTRACK,
 
+    /**
+     * tnt_au.
+     */
     TNT_AU,
 
+    /**
+     * tnt_it.
+     */
     TNT_IT,
 
+    /**
+     * TRANSMISSION.
+     */
     TRANSMISSION,
 
+    /**
+     * YAMATO.
+     */
     YAMATO,
 
+    /**
+     * dhl_it.
+     */
     DHL_IT,
 
+    /**
+     * dhl_at.
+     */
     DHL_AT,
 
+    /**
+     * LOGISTICSWORLDWIDE KR.
+     */
     LOGISTICSWORLDWIDE_KR,
 
+    /**
+     * gls_spain.
+     */
     GLS_SPAIN,
 
+    /**
+     * amazon_uk_api.
+     */
     AMAZON_UK_API,
 
+    /**
+     * dpd_fr_reference.
+     */
     DPD_FR_REFERENCE,
 
+    /**
+     * dhlparcel_uk.
+     */
     DHLPARCEL_UK,
 
+    /**
+     * megasave.
+     */
     MEGASAVE,
 
+    /**
+     * qualitypost.
+     */
     QUALITYPOST,
 
+    /**
+     * ids_logistics.
+     */
     IDS_LOGISTICS,
 
+    /**
+     * joyingbox.
+     */
     JOYINGBOX1,
 
+    /**
+     * panther_order_number.
+     */
     PANTHER_ORDER_NUMBER,
 
+    /**
+     * watkins_shepard.
+     */
     WATKINS_SHEPARD,
 
+    /**
+     * fasttrack.
+     */
     FASTTRACK,
 
+    /**
+     * up_express.
+     */
     UP_EXPRESS,
 
+    /**
+     * elogistica.
+     */
     ELOGISTICA,
 
+    /**
+     * ecourier.
+     */
     ECOURIER,
 
+    /**
+     * cj_philippines.
+     */
     CJ_PHILIPPINES,
 
+    /**
+     * speedex.
+     */
     SPEEDEX,
 
+    /**
+     * orangeconnex.
+     */
     ORANGECONNEX,
 
+    /**
+     * tecor.
+     */
     TECOR,
 
+    /**
+     * saee.
+     */
     SAEE,
 
+    /**
+     * gls_italy_ftp.
+     */
     GLS_ITALY_FTP,
 
+    /**
+     * delivere.
+     */
     DELIVERE,
 
+    /**
+     * yycom.
+     */
     YYCOM,
 
+    /**
+     * Adicional Logistics.
+     */
     ADICIONAL_PT,
 
+    /**
+     * DKSH.
+     */
     DKSH,
 
+    /**
+     * Nippon Express.
+     */
     NIPPON_EXPRESS_FTP,
 
+    /**
+     * GO Logistics &amp; Storage.
+     */
     GOLS,
 
+    /**
+     * FUJIE EXPRESS.
+     */
     FUJEXP,
 
+    /**
+     * QTrack.
+     */
     QTRACK,
 
+    /**
+     * OM LOGISTICS LTD.
+     */
     OMLOGISTICS_API,
 
+    /**
+     * GDPharm Logistics.
+     */
     GDPHARM,
 
+    /**
+     * MISUMI Group Inc..
+     */
     MISUMI_CN,
 
+    /**
+     * Rivo.
+     */
     AIR_CANADA,
 
+    /**
+     * City Express.
+     */
     CITY56_WEBHOOK,
 
+    /**
+     * Sagawa.
+     */
     SAGAWA_API,
 
+    /**
+     * KedaEX.
+     */
     KEDAEX,
 
+    /**
+     * Pgeon.
+     */
     PGEON_API,
 
+    /**
+     * We World Express.
+     */
     WEWORLDEXPRESS,
 
+    /**
+     * J&amp;T International logistics.
+     */
     JT_LOGISTICS,
 
+    /**
+     * Trusk France.
+     */
     TRUSK,
 
+    /**
+     * ViaXpress.
+     */
     VIAXPRESS,
 
+    /**
+     * DHL Supply Chain Indonesia.
+     */
     DHL_SUPPLYCHAIN_ID,
 
+    /**
+     * Zuellig Pharma Korea.
+     */
     ZUELLIGPHARMA_SFTP,
 
+    /**
+     * Meest.
+     */
     MEEST,
 
+    /**
+     * Toll Priority.
+     */
     TOLL_PRIORITY,
 
+    /**
+     * Mothership.
+     */
     MOTHERSHIP_API,
 
+    /**
+     * Capital Transport.
+     */
     CAPITAL,
 
+    /**
+     * Europacket+.
+     */
     EUROPAKET_API,
 
+    /**
+     * HFD.
+     */
     HFD,
 
+    /**
+     * Tourline Express.
+     */
     TOURLINE_REFERENCE,
 
+    /**
+     * GIO Express Inc.
+     */
     GIO_ECOURIER,
 
+    /**
+     * CN Logistics.
+     */
     CN_LOGISTICS,
 
+    /**
+     * Pandion.
+     */
     PANDION,
 
+    /**
+     * Bpost API.
+     */
     BPOST_API,
 
+    /**
+     * Passport Shipping.
+     */
     PASSPORTSHIPPING,
 
+    /**
+     * Pakajo World.
+     */
     PAKAJO,
 
+    /**
+     * DACHSER.
+     */
     DACHSER,
 
+    /**
+     * Yusen Logistics.
+     */
     YUSEN_SFTP,
 
+    /**
+     * Shypmax.
+     */
     SHYPLITE,
 
+    /**
+     * Xingyunyi Logistics.
+     */
     XYY,
 
+    /**
+     * Metropolitan Warehouse &amp; Delivery.
+     */
     MWD,
 
+    /**
+     * Faxe Cargo.
+     */
     FAXECARGO,
 
+    /**
+     * Groupe Mazet.
+     */
     MAZET,
 
+    /**
+     * First Logistics.
+     */
     FIRST_LOGISTICS_API,
 
+    /**
+     * SPRINT PACK.
+     */
     SPRINT_PACK,
 
+    /**
+     * Hermes Germany.
+     */
     HERMES_DE_FTP,
 
+    /**
+     * Concise.
+     */
     CONCISE,
 
+    /**
+     * Kerry Express TaiWan.
+     */
     KERRY_EXPRESS_TW_API,
 
+    /**
+     * EWE Global Express.
+     */
     EWE,
 
+    /**
+     * Fast Despatch Logistics Limited.
+     */
     FASTDESPATCH,
 
+    /**
+     * AB Custom Group.
+     */
     ABCUSTOM_SFTP,
 
+    /**
+     * Chazki.
+     */
     CHAZKI,
 
+    /**
+     * Shippie.
+     */
     SHIPPIE,
 
+    /**
+     * GEODIS - Distribution &amp; Express.
+     */
     GEODIS_API,
 
+    /**
+     * Naqel Express.
+     */
     NAQEL_EXPRESS,
 
+    /**
+     * Papa.
+     */
     PAPA_WEBHOOK,
 
+    /**
+     * Forward Air.
+     */
     FORWARDAIR,
 
+    /**
+     * Dialogo Logistica.
+     */
     DIALOGO_LOGISTICA_API,
 
+    /**
+     * Lalamove.
+     */
     LALAMOVE_API,
 
+    /**
+     * Tomydoor.
+     */
     TOMYDOOR,
 
+    /**
+     * Kronos Express.
+     */
     KRONOS_WEBHOOK,
 
+    /**
+     * J&amp;T CARGO.
+     */
     JTCARGO,
 
+    /**
+     * T-cat.
+     */
     T_CAT,
 
+    /**
+     * Concise.
+     */
     CONCISE_WEBHOOK,
 
+    /**
+     * Teleport.
+     */
     TELEPORT_WEBHOOK,
 
+    /**
+     * The Custom Companies.
+     */
     CUSTOMCO_API,
 
+    /**
+     * Shopee Xpress.
+     */
     SPX_TH,
 
+    /**
+     * Bollore Logistics.
+     */
     BOLLORE_LOGISTICS,
 
+    /**
+     * ClickLink.
+     */
     CLICKLINK_SFTP,
 
+    /**
+     * M3 Logistics.
+     */
     M3LOGISTICS,
 
+    /**
+     * Vietnam Post.
+     */
     VNPOST_API,
 
+    /**
+     * Axlehire.
+     */
     AXLEHIRE_FTP,
 
+    /**
+     * Shadowfax.
+     */
     SHADOWFAX,
 
+    /**
+     * EVRi.
+     */
     MYHERMES_UK_API,
 
+    /**
+     * Daiichi Freight System Inc.
+     */
     DAIICHI,
 
+    /**
+     * Mensajeros Urbanos.
+     */
     MENSAJEROSURBANOS_API,
 
+    /**
+     * PolarSpeed Inc.
+     */
     POLARSPEED,
 
+    /**
+     * iDexpress Indonesia.
+     */
     IDEXPRESS_ID,
 
+    /**
+     * Payo.
+     */
     PAYO,
 
+    /**
+     * Whistl.
+     */
     WHISTL_SFTP,
 
+    /**
+     * INTEX Paketdienst GmbH.
+     */
     INTEX_DE,
 
+    /**
+     * Trans2u.
+     */
     TRANS2U,
 
+    /**
+     * Product Care Services Limited.
+     */
     PRODUCTCAREGROUP_SFTP,
 
+    /**
+     * Big Smart.
+     */
     BIGSMART,
 
+    /**
+     * Expeditors API Reference.
+     */
     EXPEDITORS_API_REF,
 
+    /**
+     * AIT.
+     */
     AITWORLDWIDE_API,
 
+    /**
+     * World Courier.
+     */
     WORLDCOURIER,
 
+    /**
+     * Quiqup.
+     */
     QUIQUP,
 
+    /**
+     * Agediss.
+     */
     AGEDISS_SFTP,
 
+    /**
+     * Andreani.
+     */
     ANDREANI_API,
 
+    /**
+     * CRL Express.
+     */
     CRLEXPRESS,
 
+    /**
+     * SMARTCAT.
+     */
     SMARTCAT,
 
+    /**
+     * Crossflight Limited.
+     */
     CROSSFLIGHT,
 
+    /**
+     * Pro Carrier.
+     */
     PROCARRIER,
 
+    /**
+     * DHL (Reference number).
+     */
     DHL_REFERENCE_API,
 
+    /**
+     * Seino.
+     */
     SEINO_API,
 
+    /**
+     * WSP Express.
+     */
     WSPEXPRESS,
 
+    /**
+     * Kronos Express.
+     */
     KRONOS,
 
+    /**
+     * Total Express.
+     */
     TOTAL_EXPRESS_API,
 
+    /**
+     * PARCLL.
+     */
     PARCLL,
 
+    /**
+     * Xpedigo.
+     */
     XPEDIGO,
 
+    /**
+     * StarTrack.
+     */
     STAR_TRACK_WEBHOOK,
 
+    /**
+     * Georgian Post.
+     */
     GPOST,
 
+    /**
+     * UCS.
+     */
     UCS,
 
+    /**
+     * DMF.
+     */
     DMFGROUP,
 
+    /**
+     * Coordinadora.
+     */
     COORDINADORA_API,
 
+    /**
+     * Marken.
+     */
     MARKEN,
 
+    /**
+     * NTL logistics.
+     */
     NTL,
 
+    /**
+     * Red je Pakketje.
+     */
     REDJEPAKKETJE,
 
+    /**
+     * Allied Express (FTP).
+     */
     ALLIED_EXPRESS_FTP,
 
+    /**
+     * Mondial Relay Spain(Punto Pack).
+     */
     MONDIALRELAY_ES,
 
+    /**
+     * Naeko Logistics.
+     */
     NAEKO_FTP,
 
+    /**
+     * Mhi.
+     */
     MHI,
 
+    /**
+     * Shippify, Inc.
+     */
     SHIPPIFY,
 
+    /**
+     * Malca Amit.
+     */
     MALCA_AMIT_API,
 
+    /**
+     * J&amp;T Express Singapore.
+     */
     JTEXPRESS_SG_API,
 
+    /**
+     * DACHSER.
+     */
     DACHSER_WEB,
 
+    /**
+     * Flight Logistics Group.
+     */
     FLIGHTLG,
 
+    /**
+     * Cago.
+     */
     CAGO,
 
+    /**
+     * ComOne Express.
+     */
     COM1EXPRESS,
 
+    /**
+     * Tonami.
+     */
     TONAMI_FTP,
 
+    /**
+     * PACKFLEET.
+     */
     PACKFLEET,
 
+    /**
+     * Purolator International.
+     */
     PUROLATOR_INTERNATIONAL,
 
+    /**
+     * Wineshipping.
+     */
     WINESHIPPING_WEBHOOK,
 
+    /**
+     * DHL Spain Domestic.
+     */
     DHL_ES_SFTP,
 
+    /**
+     * 網家速配股份有限公司.
+     */
     PCHOME_API,
 
+    /**
+     * Czech Post.
+     */
     CESKAPOSTA_API,
 
+    /**
+     * Go Rush.
+     */
     GORUSH,
 
+    /**
+     * HomeRunner.
+     */
     HOMERUNNER,
 
+    /**
+     * Amazon order.
+     */
     AMAZON_ORDER,
 
+    /**
+     * Estes Forwarding Worldwide.
+     */
     EFWNOW_API,
 
+    /**
+     * CBL Logistica (API).
+     */
     CBL_LOGISTICA_API,
 
+    /**
+     * NimbusPost.
+     */
     NIMBUSPOST,
 
+    /**
+     * Logwin Logistics.
+     */
     LOGWIN_LOGISTICS,
 
+    /**
+     * Sequoialog.
+     */
     NOWLOG_API,
 
+    /**
+     * DPD Netherlands.
+     */
     DPD_NL,
 
+    /**
+     * Dependable Supply Chain Services.
+     */
     GODEPENDABLE,
 
+    /**
+     * Top Ideal Express.
+     */
     ESDEX,
 
+    /**
+     * Kiitäjät.
+     */
     LOGISYSTEMS_SFTP,
 
+    /**
+     * Expeditors.
+     */
     EXPEDITORS,
 
+    /**
+     * Snt Global Etrax.
+     */
     SNTGLOBAL_API,
 
+    /**
+     * ShipX.
+     */
     SHIPX,
 
+    /**
+     * Quickstat Courier LLC.
+     */
     QINTL_API,
 
+    /**
+     * Packs.
+     */
     PACKS,
 
+    /**
+     * PostNL International.
+     */
     POSTNL_INTERNATIONAL,
 
+    /**
+     * Amazon.
+     */
     AMAZON_EMAIL_PUSH,
 
+    /**
+     * DHL.
+     */
     DHL_API,
 
+    /**
+     * Shopee Express.
+     */
     SPX,
 
+    /**
+     * AxleHire.
+     */
     AXLEHIRE,
 
+    /**
+     * ICS COURIER.
+     */
     ICSCOURIER,
 
+    /**
+     * Dialogo Logistica.
+     */
     DIALOGO_LOGISTICA,
 
+    /**
+     * ShunBang Express.
+     */
     SHUNBANG_EXPRESS,
 
+    /**
+     * TCS.
+     */
     TCS_API,
 
+    /**
+     * SF Express China.
+     */
     SF_EXPRESS_CN,
 
+    /**
+     * Packeta.
+     */
     PACKETA,
 
+    /**
+     * Teliway SIC Express.
+     */
     SIC_TELIWAY,
 
+    /**
+     * Mondial Relay France.
+     */
     MONDIALRELAY_FR,
 
+    /**
+     * InTime.
+     */
     INTIME_FTP,
 
+    /**
+     * 京东物流.
+     */
     JD_EXPRESS,
 
+    /**
+     * Fastbox.
+     */
     FASTBOX,
 
+    /**
+     * Patheon Logistics.
+     */
     PATHEON,
 
+    /**
+     * India Post Domestic.
+     */
     INDIA_POST,
 
+    /**
+     * Tipsa Reference.
+     */
     TIPSA_REF,
 
+    /**
+     * Eco Freight.
+     */
     ECOFREIGHT,
 
+    /**
+     * VOX SOLUCION EMPRESARIAL SRL.
+     */
     VOX,
 
+    /**
+     * Direct Freight Express.
+     */
     DIRECTFREIGHT_AU_REF,
 
+    /**
+     * Best Transport.
+     */
     BESTTRANSPORT_SFTP,
 
+    /**
+     * Australia Post.
+     */
     AUSTRALIA_POST_API,
 
+    /**
+     * FragilePAK.
+     */
     FRAGILEPAK_SFTP,
 
+    /**
+     * FlipXpress.
+     */
     FLIPXP,
 
+    /**
+     * Value Logistics.
+     */
     VALUE_WEBHOOK,
 
+    /**
+     * Daeshin.
+     */
     DAESHIN,
 
+    /**
+     * Sherpa.
+     */
     SHERPA,
 
+    /**
+     * Metropolitan Warehouse &amp; Delivery.
+     */
     MWD_API,
 
+    /**
+     * SmartKargo.
+     */
     SMARTKARGO,
 
+    /**
+     * DNJ Express.
+     */
     DNJ_EXPRESS,
 
+    /**
+     * Go People.
+     */
     GOPEOPLE,
 
+    /**
+     * mySendle.
+     */
     MYSENDLE_API,
 
+    /**
+     * Aramex.
+     */
     ARAMEX_API,
 
+    /**
+     * Pidge.
+     */
     PIDGE,
 
+    /**
+     * TP Logistic.
+     */
     THAIPARCELS,
 
+    /**
+     * Panther Reference.
+     */
     PANTHER_REFERENCE_API,
 
+    /**
+     * Posta Plus.
+     */
     POSTAPLUS1,
 
+    /**
+     * BUFFALO.
+     */
     BUFFALO,
 
+    /**
+     * U-ENVIOS.
+     */
     U_ENVIOS,
 
+    /**
+     * Elite Express.
+     */
     ELITE_CO,
 
-    BARQEXP,
-
+    /**
+     * Roche Internal Courier.
+     */
     ROCHE_INTERNAL_SFTP,
 
+    /**
+     * DB Schenker Iceland.
+     */
     DBSCHENKER_ICELAND,
 
+    /**
+     * TNT France Reference.
+     */
     TNT_FR_REFERENCE,
 
+    /**
+     * Newgistics API.
+     */
     NEWGISTICSAPI,
 
+    /**
+     * Glovo.
+     */
     GLOVO,
 
+    /**
+     * G.I.G.
+     */
     GWLOGIS_API,
 
+    /**
+     * Spreetail.
+     */
     SPREETAIL_API,
 
+    /**
+     * Moova.
+     */
     MOOVA,
 
+    /**
+     * Plycon Transportation Group.
+     */
     PLYCONGROUP,
 
+    /**
+     * USPS Informed Visibility - Webhook.
+     */
     USPS_WEBHOOK,
 
+    /**
+     * maergo.
+     */
     REIMAGINEDELIVERY,
 
+    /**
+     * Eurodifarm.
+     */
     EDF_FTP,
 
+    /**
+     * DAO365.
+     */
     DAO365,
 
+    /**
+     * BioCair.
+     */
     BIOCAIR_FTP,
 
+    /**
+     * Ransa.
+     */
     RANSA_WEBHOOK,
 
+    /**
+     * SHIPXPRESS.
+     */
     SHIPXPRES,
 
+    /**
+     * Courant Plus.
+     */
     COURANT_PLUS_API,
 
+    /**
+     * SHIPA.
+     */
     SHIPA,
 
+    /**
+     * Home Logistics.
+     */
     HOMELOGISTICS,
 
+    /**
+     * DX.
+     */
     DX,
 
+    /**
+     * Poste Italiane Paccocelere.
+     */
     POSTE_ITALIANE_PACCOCELERE,
 
+    /**
+     * Toll Group.
+     */
     TOLL_WEBHOOK,
 
+    /**
+     * LCT do Brasil.
+     */
     LCTBR_API,
 
+    /**
+     * DX Freight.
+     */
     DX_FREIGHT,
 
+    /**
+     * DHL Express.
+     */
     DHL_SFTP,
 
+    /**
+     * Shiprocket X.
+     */
     SHIPROCKET,
 
+    /**
+     * Uber.
+     */
     UBER_WEBHOOK,
 
+    /**
+     * Stat Overnight.
+     */
     STATOVERNIGHT,
 
+    /**
+     * Burd Delivery.
+     */
     BURD,
 
+    /**
+     * Fastship Express.
+     */
     FASTSHIP,
 
+    /**
+     * IB Venture.
+     */
     IBVENTURE_WEBHOOK,
 
+    /**
+     * Gati-KWE.
+     */
     GATI_KWE_API,
 
+    /**
+     * CryoPDP.
+     */
     CRYOPDP_FTP,
 
+    /**
+     * HUBBED.
+     */
     HUBBED,
 
+    /**
+     * Tipsa API.
+     */
     TIPSA_API,
 
+    /**
+     * Aras Cargo.
+     */
     ARASKARGO,
 
+    /**
+     * Thijs Logistiek.
+     */
     THIJS_NL,
 
+    /**
+     * ATS Healthcare.
+     */
     ATSHEALTHCARE_REFERENCE,
 
+    /**
+     * 99minutos.
+     */
     ENUM_99MINUTOS,
 
+    /**
+     * Hellenic (Greece) Post.
+     */
     HELLENIC_POST,
 
+    /**
+     * HSM Global.
+     */
     HSM_GLOBAL,
 
+    /**
+     * MNX.
+     */
     MNX,
 
+    /**
+     * N&amp;M Transfer Co., Inc..
+     */
     NMTRANSFER,
 
+    /**
+     * Logysto.
+     */
     LOGYSTO,
 
+    /**
+     * India Post International.
+     */
     INDIA_POST_INT,
 
+    /**
+     * Swiship IN.
+     */
     AMAZON_FBA_SWISHIP_IN,
 
+    /**
+     * SRT Transport.
+     */
     SRT_TRANSPORT,
 
+    /**
+     * Bomi Group.
+     */
     BOMI,
 
+    /**
+     * Deliverr.
+     */
     DELIVERR_SFTP,
 
+    /**
+     * HSDEXPRESS.
+     */
     HSDEXPRESS,
 
+    /**
+     * SimpleTire.
+     */
     SIMPLETIRE_WEBHOOK,
 
+    /**
+     * Hunter Express.
+     */
     HUNTER_EXPRESS_SFTP,
 
+    /**
+     * UPS.
+     */
     UPS_API,
 
+    /**
+     * WOO YOUNG LOGISTICS CO.,LTD..
+     */
     WOOYOUNG_LOGISTICS_SFTP,
 
+    /**
+     * PHSE.
+     */
     PHSE_API,
 
+    /**
+     * Wish.
+     */
     WISH_EMAIL_PUSH,
 
+    /**
+     * Northline.
+     */
     NORTHLINE,
 
+    /**
+     * Med Africa Logistics.
+     */
     MEDAFRICA,
 
+    /**
+     * DPD Austria.
+     */
     DPD_AT_SFTP,
 
+    /**
+     * Anteraja.
+     */
     ANTERAJA,
 
+    /**
+     * DHL Global Forwarding API.
+     */
     DHL_GLOBAL_FORWARDING_API,
 
+    /**
+     * LBC EXPRESS INC..
+     */
     LBCEXPRESS_API,
 
+    /**
+     * Sims Global.
+     */
     SIMSGLOBAL,
 
+    /**
+     * CDL Last Mile.
+     */
     CDLDELIVERS,
 
+    /**
+     * TYP.
+     */
     TYP,
 
+    /**
+     * Testing Courier.
+     */
     TESTING_COURIER_WEBHOOK,
 
+    /**
+     * Pandago.
+     */
     PANDAGO_API,
 
+    /**
+     * Royal Mail.
+     */
     ROYAL_MAIL_FTP,
 
+    /**
+     * Thunder Express Australia.
+     */
     THUNDEREXPRESS,
 
+    /**
+     * Secretlab.
+     */
     SECRETLAB_WEBHOOK,
 
+    /**
+     * Setel Express.
+     */
     SETEL,
 
+    /**
+     * JD Worldwide.
+     */
     JD_WORLDWIDE,
 
+    /**
+     * DPD Russia.
+     */
     DPD_RU_API,
 
+    /**
+     * Argents Express Group.
+     */
     ARGENTS_WEBHOOK,
 
+    /**
+     * Post ONE.
+     */
     POSTONE,
 
+    /**
+     * Tusk Logistics.
+     */
     TUSKLOGISTICS,
 
+    /**
+     * Rhenus Logistics UK.
+     */
     RHENUS_UK_API,
 
+    /**
+     * Yamato Singapore.
+     */
     TAQBIN_SG_API,
 
+    /**
+     * Inntralog GmbH.
+     */
     INNTRALOG_SFTP,
 
+    /**
+     * Day &amp; Ross.
+     */
     DAYROSS,
 
+    /**
+     * Correos Express (API).
+     */
     CORREOSEXPRESS_API,
 
+    /**
+     * International Seur API.
+     */
     INTERNATIONAL_SEUR_API,
 
+    /**
+     * Yodel API.
+     */
     YODEL_API,
 
+    /**
+     * Hero Express.
+     */
     HEROEXPRESS,
 
+    /**
+     * DHL supply chain India.
+     */
     DHL_SUPPLYCHAIN_IN,
 
+    /**
+     * Urgent Cargus.
+     */
     URGENT_CARGUS,
 
+    /**
+     * FRONTdoor Collective.
+     */
     FRONTDOORCORP,
 
+    /**
+     * J&amp;T Express Philippines.
+     */
     JTEXPRESS_PH,
 
+    /**
+     * Parcelstars.
+     */
     PARCELSTARS_WEBHOOK,
 
+    /**
+     * DPD Slovakia.
+     */
     DPD_SK_SFTP,
 
+    /**
+     * Movianto.
+     */
     MOVIANTO,
 
+    /**
+     * Ozeparts Shipping.
+     */
     OZEPARTS_SHIPPING,
 
+    /**
+     * KargomKolay (CargoMini).
+     */
     KARGOMKOLAY,
 
+    /**
+     * Trunkrs.
+     */
     TRUNKRS,
 
+    /**
+     * Omni Returns.
+     */
     OMNIRPS_WEBHOOK,
 
+    /**
+     * Chile Express.
+     */
     CHILEXPRESS,
 
+    /**
+     * Testing Courier.
+     */
     TESTING_COURIER,
 
+    /**
+     * JNE (API).
+     */
     JNE_API,
 
+    /**
+     * BJS Distribution, Storage &amp; Couriers - FTP.
+     */
     BJSHOMEDELIVERY_FTP,
 
+    /**
+     * D Express.
+     */
     DEXPRESS_WEBHOOK,
 
+    /**
+     * USPS API.
+     */
     USPS_API,
 
+    /**
+     * TransVirtual.
+     */
     TRANSVIRTUAL,
 
+    /**
+     * solistica.
+     */
     SOLISTICA_API,
 
+    /**
+     * Chienventure.
+     */
     CHIENVENTURE_WEBHOOK,
 
+    /**
+     * DPD UK.
+     */
     DPD_UK_SFTP,
 
+    /**
+     * InPost.
+     */
     INPOST_UK,
 
+    /**
+     * Javit.
+     */
     JAVIT,
 
+    /**
+     * ZTO Express China.
+     */
     ZTO_DOMESTIC,
 
+    /**
+     * DHL Global Forwarding Guatemala.
+     */
     DHL_GT_API,
 
+    /**
+     * CEVA Package.
+     */
     CEVA_TRACKING,
 
+    /**
+     * Komon Express.
+     */
     KOMON_EXPRESS,
 
+    /**
+     * East West Courier Pte Ltd.
+     */
     EASTWESTCOURIER_FTP,
 
+    /**
+     * Danniao.
+     */
     DANNIAO,
 
+    /**
+     * Spectran.
+     */
     SPECTRAN,
 
+    /**
+     * Deliver-iT.
+     */
     DELIVER_IT,
 
+    /**
+     * Relais Colis.
+     */
     RELAISCOLIS,
 
+    /**
+     * GLS Spain.
+     */
     GLS_SPAIN_API,
 
+    /**
+     * PostPlus.
+     */
     POSTPLUS,
 
+    /**
+     * Airterra.
+     */
     AIRTERRA,
 
+    /**
+     * GIO Express Ecourier.
+     */
     GIO_ECOURIER_API,
 
+    /**
+     * DPD Switzerland.
+     */
     DPD_CH_SFTP,
 
+    /**
+     * FedEx®.
+     */
     FEDEX_API,
 
+    /**
+     * INTERSMARTTRANS &amp; SOLUTIONS SL.
+     */
     INTERSMARTTRANS,
 
+    /**
+     * Hermes UK.
+     */
     HERMES_UK_SFTP,
 
+    /**
+     * Exelot Ltd..
+     */
     EXELOT_FTP,
 
+    /**
+     * DHL GLOBAL FORWARDING PANAMÁ.
+     */
     DHL_PA_API,
 
+    /**
+     * Vir Transport.
+     */
     VIRTRANSPORT_SFTP,
 
+    /**
+     * Worldnet Logistics.
+     */
     WORLDNET,
 
+    /**
+     * Instabox.
+     */
     INSTABOX_WEBHOOK,
 
+    /**
+     * Keuhne + Nagel Global.
+     */
     KNG,
 
+    /**
+     * Flash Express.
+     */
     FLASHEXPRESS_WEBHOOK,
 
+    /**
+     * Magyar Posta.
+     */
     MAGYAR_POSTA_API,
 
+    /**
+     * WeShip.
+     */
     WESHIP_API,
 
+    /**
+     * Ohi.
+     */
     OHI_WEBHOOK,
 
+    /**
+     * MUDITA.
+     */
     MUDITA,
 
+    /**
+     * Bluedart.
+     */
     BLUEDART_API,
 
+    /**
+     * T-cat.
+     */
     T_CAT_API,
 
+    /**
+     * ADS Express.
+     */
     ADS,
 
+    /**
+     * HR Parcel.
+     */
     HERMES_IT,
 
+    /**
+     * FitzMark.
+     */
     FITZMARK_API,
 
+    /**
+     * Posti API.
+     */
     POSTI_API,
 
+    /**
+     * SMSA Express.
+     */
     SMSA_EXPRESS_WEBHOOK,
 
+    /**
+     * Tamer Logistics.
+     */
     TAMERGROUP_WEBHOOK,
 
+    /**
+     * Livrapide.
+     */
     LIVRAPIDE,
 
+    /**
+     * Nippon Express.
+     */
     NIPPON_EXPRESS,
 
+    /**
+     * Better Trucks.
+     */
     BETTERTRUCKS,
 
+    /**
+     * FAN COURIER EXPRESS.
+     */
     FAN,
 
+    /**
+     * USPS Flats (Pitney Bowes).
+     */
     PB_USPSFLATS_FTP,
 
+    /**
+     * Parcel Right.
+     */
     PARCELRIGHT,
 
+    /**
+     * iThink Logistics.
+     */
     ITHINKLOGISTICS,
 
+    /**
+     * Kerry Logistics.
+     */
     KERRY_EXPRESS_TH_WEBHOOK,
 
+    /**
+     * eCoutier.
+     */
     ECOUTIER,
 
+    /**
+     * SENHONG INTERNATIONAL LOGISTICS.
+     */
     SHOWL,
 
+    /**
+     * BRT Bartolini API.
+     */
     BRT_IT_API,
 
+    /**
+     * Rixon Logistics.
+     */
     RIXONHK_API,
 
+    /**
+     * DB Schenker.
+     */
     DBSCHENKER_API,
 
+    /**
+     * Ilyang logistics.
+     */
     ILYANGLOGIS,
 
+    /**
+     * Mail Boxes Etc..
+     */
     MAIL_BOX_ETC,
 
+    /**
+     * WeShip.
+     */
     WESHIP,
 
+    /**
+     * DHL eCommerce Solutions.
+     */
     DHL_GLOBAL_MAIL_API,
 
+    /**
+     * Activos24.
+     */
     ACTIVOS24_API,
 
+    /**
+     * ATS Healthcare.
+     */
     ATSHEALTHCARE,
 
+    /**
+     * Luwjistik.
+     */
     LUWJISTIK,
 
+    /**
+     * Gebrüder Weiss.
+     */
     GW_WORLD,
 
+    /**
+     * fairsenden.
+     */
     FAIRSENDEN_API,
 
+    /**
+     * SerVIP.
+     */
     SERVIP_WEBHOOK,
 
+    /**
+     * Swiship.
+     */
     SWISHIP,
 
+    /**
+     * Transport Ambientales.
+     */
     TANET,
 
+    /**
+     * SHENZHEN HOTSIN CARGO INT'L FORWARDING CO.,LTD.
+     */
     HOTSIN_CARGO,
 
+    /**
+     * Direx.
+     */
     DIREX,
 
+    /**
+     * HuanTong.
+     */
     HUANTONG,
 
+    /**
+     * iMile.
+     */
     IMILE_API,
 
-    BDMNET,
-
+    /**
+     * Au Express.
+     */
     AUEXPRESS,
 
+    /**
+     * NYT SUPPLY CHAIN LOGISTICS Co.,LTD.
+     */
     NYTLOGISTICS,
 
+    /**
+     * DSV Futurewave.
+     */
     DSV_REFERENCE,
 
+    /**
+     * Novofarma.
+     */
     NOVOFARMA_WEBHOOK,
 
+    /**
+     * AIT.
+     */
     AITWORLDWIDE_SFTP,
 
+    /**
+     * Olive.
+     */
     SHOPOLIVE,
 
+    /**
+     * Fast &amp; Furious.
+     */
     FNF_ZA,
 
+    /**
+     * DHL eCommerce Greater China.
+     */
     DHL_ECOMMERCE_GC,
 
+    /**
+     * Fetchr.
+     */
     FETCHR,
 
+    /**
+     * Starlinks Global.
+     */
     STARLINKS_API,
 
+    /**
+     * YYEXPRESS.
+     */
     YYEXPRESS,
 
+    /**
+     * Servientrega.
+     */
     SERVIENTREGA,
 
+    /**
+     * HanJin.
+     */
     HANJIN,
 
+    /**
+     * Spanish Seur.
+     */
     SPANISH_SEUR_FTP,
 
+    /**
+     * DX (B2B).
+     */
     DX_B2B_CONNUM,
 
+    /**
+     * Helthjem.
+     */
     HELTHJEM_API,
 
+    /**
+     * Inexpost.
+     */
     INEXPOST,
 
+    /**
+     * A2B Express Logistics.
+     */
     A2B_BA,
 
+    /**
+     * Rhenus Logistics.
+     */
     RHENUS_GROUP,
 
+    /**
+     * Sber Logistics.
+     */
     SBERLOGISTICS_RU,
 
+    /**
+     * Malca-Amit.
+     */
     MALCA_AMIT,
 
+    /**
+     * Professional Parcel Logistics.
+     */
     PPL,
 
+    /**
+     * OSM Worldwide.
+     */
     OSM_WORLDWIDE_SFTP,
 
+    /**
+     * ACI Logistix.
+     */
     ACILOGISTIX,
 
+    /**
+     * Optima Courier.
+     */
     OPTIMACOURIER,
 
+    /**
+     * Nova Poshta API.
+     */
     NOVA_POSHTA_API,
 
+    /**
+     * Loggi.
+     */
     LOGGI,
 
+    /**
+     * YiFan Express.
+     */
     YIFAN,
 
+    /**
+     * My DynaLogic.
+     */
     MYDYNALOGIC,
 
+    /**
+     * Morning Global.
+     */
     MORNINGLOBAL,
 
+    /**
+     * Concise.
+     */
     CONCISE_API,
 
+    /**
+     * Falcon Express.
+     */
     FXTRAN,
 
+    /**
+     * Deliver Your Parcel.
+     */
     DELIVERYOURPARCEL_ZA,
 
+    /**
+     * uParcel.
+     */
     UPARCEL,
 
+    /**
+     * Mobi Logistica.
+     */
     MOBI_BR,
 
+    /**
+     * T&amp;W Delivery.
+     */
     LOGINEXT_WEBHOOK,
 
+    /**
+     * EMS.
+     */
     EMS,
 
+    /**
+     * Speedy.
+     */
     SPEEDY,
 
+    /**
+     * Zoom.
+     */
     ZOOM_RED,
 
+    /**
+     * Navlungo.
+     */
     NAVLUNGO,
 
+    /**
+     * Castle Parcels.
+     */
     CASTLEPARCELS,
 
+    /**
+     * Weee.
+     */
     WEEE,
 
+    /**
+     * Packaly.
+     */
     PACKALY,
 
+    /**
+     * Yunhuipost.
+     */
     YUNHUIPOST,
 
+    /**
+     * YouParcel.
+     */
     YOUPARCEL,
 
+    /**
+     * Leman.
+     */
     LEMAN,
 
+    /**
+     * Moovin.
+     */
     MOOVIN,
 
+    /**
+     * Urb-it.
+     */
     URB_IT,
 
+    /**
+     * Multientrega.
+     */
     MULTIENTREGAPANAMA,
 
+    /**
+     * Jusdasr.
+     */
     JUSDASR,
 
+    /**
+     * Discount Post.
+     */
     DISCOUNTPOST,
 
+    /**
+     * Rhenus Logistics UK.
+     */
     RHENUS_UK,
 
+    /**
+     * Swiship JP.
+     */
     SWISHIP_JP,
 
+    /**
+     * GLS USA.
+     */
     GLS_US,
 
+    /**
+     * Southwestern Motor Transport. Inc.
+     */
     SMTL,
 
+    /**
+     * Discount Post Emega.
+     */
     EMEGA,
 
+    /**
+     * EXPRESSONE Slovenia.
+     */
     EXPRESSONE_SV,
 
+    /**
+     * hepsiJET.
+     */
     HEPSIJET,
 
+    /**
+     * Welivery.
+     */
     WELIVERY,
 
+    /**
+     * Bringer Parcel Services.
+     */
     BRINGER,
 
+    /**
+     * EasyRoutes.
+     */
     EASYROUTES,
 
+    /**
+     * MRW.
+     */
     MRW,
 
+    /**
+     * RPM.
+     */
     RPM,
 
+    /**
+     * DPD Portugal.
+     */
     DPD_PRT,
 
+    /**
+     * GLS Romania.
+     */
     GLS_ROMANIA,
 
+    /**
+     * LM Parcel.
+     */
     LMPARCEL,
 
+    /**
+     * GTA GSM.
+     */
     GTAGSM,
 
+    /**
+     * DOMINO.
+     */
     DOMINO,
 
+    /**
+     * eShipper.
+     */
     ESHIPPER,
 
+    /**
+     * Transpak Inc..
+     */
     TRANSPAK,
 
+    /**
+     * Xindus.
+     */
     XINDUS,
 
+    /**
+     * Aoyue.
+     */
     AOYUE,
 
+    /**
+     * Easyparcel.
+     */
     EASYPARCEL,
 
+    /**
+     * EXPRESSONE.
+     */
     EXPRESSONE,
 
+    /**
+     * Sendeo Kargo.
+     */
     SENDEO_KARGO,
 
+    /**
+     * Speedaf Express.
+     */
     SPEEDAF,
 
+    /**
+     * eTower.
+     */
     ETOWER,
 
+    /**
+     * GC Express.
+     */
     GCX,
 
+    /**
+     * Ninjavan Vietnam.
+     */
     NINJAVAN_VN,
 
+    /**
+     * Allegro.
+     */
     ALLEGRO,
 
+    /**
+     * Jumppoint.
+     */
     JUMPPOINT,
 
+    /**
+     * ShipGlobal.
+     */
     SHIPGLOBAL_US,
 
+    /**
+     * Kinisi Transport Pty Ltd.
+     */
     KINISI,
 
+    /**
+     * Oakh Harbour Freight Lines.
+     */
     OAKH,
 
+    /**
+     * American West.
+     */
     AWEST,
 
+    /**
+     * Barsan Global Lojistik.
+     */
     BARSAN,
 
+    /**
+     * Energo Logistic.
+     */
     ENERGOLOGISTIC,
 
+    /**
+     * Madrooex.
+     */
     MADROOEX,
 
+    /**
+     * GoBolt.
+     */
     GOBOLT,
 
+    /**
+     * Swiss Universal Express.
+     */
     SWISS_UNIVERSAL_EXPRESS,
 
+    /**
+     * IOR Direct Solutions.
+     */
     IORDIRECT,
 
+    /**
+     * xmszm.
+     */
     XMSZM,
 
+    /**
+     * GLS Hungary.
+     */
     GLS_HUN,
 
+    /**
+     * Sendy Express.
+     */
     SENDY,
 
+    /**
+     * Brauns Express.
+     */
     BRAUNSEXPRESS,
 
+    /**
+     * Grand Slam Express.
+     */
     GRANDSLAMEXPRESS,
 
+    /**
+     * XGS.
+     */
     XGS,
 
+    /**
+     * OTS.
+     */
     OTSCHILE,
 
+    /**
+     * Pack-Up.
+     */
     PACK_UP,
 
+    /**
+     * Parcelstars.
+     */
     PARCELSTARS,
 
+    /**
+     * Team Express Service LLC.
+     */
     TEAMEXPRESSLLC,
 
+    /**
+     * Asyad Express.
+     */
     ASYADEXPRESS,
 
+    /**
+     * TDN.
+     */
     TDN,
 
+    /**
+     * Early Bird.
+     */
     EARLYBIRD,
 
+    /**
+     * Cacesa.
+     */
     CACESA,
 
+    /**
+     * Parceljet.
+     */
     PARCELJET,
 
+    /**
+     * MNG Kargo.
+     */
     MNG_KARGO,
 
+    /**
+     * Super Pac Line.
+     */
     SUPERPACKLINE,
 
+    /**
+     * SpeedX.
+     */
     SPEEDX,
 
+    /**
+     * Vesyl.
+     */
     VESYL,
 
+    /**
+     * Sky King.
+     */
     SKYKING,
 
+    /**
+     * DIR.
+     */
     DIRMENSAJERIA,
 
+    /**
+     * Netlogix.
+     */
     NETLOGIXGROUP,
 
+    /**
+     * ZYEX.
+     */
     ZYOU,
 
+    /**
+     * Jawar.
+     */
     JAWAR,
 
+    /**
+     * Associate Global Systems.
+     */
     AGSYSTEMS,
 
+    /**
+     * GPS.
+     */
     GPS,
 
+    /**
+     * PTT Kargo.
+     */
     PTT_KARGO,
 
+    /**
+     * Maergo.
+     */
     MAERGO,
 
+    /**
+     * AICS.
+     */
     ARIHANTCOURIER,
 
+    /**
+     * VicTas Freight Express.
+     */
     VTFE,
 
+    /**
+     * Yunant.
+     */
     YUNANT,
 
+    /**
+     * Urbify.
+     */
     URBIFY,
 
+    /**
+     * pack-man.
+     */
     PACK_MAN,
 
+    /**
+     * LIEFERGRUN.
+     */
     LIEFERGRUN,
 
+    /**
+     * Obibox.
+     */
     OBIBOX,
 
+    /**
+     * Paikeda.
+     */
     PAIKEDA,
 
+    /**
+     * Scotty.
+     */
     SCOTTY,
 
+    /**
+     * Intelcom.
+     */
     INTELCOM_CA,
 
+    /**
+     * swe.
+     */
     SWE,
 
+    /**
+     * Asendia Global.
+     */
     ASENDIA,
 
+    /**
+     * DPD Austria.
+     */
     DPD_AT,
 
+    /**
+     * Relay.
+     */
     RELAY,
 
+    /**
+     * ATA.
+     */
     ATA,
 
+    /**
+     * SkyExpress Internationals.
+     */
     SKYEXPRESS_INTERNATIONAL,
 
+    /**
+     * Surat Kargo.
+     */
     SURAT_KARGO,
 
+    /**
+     * SG LINK.
+     */
     SGLINK,
 
+    /**
+     * FleetOptics.
+     */
     FLEETOPTICSINC,
 
+    /**
+     * shopline.
+     */
     SHOPLINE,
 
+    /**
+     * PIGGYSHIP.
+     */
     PIGGYSHIP,
 
+    /**
+     * LogoiX.
+     */
     LOGOIX,
 
+    /**
+     * Kolay Gelsin.
+     */
     KOLAY_GELSIN,
 
+    /**
+     * Associated Couriers.
+     */
     ASSOCIATED_COURIERS,
 
+    /**
+     * ups-checker.
+     */
     UPS_CHECKER,
 
+    /**
+     * Wineshipping.
+     */
     WINESHIPPING,
 
+    /**
+     * Spedisci online.
+     */
     SPEDISCI,
 
     /**
@@ -2920,7 +7032,6 @@ public enum ShipmentCarrier {
         FIEGE_NL.value = "FIEGE_NL";
         KWE_GLOBAL.value = "KWE_GLOBAL";
         CTC_EXPRESS.value = "CTC_EXPRESS";
-        LAO_POST.value = "LAO_POST";
         AMAZON.value = "AMAZON";
         MORE_LINK.value = "MORE_LINK";
         JX.value = "JX";
@@ -2948,7 +7059,6 @@ public enum ShipmentCarrier {
         CARIBOU.value = "CARIBOU";
         LOCUS_WEBHOOK.value = "LOCUS_WEBHOOK";
         DSV.value = "DSV";
-        CN_GOFLY.value = "CN_GOFLY";
         P2P_TRC.value = "P2P_TRC";
         DIRECTPARCELS.value = "DIRECTPARCELS";
         NOVA_POSHTA_INT.value = "NOVA_POSHTA_INT";
@@ -3021,7 +7131,6 @@ public enum ShipmentCarrier {
         JS_EXPRESS.value = "JS_EXPRESS";
         PADTF.value = "PADTF";
         UPS_MAIL_INNOVATIONS.value = "UPS_MAIL_INNOVATIONS";
-        EZSHIP.value = "EZSHIP";
         SYPOST.value = "SYPOST";
         AMAZON_SHIP_MCF.value = "AMAZON_SHIP_MCF";
         YUSEN.value = "YUSEN";
@@ -3244,7 +7353,6 @@ public enum ShipmentCarrier {
         PITTOHIO.value = "PITTOHIO";
         CORREOS_EXPRESS.value = "CORREOS_EXPRESS";
         RL_US.value = "RL_US";
-        MARA_XPRESS.value = "MARA_XPRESS";
         DESTINY.value = "DESTINY";
         UK_YODEL.value = "UK_YODEL";
         COMET_TECH.value = "COMET_TECH";
@@ -3302,7 +7410,6 @@ public enum ShipmentCarrier {
         SAU_SAUDI_POST.value = "SAU_SAUDI_POST";
         ABXEXPRESS_MY.value = "ABXEXPRESS_MY";
         HUAHAN_EXPRESS.value = "HUAHAN_EXPRESS";
-        IND_JAYONEXPRESS.value = "IND_JAYONEXPRESS";
         ZES_EXPRESS.value = "ZES_EXPRESS";
         ZEPTO_EXPRESS.value = "ZEPTO_EXPRESS";
         SKYNET_ZA.value = "SKYNET_ZA";
@@ -3371,7 +7478,6 @@ public enum ShipmentCarrier {
         XDP_UK_REFERENCE.value = "XDP_UK_REFERENCE";
         NINJAVAN_MY.value = "NINJAVAN_MY";
         ADICIONAL.value = "ADICIONAL";
-        NINJAVAN_ID.value = "NINJAVAN_ID";
         ROADBULL.value = "ROADBULL";
         YAKIT.value = "YAKIT";
         MAILAMERICAS.value = "MAILAMERICAS";
@@ -3859,7 +7965,6 @@ public enum ShipmentCarrier {
         BUFFALO.value = "BUFFALO";
         U_ENVIOS.value = "U_ENVIOS";
         ELITE_CO.value = "ELITE_CO";
-        BARQEXP.value = "BARQEXP";
         ROCHE_INTERNAL_SFTP.value = "ROCHE_INTERNAL_SFTP";
         DBSCHENKER_ICELAND.value = "DBSCHENKER_ICELAND";
         TNT_FR_REFERENCE.value = "TNT_FR_REFERENCE";
@@ -4032,7 +8137,6 @@ public enum ShipmentCarrier {
         DIREX.value = "DIREX";
         HUANTONG.value = "HUANTONG";
         IMILE_API.value = "IMILE_API";
-        BDMNET.value = "BDMNET";
         AUEXPRESS.value = "AUEXPRESS";
         NYTLOGISTICS.value = "NYTLOGISTICS";
         DSV_REFERENCE.value = "DSV_REFERENCE";
@@ -4306,7 +8410,6 @@ public enum ShipmentCarrier {
         valueMap.put("FIEGE_NL", FIEGE_NL);
         valueMap.put("KWE_GLOBAL", KWE_GLOBAL);
         valueMap.put("CTC_EXPRESS", CTC_EXPRESS);
-        valueMap.put("LAO_POST", LAO_POST);
         valueMap.put("AMAZON", AMAZON);
         valueMap.put("MORE_LINK", MORE_LINK);
         valueMap.put("JX", JX);
@@ -4334,7 +8437,6 @@ public enum ShipmentCarrier {
         valueMap.put("CARIBOU", CARIBOU);
         valueMap.put("LOCUS_WEBHOOK", LOCUS_WEBHOOK);
         valueMap.put("DSV", DSV);
-        valueMap.put("CN_GOFLY", CN_GOFLY);
         valueMap.put("P2P_TRC", P2P_TRC);
         valueMap.put("DIRECTPARCELS", DIRECTPARCELS);
         valueMap.put("NOVA_POSHTA_INT", NOVA_POSHTA_INT);
@@ -4407,7 +8509,6 @@ public enum ShipmentCarrier {
         valueMap.put("JS_EXPRESS", JS_EXPRESS);
         valueMap.put("PADTF", PADTF);
         valueMap.put("UPS_MAIL_INNOVATIONS", UPS_MAIL_INNOVATIONS);
-        valueMap.put("EZSHIP", EZSHIP);
         valueMap.put("SYPOST", SYPOST);
         valueMap.put("AMAZON_SHIP_MCF", AMAZON_SHIP_MCF);
         valueMap.put("YUSEN", YUSEN);
@@ -4630,7 +8731,6 @@ public enum ShipmentCarrier {
         valueMap.put("PITTOHIO", PITTOHIO);
         valueMap.put("CORREOS_EXPRESS", CORREOS_EXPRESS);
         valueMap.put("RL_US", RL_US);
-        valueMap.put("MARA_XPRESS", MARA_XPRESS);
         valueMap.put("DESTINY", DESTINY);
         valueMap.put("UK_YODEL", UK_YODEL);
         valueMap.put("COMET_TECH", COMET_TECH);
@@ -4688,7 +8788,6 @@ public enum ShipmentCarrier {
         valueMap.put("SAU_SAUDI_POST", SAU_SAUDI_POST);
         valueMap.put("ABXEXPRESS_MY", ABXEXPRESS_MY);
         valueMap.put("HUAHAN_EXPRESS", HUAHAN_EXPRESS);
-        valueMap.put("IND_JAYONEXPRESS", IND_JAYONEXPRESS);
         valueMap.put("ZES_EXPRESS", ZES_EXPRESS);
         valueMap.put("ZEPTO_EXPRESS", ZEPTO_EXPRESS);
         valueMap.put("SKYNET_ZA", SKYNET_ZA);
@@ -4757,7 +8856,6 @@ public enum ShipmentCarrier {
         valueMap.put("XDP_UK_REFERENCE", XDP_UK_REFERENCE);
         valueMap.put("NINJAVAN_MY", NINJAVAN_MY);
         valueMap.put("ADICIONAL", ADICIONAL);
-        valueMap.put("NINJAVAN_ID", NINJAVAN_ID);
         valueMap.put("ROADBULL", ROADBULL);
         valueMap.put("YAKIT", YAKIT);
         valueMap.put("MAILAMERICAS", MAILAMERICAS);
@@ -5245,7 +9343,6 @@ public enum ShipmentCarrier {
         valueMap.put("BUFFALO", BUFFALO);
         valueMap.put("U_ENVIOS", U_ENVIOS);
         valueMap.put("ELITE_CO", ELITE_CO);
-        valueMap.put("BARQEXP", BARQEXP);
         valueMap.put("ROCHE_INTERNAL_SFTP", ROCHE_INTERNAL_SFTP);
         valueMap.put("DBSCHENKER_ICELAND", DBSCHENKER_ICELAND);
         valueMap.put("TNT_FR_REFERENCE", TNT_FR_REFERENCE);
@@ -5418,7 +9515,6 @@ public enum ShipmentCarrier {
         valueMap.put("DIREX", DIREX);
         valueMap.put("HUANTONG", HUANTONG);
         valueMap.put("IMILE_API", IMILE_API);
-        valueMap.put("BDMNET", BDMNET);
         valueMap.put("AUEXPRESS", AUEXPRESS);
         valueMap.put("NYTLOGISTICS", NYTLOGISTICS);
         valueMap.put("DSV_REFERENCE", DSV_REFERENCE);

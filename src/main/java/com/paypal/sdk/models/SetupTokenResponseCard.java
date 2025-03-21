@@ -18,8 +18,8 @@ public class SetupTokenResponseCard {
     private String lastDigits;
     private CardBrand brand;
     private String expiry;
-    private AddressDetails billingAddress;
-    private String verificationStatus;
+    private CardResponseAddress billingAddress;
+    private CardVerificationStatus verificationStatus;
     private CardVerificationDetails verification;
     private NetworkTransactionReferenceEntity networkTransactionReference;
     private CardAuthenticationResponse authenticationResult;
@@ -38,8 +38,8 @@ public class SetupTokenResponseCard {
      * @param  lastDigits  String value for lastDigits.
      * @param  brand  CardBrand value for brand.
      * @param  expiry  String value for expiry.
-     * @param  billingAddress  AddressDetails value for billingAddress.
-     * @param  verificationStatus  String value for verificationStatus.
+     * @param  billingAddress  CardResponseAddress value for billingAddress.
+     * @param  verificationStatus  CardVerificationStatus value for verificationStatus.
      * @param  verification  CardVerificationDetails value for verification.
      * @param  networkTransactionReference  NetworkTransactionReferenceEntity value for
      *         networkTransactionReference.
@@ -52,8 +52,8 @@ public class SetupTokenResponseCard {
             String lastDigits,
             CardBrand brand,
             String expiry,
-            AddressDetails billingAddress,
-            String verificationStatus,
+            CardResponseAddress billingAddress,
+            CardVerificationStatus verificationStatus,
             CardVerificationDetails verification,
             NetworkTransactionReferenceEntity networkTransactionReference,
             CardAuthenticationResponse authenticationResult,
@@ -161,42 +161,42 @@ public class SetupTokenResponseCard {
     /**
      * Getter for BillingAddress.
      * Address request details.
-     * @return Returns the AddressDetails
+     * @return Returns the CardResponseAddress
      */
     @JsonGetter("billing_address")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public AddressDetails getBillingAddress() {
+    public CardResponseAddress getBillingAddress() {
         return billingAddress;
     }
 
     /**
      * Setter for BillingAddress.
      * Address request details.
-     * @param billingAddress Value for AddressDetails
+     * @param billingAddress Value for CardResponseAddress
      */
     @JsonSetter("billing_address")
-    public void setBillingAddress(AddressDetails billingAddress) {
+    public void setBillingAddress(CardResponseAddress billingAddress) {
         this.billingAddress = billingAddress;
     }
 
     /**
      * Getter for VerificationStatus.
      * Verification status of Card.
-     * @return Returns the String
+     * @return Returns the CardVerificationStatus
      */
     @JsonGetter("verification_status")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public String getVerificationStatus() {
+    public CardVerificationStatus getVerificationStatus() {
         return verificationStatus;
     }
 
     /**
      * Setter for VerificationStatus.
      * Verification status of Card.
-     * @param verificationStatus Value for String
+     * @param verificationStatus Value for CardVerificationStatus
      */
     @JsonSetter("verification_status")
-    public void setVerificationStatus(String verificationStatus) {
+    public void setVerificationStatus(CardVerificationStatus verificationStatus) {
         this.verificationStatus = verificationStatus;
     }
 
@@ -348,8 +348,8 @@ public class SetupTokenResponseCard {
         private String lastDigits;
         private CardBrand brand;
         private String expiry;
-        private AddressDetails billingAddress;
-        private String verificationStatus;
+        private CardResponseAddress billingAddress;
+        private CardVerificationStatus verificationStatus;
         private CardVerificationDetails verification;
         private NetworkTransactionReferenceEntity networkTransactionReference;
         private CardAuthenticationResponse authenticationResult;
@@ -400,20 +400,20 @@ public class SetupTokenResponseCard {
 
         /**
          * Setter for billingAddress.
-         * @param  billingAddress  AddressDetails value for billingAddress.
+         * @param  billingAddress  CardResponseAddress value for billingAddress.
          * @return Builder
          */
-        public Builder billingAddress(AddressDetails billingAddress) {
+        public Builder billingAddress(CardResponseAddress billingAddress) {
             this.billingAddress = billingAddress;
             return this;
         }
 
         /**
          * Setter for verificationStatus.
-         * @param  verificationStatus  String value for verificationStatus.
+         * @param  verificationStatus  CardVerificationStatus value for verificationStatus.
          * @return Builder
          */
-        public Builder verificationStatus(String verificationStatus) {
+        public Builder verificationStatus(CardVerificationStatus verificationStatus) {
             this.verificationStatus = verificationStatus;
             return this;
         }

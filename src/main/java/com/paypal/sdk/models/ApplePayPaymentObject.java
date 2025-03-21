@@ -21,6 +21,7 @@ public class ApplePayPaymentObject {
     private PhoneNumber phoneNumber;
     private ApplePayCardResponse card;
     private ApplePayAttributesResponse attributes;
+    private CardStoredCredential storedCredential;
 
     /**
      * Default constructor.
@@ -37,6 +38,7 @@ public class ApplePayPaymentObject {
      * @param  phoneNumber  PhoneNumber value for phoneNumber.
      * @param  card  ApplePayCardResponse value for card.
      * @param  attributes  ApplePayAttributesResponse value for attributes.
+     * @param  storedCredential  CardStoredCredential value for storedCredential.
      */
     public ApplePayPaymentObject(
             String id,
@@ -45,7 +47,8 @@ public class ApplePayPaymentObject {
             String emailAddress,
             PhoneNumber phoneNumber,
             ApplePayCardResponse card,
-            ApplePayAttributesResponse attributes) {
+            ApplePayAttributesResponse attributes,
+            CardStoredCredential storedCredential) {
         this.id = id;
         this.token = token;
         this.name = name;
@@ -53,6 +56,7 @@ public class ApplePayPaymentObject {
         this.phoneNumber = phoneNumber;
         this.card = card;
         this.attributes = attributes;
+        this.storedCredential = storedCredential;
     }
 
     /**
@@ -124,10 +128,9 @@ public class ApplePayPaymentObject {
 
     /**
      * Getter for EmailAddress.
-     * The internationalized email address.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; Up to 64 characters
-     * are allowed before and 255 characters are allowed after the &lt;code&gt;{@literal @}&lt;/code&gt; sign. However, the
-     * generally accepted maximum length for an email address is 254 characters. The pattern
-     * verifies that an unquoted &lt;code&gt;{@literal @}&lt;/code&gt; sign exists.&lt;/blockquote&gt;
+     * The internationalized email address. Note: Up to 64 characters are allowed before and 255
+     * characters are allowed after the {@literal @} sign. However, the generally accepted maximum length for
+     * an email address is 254 characters. The pattern verifies that an unquoted {@literal @} sign exists.
      * @return Returns the String
      */
     @JsonGetter("email_address")
@@ -138,10 +141,9 @@ public class ApplePayPaymentObject {
 
     /**
      * Setter for EmailAddress.
-     * The internationalized email address.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; Up to 64 characters
-     * are allowed before and 255 characters are allowed after the &lt;code&gt;{@literal @}&lt;/code&gt; sign. However, the
-     * generally accepted maximum length for an email address is 254 characters. The pattern
-     * verifies that an unquoted &lt;code&gt;{@literal @}&lt;/code&gt; sign exists.&lt;/blockquote&gt;
+     * The internationalized email address. Note: Up to 64 characters are allowed before and 255
+     * characters are allowed after the {@literal @} sign. However, the generally accepted maximum length for
+     * an email address is 254 characters. The pattern verifies that an unquoted {@literal @} sign exists.
      * @param emailAddress Value for String
      */
     @JsonSetter("email_address")
@@ -215,6 +217,41 @@ public class ApplePayPaymentObject {
     }
 
     /**
+     * Getter for StoredCredential.
+     * Provides additional details to process a payment using a `card` that has been stored or is
+     * intended to be stored (also referred to as stored_credential or card-on-file). Parameter
+     * compatibility: `payment_type=ONE_TIME` is compatible only with `payment_initiator=CUSTOMER`.
+     * `usage=FIRST` is compatible only with `payment_initiator=CUSTOMER`.
+     * `previous_transaction_reference` or `previous_network_transaction_reference` is compatible
+     * only with `payment_initiator=MERCHANT`. Only one of the parameters -
+     * `previous_transaction_reference` and `previous_network_transaction_reference` - can be
+     * present in the request.
+     * @return Returns the CardStoredCredential
+     */
+    @JsonGetter("stored_credential")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public CardStoredCredential getStoredCredential() {
+        return storedCredential;
+    }
+
+    /**
+     * Setter for StoredCredential.
+     * Provides additional details to process a payment using a `card` that has been stored or is
+     * intended to be stored (also referred to as stored_credential or card-on-file). Parameter
+     * compatibility: `payment_type=ONE_TIME` is compatible only with `payment_initiator=CUSTOMER`.
+     * `usage=FIRST` is compatible only with `payment_initiator=CUSTOMER`.
+     * `previous_transaction_reference` or `previous_network_transaction_reference` is compatible
+     * only with `payment_initiator=MERCHANT`. Only one of the parameters -
+     * `previous_transaction_reference` and `previous_network_transaction_reference` - can be
+     * present in the request.
+     * @param storedCredential Value for CardStoredCredential
+     */
+    @JsonSetter("stored_credential")
+    public void setStoredCredential(CardStoredCredential storedCredential) {
+        this.storedCredential = storedCredential;
+    }
+
+    /**
      * Converts this ApplePayPaymentObject into string format.
      * @return String representation of this class
      */
@@ -222,7 +259,8 @@ public class ApplePayPaymentObject {
     public String toString() {
         return "ApplePayPaymentObject [" + "id=" + id + ", token=" + token + ", name=" + name
                 + ", emailAddress=" + emailAddress + ", phoneNumber=" + phoneNumber + ", card="
-                + card + ", attributes=" + attributes + "]";
+                + card + ", attributes=" + attributes + ", storedCredential=" + storedCredential
+                + "]";
     }
 
     /**
@@ -238,7 +276,8 @@ public class ApplePayPaymentObject {
                 .emailAddress(getEmailAddress())
                 .phoneNumber(getPhoneNumber())
                 .card(getCard())
-                .attributes(getAttributes());
+                .attributes(getAttributes())
+                .storedCredential(getStoredCredential());
         return builder;
     }
 
@@ -253,6 +292,7 @@ public class ApplePayPaymentObject {
         private PhoneNumber phoneNumber;
         private ApplePayCardResponse card;
         private ApplePayAttributesResponse attributes;
+        private CardStoredCredential storedCredential;
 
 
 
@@ -327,12 +367,22 @@ public class ApplePayPaymentObject {
         }
 
         /**
+         * Setter for storedCredential.
+         * @param  storedCredential  CardStoredCredential value for storedCredential.
+         * @return Builder
+         */
+        public Builder storedCredential(CardStoredCredential storedCredential) {
+            this.storedCredential = storedCredential;
+            return this;
+        }
+
+        /**
          * Builds a new {@link ApplePayPaymentObject} object using the set fields.
          * @return {@link ApplePayPaymentObject}
          */
         public ApplePayPaymentObject build() {
             return new ApplePayPaymentObject(id, token, name, emailAddress, phoneNumber, card,
-                    attributes);
+                    attributes, storedCredential);
         }
     }
 }

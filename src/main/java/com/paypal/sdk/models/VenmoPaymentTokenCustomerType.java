@@ -17,8 +17,14 @@ import java.util.TreeMap;
  * VenmoPaymentTokenCustomerType to be used.
  */
 public enum VenmoPaymentTokenCustomerType {
+    /**
+     * The customer vaulting the Venmo payment token is a consumer on the merchant / platform.
+     */
     CONSUMER,
 
+    /**
+     * The customer vaulting the Venmo payment token is a business on merchant / platform.
+     */
     BUSINESS,
 
     /**

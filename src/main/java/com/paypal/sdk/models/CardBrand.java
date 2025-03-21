@@ -17,54 +17,129 @@ import java.util.TreeMap;
  * CardBrand to be used.
  */
 public enum CardBrand {
+    /**
+     * Visa card.
+     */
     VISA,
 
+    /**
+     * Mastecard card.
+     */
     MASTERCARD,
 
+    /**
+     * Discover card.
+     */
     DISCOVER,
 
+    /**
+     * American Express card.
+     */
     AMEX,
 
+    /**
+     * Solo debit card.
+     */
     SOLO,
 
+    /**
+     * Japan Credit Bureau card.
+     */
     JCB,
 
+    /**
+     * Military Star card.
+     */
     STAR,
 
+    /**
+     * Delta Airlines card.
+     */
     DELTA,
 
+    /**
+     * Switch credit card.
+     */
     SWITCH,
 
+    /**
+     * Maestro credit card.
+     */
     MAESTRO,
 
+    /**
+     * Carte Bancaire (CB) credit card.
+     */
     CB_NATIONALE,
 
+    /**
+     * Configoga credit card.
+     */
     CONFIGOGA,
 
+    /**
+     * Confidis credit card.
+     */
     CONFIDIS,
 
+    /**
+     * Visa Electron credit card.
+     */
     ELECTRON,
 
+    /**
+     * Cetelem credit card.
+     */
     CETELEM,
 
+    /**
+     * China union pay credit card.
+     */
     CHINA_UNION_PAY,
 
+    /**
+     * The Diners Club International banking and payment services capability network owned by Discover Financial Services (DFS), one of the most recognized brands in US financial services.
+     */
     DINERS,
 
+    /**
+     * The Brazilian Elo card payment network.
+     */
     ELO,
 
+    /**
+     * The Hiper - Ingenico ePayment network.
+     */
     HIPER,
 
+    /**
+     * The Brazilian Hipercard payment network that's widely accepted in the retail market.
+     */
     HIPERCARD,
 
+    /**
+     * The RuPay payment network.
+     */
     RUPAY,
 
+    /**
+     * The GE Credit Union 3Point card payment network.
+     */
     GE,
 
+    /**
+     * The Synchrony Financial (SYF) payment network.
+     */
     SYNCHRONY,
 
+    /**
+     * The Electronic Fund Transfer At Point of Sale(EFTPOS) Debit card payment network.
+     */
     EFTPOS,
 
+    /**
+     * UNKNOWN payment network.
+     */
     UNKNOWN,
 
     /**

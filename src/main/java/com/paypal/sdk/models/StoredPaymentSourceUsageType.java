@@ -17,10 +17,19 @@ import java.util.TreeMap;
  * StoredPaymentSourceUsageType to be used.
  */
 public enum StoredPaymentSourceUsageType {
+    /**
+     * Indicates the Initial/First payment with a payment_source that is intended to be stored upon successful processing of the payment.
+     */
     FIRST,
 
+    /**
+     * Indicates a payment using a stored payment_source which has been successfully used previously for a payment.
+     */
     SUBSEQUENT,
 
+    /**
+     * Indicates that PayPal will derive the value of `FIRST` or `SUBSEQUENT` based on data available to PayPal.
+     */
     DERIVED,
 
     /**

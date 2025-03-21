@@ -66,8 +66,7 @@ public class Patch {
 
     /**
      * Getter for Path.
-     * The &lt;a href="https://tools.ietf.org/html/rfc6901"&gt;JSON Pointer&lt;/a&gt; to the target document
-     * location at which to complete the operation.
+     * The JSON Pointer to the target document location at which to complete the operation.
      * @return Returns the String
      */
     @JsonGetter("path")
@@ -78,8 +77,7 @@ public class Patch {
 
     /**
      * Setter for Path.
-     * The &lt;a href="https://tools.ietf.org/html/rfc6901"&gt;JSON Pointer&lt;/a&gt; to the target document
-     * location at which to complete the operation.
+     * The JSON Pointer to the target document location at which to complete the operation.
      * @param path Value for String
      */
     @JsonSetter("path")
@@ -89,10 +87,8 @@ public class Patch {
 
     /**
      * Getter for Value.
-     * The value to apply. The &lt;code&gt;remove&lt;/code&gt;, &lt;code&gt;copy&lt;/code&gt;, and &lt;code&gt;move&lt;/code&gt;
-     * operations do not require a value. Since &lt;a
-     * href="https://www.rfc-editor.org/rfc/rfc69021"&gt;JSON Patch&lt;/a&gt; allows any type for
-     * &lt;code&gt;value&lt;/code&gt;, the &lt;code&gt;type&lt;/code&gt; property is not specified.
+     * The value to apply. The remove, copy, and move operations do not require a value. Since JSON
+     * Patch allows any type for value, the type property is not specified.
      * @return Returns the JsonValue
      */
     @JsonGetter("value")
@@ -103,10 +99,8 @@ public class Patch {
 
     /**
      * Setter for Value.
-     * The value to apply. The &lt;code&gt;remove&lt;/code&gt;, &lt;code&gt;copy&lt;/code&gt;, and &lt;code&gt;move&lt;/code&gt;
-     * operations do not require a value. Since &lt;a
-     * href="https://www.rfc-editor.org/rfc/rfc69021"&gt;JSON Patch&lt;/a&gt; allows any type for
-     * &lt;code&gt;value&lt;/code&gt;, the &lt;code&gt;type&lt;/code&gt; property is not specified.
+     * The value to apply. The remove, copy, and move operations do not require a value. Since JSON
+     * Patch allows any type for value, the type property is not specified.
      * @param value Value for JsonValue
      */
     @JsonSetter("value")
@@ -116,8 +110,8 @@ public class Patch {
 
     /**
      * Getter for From.
-     * The &lt;a href="https://tools.ietf.org/html/rfc6901"&gt;JSON Pointer&lt;/a&gt; to the target document
-     * location from which to move the value. Required for the &lt;code&gt;move&lt;/code&gt; operation.
+     * The JSON Pointer to the target document location from which to move the value. Required for
+     * the move operation.
      * @return Returns the String
      */
     @JsonGetter("from")
@@ -128,8 +122,8 @@ public class Patch {
 
     /**
      * Setter for From.
-     * The &lt;a href="https://tools.ietf.org/html/rfc6901"&gt;JSON Pointer&lt;/a&gt; to the target document
-     * location from which to move the value. Required for the &lt;code&gt;move&lt;/code&gt; operation.
+     * The JSON Pointer to the target document location from which to move the value. Required for
+     * the move operation.
      * @param from Value for String
      */
     @JsonSetter("from")

@@ -9,7 +9,6 @@ package com.paypal.sdk.models;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import com.paypal.sdk.utilities.JsonValue;
 
 /**
  * This is a model class for SetupTokenRequestCard type.
@@ -21,9 +20,8 @@ public class SetupTokenRequestCard {
     private String securityCode;
     private CardBrand brand;
     private Address billingAddress;
-    private String verificationMethod;
+    private VaultCardVerificationMethod verificationMethod;
     private SetupTokenCardExperienceContext experienceContext;
-    private JsonValue networkTransactionReference;
 
     /**
      * Default constructor.
@@ -39,9 +37,8 @@ public class SetupTokenRequestCard {
      * @param  securityCode  String value for securityCode.
      * @param  brand  CardBrand value for brand.
      * @param  billingAddress  Address value for billingAddress.
-     * @param  verificationMethod  String value for verificationMethod.
+     * @param  verificationMethod  VaultCardVerificationMethod value for verificationMethod.
      * @param  experienceContext  SetupTokenCardExperienceContext value for experienceContext.
-     * @param  networkTransactionReference  JsonValue value for networkTransactionReference.
      */
     public SetupTokenRequestCard(
             String name,
@@ -50,9 +47,8 @@ public class SetupTokenRequestCard {
             String securityCode,
             CardBrand brand,
             Address billingAddress,
-            String verificationMethod,
-            SetupTokenCardExperienceContext experienceContext,
-            JsonValue networkTransactionReference) {
+            VaultCardVerificationMethod verificationMethod,
+            SetupTokenCardExperienceContext experienceContext) {
         this.name = name;
         this.number = number;
         this.expiry = expiry;
@@ -61,7 +57,6 @@ public class SetupTokenRequestCard {
         this.billingAddress = billingAddress;
         this.verificationMethod = verificationMethod;
         this.experienceContext = experienceContext;
-        this.networkTransactionReference = networkTransactionReference;
     }
 
     /**
@@ -203,21 +198,21 @@ public class SetupTokenRequestCard {
     /**
      * Getter for VerificationMethod.
      * The verification method of the card.
-     * @return Returns the String
+     * @return Returns the VaultCardVerificationMethod
      */
     @JsonGetter("verification_method")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public String getVerificationMethod() {
+    public VaultCardVerificationMethod getVerificationMethod() {
         return verificationMethod;
     }
 
     /**
      * Setter for VerificationMethod.
      * The verification method of the card.
-     * @param verificationMethod Value for String
+     * @param verificationMethod Value for VaultCardVerificationMethod
      */
     @JsonSetter("verification_method")
-    public void setVerificationMethod(String verificationMethod) {
+    public void setVerificationMethod(VaultCardVerificationMethod verificationMethod) {
         this.verificationMethod = verificationMethod;
     }
 
@@ -243,25 +238,6 @@ public class SetupTokenRequestCard {
     }
 
     /**
-     * Getter for NetworkTransactionReference.
-     * @return Returns the JsonValue
-     */
-    @JsonGetter("network_transaction_reference")
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    public JsonValue getNetworkTransactionReference() {
-        return networkTransactionReference;
-    }
-
-    /**
-     * Setter for NetworkTransactionReference.
-     * @param networkTransactionReference Value for JsonValue
-     */
-    @JsonSetter("network_transaction_reference")
-    public void setNetworkTransactionReference(JsonValue networkTransactionReference) {
-        this.networkTransactionReference = networkTransactionReference;
-    }
-
-    /**
      * Converts this SetupTokenRequestCard into string format.
      * @return String representation of this class
      */
@@ -270,8 +246,7 @@ public class SetupTokenRequestCard {
         return "SetupTokenRequestCard [" + "name=" + name + ", number=" + number + ", expiry="
                 + expiry + ", securityCode=" + securityCode + ", brand=" + brand
                 + ", billingAddress=" + billingAddress + ", verificationMethod="
-                + verificationMethod + ", experienceContext=" + experienceContext
-                + ", networkTransactionReference=" + networkTransactionReference + "]";
+                + verificationMethod + ", experienceContext=" + experienceContext + "]";
     }
 
     /**
@@ -288,8 +263,7 @@ public class SetupTokenRequestCard {
                 .brand(getBrand())
                 .billingAddress(getBillingAddress())
                 .verificationMethod(getVerificationMethod())
-                .experienceContext(getExperienceContext())
-                .networkTransactionReference(getNetworkTransactionReference());
+                .experienceContext(getExperienceContext());
         return builder;
     }
 
@@ -303,9 +277,8 @@ public class SetupTokenRequestCard {
         private String securityCode;
         private CardBrand brand;
         private Address billingAddress;
-        private String verificationMethod;
+        private VaultCardVerificationMethod verificationMethod;
         private SetupTokenCardExperienceContext experienceContext;
-        private JsonValue networkTransactionReference;
 
 
 
@@ -371,10 +344,10 @@ public class SetupTokenRequestCard {
 
         /**
          * Setter for verificationMethod.
-         * @param  verificationMethod  String value for verificationMethod.
+         * @param  verificationMethod  VaultCardVerificationMethod value for verificationMethod.
          * @return Builder
          */
-        public Builder verificationMethod(String verificationMethod) {
+        public Builder verificationMethod(VaultCardVerificationMethod verificationMethod) {
             this.verificationMethod = verificationMethod;
             return this;
         }
@@ -390,23 +363,12 @@ public class SetupTokenRequestCard {
         }
 
         /**
-         * Setter for networkTransactionReference.
-         * @param  networkTransactionReference  JsonValue value for networkTransactionReference.
-         * @return Builder
-         */
-        public Builder networkTransactionReference(JsonValue networkTransactionReference) {
-            this.networkTransactionReference = networkTransactionReference;
-            return this;
-        }
-
-        /**
          * Builds a new {@link SetupTokenRequestCard} object using the set fields.
          * @return {@link SetupTokenRequestCard}
          */
         public SetupTokenRequestCard build() {
             return new SetupTokenRequestCard(name, number, expiry, securityCode, brand,
-                    billingAddress, verificationMethod, experienceContext,
-                    networkTransactionReference);
+                    billingAddress, verificationMethod, experienceContext);
         }
     }
 }

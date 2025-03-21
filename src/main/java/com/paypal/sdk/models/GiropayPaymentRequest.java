@@ -62,10 +62,9 @@ public class GiropayPaymentRequest {
     /**
      * Getter for CountryCode.
      * The [two-character ISO 3166-1 code](/api/rest/reference/country-codes/) that identifies the
-     * country or region.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; The country code for Great Britain is
-     * &lt;code&gt;GB&lt;/code&gt; and not &lt;code&gt;UK&lt;/code&gt; as used in the top-level domain names for that
-     * country. Use the `C2` country code for China worldwide for comparable uncontrolled price
-     * (CUP) method, bank card, and cross-border transactions.&lt;/blockquote&gt;
+     * country or region. Note: The country code for Great Britain is GB and not UK as used in the
+     * top-level domain names for that country. Use the `C2` country code for China worldwide for
+     * comparable uncontrolled price (CUP) method, bank card, and cross-border transactions.
      * @return Returns the String
      */
     @JsonGetter("country_code")
@@ -76,10 +75,9 @@ public class GiropayPaymentRequest {
     /**
      * Setter for CountryCode.
      * The [two-character ISO 3166-1 code](/api/rest/reference/country-codes/) that identifies the
-     * country or region.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; The country code for Great Britain is
-     * &lt;code&gt;GB&lt;/code&gt; and not &lt;code&gt;UK&lt;/code&gt; as used in the top-level domain names for that
-     * country. Use the `C2` country code for China worldwide for comparable uncontrolled price
-     * (CUP) method, bank card, and cross-border transactions.&lt;/blockquote&gt;
+     * country or region. Note: The country code for Great Britain is GB and not UK as used in the
+     * top-level domain names for that country. Use the `C2` country code for China worldwide for
+     * comparable uncontrolled price (CUP) method, bank card, and cross-border transactions.
      * @param countryCode Value for String
      */
     @JsonSetter("country_code")

@@ -105,10 +105,9 @@ public class ApplePayRequest {
 
     /**
      * Getter for EmailAddress.
-     * The internationalized email address.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; Up to 64 characters
-     * are allowed before and 255 characters are allowed after the &lt;code&gt;{@literal @}&lt;/code&gt; sign. However, the
-     * generally accepted maximum length for an email address is 254 characters. The pattern
-     * verifies that an unquoted &lt;code&gt;{@literal @}&lt;/code&gt; sign exists.&lt;/blockquote&gt;
+     * The internationalized email address. Note: Up to 64 characters are allowed before and 255
+     * characters are allowed after the {@literal @} sign. However, the generally accepted maximum length for
+     * an email address is 254 characters. The pattern verifies that an unquoted {@literal @} sign exists.
      * @return Returns the String
      */
     @JsonGetter("email_address")
@@ -119,10 +118,9 @@ public class ApplePayRequest {
 
     /**
      * Setter for EmailAddress.
-     * The internationalized email address.&lt;blockquote&gt;&lt;strong&gt;Note:&lt;/strong&gt; Up to 64 characters
-     * are allowed before and 255 characters are allowed after the &lt;code&gt;{@literal @}&lt;/code&gt; sign. However, the
-     * generally accepted maximum length for an email address is 254 characters. The pattern
-     * verifies that an unquoted &lt;code&gt;{@literal @}&lt;/code&gt; sign exists.&lt;/blockquote&gt;
+     * The internationalized email address. Note: Up to 64 characters are allowed before and 255
+     * characters are allowed after the {@literal @} sign. However, the generally accepted maximum length for
+     * an email address is 254 characters. The pattern verifies that an unquoted {@literal @} sign exists.
      * @param emailAddress Value for String
      */
     @JsonSetter("email_address")
@@ -177,14 +175,13 @@ public class ApplePayRequest {
     /**
      * Getter for StoredCredential.
      * Provides additional details to process a payment using a `card` that has been stored or is
-     * intended to be stored (also referred to as stored_credential or card-on-file).&lt;br/&gt;Parameter
-     * compatibility:&lt;br/&gt;&lt;ul&gt;&lt;li&gt;`payment_type=ONE_TIME` is compatible only with
-     * `payment_initiator=CUSTOMER`.&lt;/li&gt;&lt;li&gt;`usage=FIRST` is compatible only with
-     * `payment_initiator=CUSTOMER`.&lt;/li&gt;&lt;li&gt;`previous_transaction_reference` or
-     * `previous_network_transaction_reference` is compatible only with
-     * `payment_initiator=MERCHANT`.&lt;/li&gt;&lt;li&gt;Only one of the parameters -
+     * intended to be stored (also referred to as stored_credential or card-on-file). Parameter
+     * compatibility: `payment_type=ONE_TIME` is compatible only with `payment_initiator=CUSTOMER`.
+     * `usage=FIRST` is compatible only with `payment_initiator=CUSTOMER`.
+     * `previous_transaction_reference` or `previous_network_transaction_reference` is compatible
+     * only with `payment_initiator=MERCHANT`. Only one of the parameters -
      * `previous_transaction_reference` and `previous_network_transaction_reference` - can be
-     * present in the request.&lt;/li&gt;&lt;/ul&gt;
+     * present in the request.
      * @return Returns the CardStoredCredential
      */
     @JsonGetter("stored_credential")
@@ -196,14 +193,13 @@ public class ApplePayRequest {
     /**
      * Setter for StoredCredential.
      * Provides additional details to process a payment using a `card` that has been stored or is
-     * intended to be stored (also referred to as stored_credential or card-on-file).&lt;br/&gt;Parameter
-     * compatibility:&lt;br/&gt;&lt;ul&gt;&lt;li&gt;`payment_type=ONE_TIME` is compatible only with
-     * `payment_initiator=CUSTOMER`.&lt;/li&gt;&lt;li&gt;`usage=FIRST` is compatible only with
-     * `payment_initiator=CUSTOMER`.&lt;/li&gt;&lt;li&gt;`previous_transaction_reference` or
-     * `previous_network_transaction_reference` is compatible only with
-     * `payment_initiator=MERCHANT`.&lt;/li&gt;&lt;li&gt;Only one of the parameters -
+     * intended to be stored (also referred to as stored_credential or card-on-file). Parameter
+     * compatibility: `payment_type=ONE_TIME` is compatible only with `payment_initiator=CUSTOMER`.
+     * `usage=FIRST` is compatible only with `payment_initiator=CUSTOMER`.
+     * `previous_transaction_reference` or `previous_network_transaction_reference` is compatible
+     * only with `payment_initiator=MERCHANT`. Only one of the parameters -
      * `previous_transaction_reference` and `previous_network_transaction_reference` - can be
-     * present in the request.&lt;/li&gt;&lt;/ul&gt;
+     * present in the request.
      * @param storedCredential Value for CardStoredCredential
      */
     @JsonSetter("stored_credential")

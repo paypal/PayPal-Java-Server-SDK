@@ -203,17 +203,6 @@ public class OAuthToken {
     }
 
     /**
-     * Converts this OAuthToken into string format.
-     * @return String representation of this class
-     */
-    @Override
-    public String toString() {
-        return "OAuthToken [" + "accessToken=" + accessToken + ", tokenType=" + tokenType
-                + ", expiresIn=" + expiresIn + ", scope=" + scope + ", expiry=" + expiry
-                + ", refreshToken=" + refreshToken + ", idToken=" + idToken + "]";
-    }
-
-    /**
      * Builds a new {@link OAuthToken.Builder} object.
      * Creates the instance with the state of the current model.
      * @return a new {@link OAuthToken.Builder} object

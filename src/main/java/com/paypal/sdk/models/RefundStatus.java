@@ -17,12 +17,24 @@ import java.util.TreeMap;
  * RefundStatus to be used.
  */
 public enum RefundStatus {
+    /**
+     * The refund was cancelled.
+     */
     CANCELLED,
 
+    /**
+     * The refund could not be processed.
+     */
     FAILED,
 
+    /**
+     * The refund is pending. For more information, see status_details.reason.
+     */
     PENDING,
 
+    /**
+     * The funds for this transaction were debited to the customer's account.
+     */
     COMPLETED,
 
     /**

@@ -20,7 +20,7 @@ public class GooglePayCard {
     private String lastDigits;
     private CardType type;
     private CardBrand brand;
-    private PortablePostalAddressMediumGrained billingAddress;
+    private Address billingAddress;
 
     /**
      * Default constructor.
@@ -36,7 +36,7 @@ public class GooglePayCard {
      * @param  lastDigits  String value for lastDigits.
      * @param  type  CardType value for type.
      * @param  brand  CardBrand value for brand.
-     * @param  billingAddress  PortablePostalAddressMediumGrained value for billingAddress.
+     * @param  billingAddress  Address value for billingAddress.
      */
     public GooglePayCard(
             String name,
@@ -45,7 +45,7 @@ public class GooglePayCard {
             String lastDigits,
             CardType type,
             CardBrand brand,
-            PortablePostalAddressMediumGrained billingAddress) {
+            Address billingAddress) {
         this.name = name;
         this.number = number;
         this.expiry = expiry;
@@ -189,11 +189,11 @@ public class GooglePayCard {
      * [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata)
      * and HTML 5.1 [Autofilling form controls: the autocomplete
      * attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute).
-     * @return Returns the PortablePostalAddressMediumGrained
+     * @return Returns the Address
      */
     @JsonGetter("billing_address")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public PortablePostalAddressMediumGrained getBillingAddress() {
+    public Address getBillingAddress() {
         return billingAddress;
     }
 
@@ -203,10 +203,10 @@ public class GooglePayCard {
      * [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata)
      * and HTML 5.1 [Autofilling form controls: the autocomplete
      * attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute).
-     * @param billingAddress Value for PortablePostalAddressMediumGrained
+     * @param billingAddress Value for Address
      */
     @JsonSetter("billing_address")
-    public void setBillingAddress(PortablePostalAddressMediumGrained billingAddress) {
+    public void setBillingAddress(Address billingAddress) {
         this.billingAddress = billingAddress;
     }
 
@@ -248,7 +248,7 @@ public class GooglePayCard {
         private String lastDigits;
         private CardType type;
         private CardBrand brand;
-        private PortablePostalAddressMediumGrained billingAddress;
+        private Address billingAddress;
 
 
 
@@ -314,10 +314,10 @@ public class GooglePayCard {
 
         /**
          * Setter for billingAddress.
-         * @param  billingAddress  PortablePostalAddressMediumGrained value for billingAddress.
+         * @param  billingAddress  Address value for billingAddress.
          * @return Builder
          */
-        public Builder billingAddress(PortablePostalAddressMediumGrained billingAddress) {
+        public Builder billingAddress(Address billingAddress) {
             this.billingAddress = billingAddress;
             return this;
         }

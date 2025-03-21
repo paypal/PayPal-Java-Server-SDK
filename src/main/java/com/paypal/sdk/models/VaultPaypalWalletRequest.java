@@ -15,10 +15,12 @@ import com.fasterxml.jackson.annotation.JsonSetter;
  */
 public class VaultPaypalWalletRequest {
     private String description;
+    private UsagePattern usagePattern;
     private VaultedDigitalWalletShippingDetails shipping;
     private Boolean permitMultiplePaymentTokens;
-    private String usageType;
-    private String customerType;
+    private PaypalPaymentTokenUsageType usageType;
+    private PaypalPaymentTokenCustomerType customerType;
+    private Plan billingPlan;
     private VaultExperienceContext experienceContext;
 
     /**
@@ -31,24 +33,30 @@ public class VaultPaypalWalletRequest {
     /**
      * Initialization constructor.
      * @param  description  String value for description.
+     * @param  usagePattern  UsagePattern value for usagePattern.
      * @param  shipping  VaultedDigitalWalletShippingDetails value for shipping.
      * @param  permitMultiplePaymentTokens  Boolean value for permitMultiplePaymentTokens.
-     * @param  usageType  String value for usageType.
-     * @param  customerType  String value for customerType.
+     * @param  usageType  PaypalPaymentTokenUsageType value for usageType.
+     * @param  customerType  PaypalPaymentTokenCustomerType value for customerType.
+     * @param  billingPlan  Plan value for billingPlan.
      * @param  experienceContext  VaultExperienceContext value for experienceContext.
      */
     public VaultPaypalWalletRequest(
             String description,
+            UsagePattern usagePattern,
             VaultedDigitalWalletShippingDetails shipping,
             Boolean permitMultiplePaymentTokens,
-            String usageType,
-            String customerType,
+            PaypalPaymentTokenUsageType usageType,
+            PaypalPaymentTokenCustomerType customerType,
+            Plan billingPlan,
             VaultExperienceContext experienceContext) {
         this.description = description;
+        this.usagePattern = usagePattern;
         this.shipping = shipping;
         this.permitMultiplePaymentTokens = permitMultiplePaymentTokens;
         this.usageType = usageType;
         this.customerType = customerType;
+        this.billingPlan = billingPlan;
         this.experienceContext = experienceContext;
     }
 
@@ -73,6 +81,27 @@ public class VaultPaypalWalletRequest {
     @JsonSetter("description")
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    /**
+     * Getter for UsagePattern.
+     * Expected business/charge model for the billing agreement.
+     * @return Returns the UsagePattern
+     */
+    @JsonGetter("usage_pattern")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public UsagePattern getUsagePattern() {
+        return usagePattern;
+    }
+
+    /**
+     * Setter for UsagePattern.
+     * Expected business/charge model for the billing agreement.
+     * @param usagePattern Value for UsagePattern
+     */
+    @JsonSetter("usage_pattern")
+    public void setUsagePattern(UsagePattern usagePattern) {
+        this.usagePattern = usagePattern;
     }
 
     /**
@@ -130,21 +159,21 @@ public class VaultPaypalWalletRequest {
     /**
      * Getter for UsageType.
      * The usage type associated with a digital wallet payment token.
-     * @return Returns the String
+     * @return Returns the PaypalPaymentTokenUsageType
      */
     @JsonGetter("usage_type")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public String getUsageType() {
+    public PaypalPaymentTokenUsageType getUsageType() {
         return usageType;
     }
 
     /**
      * Setter for UsageType.
      * The usage type associated with a digital wallet payment token.
-     * @param usageType Value for String
+     * @param usageType Value for PaypalPaymentTokenUsageType
      */
     @JsonSetter("usage_type")
-    public void setUsageType(String usageType) {
+    public void setUsageType(PaypalPaymentTokenUsageType usageType) {
         this.usageType = usageType;
     }
 
@@ -152,11 +181,11 @@ public class VaultPaypalWalletRequest {
      * Getter for CustomerType.
      * The customer type associated with a digital wallet payment token. This is to indicate whether
      * the customer acting on the merchant / platform is either a business or a consumer.
-     * @return Returns the String
+     * @return Returns the PaypalPaymentTokenCustomerType
      */
     @JsonGetter("customer_type")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public String getCustomerType() {
+    public PaypalPaymentTokenCustomerType getCustomerType() {
         return customerType;
     }
 
@@ -164,11 +193,32 @@ public class VaultPaypalWalletRequest {
      * Setter for CustomerType.
      * The customer type associated with a digital wallet payment token. This is to indicate whether
      * the customer acting on the merchant / platform is either a business or a consumer.
-     * @param customerType Value for String
+     * @param customerType Value for PaypalPaymentTokenCustomerType
      */
     @JsonSetter("customer_type")
-    public void setCustomerType(String customerType) {
+    public void setCustomerType(PaypalPaymentTokenCustomerType customerType) {
         this.customerType = customerType;
+    }
+
+    /**
+     * Getter for BillingPlan.
+     * The merchant level Recurring Billing plan metadata for the Billing Agreement.
+     * @return Returns the Plan
+     */
+    @JsonGetter("billing_plan")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public Plan getBillingPlan() {
+        return billingPlan;
+    }
+
+    /**
+     * Setter for BillingPlan.
+     * The merchant level Recurring Billing plan metadata for the Billing Agreement.
+     * @param billingPlan Value for Plan
+     */
+    @JsonSetter("billing_plan")
+    public void setBillingPlan(Plan billingPlan) {
+        this.billingPlan = billingPlan;
     }
 
     /**
@@ -198,10 +248,11 @@ public class VaultPaypalWalletRequest {
      */
     @Override
     public String toString() {
-        return "VaultPaypalWalletRequest [" + "description=" + description + ", shipping="
-                + shipping + ", permitMultiplePaymentTokens=" + permitMultiplePaymentTokens
-                + ", usageType=" + usageType + ", customerType=" + customerType
-                + ", experienceContext=" + experienceContext + "]";
+        return "VaultPaypalWalletRequest [" + "description=" + description + ", usagePattern="
+                + usagePattern + ", shipping=" + shipping + ", permitMultiplePaymentTokens="
+                + permitMultiplePaymentTokens + ", usageType=" + usageType + ", customerType="
+                + customerType + ", billingPlan=" + billingPlan + ", experienceContext="
+                + experienceContext + "]";
     }
 
     /**
@@ -212,10 +263,12 @@ public class VaultPaypalWalletRequest {
     public Builder toBuilder() {
         Builder builder = new Builder()
                 .description(getDescription())
+                .usagePattern(getUsagePattern())
                 .shipping(getShipping())
                 .permitMultiplePaymentTokens(getPermitMultiplePaymentTokens())
                 .usageType(getUsageType())
                 .customerType(getCustomerType())
+                .billingPlan(getBillingPlan())
                 .experienceContext(getExperienceContext());
         return builder;
     }
@@ -225,10 +278,12 @@ public class VaultPaypalWalletRequest {
      */
     public static class Builder {
         private String description;
+        private UsagePattern usagePattern;
         private VaultedDigitalWalletShippingDetails shipping;
         private Boolean permitMultiplePaymentTokens = false;
-        private String usageType;
-        private String customerType;
+        private PaypalPaymentTokenUsageType usageType;
+        private PaypalPaymentTokenCustomerType customerType;
+        private Plan billingPlan;
         private VaultExperienceContext experienceContext;
 
 
@@ -240,6 +295,16 @@ public class VaultPaypalWalletRequest {
          */
         public Builder description(String description) {
             this.description = description;
+            return this;
+        }
+
+        /**
+         * Setter for usagePattern.
+         * @param  usagePattern  UsagePattern value for usagePattern.
+         * @return Builder
+         */
+        public Builder usagePattern(UsagePattern usagePattern) {
+            this.usagePattern = usagePattern;
             return this;
         }
 
@@ -265,21 +330,31 @@ public class VaultPaypalWalletRequest {
 
         /**
          * Setter for usageType.
-         * @param  usageType  String value for usageType.
+         * @param  usageType  PaypalPaymentTokenUsageType value for usageType.
          * @return Builder
          */
-        public Builder usageType(String usageType) {
+        public Builder usageType(PaypalPaymentTokenUsageType usageType) {
             this.usageType = usageType;
             return this;
         }
 
         /**
          * Setter for customerType.
-         * @param  customerType  String value for customerType.
+         * @param  customerType  PaypalPaymentTokenCustomerType value for customerType.
          * @return Builder
          */
-        public Builder customerType(String customerType) {
+        public Builder customerType(PaypalPaymentTokenCustomerType customerType) {
             this.customerType = customerType;
+            return this;
+        }
+
+        /**
+         * Setter for billingPlan.
+         * @param  billingPlan  Plan value for billingPlan.
+         * @return Builder
+         */
+        public Builder billingPlan(Plan billingPlan) {
+            this.billingPlan = billingPlan;
             return this;
         }
 
@@ -298,8 +373,9 @@ public class VaultPaypalWalletRequest {
          * @return {@link VaultPaypalWalletRequest}
          */
         public VaultPaypalWalletRequest build() {
-            return new VaultPaypalWalletRequest(description, shipping, permitMultiplePaymentTokens,
-                    usageType, customerType, experienceContext);
+            return new VaultPaypalWalletRequest(description, usagePattern, shipping,
+                    permitMultiplePaymentTokens, usageType, customerType, billingPlan,
+                    experienceContext);
         }
     }
 }

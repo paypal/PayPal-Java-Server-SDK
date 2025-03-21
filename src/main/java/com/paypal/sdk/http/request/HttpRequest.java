@@ -127,17 +127,6 @@ public class HttpRequest implements Request {
     }
 
     /**
-     * Converts this HttpRequest into string format.
-     * @return String representation of this class
-     */
-    @Override
-    public String toString() {
-        return "HttpRequest [httpMethod=" + httpMethod + ", headers=" + headers
-                + ", queryUrlBuilder=" + queryUrlBuilder + ", queryParameters=" + queryParameters
-                + ", parameters=" + parameters + "]";
-    }
-
-    /**
      * Get the request URL
      *
      * @param arraySerializationFormat Array serialization format
