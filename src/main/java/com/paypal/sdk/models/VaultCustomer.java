@@ -15,6 +15,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
  */
 public class VaultCustomer {
     private String id;
+    private Name name;
 
     /**
      * Default constructor.
@@ -25,10 +26,13 @@ public class VaultCustomer {
     /**
      * Initialization constructor.
      * @param  id  String value for id.
+     * @param  name  Name value for name.
      */
     public VaultCustomer(
-            String id) {
+            String id,
+            Name name) {
         this.id = id;
+        this.name = name;
     }
 
     /**
@@ -53,12 +57,33 @@ public class VaultCustomer {
     }
 
     /**
+     * Getter for Name.
+     * The name of the party.
+     * @return Returns the Name
+     */
+    @JsonGetter("name")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public Name getName() {
+        return name;
+    }
+
+    /**
+     * Setter for Name.
+     * The name of the party.
+     * @param name Value for Name
+     */
+    @JsonSetter("name")
+    public void setName(Name name) {
+        this.name = name;
+    }
+
+    /**
      * Converts this VaultCustomer into string format.
      * @return String representation of this class
      */
     @Override
     public String toString() {
-        return "VaultCustomer [" + "id=" + id + "]";
+        return "VaultCustomer [" + "id=" + id + ", name=" + name + "]";
     }
 
     /**
@@ -68,7 +93,8 @@ public class VaultCustomer {
      */
     public Builder toBuilder() {
         Builder builder = new Builder()
-                .id(getId());
+                .id(getId())
+                .name(getName());
         return builder;
     }
 
@@ -77,6 +103,7 @@ public class VaultCustomer {
      */
     public static class Builder {
         private String id;
+        private Name name;
 
 
 
@@ -91,11 +118,21 @@ public class VaultCustomer {
         }
 
         /**
+         * Setter for name.
+         * @param  name  Name value for name.
+         * @return Builder
+         */
+        public Builder name(Name name) {
+            this.name = name;
+            return this;
+        }
+
+        /**
          * Builds a new {@link VaultCustomer} object using the set fields.
          * @return {@link VaultCustomer}
          */
         public VaultCustomer build() {
-            return new VaultCustomer(id);
+            return new VaultCustomer(id, name);
         }
     }
 }

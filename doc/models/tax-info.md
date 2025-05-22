@@ -11,8 +11,8 @@ The tax ID of the customer. The customer is also known as the payer. Both `tax_i
 
 | Name | Type | Tags | Description | Getter | Setter |
 |  --- | --- | --- | --- | --- | --- |
-| `TaxId` | `String` | Required | The customer's tax ID value.<br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `14`, *Pattern*: `([a-zA-Z0-9])` | String getTaxId() | setTaxId(String taxId) |
-| `TaxIdType` | [`TaxIdType`](../../doc/models/tax-id-type.md) | Required | The customer's tax ID type.<br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `14`, *Pattern*: `^[A-Z0-9_]+$` | TaxIdType getTaxIdType() | setTaxIdType(TaxIdType taxIdType) |
+| `TaxId` | `String` | Required | The customer's tax ID value.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `14`, *Pattern*: `([a-zA-Z0-9])` | String getTaxId() | setTaxId(String taxId) |
+| `TaxIdType` | [`TaxIdType`](../../doc/models/tax-id-type.md) | Required | The customer's tax ID type.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `14`, *Pattern*: `^[A-Z0-9_]+$` | TaxIdType getTaxIdType() | setTaxIdType(TaxIdType taxIdType) |
 
 ## Example (as JSON)
 

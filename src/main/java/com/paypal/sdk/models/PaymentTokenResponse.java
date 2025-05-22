@@ -67,8 +67,7 @@ public class PaymentTokenResponse {
 
     /**
      * Getter for Customer.
-     * This object defines a customer in your system. Use it to manage customer profiles, save
-     * payment methods and contact details.
+     * Customer in merchant's or partner's system of records.
      * @return Returns the CustomerResponse
      */
     @JsonGetter("customer")
@@ -79,8 +78,7 @@ public class PaymentTokenResponse {
 
     /**
      * Setter for Customer.
-     * This object defines a customer in your system. Use it to manage customer profiles, save
-     * payment methods and contact details.
+     * Customer in merchant's or partner's system of records.
      * @param customer Value for CustomerResponse
      */
     @JsonSetter("customer")

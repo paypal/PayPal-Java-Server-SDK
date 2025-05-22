@@ -23,7 +23,7 @@ public enum CardBrand {
     VISA,
 
     /**
-     * Mastecard card.
+     * Mastercard card.
      */
     MASTERCARD,
 

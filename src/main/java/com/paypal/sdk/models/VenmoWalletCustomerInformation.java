@@ -16,6 +16,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 public class VenmoWalletCustomerInformation {
     private String id;
     private String emailAddress;
+    private PhoneWithType phone;
+    private Name name;
 
     /**
      * Default constructor.
@@ -27,12 +29,18 @@ public class VenmoWalletCustomerInformation {
      * Initialization constructor.
      * @param  id  String value for id.
      * @param  emailAddress  String value for emailAddress.
+     * @param  phone  PhoneWithType value for phone.
+     * @param  name  Name value for name.
      */
     public VenmoWalletCustomerInformation(
             String id,
-            String emailAddress) {
+            String emailAddress,
+            PhoneWithType phone,
+            Name name) {
         this.id = id;
         this.emailAddress = emailAddress;
+        this.phone = phone;
+        this.name = name;
     }
 
     /**
@@ -82,13 +90,55 @@ public class VenmoWalletCustomerInformation {
     }
 
     /**
+     * Getter for Phone.
+     * The phone information.
+     * @return Returns the PhoneWithType
+     */
+    @JsonGetter("phone")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public PhoneWithType getPhone() {
+        return phone;
+    }
+
+    /**
+     * Setter for Phone.
+     * The phone information.
+     * @param phone Value for PhoneWithType
+     */
+    @JsonSetter("phone")
+    public void setPhone(PhoneWithType phone) {
+        this.phone = phone;
+    }
+
+    /**
+     * Getter for Name.
+     * The name of the party.
+     * @return Returns the Name
+     */
+    @JsonGetter("name")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public Name getName() {
+        return name;
+    }
+
+    /**
+     * Setter for Name.
+     * The name of the party.
+     * @param name Value for Name
+     */
+    @JsonSetter("name")
+    public void setName(Name name) {
+        this.name = name;
+    }
+
+    /**
      * Converts this VenmoWalletCustomerInformation into string format.
      * @return String representation of this class
      */
     @Override
     public String toString() {
         return "VenmoWalletCustomerInformation [" + "id=" + id + ", emailAddress=" + emailAddress
-                + "]";
+                + ", phone=" + phone + ", name=" + name + "]";
     }
 
     /**
@@ -99,7 +149,9 @@ public class VenmoWalletCustomerInformation {
     public Builder toBuilder() {
         Builder builder = new Builder()
                 .id(getId())
-                .emailAddress(getEmailAddress());
+                .emailAddress(getEmailAddress())
+                .phone(getPhone())
+                .name(getName());
         return builder;
     }
 
@@ -109,6 +161,8 @@ public class VenmoWalletCustomerInformation {
     public static class Builder {
         private String id;
         private String emailAddress;
+        private PhoneWithType phone;
+        private Name name;
 
 
 
@@ -133,11 +187,31 @@ public class VenmoWalletCustomerInformation {
         }
 
         /**
+         * Setter for phone.
+         * @param  phone  PhoneWithType value for phone.
+         * @return Builder
+         */
+        public Builder phone(PhoneWithType phone) {
+            this.phone = phone;
+            return this;
+        }
+
+        /**
+         * Setter for name.
+         * @param  name  Name value for name.
+         * @return Builder
+         */
+        public Builder name(Name name) {
+            this.name = name;
+            return this;
+        }
+
+        /**
          * Builds a new {@link VenmoWalletCustomerInformation} object using the set fields.
          * @return {@link VenmoWalletCustomerInformation}
          */
         public VenmoWalletCustomerInformation build() {
-            return new VenmoWalletCustomerInformation(id, emailAddress);
+            return new VenmoWalletCustomerInformation(id, emailAddress, phone, name);
         }
     }
 }

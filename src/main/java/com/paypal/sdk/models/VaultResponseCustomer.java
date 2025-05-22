@@ -89,7 +89,7 @@ public class VaultResponseCustomer {
 
     /**
      * Getter for Links.
-     * An array of request-related HATEOAS links.
+     * DEPRECATED. This field is DEPRECATED.
      * @return Returns the List of JsonValue
      */
     @JsonGetter("links")
@@ -100,7 +100,7 @@ public class VaultResponseCustomer {
 
     /**
      * Setter for Links.
-     * An array of request-related HATEOAS links.
+     * DEPRECATED. This field is DEPRECATED.
      * @param links Value for List of JsonValue
      */
     @JsonSetter("links")

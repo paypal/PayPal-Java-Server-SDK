@@ -88,7 +88,8 @@ public class VaultResponse {
 
     /**
      * Getter for Customer.
-     * The details about a customer in PayPal's system of record.
+     * This object represents a merchant’s customer, allowing them to store contact details, and
+     * track all payments associated with the same customer.
      * @return Returns the VaultCustomer
      */
     @JsonGetter("customer")
@@ -99,7 +100,8 @@ public class VaultResponse {
 
     /**
      * Setter for Customer.
-     * The details about a customer in PayPal's system of record.
+     * This object represents a merchant’s customer, allowing them to store contact details, and
+     * track all payments associated with the same customer.
      * @param customer Value for VaultCustomer
      */
     @JsonSetter("customer")
