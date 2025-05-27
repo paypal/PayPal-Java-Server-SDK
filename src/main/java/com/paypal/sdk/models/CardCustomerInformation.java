@@ -17,6 +17,7 @@ public class CardCustomerInformation {
     private String id;
     private String emailAddress;
     private PhoneWithType phone;
+    private Name name;
     private String merchantCustomerId;
 
     /**
@@ -30,16 +31,19 @@ public class CardCustomerInformation {
      * @param  id  String value for id.
      * @param  emailAddress  String value for emailAddress.
      * @param  phone  PhoneWithType value for phone.
+     * @param  name  Name value for name.
      * @param  merchantCustomerId  String value for merchantCustomerId.
      */
     public CardCustomerInformation(
             String id,
             String emailAddress,
             PhoneWithType phone,
+            Name name,
             String merchantCustomerId) {
         this.id = id;
         this.emailAddress = emailAddress;
         this.phone = phone;
+        this.name = name;
         this.merchantCustomerId = merchantCustomerId;
     }
 
@@ -111,6 +115,27 @@ public class CardCustomerInformation {
     }
 
     /**
+     * Getter for Name.
+     * The name of the party.
+     * @return Returns the Name
+     */
+    @JsonGetter("name")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public Name getName() {
+        return name;
+    }
+
+    /**
+     * Setter for Name.
+     * The name of the party.
+     * @param name Value for Name
+     */
+    @JsonSetter("name")
+    public void setName(Name name) {
+        this.name = name;
+    }
+
+    /**
      * Getter for MerchantCustomerId.
      * Merchants and partners may already have a data-store where their customer information is
      * persisted. Use merchant_customer_id to associate the PayPal-generated customer.id to your
@@ -142,7 +167,8 @@ public class CardCustomerInformation {
     @Override
     public String toString() {
         return "CardCustomerInformation [" + "id=" + id + ", emailAddress=" + emailAddress
-                + ", phone=" + phone + ", merchantCustomerId=" + merchantCustomerId + "]";
+                + ", phone=" + phone + ", name=" + name + ", merchantCustomerId="
+                + merchantCustomerId + "]";
     }
 
     /**
@@ -155,6 +181,7 @@ public class CardCustomerInformation {
                 .id(getId())
                 .emailAddress(getEmailAddress())
                 .phone(getPhone())
+                .name(getName())
                 .merchantCustomerId(getMerchantCustomerId());
         return builder;
     }
@@ -166,6 +193,7 @@ public class CardCustomerInformation {
         private String id;
         private String emailAddress;
         private PhoneWithType phone;
+        private Name name;
         private String merchantCustomerId;
 
 
@@ -201,6 +229,16 @@ public class CardCustomerInformation {
         }
 
         /**
+         * Setter for name.
+         * @param  name  Name value for name.
+         * @return Builder
+         */
+        public Builder name(Name name) {
+            this.name = name;
+            return this;
+        }
+
+        /**
          * Setter for merchantCustomerId.
          * @param  merchantCustomerId  String value for merchantCustomerId.
          * @return Builder
@@ -215,7 +253,7 @@ public class CardCustomerInformation {
          * @return {@link CardCustomerInformation}
          */
         public CardCustomerInformation build() {
-            return new CardCustomerInformation(id, emailAddress, phone, merchantCustomerId);
+            return new CardCustomerInformation(id, emailAddress, phone, name, merchantCustomerId);
         }
     }
 }

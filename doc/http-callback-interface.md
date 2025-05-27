@@ -7,6 +7,6 @@ Callback to be called before and after the HTTP call for an endpoint is made.
 
 | Name | Description | Return Type |
 |  --- | --- | --- |
-| `onBeforeRequest(`[`HttpRequest`](http-request.md) `request)` | Callback called just before the HTTP request is sent. | `void` |
-| `onAfterResponse(`[`HttpContext`](http-context.md) `context)` | Callback called just after the HTTP response is received. | `void` |
+| <code>onBeforeRequest([`HttpRequest`](../doc/http-request.md) request)</code> | Callback called just before the HTTP request is sent. | `void` |
+| <code>onAfterResponse([`HttpContext`](../doc/http-context.md) context)</code> | Callback called just after the HTTP response is received. | `void` |
 

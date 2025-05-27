@@ -45,73 +45,6 @@ public final class PaymentsController extends BaseController {
     }
 
     /**
-     * Shows details for an authorized payment, by ID.
-     * @param  input  GetAuthorizedPaymentInput object containing request parameters
-     * @return    Returns the PaymentAuthorization wrapped in ApiResponse response from the API call
-     * @throws    ApiException    Represents error response from the server.
-     * @throws    IOException    Signals that an I/O exception of some sort has occurred.
-     */
-    public ApiResponse<PaymentAuthorization> getAuthorizedPayment(
-            final GetAuthorizedPaymentInput input) throws ApiException, IOException {
-        return prepareGetAuthorizedPaymentRequest(input).execute();
-    }
-
-    /**
-     * Shows details for an authorized payment, by ID.
-     * @param  input  GetAuthorizedPaymentInput object containing request parameters
-     * @return    Returns the PaymentAuthorization wrapped in ApiResponse response from the API call
-     */
-    public CompletableFuture<ApiResponse<PaymentAuthorization>> getAuthorizedPaymentAsync(
-            final GetAuthorizedPaymentInput input) {
-        try { 
-            return prepareGetAuthorizedPaymentRequest(input).executeAsync(); 
-        } catch (Exception e) {  
-            throw new CompletionException(e); 
-        }
-    }
-
-    /**
-     * Builds the ApiCall object for getAuthorizedPayment.
-     */
-    private ApiCall<ApiResponse<PaymentAuthorization>, ApiException> prepareGetAuthorizedPaymentRequest(
-            final GetAuthorizedPaymentInput input) throws IOException {
-        return new ApiCall.Builder<ApiResponse<PaymentAuthorization>, ApiException>()
-                .globalConfig(getGlobalConfiguration())
-                .requestBuilder(requestBuilder -> requestBuilder
-                        .server(Server.ENUM_DEFAULT.value())
-                        .path("/v2/payments/authorizations/{authorization_id}")
-                        .templateParam(param -> param.key("authorization_id").value(input.getAuthorizationId())
-                                .shouldEncode(true))
-                        .headerParam(param -> param.key("PayPal-Mock-Response")
-                                .value(input.getPaypalMockResponse()).isRequired(false))
-                        .headerParam(param -> param.key("PayPal-Auth-Assertion")
-                                .value(input.getPaypalAuthAssertion()).isRequired(false))
-                        .headerParam(param -> param.key("accept").value("application/json"))
-                        .withAuth(auth -> auth
-                                .add("Oauth2"))
-                        .httpMethod(HttpMethod.GET))
-                .responseHandler(responseHandler -> responseHandler
-                        .responseClassType(ResponseClassType.API_RESPONSE)
-                        .apiResponseDeserializer(
-                                response -> ApiHelper.deserialize(response, PaymentAuthorization.class))
-                        .nullify404(false)
-                        .localErrorCase("401",
-                                 ErrorCase.setReason("Authentication failed due to missing authorization header, or invalid authentication credentials.",
-                                (reason, context) -> new ErrorException(reason, context)))
-                        .localErrorCase("404",
-                                 ErrorCase.setReason("The request failed because the resource does not exist.",
-                                (reason, context) -> new ErrorException(reason, context)))
-                        .localErrorCase("500",
-                                 ErrorCase.setReason("The request failed because an internal server error occurred.",
-                                (reason, context) -> new ApiException(reason, context)))
-                        .localErrorCase(ErrorCase.DEFAULT,
-                                 ErrorCase.setReason("The error response.",
-                                (reason, context) -> new ErrorException(reason, context)))
-                        .globalErrorCase(GLOBAL_ERROR_CASES))
-                .build();
-    }
-
-    /**
      * Captures an authorized payment, by ID.
      * @param  input  CaptureAuthorizedPaymentInput object containing request parameters
      * @return    Returns the CapturedPayment wrapped in ApiResponse response from the API call
@@ -187,6 +120,74 @@ public final class PaymentsController extends BaseController {
                                 (reason, context) -> new ErrorException(reason, context)))
                         .localErrorCase("422",
                                  ErrorCase.setReason("The request failed because it is semantically incorrect or failed business validation.",
+                                (reason, context) -> new ErrorException(reason, context)))
+                        .localErrorCase("500",
+                                 ErrorCase.setReason("The request failed because an internal server error occurred.",
+                                (reason, context) -> new ApiException(reason, context)))
+                        .localErrorCase(ErrorCase.DEFAULT,
+                                 ErrorCase.setReason("The error response.",
+                                (reason, context) -> new ErrorException(reason, context)))
+                        .globalErrorCase(GLOBAL_ERROR_CASES))
+                .build();
+    }
+
+    /**
+     * Shows details for a captured payment, by ID.
+     * @param  input  GetCapturedPaymentInput object containing request parameters
+     * @return    Returns the CapturedPayment wrapped in ApiResponse response from the API call
+     * @throws    ApiException    Represents error response from the server.
+     * @throws    IOException    Signals that an I/O exception of some sort has occurred.
+     */
+    public ApiResponse<CapturedPayment> getCapturedPayment(
+            final GetCapturedPaymentInput input) throws ApiException, IOException {
+        return prepareGetCapturedPaymentRequest(input).execute();
+    }
+
+    /**
+     * Shows details for a captured payment, by ID.
+     * @param  input  GetCapturedPaymentInput object containing request parameters
+     * @return    Returns the CapturedPayment wrapped in ApiResponse response from the API call
+     */
+    public CompletableFuture<ApiResponse<CapturedPayment>> getCapturedPaymentAsync(
+            final GetCapturedPaymentInput input) {
+        try { 
+            return prepareGetCapturedPaymentRequest(input).executeAsync(); 
+        } catch (Exception e) {  
+            throw new CompletionException(e); 
+        }
+    }
+
+    /**
+     * Builds the ApiCall object for getCapturedPayment.
+     */
+    private ApiCall<ApiResponse<CapturedPayment>, ApiException> prepareGetCapturedPaymentRequest(
+            final GetCapturedPaymentInput input) throws IOException {
+        return new ApiCall.Builder<ApiResponse<CapturedPayment>, ApiException>()
+                .globalConfig(getGlobalConfiguration())
+                .requestBuilder(requestBuilder -> requestBuilder
+                        .server(Server.ENUM_DEFAULT.value())
+                        .path("/v2/payments/captures/{capture_id}")
+                        .templateParam(param -> param.key("capture_id").value(input.getCaptureId())
+                                .shouldEncode(true))
+                        .headerParam(param -> param.key("PayPal-Mock-Response")
+                                .value(input.getPaypalMockResponse()).isRequired(false))
+                        .headerParam(param -> param.key("accept").value("application/json"))
+                        .withAuth(auth -> auth
+                                .add("Oauth2"))
+                        .httpMethod(HttpMethod.GET))
+                .responseHandler(responseHandler -> responseHandler
+                        .responseClassType(ResponseClassType.API_RESPONSE)
+                        .apiResponseDeserializer(
+                                response -> ApiHelper.deserialize(response, CapturedPayment.class))
+                        .nullify404(false)
+                        .localErrorCase("401",
+                                 ErrorCase.setReason("Authentication failed due to missing authorization header, or invalid authentication credentials.",
+                                (reason, context) -> new ErrorException(reason, context)))
+                        .localErrorCase("403",
+                                 ErrorCase.setReason("The request failed because the caller has insufficient permissions.",
+                                (reason, context) -> new ErrorException(reason, context)))
+                        .localErrorCase("404",
+                                 ErrorCase.setReason("The request failed because the resource does not exist.",
                                 (reason, context) -> new ErrorException(reason, context)))
                         .localErrorCase("500",
                                  ErrorCase.setReason("The request failed because an internal server error occurred.",
@@ -379,74 +380,6 @@ public final class PaymentsController extends BaseController {
     }
 
     /**
-     * Shows details for a captured payment, by ID.
-     * @param  input  GetCapturedPaymentInput object containing request parameters
-     * @return    Returns the CapturedPayment wrapped in ApiResponse response from the API call
-     * @throws    ApiException    Represents error response from the server.
-     * @throws    IOException    Signals that an I/O exception of some sort has occurred.
-     */
-    public ApiResponse<CapturedPayment> getCapturedPayment(
-            final GetCapturedPaymentInput input) throws ApiException, IOException {
-        return prepareGetCapturedPaymentRequest(input).execute();
-    }
-
-    /**
-     * Shows details for a captured payment, by ID.
-     * @param  input  GetCapturedPaymentInput object containing request parameters
-     * @return    Returns the CapturedPayment wrapped in ApiResponse response from the API call
-     */
-    public CompletableFuture<ApiResponse<CapturedPayment>> getCapturedPaymentAsync(
-            final GetCapturedPaymentInput input) {
-        try { 
-            return prepareGetCapturedPaymentRequest(input).executeAsync(); 
-        } catch (Exception e) {  
-            throw new CompletionException(e); 
-        }
-    }
-
-    /**
-     * Builds the ApiCall object for getCapturedPayment.
-     */
-    private ApiCall<ApiResponse<CapturedPayment>, ApiException> prepareGetCapturedPaymentRequest(
-            final GetCapturedPaymentInput input) throws IOException {
-        return new ApiCall.Builder<ApiResponse<CapturedPayment>, ApiException>()
-                .globalConfig(getGlobalConfiguration())
-                .requestBuilder(requestBuilder -> requestBuilder
-                        .server(Server.ENUM_DEFAULT.value())
-                        .path("/v2/payments/captures/{capture_id}")
-                        .templateParam(param -> param.key("capture_id").value(input.getCaptureId())
-                                .shouldEncode(true))
-                        .headerParam(param -> param.key("PayPal-Mock-Response")
-                                .value(input.getPaypalMockResponse()).isRequired(false))
-                        .headerParam(param -> param.key("accept").value("application/json"))
-                        .withAuth(auth -> auth
-                                .add("Oauth2"))
-                        .httpMethod(HttpMethod.GET))
-                .responseHandler(responseHandler -> responseHandler
-                        .responseClassType(ResponseClassType.API_RESPONSE)
-                        .apiResponseDeserializer(
-                                response -> ApiHelper.deserialize(response, CapturedPayment.class))
-                        .nullify404(false)
-                        .localErrorCase("401",
-                                 ErrorCase.setReason("Authentication failed due to missing authorization header, or invalid authentication credentials.",
-                                (reason, context) -> new ErrorException(reason, context)))
-                        .localErrorCase("403",
-                                 ErrorCase.setReason("The request failed because the caller has insufficient permissions.",
-                                (reason, context) -> new ErrorException(reason, context)))
-                        .localErrorCase("404",
-                                 ErrorCase.setReason("The request failed because the resource does not exist.",
-                                (reason, context) -> new ErrorException(reason, context)))
-                        .localErrorCase("500",
-                                 ErrorCase.setReason("The request failed because an internal server error occurred.",
-                                (reason, context) -> new ApiException(reason, context)))
-                        .localErrorCase(ErrorCase.DEFAULT,
-                                 ErrorCase.setReason("The error response.",
-                                (reason, context) -> new ErrorException(reason, context)))
-                        .globalErrorCase(GLOBAL_ERROR_CASES))
-                .build();
-    }
-
-    /**
      * Refunds a captured payment, by ID. For a full refund, include an empty payload in the JSON
      * request body. For a partial refund, include an amount object in the JSON request body.
      * @param  input  RefundCapturedPaymentInput object containing request parameters
@@ -524,6 +457,73 @@ public final class PaymentsController extends BaseController {
                                 (reason, context) -> new ErrorException(reason, context)))
                         .localErrorCase("422",
                                  ErrorCase.setReason("The request failed because it either is semantically incorrect or failed business validation.",
+                                (reason, context) -> new ErrorException(reason, context)))
+                        .localErrorCase("500",
+                                 ErrorCase.setReason("The request failed because an internal server error occurred.",
+                                (reason, context) -> new ApiException(reason, context)))
+                        .localErrorCase(ErrorCase.DEFAULT,
+                                 ErrorCase.setReason("The error response.",
+                                (reason, context) -> new ErrorException(reason, context)))
+                        .globalErrorCase(GLOBAL_ERROR_CASES))
+                .build();
+    }
+
+    /**
+     * Shows details for an authorized payment, by ID.
+     * @param  input  GetAuthorizedPaymentInput object containing request parameters
+     * @return    Returns the PaymentAuthorization wrapped in ApiResponse response from the API call
+     * @throws    ApiException    Represents error response from the server.
+     * @throws    IOException    Signals that an I/O exception of some sort has occurred.
+     */
+    public ApiResponse<PaymentAuthorization> getAuthorizedPayment(
+            final GetAuthorizedPaymentInput input) throws ApiException, IOException {
+        return prepareGetAuthorizedPaymentRequest(input).execute();
+    }
+
+    /**
+     * Shows details for an authorized payment, by ID.
+     * @param  input  GetAuthorizedPaymentInput object containing request parameters
+     * @return    Returns the PaymentAuthorization wrapped in ApiResponse response from the API call
+     */
+    public CompletableFuture<ApiResponse<PaymentAuthorization>> getAuthorizedPaymentAsync(
+            final GetAuthorizedPaymentInput input) {
+        try { 
+            return prepareGetAuthorizedPaymentRequest(input).executeAsync(); 
+        } catch (Exception e) {  
+            throw new CompletionException(e); 
+        }
+    }
+
+    /**
+     * Builds the ApiCall object for getAuthorizedPayment.
+     */
+    private ApiCall<ApiResponse<PaymentAuthorization>, ApiException> prepareGetAuthorizedPaymentRequest(
+            final GetAuthorizedPaymentInput input) throws IOException {
+        return new ApiCall.Builder<ApiResponse<PaymentAuthorization>, ApiException>()
+                .globalConfig(getGlobalConfiguration())
+                .requestBuilder(requestBuilder -> requestBuilder
+                        .server(Server.ENUM_DEFAULT.value())
+                        .path("/v2/payments/authorizations/{authorization_id}")
+                        .templateParam(param -> param.key("authorization_id").value(input.getAuthorizationId())
+                                .shouldEncode(true))
+                        .headerParam(param -> param.key("PayPal-Mock-Response")
+                                .value(input.getPaypalMockResponse()).isRequired(false))
+                        .headerParam(param -> param.key("PayPal-Auth-Assertion")
+                                .value(input.getPaypalAuthAssertion()).isRequired(false))
+                        .headerParam(param -> param.key("accept").value("application/json"))
+                        .withAuth(auth -> auth
+                                .add("Oauth2"))
+                        .httpMethod(HttpMethod.GET))
+                .responseHandler(responseHandler -> responseHandler
+                        .responseClassType(ResponseClassType.API_RESPONSE)
+                        .apiResponseDeserializer(
+                                response -> ApiHelper.deserialize(response, PaymentAuthorization.class))
+                        .nullify404(false)
+                        .localErrorCase("401",
+                                 ErrorCase.setReason("Authentication failed due to missing authorization header, or invalid authentication credentials.",
+                                (reason, context) -> new ErrorException(reason, context)))
+                        .localErrorCase("404",
+                                 ErrorCase.setReason("The request failed because the resource does not exist.",
                                 (reason, context) -> new ErrorException(reason, context)))
                         .localErrorCase("500",
                                  ErrorCase.setReason("The request failed because an internal server error occurred.",

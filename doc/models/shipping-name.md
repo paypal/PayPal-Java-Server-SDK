@@ -11,7 +11,7 @@ The name of the party.
 
 | Name | Type | Tags | Description | Getter | Setter |
 |  --- | --- | --- | --- | --- | --- |
-| `FullName` | `String` | Optional | When the party is a person, the party's full name.<br>**Constraints**: *Maximum Length*: `300` | String getFullName() | setFullName(String fullName) |
+| `FullName` | `String` | Optional | When the party is a person, the party's full name.<br><br>**Constraints**: *Maximum Length*: `300` | String getFullName() | setFullName(String fullName) |
 
 ## Example (as JSON)
 

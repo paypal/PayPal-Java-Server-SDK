@@ -1,5 +1,5 @@
 
-# ApiLoggingConfiguration Class
+# ApiLoggingConfiguration
 
 Class for holding logging configuration.
 
@@ -13,5 +13,5 @@ Class for holding logging configuration.
 | `getRequestConfig()` | Getter for request log configuration. | `ReadonlyRequestLoggingConfiguration` |
 | `getResponseConfig()` | Getter for response log configuration. | `ReadonlyResponseLoggingConfiguration` |
 | `toString()` | Converts this ApiLoggingConfiguration into string format. | `String` |
-| `newBuilder()` | Builds a new ApiLoggingConfiguration.Builder object. Creates the instance with the current state. | [`ApiLoggingConfiguration.Builder`](api-logging-configuration-builder.md) |
+| `newBuilder()` | Builds a new ApiLoggingConfiguration.Builder object. Creates the instance with the current state. | [`ApiLoggingConfiguration.Builder`](../doc/api-logging-configuration-builder.md) |
 

@@ -11,8 +11,8 @@ Customizes the buyer experience during the approval process for payment with Ven
 
 | Name | Type | Tags | Description | Getter | Setter |
 |  --- | --- | --- | --- | --- | --- |
-| `BrandName` | `String` | Optional | The business name of the merchant. The pattern is defined by an external party and supports Unicode.<br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `127`, *Pattern*: `^.*$` | String getBrandName() | setBrandName(String brandName) |
-| `ShippingPreference` | [`ShippingPreference`](../../doc/models/shipping-preference.md) | Optional | The location from which the shipping address is derived.<br>**Default**: `ShippingPreference.GET_FROM_FILE`<br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `24`, *Pattern*: `^[A-Z_]+$` | ShippingPreference getShippingPreference() | setShippingPreference(ShippingPreference shippingPreference) |
+| `BrandName` | `String` | Optional | The business name of the merchant. The pattern is defined by an external party and supports Unicode.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `127`, *Pattern*: `^.*$` | String getBrandName() | setBrandName(String brandName) |
+| `ShippingPreference` | [`ShippingPreference`](../../doc/models/shipping-preference.md) | Optional | The location from which the shipping address is derived.<br><br>**Default**: `ShippingPreference.GET_FROM_FILE`<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `24`, *Pattern*: `^[A-Z_]+$` | ShippingPreference getShippingPreference() | setShippingPreference(ShippingPreference shippingPreference) |
 | `OrderUpdateCallbackConfig` | [`CallbackConfiguration`](../../doc/models/callback-configuration.md) | Optional | CallBack Configuration that the merchant can provide to PayPal/Venmo. | CallbackConfiguration getOrderUpdateCallbackConfig() | setOrderUpdateCallbackConfig(CallbackConfiguration orderUpdateCallbackConfig) |
 
 ## Example (as JSON)

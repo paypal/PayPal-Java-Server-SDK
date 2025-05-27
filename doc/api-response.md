@@ -5,13 +5,13 @@ Represents the result of an API call, including response metadata and the return
 
 ## Methods
 
-| Name | Type | Description |
+| Name | Description | Type |
 |  --- | --- | --- |
-| `getStatusCode()` | `int` | Returns the response status code. |
-| `getHeaders()` | [`Headers`](headers.md) | Returns the response headers. |
+| `getStatusCode()` | Returns the response status code. | `int` |
+| `getHeaders()` | Returns the response headers. | [`Headers`](../doc/headers.md) |
 | `getResult()` | `T` | Returns the response data. |
 
-## Example Usage
+## Usage Example
 
 ```java
 try {

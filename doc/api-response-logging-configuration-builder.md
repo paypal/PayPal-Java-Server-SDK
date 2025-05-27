@@ -1,5 +1,5 @@
 
-# ApiResponseLoggingConfiguration.Builder Class
+# ApiResponseLoggingConfiguration.Builder
 
 Class to build instances of ResponseLoggingConfiguration.
 

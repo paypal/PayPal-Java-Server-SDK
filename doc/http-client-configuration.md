@@ -1,5 +1,5 @@
 
-# HttpClientConfiguration Class
+# HttpClientConfiguration
 
 Class for holding http client configuration.
 
@@ -18,5 +18,5 @@ Class for holding http client configuration.
 | `getHttpClientInstance()` | The OkHttpClient instance used to make the HTTP calls. | `okhttp3.OkHttpClient` |
 | `shouldOverrideHttpClientConfigurations()` | Allow the SDK to override HTTP client instance's settings used for features like retries, timeouts etc. | `boolean` |
 | `toString()` | Converts this HttpClientConfiguration into string format. | `String` |
-| `newBuilder()` | Builds a new {@link HttpClientConfiguration.Builder} object. Creates the instance with the current state. | [`HttpClientConfiguration.Builder`](http-client-configuration-builder.md) |
+| `newBuilder()` | Builds a new {@link HttpClientConfiguration.Builder} object. Creates the instance with the current state. | [`HttpClientConfiguration.Builder`](../doc/http-client-configuration-builder.md) |
 

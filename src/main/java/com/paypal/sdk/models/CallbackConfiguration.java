@@ -37,8 +37,7 @@ public class CallbackConfiguration {
 
     /**
      * Getter for CallbackEvents.
-     * An array of callback events merchant can subscribe to for the corresponding callback url. The
-     * SHIPPING_ADDRESS callback event is required.
+     * An array of callback events merchant can subscribe to for the corresponding callback url.
      * @return Returns the List of CallbackEvents
      */
     @JsonGetter("callback_events")
@@ -48,8 +47,7 @@ public class CallbackConfiguration {
 
     /**
      * Setter for CallbackEvents.
-     * An array of callback events merchant can subscribe to for the corresponding callback url. The
-     * SHIPPING_ADDRESS callback event is required.
+     * An array of callback events merchant can subscribe to for the corresponding callback url.
      * @param callbackEvents Value for List of CallbackEvents
      */
     @JsonSetter("callback_events")

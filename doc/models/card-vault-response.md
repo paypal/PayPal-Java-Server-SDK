@@ -11,9 +11,9 @@ The details about a saved Card payment source.
 
 | Name | Type | Tags | Description | Getter | Setter |
 |  --- | --- | --- | --- | --- | --- |
-| `Id` | `String` | Optional | The PayPal-generated ID for the saved payment source.<br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255` | String getId() | setId(String id) |
-| `Status` | [`VaultStatus`](../../doc/models/vault-status.md) | Optional | The vault status.<br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[0-9A-Z_]+$` | VaultStatus getStatus() | setStatus(VaultStatus status) |
-| `Links` | [`List<LinkDescription>`](../../doc/models/link-description.md) | Optional | An array of request-related HATEOAS links.<br>**Constraints**: *Minimum Items*: `1`, *Maximum Items*: `10` | List<LinkDescription> getLinks() | setLinks(List<LinkDescription> links) |
+| `Id` | `String` | Optional | The PayPal-generated ID for the saved payment source.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255` | String getId() | setId(String id) |
+| `Status` | [`VaultStatus`](../../doc/models/vault-status.md) | Optional | The vault status.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[0-9A-Z_]+$` | VaultStatus getStatus() | setStatus(VaultStatus status) |
+| `Links` | [`List<LinkDescription>`](../../doc/models/link-description.md) | Optional | An array of request-related HATEOAS links.<br><br>**Constraints**: *Minimum Items*: `1`, *Maximum Items*: `10` | List<LinkDescription> getLinks() | setLinks(List<LinkDescription> links) |
 | `Customer` | [`CardCustomerInformation`](../../doc/models/card-customer-information.md) | Optional | The details about a customer in PayPal's system of record. | CardCustomerInformation getCustomer() | setCustomer(CardCustomerInformation customer) |
 
 ## Example (as JSON)
@@ -42,6 +42,10 @@ The details about a saved Card payment source.
       "phone_number": {
         "national_number": "national_number6"
       }
+    },
+    "name": {
+      "given_name": "given_name2",
+      "surname": "surname8"
     },
     "merchant_customer_id": "merchant_customer_id2"
   }
