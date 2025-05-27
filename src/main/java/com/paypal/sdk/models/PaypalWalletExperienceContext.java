@@ -17,6 +17,7 @@ public class PaypalWalletExperienceContext {
     private String brandName;
     private String locale;
     private PaypalWalletContextShippingPreference shippingPreference;
+    private PaypalWalletContactPreference contactPreference;
     private String returnUrl;
     private String cancelUrl;
     private PaypalExperienceLandingPage landingPage;
@@ -29,6 +30,7 @@ public class PaypalWalletExperienceContext {
      */
     public PaypalWalletExperienceContext() {
         shippingPreference = PaypalWalletContextShippingPreference.GET_FROM_FILE;
+        contactPreference = PaypalWalletContactPreference.NO_CONTACT_INFO;
         landingPage = PaypalExperienceLandingPage.NO_PREFERENCE;
         userAction = PaypalExperienceUserAction.CONTINUE;
         paymentMethodPreference = PayeePaymentMethodPreference.UNRESTRICTED;
@@ -40,6 +42,7 @@ public class PaypalWalletExperienceContext {
      * @param  locale  String value for locale.
      * @param  shippingPreference  PaypalWalletContextShippingPreference value for
      *         shippingPreference.
+     * @param  contactPreference  PaypalWalletContactPreference value for contactPreference.
      * @param  returnUrl  String value for returnUrl.
      * @param  cancelUrl  String value for cancelUrl.
      * @param  landingPage  PaypalExperienceLandingPage value for landingPage.
@@ -52,6 +55,7 @@ public class PaypalWalletExperienceContext {
             String brandName,
             String locale,
             PaypalWalletContextShippingPreference shippingPreference,
+            PaypalWalletContactPreference contactPreference,
             String returnUrl,
             String cancelUrl,
             PaypalExperienceLandingPage landingPage,
@@ -61,6 +65,7 @@ public class PaypalWalletExperienceContext {
         this.brandName = brandName;
         this.locale = locale;
         this.shippingPreference = shippingPreference;
+        this.contactPreference = contactPreference;
         this.returnUrl = returnUrl;
         this.cancelUrl = cancelUrl;
         this.landingPage = landingPage;
@@ -144,6 +149,29 @@ public class PaypalWalletExperienceContext {
     @JsonSetter("shipping_preference")
     public void setShippingPreference(PaypalWalletContextShippingPreference shippingPreference) {
         this.shippingPreference = shippingPreference;
+    }
+
+    /**
+     * Getter for ContactPreference.
+     * The preference to display the contact information (buyer’s shipping email &amp; phone number) on
+     * PayPal's checkout for easy merchant-buyer communication.
+     * @return Returns the PaypalWalletContactPreference
+     */
+    @JsonGetter("contact_preference")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public PaypalWalletContactPreference getContactPreference() {
+        return contactPreference;
+    }
+
+    /**
+     * Setter for ContactPreference.
+     * The preference to display the contact information (buyer’s shipping email &amp; phone number) on
+     * PayPal's checkout for easy merchant-buyer communication.
+     * @param contactPreference Value for PaypalWalletContactPreference
+     */
+    @JsonSetter("contact_preference")
+    public void setContactPreference(PaypalWalletContactPreference contactPreference) {
+        this.contactPreference = contactPreference;
     }
 
     /**
@@ -279,9 +307,10 @@ public class PaypalWalletExperienceContext {
     @Override
     public String toString() {
         return "PaypalWalletExperienceContext [" + "brandName=" + brandName + ", locale=" + locale
-                + ", shippingPreference=" + shippingPreference + ", returnUrl=" + returnUrl
-                + ", cancelUrl=" + cancelUrl + ", landingPage=" + landingPage + ", userAction="
-                + userAction + ", paymentMethodPreference=" + paymentMethodPreference
+                + ", shippingPreference=" + shippingPreference + ", contactPreference="
+                + contactPreference + ", returnUrl=" + returnUrl + ", cancelUrl=" + cancelUrl
+                + ", landingPage=" + landingPage + ", userAction=" + userAction
+                + ", paymentMethodPreference=" + paymentMethodPreference
                 + ", orderUpdateCallbackConfig=" + orderUpdateCallbackConfig + "]";
     }
 
@@ -295,6 +324,7 @@ public class PaypalWalletExperienceContext {
                 .brandName(getBrandName())
                 .locale(getLocale())
                 .shippingPreference(getShippingPreference())
+                .contactPreference(getContactPreference())
                 .returnUrl(getReturnUrl())
                 .cancelUrl(getCancelUrl())
                 .landingPage(getLandingPage())
@@ -312,6 +342,8 @@ public class PaypalWalletExperienceContext {
         private String locale;
         private PaypalWalletContextShippingPreference shippingPreference =
                 PaypalWalletContextShippingPreference.GET_FROM_FILE;
+        private PaypalWalletContactPreference contactPreference =
+                PaypalWalletContactPreference.NO_CONTACT_INFO;
         private String returnUrl;
         private String cancelUrl;
         private PaypalExperienceLandingPage landingPage = PaypalExperienceLandingPage.NO_PREFERENCE;
@@ -351,6 +383,16 @@ public class PaypalWalletExperienceContext {
         public Builder shippingPreference(
                 PaypalWalletContextShippingPreference shippingPreference) {
             this.shippingPreference = shippingPreference;
+            return this;
+        }
+
+        /**
+         * Setter for contactPreference.
+         * @param  contactPreference  PaypalWalletContactPreference value for contactPreference.
+         * @return Builder
+         */
+        public Builder contactPreference(PaypalWalletContactPreference contactPreference) {
+            this.contactPreference = contactPreference;
             return this;
         }
 
@@ -424,8 +466,8 @@ public class PaypalWalletExperienceContext {
          */
         public PaypalWalletExperienceContext build() {
             return new PaypalWalletExperienceContext(brandName, locale, shippingPreference,
-                    returnUrl, cancelUrl, landingPage, userAction, paymentMethodPreference,
-                    orderUpdateCallbackConfig);
+                    contactPreference, returnUrl, cancelUrl, landingPage, userAction,
+                    paymentMethodPreference, orderUpdateCallbackConfig);
         }
     }
 }

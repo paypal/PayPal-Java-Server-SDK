@@ -1,5 +1,5 @@
 
-# ApiRequestLoggingConfiguration.Builder Class
+# ApiRequestLoggingConfiguration.Builder
 
 Class to build instances of RequestLoggingConfiguration.
 

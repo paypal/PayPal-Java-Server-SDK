@@ -37,7 +37,8 @@ public class ApplePayAttributes {
 
     /**
      * Getter for Customer.
-     * The details about a customer in PayPal's system of record.
+     * This object represents a merchant’s customer, allowing them to store contact details, and
+     * track all payments associated with the same customer.
      * @return Returns the CustomerInformation
      */
     @JsonGetter("customer")
@@ -48,7 +49,8 @@ public class ApplePayAttributes {
 
     /**
      * Setter for Customer.
-     * The details about a customer in PayPal's system of record.
+     * This object represents a merchant’s customer, allowing them to store contact details, and
+     * track all payments associated with the same customer.
      * @param customer Value for CustomerInformation
      */
     @JsonSetter("customer")

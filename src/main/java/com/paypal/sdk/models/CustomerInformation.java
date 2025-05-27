@@ -17,6 +17,7 @@ public class CustomerInformation {
     private String id;
     private String emailAddress;
     private PhoneWithType phone;
+    private Name name;
 
     /**
      * Default constructor.
@@ -29,14 +30,17 @@ public class CustomerInformation {
      * @param  id  String value for id.
      * @param  emailAddress  String value for emailAddress.
      * @param  phone  PhoneWithType value for phone.
+     * @param  name  Name value for name.
      */
     public CustomerInformation(
             String id,
             String emailAddress,
-            PhoneWithType phone) {
+            PhoneWithType phone,
+            Name name) {
         this.id = id;
         this.emailAddress = emailAddress;
         this.phone = phone;
+        this.name = name;
     }
 
     /**
@@ -107,13 +111,34 @@ public class CustomerInformation {
     }
 
     /**
+     * Getter for Name.
+     * The name of the party.
+     * @return Returns the Name
+     */
+    @JsonGetter("name")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public Name getName() {
+        return name;
+    }
+
+    /**
+     * Setter for Name.
+     * The name of the party.
+     * @param name Value for Name
+     */
+    @JsonSetter("name")
+    public void setName(Name name) {
+        this.name = name;
+    }
+
+    /**
      * Converts this CustomerInformation into string format.
      * @return String representation of this class
      */
     @Override
     public String toString() {
         return "CustomerInformation [" + "id=" + id + ", emailAddress=" + emailAddress + ", phone="
-                + phone + "]";
+                + phone + ", name=" + name + "]";
     }
 
     /**
@@ -125,7 +150,8 @@ public class CustomerInformation {
         Builder builder = new Builder()
                 .id(getId())
                 .emailAddress(getEmailAddress())
-                .phone(getPhone());
+                .phone(getPhone())
+                .name(getName());
         return builder;
     }
 
@@ -136,6 +162,7 @@ public class CustomerInformation {
         private String id;
         private String emailAddress;
         private PhoneWithType phone;
+        private Name name;
 
 
 
@@ -170,11 +197,21 @@ public class CustomerInformation {
         }
 
         /**
+         * Setter for name.
+         * @param  name  Name value for name.
+         * @return Builder
+         */
+        public Builder name(Name name) {
+            this.name = name;
+            return this;
+        }
+
+        /**
          * Builds a new {@link CustomerInformation} object using the set fields.
          * @return {@link CustomerInformation}
          */
         public CustomerInformation build() {
-            return new CustomerInformation(id, emailAddress, phone);
+            return new CustomerInformation(id, emailAddress, phone, name);
         }
     }
 }

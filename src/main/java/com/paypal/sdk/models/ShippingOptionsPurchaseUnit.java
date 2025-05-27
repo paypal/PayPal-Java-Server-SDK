@@ -17,6 +17,7 @@ import java.util.List;
 public class ShippingOptionsPurchaseUnit {
     private String referenceId;
     private AmountWithBreakdown amount;
+    private List<Item> items;
     private List<ShippingOption> shippingOptions;
 
     /**
@@ -29,14 +30,17 @@ public class ShippingOptionsPurchaseUnit {
      * Initialization constructor.
      * @param  referenceId  String value for referenceId.
      * @param  amount  AmountWithBreakdown value for amount.
+     * @param  items  List of Item value for items.
      * @param  shippingOptions  List of ShippingOption value for shippingOptions.
      */
     public ShippingOptionsPurchaseUnit(
             String referenceId,
             AmountWithBreakdown amount,
+            List<Item> items,
             List<ShippingOption> shippingOptions) {
         this.referenceId = referenceId;
         this.amount = amount;
+        this.items = items;
         this.shippingOptions = shippingOptions;
     }
 
@@ -99,6 +103,27 @@ public class ShippingOptionsPurchaseUnit {
     }
 
     /**
+     * Getter for Items.
+     * An array of items that the customer purchases from the merchant.
+     * @return Returns the List of Item
+     */
+    @JsonGetter("items")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public List<Item> getItems() {
+        return items;
+    }
+
+    /**
+     * Setter for Items.
+     * An array of items that the customer purchases from the merchant.
+     * @param items Value for List of Item
+     */
+    @JsonSetter("items")
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
+
+    /**
      * Getter for ShippingOptions.
      * An array of shipping options that the payee or merchant offers to the payer to ship or pick
      * up their items.
@@ -128,7 +153,7 @@ public class ShippingOptionsPurchaseUnit {
     @Override
     public String toString() {
         return "ShippingOptionsPurchaseUnit [" + "referenceId=" + referenceId + ", amount=" + amount
-                + ", shippingOptions=" + shippingOptions + "]";
+                + ", items=" + items + ", shippingOptions=" + shippingOptions + "]";
     }
 
     /**
@@ -140,6 +165,7 @@ public class ShippingOptionsPurchaseUnit {
         Builder builder = new Builder()
                 .referenceId(getReferenceId())
                 .amount(getAmount())
+                .items(getItems())
                 .shippingOptions(getShippingOptions());
         return builder;
     }
@@ -150,6 +176,7 @@ public class ShippingOptionsPurchaseUnit {
     public static class Builder {
         private String referenceId;
         private AmountWithBreakdown amount;
+        private List<Item> items;
         private List<ShippingOption> shippingOptions;
 
 
@@ -175,6 +202,16 @@ public class ShippingOptionsPurchaseUnit {
         }
 
         /**
+         * Setter for items.
+         * @param  items  List of Item value for items.
+         * @return Builder
+         */
+        public Builder items(List<Item> items) {
+            this.items = items;
+            return this;
+        }
+
+        /**
          * Setter for shippingOptions.
          * @param  shippingOptions  List of ShippingOption value for shippingOptions.
          * @return Builder
@@ -189,7 +226,7 @@ public class ShippingOptionsPurchaseUnit {
          * @return {@link ShippingOptionsPurchaseUnit}
          */
         public ShippingOptionsPurchaseUnit build() {
-            return new ShippingOptionsPurchaseUnit(referenceId, amount, shippingOptions);
+            return new ShippingOptionsPurchaseUnit(referenceId, amount, items, shippingOptions);
         }
     }
 }

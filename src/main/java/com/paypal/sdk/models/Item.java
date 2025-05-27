@@ -24,6 +24,7 @@ public class Item {
     private ItemCategory category;
     private String imageUrl;
     private UniversalProductCode upc;
+    private OrderBillingPlan billingPlan;
 
     /**
      * Default constructor.
@@ -43,6 +44,7 @@ public class Item {
      * @param  category  ItemCategory value for category.
      * @param  imageUrl  String value for imageUrl.
      * @param  upc  UniversalProductCode value for upc.
+     * @param  billingPlan  OrderBillingPlan value for billingPlan.
      */
     public Item(
             String name,
@@ -54,7 +56,8 @@ public class Item {
             String url,
             ItemCategory category,
             String imageUrl,
-            UniversalProductCode upc) {
+            UniversalProductCode upc,
+            OrderBillingPlan billingPlan) {
         this.name = name;
         this.unitAmount = unitAmount;
         this.tax = tax;
@@ -65,6 +68,7 @@ public class Item {
         this.category = category;
         this.imageUrl = imageUrl;
         this.upc = upc;
+        this.billingPlan = billingPlan;
     }
 
     /**
@@ -277,6 +281,29 @@ public class Item {
     }
 
     /**
+     * Getter for BillingPlan.
+     * Metadata for merchant-managed recurring billing plans. Valid only during the saved payment
+     * method token or billing agreement creation.
+     * @return Returns the OrderBillingPlan
+     */
+    @JsonGetter("billing_plan")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public OrderBillingPlan getBillingPlan() {
+        return billingPlan;
+    }
+
+    /**
+     * Setter for BillingPlan.
+     * Metadata for merchant-managed recurring billing plans. Valid only during the saved payment
+     * method token or billing agreement creation.
+     * @param billingPlan Value for OrderBillingPlan
+     */
+    @JsonSetter("billing_plan")
+    public void setBillingPlan(OrderBillingPlan billingPlan) {
+        this.billingPlan = billingPlan;
+    }
+
+    /**
      * Converts this Item into string format.
      * @return String representation of this class
      */
@@ -284,7 +311,8 @@ public class Item {
     public String toString() {
         return "Item [" + "name=" + name + ", unitAmount=" + unitAmount + ", quantity=" + quantity
                 + ", tax=" + tax + ", description=" + description + ", sku=" + sku + ", url=" + url
-                + ", category=" + category + ", imageUrl=" + imageUrl + ", upc=" + upc + "]";
+                + ", category=" + category + ", imageUrl=" + imageUrl + ", upc=" + upc
+                + ", billingPlan=" + billingPlan + "]";
     }
 
     /**
@@ -300,7 +328,8 @@ public class Item {
                 .url(getUrl())
                 .category(getCategory())
                 .imageUrl(getImageUrl())
-                .upc(getUpc());
+                .upc(getUpc())
+                .billingPlan(getBillingPlan());
         return builder;
     }
 
@@ -318,6 +347,7 @@ public class Item {
         private ItemCategory category;
         private String imageUrl;
         private UniversalProductCode upc;
+        private OrderBillingPlan billingPlan;
 
         /**
          * Initialization constructor.
@@ -438,12 +468,22 @@ public class Item {
         }
 
         /**
+         * Setter for billingPlan.
+         * @param  billingPlan  OrderBillingPlan value for billingPlan.
+         * @return Builder
+         */
+        public Builder billingPlan(OrderBillingPlan billingPlan) {
+            this.billingPlan = billingPlan;
+            return this;
+        }
+
+        /**
          * Builds a new {@link Item} object using the set fields.
          * @return {@link Item}
          */
         public Item build() {
             return new Item(name, unitAmount, quantity, tax, description, sku, url, category,
-                    imageUrl, upc);
+                    imageUrl, upc, billingPlan);
         }
     }
 }

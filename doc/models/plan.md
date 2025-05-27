@@ -11,10 +11,10 @@ The merchant level Recurring Billing plan metadata for the Billing Agreement.
 
 | Name | Type | Tags | Description | Getter | Setter |
 |  --- | --- | --- | --- | --- | --- |
-| `BillingCycles` | [`List<BillingCycle>`](../../doc/models/billing-cycle.md) | Required | An array of billing cycles for trial billing and regular billing. A plan can have at most two trial cycles and only one regular cycle.<br>**Constraints**: *Minimum Items*: `1`, *Maximum Items*: `3` | List<BillingCycle> getBillingCycles() | setBillingCycles(List<BillingCycle> billingCycles) |
+| `BillingCycles` | [`List<BillingCycle>`](../../doc/models/billing-cycle.md) | Required | An array of billing cycles for trial billing and regular billing. A plan can have at most two trial cycles and only one regular cycle.<br><br>**Constraints**: *Minimum Items*: `1`, *Maximum Items*: `3` | List<BillingCycle> getBillingCycles() | setBillingCycles(List<BillingCycle> billingCycles) |
 | `Product` | `JsonValue` | Optional | Product details associated with any one-time product purchase. | JsonValue getProduct() | setProduct(JsonValue product) |
 | `OneTimeCharges` | [`OneTimeCharge`](../../doc/models/one-time-charge.md) | Required | The one-time charge info at the time of checkout. | OneTimeCharge getOneTimeCharges() | setOneTimeCharges(OneTimeCharge oneTimeCharges) |
-| `Name` | `String` | Optional | Name of the recurring plan.<br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `127`, *Pattern*: `^[A-Za-z0-9() +',.:-]+$` | String getName() | setName(String name) |
+| `Name` | `String` | Optional | Name of the recurring plan.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `127`, *Pattern*: `^[A-Za-z0-9() +',.:-]+$` | String getName() | setName(String name) |
 
 ## Example (as JSON)
 

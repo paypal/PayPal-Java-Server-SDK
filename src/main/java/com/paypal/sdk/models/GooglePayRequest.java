@@ -20,6 +20,7 @@ public class GooglePayRequest {
     private GooglePayRequestCard card;
     private GooglePayDecryptedTokenData decryptedToken;
     private AssuranceDetails assuranceDetails;
+    private GooglePayExperienceContext experienceContext;
 
     /**
      * Default constructor.
@@ -35,6 +36,7 @@ public class GooglePayRequest {
      * @param  card  GooglePayRequestCard value for card.
      * @param  decryptedToken  GooglePayDecryptedTokenData value for decryptedToken.
      * @param  assuranceDetails  AssuranceDetails value for assuranceDetails.
+     * @param  experienceContext  GooglePayExperienceContext value for experienceContext.
      */
     public GooglePayRequest(
             String name,
@@ -42,13 +44,15 @@ public class GooglePayRequest {
             PhoneNumberWithCountryCode phoneNumber,
             GooglePayRequestCard card,
             GooglePayDecryptedTokenData decryptedToken,
-            AssuranceDetails assuranceDetails) {
+            AssuranceDetails assuranceDetails,
+            GooglePayExperienceContext experienceContext) {
         this.name = name;
         this.emailAddress = emailAddress;
         this.phoneNumber = phoneNumber;
         this.card = card;
         this.decryptedToken = decryptedToken;
         this.assuranceDetails = assuranceDetails;
+        this.experienceContext = experienceContext;
     }
 
     /**
@@ -188,6 +192,27 @@ public class GooglePayRequest {
     }
 
     /**
+     * Getter for ExperienceContext.
+     * Customizes the payer experience during the approval process for the payment.
+     * @return Returns the GooglePayExperienceContext
+     */
+    @JsonGetter("experience_context")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public GooglePayExperienceContext getExperienceContext() {
+        return experienceContext;
+    }
+
+    /**
+     * Setter for ExperienceContext.
+     * Customizes the payer experience during the approval process for the payment.
+     * @param experienceContext Value for GooglePayExperienceContext
+     */
+    @JsonSetter("experience_context")
+    public void setExperienceContext(GooglePayExperienceContext experienceContext) {
+        this.experienceContext = experienceContext;
+    }
+
+    /**
      * Converts this GooglePayRequest into string format.
      * @return String representation of this class
      */
@@ -195,7 +220,8 @@ public class GooglePayRequest {
     public String toString() {
         return "GooglePayRequest [" + "name=" + name + ", emailAddress=" + emailAddress
                 + ", phoneNumber=" + phoneNumber + ", card=" + card + ", decryptedToken="
-                + decryptedToken + ", assuranceDetails=" + assuranceDetails + "]";
+                + decryptedToken + ", assuranceDetails=" + assuranceDetails + ", experienceContext="
+                + experienceContext + "]";
     }
 
     /**
@@ -210,7 +236,8 @@ public class GooglePayRequest {
                 .phoneNumber(getPhoneNumber())
                 .card(getCard())
                 .decryptedToken(getDecryptedToken())
-                .assuranceDetails(getAssuranceDetails());
+                .assuranceDetails(getAssuranceDetails())
+                .experienceContext(getExperienceContext());
         return builder;
     }
 
@@ -224,6 +251,7 @@ public class GooglePayRequest {
         private GooglePayRequestCard card;
         private GooglePayDecryptedTokenData decryptedToken;
         private AssuranceDetails assuranceDetails;
+        private GooglePayExperienceContext experienceContext;
 
 
 
@@ -288,12 +316,22 @@ public class GooglePayRequest {
         }
 
         /**
+         * Setter for experienceContext.
+         * @param  experienceContext  GooglePayExperienceContext value for experienceContext.
+         * @return Builder
+         */
+        public Builder experienceContext(GooglePayExperienceContext experienceContext) {
+            this.experienceContext = experienceContext;
+            return this;
+        }
+
+        /**
          * Builds a new {@link GooglePayRequest} object using the set fields.
          * @return {@link GooglePayRequest}
          */
         public GooglePayRequest build() {
             return new GooglePayRequest(name, emailAddress, phoneNumber, card, decryptedToken,
-                    assuranceDetails);
+                    assuranceDetails, experienceContext);
         }
     }
 }

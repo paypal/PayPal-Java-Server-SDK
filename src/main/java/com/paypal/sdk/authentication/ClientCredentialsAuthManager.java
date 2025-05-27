@@ -194,7 +194,7 @@ public class ClientCredentialsAuthManager extends HeaderAuth implements ClientCr
      * @return True if expired
      */
     public boolean isTokenExpired() {
-            return isTokenExpired(getOAuthToken());
+        return isTokenExpired(getOAuthToken());
     }
 
     /**
@@ -302,6 +302,6 @@ public class ClientCredentialsAuthManager extends HeaderAuth implements ClientCr
         }
 
         return "ClientCredentialsAuth - " + errorMessage;
-     }
+    }
 
 }

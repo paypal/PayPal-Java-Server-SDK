@@ -1,5 +1,5 @@
 
-# Headers Class
+# Headers
 
 Class for creating and managing HTTP Headers.
 

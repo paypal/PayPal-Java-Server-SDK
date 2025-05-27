@@ -22,6 +22,7 @@ public class ApplePayRequest {
     private CardStoredCredential storedCredential;
     private String vaultId;
     private ApplePayAttributes attributes;
+    private ApplePayExperienceContext experienceContext;
 
     /**
      * Default constructor.
@@ -39,6 +40,7 @@ public class ApplePayRequest {
      * @param  storedCredential  CardStoredCredential value for storedCredential.
      * @param  vaultId  String value for vaultId.
      * @param  attributes  ApplePayAttributes value for attributes.
+     * @param  experienceContext  ApplePayExperienceContext value for experienceContext.
      */
     public ApplePayRequest(
             String id,
@@ -48,7 +50,8 @@ public class ApplePayRequest {
             ApplePayDecryptedTokenData decryptedToken,
             CardStoredCredential storedCredential,
             String vaultId,
-            ApplePayAttributes attributes) {
+            ApplePayAttributes attributes,
+            ApplePayExperienceContext experienceContext) {
         this.id = id;
         this.name = name;
         this.emailAddress = emailAddress;
@@ -57,6 +60,7 @@ public class ApplePayRequest {
         this.storedCredential = storedCredential;
         this.vaultId = vaultId;
         this.attributes = attributes;
+        this.experienceContext = experienceContext;
     }
 
     /**
@@ -252,6 +256,27 @@ public class ApplePayRequest {
     }
 
     /**
+     * Getter for ExperienceContext.
+     * Customizes the payer experience during the approval process for the payment.
+     * @return Returns the ApplePayExperienceContext
+     */
+    @JsonGetter("experience_context")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public ApplePayExperienceContext getExperienceContext() {
+        return experienceContext;
+    }
+
+    /**
+     * Setter for ExperienceContext.
+     * Customizes the payer experience during the approval process for the payment.
+     * @param experienceContext Value for ApplePayExperienceContext
+     */
+    @JsonSetter("experience_context")
+    public void setExperienceContext(ApplePayExperienceContext experienceContext) {
+        this.experienceContext = experienceContext;
+    }
+
+    /**
      * Converts this ApplePayRequest into string format.
      * @return String representation of this class
      */
@@ -260,7 +285,7 @@ public class ApplePayRequest {
         return "ApplePayRequest [" + "id=" + id + ", name=" + name + ", emailAddress="
                 + emailAddress + ", phoneNumber=" + phoneNumber + ", decryptedToken="
                 + decryptedToken + ", storedCredential=" + storedCredential + ", vaultId=" + vaultId
-                + ", attributes=" + attributes + "]";
+                + ", attributes=" + attributes + ", experienceContext=" + experienceContext + "]";
     }
 
     /**
@@ -277,7 +302,8 @@ public class ApplePayRequest {
                 .decryptedToken(getDecryptedToken())
                 .storedCredential(getStoredCredential())
                 .vaultId(getVaultId())
-                .attributes(getAttributes());
+                .attributes(getAttributes())
+                .experienceContext(getExperienceContext());
         return builder;
     }
 
@@ -293,6 +319,7 @@ public class ApplePayRequest {
         private CardStoredCredential storedCredential;
         private String vaultId;
         private ApplePayAttributes attributes;
+        private ApplePayExperienceContext experienceContext;
 
 
 
@@ -377,12 +404,22 @@ public class ApplePayRequest {
         }
 
         /**
+         * Setter for experienceContext.
+         * @param  experienceContext  ApplePayExperienceContext value for experienceContext.
+         * @return Builder
+         */
+        public Builder experienceContext(ApplePayExperienceContext experienceContext) {
+            this.experienceContext = experienceContext;
+            return this;
+        }
+
+        /**
          * Builds a new {@link ApplePayRequest} object using the set fields.
          * @return {@link ApplePayRequest}
          */
         public ApplePayRequest build() {
             return new ApplePayRequest(id, name, emailAddress, phoneNumber, decryptedToken,
-                    storedCredential, vaultId, attributes);
+                    storedCredential, vaultId, attributes, experienceContext);
         }
     }
 }

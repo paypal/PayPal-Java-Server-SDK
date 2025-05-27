@@ -21,6 +21,7 @@ public class LineItem {
     private String url;
     private String imageUrl;
     private UniversalProductCode upc;
+    private OrderBillingPlan billingPlan;
     private Money unitAmount;
     private Money tax;
     private String commodityCode;
@@ -43,6 +44,7 @@ public class LineItem {
      * @param  url  String value for url.
      * @param  imageUrl  String value for imageUrl.
      * @param  upc  UniversalProductCode value for upc.
+     * @param  billingPlan  OrderBillingPlan value for billingPlan.
      * @param  unitAmount  Money value for unitAmount.
      * @param  tax  Money value for tax.
      * @param  commodityCode  String value for commodityCode.
@@ -58,6 +60,7 @@ public class LineItem {
             String url,
             String imageUrl,
             UniversalProductCode upc,
+            OrderBillingPlan billingPlan,
             Money unitAmount,
             Money tax,
             String commodityCode,
@@ -71,6 +74,7 @@ public class LineItem {
         this.url = url;
         this.imageUrl = imageUrl;
         this.upc = upc;
+        this.billingPlan = billingPlan;
         this.unitAmount = unitAmount;
         this.tax = tax;
         this.commodityCode = commodityCode;
@@ -227,6 +231,29 @@ public class LineItem {
     }
 
     /**
+     * Getter for BillingPlan.
+     * Metadata for merchant-managed recurring billing plans. Valid only during the saved payment
+     * method token or billing agreement creation.
+     * @return Returns the OrderBillingPlan
+     */
+    @JsonGetter("billing_plan")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public OrderBillingPlan getBillingPlan() {
+        return billingPlan;
+    }
+
+    /**
+     * Setter for BillingPlan.
+     * Metadata for merchant-managed recurring billing plans. Valid only during the saved payment
+     * method token or billing agreement creation.
+     * @param billingPlan Value for OrderBillingPlan
+     */
+    @JsonSetter("billing_plan")
+    public void setBillingPlan(OrderBillingPlan billingPlan) {
+        this.billingPlan = billingPlan;
+    }
+
+    /**
      * Getter for UnitAmount.
      * The currency and amount for a financial transaction, such as a balance or payment due.
      * @return Returns the Money
@@ -374,9 +401,10 @@ public class LineItem {
     public String toString() {
         return "LineItem [" + "name=" + name + ", quantity=" + quantity + ", description="
                 + description + ", sku=" + sku + ", url=" + url + ", imageUrl=" + imageUrl
-                + ", upc=" + upc + ", unitAmount=" + unitAmount + ", tax=" + tax
-                + ", commodityCode=" + commodityCode + ", discountAmount=" + discountAmount
-                + ", totalAmount=" + totalAmount + ", unitOfMeasure=" + unitOfMeasure + "]";
+                + ", upc=" + upc + ", billingPlan=" + billingPlan + ", unitAmount=" + unitAmount
+                + ", tax=" + tax + ", commodityCode=" + commodityCode + ", discountAmount="
+                + discountAmount + ", totalAmount=" + totalAmount + ", unitOfMeasure="
+                + unitOfMeasure + "]";
     }
 
     /**
@@ -391,6 +419,7 @@ public class LineItem {
                 .url(getUrl())
                 .imageUrl(getImageUrl())
                 .upc(getUpc())
+                .billingPlan(getBillingPlan())
                 .unitAmount(getUnitAmount())
                 .tax(getTax())
                 .commodityCode(getCommodityCode())
@@ -411,6 +440,7 @@ public class LineItem {
         private String url;
         private String imageUrl;
         private UniversalProductCode upc;
+        private OrderBillingPlan billingPlan;
         private Money unitAmount;
         private Money tax;
         private String commodityCode;
@@ -505,6 +535,16 @@ public class LineItem {
         }
 
         /**
+         * Setter for billingPlan.
+         * @param  billingPlan  OrderBillingPlan value for billingPlan.
+         * @return Builder
+         */
+        public Builder billingPlan(OrderBillingPlan billingPlan) {
+            this.billingPlan = billingPlan;
+            return this;
+        }
+
+        /**
          * Setter for unitAmount.
          * @param  unitAmount  Money value for unitAmount.
          * @return Builder
@@ -569,8 +609,8 @@ public class LineItem {
          * @return {@link LineItem}
          */
         public LineItem build() {
-            return new LineItem(name, quantity, description, sku, url, imageUrl, upc, unitAmount,
-                    tax, commodityCode, discountAmount, totalAmount, unitOfMeasure);
+            return new LineItem(name, quantity, description, sku, url, imageUrl, upc, billingPlan,
+                    unitAmount, tax, commodityCode, discountAmount, totalAmount, unitOfMeasure);
         }
     }
 }

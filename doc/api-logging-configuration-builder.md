@@ -1,5 +1,5 @@
 
-# ApiLoggingConfiguration.Builder Class
+# ApiLoggingConfiguration.Builder
 
 Class to build instances of ApiLoggingConfiguration.
 
@@ -16,9 +16,9 @@ Class to build instances of ApiLoggingConfiguration.
 | `level(org.slf4j.event.Level level)` | Set level for logging. Default level is INFO. Other available levels are `ERROR`, `WARN`, `DEBUG`, and `TRACE`. |
 | `logger(org.slf4j.Logger logger)` | Set Logger for logging. Here you can provide custom slf4j implementation if needed. |
 | `maskSensitiveHeaders(boolean maskSensitiveHeaders)` | Set mask sensitive headers flag. Default value is true. |
-| `requestConfig(Consumer<ApiRequestLoggingConfiguration.Builder> consumer)` | Sets the [ApiRequestLoggingConfiguration.Builder](api-request-logging-configuration-builder.md) for the builder. |
-| `responseConfig(Consumer<ApiResponseLoggingConfiguration.Builder> consumer)` | Sets the [ApiResponseLoggingConfiguration.Builder](api-response-logging-configuration-builder.md) for the builder. |
-| `build()` | Builds a new [`ApiLoggingConfiguration`](api-logging-configuration.md) object using the set fields. |
+| `requestConfig(Consumer<ApiRequestLoggingConfiguration.Builder> consumer)` | Sets the [`ApiRequestLoggingConfiguration.Builder`](../doc/api-request-logging-configuration-builder.md) for the builder. |
+| `responseConfig(Consumer<ApiResponseLoggingConfiguration.Builder> consumer)` | Sets the [`ApiResponseLoggingConfiguration.Builder`](../doc/api-response-logging-configuration-builder.md) for the builder. |
+| `build()` | Builds a new [`ApiLoggingConfiguration`](../doc/api-logging-configuration.md) object using the set fields. |
 
 ## Usage Example
 
