@@ -75,4 +75,9 @@ public interface ReadonlyHttpClientConfiguration {
      */
     boolean shouldOverrideHttpClientConfigurations();
 
+    /**
+     * Retrieves the proxy configuration settings used by the HTTP client.
+     * @return configuration
+     */
+    ReadonlyHttpProxyConfiguration getProxyConfig();
 }

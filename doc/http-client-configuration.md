@@ -17,6 +17,7 @@ Class for holding http client configuration.
 | `shouldRetryOnTimeout()` | Whether to retry on request timeout. | `boolean` |
 | `getHttpClientInstance()` | The OkHttpClient instance used to make the HTTP calls. | `okhttp3.OkHttpClient` |
 | `shouldOverrideHttpClientConfigurations()` | Allow the SDK to override HTTP client instance's settings used for features like retries, timeouts etc. | `boolean` |
+| `getProxyConfig()` | The proxy configuration settings used by the HTTP client. | [`HttpProxyConfiguration`](../doc/http-proxy-configuration.md) |
 | `toString()` | Converts this HttpClientConfiguration into string format. | `String` |
 | `newBuilder()` | Builds a new {@link HttpClientConfiguration.Builder} object. Creates the instance with the current state. | [`HttpClientConfiguration.Builder`](../doc/http-client-configuration-builder.md) |
 

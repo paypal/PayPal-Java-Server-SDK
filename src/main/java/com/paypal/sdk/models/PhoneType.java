@@ -17,14 +17,29 @@ import java.util.TreeMap;
  * PhoneType to be used.
  */
 public enum PhoneType {
+    /**
+     * Fax number.
+     */
     FAX,
 
+    /**
+     * Home phone number.
+     */
     HOME,
 
+    /**
+     * Mobile phone number.
+     */
     MOBILE,
 
+    /**
+     * Other phone number.
+     */
     OTHER,
 
+    /**
+     * Pager number.
+     */
     PAGER,
 
     /**

@@ -185,6 +185,10 @@ public class Order {
 
     /**
      * Getter for Payer.
+     * DEPRECATED. The customer is also known as the payer. The Payer object was intended to only be
+     * used with the `payment_source.paypal` object. In order to make this design more clear, the
+     * details in the `payer` object are now available under `payment_source.paypal`. Please use
+     * `payment_source.paypal`.
      * @return Returns the Payer
      */
     @JsonGetter("payer")
@@ -195,6 +199,10 @@ public class Order {
 
     /**
      * Setter for Payer.
+     * DEPRECATED. The customer is also known as the payer. The Payer object was intended to only be
+     * used with the `payment_source.paypal` object. In order to make this design more clear, the
+     * details in the `payer` object are now available under `payment_source.paypal`. Please use
+     * `payment_source.paypal`.
      * @param payer Value for Payer
      */
     @JsonSetter("payer")

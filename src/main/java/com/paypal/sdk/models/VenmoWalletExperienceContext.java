@@ -15,29 +15,35 @@ import com.fasterxml.jackson.annotation.JsonSetter;
  */
 public class VenmoWalletExperienceContext {
     private String brandName;
-    private ShippingPreference shippingPreference;
+    private VenmoWalletExperienceContextShippingPreference shippingPreference;
     private CallbackConfiguration orderUpdateCallbackConfig;
+    private VenmoWalletExperienceContextUserAction userAction;
 
     /**
      * Default constructor.
      */
     public VenmoWalletExperienceContext() {
-        shippingPreference = ShippingPreference.GET_FROM_FILE;
+        shippingPreference = VenmoWalletExperienceContextShippingPreference.GET_FROM_FILE;
+        userAction = VenmoWalletExperienceContextUserAction.CONTINUE;
     }
 
     /**
      * Initialization constructor.
      * @param  brandName  String value for brandName.
-     * @param  shippingPreference  ShippingPreference value for shippingPreference.
+     * @param  shippingPreference  VenmoWalletExperienceContextShippingPreference value for
+     *         shippingPreference.
      * @param  orderUpdateCallbackConfig  CallbackConfiguration value for orderUpdateCallbackConfig.
+     * @param  userAction  VenmoWalletExperienceContextUserAction value for userAction.
      */
     public VenmoWalletExperienceContext(
             String brandName,
-            ShippingPreference shippingPreference,
-            CallbackConfiguration orderUpdateCallbackConfig) {
+            VenmoWalletExperienceContextShippingPreference shippingPreference,
+            CallbackConfiguration orderUpdateCallbackConfig,
+            VenmoWalletExperienceContextUserAction userAction) {
         this.brandName = brandName;
         this.shippingPreference = shippingPreference;
         this.orderUpdateCallbackConfig = orderUpdateCallbackConfig;
+        this.userAction = userAction;
     }
 
     /**
@@ -66,21 +72,21 @@ public class VenmoWalletExperienceContext {
     /**
      * Getter for ShippingPreference.
      * The location from which the shipping address is derived.
-     * @return Returns the ShippingPreference
+     * @return Returns the VenmoWalletExperienceContextShippingPreference
      */
     @JsonGetter("shipping_preference")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public ShippingPreference getShippingPreference() {
+    public VenmoWalletExperienceContextShippingPreference getShippingPreference() {
         return shippingPreference;
     }
 
     /**
      * Setter for ShippingPreference.
      * The location from which the shipping address is derived.
-     * @param shippingPreference Value for ShippingPreference
+     * @param shippingPreference Value for VenmoWalletExperienceContextShippingPreference
      */
     @JsonSetter("shipping_preference")
-    public void setShippingPreference(ShippingPreference shippingPreference) {
+    public void setShippingPreference(VenmoWalletExperienceContextShippingPreference shippingPreference) {
         this.shippingPreference = shippingPreference;
     }
 
@@ -106,6 +112,27 @@ public class VenmoWalletExperienceContext {
     }
 
     /**
+     * Getter for UserAction.
+     * Configures a Continue or Pay Now checkout flow.
+     * @return Returns the VenmoWalletExperienceContextUserAction
+     */
+    @JsonGetter("user_action")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public VenmoWalletExperienceContextUserAction getUserAction() {
+        return userAction;
+    }
+
+    /**
+     * Setter for UserAction.
+     * Configures a Continue or Pay Now checkout flow.
+     * @param userAction Value for VenmoWalletExperienceContextUserAction
+     */
+    @JsonSetter("user_action")
+    public void setUserAction(VenmoWalletExperienceContextUserAction userAction) {
+        this.userAction = userAction;
+    }
+
+    /**
      * Converts this VenmoWalletExperienceContext into string format.
      * @return String representation of this class
      */
@@ -113,7 +140,7 @@ public class VenmoWalletExperienceContext {
     public String toString() {
         return "VenmoWalletExperienceContext [" + "brandName=" + brandName + ", shippingPreference="
                 + shippingPreference + ", orderUpdateCallbackConfig=" + orderUpdateCallbackConfig
-                + "]";
+                + ", userAction=" + userAction + "]";
     }
 
     /**
@@ -125,7 +152,8 @@ public class VenmoWalletExperienceContext {
         Builder builder = new Builder()
                 .brandName(getBrandName())
                 .shippingPreference(getShippingPreference())
-                .orderUpdateCallbackConfig(getOrderUpdateCallbackConfig());
+                .orderUpdateCallbackConfig(getOrderUpdateCallbackConfig())
+                .userAction(getUserAction());
         return builder;
     }
 
@@ -134,8 +162,11 @@ public class VenmoWalletExperienceContext {
      */
     public static class Builder {
         private String brandName;
-        private ShippingPreference shippingPreference = ShippingPreference.GET_FROM_FILE;
+        private VenmoWalletExperienceContextShippingPreference shippingPreference =
+                VenmoWalletExperienceContextShippingPreference.GET_FROM_FILE;
         private CallbackConfiguration orderUpdateCallbackConfig;
+        private VenmoWalletExperienceContextUserAction userAction =
+                VenmoWalletExperienceContextUserAction.CONTINUE;
 
 
 
@@ -151,10 +182,12 @@ public class VenmoWalletExperienceContext {
 
         /**
          * Setter for shippingPreference.
-         * @param  shippingPreference  ShippingPreference value for shippingPreference.
+         * @param  shippingPreference  VenmoWalletExperienceContextShippingPreference value for
+         *         shippingPreference.
          * @return Builder
          */
-        public Builder shippingPreference(ShippingPreference shippingPreference) {
+        public Builder shippingPreference(
+                VenmoWalletExperienceContextShippingPreference shippingPreference) {
             this.shippingPreference = shippingPreference;
             return this;
         }
@@ -172,12 +205,22 @@ public class VenmoWalletExperienceContext {
         }
 
         /**
+         * Setter for userAction.
+         * @param  userAction  VenmoWalletExperienceContextUserAction value for userAction.
+         * @return Builder
+         */
+        public Builder userAction(VenmoWalletExperienceContextUserAction userAction) {
+            this.userAction = userAction;
+            return this;
+        }
+
+        /**
          * Builds a new {@link VenmoWalletExperienceContext} object using the set fields.
          * @return {@link VenmoWalletExperienceContext}
          */
         public VenmoWalletExperienceContext build() {
             return new VenmoWalletExperienceContext(brandName, shippingPreference,
-                    orderUpdateCallbackConfig);
+                    orderUpdateCallbackConfig, userAction);
         }
     }
 }

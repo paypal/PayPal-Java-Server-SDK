@@ -20,12 +20,14 @@ public class VenmoWalletResponse {
     private Name name;
     private PhoneNumber phoneNumber;
     private Address address;
+    private ReturnFlow returnFlow;
     private VenmoWalletAttributesResponse attributes;
 
     /**
      * Default constructor.
      */
     public VenmoWalletResponse() {
+        returnFlow = ReturnFlow.AUTO;
     }
 
     /**
@@ -36,6 +38,7 @@ public class VenmoWalletResponse {
      * @param  name  Name value for name.
      * @param  phoneNumber  PhoneNumber value for phoneNumber.
      * @param  address  Address value for address.
+     * @param  returnFlow  ReturnFlow value for returnFlow.
      * @param  attributes  VenmoWalletAttributesResponse value for attributes.
      */
     public VenmoWalletResponse(
@@ -45,6 +48,7 @@ public class VenmoWalletResponse {
             Name name,
             PhoneNumber phoneNumber,
             Address address,
+            ReturnFlow returnFlow,
             VenmoWalletAttributesResponse attributes) {
         this.emailAddress = emailAddress;
         this.accountId = accountId;
@@ -52,6 +56,7 @@ public class VenmoWalletResponse {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.address = address;
+        this.returnFlow = returnFlow;
         this.attributes = attributes;
     }
 
@@ -198,6 +203,29 @@ public class VenmoWalletResponse {
     }
 
     /**
+     * Getter for ReturnFlow.
+     * Merchant preference on how the buyer can navigate back to merchant website post approving the
+     * transaction on the Venmo App.
+     * @return Returns the ReturnFlow
+     */
+    @JsonGetter("return_flow")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public ReturnFlow getReturnFlow() {
+        return returnFlow;
+    }
+
+    /**
+     * Setter for ReturnFlow.
+     * Merchant preference on how the buyer can navigate back to merchant website post approving the
+     * transaction on the Venmo App.
+     * @param returnFlow Value for ReturnFlow
+     */
+    @JsonSetter("return_flow")
+    public void setReturnFlow(ReturnFlow returnFlow) {
+        this.returnFlow = returnFlow;
+    }
+
+    /**
      * Getter for Attributes.
      * Additional attributes associated with the use of a Venmo Wallet.
      * @return Returns the VenmoWalletAttributesResponse
@@ -226,7 +254,8 @@ public class VenmoWalletResponse {
     public String toString() {
         return "VenmoWalletResponse [" + "emailAddress=" + emailAddress + ", accountId=" + accountId
                 + ", userName=" + userName + ", name=" + name + ", phoneNumber=" + phoneNumber
-                + ", address=" + address + ", attributes=" + attributes + "]";
+                + ", address=" + address + ", returnFlow=" + returnFlow + ", attributes="
+                + attributes + "]";
     }
 
     /**
@@ -242,6 +271,7 @@ public class VenmoWalletResponse {
                 .name(getName())
                 .phoneNumber(getPhoneNumber())
                 .address(getAddress())
+                .returnFlow(getReturnFlow())
                 .attributes(getAttributes());
         return builder;
     }
@@ -256,6 +286,7 @@ public class VenmoWalletResponse {
         private Name name;
         private PhoneNumber phoneNumber;
         private Address address;
+        private ReturnFlow returnFlow = ReturnFlow.AUTO;
         private VenmoWalletAttributesResponse attributes;
 
 
@@ -321,6 +352,16 @@ public class VenmoWalletResponse {
         }
 
         /**
+         * Setter for returnFlow.
+         * @param  returnFlow  ReturnFlow value for returnFlow.
+         * @return Builder
+         */
+        public Builder returnFlow(ReturnFlow returnFlow) {
+            this.returnFlow = returnFlow;
+            return this;
+        }
+
+        /**
          * Setter for attributes.
          * @param  attributes  VenmoWalletAttributesResponse value for attributes.
          * @return Builder
@@ -336,7 +377,7 @@ public class VenmoWalletResponse {
          */
         public VenmoWalletResponse build() {
             return new VenmoWalletResponse(emailAddress, accountId, userName, name, phoneNumber,
-                    address, attributes);
+                    address, returnFlow, attributes);
         }
     }
 }

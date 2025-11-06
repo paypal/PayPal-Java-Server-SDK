@@ -23,5 +23,6 @@ Class to build instances of [HttpClientConfiguration](../doc/http-client-configu
 | `shouldRetryOnTimeout(boolean shouldRetryOnTimeout)` | Sets whether to retry on request timeout. | `HttpClientConfiguration.Builder` |
 | `httpClientInstance(okhttp3.OkHttpClient httpClientInstance)` | Sets the okhttpclient instance used to make the http calls. | `HttpClientConfiguration.Builder` |
 | `httpClientInstance(okhttp3.OkHttpClient httpClientInstance, boolean overrideHttpClientConfigurations)` | Sets the okhttpclient instance used to make the http calls and an option to Allow the SDK to override HTTP client instance's settings used for features like retries, timeouts etc. | `HttpClientConfiguration.Builder` |
+| <code>proxyConfig([HttpProxyConfiguration.Builder](../doc/http-proxy-configuration-builder.md) proxyBuilder)</code> | Sets the proxy configuration for the underlying HTTP client. | `HttpClientConfiguration.Builder` |
 | `build()` | Builds a new HttpClientConfiguration object using the set fields. | [`HttpClientConfiguration`](../doc/http-client-configuration.md) |
 

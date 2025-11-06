@@ -11,7 +11,7 @@ Minimal representation of a cached setup token.
 
 | Name | Type | Tags | Description | Getter | Setter |
 |  --- | --- | --- | --- | --- | --- |
-| `Id` | `String` | Optional | The PayPal-generated ID for the vault token.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36`, *Pattern*: `^[0-9a-zA-Z_-]+$` | String getId() | setId(String id) |
+| `Id` | `String` | Optional | The PayPal-generated ID for the vaulted payment source. This ID should be stored on the merchant's server so the saved payment source can be used for future transactions.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[0-9a-zA-Z_-]+$` | String getId() | setId(String id) |
 | `Customer` | [`Customer`](../../doc/models/customer.md) | Optional | This object defines a customer in your system. Use it to manage customer profiles, save payment methods and contact details. | Customer getCustomer() | setCustomer(Customer customer) |
 | `Status` | [`PaymentTokenStatus`](../../doc/models/payment-token-status.md) | Optional | The status of the payment token.<br><br>**Default**: `PaymentTokenStatus.CREATED`<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[0-9A-Z_]+$` | PaymentTokenStatus getStatus() | setStatus(PaymentTokenStatus status) |
 | `PaymentSource` | [`SetupTokenResponsePaymentSource`](../../doc/models/setup-token-response-payment-source.md) | Optional | The setup payment method details. | SetupTokenResponsePaymentSource getPaymentSource() | setPaymentSource(SetupTokenResponsePaymentSource paymentSource) |
@@ -31,7 +31,7 @@ Minimal representation of a cached setup token.
     "card": {
       "name": "name6",
       "last_digits": "last_digits0",
-      "brand": "RUPAY",
+      "brand": "CB_NATIONALE",
       "expiry": "expiry4",
       "billing_address": {
         "address_line_1": "address_line_12",
@@ -49,6 +49,7 @@ Minimal representation of a cached setup token.
         "name": {
           "full_name": "full_name6"
         },
+        "email_address": "email_address2",
         "phone_number": {
           "country_code": "country_code2",
           "national_number": "national_number6"
@@ -73,6 +74,7 @@ Minimal representation of a cached setup token.
         "name": {
           "full_name": "full_name6"
         },
+        "email_address": "email_address2",
         "phone_number": {
           "country_code": "country_code2",
           "national_number": "national_number6"

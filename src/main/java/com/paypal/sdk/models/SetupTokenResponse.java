@@ -51,7 +51,8 @@ public class SetupTokenResponse {
 
     /**
      * Getter for Id.
-     * The PayPal-generated ID for the vault token.
+     * The PayPal-generated ID for the vaulted payment source. This ID should be stored on the
+     * merchant's server so the saved payment source can be used for future transactions.
      * @return Returns the String
      */
     @JsonGetter("id")
@@ -62,7 +63,8 @@ public class SetupTokenResponse {
 
     /**
      * Setter for Id.
-     * The PayPal-generated ID for the vault token.
+     * The PayPal-generated ID for the vaulted payment source. This ID should be stored on the
+     * merchant's server so the saved payment source can be used for future transactions.
      * @param id Value for String
      */
     @JsonSetter("id")

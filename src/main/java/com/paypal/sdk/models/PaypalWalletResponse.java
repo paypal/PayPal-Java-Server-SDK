@@ -26,6 +26,7 @@ public class PaypalWalletResponse {
     private Address address;
     private PaypalWalletAttributesResponse attributes;
     private PaypalWalletStoredCredential storedCredential;
+    private ExperienceStatus experienceStatus;
 
     /**
      * Default constructor.
@@ -47,6 +48,7 @@ public class PaypalWalletResponse {
      * @param  address  Address value for address.
      * @param  attributes  PaypalWalletAttributesResponse value for attributes.
      * @param  storedCredential  PaypalWalletStoredCredential value for storedCredential.
+     * @param  experienceStatus  ExperienceStatus value for experienceStatus.
      */
     public PaypalWalletResponse(
             String emailAddress,
@@ -60,7 +62,8 @@ public class PaypalWalletResponse {
             TaxInfo taxInfo,
             Address address,
             PaypalWalletAttributesResponse attributes,
-            PaypalWalletStoredCredential storedCredential) {
+            PaypalWalletStoredCredential storedCredential,
+            ExperienceStatus experienceStatus) {
         this.emailAddress = emailAddress;
         this.accountId = accountId;
         this.accountStatus = accountStatus;
@@ -73,6 +76,7 @@ public class PaypalWalletResponse {
         this.address = address;
         this.attributes = attributes;
         this.storedCredential = storedCredential;
+        this.experienceStatus = experienceStatus;
     }
 
     /**
@@ -358,6 +362,29 @@ public class PaypalWalletResponse {
     }
 
     /**
+     * Getter for ExperienceStatus.
+     * This field indicates the status of PayPal's Checkout experience throughout the order
+     * lifecycle. The values reflect the current stage of the checkout process.
+     * @return Returns the ExperienceStatus
+     */
+    @JsonGetter("experience_status")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public ExperienceStatus getExperienceStatus() {
+        return experienceStatus;
+    }
+
+    /**
+     * Setter for ExperienceStatus.
+     * This field indicates the status of PayPal's Checkout experience throughout the order
+     * lifecycle. The values reflect the current stage of the checkout process.
+     * @param experienceStatus Value for ExperienceStatus
+     */
+    @JsonSetter("experience_status")
+    public void setExperienceStatus(ExperienceStatus experienceStatus) {
+        this.experienceStatus = experienceStatus;
+    }
+
+    /**
      * Converts this PaypalWalletResponse into string format.
      * @return String representation of this class
      */
@@ -367,7 +394,8 @@ public class PaypalWalletResponse {
                 + accountId + ", accountStatus=" + accountStatus + ", name=" + name + ", phoneType="
                 + phoneType + ", phoneNumber=" + phoneNumber + ", birthDate=" + birthDate
                 + ", businessName=" + businessName + ", taxInfo=" + taxInfo + ", address=" + address
-                + ", attributes=" + attributes + ", storedCredential=" + storedCredential + "]";
+                + ", attributes=" + attributes + ", storedCredential=" + storedCredential
+                + ", experienceStatus=" + experienceStatus + "]";
     }
 
     /**
@@ -388,7 +416,8 @@ public class PaypalWalletResponse {
                 .taxInfo(getTaxInfo())
                 .address(getAddress())
                 .attributes(getAttributes())
-                .storedCredential(getStoredCredential());
+                .storedCredential(getStoredCredential())
+                .experienceStatus(getExperienceStatus());
         return builder;
     }
 
@@ -408,6 +437,7 @@ public class PaypalWalletResponse {
         private Address address;
         private PaypalWalletAttributesResponse attributes;
         private PaypalWalletStoredCredential storedCredential;
+        private ExperienceStatus experienceStatus;
 
 
 
@@ -532,13 +562,23 @@ public class PaypalWalletResponse {
         }
 
         /**
+         * Setter for experienceStatus.
+         * @param  experienceStatus  ExperienceStatus value for experienceStatus.
+         * @return Builder
+         */
+        public Builder experienceStatus(ExperienceStatus experienceStatus) {
+            this.experienceStatus = experienceStatus;
+            return this;
+        }
+
+        /**
          * Builds a new {@link PaypalWalletResponse} object using the set fields.
          * @return {@link PaypalWalletResponse}
          */
         public PaypalWalletResponse build() {
             return new PaypalWalletResponse(emailAddress, accountId, accountStatus, name, phoneType,
                     phoneNumber, birthDate, businessName, taxInfo, address, attributes,
-                    storedCredential);
+                    storedCredential, experienceStatus);
         }
     }
 }

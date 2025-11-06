@@ -20,7 +20,7 @@ public class VaultVenmoRequest {
     private Boolean permitMultiplePaymentTokens;
     private PaypalPaymentTokenUsageType usageType;
     private PaypalPaymentTokenCustomerType customerType;
-    private VaultVenmoExperienceContext experienceContext;
+    private VenmoExperienceContext experienceContext;
 
     /**
      * Default constructor.
@@ -37,7 +37,7 @@ public class VaultVenmoRequest {
      * @param  permitMultiplePaymentTokens  Boolean value for permitMultiplePaymentTokens.
      * @param  usageType  PaypalPaymentTokenUsageType value for usageType.
      * @param  customerType  PaypalPaymentTokenCustomerType value for customerType.
-     * @param  experienceContext  VaultVenmoExperienceContext value for experienceContext.
+     * @param  experienceContext  VenmoExperienceContext value for experienceContext.
      */
     public VaultVenmoRequest(
             String description,
@@ -46,7 +46,7 @@ public class VaultVenmoRequest {
             Boolean permitMultiplePaymentTokens,
             PaypalPaymentTokenUsageType usageType,
             PaypalPaymentTokenCustomerType customerType,
-            VaultVenmoExperienceContext experienceContext) {
+            VenmoExperienceContext experienceContext) {
         this.description = description;
         this.usagePattern = usagePattern;
         this.shipping = shipping;
@@ -198,22 +198,22 @@ public class VaultVenmoRequest {
 
     /**
      * Getter for ExperienceContext.
-     * Customizes the Vault creation flow experience for your customers.
-     * @return Returns the VaultVenmoExperienceContext
+     * A resource representing an experience context of vault a venmo account.
+     * @return Returns the VenmoExperienceContext
      */
     @JsonGetter("experience_context")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public VaultVenmoExperienceContext getExperienceContext() {
+    public VenmoExperienceContext getExperienceContext() {
         return experienceContext;
     }
 
     /**
      * Setter for ExperienceContext.
-     * Customizes the Vault creation flow experience for your customers.
-     * @param experienceContext Value for VaultVenmoExperienceContext
+     * A resource representing an experience context of vault a venmo account.
+     * @param experienceContext Value for VenmoExperienceContext
      */
     @JsonSetter("experience_context")
-    public void setExperienceContext(VaultVenmoExperienceContext experienceContext) {
+    public void setExperienceContext(VenmoExperienceContext experienceContext) {
         this.experienceContext = experienceContext;
     }
 
@@ -256,7 +256,7 @@ public class VaultVenmoRequest {
         private Boolean permitMultiplePaymentTokens = false;
         private PaypalPaymentTokenUsageType usageType;
         private PaypalPaymentTokenCustomerType customerType;
-        private VaultVenmoExperienceContext experienceContext;
+        private VenmoExperienceContext experienceContext;
 
 
 
@@ -322,10 +322,10 @@ public class VaultVenmoRequest {
 
         /**
          * Setter for experienceContext.
-         * @param  experienceContext  VaultVenmoExperienceContext value for experienceContext.
+         * @param  experienceContext  VenmoExperienceContext value for experienceContext.
          * @return Builder
          */
-        public Builder experienceContext(VaultVenmoExperienceContext experienceContext) {
+        public Builder experienceContext(VenmoExperienceContext experienceContext) {
             this.experienceContext = experienceContext;
             return this;
         }
