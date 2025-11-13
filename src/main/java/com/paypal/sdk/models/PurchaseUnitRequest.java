@@ -23,7 +23,7 @@ public class PurchaseUnitRequest {
     private String customId;
     private String invoiceId;
     private String softDescriptor;
-    private List<Item> items;
+    private List<ItemRequest> items;
     private ShippingDetails shipping;
     private SupplementaryData supplementaryData;
 
@@ -43,7 +43,7 @@ public class PurchaseUnitRequest {
      * @param  customId  String value for customId.
      * @param  invoiceId  String value for invoiceId.
      * @param  softDescriptor  String value for softDescriptor.
-     * @param  items  List of Item value for items.
+     * @param  items  List of ItemRequest value for items.
      * @param  shipping  ShippingDetails value for shipping.
      * @param  supplementaryData  SupplementaryData value for supplementaryData.
      */
@@ -56,7 +56,7 @@ public class PurchaseUnitRequest {
             String customId,
             String invoiceId,
             String softDescriptor,
-            List<Item> items,
+            List<ItemRequest> items,
             ShippingDetails shipping,
             SupplementaryData supplementaryData) {
         this.referenceId = referenceId;
@@ -175,10 +175,13 @@ public class PurchaseUnitRequest {
 
     /**
      * Getter for Description.
-     * The purchase description. The maximum length of the character is dependent on the type of
-     * characters used. The character length is specified assuming a US ASCII character. Depending
-     * on type of character; (e.g. accented character, Japanese characters) the number of characters
-     * that that can be specified as input might not equal the permissible max length.
+     * This field supports up to 3,000 characters, but any content beyond 127 characters (including
+     * spaces) will be truncated. The 127 character limit is reflected in the response
+     * representation of this field. The purchase description. The maximum length of the character
+     * is dependent on the type of characters used. The character length is specified assuming a US
+     * ASCII character. Depending on type of character; (e.g. accented character, Japanese
+     * characters) the number of characters that that can be specified as input might not equal the
+     * permissible max length.
      * @return Returns the String
      */
     @JsonGetter("description")
@@ -189,10 +192,13 @@ public class PurchaseUnitRequest {
 
     /**
      * Setter for Description.
-     * The purchase description. The maximum length of the character is dependent on the type of
-     * characters used. The character length is specified assuming a US ASCII character. Depending
-     * on type of character; (e.g. accented character, Japanese characters) the number of characters
-     * that that can be specified as input might not equal the permissible max length.
+     * This field supports up to 3,000 characters, but any content beyond 127 characters (including
+     * spaces) will be truncated. The 127 character limit is reflected in the response
+     * representation of this field. The purchase description. The maximum length of the character
+     * is dependent on the type of characters used. The character length is specified assuming a US
+     * ASCII character. Depending on type of character; (e.g. accented character, Japanese
+     * characters) the number of characters that that can be specified as input might not equal the
+     * permissible max length.
      * @param description Value for String
      */
     @JsonSetter("description")
@@ -226,7 +232,11 @@ public class PurchaseUnitRequest {
     /**
      * Getter for InvoiceId.
      * The API caller-provided external invoice number for this order. Appears in both the payer's
-     * transaction history and the emails that the payer receives.
+     * transaction history and the emails that the payer receives. invoice_id values are required to
+     * be unique within each merchant account by default. Although the uniqueness validation is
+     * configurable, disabling this behavior will remove the account's ability to use invoice_id in
+     * other APIs as an identifier. It is highly recommended to keep a unique invoice_id for each
+     * Order.
      * @return Returns the String
      */
     @JsonGetter("invoice_id")
@@ -238,7 +248,11 @@ public class PurchaseUnitRequest {
     /**
      * Setter for InvoiceId.
      * The API caller-provided external invoice number for this order. Appears in both the payer's
-     * transaction history and the emails that the payer receives.
+     * transaction history and the emails that the payer receives. invoice_id values are required to
+     * be unique within each merchant account by default. Although the uniqueness validation is
+     * configurable, disabling this behavior will remove the account's ability to use invoice_id in
+     * other APIs as an identifier. It is highly recommended to keep a unique invoice_id for each
+     * Order.
      * @param invoiceId Value for String
      */
     @JsonSetter("invoice_id")
@@ -248,12 +262,14 @@ public class PurchaseUnitRequest {
 
     /**
      * Getter for SoftDescriptor.
-     * The soft descriptor is the dynamic text used to construct the statement descriptor that
-     * appears on a payer's card statement. If an Order is paid using the "PayPal Wallet", the
-     * statement descriptor will appear in following format on the payer's card statement:
-     * PAYPAL_prefix+(space)+merchant_descriptor+(space)+ soft_descriptor Note: The merchant
-     * descriptor is the descriptor of the merchant’s payment receiving preferences which can be
-     * seen by logging into the merchant account
+     * This field supports up to 127 characters, but any content beyond 22 characters (including
+     * spaces) will be truncated. The 22 character limit is reflected in the response representation
+     * of this field. The soft descriptor is the dynamic text used to construct the statement
+     * descriptor that appears on a payer's card statement. If an Order is paid using the "PayPal
+     * Wallet", the statement descriptor will appear in following format on the payer's card
+     * statement: PAYPAL_prefix+(space)+merchant_descriptor+(space)+ soft_descriptor Note: The
+     * merchant descriptor is the descriptor of the merchant’s payment receiving preferences which
+     * can be seen by logging into the merchant account
      * https://www.sandbox.paypal.com/businessprofile/settings/info/edit The PAYPAL prefix uses 8
      * characters. Only the first 22 characters will be displayed in the statement. For example, if:
      * The PayPal prefix toggle is PAYPAL *. The merchant descriptor in the profile is Janes Gift.
@@ -269,12 +285,14 @@ public class PurchaseUnitRequest {
 
     /**
      * Setter for SoftDescriptor.
-     * The soft descriptor is the dynamic text used to construct the statement descriptor that
-     * appears on a payer's card statement. If an Order is paid using the "PayPal Wallet", the
-     * statement descriptor will appear in following format on the payer's card statement:
-     * PAYPAL_prefix+(space)+merchant_descriptor+(space)+ soft_descriptor Note: The merchant
-     * descriptor is the descriptor of the merchant’s payment receiving preferences which can be
-     * seen by logging into the merchant account
+     * This field supports up to 127 characters, but any content beyond 22 characters (including
+     * spaces) will be truncated. The 22 character limit is reflected in the response representation
+     * of this field. The soft descriptor is the dynamic text used to construct the statement
+     * descriptor that appears on a payer's card statement. If an Order is paid using the "PayPal
+     * Wallet", the statement descriptor will appear in following format on the payer's card
+     * statement: PAYPAL_prefix+(space)+merchant_descriptor+(space)+ soft_descriptor Note: The
+     * merchant descriptor is the descriptor of the merchant’s payment receiving preferences which
+     * can be seen by logging into the merchant account
      * https://www.sandbox.paypal.com/businessprofile/settings/info/edit The PAYPAL prefix uses 8
      * characters. Only the first 22 characters will be displayed in the statement. For example, if:
      * The PayPal prefix toggle is PAYPAL *. The merchant descriptor in the profile is Janes Gift.
@@ -290,21 +308,21 @@ public class PurchaseUnitRequest {
     /**
      * Getter for Items.
      * An array of items that the customer purchases from the merchant.
-     * @return Returns the List of Item
+     * @return Returns the List of ItemRequest
      */
     @JsonGetter("items")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public List<Item> getItems() {
+    public List<ItemRequest> getItems() {
         return items;
     }
 
     /**
      * Setter for Items.
      * An array of items that the customer purchases from the merchant.
-     * @param items Value for List of Item
+     * @param items Value for List of ItemRequest
      */
     @JsonSetter("items")
-    public void setItems(List<Item> items) {
+    public void setItems(List<ItemRequest> items) {
         this.items = items;
     }
 
@@ -399,7 +417,7 @@ public class PurchaseUnitRequest {
         private String customId;
         private String invoiceId;
         private String softDescriptor;
-        private List<Item> items;
+        private List<ItemRequest> items;
         private ShippingDetails shipping;
         private SupplementaryData supplementaryData;
 
@@ -499,10 +517,10 @@ public class PurchaseUnitRequest {
 
         /**
          * Setter for items.
-         * @param  items  List of Item value for items.
+         * @param  items  List of ItemRequest value for items.
          * @return Builder
          */
-        public Builder items(List<Item> items) {
+        public Builder items(List<ItemRequest> items) {
             this.items = items;
             return this;
         }

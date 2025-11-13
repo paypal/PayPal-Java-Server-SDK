@@ -13,20 +13,34 @@ The following parameters are configurable for the API Client:
 The API client can be initialized as follows:
 
 ```java
-PaypalServerSdkClient client = new PaypalServerSdkClient.Builder()
-    .loggingConfig(builder -> builder
-            .level(Level.DEBUG)
-            .requestConfig(logConfigBuilder -> logConfigBuilder.body(true))
-            .responseConfig(logConfigBuilder -> logConfigBuilder.headers(true)))
-    .httpClientConfig(configBuilder -> configBuilder
-            .timeout(0))
-    .clientCredentialsAuth(new ClientCredentialsAuthModel.Builder(
-            "OAuthClientId",
-            "OAuthClientSecret"
-        )
-        .build())
-    .environment(Environment.SANDBOX)
-    .build();
+import com.paypal.sdk.Environment;
+import com.paypal.sdk.PaypalServerSdkClient;
+import com.paypal.sdk.authentication.ClientCredentialsAuthModel;
+import com.paypal.sdk.exceptions.ApiException;
+import com.paypal.sdk.http.response.ApiResponse;
+import com.paypal.sdk.models.OAuthToken;
+import java.io.IOException;
+import org.slf4j.event.Level;
+
+public class Program {
+    public static void main(String[] args) {
+        PaypalServerSdkClient client = new PaypalServerSdkClient.Builder()
+            .loggingConfig(builder -> builder
+                    .level(Level.DEBUG)
+                    .requestConfig(logConfigBuilder -> logConfigBuilder.body(true))
+                    .responseConfig(logConfigBuilder -> logConfigBuilder.headers(true)))
+            .httpClientConfig(configBuilder -> configBuilder
+                    .timeout(0))
+            .clientCredentialsAuth(new ClientCredentialsAuthModel.Builder(
+                    "OAuthClientId",
+                    "OAuthClientSecret"
+                )
+                .build())
+            .environment(Environment.SANDBOX)
+            .build();
+
+    }
+}
 ```
 
 ## PayPal Server SDKClient Class
@@ -40,6 +54,8 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | `getOrdersController()` | Provides access to Orders controller. | `OrdersController` |
 | `getPaymentsController()` | Provides access to Payments controller. | `PaymentsController` |
 | `getVaultController()` | Provides access to Vault controller. | `VaultController` |
+| `getTransactionsearchController()` | Provides access to Transactionsearch controller. | `TransactionsearchController` |
+| `getSubscriptionsController()` | Provides access to Subscriptions controller. | `SubscriptionsController` |
 | `getOAuthAuthorizationController()` | Provides access to OAuthAuthorization controller. | `OAuthAuthorizationController` |
 
 ### Methods

@@ -15,13 +15,13 @@ import java.util.List;
  * This is a model class for ShippingWithTrackingDetails type.
  */
 public class ShippingWithTrackingDetails {
+    private List<OrderTrackerResponse> trackers;
     private ShippingName name;
     private String emailAddress;
-    private PhoneNumberWithCountryCode phoneNumber;
+    private PhoneNumberWithOptionalCountryCode phoneNumber;
     private FulfillmentType type;
     private List<ShippingOption> options;
     private Address address;
-    private List<OrderTrackerResponse> trackers;
 
     /**
      * Default constructor.
@@ -31,28 +31,49 @@ public class ShippingWithTrackingDetails {
 
     /**
      * Initialization constructor.
+     * @param  trackers  List of OrderTrackerResponse value for trackers.
      * @param  name  ShippingName value for name.
      * @param  emailAddress  String value for emailAddress.
-     * @param  phoneNumber  PhoneNumberWithCountryCode value for phoneNumber.
+     * @param  phoneNumber  PhoneNumberWithOptionalCountryCode value for phoneNumber.
      * @param  type  FulfillmentType value for type.
      * @param  options  List of ShippingOption value for options.
      * @param  address  Address value for address.
-     * @param  trackers  List of OrderTrackerResponse value for trackers.
      */
     public ShippingWithTrackingDetails(
+            List<OrderTrackerResponse> trackers,
             ShippingName name,
             String emailAddress,
-            PhoneNumberWithCountryCode phoneNumber,
+            PhoneNumberWithOptionalCountryCode phoneNumber,
             FulfillmentType type,
             List<ShippingOption> options,
-            Address address,
-            List<OrderTrackerResponse> trackers) {
+            Address address) {
+        this.trackers = trackers;
         this.name = name;
         this.emailAddress = emailAddress;
         this.phoneNumber = phoneNumber;
         this.type = type;
         this.options = options;
         this.address = address;
+    }
+
+    /**
+     * Getter for Trackers.
+     * An array of trackers for a transaction.
+     * @return Returns the List of OrderTrackerResponse
+     */
+    @JsonGetter("trackers")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public List<OrderTrackerResponse> getTrackers() {
+        return trackers;
+    }
+
+    /**
+     * Setter for Trackers.
+     * An array of trackers for a transaction.
+     * @param trackers Value for List of OrderTrackerResponse
+     */
+    @JsonSetter("trackers")
+    public void setTrackers(List<OrderTrackerResponse> trackers) {
         this.trackers = trackers;
     }
 
@@ -106,11 +127,11 @@ public class ShippingWithTrackingDetails {
      * Getter for PhoneNumber.
      * The phone number in its canonical international [E.164 numbering plan
      * format](https://www.itu.int/rec/T-REC-E.164/en).
-     * @return Returns the PhoneNumberWithCountryCode
+     * @return Returns the PhoneNumberWithOptionalCountryCode
      */
     @JsonGetter("phone_number")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public PhoneNumberWithCountryCode getPhoneNumber() {
+    public PhoneNumberWithOptionalCountryCode getPhoneNumber() {
         return phoneNumber;
     }
 
@@ -118,10 +139,10 @@ public class ShippingWithTrackingDetails {
      * Setter for PhoneNumber.
      * The phone number in its canonical international [E.164 numbering plan
      * format](https://www.itu.int/rec/T-REC-E.164/en).
-     * @param phoneNumber Value for PhoneNumberWithCountryCode
+     * @param phoneNumber Value for PhoneNumberWithOptionalCountryCode
      */
     @JsonSetter("phone_number")
-    public void setPhoneNumber(PhoneNumberWithCountryCode phoneNumber) {
+    public void setPhoneNumber(PhoneNumberWithOptionalCountryCode phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -199,35 +220,14 @@ public class ShippingWithTrackingDetails {
     }
 
     /**
-     * Getter for Trackers.
-     * An array of trackers for a transaction.
-     * @return Returns the List of OrderTrackerResponse
-     */
-    @JsonGetter("trackers")
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    public List<OrderTrackerResponse> getTrackers() {
-        return trackers;
-    }
-
-    /**
-     * Setter for Trackers.
-     * An array of trackers for a transaction.
-     * @param trackers Value for List of OrderTrackerResponse
-     */
-    @JsonSetter("trackers")
-    public void setTrackers(List<OrderTrackerResponse> trackers) {
-        this.trackers = trackers;
-    }
-
-    /**
      * Converts this ShippingWithTrackingDetails into string format.
      * @return String representation of this class
      */
     @Override
     public String toString() {
-        return "ShippingWithTrackingDetails [" + "name=" + name + ", emailAddress=" + emailAddress
-                + ", phoneNumber=" + phoneNumber + ", type=" + type + ", options=" + options
-                + ", address=" + address + ", trackers=" + trackers + "]";
+        return "ShippingWithTrackingDetails [" + "trackers=" + trackers + ", name=" + name
+                + ", emailAddress=" + emailAddress + ", phoneNumber=" + phoneNumber + ", type="
+                + type + ", options=" + options + ", address=" + address + "]";
     }
 
     /**
@@ -237,13 +237,13 @@ public class ShippingWithTrackingDetails {
      */
     public Builder toBuilder() {
         Builder builder = new Builder()
+                .trackers(getTrackers())
                 .name(getName())
                 .emailAddress(getEmailAddress())
                 .phoneNumber(getPhoneNumber())
                 .type(getType())
                 .options(getOptions())
-                .address(getAddress())
-                .trackers(getTrackers());
+                .address(getAddress());
         return builder;
     }
 
@@ -251,15 +251,25 @@ public class ShippingWithTrackingDetails {
      * Class to build instances of {@link ShippingWithTrackingDetails}.
      */
     public static class Builder {
+        private List<OrderTrackerResponse> trackers;
         private ShippingName name;
         private String emailAddress;
-        private PhoneNumberWithCountryCode phoneNumber;
+        private PhoneNumberWithOptionalCountryCode phoneNumber;
         private FulfillmentType type;
         private List<ShippingOption> options;
         private Address address;
-        private List<OrderTrackerResponse> trackers;
 
 
+
+        /**
+         * Setter for trackers.
+         * @param  trackers  List of OrderTrackerResponse value for trackers.
+         * @return Builder
+         */
+        public Builder trackers(List<OrderTrackerResponse> trackers) {
+            this.trackers = trackers;
+            return this;
+        }
 
         /**
          * Setter for name.
@@ -283,10 +293,10 @@ public class ShippingWithTrackingDetails {
 
         /**
          * Setter for phoneNumber.
-         * @param  phoneNumber  PhoneNumberWithCountryCode value for phoneNumber.
+         * @param  phoneNumber  PhoneNumberWithOptionalCountryCode value for phoneNumber.
          * @return Builder
          */
-        public Builder phoneNumber(PhoneNumberWithCountryCode phoneNumber) {
+        public Builder phoneNumber(PhoneNumberWithOptionalCountryCode phoneNumber) {
             this.phoneNumber = phoneNumber;
             return this;
         }
@@ -322,22 +332,12 @@ public class ShippingWithTrackingDetails {
         }
 
         /**
-         * Setter for trackers.
-         * @param  trackers  List of OrderTrackerResponse value for trackers.
-         * @return Builder
-         */
-        public Builder trackers(List<OrderTrackerResponse> trackers) {
-            this.trackers = trackers;
-            return this;
-        }
-
-        /**
          * Builds a new {@link ShippingWithTrackingDetails} object using the set fields.
          * @return {@link ShippingWithTrackingDetails}
          */
         public ShippingWithTrackingDetails build() {
-            return new ShippingWithTrackingDetails(name, emailAddress, phoneNumber, type, options,
-                    address, trackers);
+            return new ShippingWithTrackingDetails(trackers, name, emailAddress, phoneNumber, type,
+                    options, address);
         }
     }
 }

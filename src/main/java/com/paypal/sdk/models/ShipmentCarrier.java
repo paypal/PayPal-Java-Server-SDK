@@ -6898,6 +6898,186 @@ public enum ShipmentCarrier {
     SPEDISCI,
 
     /**
+     * Fourkites.
+     */
+    FOURKITES,
+
+    /**
+     * Etonas.
+     */
+    ETONAS,
+
+    /**
+     * Fin Mile.
+     */
+    FINMILE,
+
+    /**
+     * Uniuni.
+     */
+    UNIUNI,
+
+    /**
+     * Rodonaves.
+     */
+    RODONAVES,
+
+    /**
+     * Inpost Italy.
+     */
+    INPOST_IT,
+
+    /**
+     * Tforce Freight.
+     */
+    TFORCE_FREIGHT,
+
+    /**
+     * Rich Mom.
+     */
+    RICHMOM,
+
+    /**
+     * Corriere Franco.
+     */
+    FRANCO,
+
+    /**
+     * Ecparcel.
+     */
+    ECPARCEL,
+
+    /**
+     * Fedex China.
+     */
+    FEDEX_CHINA,
+
+    /**
+     * Gofo Express.
+     */
+    GOFO_EXPRESS,
+
+    /**
+     * Shipbob.
+     */
+    SHIPBOB,
+
+    /**
+     * Jersey Post Group.
+     */
+    JERSEYPOST_ATLAS,
+
+    /**
+     * Coretrails.
+     */
+    CORETRAILS,
+
+    /**
+     * Rhenus Logistics Italy.
+     */
+    RHENUS_ITALY,
+
+    /**
+     * Jadlog.
+     */
+    JADLOG,
+
+    /**
+     * Jitsu.
+     */
+    JITSU,
+
+    /**
+     * Yanwen Express.
+     */
+    YANWEN_EXPRESS,
+
+    /**
+     * Dashlink.
+     */
+    DASHLINK,
+
+    /**
+     * Seino Super Express.
+     */
+    SEINO_SUPER_EXPRESS,
+
+    /**
+     * Floship.
+     */
+    FLOSHIP,
+
+    /**
+     * Metro Supply Chain.
+     */
+    METROSCG,
+
+    /**
+     * Sendparcel.
+     */
+    SENDPARCEL,
+
+    /**
+     * P2p.
+     */
+    P2P,
+
+    /**
+     * Cn Express.
+     */
+    CN_EXPRESS,
+
+    /**
+     * Cirro Track.
+     */
+    CIRROTRACK,
+
+    /**
+     * Land Logistics.
+     */
+    LAND_LOGISTICS,
+
+    /**
+     * Veho.
+     */
+    VEHO,
+
+    /**
+     * Medline.
+     */
+    MEDLINE,
+
+    /**
+     * Vdtrack.
+     */
+    VDTRACK,
+
+    /**
+     * Sino Scm.
+     */
+    SINO_SCM,
+
+    /**
+     * 3pe Express.
+     */
+    ENUM_3PE_EXPRESS,
+
+    /**
+     * Swiftx.
+     */
+    SWIFTX,
+
+    /**
+     * Sfyd Express.
+     */
+    SFYDEXPRESS,
+
+    /**
+     * Toptrans.
+     */
+    TOPTRANS,
+
+    /**
      * Unknown values will be mapped by this enum member
      */
     _UNKNOWN;
@@ -8283,6 +8463,42 @@ public enum ShipmentCarrier {
         UPS_CHECKER.value = "UPS_CHECKER";
         WINESHIPPING.value = "WINESHIPPING";
         SPEDISCI.value = "SPEDISCI";
+        FOURKITES.value = "FOURKITES";
+        ETONAS.value = "ETONAS";
+        FINMILE.value = "FINMILE";
+        UNIUNI.value = "UNIUNI";
+        RODONAVES.value = "RODONAVES";
+        INPOST_IT.value = "INPOST_IT";
+        TFORCE_FREIGHT.value = "TFORCE_FREIGHT";
+        RICHMOM.value = "RICHMOM";
+        FRANCO.value = "FRANCO";
+        ECPARCEL.value = "ECPARCEL";
+        FEDEX_CHINA.value = "FEDEX_CHINA";
+        GOFO_EXPRESS.value = "GOFO_EXPRESS";
+        SHIPBOB.value = "SHIPBOB";
+        JERSEYPOST_ATLAS.value = "JERSEYPOST_ATLAS";
+        CORETRAILS.value = "CORETRAILS";
+        RHENUS_ITALY.value = "RHENUS_ITALY";
+        JADLOG.value = "JADLOG";
+        JITSU.value = "JITSU";
+        YANWEN_EXPRESS.value = "YANWEN_EXPRESS";
+        DASHLINK.value = "DASHLINK";
+        SEINO_SUPER_EXPRESS.value = "SEINO_SUPER_EXPRESS";
+        FLOSHIP.value = "FLOSHIP";
+        METROSCG.value = "METROSCG";
+        SENDPARCEL.value = "SENDPARCEL";
+        P2P.value = "P2P";
+        CN_EXPRESS.value = "CN_EXPRESS";
+        CIRROTRACK.value = "CIRROTRACK";
+        LAND_LOGISTICS.value = "LAND_LOGISTICS";
+        VEHO.value = "VEHO";
+        MEDLINE.value = "MEDLINE";
+        VDTRACK.value = "VDTRACK";
+        SINO_SCM.value = "SINO_SCM";
+        ENUM_3PE_EXPRESS.value = "3PE_EXPRESS";
+        SWIFTX.value = "SWIFTX";
+        SFYDEXPRESS.value = "SFYDEXPRESS";
+        TOPTRANS.value = "TOPTRANS";
         _UNKNOWN.value = null;
 
         valueMap.put("DPD_RU", DPD_RU);
@@ -9661,6 +9877,42 @@ public enum ShipmentCarrier {
         valueMap.put("UPS_CHECKER", UPS_CHECKER);
         valueMap.put("WINESHIPPING", WINESHIPPING);
         valueMap.put("SPEDISCI", SPEDISCI);
+        valueMap.put("FOURKITES", FOURKITES);
+        valueMap.put("ETONAS", ETONAS);
+        valueMap.put("FINMILE", FINMILE);
+        valueMap.put("UNIUNI", UNIUNI);
+        valueMap.put("RODONAVES", RODONAVES);
+        valueMap.put("INPOST_IT", INPOST_IT);
+        valueMap.put("TFORCE_FREIGHT", TFORCE_FREIGHT);
+        valueMap.put("RICHMOM", RICHMOM);
+        valueMap.put("FRANCO", FRANCO);
+        valueMap.put("ECPARCEL", ECPARCEL);
+        valueMap.put("FEDEX_CHINA", FEDEX_CHINA);
+        valueMap.put("GOFO_EXPRESS", GOFO_EXPRESS);
+        valueMap.put("SHIPBOB", SHIPBOB);
+        valueMap.put("JERSEYPOST_ATLAS", JERSEYPOST_ATLAS);
+        valueMap.put("CORETRAILS", CORETRAILS);
+        valueMap.put("RHENUS_ITALY", RHENUS_ITALY);
+        valueMap.put("JADLOG", JADLOG);
+        valueMap.put("JITSU", JITSU);
+        valueMap.put("YANWEN_EXPRESS", YANWEN_EXPRESS);
+        valueMap.put("DASHLINK", DASHLINK);
+        valueMap.put("SEINO_SUPER_EXPRESS", SEINO_SUPER_EXPRESS);
+        valueMap.put("FLOSHIP", FLOSHIP);
+        valueMap.put("METROSCG", METROSCG);
+        valueMap.put("SENDPARCEL", SENDPARCEL);
+        valueMap.put("P2P", P2P);
+        valueMap.put("CN_EXPRESS", CN_EXPRESS);
+        valueMap.put("CIRROTRACK", CIRROTRACK);
+        valueMap.put("LAND_LOGISTICS", LAND_LOGISTICS);
+        valueMap.put("VEHO", VEHO);
+        valueMap.put("MEDLINE", MEDLINE);
+        valueMap.put("VDTRACK", VDTRACK);
+        valueMap.put("SINO_SCM", SINO_SCM);
+        valueMap.put("3PE_EXPRESS", ENUM_3PE_EXPRESS);
+        valueMap.put("SWIFTX", SWIFTX);
+        valueMap.put("SFYDEXPRESS", SFYDEXPRESS);
+        valueMap.put("TOPTRANS", TOPTRANS);
     }
 
     /**

@@ -13,8 +13,10 @@ The payment method to vault with the instrument details.
 |  --- | --- | --- | --- | --- | --- |
 | `Card` | [`SetupTokenRequestCard`](../../doc/models/setup-token-request-card.md) | Optional | A Resource representing a request to vault a Card. | SetupTokenRequestCard getCard() | setCard(SetupTokenRequestCard card) |
 | `Paypal` | [`VaultPaypalWalletRequest`](../../doc/models/vault-paypal-wallet-request.md) | Optional | A resource representing a request to vault PayPal Wallet. | VaultPaypalWalletRequest getPaypal() | setPaypal(VaultPaypalWalletRequest paypal) |
-| `Venmo` | [`VaultVenmoRequest`](../../doc/models/vault-venmo-request.md) | Optional | - | VaultVenmoRequest getVenmo() | setVenmo(VaultVenmoRequest venmo) |
+| `Venmo` | [`VaultVenmoRequest`](../../doc/models/vault-venmo-request.md) | Optional | A resource representing a request to vault Venmo. | VaultVenmoRequest getVenmo() | setVenmo(VaultVenmoRequest venmo) |
+| `ApplePay` | [`VaultApplePayRequest`](../../doc/models/vault-apple-pay-request.md) | Optional | A resource representing a request to vault Apple Pay. | VaultApplePayRequest getApplePay() | setApplePay(VaultApplePayRequest applePay) |
 | `Token` | [`VaultTokenRequest`](../../doc/models/vault-token-request.md) | Optional | The Tokenized Payment Source representing a Request to Vault a Token. | VaultTokenRequest getToken() | setToken(VaultTokenRequest token) |
+| `Bank` | [`BankRequest`](../../doc/models/bank-request.md) | Optional | A Resource representing a request to vault a Bank used for ACH Debit. | BankRequest getBank() | setBank(BankRequest bank) |
 
 ## Example (as JSON)
 
@@ -25,7 +27,7 @@ The payment method to vault with the instrument details.
     "number": "number6",
     "expiry": "expiry4",
     "security_code": "security_code8",
-    "brand": "RUPAY"
+    "brand": "CB_NATIONALE"
   },
   "paypal": {
     "description": "description2",
@@ -34,6 +36,7 @@ The payment method to vault with the instrument details.
       "name": {
         "full_name": "full_name6"
       },
+      "email_address": "email_address2",
       "phone_number": {
         "country_code": "country_code2",
         "national_number": "national_number6"
@@ -58,6 +61,7 @@ The payment method to vault with the instrument details.
       "name": {
         "full_name": "full_name6"
       },
+      "email_address": "email_address2",
       "phone_number": {
         "country_code": "country_code2",
         "national_number": "national_number6"
@@ -74,6 +78,21 @@ The payment method to vault with the instrument details.
     },
     "permit_multiple_payment_tokens": false,
     "usage_type": "MERCHANT"
+  },
+  "apple_pay": {
+    "token": "token6",
+    "card": {
+      "type": "UNKNOWN",
+      "brand": "CB_NATIONALE",
+      "billing_address": {
+        "address_line_1": "address_line_12",
+        "address_line_2": "address_line_28",
+        "admin_area_2": "admin_area_28",
+        "admin_area_1": "admin_area_14",
+        "postal_code": "postal_code0",
+        "country_code": "country_code8"
+      }
+    }
   },
   "token": {
     "id": "id6",

@@ -138,6 +138,31 @@ public enum CardBrand {
     EFTPOS,
 
     /**
+     * The Carte Bancaire payment network.
+     */
+    CARTE_BANCAIRE,
+
+    /**
+     * The Star Access payment network.
+     */
+    STAR_ACCESS,
+
+    /**
+     * The Pulse payment network.
+     */
+    PULSE,
+
+    /**
+     * The NYCE payment network.
+     */
+    NYCE,
+
+    /**
+     * The Accel payment network.
+     */
+    ACCEL,
+
+    /**
      * UNKNOWN payment network.
      */
     UNKNOWN,
@@ -176,6 +201,11 @@ public enum CardBrand {
         GE.value = "GE";
         SYNCHRONY.value = "SYNCHRONY";
         EFTPOS.value = "EFTPOS";
+        CARTE_BANCAIRE.value = "CARTE_BANCAIRE";
+        STAR_ACCESS.value = "STAR_ACCESS";
+        PULSE.value = "PULSE";
+        NYCE.value = "NYCE";
+        ACCEL.value = "ACCEL";
         UNKNOWN.value = "UNKNOWN";
         _UNKNOWN.value = null;
 
@@ -203,6 +233,11 @@ public enum CardBrand {
         valueMap.put("GE", GE);
         valueMap.put("SYNCHRONY", SYNCHRONY);
         valueMap.put("EFTPOS", EFTPOS);
+        valueMap.put("CARTE_BANCAIRE", CARTE_BANCAIRE);
+        valueMap.put("STAR_ACCESS", STAR_ACCESS);
+        valueMap.put("PULSE", PULSE);
+        valueMap.put("NYCE", NYCE);
+        valueMap.put("ACCEL", ACCEL);
         valueMap.put("UNKNOWN", UNKNOWN);
     }
 

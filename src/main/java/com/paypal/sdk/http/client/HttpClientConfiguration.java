@@ -12,6 +12,7 @@ import io.apimatic.coreinterfaces.http.ClientConfiguration;
 import io.apimatic.coreinterfaces.http.HttpMethodType;
 import io.apimatic.coreinterfaces.http.Method;
 import java.util.Set;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -21,11 +22,19 @@ import java.util.stream.Stream;
 public class HttpClientConfiguration implements ReadonlyHttpClientConfiguration {
 
     private final ClientConfiguration configuration;
+    private final ReadonlyHttpProxyConfiguration proxyConfiguration;
 
     /**
      * Default Constructor.
      */
-    private HttpClientConfiguration(CoreHttpClientConfiguration.Builder configurationBuilder) {
+    private HttpClientConfiguration(CoreHttpClientConfiguration.Builder configurationBuilder,
+            HttpProxyConfiguration.Builder proxyConfiguration){
+        this.proxyConfiguration = proxyConfiguration != null ? proxyConfiguration.build() : null;
+
+        if (proxyConfiguration != null) {
+          configurationBuilder.proxyConfiguration(proxyConfiguration.build().getConfiguration());
+        }
+        
         this.configuration  = configurationBuilder.build();
     }
 
@@ -115,6 +124,15 @@ public class HttpClientConfiguration implements ReadonlyHttpClientConfiguration 
         return configuration.shouldOverrideHttpClientConfigurations();
     }
 
+
+    /**
+     * Retrieves the proxy configuration settings used by the HTTP client.
+     * @return the {@link ReadonlyHttpProxyConfiguration} containing the configured proxy settings
+     */
+    public ReadonlyHttpProxyConfiguration getProxyConfig() {
+        return this.proxyConfiguration;
+    }
+
     /**
     * Returns the ClientConfiguration instance.
     * @return ClientConfiguration
@@ -136,7 +154,7 @@ public class HttpClientConfiguration implements ReadonlyHttpClientConfiguration 
                 + ", maximumRetryWaitTime=" + getMaximumRetryWaitTime() + ", shouldRetryOnTimeout="
                 + shouldRetryOnTimeout() + ", httpClientInstance=" + getHttpClientInstance()
                 + ", overrideHttpClientConfigurations=" + shouldOverrideHttpClientConfigurations()
-                + "]";
+                + ", proxyConfig=" + getProxyConfig() + "]";
     }
 
     /**
@@ -155,7 +173,11 @@ public class HttpClientConfiguration implements ReadonlyHttpClientConfiguration 
                 .httpMethodsToRetry(getHttpMethodsToRetry())
                 .maximumRetryWaitTime(getMaximumRetryWaitTime())
                 .shouldRetryOnTimeout(shouldRetryOnTimeout())
-                .httpClientInstance(getHttpClientInstance(), shouldOverrideHttpClientConfigurations());
+                .httpClientInstance(getHttpClientInstance(), shouldOverrideHttpClientConfigurations())
+                .proxyConfig(() -> {
+                    HttpProxyConfiguration proxyConfig = (HttpProxyConfiguration) getProxyConfig();
+                    return proxyConfig != null ? proxyConfig.newBuilder() : null;
+                });
     }
 
     /**
@@ -165,6 +187,8 @@ public class HttpClientConfiguration implements ReadonlyHttpClientConfiguration 
      
         private final CoreHttpClientConfiguration.Builder configurationBuilder =
             new CoreHttpClientConfiguration.Builder();
+
+        private HttpProxyConfiguration.Builder proxyConfigurationBuilder = null;
 
         /**
          * Default Constructor to initiate builder with default properties.
@@ -286,11 +310,32 @@ public class HttpClientConfiguration implements ReadonlyHttpClientConfiguration 
         }
 
         /**
+        * Sets the proxy configuration for the underlying HTTP client.
+        * @param proxyBuilder The builder instance used to configure the proxy settings
+        * @return Builder
+        */
+        public Builder proxyConfig(HttpProxyConfiguration.Builder proxyBuilder) {
+            proxyConfigurationBuilder = proxyBuilder;
+            return this;
+        }
+
+        /**
+         * Private setter for the Builder of ProxyConfiguration, takes in an operation to be
+         * performed on the builder instance of proxy configuration.
+         * @param proxySupplier Supplier for the builder of ProxyConfiguration.
+         * @return Builder
+         */
+        private Builder proxyConfig(Supplier<HttpProxyConfiguration.Builder> proxySupplier) {
+            proxyConfigurationBuilder = proxySupplier.get();
+            return this;
+        }
+        
+        /**
          * Builds a new HttpClientConfiguration object using the set fields. 
          * @return {@link HttpClientConfiguration}
          */
         public HttpClientConfiguration build() {
-            return new HttpClientConfiguration(configurationBuilder);
+            return new HttpClientConfiguration(configurationBuilder, proxyConfigurationBuilder);
         }
     }
 }

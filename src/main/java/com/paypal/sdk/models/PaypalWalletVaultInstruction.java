@@ -14,7 +14,6 @@ import com.fasterxml.jackson.annotation.JsonSetter;
  * This is a model class for PaypalWalletVaultInstruction type.
  */
 public class PaypalWalletVaultInstruction {
-    private StoreInVaultInstruction storeInVault;
     private String description;
     private UsagePattern usagePattern;
     private PaypalPaymentTokenUsageType usageType;
@@ -32,7 +31,6 @@ public class PaypalWalletVaultInstruction {
     /**
      * Initialization constructor.
      * @param  usageType  PaypalPaymentTokenUsageType value for usageType.
-     * @param  storeInVault  StoreInVaultInstruction value for storeInVault.
      * @param  description  String value for description.
      * @param  usagePattern  UsagePattern value for usagePattern.
      * @param  customerType  PaypalPaymentTokenCustomerType value for customerType.
@@ -40,38 +38,15 @@ public class PaypalWalletVaultInstruction {
      */
     public PaypalWalletVaultInstruction(
             PaypalPaymentTokenUsageType usageType,
-            StoreInVaultInstruction storeInVault,
             String description,
             UsagePattern usagePattern,
             PaypalPaymentTokenCustomerType customerType,
             Boolean permitMultiplePaymentTokens) {
-        this.storeInVault = storeInVault;
         this.description = description;
         this.usagePattern = usagePattern;
         this.usageType = usageType;
         this.customerType = customerType;
         this.permitMultiplePaymentTokens = permitMultiplePaymentTokens;
-    }
-
-    /**
-     * Getter for StoreInVault.
-     * Defines how and when the payment source gets vaulted.
-     * @return Returns the StoreInVaultInstruction
-     */
-    @JsonGetter("store_in_vault")
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    public StoreInVaultInstruction getStoreInVault() {
-        return storeInVault;
-    }
-
-    /**
-     * Setter for StoreInVault.
-     * Defines how and when the payment source gets vaulted.
-     * @param storeInVault Value for StoreInVaultInstruction
-     */
-    @JsonSetter("store_in_vault")
-    public void setStoreInVault(StoreInVaultInstruction storeInVault) {
-        this.storeInVault = storeInVault;
     }
 
     /**
@@ -198,10 +173,9 @@ public class PaypalWalletVaultInstruction {
      */
     @Override
     public String toString() {
-        return "PaypalWalletVaultInstruction [" + "usageType=" + usageType + ", storeInVault="
-                + storeInVault + ", description=" + description + ", usagePattern=" + usagePattern
-                + ", customerType=" + customerType + ", permitMultiplePaymentTokens="
-                + permitMultiplePaymentTokens + "]";
+        return "PaypalWalletVaultInstruction [" + "usageType=" + usageType + ", description="
+                + description + ", usagePattern=" + usagePattern + ", customerType=" + customerType
+                + ", permitMultiplePaymentTokens=" + permitMultiplePaymentTokens + "]";
     }
 
     /**
@@ -211,7 +185,6 @@ public class PaypalWalletVaultInstruction {
      */
     public Builder toBuilder() {
         Builder builder = new Builder(usageType)
-                .storeInVault(getStoreInVault())
                 .description(getDescription())
                 .usagePattern(getUsagePattern())
                 .customerType(getCustomerType())
@@ -224,7 +197,6 @@ public class PaypalWalletVaultInstruction {
      */
     public static class Builder {
         private PaypalPaymentTokenUsageType usageType;
-        private StoreInVaultInstruction storeInVault;
         private String description;
         private UsagePattern usagePattern;
         private PaypalPaymentTokenCustomerType customerType =
@@ -252,16 +224,6 @@ public class PaypalWalletVaultInstruction {
          */
         public Builder usageType(PaypalPaymentTokenUsageType usageType) {
             this.usageType = usageType;
-            return this;
-        }
-
-        /**
-         * Setter for storeInVault.
-         * @param  storeInVault  StoreInVaultInstruction value for storeInVault.
-         * @return Builder
-         */
-        public Builder storeInVault(StoreInVaultInstruction storeInVault) {
-            this.storeInVault = storeInVault;
             return this;
         }
 
@@ -310,8 +272,8 @@ public class PaypalWalletVaultInstruction {
          * @return {@link PaypalWalletVaultInstruction}
          */
         public PaypalWalletVaultInstruction build() {
-            return new PaypalWalletVaultInstruction(usageType, storeInVault, description,
-                    usagePattern, customerType, permitMultiplePaymentTokens);
+            return new PaypalWalletVaultInstruction(usageType, description, usagePattern,
+                    customerType, permitMultiplePaymentTokens);
         }
     }
 }

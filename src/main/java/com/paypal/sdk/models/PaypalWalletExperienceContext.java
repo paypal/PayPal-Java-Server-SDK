@@ -20,6 +20,7 @@ public class PaypalWalletExperienceContext {
     private PaypalWalletContactPreference contactPreference;
     private String returnUrl;
     private String cancelUrl;
+    private AppSwitchContext appSwitchContext;
     private PaypalExperienceLandingPage landingPage;
     private PaypalExperienceUserAction userAction;
     private PayeePaymentMethodPreference paymentMethodPreference;
@@ -45,6 +46,7 @@ public class PaypalWalletExperienceContext {
      * @param  contactPreference  PaypalWalletContactPreference value for contactPreference.
      * @param  returnUrl  String value for returnUrl.
      * @param  cancelUrl  String value for cancelUrl.
+     * @param  appSwitchContext  AppSwitchContext value for appSwitchContext.
      * @param  landingPage  PaypalExperienceLandingPage value for landingPage.
      * @param  userAction  PaypalExperienceUserAction value for userAction.
      * @param  paymentMethodPreference  PayeePaymentMethodPreference value for
@@ -58,6 +60,7 @@ public class PaypalWalletExperienceContext {
             PaypalWalletContactPreference contactPreference,
             String returnUrl,
             String cancelUrl,
+            AppSwitchContext appSwitchContext,
             PaypalExperienceLandingPage landingPage,
             PaypalExperienceUserAction userAction,
             PayeePaymentMethodPreference paymentMethodPreference,
@@ -68,6 +71,7 @@ public class PaypalWalletExperienceContext {
         this.contactPreference = contactPreference;
         this.returnUrl = returnUrl;
         this.cancelUrl = cancelUrl;
+        this.appSwitchContext = appSwitchContext;
         this.landingPage = landingPage;
         this.userAction = userAction;
         this.paymentMethodPreference = paymentMethodPreference;
@@ -217,6 +221,29 @@ public class PaypalWalletExperienceContext {
     }
 
     /**
+     * Getter for AppSwitchContext.
+     * Merchant provided details of the native app or mobile web browser to facilitate buyer's app
+     * switch to the PayPal consumer app.
+     * @return Returns the AppSwitchContext
+     */
+    @JsonGetter("app_switch_context")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public AppSwitchContext getAppSwitchContext() {
+        return appSwitchContext;
+    }
+
+    /**
+     * Setter for AppSwitchContext.
+     * Merchant provided details of the native app or mobile web browser to facilitate buyer's app
+     * switch to the PayPal consumer app.
+     * @param appSwitchContext Value for AppSwitchContext
+     */
+    @JsonSetter("app_switch_context")
+    public void setAppSwitchContext(AppSwitchContext appSwitchContext) {
+        this.appSwitchContext = appSwitchContext;
+    }
+
+    /**
      * Getter for LandingPage.
      * The type of landing page to show on the PayPal site for customer checkout.
      * @return Returns the PaypalExperienceLandingPage
@@ -309,9 +336,10 @@ public class PaypalWalletExperienceContext {
         return "PaypalWalletExperienceContext [" + "brandName=" + brandName + ", locale=" + locale
                 + ", shippingPreference=" + shippingPreference + ", contactPreference="
                 + contactPreference + ", returnUrl=" + returnUrl + ", cancelUrl=" + cancelUrl
-                + ", landingPage=" + landingPage + ", userAction=" + userAction
-                + ", paymentMethodPreference=" + paymentMethodPreference
-                + ", orderUpdateCallbackConfig=" + orderUpdateCallbackConfig + "]";
+                + ", appSwitchContext=" + appSwitchContext + ", landingPage=" + landingPage
+                + ", userAction=" + userAction + ", paymentMethodPreference="
+                + paymentMethodPreference + ", orderUpdateCallbackConfig="
+                + orderUpdateCallbackConfig + "]";
     }
 
     /**
@@ -327,6 +355,7 @@ public class PaypalWalletExperienceContext {
                 .contactPreference(getContactPreference())
                 .returnUrl(getReturnUrl())
                 .cancelUrl(getCancelUrl())
+                .appSwitchContext(getAppSwitchContext())
                 .landingPage(getLandingPage())
                 .userAction(getUserAction())
                 .paymentMethodPreference(getPaymentMethodPreference())
@@ -346,6 +375,7 @@ public class PaypalWalletExperienceContext {
                 PaypalWalletContactPreference.NO_CONTACT_INFO;
         private String returnUrl;
         private String cancelUrl;
+        private AppSwitchContext appSwitchContext;
         private PaypalExperienceLandingPage landingPage = PaypalExperienceLandingPage.NO_PREFERENCE;
         private PaypalExperienceUserAction userAction = PaypalExperienceUserAction.CONTINUE;
         private PayeePaymentMethodPreference paymentMethodPreference =
@@ -417,6 +447,16 @@ public class PaypalWalletExperienceContext {
         }
 
         /**
+         * Setter for appSwitchContext.
+         * @param  appSwitchContext  AppSwitchContext value for appSwitchContext.
+         * @return Builder
+         */
+        public Builder appSwitchContext(AppSwitchContext appSwitchContext) {
+            this.appSwitchContext = appSwitchContext;
+            return this;
+        }
+
+        /**
          * Setter for landingPage.
          * @param  landingPage  PaypalExperienceLandingPage value for landingPage.
          * @return Builder
@@ -466,8 +506,8 @@ public class PaypalWalletExperienceContext {
          */
         public PaypalWalletExperienceContext build() {
             return new PaypalWalletExperienceContext(brandName, locale, shippingPreference,
-                    contactPreference, returnUrl, cancelUrl, landingPage, userAction,
-                    paymentMethodPreference, orderUpdateCallbackConfig);
+                    contactPreference, returnUrl, cancelUrl, appSwitchContext, landingPage,
+                    userAction, paymentMethodPreference, orderUpdateCallbackConfig);
         }
     }
 }

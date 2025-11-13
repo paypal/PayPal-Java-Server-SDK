@@ -33,6 +33,11 @@ public enum PaypalExperienceLandingPage {
     NO_PREFERENCE,
 
     /**
+     * DEPRECATED - please use GUEST_CHECKOUT. All implementations of 'BILLING' will be routed to 'GUEST_CHECKOUT'. When the customer clicks PayPal Checkout, the customer is redirected to a page to enter credit or debit card and other relevant billing information required to complete the purchase.
+     */
+    BILLING,
+
+    /**
      * Unknown values will be mapped by this enum member
      */
     _UNKNOWN;
@@ -45,11 +50,13 @@ public enum PaypalExperienceLandingPage {
         LOGIN.value = "LOGIN";
         GUEST_CHECKOUT.value = "GUEST_CHECKOUT";
         NO_PREFERENCE.value = "NO_PREFERENCE";
+        BILLING.value = "BILLING";
         _UNKNOWN.value = null;
 
         valueMap.put("LOGIN", LOGIN);
         valueMap.put("GUEST_CHECKOUT", GUEST_CHECKOUT);
         valueMap.put("NO_PREFERENCE", NO_PREFERENCE);
+        valueMap.put("BILLING", BILLING);
     }
 
     /**

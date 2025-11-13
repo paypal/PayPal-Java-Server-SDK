@@ -59,10 +59,10 @@ public final class OAuthAuthorizationController extends BaseController {
     public CompletableFuture<ApiResponse<OAuthToken>> requestTokenAsync(
             final RequestTokenInput input,
             final Map<String, Object> fieldParameters) {
-        try { 
-            return prepareRequestTokenRequest(input, fieldParameters).executeAsync(); 
-        } catch (Exception e) {  
-            throw new CompletionException(e); 
+        try {
+            return prepareRequestTokenRequest(input, fieldParameters).executeAsync();
+        } catch (Exception e) {
+            throw new CompletionException(e);
         }
     }
 
@@ -71,7 +71,7 @@ public final class OAuthAuthorizationController extends BaseController {
      */
     private ApiCall<ApiResponse<OAuthToken>, ApiException> prepareRequestTokenRequest(
             final RequestTokenInput input,
-            final Map<String, Object> fieldParameters) throws IOException {
+            final Map<String, Object> fieldParameters) {
         return new ApiCall.Builder<ApiResponse<OAuthToken>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder

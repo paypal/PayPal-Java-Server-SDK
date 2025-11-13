@@ -9,7 +9,6 @@ package com.paypal.sdk.models;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import com.paypal.sdk.utilities.JsonValue;
 import java.util.List;
 
 /**
@@ -17,7 +16,6 @@ import java.util.List;
  */
 public class Plan {
     private List<BillingCycle> billingCycles;
-    private JsonValue product;
     private OneTimeCharge oneTimeCharges;
     private String name;
 
@@ -31,16 +29,13 @@ public class Plan {
      * Initialization constructor.
      * @param  billingCycles  List of BillingCycle value for billingCycles.
      * @param  oneTimeCharges  OneTimeCharge value for oneTimeCharges.
-     * @param  product  JsonValue value for product.
      * @param  name  String value for name.
      */
     public Plan(
             List<BillingCycle> billingCycles,
             OneTimeCharge oneTimeCharges,
-            JsonValue product,
             String name) {
         this.billingCycles = billingCycles;
-        this.product = product;
         this.oneTimeCharges = oneTimeCharges;
         this.name = name;
     }
@@ -65,27 +60,6 @@ public class Plan {
     @JsonSetter("billing_cycles")
     public void setBillingCycles(List<BillingCycle> billingCycles) {
         this.billingCycles = billingCycles;
-    }
-
-    /**
-     * Getter for Product.
-     * Product details associated with any one-time product purchase.
-     * @return Returns the JsonValue
-     */
-    @JsonGetter("product")
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    public JsonValue getProduct() {
-        return product;
-    }
-
-    /**
-     * Setter for Product.
-     * Product details associated with any one-time product purchase.
-     * @param product Value for JsonValue
-     */
-    @JsonSetter("product")
-    public void setProduct(JsonValue product) {
-        this.product = product;
     }
 
     /**
@@ -136,7 +110,7 @@ public class Plan {
     @Override
     public String toString() {
         return "Plan [" + "billingCycles=" + billingCycles + ", oneTimeCharges=" + oneTimeCharges
-                + ", product=" + product + ", name=" + name + "]";
+                + ", name=" + name + "]";
     }
 
     /**
@@ -146,7 +120,6 @@ public class Plan {
      */
     public Builder toBuilder() {
         Builder builder = new Builder(billingCycles, oneTimeCharges)
-                .product(getProduct())
                 .name(getName());
         return builder;
     }
@@ -157,7 +130,6 @@ public class Plan {
     public static class Builder {
         private List<BillingCycle> billingCycles;
         private OneTimeCharge oneTimeCharges;
-        private JsonValue product;
         private String name;
 
         /**
@@ -197,16 +169,6 @@ public class Plan {
         }
 
         /**
-         * Setter for product.
-         * @param  product  JsonValue value for product.
-         * @return Builder
-         */
-        public Builder product(JsonValue product) {
-            this.product = product;
-            return this;
-        }
-
-        /**
          * Setter for name.
          * @param  name  String value for name.
          * @return Builder
@@ -221,7 +183,7 @@ public class Plan {
          * @return {@link Plan}
          */
         public Plan build() {
-            return new Plan(billingCycles, oneTimeCharges, product, name);
+            return new Plan(billingCycles, oneTimeCharges, name);
         }
     }
 }

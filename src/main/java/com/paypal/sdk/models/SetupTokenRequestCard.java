@@ -21,7 +21,7 @@ public class SetupTokenRequestCard {
     private CardBrand brand;
     private Address billingAddress;
     private VaultCardVerificationMethod verificationMethod;
-    private SetupTokenCardExperienceContext experienceContext;
+    private VaultCardExperienceContext experienceContext;
 
     /**
      * Default constructor.
@@ -38,7 +38,7 @@ public class SetupTokenRequestCard {
      * @param  brand  CardBrand value for brand.
      * @param  billingAddress  Address value for billingAddress.
      * @param  verificationMethod  VaultCardVerificationMethod value for verificationMethod.
-     * @param  experienceContext  SetupTokenCardExperienceContext value for experienceContext.
+     * @param  experienceContext  VaultCardExperienceContext value for experienceContext.
      */
     public SetupTokenRequestCard(
             String name,
@@ -48,7 +48,7 @@ public class SetupTokenRequestCard {
             CardBrand brand,
             Address billingAddress,
             VaultCardVerificationMethod verificationMethod,
-            SetupTokenCardExperienceContext experienceContext) {
+            VaultCardExperienceContext experienceContext) {
         this.name = name;
         this.number = number;
         this.expiry = expiry;
@@ -218,22 +218,22 @@ public class SetupTokenRequestCard {
 
     /**
      * Getter for ExperienceContext.
-     * Customizes the Vault creation flow experience for your customers.
-     * @return Returns the SetupTokenCardExperienceContext
+     * A resource representing an experience context of vault a card.
+     * @return Returns the VaultCardExperienceContext
      */
     @JsonGetter("experience_context")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public SetupTokenCardExperienceContext getExperienceContext() {
+    public VaultCardExperienceContext getExperienceContext() {
         return experienceContext;
     }
 
     /**
      * Setter for ExperienceContext.
-     * Customizes the Vault creation flow experience for your customers.
-     * @param experienceContext Value for SetupTokenCardExperienceContext
+     * A resource representing an experience context of vault a card.
+     * @param experienceContext Value for VaultCardExperienceContext
      */
     @JsonSetter("experience_context")
-    public void setExperienceContext(SetupTokenCardExperienceContext experienceContext) {
+    public void setExperienceContext(VaultCardExperienceContext experienceContext) {
         this.experienceContext = experienceContext;
     }
 
@@ -278,7 +278,7 @@ public class SetupTokenRequestCard {
         private CardBrand brand;
         private Address billingAddress;
         private VaultCardVerificationMethod verificationMethod;
-        private SetupTokenCardExperienceContext experienceContext;
+        private VaultCardExperienceContext experienceContext;
 
 
 
@@ -354,10 +354,10 @@ public class SetupTokenRequestCard {
 
         /**
          * Setter for experienceContext.
-         * @param  experienceContext  SetupTokenCardExperienceContext value for experienceContext.
+         * @param  experienceContext  VaultCardExperienceContext value for experienceContext.
          * @return Builder
          */
-        public Builder experienceContext(SetupTokenCardExperienceContext experienceContext) {
+        public Builder experienceContext(VaultCardExperienceContext experienceContext) {
             this.experienceContext = experienceContext;
             return this;
         }

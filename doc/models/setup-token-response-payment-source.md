@@ -12,8 +12,8 @@ The setup payment method details.
 | Name | Type | Tags | Description | Getter | Setter |
 |  --- | --- | --- | --- | --- | --- |
 | `Card` | [`SetupTokenResponseCard`](../../doc/models/setup-token-response-card.md) | Optional | - | SetupTokenResponseCard getCard() | setCard(SetupTokenResponseCard card) |
-| `Paypal` | [`PaypalPaymentToken`](../../doc/models/paypal-payment-token.md) | Optional | - | PaypalPaymentToken getPaypal() | setPaypal(PaypalPaymentToken paypal) |
-| `Venmo` | [`VenmoPaymentToken`](../../doc/models/venmo-payment-token.md) | Optional | - | VenmoPaymentToken getVenmo() | setVenmo(VenmoPaymentToken venmo) |
+| `Paypal` | [`PaypalPaymentToken`](../../doc/models/paypal-payment-token.md) | Optional | Full representation of a PayPal Payment Token. | PaypalPaymentToken getPaypal() | setPaypal(PaypalPaymentToken paypal) |
+| `Venmo` | [`VenmoPaymentToken`](../../doc/models/venmo-payment-token.md) | Optional | Full representation of a Venmo Payment Token. | VenmoPaymentToken getVenmo() | setVenmo(VenmoPaymentToken venmo) |
 
 ## Example (as JSON)
 
@@ -22,7 +22,7 @@ The setup payment method details.
   "card": {
     "name": "name6",
     "last_digits": "last_digits0",
-    "brand": "RUPAY",
+    "brand": "CB_NATIONALE",
     "expiry": "expiry4",
     "billing_address": {
       "address_line_1": "address_line_12",
@@ -40,6 +40,7 @@ The setup payment method details.
       "name": {
         "full_name": "full_name6"
       },
+      "email_address": "email_address2",
       "phone_number": {
         "country_code": "country_code2",
         "national_number": "national_number6"
@@ -64,6 +65,7 @@ The setup payment method details.
       "name": {
         "full_name": "full_name6"
       },
+      "email_address": "email_address2",
       "phone_number": {
         "country_code": "country_code2",
         "national_number": "national_number6"

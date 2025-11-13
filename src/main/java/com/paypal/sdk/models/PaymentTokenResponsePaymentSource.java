@@ -66,6 +66,7 @@ public class PaymentTokenResponsePaymentSource {
 
     /**
      * Getter for Paypal.
+     * Full representation of a PayPal Payment Token.
      * @return Returns the PaypalPaymentToken
      */
     @JsonGetter("paypal")
@@ -76,6 +77,7 @@ public class PaymentTokenResponsePaymentSource {
 
     /**
      * Setter for Paypal.
+     * Full representation of a PayPal Payment Token.
      * @param paypal Value for PaypalPaymentToken
      */
     @JsonSetter("paypal")
@@ -85,6 +87,7 @@ public class PaymentTokenResponsePaymentSource {
 
     /**
      * Getter for Venmo.
+     * Full representation of a Venmo Payment Token.
      * @return Returns the VenmoPaymentToken
      */
     @JsonGetter("venmo")
@@ -95,6 +98,7 @@ public class PaymentTokenResponsePaymentSource {
 
     /**
      * Setter for Venmo.
+     * Full representation of a Venmo Payment Token.
      * @param venmo Value for VenmoPaymentToken
      */
     @JsonSetter("venmo")

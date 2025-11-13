@@ -17,7 +17,7 @@ public class CardStoredCredential {
     private PaymentInitiator paymentInitiator;
     private StoredPaymentSourcePaymentType paymentType;
     private StoredPaymentSourceUsageType usage;
-    private NetworkTransactionReference previousNetworkTransactionReference;
+    private NetworkTransaction previousNetworkTransactionReference;
 
     /**
      * Default constructor.
@@ -31,14 +31,14 @@ public class CardStoredCredential {
      * @param  paymentInitiator  PaymentInitiator value for paymentInitiator.
      * @param  paymentType  StoredPaymentSourcePaymentType value for paymentType.
      * @param  usage  StoredPaymentSourceUsageType value for usage.
-     * @param  previousNetworkTransactionReference  NetworkTransactionReference value for
+     * @param  previousNetworkTransactionReference  NetworkTransaction value for
      *         previousNetworkTransactionReference.
      */
     public CardStoredCredential(
             PaymentInitiator paymentInitiator,
             StoredPaymentSourcePaymentType paymentType,
             StoredPaymentSourceUsageType usage,
-            NetworkTransactionReference previousNetworkTransactionReference) {
+            NetworkTransaction previousNetworkTransactionReference) {
         this.paymentInitiator = paymentInitiator;
         this.paymentType = paymentType;
         this.usage = usage;
@@ -111,21 +111,21 @@ public class CardStoredCredential {
     /**
      * Getter for PreviousNetworkTransactionReference.
      * Reference values used by the card network to identify a transaction.
-     * @return Returns the NetworkTransactionReference
+     * @return Returns the NetworkTransaction
      */
     @JsonGetter("previous_network_transaction_reference")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public NetworkTransactionReference getPreviousNetworkTransactionReference() {
+    public NetworkTransaction getPreviousNetworkTransactionReference() {
         return previousNetworkTransactionReference;
     }
 
     /**
      * Setter for PreviousNetworkTransactionReference.
      * Reference values used by the card network to identify a transaction.
-     * @param previousNetworkTransactionReference Value for NetworkTransactionReference
+     * @param previousNetworkTransactionReference Value for NetworkTransaction
      */
     @JsonSetter("previous_network_transaction_reference")
-    public void setPreviousNetworkTransactionReference(NetworkTransactionReference previousNetworkTransactionReference) {
+    public void setPreviousNetworkTransactionReference(NetworkTransaction previousNetworkTransactionReference) {
         this.previousNetworkTransactionReference = previousNetworkTransactionReference;
     }
 
@@ -159,7 +159,7 @@ public class CardStoredCredential {
         private PaymentInitiator paymentInitiator;
         private StoredPaymentSourcePaymentType paymentType;
         private StoredPaymentSourceUsageType usage = StoredPaymentSourceUsageType.DERIVED;
-        private NetworkTransactionReference previousNetworkTransactionReference;
+        private NetworkTransaction previousNetworkTransactionReference;
 
         /**
          * Initialization constructor.
@@ -210,12 +210,12 @@ public class CardStoredCredential {
 
         /**
          * Setter for previousNetworkTransactionReference.
-         * @param  previousNetworkTransactionReference  NetworkTransactionReference value for
+         * @param  previousNetworkTransactionReference  NetworkTransaction value for
          *         previousNetworkTransactionReference.
          * @return Builder
          */
         public Builder previousNetworkTransactionReference(
-                NetworkTransactionReference previousNetworkTransactionReference) {
+                NetworkTransaction previousNetworkTransactionReference) {
             this.previousNetworkTransactionReference = previousNetworkTransactionReference;
             return this;
         }
