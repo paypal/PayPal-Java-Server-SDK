@@ -183,7 +183,8 @@ public class AmountBreakdown {
 
     /**
      * Getter for Discount.
-     * The currency and amount for a financial transaction, such as a balance or payment due.
+     * The discount amount and currency code. For list of supported currencies and decimal
+     * precision, see the PayPal REST APIs Currency Codes.
      * @return Returns the Money
      */
     @JsonGetter("discount")
@@ -194,7 +195,8 @@ public class AmountBreakdown {
 
     /**
      * Setter for Discount.
-     * The currency and amount for a financial transaction, such as a balance or payment due.
+     * The discount amount and currency code. For list of supported currencies and decimal
+     * precision, see the PayPal REST APIs Currency Codes.
      * @param discount Value for Money
      */
     @JsonSetter("discount")

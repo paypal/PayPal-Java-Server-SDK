@@ -66,7 +66,8 @@ public class PaypalWalletStoredCredential {
 
     /**
      * Getter for ChargePattern.
-     * Expected business/pricing model for the billing agreement.
+     * DEPRECATED. Expected business/pricing model for the billing agreement, Please use
+     * usage_pattern instead.
      * @return Returns the UsagePattern
      */
     @JsonGetter("charge_pattern")
@@ -77,7 +78,8 @@ public class PaypalWalletStoredCredential {
 
     /**
      * Setter for ChargePattern.
-     * Expected business/pricing model for the billing agreement.
+     * DEPRECATED. Expected business/pricing model for the billing agreement, Please use
+     * usage_pattern instead.
      * @param chargePattern Value for UsagePattern
      */
     @JsonSetter("charge_pattern")

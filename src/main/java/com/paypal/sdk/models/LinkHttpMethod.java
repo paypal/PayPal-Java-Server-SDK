@@ -17,20 +17,44 @@ import java.util.TreeMap;
  * LinkHttpMethod to be used.
  */
 public enum LinkHttpMethod {
+    /**
+     * The HTTP GET method.
+     */
     GET,
 
+    /**
+     * The HTTP POST method.
+     */
     POST,
 
+    /**
+     * The HTTP PUT method.
+     */
     PUT,
 
+    /**
+     * The HTTP DELETE method.
+     */
     DELETE,
 
+    /**
+     * The HTTP HEAD method.
+     */
     HEAD,
 
+    /**
+     * The HTTP CONNECT method.
+     */
     CONNECT,
 
+    /**
+     * The HTTP OPTIONS method.
+     */
     OPTIONS,
 
+    /**
+     * The HTTP PATCH method.
+     */
     PATCH,
 
     /**

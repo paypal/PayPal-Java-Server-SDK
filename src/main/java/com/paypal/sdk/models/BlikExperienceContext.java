@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 public class BlikExperienceContext {
     private String brandName;
     private String locale;
-    private ShippingPreference shippingPreference;
+    private ExperienceContextShippingPreference shippingPreference;
     private String returnUrl;
     private String cancelUrl;
     private String consumerIp;
@@ -26,14 +26,14 @@ public class BlikExperienceContext {
      * Default constructor.
      */
     public BlikExperienceContext() {
-        shippingPreference = ShippingPreference.GET_FROM_FILE;
+        shippingPreference = ExperienceContextShippingPreference.GET_FROM_FILE;
     }
 
     /**
      * Initialization constructor.
      * @param  brandName  String value for brandName.
      * @param  locale  String value for locale.
-     * @param  shippingPreference  ShippingPreference value for shippingPreference.
+     * @param  shippingPreference  ExperienceContextShippingPreference value for shippingPreference.
      * @param  returnUrl  String value for returnUrl.
      * @param  cancelUrl  String value for cancelUrl.
      * @param  consumerIp  String value for consumerIp.
@@ -42,7 +42,7 @@ public class BlikExperienceContext {
     public BlikExperienceContext(
             String brandName,
             String locale,
-            ShippingPreference shippingPreference,
+            ExperienceContextShippingPreference shippingPreference,
             String returnUrl,
             String cancelUrl,
             String consumerIp,
@@ -115,21 +115,21 @@ public class BlikExperienceContext {
     /**
      * Getter for ShippingPreference.
      * The location from which the shipping address is derived.
-     * @return Returns the ShippingPreference
+     * @return Returns the ExperienceContextShippingPreference
      */
     @JsonGetter("shipping_preference")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public ShippingPreference getShippingPreference() {
+    public ExperienceContextShippingPreference getShippingPreference() {
         return shippingPreference;
     }
 
     /**
      * Setter for ShippingPreference.
      * The location from which the shipping address is derived.
-     * @param shippingPreference Value for ShippingPreference
+     * @param shippingPreference Value for ExperienceContextShippingPreference
      */
     @JsonSetter("shipping_preference")
-    public void setShippingPreference(ShippingPreference shippingPreference) {
+    public void setShippingPreference(ExperienceContextShippingPreference shippingPreference) {
         this.shippingPreference = shippingPreference;
     }
 
@@ -256,7 +256,8 @@ public class BlikExperienceContext {
     public static class Builder {
         private String brandName;
         private String locale;
-        private ShippingPreference shippingPreference = ShippingPreference.GET_FROM_FILE;
+        private ExperienceContextShippingPreference shippingPreference =
+                ExperienceContextShippingPreference.GET_FROM_FILE;
         private String returnUrl;
         private String cancelUrl;
         private String consumerIp;
@@ -286,10 +287,12 @@ public class BlikExperienceContext {
 
         /**
          * Setter for shippingPreference.
-         * @param  shippingPreference  ShippingPreference value for shippingPreference.
+         * @param  shippingPreference  ExperienceContextShippingPreference value for
+         *         shippingPreference.
          * @return Builder
          */
-        public Builder shippingPreference(ShippingPreference shippingPreference) {
+        public Builder shippingPreference(
+                ExperienceContextShippingPreference shippingPreference) {
             this.shippingPreference = shippingPreference;
             return this;
         }

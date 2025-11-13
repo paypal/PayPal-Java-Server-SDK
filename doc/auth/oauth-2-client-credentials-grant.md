@@ -27,13 +27,23 @@ Documentation for accessing and setting credentials for Oauth2.
 You must initialize the client with *OAuth 2.0 Client Credentials Grant* credentials as shown in the following code snippet. This will fetch the OAuth token automatically when any of the endpoints, requiring *OAuth 2.0 Client Credentials Grant* authentication, are called.
 
 ```java
-PaypalServerSdkClient client = new PaypalServerSdkClient.Builder()
-    .clientCredentialsAuth(new ClientCredentialsAuthModel.Builder(
-            "OAuthClientId",
-            "OAuthClientSecret"
-        )
-        .build())
-    .build();
+import com.paypal.sdk.PaypalServerSdkClient;
+import com.paypal.sdk.authentication.ClientCredentialsAuthModel;
+import com.paypal.sdk.exceptions.ApiException;
+import com.paypal.sdk.models.OAuthToken;
+import java.io.IOException;
+
+public class Program {
+    public static void main(String[] args) {
+        PaypalServerSdkClient client = new PaypalServerSdkClient.Builder()
+            .clientCredentialsAuth(new ClientCredentialsAuthModel.Builder(
+                    "OAuthClientId",
+                    "OAuthClientSecret"
+                )
+                .build())
+            .build();
+    }
+}
 ```
 
 
@@ -45,18 +55,27 @@ Your application can also manually provide an OAuthToken using the setter `oAuth
 Whenever the OAuth Token gets updated, the provided callback implementation will be executed. For instance, you may use it to store your access token whenever it gets updated.
 
 ```java
-PaypalServerSdkClient client = new PaypalServerSdkClient.Builder()
-    .clientCredentialsAuth(new ClientCredentialsAuthModel.Builder(
-            "OAuthClientId",
-            "OAuthClientSecret"
-        )
-        .oAuthOnTokenUpdate(oAuthToken -> {
-                // Add the callback handler to perform operations like save to DB or file etc.
-                // It will be triggered whenever the token gets updated
-                saveTokenToDatabase(oAuthToken);
-        })
-        .build())
-    .build();
+import com.paypal.sdk.PaypalServerSdkClient;
+import com.paypal.sdk.exceptions.ApiException;
+import com.paypal.sdk.models.OAuthToken;
+import java.io.IOException;
+
+public class Program {
+    public static void main(String[] args) {
+        PaypalServerSdkClient client = new PaypalServerSdkClient.Builder()
+            .clientCredentialsAuth(new ClientCredentialsAuthModel.Builder(
+                    "OAuthClientId",
+                    "OAuthClientSecret"
+                )
+                .oAuthOnTokenUpdate(oAuthToken -> {
+                        // Add the callback handler to perform operations like save to DB or file etc.
+                        // It will be triggered whenever the token gets updated
+                        saveTokenToDatabase(oAuthToken);
+                })
+                .build())
+            .build();
+    }
+}
 ```
 
 ### Adding Custom OAuth Token Provider
@@ -64,22 +83,31 @@ PaypalServerSdkClient client = new PaypalServerSdkClient.Builder()
 To authorize a client using a stored access token, set up the `oAuthTokenProvider` in `ClientCredentialsAuthModel` builder along with the other auth parameters before creating the client:
 
 ```java
-PaypalServerSdkClient client = new PaypalServerSdkClient.Builder()
-    .clientCredentialsAuth(new ClientCredentialsAuthModel.Builder(
-            "OAuthClientId",
-            "OAuthClientSecret"
-        )
-        .oAuthTokenProvider((lastOAuthToken, credentialsManager) -> {
-                // Add the callback handler to provide a new OAuth token
-                // It will be triggered whenever the lastOAuthToken is undefined or expired
-                OAuthToken oAuthToken = loadTokenFromDatabase();
-                if (oAuthToken != null && !credentialsManager.isTokenExpired(oAuthToken)) {
-                    return oAuthToken;
-                }
-                return credentialsManager.fetchToken();
-        })
-        .build())
-    .build();
+import com.paypal.sdk.PaypalServerSdkClient;
+import com.paypal.sdk.exceptions.ApiException;
+import com.paypal.sdk.models.OAuthToken;
+import java.io.IOException;
+
+public class Program {
+    public static void main(String[] args) {
+        PaypalServerSdkClient client = new PaypalServerSdkClient.Builder()
+            .clientCredentialsAuth(new ClientCredentialsAuthModel.Builder(
+                    "OAuthClientId",
+                    "OAuthClientSecret"
+                )
+                .oAuthTokenProvider((lastOAuthToken, credentialsManager) -> {
+                        // Add the callback handler to provide a new OAuth token
+                        // It will be triggered whenever the lastOAuthToken is undefined or expired
+                        OAuthToken oAuthToken = loadTokenFromDatabase();
+                        if (oAuthToken != null && !credentialsManager.isTokenExpired(oAuthToken)) {
+                            return oAuthToken;
+                        }
+                        return credentialsManager.fetchToken();
+                })
+                .build())
+            .build();
+    }
+}
 ```
 
 

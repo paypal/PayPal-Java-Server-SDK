@@ -6,7 +6,6 @@
 
 package com.paypal.sdk.controllers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.paypal.sdk.ApiHelper;
 import com.paypal.sdk.Server;
 import com.paypal.sdk.exceptions.ApiException;
@@ -42,6 +41,157 @@ public final class OrdersController extends BaseController {
      */
     public OrdersController(GlobalConfiguration globalConfig) {
         super(globalConfig);
+    }
+
+    /**
+     * Creates an order. Merchants and partners can add Level 2 and 3 data to payments to reduce
+     * risk and payment processing costs. For more information about processing payments, see
+     * checkout or multiparty checkout. Note: For error handling and troubleshooting, see Orders v2
+     * errors.
+     * @param  input  CreateOrderInput object containing request parameters
+     * @return    Returns the Order wrapped in ApiResponse response from the API call
+     * @throws    ApiException    Represents error response from the server.
+     * @throws    IOException    Signals that an I/O exception of some sort has occurred.
+     */
+    public ApiResponse<Order> createOrder(
+            final CreateOrderInput input) throws ApiException, IOException {
+        return prepareCreateOrderRequest(input).execute();
+    }
+
+    /**
+     * Creates an order. Merchants and partners can add Level 2 and 3 data to payments to reduce
+     * risk and payment processing costs. For more information about processing payments, see
+     * checkout or multiparty checkout. Note: For error handling and troubleshooting, see Orders v2
+     * errors.
+     * @param  input  CreateOrderInput object containing request parameters
+     * @return    Returns the Order wrapped in ApiResponse response from the API call
+     */
+    public CompletableFuture<ApiResponse<Order>> createOrderAsync(
+            final CreateOrderInput input) {
+        try {
+            return prepareCreateOrderRequest(input).executeAsync();
+        } catch (Exception e) {
+            throw new CompletionException(e);
+        }
+    }
+
+    /**
+     * Builds the ApiCall object for createOrder.
+     */
+    private ApiCall<ApiResponse<Order>, ApiException> prepareCreateOrderRequest(
+            final CreateOrderInput input) {
+        return new ApiCall.Builder<ApiResponse<Order>, ApiException>()
+                .globalConfig(getGlobalConfiguration())
+                .requestBuilder(requestBuilder -> requestBuilder
+                        .server(Server.ENUM_DEFAULT.value())
+                        .path("/v2/checkout/orders")
+                        .bodyParam(param -> param.value(input.getBody()))
+                        .bodySerializer(() ->  ApiHelper.serialize(input.getBody()))
+                        .headerParam(param -> param.key("Content-Type")
+                                .value("application/json").isRequired(false))
+                        .headerParam(param -> param.key("PayPal-Mock-Response")
+                                .value(input.getPaypalMockResponse()).isRequired(false))
+                        .headerParam(param -> param.key("PayPal-Request-Id")
+                                .value(input.getPaypalRequestId()).isRequired(false))
+                        .headerParam(param -> param.key("PayPal-Partner-Attribution-Id")
+                                .value(input.getPaypalPartnerAttributionId()).isRequired(false))
+                        .headerParam(param -> param.key("PayPal-Client-Metadata-Id")
+                                .value(input.getPaypalClientMetadataId()).isRequired(false))
+                        .headerParam(param -> param.key("Prefer")
+                                .value(input.getPrefer()).isRequired(false))
+                        .headerParam(param -> param.key("PayPal-Auth-Assertion")
+                                .value(input.getPaypalAuthAssertion()).isRequired(false))
+                        .headerParam(param -> param.key("accept").value("application/json"))
+                        .withAuth(auth -> auth
+                                .add("Oauth2"))
+                        .httpMethod(HttpMethod.POST))
+                .responseHandler(responseHandler -> responseHandler
+                        .responseClassType(ResponseClassType.API_RESPONSE)
+                        .apiResponseDeserializer(
+                                response -> ApiHelper.deserialize(response, Order.class))
+                        .nullify404(false)
+                        .localErrorCase("400",
+                                 ErrorCase.setReason("Request is not well-formed, syntactically incorrect, or violates schema.",
+                                (reason, context) -> new ErrorException(reason, context)))
+                        .localErrorCase("401",
+                                 ErrorCase.setReason("Authentication failed due to missing authorization header, or invalid authentication credentials.",
+                                (reason, context) -> new ErrorException(reason, context)))
+                        .localErrorCase("422",
+                                 ErrorCase.setReason("The requested action could not be performed, semantically incorrect, or failed business validation.",
+                                (reason, context) -> new ErrorException(reason, context)))
+                        .localErrorCase(ErrorCase.DEFAULT,
+                                 ErrorCase.setReason("The error response.",
+                                (reason, context) -> new ErrorException(reason, context)))
+                        .globalErrorCase(GLOBAL_ERROR_CASES))
+                .build();
+    }
+
+    /**
+     * Shows details for an order, by ID. Note: For error handling and troubleshooting, see Orders
+     * v2 errors.
+     * @param  input  GetOrderInput object containing request parameters
+     * @return    Returns the Order wrapped in ApiResponse response from the API call
+     * @throws    ApiException    Represents error response from the server.
+     * @throws    IOException    Signals that an I/O exception of some sort has occurred.
+     */
+    public ApiResponse<Order> getOrder(
+            final GetOrderInput input) throws ApiException, IOException {
+        return prepareGetOrderRequest(input).execute();
+    }
+
+    /**
+     * Shows details for an order, by ID. Note: For error handling and troubleshooting, see Orders
+     * v2 errors.
+     * @param  input  GetOrderInput object containing request parameters
+     * @return    Returns the Order wrapped in ApiResponse response from the API call
+     */
+    public CompletableFuture<ApiResponse<Order>> getOrderAsync(
+            final GetOrderInput input) {
+        try {
+            return prepareGetOrderRequest(input).executeAsync();
+        } catch (Exception e) {
+            throw new CompletionException(e);
+        }
+    }
+
+    /**
+     * Builds the ApiCall object for getOrder.
+     */
+    private ApiCall<ApiResponse<Order>, ApiException> prepareGetOrderRequest(
+            final GetOrderInput input) {
+        return new ApiCall.Builder<ApiResponse<Order>, ApiException>()
+                .globalConfig(getGlobalConfiguration())
+                .requestBuilder(requestBuilder -> requestBuilder
+                        .server(Server.ENUM_DEFAULT.value())
+                        .path("/v2/checkout/orders/{id}")
+                        .queryParam(param -> param.key("fields")
+                                .value(input.getFields()).isRequired(false))
+                        .templateParam(param -> param.key("id").value(input.getId())
+                                .shouldEncode(true))
+                        .headerParam(param -> param.key("PayPal-Mock-Response")
+                                .value(input.getPaypalMockResponse()).isRequired(false))
+                        .headerParam(param -> param.key("PayPal-Auth-Assertion")
+                                .value(input.getPaypalAuthAssertion()).isRequired(false))
+                        .headerParam(param -> param.key("accept").value("application/json"))
+                        .withAuth(auth -> auth
+                                .add("Oauth2"))
+                        .httpMethod(HttpMethod.GET))
+                .responseHandler(responseHandler -> responseHandler
+                        .responseClassType(ResponseClassType.API_RESPONSE)
+                        .apiResponseDeserializer(
+                                response -> ApiHelper.deserialize(response, Order.class))
+                        .nullify404(false)
+                        .localErrorCase("401",
+                                 ErrorCase.setReason("Authentication failed due to missing authorization header, or invalid authentication credentials.",
+                                (reason, context) -> new ErrorException(reason, context)))
+                        .localErrorCase("404",
+                                 ErrorCase.setReason("The specified resource does not exist.",
+                                (reason, context) -> new ErrorException(reason, context)))
+                        .localErrorCase(ErrorCase.DEFAULT,
+                                 ErrorCase.setReason("The error response.",
+                                (reason, context) -> new ErrorException(reason, context)))
+                        .globalErrorCase(GLOBAL_ERROR_CASES))
+                .build();
     }
 
     /**
@@ -89,6 +239,7 @@ public final class OrdersController extends BaseController {
      * remove&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;application_context.client_configuration&lt;/code&gt;&lt;/td&gt;&lt;td&gt;replace,
      * add&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;.
      * @param  input  PatchOrderInput object containing request parameters
+     * @return    Returns the Void wrapped in ApiResponse response from the API call
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
@@ -146,10 +297,10 @@ public final class OrdersController extends BaseController {
      */
     public CompletableFuture<ApiResponse<Void>> patchOrderAsync(
             final PatchOrderInput input) {
-        try { 
-            return preparePatchOrderRequest(input).executeAsync(); 
-        } catch (Exception e) {  
-            throw new CompletionException(e); 
+        try {
+            return preparePatchOrderRequest(input).executeAsync();
+        } catch (Exception e) {
+            throw new CompletionException(e);
         }
     }
 
@@ -157,7 +308,7 @@ public final class OrdersController extends BaseController {
      * Builds the ApiCall object for patchOrder.
      */
     private ApiCall<ApiResponse<Void>, ApiException> preparePatchOrderRequest(
-            final PatchOrderInput input) throws JsonProcessingException, IOException {
+            final PatchOrderInput input) {
         return new ApiCall.Builder<ApiResponse<Void>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder
@@ -199,6 +350,82 @@ public final class OrdersController extends BaseController {
     }
 
     /**
+     * Payer confirms their intent to pay for the the Order with the given payment source.
+     * @param  input  ConfirmOrderInput object containing request parameters
+     * @return    Returns the Order wrapped in ApiResponse response from the API call
+     * @throws    ApiException    Represents error response from the server.
+     * @throws    IOException    Signals that an I/O exception of some sort has occurred.
+     */
+    public ApiResponse<Order> confirmOrder(
+            final ConfirmOrderInput input) throws ApiException, IOException {
+        return prepareConfirmOrderRequest(input).execute();
+    }
+
+    /**
+     * Payer confirms their intent to pay for the the Order with the given payment source.
+     * @param  input  ConfirmOrderInput object containing request parameters
+     * @return    Returns the Order wrapped in ApiResponse response from the API call
+     */
+    public CompletableFuture<ApiResponse<Order>> confirmOrderAsync(
+            final ConfirmOrderInput input) {
+        try {
+            return prepareConfirmOrderRequest(input).executeAsync();
+        } catch (Exception e) {
+            throw new CompletionException(e);
+        }
+    }
+
+    /**
+     * Builds the ApiCall object for confirmOrder.
+     */
+    private ApiCall<ApiResponse<Order>, ApiException> prepareConfirmOrderRequest(
+            final ConfirmOrderInput input) {
+        return new ApiCall.Builder<ApiResponse<Order>, ApiException>()
+                .globalConfig(getGlobalConfiguration())
+                .requestBuilder(requestBuilder -> requestBuilder
+                        .server(Server.ENUM_DEFAULT.value())
+                        .path("/v2/checkout/orders/{id}/confirm-payment-source")
+                        .bodyParam(param -> param.value(input.getBody()).isRequired(false))
+                        .bodySerializer(() ->  ApiHelper.serialize(input.getBody()))
+                        .templateParam(param -> param.key("id").value(input.getId())
+                                .shouldEncode(true))
+                        .headerParam(param -> param.key("Content-Type")
+                                .value("application/json").isRequired(false))
+                        .headerParam(param -> param.key("PayPal-Client-Metadata-Id")
+                                .value(input.getPaypalClientMetadataId()).isRequired(false))
+                        .headerParam(param -> param.key("PayPal-Auth-Assertion")
+                                .value(input.getPaypalAuthAssertion()).isRequired(false))
+                        .headerParam(param -> param.key("Prefer")
+                                .value(input.getPrefer()).isRequired(false))
+                        .headerParam(param -> param.key("accept").value("application/json"))
+                        .withAuth(auth -> auth
+                                .add("Oauth2"))
+                        .httpMethod(HttpMethod.POST))
+                .responseHandler(responseHandler -> responseHandler
+                        .responseClassType(ResponseClassType.API_RESPONSE)
+                        .apiResponseDeserializer(
+                                response -> ApiHelper.deserialize(response, Order.class))
+                        .nullify404(false)
+                        .localErrorCase("400",
+                                 ErrorCase.setReason("Request is not well-formed, syntactically incorrect, or violates schema.",
+                                (reason, context) -> new ErrorException(reason, context)))
+                        .localErrorCase("403",
+                                 ErrorCase.setReason("Authorization failed due to insufficient permissions.",
+                                (reason, context) -> new ErrorException(reason, context)))
+                        .localErrorCase("422",
+                                 ErrorCase.setReason("The requested action could not be performed, semantically incorrect, or failed business validation.",
+                                (reason, context) -> new ErrorException(reason, context)))
+                        .localErrorCase("500",
+                                 ErrorCase.setReason("An internal server error has occurred.",
+                                (reason, context) -> new ErrorException(reason, context)))
+                        .localErrorCase(ErrorCase.DEFAULT,
+                                 ErrorCase.setReason("The error response.",
+                                (reason, context) -> new ErrorException(reason, context)))
+                        .globalErrorCase(GLOBAL_ERROR_CASES))
+                .build();
+    }
+
+    /**
      * Authorizes payment for an order. To successfully authorize payment for an order, the buyer
      * must first approve the order or a valid payment_source must be provided in the request. A
      * buyer can approve the order upon being redirected to the rel:approve URL that was returned in
@@ -225,10 +452,10 @@ public final class OrdersController extends BaseController {
      */
     public CompletableFuture<ApiResponse<OrderAuthorizeResponse>> authorizeOrderAsync(
             final AuthorizeOrderInput input) {
-        try { 
-            return prepareAuthorizeOrderRequest(input).executeAsync(); 
-        } catch (Exception e) {  
-            throw new CompletionException(e); 
+        try {
+            return prepareAuthorizeOrderRequest(input).executeAsync();
+        } catch (Exception e) {
+            throw new CompletionException(e);
         }
     }
 
@@ -236,7 +463,7 @@ public final class OrdersController extends BaseController {
      * Builds the ApiCall object for authorizeOrder.
      */
     private ApiCall<ApiResponse<OrderAuthorizeResponse>, ApiException> prepareAuthorizeOrderRequest(
-            final AuthorizeOrderInput input) throws JsonProcessingException, IOException {
+            final AuthorizeOrderInput input) {
         return new ApiCall.Builder<ApiResponse<OrderAuthorizeResponse>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder
@@ -293,243 +520,6 @@ public final class OrdersController extends BaseController {
     }
 
     /**
-     * Updates or cancels the tracking information for a PayPal order, by ID. Updatable attributes
-     * or objects: Attribute Op Notes items replace Using replace op for items will replace the
-     * entire items object with the value sent in request. notify_payer replace, add status replace
-     * Only patching status to CANCELLED is currently supported.
-     * @param  input  UpdateOrderTrackingInput object containing request parameters
-     * @throws    ApiException    Represents error response from the server.
-     * @throws    IOException    Signals that an I/O exception of some sort has occurred.
-     */
-    public ApiResponse<Void> updateOrderTracking(
-            final UpdateOrderTrackingInput input) throws ApiException, IOException {
-        return prepareUpdateOrderTrackingRequest(input).execute();
-    }
-
-    /**
-     * Updates or cancels the tracking information for a PayPal order, by ID. Updatable attributes
-     * or objects: Attribute Op Notes items replace Using replace op for items will replace the
-     * entire items object with the value sent in request. notify_payer replace, add status replace
-     * Only patching status to CANCELLED is currently supported.
-     * @param  input  UpdateOrderTrackingInput object containing request parameters
-     * @return    Returns the Void wrapped in ApiResponse response from the API call
-     */
-    public CompletableFuture<ApiResponse<Void>> updateOrderTrackingAsync(
-            final UpdateOrderTrackingInput input) {
-        try { 
-            return prepareUpdateOrderTrackingRequest(input).executeAsync(); 
-        } catch (Exception e) {  
-            throw new CompletionException(e); 
-        }
-    }
-
-    /**
-     * Builds the ApiCall object for updateOrderTracking.
-     */
-    private ApiCall<ApiResponse<Void>, ApiException> prepareUpdateOrderTrackingRequest(
-            final UpdateOrderTrackingInput input) throws JsonProcessingException, IOException {
-        return new ApiCall.Builder<ApiResponse<Void>, ApiException>()
-                .globalConfig(getGlobalConfiguration())
-                .requestBuilder(requestBuilder -> requestBuilder
-                        .server(Server.ENUM_DEFAULT.value())
-                        .path("/v2/checkout/orders/{id}/trackers/{tracker_id}")
-                        .bodyParam(param -> param.value(input.getBody()).isRequired(false))
-                        .bodySerializer(() ->  ApiHelper.serialize(input.getBody()))
-                        .templateParam(param -> param.key("id").value(input.getId())
-                                .shouldEncode(true))
-                        .templateParam(param -> param.key("tracker_id").value(input.getTrackerId())
-                                .shouldEncode(true))
-                        .headerParam(param -> param.key("Content-Type")
-                                .value("application/json").isRequired(false))
-                        .headerParam(param -> param.key("PayPal-Auth-Assertion")
-                                .value(input.getPaypalAuthAssertion()).isRequired(false))
-                        .withAuth(auth -> auth
-                                .add("Oauth2"))
-                        .httpMethod(HttpMethod.PATCH))
-                .responseHandler(responseHandler -> responseHandler
-                        .responseClassType(ResponseClassType.API_RESPONSE)
-                        .nullify404(false)
-                        .localErrorCase("400",
-                                 ErrorCase.setReason("Request is not well-formed, syntactically incorrect, or violates schema.",
-                                (reason, context) -> new ErrorException(reason, context)))
-                        .localErrorCase("403",
-                                 ErrorCase.setReason("Authorization failed due to insufficient permissions.",
-                                (reason, context) -> new ErrorException(reason, context)))
-                        .localErrorCase("404",
-                                 ErrorCase.setReason("The specified resource does not exist.",
-                                (reason, context) -> new ErrorException(reason, context)))
-                        .localErrorCase("422",
-                                 ErrorCase.setReason("The requested action could not be performed, semantically incorrect, or failed business validation.",
-                                (reason, context) -> new ErrorException(reason, context)))
-                        .localErrorCase("500",
-                                 ErrorCase.setReason("An internal server error has occurred.",
-                                (reason, context) -> new ErrorException(reason, context)))
-                        .localErrorCase(ErrorCase.DEFAULT,
-                                 ErrorCase.setReason("The error response.",
-                                (reason, context) -> new ErrorException(reason, context)))
-                        .globalErrorCase(GLOBAL_ERROR_CASES))
-                .build();
-    }
-
-    /**
-     * Adds tracking information for an Order.
-     * @param  input  CreateOrderTrackingInput object containing request parameters
-     * @return    Returns the Order wrapped in ApiResponse response from the API call
-     * @throws    ApiException    Represents error response from the server.
-     * @throws    IOException    Signals that an I/O exception of some sort has occurred.
-     */
-    public ApiResponse<Order> createOrderTracking(
-            final CreateOrderTrackingInput input) throws ApiException, IOException {
-        return prepareCreateOrderTrackingRequest(input).execute();
-    }
-
-    /**
-     * Adds tracking information for an Order.
-     * @param  input  CreateOrderTrackingInput object containing request parameters
-     * @return    Returns the Order wrapped in ApiResponse response from the API call
-     */
-    public CompletableFuture<ApiResponse<Order>> createOrderTrackingAsync(
-            final CreateOrderTrackingInput input) {
-        try { 
-            return prepareCreateOrderTrackingRequest(input).executeAsync(); 
-        } catch (Exception e) {  
-            throw new CompletionException(e); 
-        }
-    }
-
-    /**
-     * Builds the ApiCall object for createOrderTracking.
-     */
-    private ApiCall<ApiResponse<Order>, ApiException> prepareCreateOrderTrackingRequest(
-            final CreateOrderTrackingInput input) throws JsonProcessingException, IOException {
-        return new ApiCall.Builder<ApiResponse<Order>, ApiException>()
-                .globalConfig(getGlobalConfiguration())
-                .requestBuilder(requestBuilder -> requestBuilder
-                        .server(Server.ENUM_DEFAULT.value())
-                        .path("/v2/checkout/orders/{id}/track")
-                        .bodyParam(param -> param.value(input.getBody()))
-                        .bodySerializer(() ->  ApiHelper.serialize(input.getBody()))
-                        .templateParam(param -> param.key("id").value(input.getId())
-                                .shouldEncode(true))
-                        .headerParam(param -> param.key("Content-Type")
-                                .value("application/json").isRequired(false))
-                        .headerParam(param -> param.key("PayPal-Auth-Assertion")
-                                .value(input.getPaypalAuthAssertion()).isRequired(false))
-                        .headerParam(param -> param.key("accept").value("application/json"))
-                        .withAuth(auth -> auth
-                                .add("Oauth2"))
-                        .httpMethod(HttpMethod.POST))
-                .responseHandler(responseHandler -> responseHandler
-                        .responseClassType(ResponseClassType.API_RESPONSE)
-                        .apiResponseDeserializer(
-                                response -> ApiHelper.deserialize(response, Order.class))
-                        .nullify404(false)
-                        .localErrorCase("400",
-                                 ErrorCase.setReason("Request is not well-formed, syntactically incorrect, or violates schema.",
-                                (reason, context) -> new ErrorException(reason, context)))
-                        .localErrorCase("403",
-                                 ErrorCase.setReason("Authorization failed due to insufficient permissions.",
-                                (reason, context) -> new ErrorException(reason, context)))
-                        .localErrorCase("404",
-                                 ErrorCase.setReason("The specified resource does not exist.",
-                                (reason, context) -> new ErrorException(reason, context)))
-                        .localErrorCase("422",
-                                 ErrorCase.setReason("The requested action could not be performed, semantically incorrect, or failed business validation.",
-                                (reason, context) -> new ErrorException(reason, context)))
-                        .localErrorCase("500",
-                                 ErrorCase.setReason("An internal server error has occurred.",
-                                (reason, context) -> new ErrorException(reason, context)))
-                        .localErrorCase(ErrorCase.DEFAULT,
-                                 ErrorCase.setReason("The error response.",
-                                (reason, context) -> new ErrorException(reason, context)))
-                        .globalErrorCase(GLOBAL_ERROR_CASES))
-                .build();
-    }
-
-    /**
-     * Creates an order. Merchants and partners can add Level 2 and 3 data to payments to reduce
-     * risk and payment processing costs. For more information about processing payments, see
-     * checkout or multiparty checkout. Note: For error handling and troubleshooting, see Orders v2
-     * errors.
-     * @param  input  CreateOrderInput object containing request parameters
-     * @return    Returns the Order wrapped in ApiResponse response from the API call
-     * @throws    ApiException    Represents error response from the server.
-     * @throws    IOException    Signals that an I/O exception of some sort has occurred.
-     */
-    public ApiResponse<Order> createOrder(
-            final CreateOrderInput input) throws ApiException, IOException {
-        return prepareCreateOrderRequest(input).execute();
-    }
-
-    /**
-     * Creates an order. Merchants and partners can add Level 2 and 3 data to payments to reduce
-     * risk and payment processing costs. For more information about processing payments, see
-     * checkout or multiparty checkout. Note: For error handling and troubleshooting, see Orders v2
-     * errors.
-     * @param  input  CreateOrderInput object containing request parameters
-     * @return    Returns the Order wrapped in ApiResponse response from the API call
-     */
-    public CompletableFuture<ApiResponse<Order>> createOrderAsync(
-            final CreateOrderInput input) {
-        try { 
-            return prepareCreateOrderRequest(input).executeAsync(); 
-        } catch (Exception e) {  
-            throw new CompletionException(e); 
-        }
-    }
-
-    /**
-     * Builds the ApiCall object for createOrder.
-     */
-    private ApiCall<ApiResponse<Order>, ApiException> prepareCreateOrderRequest(
-            final CreateOrderInput input) throws JsonProcessingException, IOException {
-        return new ApiCall.Builder<ApiResponse<Order>, ApiException>()
-                .globalConfig(getGlobalConfiguration())
-                .requestBuilder(requestBuilder -> requestBuilder
-                        .server(Server.ENUM_DEFAULT.value())
-                        .path("/v2/checkout/orders")
-                        .bodyParam(param -> param.value(input.getBody()))
-                        .bodySerializer(() ->  ApiHelper.serialize(input.getBody()))
-                        .headerParam(param -> param.key("Content-Type")
-                                .value("application/json").isRequired(false))
-                        .headerParam(param -> param.key("PayPal-Mock-Response")
-                                .value(input.getPaypalMockResponse()).isRequired(false))
-                        .headerParam(param -> param.key("PayPal-Request-Id")
-                                .value(input.getPaypalRequestId()).isRequired(false))
-                        .headerParam(param -> param.key("PayPal-Partner-Attribution-Id")
-                                .value(input.getPaypalPartnerAttributionId()).isRequired(false))
-                        .headerParam(param -> param.key("PayPal-Client-Metadata-Id")
-                                .value(input.getPaypalClientMetadataId()).isRequired(false))
-                        .headerParam(param -> param.key("Prefer")
-                                .value(input.getPrefer()).isRequired(false))
-                        .headerParam(param -> param.key("PayPal-Auth-Assertion")
-                                .value(input.getPaypalAuthAssertion()).isRequired(false))
-                        .headerParam(param -> param.key("accept").value("application/json"))
-                        .withAuth(auth -> auth
-                                .add("Oauth2"))
-                        .httpMethod(HttpMethod.POST))
-                .responseHandler(responseHandler -> responseHandler
-                        .responseClassType(ResponseClassType.API_RESPONSE)
-                        .apiResponseDeserializer(
-                                response -> ApiHelper.deserialize(response, Order.class))
-                        .nullify404(false)
-                        .localErrorCase("400",
-                                 ErrorCase.setReason("Request is not well-formed, syntactically incorrect, or violates schema.",
-                                (reason, context) -> new ErrorException(reason, context)))
-                        .localErrorCase("401",
-                                 ErrorCase.setReason("Authentication failed due to missing authorization header, or invalid authentication credentials.",
-                                (reason, context) -> new ErrorException(reason, context)))
-                        .localErrorCase("422",
-                                 ErrorCase.setReason("The requested action could not be performed, semantically incorrect, or failed business validation.",
-                                (reason, context) -> new ErrorException(reason, context)))
-                        .localErrorCase(ErrorCase.DEFAULT,
-                                 ErrorCase.setReason("The error response.",
-                                (reason, context) -> new ErrorException(reason, context)))
-                        .globalErrorCase(GLOBAL_ERROR_CASES))
-                .build();
-    }
-
-    /**
      * Captures payment for an order. To successfully capture payment for an order, the buyer must
      * first approve the order or a valid payment_source must be provided in the request. A buyer
      * can approve the order upon being redirected to the rel:approve URL that was returned in the
@@ -556,10 +546,10 @@ public final class OrdersController extends BaseController {
      */
     public CompletableFuture<ApiResponse<Order>> captureOrderAsync(
             final CaptureOrderInput input) {
-        try { 
-            return prepareCaptureOrderRequest(input).executeAsync(); 
-        } catch (Exception e) {  
-            throw new CompletionException(e); 
+        try {
+            return prepareCaptureOrderRequest(input).executeAsync();
+        } catch (Exception e) {
+            throw new CompletionException(e);
         }
     }
 
@@ -567,7 +557,7 @@ public final class OrdersController extends BaseController {
      * Builds the ApiCall object for captureOrder.
      */
     private ApiCall<ApiResponse<Order>, ApiException> prepareCaptureOrderRequest(
-            final CaptureOrderInput input) throws JsonProcessingException, IOException {
+            final CaptureOrderInput input) {
         return new ApiCall.Builder<ApiResponse<Order>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder
@@ -624,121 +614,49 @@ public final class OrdersController extends BaseController {
     }
 
     /**
-     * Shows details for an order, by ID. Note: For error handling and troubleshooting, see Orders
-     * v2 errors.
-     * @param  input  GetOrderInput object containing request parameters
+     * Adds tracking information for an Order.
+     * @param  input  CreateOrderTrackingInput object containing request parameters
      * @return    Returns the Order wrapped in ApiResponse response from the API call
      * @throws    ApiException    Represents error response from the server.
      * @throws    IOException    Signals that an I/O exception of some sort has occurred.
      */
-    public ApiResponse<Order> getOrder(
-            final GetOrderInput input) throws ApiException, IOException {
-        return prepareGetOrderRequest(input).execute();
+    public ApiResponse<Order> createOrderTracking(
+            final CreateOrderTrackingInput input) throws ApiException, IOException {
+        return prepareCreateOrderTrackingRequest(input).execute();
     }
 
     /**
-     * Shows details for an order, by ID. Note: For error handling and troubleshooting, see Orders
-     * v2 errors.
-     * @param  input  GetOrderInput object containing request parameters
+     * Adds tracking information for an Order.
+     * @param  input  CreateOrderTrackingInput object containing request parameters
      * @return    Returns the Order wrapped in ApiResponse response from the API call
      */
-    public CompletableFuture<ApiResponse<Order>> getOrderAsync(
-            final GetOrderInput input) {
-        try { 
-            return prepareGetOrderRequest(input).executeAsync(); 
-        } catch (Exception e) {  
-            throw new CompletionException(e); 
+    public CompletableFuture<ApiResponse<Order>> createOrderTrackingAsync(
+            final CreateOrderTrackingInput input) {
+        try {
+            return prepareCreateOrderTrackingRequest(input).executeAsync();
+        } catch (Exception e) {
+            throw new CompletionException(e);
         }
     }
 
     /**
-     * Builds the ApiCall object for getOrder.
+     * Builds the ApiCall object for createOrderTracking.
      */
-    private ApiCall<ApiResponse<Order>, ApiException> prepareGetOrderRequest(
-            final GetOrderInput input) throws IOException {
+    private ApiCall<ApiResponse<Order>, ApiException> prepareCreateOrderTrackingRequest(
+            final CreateOrderTrackingInput input) {
         return new ApiCall.Builder<ApiResponse<Order>, ApiException>()
                 .globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder
                         .server(Server.ENUM_DEFAULT.value())
-                        .path("/v2/checkout/orders/{id}")
-                        .queryParam(param -> param.key("fields")
-                                .value(input.getFields()).isRequired(false))
-                        .templateParam(param -> param.key("id").value(input.getId())
-                                .shouldEncode(true))
-                        .headerParam(param -> param.key("PayPal-Mock-Response")
-                                .value(input.getPaypalMockResponse()).isRequired(false))
-                        .headerParam(param -> param.key("PayPal-Auth-Assertion")
-                                .value(input.getPaypalAuthAssertion()).isRequired(false))
-                        .headerParam(param -> param.key("accept").value("application/json"))
-                        .withAuth(auth -> auth
-                                .add("Oauth2"))
-                        .httpMethod(HttpMethod.GET))
-                .responseHandler(responseHandler -> responseHandler
-                        .responseClassType(ResponseClassType.API_RESPONSE)
-                        .apiResponseDeserializer(
-                                response -> ApiHelper.deserialize(response, Order.class))
-                        .nullify404(false)
-                        .localErrorCase("401",
-                                 ErrorCase.setReason("Authentication failed due to missing authorization header, or invalid authentication credentials.",
-                                (reason, context) -> new ErrorException(reason, context)))
-                        .localErrorCase("404",
-                                 ErrorCase.setReason("The specified resource does not exist.",
-                                (reason, context) -> new ErrorException(reason, context)))
-                        .localErrorCase(ErrorCase.DEFAULT,
-                                 ErrorCase.setReason("The error response.",
-                                (reason, context) -> new ErrorException(reason, context)))
-                        .globalErrorCase(GLOBAL_ERROR_CASES))
-                .build();
-    }
-
-    /**
-     * Payer confirms their intent to pay for the the Order with the given payment source.
-     * @param  input  ConfirmOrderInput object containing request parameters
-     * @return    Returns the Order wrapped in ApiResponse response from the API call
-     * @throws    ApiException    Represents error response from the server.
-     * @throws    IOException    Signals that an I/O exception of some sort has occurred.
-     */
-    public ApiResponse<Order> confirmOrder(
-            final ConfirmOrderInput input) throws ApiException, IOException {
-        return prepareConfirmOrderRequest(input).execute();
-    }
-
-    /**
-     * Payer confirms their intent to pay for the the Order with the given payment source.
-     * @param  input  ConfirmOrderInput object containing request parameters
-     * @return    Returns the Order wrapped in ApiResponse response from the API call
-     */
-    public CompletableFuture<ApiResponse<Order>> confirmOrderAsync(
-            final ConfirmOrderInput input) {
-        try { 
-            return prepareConfirmOrderRequest(input).executeAsync(); 
-        } catch (Exception e) {  
-            throw new CompletionException(e); 
-        }
-    }
-
-    /**
-     * Builds the ApiCall object for confirmOrder.
-     */
-    private ApiCall<ApiResponse<Order>, ApiException> prepareConfirmOrderRequest(
-            final ConfirmOrderInput input) throws JsonProcessingException, IOException {
-        return new ApiCall.Builder<ApiResponse<Order>, ApiException>()
-                .globalConfig(getGlobalConfiguration())
-                .requestBuilder(requestBuilder -> requestBuilder
-                        .server(Server.ENUM_DEFAULT.value())
-                        .path("/v2/checkout/orders/{id}/confirm-payment-source")
-                        .bodyParam(param -> param.value(input.getBody()).isRequired(false))
+                        .path("/v2/checkout/orders/{id}/track")
+                        .bodyParam(param -> param.value(input.getBody()))
                         .bodySerializer(() ->  ApiHelper.serialize(input.getBody()))
                         .templateParam(param -> param.key("id").value(input.getId())
                                 .shouldEncode(true))
                         .headerParam(param -> param.key("Content-Type")
                                 .value("application/json").isRequired(false))
-                        .headerParam(param -> param.key("PayPal-Client-Metadata-Id")
-                                .value(input.getPaypalClientMetadataId()).isRequired(false))
                         .headerParam(param -> param.key("PayPal-Auth-Assertion")
                                 .value(input.getPaypalAuthAssertion()).isRequired(false))
-                        .headerParam(param -> param.key("Prefer")
-                                .value(input.getPrefer()).isRequired(false))
                         .headerParam(param -> param.key("accept").value("application/json"))
                         .withAuth(auth -> auth
                                 .add("Oauth2"))
@@ -753,6 +671,89 @@ public final class OrdersController extends BaseController {
                                 (reason, context) -> new ErrorException(reason, context)))
                         .localErrorCase("403",
                                  ErrorCase.setReason("Authorization failed due to insufficient permissions.",
+                                (reason, context) -> new ErrorException(reason, context)))
+                        .localErrorCase("404",
+                                 ErrorCase.setReason("The specified resource does not exist.",
+                                (reason, context) -> new ErrorException(reason, context)))
+                        .localErrorCase("422",
+                                 ErrorCase.setReason("The requested action could not be performed, semantically incorrect, or failed business validation.",
+                                (reason, context) -> new ErrorException(reason, context)))
+                        .localErrorCase("500",
+                                 ErrorCase.setReason("An internal server error has occurred.",
+                                (reason, context) -> new ErrorException(reason, context)))
+                        .localErrorCase(ErrorCase.DEFAULT,
+                                 ErrorCase.setReason("The error response.",
+                                (reason, context) -> new ErrorException(reason, context)))
+                        .globalErrorCase(GLOBAL_ERROR_CASES))
+                .build();
+    }
+
+    /**
+     * Updates or cancels the tracking information for a PayPal order, by ID. Updatable attributes
+     * or objects: Attribute Op Notes items replace Using replace op for items will replace the
+     * entire items object with the value sent in request. notify_payer replace, add status replace
+     * Only patching status to CANCELLED is currently supported.
+     * @param  input  UpdateOrderTrackingInput object containing request parameters
+     * @return    Returns the Void wrapped in ApiResponse response from the API call
+     * @throws    ApiException    Represents error response from the server.
+     * @throws    IOException    Signals that an I/O exception of some sort has occurred.
+     */
+    public ApiResponse<Void> updateOrderTracking(
+            final UpdateOrderTrackingInput input) throws ApiException, IOException {
+        return prepareUpdateOrderTrackingRequest(input).execute();
+    }
+
+    /**
+     * Updates or cancels the tracking information for a PayPal order, by ID. Updatable attributes
+     * or objects: Attribute Op Notes items replace Using replace op for items will replace the
+     * entire items object with the value sent in request. notify_payer replace, add status replace
+     * Only patching status to CANCELLED is currently supported.
+     * @param  input  UpdateOrderTrackingInput object containing request parameters
+     * @return    Returns the Void wrapped in ApiResponse response from the API call
+     */
+    public CompletableFuture<ApiResponse<Void>> updateOrderTrackingAsync(
+            final UpdateOrderTrackingInput input) {
+        try {
+            return prepareUpdateOrderTrackingRequest(input).executeAsync();
+        } catch (Exception e) {
+            throw new CompletionException(e);
+        }
+    }
+
+    /**
+     * Builds the ApiCall object for updateOrderTracking.
+     */
+    private ApiCall<ApiResponse<Void>, ApiException> prepareUpdateOrderTrackingRequest(
+            final UpdateOrderTrackingInput input) {
+        return new ApiCall.Builder<ApiResponse<Void>, ApiException>()
+                .globalConfig(getGlobalConfiguration())
+                .requestBuilder(requestBuilder -> requestBuilder
+                        .server(Server.ENUM_DEFAULT.value())
+                        .path("/v2/checkout/orders/{id}/trackers/{tracker_id}")
+                        .bodyParam(param -> param.value(input.getBody()).isRequired(false))
+                        .bodySerializer(() ->  ApiHelper.serialize(input.getBody()))
+                        .templateParam(param -> param.key("id").value(input.getId())
+                                .shouldEncode(true))
+                        .templateParam(param -> param.key("tracker_id").value(input.getTrackerId())
+                                .shouldEncode(true))
+                        .headerParam(param -> param.key("Content-Type")
+                                .value("application/json").isRequired(false))
+                        .headerParam(param -> param.key("PayPal-Auth-Assertion")
+                                .value(input.getPaypalAuthAssertion()).isRequired(false))
+                        .withAuth(auth -> auth
+                                .add("Oauth2"))
+                        .httpMethod(HttpMethod.PATCH))
+                .responseHandler(responseHandler -> responseHandler
+                        .responseClassType(ResponseClassType.API_RESPONSE)
+                        .nullify404(false)
+                        .localErrorCase("400",
+                                 ErrorCase.setReason("Request is not well-formed, syntactically incorrect, or violates schema.",
+                                (reason, context) -> new ErrorException(reason, context)))
+                        .localErrorCase("403",
+                                 ErrorCase.setReason("Authorization failed due to insufficient permissions.",
+                                (reason, context) -> new ErrorException(reason, context)))
+                        .localErrorCase("404",
+                                 ErrorCase.setReason("The specified resource does not exist.",
                                 (reason, context) -> new ErrorException(reason, context)))
                         .localErrorCase("422",
                                  ErrorCase.setReason("The requested action could not be performed, semantically incorrect, or failed business validation.",

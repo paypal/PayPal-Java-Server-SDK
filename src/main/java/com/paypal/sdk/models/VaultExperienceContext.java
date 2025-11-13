@@ -18,15 +18,17 @@ public class VaultExperienceContext {
     private String locale;
     private String returnUrl;
     private String cancelUrl;
-    private OrderApplicationContextShippingPreference shippingPreference;
+    private ExperienceContextShippingPreference shippingPreference;
     private VaultInstructionAction vaultInstruction;
+    private AppSwitchContext appSwitchContext;
+    private VaultUserAction userAction;
 
     /**
      * Default constructor.
      */
     public VaultExperienceContext() {
-        shippingPreference = OrderApplicationContextShippingPreference.GET_FROM_FILE;
-        vaultInstruction = VaultInstructionAction.ON_CREATE_PAYMENT_TOKENS;
+        shippingPreference = ExperienceContextShippingPreference.GET_FROM_FILE;
+        userAction = VaultUserAction.CONTINUE;
     }
 
     /**
@@ -35,23 +37,28 @@ public class VaultExperienceContext {
      * @param  locale  String value for locale.
      * @param  returnUrl  String value for returnUrl.
      * @param  cancelUrl  String value for cancelUrl.
-     * @param  shippingPreference  OrderApplicationContextShippingPreference value for
-     *         shippingPreference.
+     * @param  shippingPreference  ExperienceContextShippingPreference value for shippingPreference.
      * @param  vaultInstruction  VaultInstructionAction value for vaultInstruction.
+     * @param  appSwitchContext  AppSwitchContext value for appSwitchContext.
+     * @param  userAction  VaultUserAction value for userAction.
      */
     public VaultExperienceContext(
             String brandName,
             String locale,
             String returnUrl,
             String cancelUrl,
-            OrderApplicationContextShippingPreference shippingPreference,
-            VaultInstructionAction vaultInstruction) {
+            ExperienceContextShippingPreference shippingPreference,
+            VaultInstructionAction vaultInstruction,
+            AppSwitchContext appSwitchContext,
+            VaultUserAction userAction) {
         this.brandName = brandName;
         this.locale = locale;
         this.returnUrl = returnUrl;
         this.cancelUrl = cancelUrl;
         this.shippingPreference = shippingPreference;
         this.vaultInstruction = vaultInstruction;
+        this.appSwitchContext = appSwitchContext;
+        this.userAction = userAction;
     }
 
     /**
@@ -159,27 +166,27 @@ public class VaultExperienceContext {
     /**
      * Getter for ShippingPreference.
      * The shipping preference. This only applies to PayPal payment source.
-     * @return Returns the OrderApplicationContextShippingPreference
+     * @return Returns the ExperienceContextShippingPreference
      */
     @JsonGetter("shipping_preference")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public OrderApplicationContextShippingPreference getShippingPreference() {
+    public ExperienceContextShippingPreference getShippingPreference() {
         return shippingPreference;
     }
 
     /**
      * Setter for ShippingPreference.
      * The shipping preference. This only applies to PayPal payment source.
-     * @param shippingPreference Value for OrderApplicationContextShippingPreference
+     * @param shippingPreference Value for ExperienceContextShippingPreference
      */
     @JsonSetter("shipping_preference")
-    public void setShippingPreference(OrderApplicationContextShippingPreference shippingPreference) {
+    public void setShippingPreference(ExperienceContextShippingPreference shippingPreference) {
         this.shippingPreference = shippingPreference;
     }
 
     /**
      * Getter for VaultInstruction.
-     * Vault Instruction on action to be performed after a successful payer approval.
+     * DEPRECATED. Vault Instruction on action to be performed after a successful payer approval.
      * @return Returns the VaultInstructionAction
      */
     @JsonGetter("vault_instruction")
@@ -190,12 +197,56 @@ public class VaultExperienceContext {
 
     /**
      * Setter for VaultInstruction.
-     * Vault Instruction on action to be performed after a successful payer approval.
+     * DEPRECATED. Vault Instruction on action to be performed after a successful payer approval.
      * @param vaultInstruction Value for VaultInstructionAction
      */
     @JsonSetter("vault_instruction")
     public void setVaultInstruction(VaultInstructionAction vaultInstruction) {
         this.vaultInstruction = vaultInstruction;
+    }
+
+    /**
+     * Getter for AppSwitchContext.
+     * Merchant provided details of the native app or mobile web browser to facilitate buyer's app
+     * switch to the PayPal consumer app.
+     * @return Returns the AppSwitchContext
+     */
+    @JsonGetter("app_switch_context")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public AppSwitchContext getAppSwitchContext() {
+        return appSwitchContext;
+    }
+
+    /**
+     * Setter for AppSwitchContext.
+     * Merchant provided details of the native app or mobile web browser to facilitate buyer's app
+     * switch to the PayPal consumer app.
+     * @param appSwitchContext Value for AppSwitchContext
+     */
+    @JsonSetter("app_switch_context")
+    public void setAppSwitchContext(AppSwitchContext appSwitchContext) {
+        this.appSwitchContext = appSwitchContext;
+    }
+
+    /**
+     * Getter for UserAction.
+     * User Action on action to be performed after a successful payer approval.
+     * @return Returns the VaultUserAction
+     */
+    @JsonGetter("user_action")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public VaultUserAction getUserAction() {
+        return userAction;
+    }
+
+    /**
+     * Setter for UserAction.
+     * User Action on action to be performed after a successful payer approval.
+     * @param userAction Value for VaultUserAction
+     */
+    @JsonSetter("user_action")
+    public void setUserAction(VaultUserAction userAction) {
+        this.userAction = userAction;
     }
 
     /**
@@ -206,7 +257,8 @@ public class VaultExperienceContext {
     public String toString() {
         return "VaultExperienceContext [" + "brandName=" + brandName + ", locale=" + locale
                 + ", returnUrl=" + returnUrl + ", cancelUrl=" + cancelUrl + ", shippingPreference="
-                + shippingPreference + ", vaultInstruction=" + vaultInstruction + "]";
+                + shippingPreference + ", vaultInstruction=" + vaultInstruction
+                + ", appSwitchContext=" + appSwitchContext + ", userAction=" + userAction + "]";
     }
 
     /**
@@ -221,7 +273,9 @@ public class VaultExperienceContext {
                 .returnUrl(getReturnUrl())
                 .cancelUrl(getCancelUrl())
                 .shippingPreference(getShippingPreference())
-                .vaultInstruction(getVaultInstruction());
+                .vaultInstruction(getVaultInstruction())
+                .appSwitchContext(getAppSwitchContext())
+                .userAction(getUserAction());
         return builder;
     }
 
@@ -233,10 +287,11 @@ public class VaultExperienceContext {
         private String locale;
         private String returnUrl;
         private String cancelUrl;
-        private OrderApplicationContextShippingPreference shippingPreference =
-                OrderApplicationContextShippingPreference.GET_FROM_FILE;
-        private VaultInstructionAction vaultInstruction =
-                VaultInstructionAction.ON_CREATE_PAYMENT_TOKENS;
+        private ExperienceContextShippingPreference shippingPreference =
+                ExperienceContextShippingPreference.GET_FROM_FILE;
+        private VaultInstructionAction vaultInstruction;
+        private AppSwitchContext appSwitchContext;
+        private VaultUserAction userAction = VaultUserAction.CONTINUE;
 
 
 
@@ -282,12 +337,12 @@ public class VaultExperienceContext {
 
         /**
          * Setter for shippingPreference.
-         * @param  shippingPreference  OrderApplicationContextShippingPreference value for
+         * @param  shippingPreference  ExperienceContextShippingPreference value for
          *         shippingPreference.
          * @return Builder
          */
         public Builder shippingPreference(
-                OrderApplicationContextShippingPreference shippingPreference) {
+                ExperienceContextShippingPreference shippingPreference) {
             this.shippingPreference = shippingPreference;
             return this;
         }
@@ -303,12 +358,32 @@ public class VaultExperienceContext {
         }
 
         /**
+         * Setter for appSwitchContext.
+         * @param  appSwitchContext  AppSwitchContext value for appSwitchContext.
+         * @return Builder
+         */
+        public Builder appSwitchContext(AppSwitchContext appSwitchContext) {
+            this.appSwitchContext = appSwitchContext;
+            return this;
+        }
+
+        /**
+         * Setter for userAction.
+         * @param  userAction  VaultUserAction value for userAction.
+         * @return Builder
+         */
+        public Builder userAction(VaultUserAction userAction) {
+            this.userAction = userAction;
+            return this;
+        }
+
+        /**
          * Builds a new {@link VaultExperienceContext} object using the set fields.
          * @return {@link VaultExperienceContext}
          */
         public VaultExperienceContext build() {
             return new VaultExperienceContext(brandName, locale, returnUrl, cancelUrl,
-                    shippingPreference, vaultInstruction);
+                    shippingPreference, vaultInstruction, appSwitchContext, userAction);
         }
     }
 }

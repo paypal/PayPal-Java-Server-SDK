@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
  * This is a model class for VenmoWalletAttributesResponse type.
  */
 public class VenmoWalletAttributesResponse {
-    private VaultResponse vault;
+    private VenmoVaultResponse vault;
 
     /**
      * Default constructor.
@@ -24,31 +24,31 @@ public class VenmoWalletAttributesResponse {
 
     /**
      * Initialization constructor.
-     * @param  vault  VaultResponse value for vault.
+     * @param  vault  VenmoVaultResponse value for vault.
      */
     public VenmoWalletAttributesResponse(
-            VaultResponse vault) {
+            VenmoVaultResponse vault) {
         this.vault = vault;
     }
 
     /**
      * Getter for Vault.
-     * The details about a saved payment source.
-     * @return Returns the VaultResponse
+     * The details about a saved venmo payment source.
+     * @return Returns the VenmoVaultResponse
      */
     @JsonGetter("vault")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public VaultResponse getVault() {
+    public VenmoVaultResponse getVault() {
         return vault;
     }
 
     /**
      * Setter for Vault.
-     * The details about a saved payment source.
-     * @param vault Value for VaultResponse
+     * The details about a saved venmo payment source.
+     * @param vault Value for VenmoVaultResponse
      */
     @JsonSetter("vault")
-    public void setVault(VaultResponse vault) {
+    public void setVault(VenmoVaultResponse vault) {
         this.vault = vault;
     }
 
@@ -76,16 +76,16 @@ public class VenmoWalletAttributesResponse {
      * Class to build instances of {@link VenmoWalletAttributesResponse}.
      */
     public static class Builder {
-        private VaultResponse vault;
+        private VenmoVaultResponse vault;
 
 
 
         /**
          * Setter for vault.
-         * @param  vault  VaultResponse value for vault.
+         * @param  vault  VenmoVaultResponse value for vault.
          * @return Builder
          */
-        public Builder vault(VaultResponse vault) {
+        public Builder vault(VenmoVaultResponse vault) {
             this.vault = vault;
             return this;
         }

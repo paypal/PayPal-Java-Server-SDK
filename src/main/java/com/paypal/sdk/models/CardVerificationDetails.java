@@ -104,7 +104,8 @@ public class CardVerificationDetails {
 
     /**
      * Getter for Network.
-     * The card network or brand. Applies to credit, debit, gift, and payment cards.
+     * DEPRECATED. This field is DEPRECATED. Please find the network data in the 'network' field
+     * under the 'network_transaction_reference' object instead of the 'verification' object.
      * @return Returns the CardBrand
      */
     @JsonGetter("network")
@@ -115,7 +116,8 @@ public class CardVerificationDetails {
 
     /**
      * Setter for Network.
-     * The card network or brand. Applies to credit, debit, gift, and payment cards.
+     * DEPRECATED. This field is DEPRECATED. Please find the network data in the 'network' field
+     * under the 'network_transaction_reference' object instead of the 'verification' object.
      * @param network Value for CardBrand
      */
     @JsonSetter("network")
@@ -125,10 +127,8 @@ public class CardVerificationDetails {
 
     /**
      * Getter for Time.
-     * The date and time, in [Internet date and time
-     * format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while
-     * fractional seconds are optional. Note: The regular expression provides guidance but does not
-     * reject all invalid dates.
+     * DEPRECATED. This field is DEPRECATED. Please find the time data in the 'time' field under the
+     * 'network_transaction_reference' object instead of the 'verification' object.
      * @return Returns the String
      */
     @JsonGetter("time")
@@ -139,10 +139,8 @@ public class CardVerificationDetails {
 
     /**
      * Setter for Time.
-     * The date and time, in [Internet date and time
-     * format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while
-     * fractional seconds are optional. Note: The regular expression provides guidance but does not
-     * reject all invalid dates.
+     * DEPRECATED. This field is DEPRECATED. Please find the time data in the 'time' field under the
+     * 'network_transaction_reference' object instead of the 'verification' object.
      * @param time Value for String
      */
     @JsonSetter("time")

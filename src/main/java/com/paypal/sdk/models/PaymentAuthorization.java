@@ -21,7 +21,7 @@ public class PaymentAuthorization {
     private Money amount;
     private String invoiceId;
     private String customId;
-    private NetworkTransactionReference networkTransactionReference;
+    private NetworkTransaction networkTransactionReference;
     private SellerProtection sellerProtection;
     private String expirationTime;
     private List<LinkDescription> links;
@@ -44,7 +44,7 @@ public class PaymentAuthorization {
      * @param  amount  Money value for amount.
      * @param  invoiceId  String value for invoiceId.
      * @param  customId  String value for customId.
-     * @param  networkTransactionReference  NetworkTransactionReference value for
+     * @param  networkTransactionReference  NetworkTransaction value for
      *         networkTransactionReference.
      * @param  sellerProtection  SellerProtection value for sellerProtection.
      * @param  expirationTime  String value for expirationTime.
@@ -61,7 +61,7 @@ public class PaymentAuthorization {
             Money amount,
             String invoiceId,
             String customId,
-            NetworkTransactionReference networkTransactionReference,
+            NetworkTransaction networkTransactionReference,
             SellerProtection sellerProtection,
             String expirationTime,
             List<LinkDescription> links,
@@ -218,21 +218,21 @@ public class PaymentAuthorization {
     /**
      * Getter for NetworkTransactionReference.
      * Reference values used by the card network to identify a transaction.
-     * @return Returns the NetworkTransactionReference
+     * @return Returns the NetworkTransaction
      */
     @JsonGetter("network_transaction_reference")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public NetworkTransactionReference getNetworkTransactionReference() {
+    public NetworkTransaction getNetworkTransactionReference() {
         return networkTransactionReference;
     }
 
     /**
      * Setter for NetworkTransactionReference.
      * Reference values used by the card network to identify a transaction.
-     * @param networkTransactionReference Value for NetworkTransactionReference
+     * @param networkTransactionReference Value for NetworkTransaction
      */
     @JsonSetter("network_transaction_reference")
-    public void setNetworkTransactionReference(NetworkTransactionReference networkTransactionReference) {
+    public void setNetworkTransactionReference(NetworkTransaction networkTransactionReference) {
         this.networkTransactionReference = networkTransactionReference;
     }
 
@@ -453,7 +453,7 @@ public class PaymentAuthorization {
         private Money amount;
         private String invoiceId;
         private String customId;
-        private NetworkTransactionReference networkTransactionReference;
+        private NetworkTransaction networkTransactionReference;
         private SellerProtection sellerProtection;
         private String expirationTime;
         private List<LinkDescription> links;
@@ -526,12 +526,12 @@ public class PaymentAuthorization {
 
         /**
          * Setter for networkTransactionReference.
-         * @param  networkTransactionReference  NetworkTransactionReference value for
+         * @param  networkTransactionReference  NetworkTransaction value for
          *         networkTransactionReference.
          * @return Builder
          */
         public Builder networkTransactionReference(
-                NetworkTransactionReference networkTransactionReference) {
+                NetworkTransaction networkTransactionReference) {
             this.networkTransactionReference = networkTransactionReference;
             return this;
         }

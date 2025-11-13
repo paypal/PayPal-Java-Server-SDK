@@ -17,7 +17,9 @@ public class SetupTokenRequestPaymentSource {
     private SetupTokenRequestCard card;
     private VaultPaypalWalletRequest paypal;
     private VaultVenmoRequest venmo;
+    private VaultApplePayRequest applePay;
     private VaultTokenRequest token;
+    private BankRequest bank;
 
     /**
      * Default constructor.
@@ -30,17 +32,23 @@ public class SetupTokenRequestPaymentSource {
      * @param  card  SetupTokenRequestCard value for card.
      * @param  paypal  VaultPaypalWalletRequest value for paypal.
      * @param  venmo  VaultVenmoRequest value for venmo.
+     * @param  applePay  VaultApplePayRequest value for applePay.
      * @param  token  VaultTokenRequest value for token.
+     * @param  bank  BankRequest value for bank.
      */
     public SetupTokenRequestPaymentSource(
             SetupTokenRequestCard card,
             VaultPaypalWalletRequest paypal,
             VaultVenmoRequest venmo,
-            VaultTokenRequest token) {
+            VaultApplePayRequest applePay,
+            VaultTokenRequest token,
+            BankRequest bank) {
         this.card = card;
         this.paypal = paypal;
         this.venmo = venmo;
+        this.applePay = applePay;
         this.token = token;
+        this.bank = bank;
     }
 
     /**
@@ -87,6 +95,7 @@ public class SetupTokenRequestPaymentSource {
 
     /**
      * Getter for Venmo.
+     * A resource representing a request to vault Venmo.
      * @return Returns the VaultVenmoRequest
      */
     @JsonGetter("venmo")
@@ -97,11 +106,33 @@ public class SetupTokenRequestPaymentSource {
 
     /**
      * Setter for Venmo.
+     * A resource representing a request to vault Venmo.
      * @param venmo Value for VaultVenmoRequest
      */
     @JsonSetter("venmo")
     public void setVenmo(VaultVenmoRequest venmo) {
         this.venmo = venmo;
+    }
+
+    /**
+     * Getter for ApplePay.
+     * A resource representing a request to vault Apple Pay.
+     * @return Returns the VaultApplePayRequest
+     */
+    @JsonGetter("apple_pay")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public VaultApplePayRequest getApplePay() {
+        return applePay;
+    }
+
+    /**
+     * Setter for ApplePay.
+     * A resource representing a request to vault Apple Pay.
+     * @param applePay Value for VaultApplePayRequest
+     */
+    @JsonSetter("apple_pay")
+    public void setApplePay(VaultApplePayRequest applePay) {
+        this.applePay = applePay;
     }
 
     /**
@@ -126,13 +157,35 @@ public class SetupTokenRequestPaymentSource {
     }
 
     /**
+     * Getter for Bank.
+     * A Resource representing a request to vault a Bank used for ACH Debit.
+     * @return Returns the BankRequest
+     */
+    @JsonGetter("bank")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public BankRequest getBank() {
+        return bank;
+    }
+
+    /**
+     * Setter for Bank.
+     * A Resource representing a request to vault a Bank used for ACH Debit.
+     * @param bank Value for BankRequest
+     */
+    @JsonSetter("bank")
+    public void setBank(BankRequest bank) {
+        this.bank = bank;
+    }
+
+    /**
      * Converts this SetupTokenRequestPaymentSource into string format.
      * @return String representation of this class
      */
     @Override
     public String toString() {
         return "SetupTokenRequestPaymentSource [" + "card=" + card + ", paypal=" + paypal
-                + ", venmo=" + venmo + ", token=" + token + "]";
+                + ", venmo=" + venmo + ", applePay=" + applePay + ", token=" + token + ", bank="
+                + bank + "]";
     }
 
     /**
@@ -145,7 +198,9 @@ public class SetupTokenRequestPaymentSource {
                 .card(getCard())
                 .paypal(getPaypal())
                 .venmo(getVenmo())
-                .token(getToken());
+                .applePay(getApplePay())
+                .token(getToken())
+                .bank(getBank());
         return builder;
     }
 
@@ -156,7 +211,9 @@ public class SetupTokenRequestPaymentSource {
         private SetupTokenRequestCard card;
         private VaultPaypalWalletRequest paypal;
         private VaultVenmoRequest venmo;
+        private VaultApplePayRequest applePay;
         private VaultTokenRequest token;
+        private BankRequest bank;
 
 
 
@@ -191,6 +248,16 @@ public class SetupTokenRequestPaymentSource {
         }
 
         /**
+         * Setter for applePay.
+         * @param  applePay  VaultApplePayRequest value for applePay.
+         * @return Builder
+         */
+        public Builder applePay(VaultApplePayRequest applePay) {
+            this.applePay = applePay;
+            return this;
+        }
+
+        /**
          * Setter for token.
          * @param  token  VaultTokenRequest value for token.
          * @return Builder
@@ -201,11 +268,21 @@ public class SetupTokenRequestPaymentSource {
         }
 
         /**
+         * Setter for bank.
+         * @param  bank  BankRequest value for bank.
+         * @return Builder
+         */
+        public Builder bank(BankRequest bank) {
+            this.bank = bank;
+            return this;
+        }
+
+        /**
          * Builds a new {@link SetupTokenRequestPaymentSource} object using the set fields.
          * @return {@link SetupTokenRequestPaymentSource}
          */
         public SetupTokenRequestPaymentSource build() {
-            return new SetupTokenRequestPaymentSource(card, paypal, venmo, token);
+            return new SetupTokenRequestPaymentSource(card, paypal, venmo, applePay, token, bank);
         }
     }
 }

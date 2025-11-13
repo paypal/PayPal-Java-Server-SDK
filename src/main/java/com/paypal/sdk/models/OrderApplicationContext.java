@@ -98,13 +98,13 @@ public class OrderApplicationContext {
 
     /**
      * Getter for Locale.
-     * The [language tag](https://tools.ietf.org/html/bcp47#section-2) for the language in which to
-     * localize the error-related strings, such as messages, issues, and suggested actions. The tag
-     * is made up of the [ISO 639-2 language
-     * code](https://www.loc.gov/standards/iso639-2/php/code_list.php), the optional [ISO-15924
-     * script tag](https://www.unicode.org/iso15924/codelists.html), and the [ISO-3166 alpha-2
-     * country code](/api/rest/reference/country-codes/) or [M49 region
-     * code](https://unstats.un.org/unsd/methodology/m49/).
+     * DEPRECATED. The BCP 47-formatted locale of pages that the PayPal payment experience shows.
+     * PayPal supports a five-character code. For example, `da-DK`, `he-IL`, `id-ID`, `ja-JP`,
+     * `no-NO`, `pt-BR`, `ru-RU`, `sv-SE`, `th-TH`, `zh-CN`, `zh-HK`, or `zh-TW`. The fields in
+     * `application_context` are now available in the `experience_context` object under the
+     * `payment_source` which supports them (eg. `payment_source.paypal.experience_context.locale`).
+     * Please specify this field in the `experience_context` object instead of the
+     * `application_context` object.
      * @return Returns the String
      */
     @JsonGetter("locale")
@@ -115,13 +115,13 @@ public class OrderApplicationContext {
 
     /**
      * Setter for Locale.
-     * The [language tag](https://tools.ietf.org/html/bcp47#section-2) for the language in which to
-     * localize the error-related strings, such as messages, issues, and suggested actions. The tag
-     * is made up of the [ISO 639-2 language
-     * code](https://www.loc.gov/standards/iso639-2/php/code_list.php), the optional [ISO-15924
-     * script tag](https://www.unicode.org/iso15924/codelists.html), and the [ISO-3166 alpha-2
-     * country code](/api/rest/reference/country-codes/) or [M49 region
-     * code](https://unstats.un.org/unsd/methodology/m49/).
+     * DEPRECATED. The BCP 47-formatted locale of pages that the PayPal payment experience shows.
+     * PayPal supports a five-character code. For example, `da-DK`, `he-IL`, `id-ID`, `ja-JP`,
+     * `no-NO`, `pt-BR`, `ru-RU`, `sv-SE`, `th-TH`, `zh-CN`, `zh-HK`, or `zh-TW`. The fields in
+     * `application_context` are now available in the `experience_context` object under the
+     * `payment_source` which supports them (eg. `payment_source.paypal.experience_context.locale`).
+     * Please specify this field in the `experience_context` object instead of the
+     * `application_context` object.
      * @param locale Value for String
      */
     @JsonSetter("locale")
@@ -222,7 +222,11 @@ public class OrderApplicationContext {
 
     /**
      * Getter for PaymentMethod.
-     * The customer and merchant payment preferences.
+     * DEPRECATED. The customer and merchant payment preferences. The fields in
+     * `application_context` are now available in the `experience_context` object under the
+     * `payment_source` which supports them (eg.
+     * `payment_source.paypal.experience_context.payment_method_selected`). Please specify this
+     * field in the `experience_context` object instead of the `application_context` object..
      * @return Returns the PaymentMethodPreference
      */
     @JsonGetter("payment_method")
@@ -233,7 +237,11 @@ public class OrderApplicationContext {
 
     /**
      * Setter for PaymentMethod.
-     * The customer and merchant payment preferences.
+     * DEPRECATED. The customer and merchant payment preferences. The fields in
+     * `application_context` are now available in the `experience_context` object under the
+     * `payment_source` which supports them (eg.
+     * `payment_source.paypal.experience_context.payment_method_selected`). Please specify this
+     * field in the `experience_context` object instead of the `application_context` object..
      * @param paymentMethod Value for PaymentMethodPreference
      */
     @JsonSetter("payment_method")
@@ -301,14 +309,18 @@ public class OrderApplicationContext {
 
     /**
      * Getter for StoredPaymentSource.
-     * Provides additional details to process a payment using a `payment_source` that has been
-     * stored or is intended to be stored (also referred to as stored_credential or card-on-file).
-     * Parameter compatibility: `payment_type=ONE_TIME` is compatible only with
+     * DEPRECATED. Provides additional details to process a payment using a `payment_source` that
+     * has been stored or is intended to be stored (also referred to as stored_credential or
+     * card-on-file). Parameter compatibility: `payment_type=ONE_TIME` is compatible only with
      * `payment_initiator=CUSTOMER`. `usage=FIRST` is compatible only with
      * `payment_initiator=CUSTOMER`. `previous_transaction_reference` or
      * `previous_network_transaction_reference` is compatible only with
      * `payment_initiator=MERCHANT`. Only one of the parameters - `previous_transaction_reference`
-     * and `previous_network_transaction_reference` - can be present in the request.
+     * and `previous_network_transaction_reference` - can be present in the request. . The fields in
+     * `stored_payment_source` are now available in the `stored_credential` object under the
+     * `payment_source` which supports them (eg.
+     * `payment_source.card.stored_credential.payment_initiator`). Please specify this field in the
+     * `payment_source` object instead of the `application_context` object.
      * @return Returns the StoredPaymentSource
      */
     @JsonGetter("stored_payment_source")
@@ -319,14 +331,18 @@ public class OrderApplicationContext {
 
     /**
      * Setter for StoredPaymentSource.
-     * Provides additional details to process a payment using a `payment_source` that has been
-     * stored or is intended to be stored (also referred to as stored_credential or card-on-file).
-     * Parameter compatibility: `payment_type=ONE_TIME` is compatible only with
+     * DEPRECATED. Provides additional details to process a payment using a `payment_source` that
+     * has been stored or is intended to be stored (also referred to as stored_credential or
+     * card-on-file). Parameter compatibility: `payment_type=ONE_TIME` is compatible only with
      * `payment_initiator=CUSTOMER`. `usage=FIRST` is compatible only with
      * `payment_initiator=CUSTOMER`. `previous_transaction_reference` or
      * `previous_network_transaction_reference` is compatible only with
      * `payment_initiator=MERCHANT`. Only one of the parameters - `previous_transaction_reference`
-     * and `previous_network_transaction_reference` - can be present in the request.
+     * and `previous_network_transaction_reference` - can be present in the request. . The fields in
+     * `stored_payment_source` are now available in the `stored_credential` object under the
+     * `payment_source` which supports them (eg.
+     * `payment_source.card.stored_credential.payment_initiator`). Please specify this field in the
+     * `payment_source` object instead of the `application_context` object.
      * @param storedPaymentSource Value for StoredPaymentSource
      */
     @JsonSetter("stored_payment_source")

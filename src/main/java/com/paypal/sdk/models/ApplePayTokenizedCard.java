@@ -122,7 +122,7 @@ public class ApplePayTokenizedCard {
 
     /**
      * Getter for CardType.
-     * The card network or brand. Applies to credit, debit, gift, and payment cards.
+     * The card brand or network. Typically used in the response.
      * @return Returns the CardBrand
      */
     @JsonGetter("card_type")
@@ -133,7 +133,7 @@ public class ApplePayTokenizedCard {
 
     /**
      * Setter for CardType.
-     * The card network or brand. Applies to credit, debit, gift, and payment cards.
+     * The card brand or network. Typically used in the response.
      * @param cardType Value for CardBrand
      */
     @JsonSetter("card_type")

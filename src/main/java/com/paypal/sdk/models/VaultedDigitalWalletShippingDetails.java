@@ -15,6 +15,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
  */
 public class VaultedDigitalWalletShippingDetails {
     private ShippingName name;
+    private String emailAddress;
     private PhoneNumberWithCountryCode phoneNumber;
     private FulfillmentType type;
     private Address address;
@@ -28,16 +29,19 @@ public class VaultedDigitalWalletShippingDetails {
     /**
      * Initialization constructor.
      * @param  name  ShippingName value for name.
+     * @param  emailAddress  String value for emailAddress.
      * @param  phoneNumber  PhoneNumberWithCountryCode value for phoneNumber.
      * @param  type  FulfillmentType value for type.
      * @param  address  Address value for address.
      */
     public VaultedDigitalWalletShippingDetails(
             ShippingName name,
+            String emailAddress,
             PhoneNumberWithCountryCode phoneNumber,
             FulfillmentType type,
             Address address) {
         this.name = name;
+        this.emailAddress = emailAddress;
         this.phoneNumber = phoneNumber;
         this.type = type;
         this.address = address;
@@ -62,6 +66,31 @@ public class VaultedDigitalWalletShippingDetails {
     @JsonSetter("name")
     public void setName(ShippingName name) {
         this.name = name;
+    }
+
+    /**
+     * Getter for EmailAddress.
+     * The internationalized email address. Note: Up to 64 characters are allowed before and 255
+     * characters are allowed after the {@literal @} sign. However, the generally accepted maximum length for
+     * an email address is 254 characters. The pattern verifies that an unquoted {@literal @} sign exists.
+     * @return Returns the String
+     */
+    @JsonGetter("email_address")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    /**
+     * Setter for EmailAddress.
+     * The internationalized email address. Note: Up to 64 characters are allowed before and 255
+     * characters are allowed after the {@literal @} sign. However, the generally accepted maximum length for
+     * an email address is 254 characters. The pattern verifies that an unquoted {@literal @} sign exists.
+     * @param emailAddress Value for String
+     */
+    @JsonSetter("email_address")
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
     }
 
     /**
@@ -143,8 +172,9 @@ public class VaultedDigitalWalletShippingDetails {
      */
     @Override
     public String toString() {
-        return "VaultedDigitalWalletShippingDetails [" + "name=" + name + ", phoneNumber="
-                + phoneNumber + ", type=" + type + ", address=" + address + "]";
+        return "VaultedDigitalWalletShippingDetails [" + "name=" + name + ", emailAddress="
+                + emailAddress + ", phoneNumber=" + phoneNumber + ", type=" + type + ", address="
+                + address + "]";
     }
 
     /**
@@ -155,6 +185,7 @@ public class VaultedDigitalWalletShippingDetails {
     public Builder toBuilder() {
         Builder builder = new Builder()
                 .name(getName())
+                .emailAddress(getEmailAddress())
                 .phoneNumber(getPhoneNumber())
                 .type(getType())
                 .address(getAddress());
@@ -166,6 +197,7 @@ public class VaultedDigitalWalletShippingDetails {
      */
     public static class Builder {
         private ShippingName name;
+        private String emailAddress;
         private PhoneNumberWithCountryCode phoneNumber;
         private FulfillmentType type;
         private Address address;
@@ -179,6 +211,16 @@ public class VaultedDigitalWalletShippingDetails {
          */
         public Builder name(ShippingName name) {
             this.name = name;
+            return this;
+        }
+
+        /**
+         * Setter for emailAddress.
+         * @param  emailAddress  String value for emailAddress.
+         * @return Builder
+         */
+        public Builder emailAddress(String emailAddress) {
+            this.emailAddress = emailAddress;
             return this;
         }
 
@@ -217,7 +259,8 @@ public class VaultedDigitalWalletShippingDetails {
          * @return {@link VaultedDigitalWalletShippingDetails}
          */
         public VaultedDigitalWalletShippingDetails build() {
-            return new VaultedDigitalWalletShippingDetails(name, phoneNumber, type, address);
+            return new VaultedDigitalWalletShippingDetails(name, emailAddress, phoneNumber, type,
+                    address);
         }
     }
 }

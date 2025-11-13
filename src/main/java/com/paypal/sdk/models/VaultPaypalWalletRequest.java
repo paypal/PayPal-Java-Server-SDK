@@ -223,7 +223,7 @@ public class VaultPaypalWalletRequest {
 
     /**
      * Getter for ExperienceContext.
-     * Customizes the Vault creation flow experience for your customers.
+     * A resource representing an experience context of vault PayPal Wallet.
      * @return Returns the VaultExperienceContext
      */
     @JsonGetter("experience_context")
@@ -234,7 +234,7 @@ public class VaultPaypalWalletRequest {
 
     /**
      * Setter for ExperienceContext.
-     * Customizes the Vault creation flow experience for your customers.
+     * A resource representing an experience context of vault PayPal Wallet.
      * @param experienceContext Value for VaultExperienceContext
      */
     @JsonSetter("experience_context")

@@ -21,13 +21,13 @@ public class PaymentsCapture {
     private Money amount;
     private String invoiceId;
     private String customId;
-    private NetworkTransactionReference networkTransactionReference;
+    private NetworkTransaction networkTransactionReference;
     private SellerProtection sellerProtection;
     private Boolean finalCapture;
     private SellerReceivableBreakdown sellerReceivableBreakdown;
     private DisbursementMode disbursementMode;
     private List<LinkDescription> links;
-    private PaymentsProcessorResponse processorResponse;
+    private ProcessorResponse processorResponse;
     private String createTime;
     private String updateTime;
 
@@ -47,7 +47,7 @@ public class PaymentsCapture {
      * @param  amount  Money value for amount.
      * @param  invoiceId  String value for invoiceId.
      * @param  customId  String value for customId.
-     * @param  networkTransactionReference  NetworkTransactionReference value for
+     * @param  networkTransactionReference  NetworkTransaction value for
      *         networkTransactionReference.
      * @param  sellerProtection  SellerProtection value for sellerProtection.
      * @param  finalCapture  Boolean value for finalCapture.
@@ -55,7 +55,7 @@ public class PaymentsCapture {
      *         sellerReceivableBreakdown.
      * @param  disbursementMode  DisbursementMode value for disbursementMode.
      * @param  links  List of LinkDescription value for links.
-     * @param  processorResponse  PaymentsProcessorResponse value for processorResponse.
+     * @param  processorResponse  ProcessorResponse value for processorResponse.
      * @param  createTime  String value for createTime.
      * @param  updateTime  String value for updateTime.
      */
@@ -66,13 +66,13 @@ public class PaymentsCapture {
             Money amount,
             String invoiceId,
             String customId,
-            NetworkTransactionReference networkTransactionReference,
+            NetworkTransaction networkTransactionReference,
             SellerProtection sellerProtection,
             Boolean finalCapture,
             SellerReceivableBreakdown sellerReceivableBreakdown,
             DisbursementMode disbursementMode,
             List<LinkDescription> links,
-            PaymentsProcessorResponse processorResponse,
+            ProcessorResponse processorResponse,
             String createTime,
             String updateTime) {
         this.status = status;
@@ -225,21 +225,21 @@ public class PaymentsCapture {
     /**
      * Getter for NetworkTransactionReference.
      * Reference values used by the card network to identify a transaction.
-     * @return Returns the NetworkTransactionReference
+     * @return Returns the NetworkTransaction
      */
     @JsonGetter("network_transaction_reference")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public NetworkTransactionReference getNetworkTransactionReference() {
+    public NetworkTransaction getNetworkTransactionReference() {
         return networkTransactionReference;
     }
 
     /**
      * Setter for NetworkTransactionReference.
      * Reference values used by the card network to identify a transaction.
-     * @param networkTransactionReference Value for NetworkTransactionReference
+     * @param networkTransactionReference Value for NetworkTransaction
      */
     @JsonSetter("network_transaction_reference")
-    public void setNetworkTransactionReference(NetworkTransactionReference networkTransactionReference) {
+    public void setNetworkTransactionReference(NetworkTransaction networkTransactionReference) {
         this.networkTransactionReference = networkTransactionReference;
     }
 
@@ -360,11 +360,11 @@ public class PaymentsCapture {
      * Getter for ProcessorResponse.
      * The processor response information for payment requests, such as direct credit card
      * transactions.
-     * @return Returns the PaymentsProcessorResponse
+     * @return Returns the ProcessorResponse
      */
     @JsonGetter("processor_response")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public PaymentsProcessorResponse getProcessorResponse() {
+    public ProcessorResponse getProcessorResponse() {
         return processorResponse;
     }
 
@@ -372,10 +372,10 @@ public class PaymentsCapture {
      * Setter for ProcessorResponse.
      * The processor response information for payment requests, such as direct credit card
      * transactions.
-     * @param processorResponse Value for PaymentsProcessorResponse
+     * @param processorResponse Value for ProcessorResponse
      */
     @JsonSetter("processor_response")
-    public void setProcessorResponse(PaymentsProcessorResponse processorResponse) {
+    public void setProcessorResponse(ProcessorResponse processorResponse) {
         this.processorResponse = processorResponse;
     }
 
@@ -483,13 +483,13 @@ public class PaymentsCapture {
         private Money amount;
         private String invoiceId;
         private String customId;
-        private NetworkTransactionReference networkTransactionReference;
+        private NetworkTransaction networkTransactionReference;
         private SellerProtection sellerProtection;
         private Boolean finalCapture = false;
         private SellerReceivableBreakdown sellerReceivableBreakdown;
         private DisbursementMode disbursementMode = DisbursementMode.INSTANT;
         private List<LinkDescription> links;
-        private PaymentsProcessorResponse processorResponse;
+        private ProcessorResponse processorResponse;
         private String createTime;
         private String updateTime;
 
@@ -557,12 +557,12 @@ public class PaymentsCapture {
 
         /**
          * Setter for networkTransactionReference.
-         * @param  networkTransactionReference  NetworkTransactionReference value for
+         * @param  networkTransactionReference  NetworkTransaction value for
          *         networkTransactionReference.
          * @return Builder
          */
         public Builder networkTransactionReference(
-                NetworkTransactionReference networkTransactionReference) {
+                NetworkTransaction networkTransactionReference) {
             this.networkTransactionReference = networkTransactionReference;
             return this;
         }
@@ -621,10 +621,10 @@ public class PaymentsCapture {
 
         /**
          * Setter for processorResponse.
-         * @param  processorResponse  PaymentsProcessorResponse value for processorResponse.
+         * @param  processorResponse  ProcessorResponse value for processorResponse.
          * @return Builder
          */
-        public Builder processorResponse(PaymentsProcessorResponse processorResponse) {
+        public Builder processorResponse(ProcessorResponse processorResponse) {
             this.processorResponse = processorResponse;
             return this;
         }

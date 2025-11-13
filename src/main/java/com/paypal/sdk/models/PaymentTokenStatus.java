@@ -23,7 +23,7 @@ public enum PaymentTokenStatus {
     CREATED,
 
     /**
-     * A contingecy on payer approval is required before the payment method can be saved.
+     * A contingency on payer approval is required before the payment method can be saved.
      */
     PAYER_ACTION_REQUIRED,
 
