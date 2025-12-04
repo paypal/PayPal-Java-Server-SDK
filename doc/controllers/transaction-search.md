@@ -1,17 +1,19 @@
-# Transactionsearch
+# Transaction Search
+
+Use the `/transactions` resource to list transactions and the `/balances` resource to list balances.
 
 ```java
-TransactionsearchController transactionsearchController = client.getTransactionsearchController();
+TransactionSearchController transactionSearchController = client.getTransactionSearchController();
 ```
 
 ## Class Name
 
-`TransactionsearchController`
+`TransactionSearchController`
 
 ## Methods
 
-* [Search Transactions](../../doc/controllers/transactionsearch.md#search-transactions)
-* [Search Balances](../../doc/controllers/transactionsearch.md#search-balances)
+* [Search Transactions](../../doc/controllers/transaction-search.md#search-transactions)
+* [Search Balances](../../doc/controllers/transaction-search.md#search-balances)
 
 
 # Search Transactions
@@ -59,7 +61,7 @@ SearchTransactionsInput searchTransactionsInput = new SearchTransactionsInput.Bu
 .page(1)
 .build();
 
-transactionsearchController.searchTransactionsAsync(searchTransactionsInput).thenAccept(result -> {
+transactionSearchController.searchTransactionsAsync(searchTransactionsInput).thenAccept(result -> {
     // TODO success callback handler
     System.out.println(result);
 }).exceptionally(exception -> {
@@ -102,7 +104,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 SearchBalancesInput searchBalancesInput = new SearchBalancesInput.Builder()
     .build();
 
-transactionsearchController.searchBalancesAsync(searchBalancesInput).thenAccept(result -> {
+transactionSearchController.searchBalancesAsync(searchBalancesInput).thenAccept(result -> {
     // TODO success callback handler
     System.out.println(result);
 }).exceptionally(exception -> {

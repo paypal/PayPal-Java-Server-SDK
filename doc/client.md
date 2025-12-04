@@ -54,7 +54,7 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | `getOrdersController()` | Provides access to Orders controller. | `OrdersController` |
 | `getPaymentsController()` | Provides access to Payments controller. | `PaymentsController` |
 | `getVaultController()` | Provides access to Vault controller. | `VaultController` |
-| `getTransactionsearchController()` | Provides access to Transactionsearch controller. | `TransactionsearchController` |
+| `getTransactionSearchController()` | Provides access to TransactionSearch controller. | `TransactionSearchController` |
 | `getSubscriptionsController()` | Provides access to Subscriptions controller. | `SubscriptionsController` |
 | `getOAuthAuthorizationController()` | Provides access to OAuthAuthorization controller. | `OAuthAuthorizationController` |
 
