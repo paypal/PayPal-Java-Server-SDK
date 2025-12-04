@@ -7078,6 +7078,11 @@ public enum ShipmentCarrier {
     TOPTRANS,
 
     /**
+     * Other.
+     */
+    OTHER,
+
+    /**
      * Unknown values will be mapped by this enum member
      */
     _UNKNOWN;
@@ -8499,6 +8504,7 @@ public enum ShipmentCarrier {
         SWIFTX.value = "SWIFTX";
         SFYDEXPRESS.value = "SFYDEXPRESS";
         TOPTRANS.value = "TOPTRANS";
+        OTHER.value = "OTHER";
         _UNKNOWN.value = null;
 
         valueMap.put("DPD_RU", DPD_RU);
@@ -9913,6 +9919,7 @@ public enum ShipmentCarrier {
         valueMap.put("SWIFTX", SWIFTX);
         valueMap.put("SFYDEXPRESS", SFYDEXPRESS);
         valueMap.put("TOPTRANS", TOPTRANS);
+        valueMap.put("OTHER", OTHER);
     }
 
     /**

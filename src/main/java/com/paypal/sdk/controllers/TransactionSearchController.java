@@ -28,13 +28,13 @@ import java.util.concurrent.CompletionException;
 /**
  * This class lists all the endpoints of the groups.
  */
-public final class TransactionsearchController extends BaseController {
+public final class TransactionSearchController extends BaseController {
 
     /**
      * Initializes the controller.
      * @param globalConfig    Configurations added in client.
      */
-    public TransactionsearchController(GlobalConfiguration globalConfig) {
+    public TransactionSearchController(GlobalConfiguration globalConfig) {
         super(globalConfig);
     }
 
