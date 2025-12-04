@@ -12,7 +12,7 @@ import com.paypal.sdk.controllers.OAuthAuthorizationController;
 import com.paypal.sdk.controllers.OrdersController;
 import com.paypal.sdk.controllers.PaymentsController;
 import com.paypal.sdk.controllers.SubscriptionsController;
-import com.paypal.sdk.controllers.TransactionsearchController;
+import com.paypal.sdk.controllers.TransactionSearchController;
 import com.paypal.sdk.controllers.VaultController;
 import com.paypal.sdk.http.client.HttpCallback;
 import com.paypal.sdk.http.client.HttpClientConfiguration;
@@ -43,13 +43,13 @@ public final class PaypalServerSdkClient implements Configuration {
     private OrdersController orders;
     private PaymentsController payments;
     private VaultController vault;
-    private TransactionsearchController transactionsearch;
+    private TransactionSearchController transactionSearch;
     private SubscriptionsController subscriptions;
     private OAuthAuthorizationController oAuthAuthorization;
 
     private static final CompatibilityFactory compatibilityFactory = new CompatibilityFactoryImpl();
 
-    private static String userAgent = "PayPal REST API Java SDK, Version: 2.0.0, on OS {os-info}";
+    private static String userAgent = "PayPal REST API Java SDK, Version: 2.1.0, on OS {os-info}";
 
     /**
      * Current API environment.
@@ -120,7 +120,7 @@ public final class PaypalServerSdkClient implements Configuration {
         orders = new OrdersController(globalConfig);
         payments = new PaymentsController(globalConfig);
         vault = new VaultController(globalConfig);
-        transactionsearch = new TransactionsearchController(globalConfig);
+        transactionSearch = new TransactionSearchController(globalConfig);
         subscriptions = new SubscriptionsController(globalConfig);
         oAuthAuthorization = new OAuthAuthorizationController(globalConfig);
     }
@@ -157,11 +157,11 @@ public final class PaypalServerSdkClient implements Configuration {
     }
 
     /**
-     * Get the instance of TransactionsearchController.
-     * @return transactionsearch
+     * Get the instance of TransactionSearchController.
+     * @return transactionSearch
      */
-    public TransactionsearchController getTransactionsearchController() {
-        return transactionsearch;
+    public TransactionSearchController getTransactionSearchController() {
+        return transactionSearch;
     }
 
     /**
