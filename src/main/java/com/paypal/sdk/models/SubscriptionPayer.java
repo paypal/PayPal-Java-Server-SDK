@@ -11,19 +11,17 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 /**
- * This is a model class for Subscriber type.
+ * This is a model class for SubscriptionPayer type.
  */
-public class Subscriber {
+public class SubscriptionPayer {
     private String emailAddress;
     private String payerId;
     private Name name;
-    private ShippingDetails shippingAddress;
-    private SubscriptionPaymentSourceResponse paymentSource;
 
     /**
      * Default constructor.
      */
-    public Subscriber() {
+    public SubscriptionPayer() {
     }
 
     /**
@@ -31,20 +29,14 @@ public class Subscriber {
      * @param  emailAddress  String value for emailAddress.
      * @param  payerId  String value for payerId.
      * @param  name  Name value for name.
-     * @param  shippingAddress  ShippingDetails value for shippingAddress.
-     * @param  paymentSource  SubscriptionPaymentSourceResponse value for paymentSource.
      */
-    public Subscriber(
+    public SubscriptionPayer(
             String emailAddress,
             String payerId,
-            Name name,
-            ShippingDetails shippingAddress,
-            SubscriptionPaymentSourceResponse paymentSource) {
+            Name name) {
         this.emailAddress = emailAddress;
         this.payerId = payerId;
         this.name = name;
-        this.shippingAddress = shippingAddress;
-        this.paymentSource = paymentSource;
     }
 
     /**
@@ -115,82 +107,35 @@ public class Subscriber {
     }
 
     /**
-     * Getter for ShippingAddress.
-     * The shipping details.
-     * @return Returns the ShippingDetails
-     */
-    @JsonGetter("shipping_address")
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    public ShippingDetails getShippingAddress() {
-        return shippingAddress;
-    }
-
-    /**
-     * Setter for ShippingAddress.
-     * The shipping details.
-     * @param shippingAddress Value for ShippingDetails
-     */
-    @JsonSetter("shipping_address")
-    public void setShippingAddress(ShippingDetails shippingAddress) {
-        this.shippingAddress = shippingAddress;
-    }
-
-    /**
-     * Getter for PaymentSource.
-     * The payment source used to fund the payment.
-     * @return Returns the SubscriptionPaymentSourceResponse
-     */
-    @JsonGetter("payment_source")
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    public SubscriptionPaymentSourceResponse getPaymentSource() {
-        return paymentSource;
-    }
-
-    /**
-     * Setter for PaymentSource.
-     * The payment source used to fund the payment.
-     * @param paymentSource Value for SubscriptionPaymentSourceResponse
-     */
-    @JsonSetter("payment_source")
-    public void setPaymentSource(SubscriptionPaymentSourceResponse paymentSource) {
-        this.paymentSource = paymentSource;
-    }
-
-    /**
-     * Converts this Subscriber into string format.
+     * Converts this SubscriptionPayer into string format.
      * @return String representation of this class
      */
     @Override
     public String toString() {
-        return "Subscriber [" + "emailAddress=" + emailAddress + ", payerId=" + payerId + ", name="
-                + name + ", shippingAddress=" + shippingAddress + ", paymentSource=" + paymentSource
-                + "]";
+        return "SubscriptionPayer [" + "emailAddress=" + emailAddress + ", payerId=" + payerId
+                + ", name=" + name + "]";
     }
 
     /**
-     * Builds a new {@link Subscriber.Builder} object.
+     * Builds a new {@link SubscriptionPayer.Builder} object.
      * Creates the instance with the state of the current model.
-     * @return a new {@link Subscriber.Builder} object
+     * @return a new {@link SubscriptionPayer.Builder} object
      */
     public Builder toBuilder() {
         Builder builder = new Builder()
                 .emailAddress(getEmailAddress())
                 .payerId(getPayerId())
-                .name(getName())
-                .shippingAddress(getShippingAddress())
-                .paymentSource(getPaymentSource());
+                .name(getName());
         return builder;
     }
 
     /**
-     * Class to build instances of {@link Subscriber}.
+     * Class to build instances of {@link SubscriptionPayer}.
      */
     public static class Builder {
         private String emailAddress;
         private String payerId;
         private Name name;
-        private ShippingDetails shippingAddress;
-        private SubscriptionPaymentSourceResponse paymentSource;
 
 
 
@@ -225,31 +170,11 @@ public class Subscriber {
         }
 
         /**
-         * Setter for shippingAddress.
-         * @param  shippingAddress  ShippingDetails value for shippingAddress.
-         * @return Builder
+         * Builds a new {@link SubscriptionPayer} object using the set fields.
+         * @return {@link SubscriptionPayer}
          */
-        public Builder shippingAddress(ShippingDetails shippingAddress) {
-            this.shippingAddress = shippingAddress;
-            return this;
-        }
-
-        /**
-         * Setter for paymentSource.
-         * @param  paymentSource  SubscriptionPaymentSourceResponse value for paymentSource.
-         * @return Builder
-         */
-        public Builder paymentSource(SubscriptionPaymentSourceResponse paymentSource) {
-            this.paymentSource = paymentSource;
-            return this;
-        }
-
-        /**
-         * Builds a new {@link Subscriber} object using the set fields.
-         * @return {@link Subscriber}
-         */
-        public Subscriber build() {
-            return new Subscriber(emailAddress, payerId, name, shippingAddress, paymentSource);
+        public SubscriptionPayer build() {
+            return new SubscriptionPayer(emailAddress, payerId, name);
         }
     }
 }
