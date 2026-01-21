@@ -11,38 +11,38 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 /**
- * This is a model class for PaypalWalletVaultInstruction type.
+ * This is a model class for PaypalWalletVaultBase type.
  */
-public class PaypalWalletVaultInstruction {
+public class PaypalWalletVaultBase {
     private StoreInVaultInstruction storeInVault;
     private String description;
     private UsagePattern usagePattern;
-    private PaypalPaymentTokenUsageType usageType;
+    private UsageType usageType;
     private PaypalPaymentTokenCustomerType customerType;
     private Boolean permitMultiplePaymentTokens;
 
     /**
      * Default constructor.
      */
-    public PaypalWalletVaultInstruction() {
+    public PaypalWalletVaultBase() {
         customerType = PaypalPaymentTokenCustomerType.CONSUMER;
         permitMultiplePaymentTokens = false;
     }
 
     /**
      * Initialization constructor.
-     * @param  usageType  PaypalPaymentTokenUsageType value for usageType.
      * @param  storeInVault  StoreInVaultInstruction value for storeInVault.
      * @param  description  String value for description.
      * @param  usagePattern  UsagePattern value for usagePattern.
+     * @param  usageType  UsageType value for usageType.
      * @param  customerType  PaypalPaymentTokenCustomerType value for customerType.
      * @param  permitMultiplePaymentTokens  Boolean value for permitMultiplePaymentTokens.
      */
-    public PaypalWalletVaultInstruction(
-            PaypalPaymentTokenUsageType usageType,
+    public PaypalWalletVaultBase(
             StoreInVaultInstruction storeInVault,
             String description,
             UsagePattern usagePattern,
+            UsageType usageType,
             PaypalPaymentTokenCustomerType customerType,
             Boolean permitMultiplePaymentTokens) {
         this.storeInVault = storeInVault;
@@ -121,20 +121,21 @@ public class PaypalWalletVaultInstruction {
     /**
      * Getter for UsageType.
      * The usage type associated with the PayPal payment token.
-     * @return Returns the PaypalPaymentTokenUsageType
+     * @return Returns the UsageType
      */
     @JsonGetter("usage_type")
-    public PaypalPaymentTokenUsageType getUsageType() {
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public UsageType getUsageType() {
         return usageType;
     }
 
     /**
      * Setter for UsageType.
      * The usage type associated with the PayPal payment token.
-     * @param usageType Value for PaypalPaymentTokenUsageType
+     * @param usageType Value for UsageType
      */
     @JsonSetter("usage_type")
-    public void setUsageType(PaypalPaymentTokenUsageType usageType) {
+    public void setUsageType(UsageType usageType) {
         this.usageType = usageType;
     }
 
@@ -193,67 +194,46 @@ public class PaypalWalletVaultInstruction {
     }
 
     /**
-     * Converts this PaypalWalletVaultInstruction into string format.
+     * Converts this PaypalWalletVaultBase into string format.
      * @return String representation of this class
      */
     @Override
     public String toString() {
-        return "PaypalWalletVaultInstruction [" + "usageType=" + usageType + ", storeInVault="
-                + storeInVault + ", description=" + description + ", usagePattern=" + usagePattern
+        return "PaypalWalletVaultBase [" + "storeInVault=" + storeInVault + ", description="
+                + description + ", usagePattern=" + usagePattern + ", usageType=" + usageType
                 + ", customerType=" + customerType + ", permitMultiplePaymentTokens="
                 + permitMultiplePaymentTokens + "]";
     }
 
     /**
-     * Builds a new {@link PaypalWalletVaultInstruction.Builder} object.
+     * Builds a new {@link PaypalWalletVaultBase.Builder} object.
      * Creates the instance with the state of the current model.
-     * @return a new {@link PaypalWalletVaultInstruction.Builder} object
+     * @return a new {@link PaypalWalletVaultBase.Builder} object
      */
     public Builder toBuilder() {
-        Builder builder = new Builder(usageType)
+        Builder builder = new Builder()
                 .storeInVault(getStoreInVault())
                 .description(getDescription())
                 .usagePattern(getUsagePattern())
+                .usageType(getUsageType())
                 .customerType(getCustomerType())
                 .permitMultiplePaymentTokens(getPermitMultiplePaymentTokens());
         return builder;
     }
 
     /**
-     * Class to build instances of {@link PaypalWalletVaultInstruction}.
+     * Class to build instances of {@link PaypalWalletVaultBase}.
      */
     public static class Builder {
-        private PaypalPaymentTokenUsageType usageType;
         private StoreInVaultInstruction storeInVault;
         private String description;
         private UsagePattern usagePattern;
+        private UsageType usageType;
         private PaypalPaymentTokenCustomerType customerType =
                 PaypalPaymentTokenCustomerType.CONSUMER;
         private Boolean permitMultiplePaymentTokens = false;
 
-        /**
-         * Initialization constructor.
-         */
-        public Builder() {
-        }
 
-        /**
-         * Initialization constructor.
-         * @param  usageType  PaypalPaymentTokenUsageType value for usageType.
-         */
-        public Builder(PaypalPaymentTokenUsageType usageType) {
-            this.usageType = usageType;
-        }
-
-        /**
-         * Setter for usageType.
-         * @param  usageType  PaypalPaymentTokenUsageType value for usageType.
-         * @return Builder
-         */
-        public Builder usageType(PaypalPaymentTokenUsageType usageType) {
-            this.usageType = usageType;
-            return this;
-        }
 
         /**
          * Setter for storeInVault.
@@ -286,6 +266,16 @@ public class PaypalWalletVaultInstruction {
         }
 
         /**
+         * Setter for usageType.
+         * @param  usageType  UsageType value for usageType.
+         * @return Builder
+         */
+        public Builder usageType(UsageType usageType) {
+            this.usageType = usageType;
+            return this;
+        }
+
+        /**
          * Setter for customerType.
          * @param  customerType  PaypalPaymentTokenCustomerType value for customerType.
          * @return Builder
@@ -306,12 +296,12 @@ public class PaypalWalletVaultInstruction {
         }
 
         /**
-         * Builds a new {@link PaypalWalletVaultInstruction} object using the set fields.
-         * @return {@link PaypalWalletVaultInstruction}
+         * Builds a new {@link PaypalWalletVaultBase} object using the set fields.
+         * @return {@link PaypalWalletVaultBase}
          */
-        public PaypalWalletVaultInstruction build() {
-            return new PaypalWalletVaultInstruction(usageType, storeInVault, description,
-                    usagePattern, customerType, permitMultiplePaymentTokens);
+        public PaypalWalletVaultBase build() {
+            return new PaypalWalletVaultBase(storeInVault, description, usagePattern, usageType,
+                    customerType, permitMultiplePaymentTokens);
         }
     }
 }

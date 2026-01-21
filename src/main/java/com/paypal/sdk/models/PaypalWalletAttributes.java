@@ -56,7 +56,6 @@ public class PaypalWalletAttributes {
 
     /**
      * Getter for Vault.
-     * Resource consolidating common request and response attributes for vaulting PayPal Wallet.
      * @return Returns the PaypalWalletVaultInstruction
      */
     @JsonGetter("vault")
@@ -67,7 +66,6 @@ public class PaypalWalletAttributes {
 
     /**
      * Setter for Vault.
-     * Resource consolidating common request and response attributes for vaulting PayPal Wallet.
      * @param vault Value for PaypalWalletVaultInstruction
      */
     @JsonSetter("vault")
