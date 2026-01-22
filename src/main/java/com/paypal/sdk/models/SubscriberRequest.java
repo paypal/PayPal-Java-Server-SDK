@@ -14,10 +14,12 @@ import com.fasterxml.jackson.annotation.JsonSetter;
  * This is a model class for SubscriberRequest type.
  */
 public class SubscriberRequest {
+    private String emailAddress;
+    private String payerId;
     private Name name;
-    private PhoneWithType phone;
     private ShippingDetails shippingAddress;
     private SubscriptionPaymentSource paymentSource;
+    private PhoneWithType phone;
 
     /**
      * Default constructor.
@@ -27,20 +29,72 @@ public class SubscriberRequest {
 
     /**
      * Initialization constructor.
+     * @param  emailAddress  String value for emailAddress.
+     * @param  payerId  String value for payerId.
      * @param  name  Name value for name.
-     * @param  phone  PhoneWithType value for phone.
      * @param  shippingAddress  ShippingDetails value for shippingAddress.
      * @param  paymentSource  SubscriptionPaymentSource value for paymentSource.
+     * @param  phone  PhoneWithType value for phone.
      */
     public SubscriberRequest(
+            String emailAddress,
+            String payerId,
             Name name,
-            PhoneWithType phone,
             ShippingDetails shippingAddress,
-            SubscriptionPaymentSource paymentSource) {
+            SubscriptionPaymentSource paymentSource,
+            PhoneWithType phone) {
+        this.emailAddress = emailAddress;
+        this.payerId = payerId;
         this.name = name;
-        this.phone = phone;
         this.shippingAddress = shippingAddress;
         this.paymentSource = paymentSource;
+        this.phone = phone;
+    }
+
+    /**
+     * Getter for EmailAddress.
+     * The internationalized email address. Note: Up to 64 characters are allowed before and 255
+     * characters are allowed after the {@literal @} sign. However, the generally accepted maximum length for
+     * an email address is 254 characters. The pattern verifies that an unquoted {@literal @} sign exists.
+     * @return Returns the String
+     */
+    @JsonGetter("email_address")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    /**
+     * Setter for EmailAddress.
+     * The internationalized email address. Note: Up to 64 characters are allowed before and 255
+     * characters are allowed after the {@literal @} sign. However, the generally accepted maximum length for
+     * an email address is 254 characters. The pattern verifies that an unquoted {@literal @} sign exists.
+     * @param emailAddress Value for String
+     */
+    @JsonSetter("email_address")
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    /**
+     * Getter for PayerId.
+     * The account identifier for a PayPal account.
+     * @return Returns the String
+     */
+    @JsonGetter("payer_id")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public String getPayerId() {
+        return payerId;
+    }
+
+    /**
+     * Setter for PayerId.
+     * The account identifier for a PayPal account.
+     * @param payerId Value for String
+     */
+    @JsonSetter("payer_id")
+    public void setPayerId(String payerId) {
+        this.payerId = payerId;
     }
 
     /**
@@ -62,27 +116,6 @@ public class SubscriberRequest {
     @JsonSetter("name")
     public void setName(Name name) {
         this.name = name;
-    }
-
-    /**
-     * Getter for Phone.
-     * The phone information.
-     * @return Returns the PhoneWithType
-     */
-    @JsonGetter("phone")
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    public PhoneWithType getPhone() {
-        return phone;
-    }
-
-    /**
-     * Setter for Phone.
-     * The phone information.
-     * @param phone Value for PhoneWithType
-     */
-    @JsonSetter("phone")
-    public void setPhone(PhoneWithType phone) {
-        this.phone = phone;
     }
 
     /**
@@ -132,13 +165,35 @@ public class SubscriberRequest {
     }
 
     /**
+     * Getter for Phone.
+     * The phone information.
+     * @return Returns the PhoneWithType
+     */
+    @JsonGetter("phone")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public PhoneWithType getPhone() {
+        return phone;
+    }
+
+    /**
+     * Setter for Phone.
+     * The phone information.
+     * @param phone Value for PhoneWithType
+     */
+    @JsonSetter("phone")
+    public void setPhone(PhoneWithType phone) {
+        this.phone = phone;
+    }
+
+    /**
      * Converts this SubscriberRequest into string format.
      * @return String representation of this class
      */
     @Override
     public String toString() {
-        return "SubscriberRequest [" + "name=" + name + ", phone=" + phone + ", shippingAddress="
-                + shippingAddress + ", paymentSource=" + paymentSource + "]";
+        return "SubscriberRequest [" + "emailAddress=" + emailAddress + ", payerId=" + payerId
+                + ", name=" + name + ", shippingAddress=" + shippingAddress + ", paymentSource="
+                + paymentSource + ", phone=" + phone + "]";
     }
 
     /**
@@ -148,10 +203,12 @@ public class SubscriberRequest {
      */
     public Builder toBuilder() {
         Builder builder = new Builder()
+                .emailAddress(getEmailAddress())
+                .payerId(getPayerId())
                 .name(getName())
-                .phone(getPhone())
                 .shippingAddress(getShippingAddress())
-                .paymentSource(getPaymentSource());
+                .paymentSource(getPaymentSource())
+                .phone(getPhone());
         return builder;
     }
 
@@ -159,12 +216,34 @@ public class SubscriberRequest {
      * Class to build instances of {@link SubscriberRequest}.
      */
     public static class Builder {
+        private String emailAddress;
+        private String payerId;
         private Name name;
-        private PhoneWithType phone;
         private ShippingDetails shippingAddress;
         private SubscriptionPaymentSource paymentSource;
+        private PhoneWithType phone;
 
 
+
+        /**
+         * Setter for emailAddress.
+         * @param  emailAddress  String value for emailAddress.
+         * @return Builder
+         */
+        public Builder emailAddress(String emailAddress) {
+            this.emailAddress = emailAddress;
+            return this;
+        }
+
+        /**
+         * Setter for payerId.
+         * @param  payerId  String value for payerId.
+         * @return Builder
+         */
+        public Builder payerId(String payerId) {
+            this.payerId = payerId;
+            return this;
+        }
 
         /**
          * Setter for name.
@@ -173,16 +252,6 @@ public class SubscriberRequest {
          */
         public Builder name(Name name) {
             this.name = name;
-            return this;
-        }
-
-        /**
-         * Setter for phone.
-         * @param  phone  PhoneWithType value for phone.
-         * @return Builder
-         */
-        public Builder phone(PhoneWithType phone) {
-            this.phone = phone;
             return this;
         }
 
@@ -207,11 +276,22 @@ public class SubscriberRequest {
         }
 
         /**
+         * Setter for phone.
+         * @param  phone  PhoneWithType value for phone.
+         * @return Builder
+         */
+        public Builder phone(PhoneWithType phone) {
+            this.phone = phone;
+            return this;
+        }
+
+        /**
          * Builds a new {@link SubscriberRequest} object using the set fields.
          * @return {@link SubscriberRequest}
          */
         public SubscriberRequest build() {
-            return new SubscriberRequest(name, phone, shippingAddress, paymentSource);
+            return new SubscriberRequest(emailAddress, payerId, name, shippingAddress,
+                    paymentSource, phone);
         }
     }
 }
