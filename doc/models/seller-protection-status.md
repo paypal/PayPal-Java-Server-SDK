@@ -11,7 +11,7 @@ Indicates whether the transaction is eligible for seller protection. For informa
 
 | Name | Description |
 |  --- | --- |
-| `Eligible` | Your PayPal balance remains intact if the customer claims that they did not receive an item or the account holder claims that they did not authorize the payment. |
-| `PartiallyEligible` | Your PayPal balance remains intact if the customer claims that they did not receive an item. |
-| `NotEligible` | This transaction is not eligible for seller protection. |
+| `ELIGIBLE` | Your PayPal balance remains intact if the customer claims that they did not receive an item or the account holder claims that they did not authorize the payment. |
+| `PARTIALLY_ELIGIBLE` | Your PayPal balance remains intact if the customer claims that they did not receive an item. |
+| `NOT_ELIGIBLE` | This transaction is not eligible for seller protection. |
 

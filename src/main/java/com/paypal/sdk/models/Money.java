@@ -36,8 +36,9 @@ public class Money {
 
     /**
      * Getter for CurrencyCode.
-     * The [three-character ISO-4217 currency code](/api/rest/reference/currency-codes/) that
-     * identifies the currency.
+     * The [three-character ISO-4217 currency
+     * code](https://developer.paypal.com/api/rest/reference/currency-codes/) that identifies the
+     * currency.
      * @return Returns the String
      */
     @JsonGetter("currency_code")
@@ -47,8 +48,9 @@ public class Money {
 
     /**
      * Setter for CurrencyCode.
-     * The [three-character ISO-4217 currency code](/api/rest/reference/currency-codes/) that
-     * identifies the currency.
+     * The [three-character ISO-4217 currency
+     * code](https://developer.paypal.com/api/rest/reference/currency-codes/) that identifies the
+     * currency.
      * @param currencyCode Value for String
      */
     @JsonSetter("currency_code")
@@ -61,7 +63,7 @@ public class Money {
      * The value, which might be: An integer for currencies like `JPY` that are not typically
      * fractional. A decimal fraction for currencies like `TND` that are subdivided into
      * thousandths. For the required number of decimal places for a currency code, see [Currency
-     * Codes](/api/rest/reference/currency-codes/).
+     * Codes](https://developer.paypal.com/api/rest/reference/currency-codes/).
      * @return Returns the String
      */
     @JsonGetter("value")
@@ -74,7 +76,7 @@ public class Money {
      * The value, which might be: An integer for currencies like `JPY` that are not typically
      * fractional. A decimal fraction for currencies like `TND` that are subdivided into
      * thousandths. For the required number of decimal places for a currency code, see [Currency
-     * Codes](/api/rest/reference/currency-codes/).
+     * Codes](https://developer.paypal.com/api/rest/reference/currency-codes/).
      * @param value Value for String
      */
     @JsonSetter("value")

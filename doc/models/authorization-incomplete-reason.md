@@ -11,6 +11,6 @@ The reason why the authorized status is `PENDING`.
 
 | Name | Description |
 |  --- | --- |
-| `PendingReview` | Authorization is pending manual review. |
-| `DeclinedByRiskFraudFilters` | Risk Filter set by the payee failed for the transaction. |
+| `PENDING_REVIEW` | Authorization is pending manual review. |
+| `DECLINED_BY_RISK_FRAUD_FILTERS` | Risk Filter set by the payee failed for the transaction. |
 

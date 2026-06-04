@@ -11,7 +11,7 @@ Liability shift indicator. The outcome of the issuer's authentication.
 
 | Name | Description |
 |  --- | --- |
-| `No` | Liability is with the merchant. |
-| `Possible` | Liability may shift to the card issuer. |
-| `Unknown` | The authentication system is not available. |
+| `NO` | Liability is with the merchant. |
+| `POSSIBLE` | Liability may shift to the card issuer. |
+| `UNKNOWN` | The authentication system is not available. |
 

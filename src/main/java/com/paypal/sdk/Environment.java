@@ -25,8 +25,7 @@ public enum Environment {
     /**
      * PayPal Sandbox Environment
      */
-    SANDBOX;
-
+    SANDBOX;
 
     private static TreeMap<String, Environment> valueMap = new TreeMap<>();
     private String value;

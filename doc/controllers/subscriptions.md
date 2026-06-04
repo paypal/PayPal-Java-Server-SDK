@@ -40,15 +40,19 @@ CompletableFuture<ApiResponse<BillingPlan>> createBillingPlanAsync(
     final CreateBillingPlanInput input)
 ```
 
+## Authentication
+
+This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `prefer` | `String` | Header, Optional | The preferred server response upon successful completion of the request. Value is: return=minimal. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the id, status and HATEOAS links. return=representation. The server returns a complete resource representation, including the current state of the resource.<br><br>**Default**: `"return=minimal"` |
-| `paypalRequestId` | `String` | Header, Optional | The server stores keys for 72 hours. |
-| `body` | [`PlanRequest`](../../doc/models/plan-request.md) | Body, Optional | - |
+| `input` | [`CreateBillingPlanInput`](../../doc/models/create-billing-plan-input.md) | Required | Input structure for the method CreateBillingPlanAsync |
 
 ## Response Type
+
+**200**: A successful request returns the HTTP `200 OK` status code and a JSON response body that shows billing plan details.
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `getResult()` getter of this instance returns the response data which is of type [`BillingPlan`](../../doc/models/billing-plan.md).
 
@@ -90,8 +94,16 @@ subscriptionsController.createBillingPlanAsync(createBillingPlanInput).thenAccep
     // TODO success callback handler
     System.out.println(result);
 }).exceptionally(exception -> {
-    // TODO failure callback handler
-    exception.printStackTrace();
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof SubscriptionErrorException) {
+        SubscriptionErrorException subscriptionErrorException = (SubscriptionErrorException) cause;
+        subscriptionErrorException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
     return null;
 });
 ```
@@ -117,17 +129,19 @@ CompletableFuture<ApiResponse<PlanCollection>> listBillingPlansAsync(
     final ListBillingPlansInput input)
 ```
 
+## Authentication
+
+This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `prefer` | `String` | Header, Optional | The preferred server response upon successful completion of the request. Value is: return=minimal. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the id, name, description and HATEOAS links. return=representation. The server returns a complete resource representation, including the current state of the resource.<br><br>**Default**: `"return=minimal"` |
-| `productId` | `String` | Query, Optional | Filters the response by a Product ID.<br><br>**Constraints**: *Minimum Length*: `6`, *Maximum Length*: `50` |
-| `pageSize` | `Integer` | Query, Optional | The number of items to return in the response.<br><br>**Default**: `10`<br><br>**Constraints**: `>= 1`, `<= 20` |
-| `page` | `Integer` | Query, Optional | A non-zero integer which is the start index of the entire list of items to return in the response. The combination of `page=1` and `page_size=20` returns the first 20 items. The combination of `page=2` and `page_size=20` returns the next 20 items.<br><br>**Default**: `1`<br><br>**Constraints**: `>= 1`, `<= 100000` |
-| `totalRequired` | `Boolean` | Query, Optional | Indicates whether to show the total count in the response.<br><br>**Default**: `false` |
+| `input` | [`ListBillingPlansInput`](../../doc/models/list-billing-plans-input.md) | Required | Input structure for the method ListBillingPlansAsync |
 
 ## Response Type
+
+**200**: A successful request returns the HTTP `200 OK` status code and a JSON response body that lists billing plans.
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `getResult()` getter of this instance returns the response data which is of type [`PlanCollection`](../../doc/models/plan-collection.md).
 
@@ -145,8 +159,16 @@ subscriptionsController.listBillingPlansAsync(listBillingPlansInput).thenAccept(
     // TODO success callback handler
     System.out.println(result);
 }).exceptionally(exception -> {
-    // TODO failure callback handler
-    exception.printStackTrace();
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof SubscriptionErrorException) {
+        SubscriptionErrorException subscriptionErrorException = (SubscriptionErrorException) cause;
+        subscriptionErrorException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
     return null;
 });
 ```
@@ -172,6 +194,10 @@ CompletableFuture<ApiResponse<BillingPlan>> getBillingPlanAsync(
     final String id)
 ```
 
+## Authentication
+
+This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -179,6 +205,8 @@ CompletableFuture<ApiResponse<BillingPlan>> getBillingPlanAsync(
 | `id` | `String` | Template, Required | The ID of the plan. |
 
 ## Response Type
+
+**200**: A successful request returns the HTTP `200 OK` status code and a JSON response body that shows plan details.
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `getResult()` getter of this instance returns the response data which is of type [`BillingPlan`](../../doc/models/billing-plan.md).
 
@@ -191,8 +219,16 @@ subscriptionsController.getBillingPlanAsync(id).thenAccept(result -> {
     // TODO success callback handler
     System.out.println(result);
 }).exceptionally(exception -> {
-    // TODO failure callback handler
-    exception.printStackTrace();
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof SubscriptionErrorException) {
+        SubscriptionErrorException subscriptionErrorException = (SubscriptionErrorException) cause;
+        subscriptionErrorException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
     return null;
 });
 ```
@@ -217,14 +253,19 @@ CompletableFuture<ApiResponse<Void>> patchBillingPlanAsync(
     final PatchBillingPlanInput input)
 ```
 
+## Authentication
+
+This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `id` | `String` | Template, Required | The ID of the plan. |
-| `body` | [`List<Patch>`](../../doc/models/patch.md) | Body, Optional | - |
+| `input` | [`PatchBillingPlanInput`](../../doc/models/patch-billing-plan-input.md) | Required | Input structure for the method PatchBillingPlanAsync |
 
 ## Response Type
+
+**204**: A successful request returns the HTTP `204 No Content` status code with no JSON response body.
 
 `void`
 
@@ -247,8 +288,16 @@ subscriptionsController.patchBillingPlanAsync(patchBillingPlanInput).thenAccept(
     // TODO success callback handler
     System.out.println(result);
 }).exceptionally(exception -> {
-    // TODO failure callback handler
-    exception.printStackTrace();
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof SubscriptionErrorException) {
+        SubscriptionErrorException subscriptionErrorException = (SubscriptionErrorException) cause;
+        subscriptionErrorException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
     return null;
 });
 ```
@@ -275,6 +324,10 @@ CompletableFuture<ApiResponse<Void>> activateBillingPlanAsync(
     final String id)
 ```
 
+## Authentication
+
+This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -282,6 +335,8 @@ CompletableFuture<ApiResponse<Void>> activateBillingPlanAsync(
 | `id` | `String` | Template, Required | The ID of the plan. |
 
 ## Response Type
+
+**204**: A successful request returns the HTTP `204 No Content` status code with no JSON response body.
 
 `void`
 
@@ -294,8 +349,16 @@ subscriptionsController.activateBillingPlanAsync(id).thenAccept(result -> {
     // TODO success callback handler
     System.out.println(result);
 }).exceptionally(exception -> {
-    // TODO failure callback handler
-    exception.printStackTrace();
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof SubscriptionErrorException) {
+        SubscriptionErrorException subscriptionErrorException = (SubscriptionErrorException) cause;
+        subscriptionErrorException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
     return null;
 });
 ```
@@ -321,6 +384,10 @@ CompletableFuture<ApiResponse<Void>> deactivateBillingPlanAsync(
     final String id)
 ```
 
+## Authentication
+
+This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -328,6 +395,8 @@ CompletableFuture<ApiResponse<Void>> deactivateBillingPlanAsync(
 | `id` | `String` | Template, Required | The ID of the plan. |
 
 ## Response Type
+
+**204**: A successful request returns the HTTP `204 No Content` status code with no JSON response body.
 
 `void`
 
@@ -340,8 +409,16 @@ subscriptionsController.deactivateBillingPlanAsync(id).thenAccept(result -> {
     // TODO success callback handler
     System.out.println(result);
 }).exceptionally(exception -> {
-    // TODO failure callback handler
-    exception.printStackTrace();
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof SubscriptionErrorException) {
+        SubscriptionErrorException subscriptionErrorException = (SubscriptionErrorException) cause;
+        subscriptionErrorException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
     return null;
 });
 ```
@@ -367,14 +444,19 @@ CompletableFuture<ApiResponse<Void>> updateBillingPlanPricingSchemesAsync(
     final UpdateBillingPlanPricingSchemesInput input)
 ```
 
+## Authentication
+
+This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `id` | `String` | Template, Required | The ID for the plan. |
-| `body` | [`UpdatePricingSchemesRequest`](../../doc/models/update-pricing-schemes-request.md) | Body, Optional | - |
+| `input` | [`UpdateBillingPlanPricingSchemesInput`](../../doc/models/update-billing-plan-pricing-schemes-input.md) | Required | Input structure for the method UpdateBillingPlanPricingSchemesAsync |
 
 ## Response Type
+
+**204**: A successful request returns the HTTP `204 No Content` status code with no JSON response body.
 
 `void`
 
@@ -402,8 +484,16 @@ subscriptionsController.updateBillingPlanPricingSchemesAsync(updateBillingPlanPr
     // TODO success callback handler
     System.out.println(result);
 }).exceptionally(exception -> {
-    // TODO failure callback handler
-    exception.printStackTrace();
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof SubscriptionErrorException) {
+        SubscriptionErrorException subscriptionErrorException = (SubscriptionErrorException) cause;
+        subscriptionErrorException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
     return null;
 });
 ```
@@ -430,16 +520,19 @@ CompletableFuture<ApiResponse<Subscription>> createSubscriptionAsync(
     final CreateSubscriptionInput input)
 ```
 
+## Authentication
+
+This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `prefer` | `String` | Header, Optional | The preferred server response upon successful completion of the request. Value is: return=minimal. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the id, status and HATEOAS links. return=representation. The server returns a complete resource representation, including the current state of the resource.<br><br>**Default**: `"return=minimal"` |
-| `paypalRequestId` | `String` | Header, Optional | The server stores keys for 72 hours. |
-| `paypalClientMetadataId` | `String` | Header, Optional | The PayPal Client Metadata Id(CMID) is used to provide device-specific information to PayPal's risk engine. This is crucial for transactions that require device-specific risk assessments. Merchants typically use the Paypal SDK that automatically submits the CMID or they use tools like Fraudnet JS for web or Magnes JS for mobile to generate the CMID on the frontend and then pass it to the API as part of the request headers.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36` |
-| `body` | [`CreateSubscriptionRequest`](../../doc/models/create-subscription-request.md) | Body, Optional | - |
+| `input` | [`CreateSubscriptionInput`](../../doc/models/create-subscription-input.md) | Required | Input structure for the method CreateSubscriptionAsync |
 
 ## Response Type
+
+**200**: A successful request returns the HTTP `200 OK` status code and a JSON response body that shows subscription details.
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `getResult()` getter of this instance returns the response data which is of type [`Subscription`](../../doc/models/subscription.md).
 
@@ -461,8 +554,16 @@ subscriptionsController.createSubscriptionAsync(createSubscriptionInput).thenAcc
     // TODO success callback handler
     System.out.println(result);
 }).exceptionally(exception -> {
-    // TODO failure callback handler
-    exception.printStackTrace();
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof SubscriptionErrorException) {
+        SubscriptionErrorException subscriptionErrorException = (SubscriptionErrorException) cause;
+        subscriptionErrorException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
     return null;
 });
 ```
@@ -488,22 +589,19 @@ CompletableFuture<ApiResponse<SubscriptionCollection>> listSubscriptionsAsync(
     final ListSubscriptionsInput input)
 ```
 
+## Authentication
+
+This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `planIds` | `String` | Query, Optional | Filters the response by list of plan IDs. Filter supports upto 70 plan IDs. URLs should not exceed a length of 2000 characters. |
-| `statuses` | `String` | Query, Optional | Filters the response by list of subscription statuses.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `70`, *Pattern*: `^[A-Z_,]+$` |
-| `createdAfter` | `String` | Query, Optional | Filters the response by subscription creation start time for a range of subscriptions.<br><br>**Constraints**: *Minimum Length*: `20`, *Maximum Length*: `64`, *Pattern*: `^[0-9]{4}-(0[1-9]\|1[0-2])-(0[1-9]\|[1-2][0-9]\|3[0-1])[T,t]([0-1][0-9]\|2[0-3]):[0-5][0-9]:([0-5][0-9]\|60)([.][0-9]+)?([Zz]\|[+-][0-9]{2}:[0-9]{2})$` |
-| `createdBefore` | `String` | Query, Optional | Filters the response by subscription creation end time for a range of subscriptions.<br><br>**Constraints**: *Minimum Length*: `20`, *Maximum Length*: `64`, *Pattern*: `^[0-9]{4}-(0[1-9]\|1[0-2])-(0[1-9]\|[1-2][0-9]\|3[0-1])[T,t]([0-1][0-9]\|2[0-3]):[0-5][0-9]:([0-5][0-9]\|60)([.][0-9]+)?([Zz]\|[+-][0-9]{2}:[0-9]{2})$` |
-| `statusUpdatedBefore` | `String` | Query, Optional | Filters the response by status update start time for a range of subscriptions.<br><br>**Constraints**: *Minimum Length*: `20`, *Maximum Length*: `64`, *Pattern*: `^[0-9]{4}-(0[1-9]\|1[0-2])-(0[1-9]\|[1-2][0-9]\|3[0-1])[T,t]([0-1][0-9]\|2[0-3]):[0-5][0-9]:([0-5][0-9]\|60)([.][0-9]+)?([Zz]\|[+-][0-9]{2}:[0-9]{2})$` |
-| `statusUpdatedAfter` | `String` | Query, Optional | Filters the response by status update end time for a range of subscriptions.<br><br>**Constraints**: *Minimum Length*: `20`, *Maximum Length*: `64`, *Pattern*: `^[0-9]{4}-(0[1-9]\|1[0-2])-(0[1-9]\|[1-2][0-9]\|3[0-1])[T,t]([0-1][0-9]\|2[0-3]):[0-5][0-9]:([0-5][0-9]\|60)([.][0-9]+)?([Zz]\|[+-][0-9]{2}:[0-9]{2})$` |
-| `filter` | `String` | Query, Optional | Filter the response using complex expressions that could use comparison operators like ge, gt, le, lt and logical operators such as 'and' and 'or'.<br><br>**Constraints**: *Minimum Length*: `0`, *Maximum Length*: `100` |
-| `pageSize` | `Integer` | Query, Optional | The number of items to return in the response.<br><br>**Default**: `10`<br><br>**Constraints**: `>= 1`, `<= 20` |
-| `page` | `Integer` | Query, Optional | A non-zero integer which is the start index of the entire list of items to return in the response. The combination of `page=1` and `page_size=20` returns the first 20 items. The combination of `page=2` and `page_size=20` returns the next 20 items.<br><br>**Default**: `1`<br><br>**Constraints**: `>= 1`, `<= 10000000` |
-| `customerIds` | `List<String>` | Query, Optional | Filters the response by comma separated vault customer IDs (FSS subscriptions only).<br><br>**Constraints**: *Minimum Items*: `1`, *Maximum Items*: `10`, *Minimum Length*: `1`, *Maximum Length*: `22`, *Pattern*: `^[0-9a-zA-Z_-]+$` |
+| `input` | [`ListSubscriptionsInput`](../../doc/models/list-subscriptions-input.md) | Required | Input structure for the method ListSubscriptionsAsync |
 
 ## Response Type
+
+**200**: A successful request returns the HTTP `200 OK` status code and a JSON response body that lists the subscriptions.
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `getResult()` getter of this instance returns the response data which is of type [`SubscriptionCollection`](../../doc/models/subscription-collection.md).
 
@@ -519,8 +617,16 @@ subscriptionsController.listSubscriptionsAsync(listSubscriptionsInput).thenAccep
     // TODO success callback handler
     System.out.println(result);
 }).exceptionally(exception -> {
-    // TODO failure callback handler
-    exception.printStackTrace();
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof SubscriptionErrorException) {
+        SubscriptionErrorException subscriptionErrorException = (SubscriptionErrorException) cause;
+        subscriptionErrorException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
     return null;
 });
 ```
@@ -545,14 +651,19 @@ CompletableFuture<ApiResponse<Subscription>> getSubscriptionAsync(
     final GetSubscriptionInput input)
 ```
 
+## Authentication
+
+This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `id` | `String` | Template, Required | The ID of the subscription. |
-| `fields` | `String` | Query, Optional | List of fields that are to be returned in the response. Possible value for fields are last_failed_payment and plan.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `100` |
+| `input` | [`GetSubscriptionInput`](../../doc/models/get-subscription-input.md) | Required | Input structure for the method GetSubscriptionAsync |
 
 ## Response Type
+
+**200**: A successful request returns the HTTP `200 OK` status code and a JSON response body that shows subscription details.
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `getResult()` getter of this instance returns the response data which is of type [`Subscription`](../../doc/models/subscription.md).
 
@@ -568,8 +679,16 @@ subscriptionsController.getSubscriptionAsync(getSubscriptionInput).thenAccept(re
     // TODO success callback handler
     System.out.println(result);
 }).exceptionally(exception -> {
-    // TODO failure callback handler
-    exception.printStackTrace();
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof SubscriptionErrorException) {
+        SubscriptionErrorException subscriptionErrorException = (SubscriptionErrorException) cause;
+        subscriptionErrorException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
     return null;
 });
 ```
@@ -594,14 +713,19 @@ CompletableFuture<ApiResponse<Void>> patchSubscriptionAsync(
     final PatchSubscriptionInput input)
 ```
 
+## Authentication
+
+This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `id` | `String` | Template, Required | The ID for the subscription. |
-| `body` | [`List<Patch>`](../../doc/models/patch.md) | Body, Optional | - |
+| `input` | [`PatchSubscriptionInput`](../../doc/models/patch-subscription-input.md) | Required | Input structure for the method PatchSubscriptionAsync |
 
 ## Response Type
+
+**204**: A successful request returns the HTTP `204 No Content` status code with no JSON response body.
 
 `void`
 
@@ -624,8 +748,16 @@ subscriptionsController.patchSubscriptionAsync(patchSubscriptionInput).thenAccep
     // TODO success callback handler
     System.out.println(result);
 }).exceptionally(exception -> {
-    // TODO failure callback handler
-    exception.printStackTrace();
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof SubscriptionErrorException) {
+        SubscriptionErrorException subscriptionErrorException = (SubscriptionErrorException) cause;
+        subscriptionErrorException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
     return null;
 });
 ```
@@ -652,14 +784,19 @@ CompletableFuture<ApiResponse<ModifySubscriptionResponse>> reviseSubscriptionAsy
     final ReviseSubscriptionInput input)
 ```
 
+## Authentication
+
+This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `id` | `String` | Template, Required | The ID of the subscription. |
-| `body` | [`ModifySubscriptionRequest`](../../doc/models/modify-subscription-request.md) | Body, Optional | - |
+| `input` | [`ReviseSubscriptionInput`](../../doc/models/revise-subscription-input.md) | Required | Input structure for the method ReviseSubscriptionAsync |
 
 ## Response Type
+
+**200**: A successful request returns the HTTP `200 OK` status code and a JSON response body that shows subscription details.
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `getResult()` getter of this instance returns the response data which is of type [`ModifySubscriptionResponse`](../../doc/models/modify-subscription-response.md).
 
@@ -676,8 +813,16 @@ subscriptionsController.reviseSubscriptionAsync(reviseSubscriptionInput).thenAcc
     // TODO success callback handler
     System.out.println(result);
 }).exceptionally(exception -> {
-    // TODO failure callback handler
-    exception.printStackTrace();
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof SubscriptionErrorException) {
+        SubscriptionErrorException subscriptionErrorException = (SubscriptionErrorException) cause;
+        subscriptionErrorException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
     return null;
 });
 ```
@@ -704,14 +849,19 @@ CompletableFuture<ApiResponse<Void>> suspendSubscriptionAsync(
     final SuspendSubscriptionInput input)
 ```
 
+## Authentication
+
+This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `id` | `String` | Template, Required | The ID of the subscription. |
-| `body` | [`SuspendSubscription`](../../doc/models/suspend-subscription.md) | Body, Optional | - |
+| `input` | [`SuspendSubscriptionInput`](../../doc/models/suspend-subscription-input.md) | Required | Input structure for the method SuspendSubscriptionAsync |
 
 ## Response Type
+
+**204**: A successful request returns the HTTP `204 No Content` status code with no JSON response body.
 
 `void`
 
@@ -728,8 +878,16 @@ subscriptionsController.suspendSubscriptionAsync(suspendSubscriptionInput).thenA
     // TODO success callback handler
     System.out.println(result);
 }).exceptionally(exception -> {
-    // TODO failure callback handler
-    exception.printStackTrace();
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof SubscriptionErrorException) {
+        SubscriptionErrorException subscriptionErrorException = (SubscriptionErrorException) cause;
+        subscriptionErrorException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
     return null;
 });
 ```
@@ -756,14 +914,19 @@ CompletableFuture<ApiResponse<Void>> cancelSubscriptionAsync(
     final CancelSubscriptionInput input)
 ```
 
+## Authentication
+
+This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `id` | `String` | Template, Required | The ID of the subscription. |
-| `body` | [`CancelSubscriptionRequest`](../../doc/models/cancel-subscription-request.md) | Body, Optional | - |
+| `input` | [`CancelSubscriptionInput`](../../doc/models/cancel-subscription-input.md) | Required | Input structure for the method CancelSubscriptionAsync |
 
 ## Response Type
+
+**204**: A successful request returns the HTTP `204 No Content` status code with no JSON response body.
 
 `void`
 
@@ -780,8 +943,16 @@ subscriptionsController.cancelSubscriptionAsync(cancelSubscriptionInput).thenAcc
     // TODO success callback handler
     System.out.println(result);
 }).exceptionally(exception -> {
-    // TODO failure callback handler
-    exception.printStackTrace();
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof SubscriptionErrorException) {
+        SubscriptionErrorException subscriptionErrorException = (SubscriptionErrorException) cause;
+        subscriptionErrorException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
     return null;
 });
 ```
@@ -808,14 +979,19 @@ CompletableFuture<ApiResponse<Void>> activateSubscriptionAsync(
     final ActivateSubscriptionInput input)
 ```
 
+## Authentication
+
+This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `id` | `String` | Template, Required | The ID of the subscription. |
-| `body` | [`ActivateSubscriptionRequest`](../../doc/models/activate-subscription-request.md) | Body, Optional | - |
+| `input` | [`ActivateSubscriptionInput`](../../doc/models/activate-subscription-input.md) | Required | Input structure for the method ActivateSubscriptionAsync |
 
 ## Response Type
+
+**204**: A successful request returns the HTTP `204 No Content` status code with no JSON response body.
 
 `void`
 
@@ -832,8 +1008,16 @@ subscriptionsController.activateSubscriptionAsync(activateSubscriptionInput).the
     // TODO success callback handler
     System.out.println(result);
 }).exceptionally(exception -> {
-    // TODO failure callback handler
-    exception.printStackTrace();
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof SubscriptionErrorException) {
+        SubscriptionErrorException subscriptionErrorException = (SubscriptionErrorException) cause;
+        subscriptionErrorException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
     return null;
 });
 ```
@@ -860,15 +1044,19 @@ CompletableFuture<ApiResponse<SubscriptionTransactionDetails>> captureSubscripti
     final CaptureSubscriptionInput input)
 ```
 
+## Authentication
+
+This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `id` | `String` | Template, Required | The ID of the subscription. |
-| `paypalRequestId` | `String` | Header, Optional | The server stores keys for 72 hours. |
-| `body` | [`CaptureSubscriptionRequest`](../../doc/models/capture-subscription-request.md) | Body, Optional | - |
+| `input` | [`CaptureSubscriptionInput`](../../doc/models/capture-subscription-input.md) | Required | Input structure for the method CaptureSubscriptionAsync |
 
 ## Response Type
+
+**200**: A successful request returns the HTTP `200 OK` status code and a JSON response body that shows subscription details.
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `getResult()` getter of this instance returns the response data which is of type [`SubscriptionTransactionDetails`](../../doc/models/subscription-transaction-details.md).
 
@@ -885,8 +1073,16 @@ subscriptionsController.captureSubscriptionAsync(captureSubscriptionInput).thenA
     // TODO success callback handler
     System.out.println(result);
 }).exceptionally(exception -> {
-    // TODO failure callback handler
-    exception.printStackTrace();
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof SubscriptionErrorException) {
+        SubscriptionErrorException subscriptionErrorException = (SubscriptionErrorException) cause;
+        subscriptionErrorException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
     return null;
 });
 ```
@@ -913,15 +1109,19 @@ CompletableFuture<ApiResponse<TransactionsList>> listSubscriptionTransactionsAsy
     final ListSubscriptionTransactionsInput input)
 ```
 
+## Authentication
+
+This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `id` | `String` | Template, Required | The ID of the subscription. |
-| `startTime` | `String` | Query, Required | The start time of the range of transactions to list.<br><br>**Constraints**: *Minimum Length*: `20`, *Maximum Length*: `64`, *Pattern*: `^[0-9]{4}-(0[1-9]\|1[0-2])-(0[1-9]\|[1-2][0-9]\|3[0-1])[T,t]([0-1][0-9]\|2[0-3]):[0-5][0-9]:([0-5][0-9]\|60)([.][0-9]+)?([Zz]\|[+-][0-9]{2}:[0-9]{2})$` |
-| `endTime` | `String` | Query, Required | The end time of the range of transactions to list.<br><br>**Constraints**: *Minimum Length*: `20`, *Maximum Length*: `64`, *Pattern*: `^[0-9]{4}-(0[1-9]\|1[0-2])-(0[1-9]\|[1-2][0-9]\|3[0-1])[T,t]([0-1][0-9]\|2[0-3]):[0-5][0-9]:([0-5][0-9]\|60)([.][0-9]+)?([Zz]\|[+-][0-9]{2}:[0-9]{2})$` |
+| `input` | [`ListSubscriptionTransactionsInput`](../../doc/models/list-subscription-transactions-input.md) | Required | Input structure for the method ListSubscriptionTransactionsAsync |
 
 ## Response Type
+
+**200**: A successful request returns the HTTP `200 OK` status code and a JSON response body that shows subscription details.
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `getResult()` getter of this instance returns the response data which is of type [`TransactionsList`](../../doc/models/transactions-list.md).
 
@@ -939,8 +1139,16 @@ subscriptionsController.listSubscriptionTransactionsAsync(listSubscriptionTransa
     // TODO success callback handler
     System.out.println(result);
 }).exceptionally(exception -> {
-    // TODO failure callback handler
-    exception.printStackTrace();
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof SubscriptionErrorException) {
+        SubscriptionErrorException subscriptionErrorException = (SubscriptionErrorException) cause;
+        subscriptionErrorException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
     return null;
 });
 ```

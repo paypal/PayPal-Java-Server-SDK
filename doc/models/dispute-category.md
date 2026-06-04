@@ -11,6 +11,6 @@ The condition that is covered for the transaction.
 
 | Name | Description |
 |  --- | --- |
-| `ItemNotReceived` | The payer paid for an item that they did not receive. |
-| `UnauthorizedTransaction` | The payer did not authorize the payment. |
+| `ITEM_NOT_RECEIVED` | The payer paid for an item that they did not receive. |
+| `UNAUTHORIZED_TRANSACTION` | The payer did not authorize the payment. |
 

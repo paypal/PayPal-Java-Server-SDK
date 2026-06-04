@@ -11,5 +11,5 @@ The tokenization method that generated the ID.
 
 | Name | Description |
 |  --- | --- |
-| `SetupToken` | The setup token, which is a temporary reference to payment source. |
+| `SETUP_TOKEN` | The setup token, which is a temporary reference to payment source. |
 

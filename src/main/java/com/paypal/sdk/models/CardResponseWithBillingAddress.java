@@ -116,8 +116,9 @@ public class CardResponseWithBillingAddress {
 
     /**
      * Getter for CurrencyCode.
-     * The [three-character ISO-4217 currency code](/api/rest/reference/currency-codes/) that
-     * identifies the currency.
+     * The [three-character ISO-4217 currency
+     * code](https://developer.paypal.com/api/rest/reference/currency-codes/) that identifies the
+     * currency.
      * @return Returns the String
      */
     @JsonGetter("currency_code")
@@ -128,8 +129,9 @@ public class CardResponseWithBillingAddress {
 
     /**
      * Setter for CurrencyCode.
-     * The [three-character ISO-4217 currency code](/api/rest/reference/currency-codes/) that
-     * identifies the currency.
+     * The [three-character ISO-4217 currency
+     * code](https://developer.paypal.com/api/rest/reference/currency-codes/) that identifies the
+     * currency.
      * @param currencyCode Value for String
      */
     @JsonSetter("currency_code")

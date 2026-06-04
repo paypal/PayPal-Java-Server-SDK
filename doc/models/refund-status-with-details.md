@@ -1,5 +1,5 @@
 
-# Refund Status With Details
+# Refund Status with Details
 
 The refund status with details.
 
@@ -11,7 +11,7 @@ The refund status with details.
 
 | Name | Type | Tags | Description | Getter | Setter |
 |  --- | --- | --- | --- | --- | --- |
-| `Status` | [`RefundStatus`](../../doc/models/refund-status.md) | Optional | The status of the refund. | RefundStatus getStatus() | setStatus(RefundStatus status) |
+| `Status` | [`RefundStatus`](../../doc/models/refund-status.md) | Optional, Read-only | The status of the refund. | RefundStatus getStatus() | setStatus(RefundStatus status) |
 | `StatusDetails` | [`RefundStatusDetails`](../../doc/models/refund-status-details.md) | Optional | The details of the refund status. | RefundStatusDetails getStatusDetails() | setStatusDetails(RefundStatusDetails statusDetails) |
 
 ## Example (as JSON)

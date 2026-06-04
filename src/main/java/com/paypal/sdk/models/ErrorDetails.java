@@ -140,9 +140,9 @@ public class ErrorDetails {
 
     /**
      * Getter for Links.
-     * An array of request-related [HATEOAS links](/api/rest/responses/#hateoas-links) that are
-     * either relevant to the issue by providing additional information or offering potential
-     * resolutions.
+     * An array of request-related [HATEOAS
+     * links](https://developer.paypal.com/api/rest/responses/#hateoas-links) that are either
+     * relevant to the issue by providing additional information or offering potential resolutions.
      * @return Returns the List of LinkDescription
      */
     @JsonGetter("links")
@@ -153,9 +153,9 @@ public class ErrorDetails {
 
     /**
      * Setter for Links.
-     * An array of request-related [HATEOAS links](/api/rest/responses/#hateoas-links) that are
-     * either relevant to the issue by providing additional information or offering potential
-     * resolutions.
+     * An array of request-related [HATEOAS
+     * links](https://developer.paypal.com/api/rest/responses/#hateoas-links) that are either
+     * relevant to the issue by providing additional information or offering potential resolutions.
      * @param links Value for List of LinkDescription
      */
     @JsonSetter("links")

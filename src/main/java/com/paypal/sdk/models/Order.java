@@ -6,10 +6,11 @@
 
 package com.paypal.sdk.models;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import java.util.List;
 
 /**
  * This is a model class for Order type.
@@ -20,6 +21,7 @@ public class Order {
     private String id;
     private PaymentSourceResponse paymentSource;
     private CheckoutPaymentIntent intent;
+    private ProcessingInstruction processingInstruction;
     private Payer payer;
     private List<PurchaseUnit> purchaseUnits;
     private OrderStatus status;
@@ -32,7 +34,7 @@ public class Order {
     }
 
     /**
-     * Initialization constructor.
+     * Initialization constructor. Preserved for backwards compatibility.
      * @param  createTime  String value for createTime.
      * @param  updateTime  String value for updateTime.
      * @param  id  String value for id.
@@ -58,6 +60,42 @@ public class Order {
         this.id = id;
         this.paymentSource = paymentSource;
         this.intent = intent;
+        this.payer = payer;
+        this.purchaseUnits = purchaseUnits;
+        this.status = status;
+        this.links = links;
+    }
+
+    /**
+     * Initialization constructor.
+     * @param  createTime  String value for createTime.
+     * @param  updateTime  String value for updateTime.
+     * @param  id  String value for id.
+     * @param  paymentSource  PaymentSourceResponse value for paymentSource.
+     * @param  intent  CheckoutPaymentIntent value for intent.
+     * @param  processingInstruction  ProcessingInstruction value for processingInstruction.
+     * @param  payer  Payer value for payer.
+     * @param  purchaseUnits  List of PurchaseUnit value for purchaseUnits.
+     * @param  status  OrderStatus value for status.
+     * @param  links  List of LinkDescription value for links.
+     */
+    public Order(
+            String createTime,
+            String updateTime,
+            String id,
+            PaymentSourceResponse paymentSource,
+            CheckoutPaymentIntent intent,
+            ProcessingInstruction processingInstruction,
+            Payer payer,
+            List<PurchaseUnit> purchaseUnits,
+            OrderStatus status,
+            List<LinkDescription> links) {
+        this.createTime = createTime;
+        this.updateTime = updateTime;
+        this.id = id;
+        this.paymentSource = paymentSource;
+        this.intent = intent;
+        this.processingInstruction = processingInstruction;
         this.payer = payer;
         this.purchaseUnits = purchaseUnits;
         this.status = status;
@@ -184,6 +222,27 @@ public class Order {
     }
 
     /**
+     * Getter for ProcessingInstruction.
+     * The instruction to process an order.
+     * @return Returns the ProcessingInstruction
+     */
+    @JsonGetter("processing_instruction")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public ProcessingInstruction getProcessingInstruction() {
+        return processingInstruction;
+    }
+
+    /**
+     * Setter for ProcessingInstruction.
+     * The instruction to process an order.
+     * @param processingInstruction Value for ProcessingInstruction
+     */
+    @JsonSetter("processing_instruction")
+    public void setProcessingInstruction(ProcessingInstruction processingInstruction) {
+        this.processingInstruction = processingInstruction;
+    }
+
+    /**
      * Getter for Payer.
      * DEPRECATED. The customer is also known as the payer. The Payer object was intended to only be
      * used with the `payment_source.paypal` object. In order to make this design more clear, the
@@ -298,7 +357,8 @@ public class Order {
     @Override
     public String toString() {
         return "Order [" + "createTime=" + createTime + ", updateTime=" + updateTime + ", id=" + id
-                + ", paymentSource=" + paymentSource + ", intent=" + intent + ", payer=" + payer
+                + ", paymentSource=" + paymentSource + ", intent=" + intent
+                + ", processingInstruction=" + processingInstruction + ", payer=" + payer
                 + ", purchaseUnits=" + purchaseUnits + ", status=" + status + ", links=" + links
                 + "]";
     }
@@ -315,6 +375,7 @@ public class Order {
                 .id(getId())
                 .paymentSource(getPaymentSource())
                 .intent(getIntent())
+                .processingInstruction(getProcessingInstruction())
                 .payer(getPayer())
                 .purchaseUnits(getPurchaseUnits())
                 .status(getStatus())
@@ -331,6 +392,7 @@ public class Order {
         private String id;
         private PaymentSourceResponse paymentSource;
         private CheckoutPaymentIntent intent;
+        private ProcessingInstruction processingInstruction;
         private Payer payer;
         private List<PurchaseUnit> purchaseUnits;
         private OrderStatus status;
@@ -389,6 +451,16 @@ public class Order {
         }
 
         /**
+         * Setter for processingInstruction.
+         * @param  processingInstruction  ProcessingInstruction value for processingInstruction.
+         * @return Builder
+         */
+        public Builder processingInstruction(ProcessingInstruction processingInstruction) {
+            this.processingInstruction = processingInstruction;
+            return this;
+        }
+
+        /**
          * Setter for payer.
          * @param  payer  Payer value for payer.
          * @return Builder
@@ -433,8 +505,8 @@ public class Order {
          * @return {@link Order}
          */
         public Order build() {
-            return new Order(createTime, updateTime, id, paymentSource, intent, payer,
-                    purchaseUnits, status, links);
+            return new Order(createTime, updateTime, id, paymentSource, intent,
+                    processingInstruction, payer, purchaseUnits, status, links);
         }
     }
 }

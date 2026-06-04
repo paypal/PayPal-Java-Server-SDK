@@ -6,10 +6,11 @@
 
 package com.paypal.sdk.models;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import java.util.List;
 
 /**
  * This is a model class for OrderAuthorizeResponse type.
@@ -20,6 +21,7 @@ public class OrderAuthorizeResponse {
     private String id;
     private OrderAuthorizeResponsePaymentSource paymentSource;
     private CheckoutPaymentIntent intent;
+    private ProcessingInstruction processingInstruction;
     private Payer payer;
     private List<PurchaseUnit> purchaseUnits;
     private OrderStatus status;
@@ -32,7 +34,7 @@ public class OrderAuthorizeResponse {
     }
 
     /**
-     * Initialization constructor.
+     * Initialization constructor. Preserved for backwards compatibility.
      * @param  createTime  String value for createTime.
      * @param  updateTime  String value for updateTime.
      * @param  id  String value for id.
@@ -58,6 +60,42 @@ public class OrderAuthorizeResponse {
         this.id = id;
         this.paymentSource = paymentSource;
         this.intent = intent;
+        this.payer = payer;
+        this.purchaseUnits = purchaseUnits;
+        this.status = status;
+        this.links = links;
+    }
+
+    /**
+     * Initialization constructor.
+     * @param  createTime  String value for createTime.
+     * @param  updateTime  String value for updateTime.
+     * @param  id  String value for id.
+     * @param  paymentSource  OrderAuthorizeResponsePaymentSource value for paymentSource.
+     * @param  intent  CheckoutPaymentIntent value for intent.
+     * @param  processingInstruction  ProcessingInstruction value for processingInstruction.
+     * @param  payer  Payer value for payer.
+     * @param  purchaseUnits  List of PurchaseUnit value for purchaseUnits.
+     * @param  status  OrderStatus value for status.
+     * @param  links  List of LinkDescription value for links.
+     */
+    public OrderAuthorizeResponse(
+            String createTime,
+            String updateTime,
+            String id,
+            OrderAuthorizeResponsePaymentSource paymentSource,
+            CheckoutPaymentIntent intent,
+            ProcessingInstruction processingInstruction,
+            Payer payer,
+            List<PurchaseUnit> purchaseUnits,
+            OrderStatus status,
+            List<LinkDescription> links) {
+        this.createTime = createTime;
+        this.updateTime = updateTime;
+        this.id = id;
+        this.paymentSource = paymentSource;
+        this.intent = intent;
+        this.processingInstruction = processingInstruction;
         this.payer = payer;
         this.purchaseUnits = purchaseUnits;
         this.status = status;
@@ -184,6 +222,27 @@ public class OrderAuthorizeResponse {
     }
 
     /**
+     * Getter for ProcessingInstruction.
+     * The instruction to process an order.
+     * @return Returns the ProcessingInstruction
+     */
+    @JsonGetter("processing_instruction")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public ProcessingInstruction getProcessingInstruction() {
+        return processingInstruction;
+    }
+
+    /**
+     * Setter for ProcessingInstruction.
+     * The instruction to process an order.
+     * @param processingInstruction Value for ProcessingInstruction
+     */
+    @JsonSetter("processing_instruction")
+    public void setProcessingInstruction(ProcessingInstruction processingInstruction) {
+        this.processingInstruction = processingInstruction;
+    }
+
+    /**
      * Getter for Payer.
      * The customer who approves and pays for the order. The customer is also known as the payer.
      * @return Returns the Payer
@@ -293,8 +352,9 @@ public class OrderAuthorizeResponse {
     public String toString() {
         return "OrderAuthorizeResponse [" + "createTime=" + createTime + ", updateTime="
                 + updateTime + ", id=" + id + ", paymentSource=" + paymentSource + ", intent="
-                + intent + ", payer=" + payer + ", purchaseUnits=" + purchaseUnits + ", status="
-                + status + ", links=" + links + "]";
+                + intent + ", processingInstruction=" + processingInstruction + ", payer=" + payer
+                + ", purchaseUnits=" + purchaseUnits + ", status=" + status + ", links=" + links
+                + "]";
     }
 
     /**
@@ -309,6 +369,7 @@ public class OrderAuthorizeResponse {
                 .id(getId())
                 .paymentSource(getPaymentSource())
                 .intent(getIntent())
+                .processingInstruction(getProcessingInstruction())
                 .payer(getPayer())
                 .purchaseUnits(getPurchaseUnits())
                 .status(getStatus())
@@ -325,6 +386,7 @@ public class OrderAuthorizeResponse {
         private String id;
         private OrderAuthorizeResponsePaymentSource paymentSource;
         private CheckoutPaymentIntent intent;
+        private ProcessingInstruction processingInstruction;
         private Payer payer;
         private List<PurchaseUnit> purchaseUnits;
         private OrderStatus status;
@@ -383,6 +445,16 @@ public class OrderAuthorizeResponse {
         }
 
         /**
+         * Setter for processingInstruction.
+         * @param  processingInstruction  ProcessingInstruction value for processingInstruction.
+         * @return Builder
+         */
+        public Builder processingInstruction(ProcessingInstruction processingInstruction) {
+            this.processingInstruction = processingInstruction;
+            return this;
+        }
+
+        /**
          * Setter for payer.
          * @param  payer  Payer value for payer.
          * @return Builder
@@ -428,7 +500,7 @@ public class OrderAuthorizeResponse {
          */
         public OrderAuthorizeResponse build() {
             return new OrderAuthorizeResponse(createTime, updateTime, id, paymentSource, intent,
-                    payer, purchaseUnits, status, links);
+                    processingInstruction, payer, purchaseUnits, status, links);
         }
     }
 }

@@ -11,7 +11,7 @@ Operating System type of the device that the buyer is using.
 
 | Name | Description |
 |  --- | --- |
-| `Android` | Google Android OS. |
-| `Ios` | Apple OS typically found in Apple mobile devices. |
-| `Other` | Any other OS type. |
+| `ANDROID` | Google Android OS. |
+| `IOS` | Apple OS typically found in Apple mobile devices. |
+| `OTHER` | Any other OS type. |
 

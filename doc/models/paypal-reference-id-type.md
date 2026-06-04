@@ -11,8 +11,8 @@ The PayPal reference ID type.
 
 | Name | Description |
 |  --- | --- |
-| `Odr` | An order ID. |
-| `Txn` | A transaction ID. |
-| `Sub` | A subscription ID. |
-| `Pap` | A pre-approved payment ID. |
+| `ODR` | An order ID. |
+| `TXN` | A transaction ID. |
+| `SUB` | A subscription ID. |
+| `PAP` | A pre-approved payment ID. |
 

@@ -12,8 +12,8 @@ The setup payment method details.
 | Name | Type | Tags | Description | Getter | Setter |
 |  --- | --- | --- | --- | --- | --- |
 | `Card` | [`SetupTokenResponseCard`](../../doc/models/setup-token-response-card.md) | Optional | - | SetupTokenResponseCard getCard() | setCard(SetupTokenResponseCard card) |
-| `Paypal` | [`PaypalPaymentToken`](../../doc/models/paypal-payment-token.md) | Optional | Full representation of a PayPal Payment Token. | PaypalPaymentToken getPaypal() | setPaypal(PaypalPaymentToken paypal) |
-| `Venmo` | [`VenmoPaymentToken`](../../doc/models/venmo-payment-token.md) | Optional | Full representation of a Venmo Payment Token. | VenmoPaymentToken getVenmo() | setVenmo(VenmoPaymentToken venmo) |
+| `Paypal` | [`PaypalPaymentToken`](../../doc/models/paypal-payment-token.md) | Optional, Read-only | Full representation of a PayPal Payment Token. | PaypalPaymentToken getPaypal() | setPaypal(PaypalPaymentToken paypal) |
+| `Venmo` | [`VenmoPaymentToken`](../../doc/models/venmo-payment-token.md) | Optional, Read-only | Full representation of a Venmo Payment Token. | VenmoPaymentToken getVenmo() | setVenmo(VenmoPaymentToken venmo) |
 
 ## Example (as JSON)
 

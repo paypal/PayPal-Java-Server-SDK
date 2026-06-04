@@ -111,7 +111,8 @@ public class PaymentTokenResponse {
 
     /**
      * Getter for Links.
-     * An array of related [HATEOAS links](/api/rest/responses/#hateoas).
+     * An array of related [HATEOAS
+     * links](https://developer.paypal.com/api/rest/responses/#hateoas).
      * @return Returns the List of LinkDescription
      */
     @JsonGetter("links")
@@ -122,7 +123,8 @@ public class PaymentTokenResponse {
 
     /**
      * Setter for Links.
-     * An array of related [HATEOAS links](/api/rest/responses/#hateoas).
+     * An array of related [HATEOAS
+     * links](https://developer.paypal.com/api/rest/responses/#hateoas).
      * @param links Value for List of LinkDescription
      */
     @JsonSetter("links")

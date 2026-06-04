@@ -6,16 +6,18 @@
 
 package com.paypal.sdk.models;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import java.util.List;
 
 /**
  * This is a model class for OrderRequest type.
  */
 public class OrderRequest {
     private CheckoutPaymentIntent intent;
+    private ProcessingInstruction processingInstruction;
     private Payer payer;
     private List<PurchaseUnitRequest> purchaseUnits;
     private PaymentSource paymentSource;
@@ -28,7 +30,7 @@ public class OrderRequest {
     }
 
     /**
-     * Initialization constructor.
+     * Initialization constructor. Preserved for backwards compatibility.
      * @param  intent  CheckoutPaymentIntent value for intent.
      * @param  purchaseUnits  List of PurchaseUnitRequest value for purchaseUnits.
      * @param  payer  Payer value for payer.
@@ -42,6 +44,30 @@ public class OrderRequest {
             PaymentSource paymentSource,
             OrderApplicationContext applicationContext) {
         this.intent = intent;
+        this.payer = payer;
+        this.purchaseUnits = purchaseUnits;
+        this.paymentSource = paymentSource;
+        this.applicationContext = applicationContext;
+    }
+
+    /**
+     * Initialization constructor.
+     * @param  intent  CheckoutPaymentIntent value for intent.
+     * @param  purchaseUnits  List of PurchaseUnitRequest value for purchaseUnits.
+     * @param  processingInstruction  ProcessingInstruction value for processingInstruction.
+     * @param  payer  Payer value for payer.
+     * @param  paymentSource  PaymentSource value for paymentSource.
+     * @param  applicationContext  OrderApplicationContext value for applicationContext.
+     */
+    public OrderRequest(
+            CheckoutPaymentIntent intent,
+            List<PurchaseUnitRequest> purchaseUnits,
+            ProcessingInstruction processingInstruction,
+            Payer payer,
+            PaymentSource paymentSource,
+            OrderApplicationContext applicationContext) {
+        this.intent = intent;
+        this.processingInstruction = processingInstruction;
         this.payer = payer;
         this.purchaseUnits = purchaseUnits;
         this.paymentSource = paymentSource;
@@ -68,6 +94,27 @@ public class OrderRequest {
     @JsonSetter("intent")
     public void setIntent(CheckoutPaymentIntent intent) {
         this.intent = intent;
+    }
+
+    /**
+     * Getter for ProcessingInstruction.
+     * The instruction to process an order.
+     * @return Returns the ProcessingInstruction
+     */
+    @JsonGetter("processing_instruction")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public ProcessingInstruction getProcessingInstruction() {
+        return processingInstruction;
+    }
+
+    /**
+     * Setter for ProcessingInstruction.
+     * The instruction to process an order.
+     * @param processingInstruction Value for ProcessingInstruction
+     */
+    @JsonSetter("processing_instruction")
+    public void setProcessingInstruction(ProcessingInstruction processingInstruction) {
+        this.processingInstruction = processingInstruction;
     }
 
     /**
@@ -174,8 +221,9 @@ public class OrderRequest {
     @Override
     public String toString() {
         return "OrderRequest [" + "intent=" + intent + ", purchaseUnits=" + purchaseUnits
-                + ", payer=" + payer + ", paymentSource=" + paymentSource + ", applicationContext="
-                + applicationContext + "]";
+                + ", processingInstruction=" + processingInstruction + ", payer=" + payer
+                + ", paymentSource=" + paymentSource + ", applicationContext=" + applicationContext
+                + "]";
     }
 
     /**
@@ -185,6 +233,7 @@ public class OrderRequest {
      */
     public Builder toBuilder() {
         Builder builder = new Builder(intent, purchaseUnits)
+                .processingInstruction(getProcessingInstruction())
                 .payer(getPayer())
                 .paymentSource(getPaymentSource())
                 .applicationContext(getApplicationContext());
@@ -197,6 +246,7 @@ public class OrderRequest {
     public static class Builder {
         private CheckoutPaymentIntent intent;
         private List<PurchaseUnitRequest> purchaseUnits;
+        private ProcessingInstruction processingInstruction;
         private Payer payer;
         private PaymentSource paymentSource;
         private OrderApplicationContext applicationContext;
@@ -238,6 +288,16 @@ public class OrderRequest {
         }
 
         /**
+         * Setter for processingInstruction.
+         * @param  processingInstruction  ProcessingInstruction value for processingInstruction.
+         * @return Builder
+         */
+        public Builder processingInstruction(ProcessingInstruction processingInstruction) {
+            this.processingInstruction = processingInstruction;
+            return this;
+        }
+
+        /**
          * Setter for payer.
          * @param  payer  Payer value for payer.
          * @return Builder
@@ -272,8 +332,8 @@ public class OrderRequest {
          * @return {@link OrderRequest}
          */
         public OrderRequest build() {
-            return new OrderRequest(intent, purchaseUnits, payer, paymentSource,
-                    applicationContext);
+            return new OrderRequest(intent, purchaseUnits, processingInstruction, payer,
+                    paymentSource, applicationContext);
         }
     }
 }

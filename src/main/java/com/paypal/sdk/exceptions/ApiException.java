@@ -6,6 +6,7 @@
 
 package com.paypal.sdk.exceptions;
 
+import com.paypal.sdk.http.client.HttpContext;
 import io.apimatic.core.types.CoreApiException;
 import io.apimatic.coreinterfaces.http.Context;
 
@@ -22,7 +23,7 @@ public class ApiException extends CoreApiException {
      */
     public ApiException(String reason) {
         super(reason);
-        // TODO Auto-generated constructor stub
+        // Auto-generated constructor stub
     }
 
     /**
@@ -41,5 +42,14 @@ public class ApiException extends CoreApiException {
     @Override
     public String toString() {
         return "ApiException [" + "statusCode=" + getResponseCode() + ", message=" + getMessage() + "]";
+    }
+    
+    /**
+     * The HTTP Context from the API request.
+     * @return Returns the object of HttpContext for ApiException.
+     */
+    @Override
+    public HttpContext getHttpContext() {
+        return (HttpContext)super.getHttpContext();
     }
 }

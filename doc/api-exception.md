@@ -14,6 +14,6 @@ This is the base class for all exceptions that represent an error response from 
 
 | Name | Description | Return Type |
 |  --- | --- | --- |
-| `getResponseCode()` | The HTTP response code from the API request | `int` |
-| `getHeaders()` | The HTTP response body from the API request. | [`Headers`](../doc/headers.md) |
+| `getResponseCode()` | The HTTP Response code from the API request | `int` |
+| `getHttpContext()` | The HTTP Context from the API request. | [`HttpContext`](../doc/http-context.md) |
 

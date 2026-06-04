@@ -14,16 +14,34 @@ Represents the result of an API call, including response metadata and the return
 ## Usage Example
 
 ```java
-try {
-    ApiResponse<ExampleType> response = client.getExampleController().getExampleType(body);
-    System.out.println("Success! Result: " + response.getResult());
-    System.out.println("Status Code: " + response.getStatusCode());
-} catch (ApiException exp) {
-    System.out.println("Error: " + exp.getMessage());
-    System.out.println("Result: " + exp.getHttpContext().getResponse().getBody());
-    System.out.println("Status Code: " + exp.getResponseCode());
-} catch (IOException exp) {
-    System.out.println("Error: " + exp.getMessage());
-}
+import java.io.IOException;
+import com.paypal.sdk.exceptions;
+
+exampleController.getExampleTypeAsync(body).thenAccept(result -> {
+    // success callback handler
+    System.out.println("Success! Result: " + result.getResult());
+    System.out.println("Status Code: " + result.getStatusCode());
+    System.out.println("Response Headers: " + result.getHeaders());
+}).exceptionally(exception -> {
+    Throwable cause = exception.getCause() != null ? exception.getCause() : exception;
+
+    if (cause instanceof ApiException) {
+        ApiException apiException = (ApiException) cause;
+        System.out.println("Error: " + apiException.getMessage());
+        System.out.println("Result: " + apiException.getHttpContext()
+            .getResponse()
+            .getBody());
+        System.out.println("Status Code: " + apiException.getResponseCode());
+
+    } else if (cause instanceof IOException) {
+        IOException ioException = (IOException) cause;
+        System.out.println("IO Error: " + ioException.getMessage());
+
+    } else {
+        cause.printStackTrace();
+    }
+
+    return null;
+});
 ```
 
