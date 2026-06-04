@@ -34,7 +34,8 @@ public enum UpcType {
     /**
      * Unknown values will be mapped by this enum member
      */
-    _UNKNOWN;
+    _UNKNOWN;
+
 
     private static TreeMap<String, UpcType> valueMap = new TreeMap<>();
     private String value;

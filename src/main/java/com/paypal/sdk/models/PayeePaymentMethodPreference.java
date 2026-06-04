@@ -30,7 +30,8 @@ public enum PayeePaymentMethodPreference {
     /**
      * Unknown values will be mapped by this enum member
      */
-    _UNKNOWN;
+    _UNKNOWN;
+
 
     private static TreeMap<String, PayeePaymentMethodPreference> valueMap = new TreeMap<>();
     private String value;

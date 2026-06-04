@@ -40,7 +40,8 @@ public enum StandardEntryClassCode {
     /**
      * Unknown values will be mapped by this enum member
      */
-    _UNKNOWN;
+    _UNKNOWN;
+
 
     private static TreeMap<String, StandardEntryClassCode> valueMap = new TreeMap<>();
     private String value;

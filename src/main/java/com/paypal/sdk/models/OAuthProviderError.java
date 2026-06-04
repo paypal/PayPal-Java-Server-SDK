@@ -45,7 +45,8 @@ public enum OAuthProviderError {
     /**
      * The requested scope is invalid, unknown, malformed, or exceeds the scope granted by the resource owner.
      */
-    INVALID_SCOPE;
+    INVALID_SCOPE;
+
 
     private static TreeMap<String, OAuthProviderError> valueMap = new TreeMap<>();
     private String value;

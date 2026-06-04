@@ -30,7 +30,8 @@ public enum PaymentInitiator {
     /**
      * Unknown values will be mapped by this enum member
      */
-    _UNKNOWN;
+    _UNKNOWN;
+
 
     private static TreeMap<String, PaymentInitiator> valueMap = new TreeMap<>();
     private String value;

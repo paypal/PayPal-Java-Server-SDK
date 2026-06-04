@@ -25,7 +25,8 @@ public enum RefundIncompleteReason {
     /**
      * Unknown values will be mapped by this enum member
      */
-    _UNKNOWN;
+    _UNKNOWN;
+
 
     private static TreeMap<String, RefundIncompleteReason> valueMap = new TreeMap<>();
     private String value;

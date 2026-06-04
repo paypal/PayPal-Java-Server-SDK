@@ -35,7 +35,8 @@ public enum VenmoVaultResponseStatus {
     /**
      * Unknown values will be mapped by this enum member
      */
-    _UNKNOWN;
+    _UNKNOWN;
+
 
     private static TreeMap<String, VenmoVaultResponseStatus> valueMap = new TreeMap<>();
     private String value;
