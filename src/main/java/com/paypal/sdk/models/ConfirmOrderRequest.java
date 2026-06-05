@@ -15,6 +15,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
  */
 public class ConfirmOrderRequest {
     private PaymentSource paymentSource;
+    private ProcessingInstruction processingInstruction;
     private OrderConfirmApplicationContext applicationContext;
 
     /**
@@ -24,7 +25,7 @@ public class ConfirmOrderRequest {
     }
 
     /**
-     * Initialization constructor.
+     * Initialization constructor. Preserved for backwards compatibility.
      * @param  paymentSource  PaymentSource value for paymentSource.
      * @param  applicationContext  OrderConfirmApplicationContext value for applicationContext.
      */
@@ -32,6 +33,21 @@ public class ConfirmOrderRequest {
             PaymentSource paymentSource,
             OrderConfirmApplicationContext applicationContext) {
         this.paymentSource = paymentSource;
+        this.applicationContext = applicationContext;
+    }
+
+    /**
+     * Initialization constructor.
+     * @param  paymentSource  PaymentSource value for paymentSource.
+     * @param  processingInstruction  ProcessingInstruction value for processingInstruction.
+     * @param  applicationContext  OrderConfirmApplicationContext value for applicationContext.
+     */
+    public ConfirmOrderRequest(
+            PaymentSource paymentSource,
+            ProcessingInstruction processingInstruction,
+            OrderConfirmApplicationContext applicationContext) {
+        this.paymentSource = paymentSource;
+        this.processingInstruction = processingInstruction;
         this.applicationContext = applicationContext;
     }
 
@@ -53,6 +69,27 @@ public class ConfirmOrderRequest {
     @JsonSetter("payment_source")
     public void setPaymentSource(PaymentSource paymentSource) {
         this.paymentSource = paymentSource;
+    }
+
+    /**
+     * Getter for ProcessingInstruction.
+     * The instruction to process an order.
+     * @return Returns the ProcessingInstruction
+     */
+    @JsonGetter("processing_instruction")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public ProcessingInstruction getProcessingInstruction() {
+        return processingInstruction;
+    }
+
+    /**
+     * Setter for ProcessingInstruction.
+     * The instruction to process an order.
+     * @param processingInstruction Value for ProcessingInstruction
+     */
+    @JsonSetter("processing_instruction")
+    public void setProcessingInstruction(ProcessingInstruction processingInstruction) {
+        this.processingInstruction = processingInstruction;
     }
 
     /**
@@ -82,7 +119,8 @@ public class ConfirmOrderRequest {
      */
     @Override
     public String toString() {
-        return "ConfirmOrderRequest [" + "paymentSource=" + paymentSource + ", applicationContext="
+        return "ConfirmOrderRequest [" + "paymentSource=" + paymentSource
+                + ", processingInstruction=" + processingInstruction + ", applicationContext="
                 + applicationContext + "]";
     }
 
@@ -93,6 +131,7 @@ public class ConfirmOrderRequest {
      */
     public Builder toBuilder() {
         Builder builder = new Builder(paymentSource)
+                .processingInstruction(getProcessingInstruction())
                 .applicationContext(getApplicationContext());
         return builder;
     }
@@ -102,6 +141,7 @@ public class ConfirmOrderRequest {
      */
     public static class Builder {
         private PaymentSource paymentSource;
+        private ProcessingInstruction processingInstruction;
         private OrderConfirmApplicationContext applicationContext;
 
         /**
@@ -129,6 +169,16 @@ public class ConfirmOrderRequest {
         }
 
         /**
+         * Setter for processingInstruction.
+         * @param  processingInstruction  ProcessingInstruction value for processingInstruction.
+         * @return Builder
+         */
+        public Builder processingInstruction(ProcessingInstruction processingInstruction) {
+            this.processingInstruction = processingInstruction;
+            return this;
+        }
+
+        /**
          * Setter for applicationContext.
          * @param  applicationContext  OrderConfirmApplicationContext value for applicationContext.
          * @return Builder
@@ -143,7 +193,8 @@ public class ConfirmOrderRequest {
          * @return {@link ConfirmOrderRequest}
          */
         public ConfirmOrderRequest build() {
-            return new ConfirmOrderRequest(paymentSource, applicationContext);
+            return new ConfirmOrderRequest(paymentSource, processingInstruction,
+                    applicationContext);
         }
     }
 }

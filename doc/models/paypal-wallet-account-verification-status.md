@@ -11,6 +11,6 @@ The account status indicates whether the buyer has verified the financial detail
 
 | Name | Description |
 |  --- | --- |
-| `Verified` | The buyer has completed the verification of the financial details associated with this PayPal account. For example: confirming their bank account. |
-| `Unverified` | The buyer has not completed the verification of the financial details associated with this PayPal account. For example: confirming their bank account. |
+| `VERIFIED` | The buyer has completed the verification of the financial details associated with this PayPal account. For example: confirming their bank account. |
+| `UNVERIFIED` | The buyer has not completed the verification of the financial details associated with this PayPal account. For example: confirming their bank account. |
 

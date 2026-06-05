@@ -25,8 +25,7 @@ public enum VaultTokenRequestType {
     /**
      * Unknown values will be mapped by this enum member
      */
-    _UNKNOWN;
-
+    _UNKNOWN;
 
     private static TreeMap<String, VaultTokenRequestType> valueMap = new TreeMap<>();
     private String value;

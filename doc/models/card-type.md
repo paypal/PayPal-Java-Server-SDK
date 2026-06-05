@@ -11,9 +11,9 @@ Type of card. i.e Credit, Debit and so on.
 
 | Name | Description |
 |  --- | --- |
-| `Credit` | A credit card. |
-| `Debit` | A debit card. |
-| `Prepaid` | A Prepaid card. |
-| `Store` | A store card. |
-| `Unknown` | Card type cannot be determined. |
+| `CREDIT` | A credit card. |
+| `DEBIT` | A debit card. |
+| `PREPAID` | A Prepaid card. |
+| `STORE` | A store card. |
+| `UNKNOWN` | Card type cannot be determined. |
 

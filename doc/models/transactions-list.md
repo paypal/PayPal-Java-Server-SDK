@@ -14,7 +14,7 @@ The list transactions for a subscription request details.
 | `Transactions` | [`List<SubscriptionTransactionDetails>`](../../doc/models/subscription-transaction-details.md) | Optional | An array of transactions.<br><br>**Constraints**: *Minimum Items*: `0`, *Maximum Items*: `32767` | List<SubscriptionTransactionDetails> getTransactions() | setTransactions(List<SubscriptionTransactionDetails> transactions) |
 | `TotalItems` | `Integer` | Optional | The total number of items.<br><br>**Constraints**: `>= 0`, `<= 500000000` | Integer getTotalItems() | setTotalItems(Integer totalItems) |
 | `TotalPages` | `Integer` | Optional | The total number of pages.<br><br>**Constraints**: `>= 0`, `<= 100000000` | Integer getTotalPages() | setTotalPages(Integer totalPages) |
-| `Links` | [`List<LinkDescription>`](../../doc/models/link-description.md) | Optional | An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).<br><br>**Constraints**: *Minimum Items*: `1`, *Maximum Items*: `10` | List<LinkDescription> getLinks() | setLinks(List<LinkDescription> links) |
+| `Links` | [`List<LinkDescription>`](../../doc/models/link-description.md) | Optional, Read-only | An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).<br><br>**Constraints**: *Minimum Items*: `1`, *Maximum Items*: `10` | List<LinkDescription> getLinks() | setLinks(List<LinkDescription> links) |
 
 ## Example (as JSON)
 

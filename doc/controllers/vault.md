@@ -29,14 +29,19 @@ CompletableFuture<ApiResponse<PaymentTokenResponse>> createPaymentTokenAsync(
     final CreatePaymentTokenInput input)
 ```
 
+## Authentication
+
+This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`PaymentTokenRequest`](../../doc/models/payment-token-request.md) | Body, Required | Payment Token creation with a financial instrument and an optional customer_id. |
-| `paypalRequestId` | `String` | Header, Optional | The server stores keys for 3 hours.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `108`, *Pattern*: `^.*$` |
+| `input` | [`CreatePaymentTokenInput`](../../doc/models/create-payment-token-input.md) | Required | Input structure for the method CreatePaymentTokenAsync |
 
 ## Response Type
+
+**200**: Idempotent response for a successful creation of payment token.
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `getResult()` getter of this instance returns the response data which is of type [`PaymentTokenResponse`](../../doc/models/payment-token-response.md).
 
@@ -57,8 +62,16 @@ vaultController.createPaymentTokenAsync(createPaymentTokenInput).thenAccept(resu
     // TODO success callback handler
     System.out.println(result);
 }).exceptionally(exception -> {
-    // TODO failure callback handler
-    exception.printStackTrace();
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof ErrorException) {
+        ErrorException errorException = (ErrorException) cause;
+        errorException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
     return null;
 });
 ```
@@ -83,16 +96,19 @@ CompletableFuture<ApiResponse<CustomerVaultPaymentTokensResponse>> listCustomerP
     final ListCustomerPaymentTokensInput input)
 ```
 
+## Authentication
+
+This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `customerId` | `String` | Query, Required | A unique identifier representing a specific customer in merchant's/partner's system or records.<br><br>**Constraints**: *Minimum Length*: `7`, *Maximum Length*: `36`, *Pattern*: `^[0-9a-zA-Z_-]+$` |
-| `pageSize` | `Integer` | Query, Optional | A non-negative, non-zero integer indicating the maximum number of results to return at one time.<br><br>**Default**: `5`<br><br>**Constraints**: `>= 1`, `<= 5` |
-| `page` | `Integer` | Query, Optional | A non-negative, non-zero integer representing the page of the results.<br><br>**Default**: `1`<br><br>**Constraints**: `>= 1`, `<= 10` |
-| `totalRequired` | `Boolean` | Query, Optional | A boolean indicating total number of items (total_items) and pages (total_pages) are expected to be returned in the response.<br><br>**Default**: `false` |
+| `input` | [`ListCustomerPaymentTokensInput`](../../doc/models/list-customer-payment-tokens-input.md) | Required | Input structure for the method ListCustomerPaymentTokensAsync |
 
 ## Response Type
+
+**200**: Successful execution.
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `getResult()` getter of this instance returns the response data which is of type [`CustomerVaultPaymentTokensResponse`](../../doc/models/customer-vault-payment-tokens-response.md).
 
@@ -111,8 +127,16 @@ vaultController.listCustomerPaymentTokensAsync(listCustomerPaymentTokensInput).t
     // TODO success callback handler
     System.out.println(result);
 }).exceptionally(exception -> {
-    // TODO failure callback handler
-    exception.printStackTrace();
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof ErrorException) {
+        ErrorException errorException = (ErrorException) cause;
+        errorException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
     return null;
 });
 ```
@@ -135,6 +159,10 @@ CompletableFuture<ApiResponse<PaymentTokenResponse>> getPaymentTokenAsync(
     final String id)
 ```
 
+## Authentication
+
+This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -142,6 +170,8 @@ CompletableFuture<ApiResponse<PaymentTokenResponse>> getPaymentTokenAsync(
 | `id` | `String` | Template, Required | ID of the payment token.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36`, *Pattern*: `^[0-9a-zA-Z_-]+$` |
 
 ## Response Type
+
+**200**: Successful execution.
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `getResult()` getter of this instance returns the response data which is of type [`PaymentTokenResponse`](../../doc/models/payment-token-response.md).
 
@@ -154,8 +184,16 @@ vaultController.getPaymentTokenAsync(id).thenAccept(result -> {
     // TODO success callback handler
     System.out.println(result);
 }).exceptionally(exception -> {
-    // TODO failure callback handler
-    exception.printStackTrace();
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof ErrorException) {
+        ErrorException errorException = (ErrorException) cause;
+        errorException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
     return null;
 });
 ```
@@ -179,6 +217,10 @@ CompletableFuture<ApiResponse<Void>> deletePaymentTokenAsync(
     final String id)
 ```
 
+## Authentication
+
+This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -186,6 +228,8 @@ CompletableFuture<ApiResponse<Void>> deletePaymentTokenAsync(
 | `id` | `String` | Template, Required | ID of the payment token.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36`, *Pattern*: `^[0-9a-zA-Z_-]+$` |
 
 ## Response Type
+
+**204**: The server has successfully executed the method, but there is no entity body to return.
 
 `void`
 
@@ -198,8 +242,16 @@ vaultController.deletePaymentTokenAsync(id).thenAccept(result -> {
     // TODO success callback handler
     System.out.println(result);
 }).exceptionally(exception -> {
-    // TODO failure callback handler
-    exception.printStackTrace();
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof ErrorException) {
+        ErrorException errorException = (ErrorException) cause;
+        errorException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
     return null;
 });
 ```
@@ -222,14 +274,19 @@ CompletableFuture<ApiResponse<SetupTokenResponse>> createSetupTokenAsync(
     final CreateSetupTokenInput input)
 ```
 
+## Authentication
+
+This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`SetupTokenRequest`](../../doc/models/setup-token-request.md) | Body, Required | Setup Token creation with a instrument type optional financial instrument details and customer_id. |
-| `paypalRequestId` | `String` | Header, Optional | The server stores keys for 3 hours.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `108`, *Pattern*: `^.*$` |
+| `input` | [`CreateSetupTokenInput`](../../doc/models/create-setup-token-input.md) | Required | Input structure for the method CreateSetupTokenAsync |
 
 ## Response Type
+
+**200**: Idempotent response for a successful creation of setup token.
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `getResult()` getter of this instance returns the response data which is of type [`SetupTokenResponse`](../../doc/models/setup-token-response.md).
 
@@ -250,8 +307,16 @@ vaultController.createSetupTokenAsync(createSetupTokenInput).thenAccept(result -
     // TODO success callback handler
     System.out.println(result);
 }).exceptionally(exception -> {
-    // TODO failure callback handler
-    exception.printStackTrace();
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof ErrorException) {
+        ErrorException errorException = (ErrorException) cause;
+        errorException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
     return null;
 });
 ```
@@ -275,6 +340,10 @@ CompletableFuture<ApiResponse<SetupTokenResponse>> getSetupTokenAsync(
     final String id)
 ```
 
+## Authentication
+
+This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
@@ -282,6 +351,8 @@ CompletableFuture<ApiResponse<SetupTokenResponse>> getSetupTokenAsync(
 | `id` | `String` | Template, Required | ID of the setup token.<br><br>**Constraints**: *Minimum Length*: `7`, *Maximum Length*: `36`, *Pattern*: `^[0-9a-zA-Z_-]+$` |
 
 ## Response Type
+
+**200**: Found requested setup-token, returned a payment method associated with the token.
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `getResult()` getter of this instance returns the response data which is of type [`SetupTokenResponse`](../../doc/models/setup-token-response.md).
 
@@ -294,8 +365,16 @@ vaultController.getSetupTokenAsync(id).thenAccept(result -> {
     // TODO success callback handler
     System.out.println(result);
 }).exceptionally(exception -> {
-    // TODO failure callback handler
-    exception.printStackTrace();
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof ErrorException) {
+        ErrorException errorException = (ErrorException) cause;
+        errorException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
     return null;
 });
 ```

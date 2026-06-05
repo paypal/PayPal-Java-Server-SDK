@@ -1,5 +1,5 @@
 
-# Authorization Status With Details
+# Authorization Status with Details
 
 The status fields and status details for an authorized payment.
 
@@ -11,7 +11,7 @@ The status fields and status details for an authorized payment.
 
 | Name | Type | Tags | Description | Getter | Setter |
 |  --- | --- | --- | --- | --- | --- |
-| `Status` | [`AuthorizationStatus`](../../doc/models/authorization-status.md) | Optional | The status for the authorized payment. | AuthorizationStatus getStatus() | setStatus(AuthorizationStatus status) |
+| `Status` | [`AuthorizationStatus`](../../doc/models/authorization-status.md) | Optional, Read-only | The status for the authorized payment. | AuthorizationStatus getStatus() | setStatus(AuthorizationStatus status) |
 | `StatusDetails` | [`AuthorizationStatusDetails`](../../doc/models/authorization-status-details.md) | Optional | The details of the authorized payment status. | AuthorizationStatusDetails getStatusDetails() | setStatusDetails(AuthorizationStatusDetails statusDetails) |
 
 ## Example (as JSON)

@@ -11,10 +11,10 @@ Electronic Commerce Indicator (ECI). The ECI value is part of the 2 data element
 
 | Name | Description |
 |  --- | --- |
-| `MastercardNon3DSecureTransaction` | Mastercard non-3-D Secure transaction. |
-| `MastercardAttemptedAuthenticationTransaction` | Mastercard attempted authentication transaction. |
-| `MastercardFullyAuthenticatedTransaction` | Mastercard fully authenticated transaction. |
-| `FullyAuthenticatedTransaction` | VISA, AMEX, JCB, DINERS CLUB fully authenticated transaction. |
-| `AttemptedAuthenticationTransaction` | VISA, AMEX, JCB, DINERS CLUB attempted authentication transaction. |
-| `Non3DSecureTransaction` | VISA, AMEX, JCB, DINERS CLUB non-3-D Secure transaction. |
+| `MASTERCARD_NON_3D_SECURE_TRANSACTION` | Mastercard non-3-D Secure transaction. |
+| `MASTERCARD_ATTEMPTED_AUTHENTICATION_TRANSACTION` | Mastercard attempted authentication transaction. |
+| `MASTERCARD_FULLY_AUTHENTICATED_TRANSACTION` | Mastercard fully authenticated transaction. |
+| `FULLY_AUTHENTICATED_TRANSACTION` | VISA, AMEX, JCB, DINERS CLUB fully authenticated transaction. |
+| `ATTEMPTED_AUTHENTICATION_TRANSACTION` | VISA, AMEX, JCB, DINERS CLUB attempted authentication transaction. |
+| `NON_3D_SECURE_TRANSACTION` | VISA, AMEX, JCB, DINERS CLUB non-3-D Secure transaction. |
 

@@ -11,6 +11,6 @@ Verification status of Card.
 
 | Name | Description |
 |  --- | --- |
-| `Verified` | Card has been verified |
-| `Failed` | Card verification has failed |
+| `VERIFIED` | Card has been verified |
+| `FAILED` | Card verification has failed |
 

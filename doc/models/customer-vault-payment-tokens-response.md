@@ -15,7 +15,7 @@ Collection of payment tokens saved for a given customer.
 | `TotalPages` | `Integer` | Optional | Total number of pages.<br><br>**Constraints**: `>= 1`, `<= 10` | Integer getTotalPages() | setTotalPages(Integer totalPages) |
 | `Customer` | [`VaultResponseCustomer`](../../doc/models/vault-response-customer.md) | Optional | This object defines a customer in your system. Use it to manage customer profiles, save payment methods and contact details. | VaultResponseCustomer getCustomer() | setCustomer(VaultResponseCustomer customer) |
 | `PaymentTokens` | [`List<PaymentTokenResponse>`](../../doc/models/payment-token-response.md) | Optional | **Constraints**: *Minimum Items*: `0`, *Maximum Items*: `64` | List<PaymentTokenResponse> getPaymentTokens() | setPaymentTokens(List<PaymentTokenResponse> paymentTokens) |
-| `Links` | [`List<LinkDescription>`](../../doc/models/link-description.md) | Optional | An array of related [HATEOAS links](/api/rest/responses/#hateoas).<br><br>**Constraints**: *Minimum Items*: `1`, *Maximum Items*: `32` | List<LinkDescription> getLinks() | setLinks(List<LinkDescription> links) |
+| `Links` | [`List<LinkDescription>`](../../doc/models/link-description.md) | Optional, Read-only | An array of related [HATEOAS links](https://developer.paypal.com/api/rest/responses/#hateoas).<br><br>**Constraints**: *Minimum Items*: `1`, *Maximum Items*: `32` | List<LinkDescription> getLinks() | setLinks(List<LinkDescription> links) |
 
 ## Example (as JSON)
 

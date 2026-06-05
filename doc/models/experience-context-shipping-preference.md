@@ -11,7 +11,7 @@ The location from which the shipping address is derived., The shipping preferenc
 
 | Name | Description |
 |  --- | --- |
-| `GetFromFile` | Get the customer-provided shipping address on the PayPal site. |
-| `NoShipping` | Redacts the shipping address from the PayPal site. Recommended for digital goods. |
-| `SetProvidedAddress` | Merchant sends the shipping address using purchase_units.shipping.address. The customer cannot change this address on the PayPal site. |
+| `GET_FROM_FILE` | Get the customer-provided shipping address on the PayPal site. |
+| `NO_SHIPPING` | Redacts the shipping address from the PayPal site. Recommended for digital goods. |
+| `SET_PROVIDED_ADDRESS` | Merchant sends the shipping address using purchase_units.shipping.address. The customer cannot change this address on the PayPal site. |
 

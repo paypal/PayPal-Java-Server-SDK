@@ -40,8 +40,7 @@ public enum PaypalReferenceIdType {
     /**
      * Unknown values will be mapped by this enum member
      */
-    _UNKNOWN;
-
+    _UNKNOWN;
 
     private static TreeMap<String, PaypalReferenceIdType> valueMap = new TreeMap<>();
     private String value;

@@ -11,6 +11,6 @@ The pricing model for tiered plan. The `tiers` parameter is required.
 
 | Name | Description |
 |  --- | --- |
-| `Volume` | A volume pricing model. |
-| `Tiered` | A tiered pricing model. |
+| `VOLUME` | A volume pricing model. |
+| `TIERED` | A tiered pricing model. |
 

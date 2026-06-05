@@ -11,8 +11,8 @@ The interval at which the subscription is charged or billed.
 
 | Name | Description |
 |  --- | --- |
-| `Day` | A daily billing cycle. |
-| `Week` | A weekly billing cycle. |
-| `Month` | A monthly billing cycle. |
-| `Year` | A yearly billing cycle. |
+| `DAY` | A daily billing cycle. |
+| `WEEK` | A weekly billing cycle. |
+| `MONTH` | A monthly billing cycle. |
+| `YEAR` | A yearly billing cycle. |
 

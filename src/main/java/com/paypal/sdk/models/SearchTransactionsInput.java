@@ -250,7 +250,8 @@ public class SearchTransactionsInput {
     /**
      * Getter for TransactionCurrency.
      * Filters the transactions in the response by a [three-character ISO-4217 currency
-     * code](/api/rest/reference/currency-codes/) for the PayPal transaction currency.
+     * code](https://developer.paypal.com/api/rest/reference/currency-codes/) for the PayPal
+     * transaction currency.
      * @return Returns the String
      */
     @JsonGetter("transaction_currency")
@@ -262,7 +263,8 @@ public class SearchTransactionsInput {
     /**
      * Setter for TransactionCurrency.
      * Filters the transactions in the response by a [three-character ISO-4217 currency
-     * code](/api/rest/reference/currency-codes/) for the PayPal transaction currency.
+     * code](https://developer.paypal.com/api/rest/reference/currency-codes/) for the PayPal
+     * transaction currency.
      * @param transactionCurrency Value for String
      */
     @JsonSetter("transaction_currency")

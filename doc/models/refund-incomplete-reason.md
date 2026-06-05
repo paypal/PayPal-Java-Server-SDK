@@ -11,5 +11,5 @@ The reason why the refund has the `PENDING` or `FAILED` status.
 
 | Name | Description |
 |  --- | --- |
-| `Echeck` | The customer's account is funded through an eCheck, which has not yet cleared. |
+| `ECHECK` | The customer's account is funded through an eCheck, which has not yet cleared. |
 
