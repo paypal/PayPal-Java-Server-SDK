@@ -196,8 +196,8 @@ public class HttpClientConfiguration implements ReadonlyHttpClientConfiguration 
         public Builder() {
             // setting default values
             configurationBuilder.httpStatusCodesToRetry(Stream.of(408, 413, 429, 500, 502, 503, 504,
-                    521, 522, 524).collect(Collectors.toSet()));
-            configurationBuilder.httpMethodsToRetry(Stream.of(Method.GET,
+                    521, 522, 524, 408, 413, 429, 500, 502, 503, 504, 521, 522, 524).collect(Collectors.toSet()));
+            configurationBuilder.httpMethodsToRetry(Stream.of(Method.GET, Method.PUT, Method.GET,
                     Method.PUT).collect(Collectors.toSet()));
         }
 

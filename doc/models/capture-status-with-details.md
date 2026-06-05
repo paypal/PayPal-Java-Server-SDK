@@ -1,5 +1,5 @@
 
-# Capture Status With Details
+# Capture Status with Details
 
 The status and status details of a captured payment.
 
@@ -11,7 +11,7 @@ The status and status details of a captured payment.
 
 | Name | Type | Tags | Description | Getter | Setter |
 |  --- | --- | --- | --- | --- | --- |
-| `Status` | [`CaptureStatus`](../../doc/models/capture-status.md) | Optional | The status of the captured payment. | CaptureStatus getStatus() | setStatus(CaptureStatus status) |
+| `Status` | [`CaptureStatus`](../../doc/models/capture-status.md) | Optional, Read-only | The status of the captured payment. | CaptureStatus getStatus() | setStatus(CaptureStatus status) |
 | `StatusDetails` | [`CaptureStatusDetails`](../../doc/models/capture-status-details.md) | Optional | The details of the captured payment status. | CaptureStatusDetails getStatusDetails() | setStatusDetails(CaptureStatusDetails statusDetails) |
 
 ## Example (as JSON)

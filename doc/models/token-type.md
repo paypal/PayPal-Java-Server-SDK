@@ -11,5 +11,5 @@ The tokenization method that generated the ID.
 
 | Name | Description |
 |  --- | --- |
-| `BillingAgreement` | The PayPal billing agreement ID. References an approved recurring payment for goods or services. |
+| `BILLING_AGREEMENT` | The PayPal billing agreement ID. References an approved recurring payment for goods or services. |
 

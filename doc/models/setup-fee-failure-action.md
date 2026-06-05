@@ -11,6 +11,6 @@ The action to take on the subscription if the initial payment for the setup fail
 
 | Name | Description |
 |  --- | --- |
-| `Continue` | Continues the subscription if the initial payment for the setup fails. |
-| `Cancel` | Cancels the subscription if the initial payment for the setup fails. |
+| `CONTINUE` | Continues the subscription if the initial payment for the setup fails. |
+| `CANCEL` | Cancels the subscription if the initial payment for the setup fails. |
 

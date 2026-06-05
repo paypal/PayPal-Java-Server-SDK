@@ -41,8 +41,9 @@ public class ExchangeRate {
 
     /**
      * Getter for SourceCurrency.
-     * The [three-character ISO-4217 currency code](/api/rest/reference/currency-codes/) that
-     * identifies the currency.
+     * The [three-character ISO-4217 currency
+     * code](https://developer.paypal.com/api/rest/reference/currency-codes/) that identifies the
+     * currency.
      * @return Returns the String
      */
     @JsonGetter("source_currency")
@@ -53,8 +54,9 @@ public class ExchangeRate {
 
     /**
      * Setter for SourceCurrency.
-     * The [three-character ISO-4217 currency code](/api/rest/reference/currency-codes/) that
-     * identifies the currency.
+     * The [three-character ISO-4217 currency
+     * code](https://developer.paypal.com/api/rest/reference/currency-codes/) that identifies the
+     * currency.
      * @param sourceCurrency Value for String
      */
     @JsonSetter("source_currency")
@@ -64,8 +66,9 @@ public class ExchangeRate {
 
     /**
      * Getter for TargetCurrency.
-     * The [three-character ISO-4217 currency code](/api/rest/reference/currency-codes/) that
-     * identifies the currency.
+     * The [three-character ISO-4217 currency
+     * code](https://developer.paypal.com/api/rest/reference/currency-codes/) that identifies the
+     * currency.
      * @return Returns the String
      */
     @JsonGetter("target_currency")
@@ -76,8 +79,9 @@ public class ExchangeRate {
 
     /**
      * Setter for TargetCurrency.
-     * The [three-character ISO-4217 currency code](/api/rest/reference/currency-codes/) that
-     * identifies the currency.
+     * The [three-character ISO-4217 currency
+     * code](https://developer.paypal.com/api/rest/reference/currency-codes/) that identifies the
+     * currency.
      * @param targetCurrency Value for String
      */
     @JsonSetter("target_currency")

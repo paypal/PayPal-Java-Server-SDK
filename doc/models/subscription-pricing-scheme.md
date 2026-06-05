@@ -11,7 +11,7 @@ The pricing scheme details.
 
 | Name | Type | Tags | Description | Getter | Setter |
 |  --- | --- | --- | --- | --- | --- |
-| `Version` | `Integer` | Optional | The version of the pricing scheme.<br><br>**Constraints**: `>= 0`, `<= 999` | Integer getVersion() | setVersion(Integer version) |
+| `Version` | `Integer` | Optional, Read-only | The version of the pricing scheme.<br><br>**Constraints**: `>= 0`, `<= 999` | Integer getVersion() | setVersion(Integer version) |
 | `FixedPrice` | [`Money`](../../doc/models/money.md) | Optional | The currency and amount for a financial transaction, such as a balance or payment due. | Money getFixedPrice() | setFixedPrice(Money fixedPrice) |
 | `PricingModel` | [`SubscriptionPricingModel`](../../doc/models/subscription-pricing-model.md) | Optional | The pricing model for tiered plan. The `tiers` parameter is required.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `24`, *Pattern*: `^[A-Z_]+$` | SubscriptionPricingModel getPricingModel() | setPricingModel(SubscriptionPricingModel pricingModel) |
 | `Tiers` | [`List<PricingTier>`](../../doc/models/pricing-tier.md) | Optional | An array of pricing tiers which are used for billing volume/tiered plans. pricing_model field has to be specified.<br><br>**Constraints**: *Minimum Items*: `1`, *Maximum Items*: `32` | List<PricingTier> getTiers() | setTiers(List<PricingTier> tiers) |

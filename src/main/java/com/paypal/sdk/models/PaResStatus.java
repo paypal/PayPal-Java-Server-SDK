@@ -60,8 +60,7 @@ public enum PaResStatus {
     /**
      * Unknown values will be mapped by this enum member
      */
-    _UNKNOWN;
-
+    _UNKNOWN;
 
     private static TreeMap<String, PaResStatus> valueMap = new TreeMap<>();
     private String value;

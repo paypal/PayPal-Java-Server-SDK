@@ -11,5 +11,5 @@ The type of capture.
 
 | Name | Description |
 |  --- | --- |
-| `OutstandingBalance` | The outstanding balance that the subscriber must clear. |
+| `OUTSTANDING_BALANCE` | The outstanding balance that the subscriber must clear. |
 

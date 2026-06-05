@@ -61,7 +61,8 @@ public class SearchBalancesInput {
     /**
      * Getter for CurrencyCode.
      * Filters the transactions in the response by a [three-character ISO-4217 currency
-     * code](/api/rest/reference/currency-codes/) for the PayPal transaction currency.
+     * code](https://developer.paypal.com/api/rest/reference/currency-codes/) for the PayPal
+     * transaction currency.
      * @return Returns the String
      */
     @JsonGetter("currency_code")
@@ -73,7 +74,8 @@ public class SearchBalancesInput {
     /**
      * Setter for CurrencyCode.
      * Filters the transactions in the response by a [three-character ISO-4217 currency
-     * code](/api/rest/reference/currency-codes/) for the PayPal transaction currency.
+     * code](https://developer.paypal.com/api/rest/reference/currency-codes/) for the PayPal
+     * transaction currency.
      * @param currencyCode Value for String
      */
     @JsonSetter("currency_code")

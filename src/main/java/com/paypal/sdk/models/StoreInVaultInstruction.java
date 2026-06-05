@@ -25,8 +25,7 @@ public enum StoreInVaultInstruction {
     /**
      * Unknown values will be mapped by this enum member
      */
-    _UNKNOWN;
-
+    _UNKNOWN;
 
     private static TreeMap<String, StoreInVaultInstruction> valueMap = new TreeMap<>();
     private String value;

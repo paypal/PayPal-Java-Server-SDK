@@ -11,9 +11,9 @@ The phone type.
 
 | Name | Description |
 |  --- | --- |
-| `Fax` | Fax number. |
-| `Home` | Home phone number. |
-| `Mobile` | Mobile phone number. |
-| `Other` | Other phone number. |
-| `Pager` | Pager number. |
+| `FAX` | Fax number. |
+| `HOME` | Home phone number. |
+| `MOBILE` | Mobile phone number. |
+| `OTHER` | Other phone number. |
+| `PAGER` | Pager number. |
 

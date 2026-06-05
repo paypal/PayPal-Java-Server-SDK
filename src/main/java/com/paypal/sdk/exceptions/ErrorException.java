@@ -116,7 +116,8 @@ public class ErrorException extends ApiException {
 
     /**
      * Getter for Links.
-     * An array of request-related [HATEOAS links](/api/rest/responses/#hateoas-links).
+     * An array of request-related [HATEOAS
+     * links](https://developer.paypal.com/api/rest/responses/#hateoas-links).
      * @return Returns the List of LinkDescription
      */
     @JsonGetter("links")
@@ -126,7 +127,8 @@ public class ErrorException extends ApiException {
 
     /**
      * Setter for Links.
-     * An array of request-related [HATEOAS links](/api/rest/responses/#hateoas-links).
+     * An array of request-related [HATEOAS
+     * links](https://developer.paypal.com/api/rest/responses/#hateoas-links).
      * @param links Value for List of LinkDescription
      */
     @JsonSetter("links")

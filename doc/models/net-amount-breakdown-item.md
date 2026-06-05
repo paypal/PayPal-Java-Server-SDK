@@ -13,7 +13,7 @@ The net amount. Returned when the currency of the refund is different from the c
 |  --- | --- | --- | --- | --- | --- |
 | `PayableAmount` | [`Money`](../../doc/models/money.md) | Optional | The currency and amount for a financial transaction, such as a balance or payment due. | Money getPayableAmount() | setPayableAmount(Money payableAmount) |
 | `ConvertedAmount` | [`Money`](../../doc/models/money.md) | Optional | The currency and amount for a financial transaction, such as a balance or payment due. | Money getConvertedAmount() | setConvertedAmount(Money convertedAmount) |
-| `ExchangeRate` | [`ExchangeRate`](../../doc/models/exchange-rate.md) | Optional | The exchange rate that determines the amount to convert from one currency to another currency. | ExchangeRate getExchangeRate() | setExchangeRate(ExchangeRate exchangeRate) |
+| `ExchangeRate` | [`ExchangeRate`](../../doc/models/exchange-rate.md) | Optional, Read-only | The exchange rate that determines the amount to convert from one currency to another currency. | ExchangeRate getExchangeRate() | setExchangeRate(ExchangeRate exchangeRate) |
 
 ## Example (as JSON)
 

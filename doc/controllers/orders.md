@@ -31,19 +31,19 @@ CompletableFuture<ApiResponse<Order>> createOrderAsync(
     final CreateOrderInput input)
 ```
 
+## Authentication
+
+This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `body` | [`OrderRequest`](../../doc/models/order-request.md) | Body, Required | - |
-| `paypalMockResponse` | `String` | Header, Optional | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant. |
-| `paypalRequestId` | `String` | Header, Optional | The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager. It is mandatory for all single-step create order calls (E.g. Create Order Request with payment source information like Card, PayPal.vault_id, PayPal.billing_agreement_id, etc).<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `108` |
-| `paypalPartnerAttributionId` | `String` | Header, Optional | **Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36` |
-| `paypalClientMetadataId` | `String` | Header, Optional | **Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36` |
-| `prefer` | `String` | Header, Optional | The preferred server response upon successful completion of the request. Value is: return=minimal. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the id, status and HATEOAS links. return=representation. The server returns a complete resource representation, including the current state of the resource.<br><br>**Default**: `"return=minimal"`<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `25`, *Pattern*: `^[a-zA-Z=,-]*$` |
-| `paypalAuthAssertion` | `String` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see PayPal-Auth-Assertion. |
+| `input` | [`CreateOrderInput`](../../doc/models/create-order-input.md) | Required | Input structure for the method CreateOrderAsync |
 
 ## Response Type
+
+**200**: A successful response to an idempotent request returns the HTTP `200 OK` status code with a JSON response body that shows order details.
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `getResult()` getter of this instance returns the response data which is of type [`Order`](../../doc/models/order.md).
 
@@ -74,8 +74,16 @@ ordersController.createOrderAsync(createOrderInput).thenAccept(result -> {
     // TODO success callback handler
     System.out.println(result);
 }).exceptionally(exception -> {
-    // TODO failure callback handler
-    exception.printStackTrace();
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof ErrorException) {
+        ErrorException errorException = (ErrorException) cause;
+        errorException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
     return null;
 });
 ```
@@ -99,16 +107,19 @@ CompletableFuture<ApiResponse<Order>> getOrderAsync(
     final GetOrderInput input)
 ```
 
+## Authentication
+
+This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `id` | `String` | Template, Required | The ID of the order for which to show details.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36`, *Pattern*: `^[A-Z0-9]+$` |
-| `paypalMockResponse` | `String` | Header, Optional | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant. |
-| `paypalAuthAssertion` | `String` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see PayPal-Auth-Assertion. |
-| `fields` | `String` | Query, Optional | A comma-separated list of fields that should be returned for the order. Valid filter field is `payment_source`.<br><br>**Constraints**: *Pattern*: `^[a-z_]*$` |
+| `input` | [`GetOrderInput`](../../doc/models/get-order-input.md) | Required | Input structure for the method GetOrderAsync |
 
 ## Response Type
+
+**200**: A successful request returns the HTTP `200 OK` status code and a JSON response body that shows order details.
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `getResult()` getter of this instance returns the response data which is of type [`Order`](../../doc/models/order.md).
 
@@ -124,8 +135,16 @@ ordersController.getOrderAsync(getOrderInput).thenAccept(result -> {
     // TODO success callback handler
     System.out.println(result);
 }).exceptionally(exception -> {
-    // TODO failure callback handler
-    exception.printStackTrace();
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof ErrorException) {
+        ErrorException errorException = (ErrorException) cause;
+        errorException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
     return null;
 });
 ```
@@ -148,16 +167,19 @@ CompletableFuture<ApiResponse<Void>> patchOrderAsync(
     final PatchOrderInput input)
 ```
 
+## Authentication
+
+This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `id` | `String` | Template, Required | The ID of the order to update.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36`, *Pattern*: `^[A-Z0-9]+$` |
-| `paypalMockResponse` | `String` | Header, Optional | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant. |
-| `paypalAuthAssertion` | `String` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see PayPal-Auth-Assertion. |
-| `body` | [`List<Patch>`](../../doc/models/patch.md) | Body, Optional | **Constraints**: *Minimum Items*: `0`, *Maximum Items*: `32767` |
+| `input` | [`PatchOrderInput`](../../doc/models/patch-order-input.md) | Required | Input structure for the method PatchOrderAsync |
 
 ## Response Type
+
+**204**: A successful request returns the HTTP `204 No Content` status code with an empty object in the JSON response body.
 
 `void`
 
@@ -180,8 +202,16 @@ ordersController.patchOrderAsync(patchOrderInput).thenAccept(result -> {
     // TODO success callback handler
     System.out.println(result);
 }).exceptionally(exception -> {
-    // TODO failure callback handler
-    exception.printStackTrace();
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof ErrorException) {
+        ErrorException errorException = (ErrorException) cause;
+        errorException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
     return null;
 });
 ```
@@ -206,17 +236,19 @@ CompletableFuture<ApiResponse<Order>> confirmOrderAsync(
     final ConfirmOrderInput input)
 ```
 
+## Authentication
+
+This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `id` | `String` | Template, Required | The ID of the order for which the payer confirms their intent to pay.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36`, *Pattern*: `^[A-Z0-9]+$` |
-| `paypalClientMetadataId` | `String` | Header, Optional | **Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36` |
-| `paypalAuthAssertion` | `String` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see PayPal-Auth-Assertion. |
-| `prefer` | `String` | Header, Optional | The preferred server response upon successful completion of the request. Value is: return=minimal. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the id, status and HATEOAS links. return=representation. The server returns a complete resource representation, including the current state of the resource.<br><br>**Default**: `"return=minimal"`<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `25`, *Pattern*: `^[a-zA-Z=]*$` |
-| `body` | [`ConfirmOrderRequest`](../../doc/models/confirm-order-request.md) | Body, Optional | - |
+| `input` | [`ConfirmOrderInput`](../../doc/models/confirm-order-input.md) | Required | Input structure for the method ConfirmOrderAsync |
 
 ## Response Type
+
+**200**: A successful request indicates that the payment source was added to the Order. A successful request returns the HTTP `200 OK` status code with a JSON response body that shows order details.
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `getResult()` getter of this instance returns the response data which is of type [`Order`](../../doc/models/order.md).
 
@@ -234,8 +266,16 @@ ordersController.confirmOrderAsync(confirmOrderInput).thenAccept(result -> {
     // TODO success callback handler
     System.out.println(result);
 }).exceptionally(exception -> {
-    // TODO failure callback handler
-    exception.printStackTrace();
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof ErrorException) {
+        ErrorException errorException = (ErrorException) cause;
+        errorException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
     return null;
 });
 ```
@@ -260,19 +300,19 @@ CompletableFuture<ApiResponse<OrderAuthorizeResponse>> authorizeOrderAsync(
     final AuthorizeOrderInput input)
 ```
 
+## Authentication
+
+This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `id` | `String` | Template, Required | The ID of the order for which to authorize.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36`, *Pattern*: `^[A-Z0-9]+$` |
-| `paypalMockResponse` | `String` | Header, Optional | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant. |
-| `paypalRequestId` | `String` | Header, Optional | The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager. It is mandatory for all single-step create order calls (E.g. Create Order Request with payment source information like Card, PayPal.vault_id, PayPal.billing_agreement_id, etc).<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `108` |
-| `prefer` | `String` | Header, Optional | The preferred server response upon successful completion of the request. Value is: return=minimal. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the id, status and HATEOAS links. return=representation. The server returns a complete resource representation, including the current state of the resource.<br><br>**Default**: `"return=minimal"`<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `25`, *Pattern*: `^[a-zA-Z=,-]*$` |
-| `paypalClientMetadataId` | `String` | Header, Optional | **Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36` |
-| `paypalAuthAssertion` | `String` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see PayPal-Auth-Assertion. |
-| `body` | [`OrderAuthorizeRequest`](../../doc/models/order-authorize-request.md) | Body, Optional | - |
+| `input` | [`AuthorizeOrderInput`](../../doc/models/authorize-order-input.md) | Required | Input structure for the method AuthorizeOrderAsync |
 
 ## Response Type
+
+**200**: A successful response to an idempotent request returns the HTTP `200 OK` status code with a JSON response body that shows authorized payment details.
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `getResult()` getter of this instance returns the response data which is of type [`OrderAuthorizeResponse`](../../doc/models/order-authorize-response.md).
 
@@ -290,8 +330,16 @@ ordersController.authorizeOrderAsync(authorizeOrderInput).thenAccept(result -> {
     // TODO success callback handler
     System.out.println(result);
 }).exceptionally(exception -> {
-    // TODO failure callback handler
-    exception.printStackTrace();
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof ErrorException) {
+        ErrorException errorException = (ErrorException) cause;
+        errorException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
     return null;
 });
 ```
@@ -318,19 +366,19 @@ CompletableFuture<ApiResponse<Order>> captureOrderAsync(
     final CaptureOrderInput input)
 ```
 
+## Authentication
+
+This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `id` | `String` | Template, Required | The ID of the order for which to capture a payment.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36`, *Pattern*: `^[A-Z0-9]+$` |
-| `paypalMockResponse` | `String` | Header, Optional | PayPal's REST API uses a request header to invoke negative testing in the sandbox. This header configures the sandbox into a negative testing state for transactions that include the merchant. |
-| `paypalRequestId` | `String` | Header, Optional | The server stores keys for 6 hours. The API callers can request the times to up to 72 hours by speaking to their Account Manager. It is mandatory for all single-step create order calls (E.g. Create Order Request with payment source information like Card, PayPal.vault_id, PayPal.billing_agreement_id, etc).<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `108` |
-| `prefer` | `String` | Header, Optional | The preferred server response upon successful completion of the request. Value is: return=minimal. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the id, status and HATEOAS links. return=representation. The server returns a complete resource representation, including the current state of the resource.<br><br>**Default**: `"return=minimal"`<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `25`, *Pattern*: `^[a-zA-Z=,-]*$` |
-| `paypalClientMetadataId` | `String` | Header, Optional | **Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36` |
-| `paypalAuthAssertion` | `String` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see PayPal-Auth-Assertion. |
-| `body` | [`OrderCaptureRequest`](../../doc/models/order-capture-request.md) | Body, Optional | - |
+| `input` | [`CaptureOrderInput`](../../doc/models/capture-order-input.md) | Required | Input structure for the method CaptureOrderAsync |
 
 ## Response Type
+
+**200**: A successful response to an idempotent request returns the HTTP `200 OK` status code with a JSON response body that shows captured payment details.
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `getResult()` getter of this instance returns the response data which is of type [`Order`](../../doc/models/order.md).
 
@@ -348,8 +396,16 @@ ordersController.captureOrderAsync(captureOrderInput).thenAccept(result -> {
     // TODO success callback handler
     System.out.println(result);
 }).exceptionally(exception -> {
-    // TODO failure callback handler
-    exception.printStackTrace();
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof ErrorException) {
+        ErrorException errorException = (ErrorException) cause;
+        errorException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
     return null;
 });
 ```
@@ -376,15 +432,19 @@ CompletableFuture<ApiResponse<Order>> createOrderTrackingAsync(
     final CreateOrderTrackingInput input)
 ```
 
+## Authentication
+
+This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `id` | `String` | Template, Required | The ID of the order that the tracking information is associated with.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36`, *Pattern*: `^[A-Z0-9]+$` |
-| `body` | [`OrderTrackerRequest`](../../doc/models/order-tracker-request.md) | Body, Required | - |
-| `paypalAuthAssertion` | `String` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see PayPal-Auth-Assertion. |
+| `input` | [`CreateOrderTrackingInput`](../../doc/models/create-order-tracking-input.md) | Required | Input structure for the method CreateOrderTrackingAsync |
 
 ## Response Type
+
+**200**: A successful response to an idempotent request returns the HTTP `200 OK` status code with a JSON response body that shows tracker details.
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `getResult()` getter of this instance returns the response data which is of type [`Order`](../../doc/models/order.md).
 
@@ -406,8 +466,16 @@ ordersController.createOrderTrackingAsync(createOrderTrackingInput).thenAccept(r
     // TODO success callback handler
     System.out.println(result);
 }).exceptionally(exception -> {
-    // TODO failure callback handler
-    exception.printStackTrace();
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof ErrorException) {
+        ErrorException errorException = (ErrorException) cause;
+        errorException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
     return null;
 });
 ```
@@ -433,16 +501,19 @@ CompletableFuture<ApiResponse<Void>> updateOrderTrackingAsync(
     final UpdateOrderTrackingInput input)
 ```
 
+## Authentication
+
+This endpoint requires [Oauth2](../../doc/auth/oauth-2-client-credentials-grant.md)
+
 ## Parameters
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `id` | `String` | Template, Required | The ID of the order that the tracking information is associated with.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36`, *Pattern*: `^[A-Z0-9]+$` |
-| `trackerId` | `String` | Template, Required | The order tracking ID.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `36`, *Pattern*: `^[A-Z0-9]+$` |
-| `paypalAuthAssertion` | `String` | Header, Optional | An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see PayPal-Auth-Assertion. |
-| `body` | [`List<Patch>`](../../doc/models/patch.md) | Body, Optional | **Constraints**: *Minimum Items*: `0`, *Maximum Items*: `32767` |
+| `input` | [`UpdateOrderTrackingInput`](../../doc/models/update-order-tracking-input.md) | Required | Input structure for the method UpdateOrderTrackingAsync |
 
 ## Response Type
+
+**204**: A successful request returns the HTTP `204 No Content` status code with an empty object in the JSON response body.
 
 `void`
 
@@ -466,8 +537,16 @@ ordersController.updateOrderTrackingAsync(updateOrderTrackingInput).thenAccept(r
     // TODO success callback handler
     System.out.println(result);
 }).exceptionally(exception -> {
-    // TODO failure callback handler
-    exception.printStackTrace();
+    Throwable cause = exception.getCause();
+
+    if (cause instanceof ErrorException) {
+        ErrorException errorException = (ErrorException) cause;
+        errorException.printStackTrace();
+    } else {
+        // fallback for unexpected errors
+        exception.printStackTrace();
+    }
+
     return null;
 });
 ```

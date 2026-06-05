@@ -11,6 +11,6 @@ The customer type associated with the PayPal payment token. This is to indicate 
 
 | Name | Description |
 |  --- | --- |
-| `Consumer` | The customer vaulting the PayPal payment token is a consumer on the merchant / platform. |
-| `Business` | The customer vaulting the PayPal payment token is a business on merchant / platform. |
+| `CONSUMER` | The customer vaulting the PayPal payment token is a consumer on the merchant / platform. |
+| `BUSINESS` | The customer vaulting the PayPal payment token is a business on merchant / platform. |
 
