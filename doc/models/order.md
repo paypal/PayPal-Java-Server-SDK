@@ -22,55 +22,63 @@ The order details.
 | `Status` | [`OrderStatus`](../../doc/models/order-status.md) | Optional | The order status.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[0-9A-Z_]+$` | OrderStatus getStatus() | setStatus(OrderStatus status) |
 | `Links` | [`List<LinkDescription>`](../../doc/models/link-description.md) | Optional, Read-only | An array of request-related HATEOAS links. To complete payer approval, use the `approve` link to redirect the payer. The API caller has 6 hours (default setting, this which can be changed by your account manager to 24/48/72 hours to accommodate your use case) from the time the order is created, to redirect your payer. Once redirected, the API caller has 6 hours for the payer to approve the order and either authorize or capture the order. If you are not using the PayPal JavaScript SDK to initiate PayPal Checkout (in context) ensure that you include `application_context.return_url` is specified or you will get "We're sorry, Things don't appear to be working at the moment" after the payer approves the payment. | List<LinkDescription> getLinks() | setLinks(List<LinkDescription> links) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "create_time": "create_time8",
-  "update_time": "update_time4",
-  "id": "id2",
-  "payment_source": {
-    "card": {
-      "name": "name6",
-      "last_digits": "last_digits0",
-      "brand": "CB_NATIONALE",
-      "available_networks": [
-        "DELTA"
-      ],
-      "type": "UNKNOWN"
-    },
-    "paypal": {
-      "email_address": "email_address0",
-      "account_id": "account_id4",
-      "account_status": "VERIFIED",
-      "name": {
-        "given_name": "given_name2",
-        "surname": "surname8"
-      },
-      "phone_type": "FAX"
-    },
-    "bancontact": {
-      "name": "name0",
-      "country_code": "country_code0",
-      "bic": "bic2",
-      "iban_last_chars": "iban_last_chars8",
-      "card_last_digits": "card_last_digits4"
-    },
-    "blik": {
-      "name": "name2",
-      "country_code": "country_code2",
-      "email": "email4",
-      "one_click": {
-        "consumer_reference": "consumer_reference2"
-      }
-    },
-    "eps": {
-      "name": "name6",
-      "country_code": "country_code6",
-      "bic": "bic8"
-    }
-  },
-  "intent": "CAPTURE"
-}
+```java
+import com.paypal.sdk.models.BancontactPaymentObject;
+import com.paypal.sdk.models.BlikOneClickPaymentObject;
+import com.paypal.sdk.models.BlikPaymentObject;
+import com.paypal.sdk.models.CardBrand;
+import com.paypal.sdk.models.CardResponse;
+import com.paypal.sdk.models.CardType;
+import com.paypal.sdk.models.CheckoutPaymentIntent;
+import com.paypal.sdk.models.EpsPaymentObject;
+import com.paypal.sdk.models.Name;
+import com.paypal.sdk.models.Order;
+import com.paypal.sdk.models.PaymentSourceResponse;
+import com.paypal.sdk.models.PaypalWalletResponse;
+import com.paypal.sdk.models.PhoneType;
+
+Order order = new Order.Builder()
+    .createTime("create_time2")
+    .updateTime("update_time8")
+    .paymentSource(new PaymentSourceResponse.Builder()
+        .card(new CardResponse.Builder()
+            .name("name6")
+            .brand(CardBrand.CB_NATIONALE)
+            .type(CardType.UNKNOWN)
+            .build())
+        .paypal(new PaypalWalletResponse.Builder()
+            .emailAddress("email_address0")
+            .accountId("account_id4")
+            .name(new Name.Builder()
+                .givenName("given_name2")
+                .surname("surname8")
+                .build())
+            .phoneType(PhoneType.FAX)
+            .build())
+        .bancontact(new BancontactPaymentObject.Builder()
+            .name("name0")
+            .countryCode("country_code0")
+            .bic("bic2")
+            .ibanLastChars("iban_last_chars8")
+            .cardLastDigits("card_last_digits4")
+            .build())
+        .blik(new BlikPaymentObject.Builder()
+            .name("name2")
+            .countryCode("country_code2")
+            .email("email4")
+            .oneClick(new BlikOneClickPaymentObject.Builder()
+                .consumerReference("consumer_reference2")
+                .build())
+            .build())
+        .eps(new EpsPaymentObject.Builder()
+            .name("name6")
+            .countryCode("country_code6")
+            .bic("bic8")
+            .build())
+        .build())
+    .intent(CheckoutPaymentIntent.CAPTURE)
+    .build();
 ```
 

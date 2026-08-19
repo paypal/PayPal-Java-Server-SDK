@@ -13,15 +13,20 @@ Results of Authentication such as 3D Secure.
 |  --- | --- | --- | --- | --- | --- |
 | `ThreeDSecure` | [`ThreeDSecureCardAuthenticationResponse`](../../doc/models/three-d-secure-card-authentication-response.md) | Optional | Results of 3D Secure Authentication. | ThreeDSecureCardAuthenticationResponse getThreeDSecure() | setThreeDSecure(ThreeDSecureCardAuthenticationResponse threeDSecure) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "three_d_secure": {
-    "authentication_status": "C",
-    "enrollment_status": "Y",
-    "authentication_id": "authentication_id6"
-  }
-}
+```java
+import com.paypal.sdk.models.CardAuthenticationResponse;
+import com.paypal.sdk.models.EnrollmentStatus;
+import com.paypal.sdk.models.PaResStatus;
+import com.paypal.sdk.models.ThreeDSecureCardAuthenticationResponse;
+
+CardAuthenticationResponse cardAuthenticationResponse = new CardAuthenticationResponse.Builder()
+    .threeDSecure(new ThreeDSecureCardAuthenticationResponse.Builder()
+        .authenticationStatus(PaResStatus.CHALLENGEREQUIRED)
+        .enrollmentStatus(EnrollmentStatus.ENROLLED)
+        .authenticationId("authentication_id6")
+        .build())
+    .build();
 ```
 

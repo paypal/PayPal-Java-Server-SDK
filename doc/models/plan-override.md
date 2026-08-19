@@ -15,142 +15,175 @@ An inline plan object to customise the subscription. You can override plan level
 | `PaymentPreferences` | [`PaymentPreferencesOverride`](../../doc/models/payment-preferences-override.md) | Optional | The payment preferences to override at subscription level. | PaymentPreferencesOverride getPaymentPreferences() | setPaymentPreferences(PaymentPreferencesOverride paymentPreferences) |
 | `Taxes` | [`TaxesOverride`](../../doc/models/taxes-override.md) | Optional | The tax details. | TaxesOverride getTaxes() | setTaxes(TaxesOverride taxes) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "billing_cycles": [
-    {
-      "pricing_scheme": {
-        "version": 10,
-        "fixed_price": {
-          "currency_code": "currency_code4",
-          "value": "value0"
-        },
-        "pricing_model": "VOLUME",
-        "tiers": [
-          {
-            "starting_quantity": "starting_quantity8",
-            "ending_quantity": "ending_quantity6",
-            "amount": {
-              "currency_code": "currency_code6",
-              "value": "value0"
-            }
-          },
-          {
-            "starting_quantity": "starting_quantity8",
-            "ending_quantity": "ending_quantity6",
-            "amount": {
-              "currency_code": "currency_code6",
-              "value": "value0"
-            }
-          },
-          {
-            "starting_quantity": "starting_quantity8",
-            "ending_quantity": "ending_quantity6",
-            "amount": {
-              "currency_code": "currency_code6",
-              "value": "value0"
-            }
-          }
-        ],
-        "create_time": "create_time4"
-      },
-      "sequence": 8,
-      "total_cycles": 198
-    },
-    {
-      "pricing_scheme": {
-        "version": 10,
-        "fixed_price": {
-          "currency_code": "currency_code4",
-          "value": "value0"
-        },
-        "pricing_model": "VOLUME",
-        "tiers": [
-          {
-            "starting_quantity": "starting_quantity8",
-            "ending_quantity": "ending_quantity6",
-            "amount": {
-              "currency_code": "currency_code6",
-              "value": "value0"
-            }
-          },
-          {
-            "starting_quantity": "starting_quantity8",
-            "ending_quantity": "ending_quantity6",
-            "amount": {
-              "currency_code": "currency_code6",
-              "value": "value0"
-            }
-          },
-          {
-            "starting_quantity": "starting_quantity8",
-            "ending_quantity": "ending_quantity6",
-            "amount": {
-              "currency_code": "currency_code6",
-              "value": "value0"
-            }
-          }
-        ],
-        "create_time": "create_time4"
-      },
-      "sequence": 8,
-      "total_cycles": 198
-    },
-    {
-      "pricing_scheme": {
-        "version": 10,
-        "fixed_price": {
-          "currency_code": "currency_code4",
-          "value": "value0"
-        },
-        "pricing_model": "VOLUME",
-        "tiers": [
-          {
-            "starting_quantity": "starting_quantity8",
-            "ending_quantity": "ending_quantity6",
-            "amount": {
-              "currency_code": "currency_code6",
-              "value": "value0"
-            }
-          },
-          {
-            "starting_quantity": "starting_quantity8",
-            "ending_quantity": "ending_quantity6",
-            "amount": {
-              "currency_code": "currency_code6",
-              "value": "value0"
-            }
-          },
-          {
-            "starting_quantity": "starting_quantity8",
-            "ending_quantity": "ending_quantity6",
-            "amount": {
-              "currency_code": "currency_code6",
-              "value": "value0"
-            }
-          }
-        ],
-        "create_time": "create_time4"
-      },
-      "sequence": 8,
-      "total_cycles": 198
-    }
-  ],
-  "payment_preferences": {
-    "auto_bill_outstanding": false,
-    "setup_fee": {
-      "currency_code": "currency_code8",
-      "value": "value4"
-    },
-    "setup_fee_failure_action": "CONTINUE",
-    "payment_failure_threshold": 104
-  },
-  "taxes": {
-    "percentage": "percentage8",
-    "inclusive": false
-  }
-}
+```java
+import com.paypal.sdk.models.BillingCycleOverride;
+import com.paypal.sdk.models.Money;
+import com.paypal.sdk.models.PaymentPreferencesOverride;
+import com.paypal.sdk.models.PlanOverride;
+import com.paypal.sdk.models.PricingTier;
+import com.paypal.sdk.models.SetupFeeFailureAction;
+import com.paypal.sdk.models.SubscriptionPricingModel;
+import com.paypal.sdk.models.SubscriptionPricingScheme;
+import com.paypal.sdk.models.TaxesOverride;
+import java.util.Arrays;
+
+PlanOverride planOverride = new PlanOverride.Builder()
+    .billingCycles(Arrays.asList(
+        new BillingCycleOverride.Builder(
+            8
+        )
+        .pricingScheme(new SubscriptionPricingScheme.Builder()
+                .fixedPrice(new Money.Builder(
+                    "currency_code4",
+                    "value0"
+                )
+                .build())
+                .pricingModel(SubscriptionPricingModel.VOLUME)
+                .tiers(Arrays.asList(
+                    new PricingTier.Builder(
+                        "starting_quantity8",
+                        new Money.Builder(
+                            "currency_code6",
+                            "value0"
+                        )
+                        .build()
+                    )
+                    .endingQuantity("ending_quantity6")
+                    .build(),
+                    new PricingTier.Builder(
+                        "starting_quantity8",
+                        new Money.Builder(
+                            "currency_code6",
+                            "value0"
+                        )
+                        .build()
+                    )
+                    .endingQuantity("ending_quantity6")
+                    .build(),
+                    new PricingTier.Builder(
+                        "starting_quantity8",
+                        new Money.Builder(
+                            "currency_code6",
+                            "value0"
+                        )
+                        .build()
+                    )
+                    .endingQuantity("ending_quantity6")
+                    .build()
+                ))
+                .createTime("create_time4")
+                .build())
+        .totalCycles(198)
+        .build(),
+        new BillingCycleOverride.Builder(
+            8
+        )
+        .pricingScheme(new SubscriptionPricingScheme.Builder()
+                .fixedPrice(new Money.Builder(
+                    "currency_code4",
+                    "value0"
+                )
+                .build())
+                .pricingModel(SubscriptionPricingModel.VOLUME)
+                .tiers(Arrays.asList(
+                    new PricingTier.Builder(
+                        "starting_quantity8",
+                        new Money.Builder(
+                            "currency_code6",
+                            "value0"
+                        )
+                        .build()
+                    )
+                    .endingQuantity("ending_quantity6")
+                    .build(),
+                    new PricingTier.Builder(
+                        "starting_quantity8",
+                        new Money.Builder(
+                            "currency_code6",
+                            "value0"
+                        )
+                        .build()
+                    )
+                    .endingQuantity("ending_quantity6")
+                    .build(),
+                    new PricingTier.Builder(
+                        "starting_quantity8",
+                        new Money.Builder(
+                            "currency_code6",
+                            "value0"
+                        )
+                        .build()
+                    )
+                    .endingQuantity("ending_quantity6")
+                    .build()
+                ))
+                .createTime("create_time4")
+                .build())
+        .totalCycles(198)
+        .build(),
+        new BillingCycleOverride.Builder(
+            8
+        )
+        .pricingScheme(new SubscriptionPricingScheme.Builder()
+                .fixedPrice(new Money.Builder(
+                    "currency_code4",
+                    "value0"
+                )
+                .build())
+                .pricingModel(SubscriptionPricingModel.VOLUME)
+                .tiers(Arrays.asList(
+                    new PricingTier.Builder(
+                        "starting_quantity8",
+                        new Money.Builder(
+                            "currency_code6",
+                            "value0"
+                        )
+                        .build()
+                    )
+                    .endingQuantity("ending_quantity6")
+                    .build(),
+                    new PricingTier.Builder(
+                        "starting_quantity8",
+                        new Money.Builder(
+                            "currency_code6",
+                            "value0"
+                        )
+                        .build()
+                    )
+                    .endingQuantity("ending_quantity6")
+                    .build(),
+                    new PricingTier.Builder(
+                        "starting_quantity8",
+                        new Money.Builder(
+                            "currency_code6",
+                            "value0"
+                        )
+                        .build()
+                    )
+                    .endingQuantity("ending_quantity6")
+                    .build()
+                ))
+                .createTime("create_time4")
+                .build())
+        .totalCycles(198)
+        .build()
+    ))
+    .paymentPreferences(new PaymentPreferencesOverride.Builder()
+        .autoBillOutstanding(false)
+        .setupFee(new Money.Builder(
+            "currency_code8",
+            "value4"
+        )
+        .build())
+        .setupFeeFailureAction(SetupFeeFailureAction.CONTINUE)
+        .paymentFailureThreshold(104)
+        .build())
+    .taxes(new TaxesOverride.Builder()
+        .percentage("percentage8")
+        .inclusive(false)
+        .build())
+    .build();
 ```
 

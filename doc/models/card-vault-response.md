@@ -16,39 +16,37 @@ The details about a saved Card payment source.
 | `Links` | [`List<LinkDescription>`](../../doc/models/link-description.md) | Optional, Read-only | An array of request-related HATEOAS links.<br><br>**Constraints**: *Minimum Items*: `1`, *Maximum Items*: `10` | List<LinkDescription> getLinks() | setLinks(List<LinkDescription> links) |
 | `Customer` | [`CardCustomerInformation`](../../doc/models/card-customer-information.md) | Optional | The details about a customer in PayPal's system of record. | CardCustomerInformation getCustomer() | setCustomer(CardCustomerInformation customer) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "id": "id6",
-  "status": "VAULTED",
-  "links": [
-    {
-      "href": "href6",
-      "rel": "rel0",
-      "method": "HEAD"
-    },
-    {
-      "href": "href6",
-      "rel": "rel0",
-      "method": "HEAD"
-    }
-  ],
-  "customer": {
-    "id": "id0",
-    "email_address": "email_address2",
-    "phone": {
-      "phone_type": "OTHER",
-      "phone_number": {
-        "national_number": "national_number6"
-      }
-    },
-    "name": {
-      "given_name": "given_name2",
-      "surname": "surname8"
-    },
-    "merchant_customer_id": "merchant_customer_id2"
-  }
-}
+```java
+import com.paypal.sdk.models.CardCustomerInformation;
+import com.paypal.sdk.models.CardVaultResponse;
+import com.paypal.sdk.models.Name;
+import com.paypal.sdk.models.PhoneNumber;
+import com.paypal.sdk.models.PhoneType;
+import com.paypal.sdk.models.PhoneWithType;
+import com.paypal.sdk.models.VaultStatus;
+
+CardVaultResponse cardVaultResponse = new CardVaultResponse.Builder()
+    .id("id0")
+    .status(VaultStatus.VAULTED)
+    .customer(new CardCustomerInformation.Builder()
+        .id("id0")
+        .emailAddress("email_address2")
+        .phone(new PhoneWithType.Builder(
+            new PhoneNumber.Builder(
+                "national_number6"
+            )
+            .build()
+        )
+        .phoneType(PhoneType.OTHER)
+        .build())
+        .name(new Name.Builder()
+            .givenName("given_name2")
+            .surname("surname8")
+            .build())
+        .merchantCustomerId("merchant_customer_id2")
+        .build())
+    .build();
 ```
 

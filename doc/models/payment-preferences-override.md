@@ -16,17 +16,22 @@ The payment preferences to override at subscription level.
 | `SetupFeeFailureAction` | [`SetupFeeFailureAction`](../../doc/models/setup-fee-failure-action.md) | Optional | The action to take on the subscription if the initial payment for the setup fails.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `24`, *Pattern*: `^[A-Z_]+$` | SetupFeeFailureAction getSetupFeeFailureAction() | setSetupFeeFailureAction(SetupFeeFailureAction setupFeeFailureAction) |
 | `PaymentFailureThreshold` | `Integer` | Optional | The maximum number of payment failures before a subscription is suspended. For example, if `payment_failure_threshold` is `2`, the subscription automatically updates to the `SUSPEND` state if two consecutive payments fail.<br><br>**Constraints**: `>= 0`, `<= 999` | Integer getPaymentFailureThreshold() | setPaymentFailureThreshold(Integer paymentFailureThreshold) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "auto_bill_outstanding": false,
-  "setup_fee": {
-    "currency_code": "currency_code8",
-    "value": "value4"
-  },
-  "setup_fee_failure_action": "CONTINUE",
-  "payment_failure_threshold": 80
-}
+```java
+import com.paypal.sdk.models.Money;
+import com.paypal.sdk.models.PaymentPreferencesOverride;
+import com.paypal.sdk.models.SetupFeeFailureAction;
+
+PaymentPreferencesOverride paymentPreferencesOverride = new PaymentPreferencesOverride.Builder()
+    .autoBillOutstanding(false)
+    .setupFee(new Money.Builder(
+        "currency_code8",
+        "value4"
+    )
+    .build())
+    .setupFeeFailureAction(SetupFeeFailureAction.CONTINUE)
+    .paymentFailureThreshold(148)
+    .build();
 ```
 

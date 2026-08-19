@@ -14,12 +14,12 @@ The processor response information for payment requests, such as direct credit c
 | `AvsCode` | [`AvsCode`](../../doc/models/avs-code.md) | Optional, Read-only | The address verification code for Visa, Discover, Mastercard, or American Express transactions. | AvsCode getAvsCode() | setAvsCode(AvsCode avsCode) |
 | `CvvCode` | [`CvvCode`](../../doc/models/cvv-code.md) | Optional, Read-only | The card verification value code for for Visa, Discover, Mastercard, or American Express. | CvvCode getCvvCode() | setCvvCode(CvvCode cvvCode) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "avs_code": "E",
-  "cvv_code": "All others"
-}
+```java
+import com.paypal.sdk.models.CardVerificationProcessorResponse;
+
+CardVerificationProcessorResponse cardVerificationProcessorResponse = new CardVerificationProcessorResponse.Builder()
+    .build();
 ```
 

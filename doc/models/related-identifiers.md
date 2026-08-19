@@ -15,13 +15,15 @@ Identifiers related to a specific resource.
 | `AuthorizationId` | `String` | Optional | Authorization ID related to the resource.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `20`, *Pattern*: `^[A-Z0-9]+$` | String getAuthorizationId() | setAuthorizationId(String authorizationId) |
 | `CaptureId` | `String` | Optional | Capture ID related to the resource.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `20`, *Pattern*: `^[A-Z0-9]+$` | String getCaptureId() | setCaptureId(String captureId) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "order_id": "order_id0",
-  "authorization_id": "authorization_id8",
-  "capture_id": "capture_id8"
-}
+```java
+import com.paypal.sdk.models.RelatedIdentifiers;
+
+RelatedIdentifiers relatedIdentifiers = new RelatedIdentifiers.Builder()
+    .orderId("order_id2")
+    .authorizationId("authorization_id4")
+    .captureId("capture_id6")
+    .build();
 ```
 

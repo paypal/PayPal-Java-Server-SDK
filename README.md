@@ -25,12 +25,12 @@ Install the SDK by adding the following dependency in your project's pom.xml fil
 <dependency>
   <groupId>com.paypal.sdk</groupId>
   <artifactId>paypal-server-sdk</artifactId>
-  <version>2.3.0</version>
+  <version>2.4.0</version>
 </dependency>
 ```
 
 You can also view the package at:
-https://central.sonatype.com/artifact/com.paypal.sdk/paypal-server-sdk/2.3.0
+https://central.sonatype.com/artifact/com.paypal.sdk/paypal-server-sdk/2.4.0
 
 ## Initialize the API Client
 

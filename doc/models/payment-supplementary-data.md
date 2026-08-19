@@ -13,15 +13,18 @@ The supplementary data.
 |  --- | --- | --- | --- | --- | --- |
 | `RelatedIds` | [`RelatedIdentifiers`](../../doc/models/related-identifiers.md) | Optional | Identifiers related to a specific resource. | RelatedIdentifiers getRelatedIds() | setRelatedIds(RelatedIdentifiers relatedIds) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "related_ids": {
-    "order_id": "order_id2",
-    "authorization_id": "authorization_id0",
-    "capture_id": "capture_id0"
-  }
-}
+```java
+import com.paypal.sdk.models.PaymentSupplementaryData;
+import com.paypal.sdk.models.RelatedIdentifiers;
+
+PaymentSupplementaryData paymentSupplementaryData = new PaymentSupplementaryData.Builder()
+    .relatedIds(new RelatedIdentifiers.Builder()
+        .orderId("order_id2")
+        .authorizationId("authorization_id0")
+        .captureId("capture_id0")
+        .build())
+    .build();
 ```
 

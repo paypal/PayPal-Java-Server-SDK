@@ -17,39 +17,52 @@ Refunds a captured payment, by ID. For a full refund, include an empty request b
 | `NoteToPayer` | `String` | Optional | The reason for the refund. Appears in both the payer's transaction history and the emails that the payer receives. The pattern is defined by an external party and supports Unicode.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^.*$` | String getNoteToPayer() | setNoteToPayer(String noteToPayer) |
 | `PaymentInstruction` | [`RefundPaymentInstruction`](../../doc/models/refund-payment-instruction.md) | Optional | Any additional payments instructions during refund payment processing. This object is only applicable to merchants that have been enabled for PayPal Commerce Platform for Marketplaces and Platforms capability. Please speak to your account manager if you want to use this capability. | RefundPaymentInstruction getPaymentInstruction() | setPaymentInstruction(RefundPaymentInstruction paymentInstruction) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "amount": {
-    "currency_code": "currency_code6",
-    "value": "value0"
-  },
-  "custom_id": "custom_id6",
-  "invoice_id": "invoice_id8",
-  "note_to_payer": "note_to_payer0",
-  "payment_instruction": {
-    "platform_fees": [
-      {
-        "amount": {
-          "currency_code": "currency_code6",
-          "value": "value0"
-        }
-      },
-      {
-        "amount": {
-          "currency_code": "currency_code6",
-          "value": "value0"
-        }
-      },
-      {
-        "amount": {
-          "currency_code": "currency_code6",
-          "value": "value0"
-        }
-      }
-    ]
-  }
-}
+```java
+import com.paypal.sdk.models.Money;
+import com.paypal.sdk.models.RefundPaymentInstruction;
+import com.paypal.sdk.models.RefundPlatformFee;
+import com.paypal.sdk.models.RefundRequest;
+import java.util.Arrays;
+
+RefundRequest refundRequest = new RefundRequest.Builder()
+    .amount(new Money.Builder(
+        "currency_code6",
+        "value0"
+    )
+    .build())
+    .customId("custom_id2")
+    .invoiceId("invoice_id4")
+    .noteToPayer("note_to_payer6")
+    .paymentInstruction(new RefundPaymentInstruction.Builder()
+        .platformFees(Arrays.asList(
+            new RefundPlatformFee.Builder(
+                new Money.Builder(
+                    "currency_code6",
+                    "value0"
+                )
+                .build()
+            )
+            .build(),
+            new RefundPlatformFee.Builder(
+                new Money.Builder(
+                    "currency_code6",
+                    "value0"
+                )
+                .build()
+            )
+            .build(),
+            new RefundPlatformFee.Builder(
+                new Money.Builder(
+                    "currency_code6",
+                    "value0"
+                )
+                .build()
+            )
+            .build()
+        ))
+        .build())
+    .build();
 ```
 

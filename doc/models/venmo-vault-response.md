@@ -16,43 +16,36 @@ The details about a saved venmo payment source.
 | `Links` | [`List<LinkDescription>`](../../doc/models/link-description.md) | Optional, Read-only | An array of request-related HATEOAS links.<br><br>**Constraints**: *Minimum Items*: `1`, *Maximum Items*: `10` | List<LinkDescription> getLinks() | setLinks(List<LinkDescription> links) |
 | `Customer` | [`CustomerInformation`](../../doc/models/customer-information.md) | Optional | This object represents a merchant’s customer, allowing them to store contact details, and track all payments associated with the same customer. | CustomerInformation getCustomer() | setCustomer(CustomerInformation customer) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "id": "id2",
-  "status": "CREATED",
-  "links": [
-    {
-      "href": "href6",
-      "rel": "rel0",
-      "method": "HEAD"
-    },
-    {
-      "href": "href6",
-      "rel": "rel0",
-      "method": "HEAD"
-    },
-    {
-      "href": "href6",
-      "rel": "rel0",
-      "method": "HEAD"
-    }
-  ],
-  "customer": {
-    "id": "id0",
-    "email_address": "email_address2",
-    "phone": {
-      "phone_type": "OTHER",
-      "phone_number": {
-        "national_number": "national_number6"
-      }
-    },
-    "name": {
-      "given_name": "given_name2",
-      "surname": "surname8"
-    }
-  }
-}
+```java
+import com.paypal.sdk.models.CustomerInformation;
+import com.paypal.sdk.models.Name;
+import com.paypal.sdk.models.PhoneNumber;
+import com.paypal.sdk.models.PhoneType;
+import com.paypal.sdk.models.PhoneWithType;
+import com.paypal.sdk.models.VenmoVaultResponse;
+import com.paypal.sdk.models.VenmoVaultResponseStatus;
+
+VenmoVaultResponse venmoVaultResponse = new VenmoVaultResponse.Builder()
+    .id("id4")
+    .status(VenmoVaultResponseStatus.APPROVED)
+    .customer(new CustomerInformation.Builder()
+        .id("id0")
+        .emailAddress("email_address2")
+        .phone(new PhoneWithType.Builder(
+            new PhoneNumber.Builder(
+                "national_number6"
+            )
+            .build()
+        )
+        .phoneType(PhoneType.OTHER)
+        .build())
+        .name(new Name.Builder()
+            .givenName("given_name2")
+            .surname("surname8")
+            .build())
+        .build())
+    .build();
 ```
 

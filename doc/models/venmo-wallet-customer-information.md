@@ -16,22 +16,30 @@ The details about a customer in PayPal's system of record.
 | `Phone` | [`PhoneWithType`](../../doc/models/phone-with-type.md) | Optional | The phone information. | PhoneWithType getPhone() | setPhone(PhoneWithType phone) |
 | `Name` | [`Name`](../../doc/models/name.md) | Optional | The name of the party. | Name getName() | setName(Name name) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "id": "id4",
-  "email_address": "email_address2",
-  "phone": {
-    "phone_type": "OTHER",
-    "phone_number": {
-      "national_number": "national_number6"
-    }
-  },
-  "name": {
-    "given_name": "given_name2",
-    "surname": "surname8"
-  }
-}
+```java
+import com.paypal.sdk.models.Name;
+import com.paypal.sdk.models.PhoneNumber;
+import com.paypal.sdk.models.PhoneType;
+import com.paypal.sdk.models.PhoneWithType;
+import com.paypal.sdk.models.VenmoWalletCustomerInformation;
+
+VenmoWalletCustomerInformation venmoWalletCustomerInformation = new VenmoWalletCustomerInformation.Builder()
+    .id("id0")
+    .emailAddress("email_address8")
+    .phone(new PhoneWithType.Builder(
+        new PhoneNumber.Builder(
+            "national_number6"
+        )
+        .build()
+    )
+    .phoneType(PhoneType.OTHER)
+    .build())
+    .name(new Name.Builder()
+        .givenName("given_name2")
+        .surname("surname8")
+        .build())
+    .build();
 ```
 

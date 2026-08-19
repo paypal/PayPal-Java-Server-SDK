@@ -23,22 +23,26 @@ The payment card to use to fund a payment. Can be a credit or debit card. Note: 
 | `NetworkToken` | [`NetworkToken`](../../doc/models/network-token.md) | Optional | The Third Party Network token used to fund a payment. | NetworkToken getNetworkToken() | setNetworkToken(NetworkToken networkToken) |
 | `ExperienceContext` | [`CardExperienceContext`](../../doc/models/card-experience-context.md) | Optional | Customizes the payer experience during the 3DS Approval for payment. | CardExperienceContext getExperienceContext() | setExperienceContext(CardExperienceContext experienceContext) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "name": "name8",
-  "number": "number4",
-  "expiry": "expiry6",
-  "security_code": "security_code0",
-  "billing_address": {
-    "address_line_1": "address_line_12",
-    "address_line_2": "address_line_28",
-    "admin_area_2": "admin_area_28",
-    "admin_area_1": "admin_area_14",
-    "postal_code": "postal_code0",
-    "country_code": "country_code8"
-  }
-}
+```java
+import com.paypal.sdk.models.Address;
+import com.paypal.sdk.models.CardRequest;
+
+CardRequest cardRequest = new CardRequest.Builder()
+    .name("name6")
+    .number("number4")
+    .expiry("expiry4")
+    .securityCode("security_code8")
+    .billingAddress(new Address.Builder(
+        "country_code8"
+    )
+    .addressLine1("address_line_12")
+    .addressLine2("address_line_28")
+    .adminArea2("admin_area_28")
+    .adminArea1("admin_area_14")
+    .postalCode("postal_code0")
+    .build())
+    .build();
 ```
 

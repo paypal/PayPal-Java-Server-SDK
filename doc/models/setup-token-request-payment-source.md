@@ -18,86 +18,110 @@ The payment method to vault with the instrument details.
 | `Token` | [`VaultTokenRequest`](../../doc/models/vault-token-request.md) | Optional | The Tokenized Payment Source representing a Request to Vault a Token. | VaultTokenRequest getToken() | setToken(VaultTokenRequest token) |
 | `Bank` | [`BankRequest`](../../doc/models/bank-request.md) | Optional | A Resource representing a request to vault a Bank used for ACH Debit. | BankRequest getBank() | setBank(BankRequest bank) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "card": {
-    "name": "name6",
-    "number": "number6",
-    "expiry": "expiry4",
-    "security_code": "security_code8",
-    "brand": "CB_NATIONALE"
-  },
-  "paypal": {
-    "description": "description2",
-    "usage_pattern": "THRESHOLD_PREPAID",
-    "shipping": {
-      "name": {
-        "full_name": "full_name6"
-      },
-      "email_address": "email_address2",
-      "phone_number": {
-        "country_code": "country_code2",
-        "national_number": "national_number6"
-      },
-      "type": "SHIPPING",
-      "address": {
-        "address_line_1": "address_line_16",
-        "address_line_2": "address_line_26",
-        "admin_area_2": "admin_area_20",
-        "admin_area_1": "admin_area_12",
-        "postal_code": "postal_code8",
-        "country_code": "country_code6"
-      }
-    },
-    "permit_multiple_payment_tokens": false,
-    "usage_type": "MERCHANT"
-  },
-  "venmo": {
-    "description": "description6",
-    "usage_pattern": "UNSCHEDULED_PREPAID",
-    "shipping": {
-      "name": {
-        "full_name": "full_name6"
-      },
-      "email_address": "email_address2",
-      "phone_number": {
-        "country_code": "country_code2",
-        "national_number": "national_number6"
-      },
-      "type": "SHIPPING",
-      "address": {
-        "address_line_1": "address_line_16",
-        "address_line_2": "address_line_26",
-        "admin_area_2": "admin_area_20",
-        "admin_area_1": "admin_area_12",
-        "postal_code": "postal_code8",
-        "country_code": "country_code6"
-      }
-    },
-    "permit_multiple_payment_tokens": false,
-    "usage_type": "MERCHANT"
-  },
-  "apple_pay": {
-    "token": "token6",
-    "card": {
-      "type": "UNKNOWN",
-      "brand": "CB_NATIONALE",
-      "billing_address": {
-        "address_line_1": "address_line_12",
-        "address_line_2": "address_line_28",
-        "admin_area_2": "admin_area_28",
-        "admin_area_1": "admin_area_14",
-        "postal_code": "postal_code0",
-        "country_code": "country_code8"
-      }
-    }
-  },
-  "token": {
-    "id": "id6",
-    "type": "SETUP_TOKEN"
-  }
-}
+```java
+import com.paypal.sdk.models.Address;
+import com.paypal.sdk.models.ApplePayRequestCard;
+import com.paypal.sdk.models.CardBrand;
+import com.paypal.sdk.models.CardType;
+import com.paypal.sdk.models.FulfillmentType;
+import com.paypal.sdk.models.PaypalPaymentTokenUsageType;
+import com.paypal.sdk.models.PhoneNumberWithCountryCode;
+import com.paypal.sdk.models.SetupTokenRequestCard;
+import com.paypal.sdk.models.SetupTokenRequestPaymentSource;
+import com.paypal.sdk.models.ShippingName;
+import com.paypal.sdk.models.UsagePattern;
+import com.paypal.sdk.models.VaultApplePayRequest;
+import com.paypal.sdk.models.VaultPaypalWalletRequest;
+import com.paypal.sdk.models.VaultTokenRequest;
+import com.paypal.sdk.models.VaultTokenRequestType;
+import com.paypal.sdk.models.VaultVenmoRequest;
+import com.paypal.sdk.models.VaultedDigitalWalletShippingDetails;
+
+SetupTokenRequestPaymentSource setupTokenRequestPaymentSource = new SetupTokenRequestPaymentSource.Builder()
+    .card(new SetupTokenRequestCard.Builder()
+        .name("name6")
+        .number("number6")
+        .expiry("expiry4")
+        .securityCode("security_code8")
+        .brand(CardBrand.CB_NATIONALE)
+        .build())
+    .paypal(new VaultPaypalWalletRequest.Builder()
+        .description("description2")
+        .usagePattern(UsagePattern.THRESHOLD_PREPAID)
+        .shipping(new VaultedDigitalWalletShippingDetails.Builder()
+            .name(new ShippingName.Builder()
+                .fullName("full_name6")
+                .build())
+            .emailAddress("email_address2")
+            .phoneNumber(new PhoneNumberWithCountryCode.Builder(
+                "country_code2",
+                "national_number6"
+            )
+            .build())
+            .type(FulfillmentType.SHIPPING)
+            .address(new Address.Builder(
+                "country_code6"
+            )
+            .addressLine1("address_line_16")
+            .addressLine2("address_line_26")
+            .adminArea2("admin_area_20")
+            .adminArea1("admin_area_12")
+            .postalCode("postal_code8")
+            .build())
+            .build())
+        .permitMultiplePaymentTokens(false)
+        .usageType(PaypalPaymentTokenUsageType.MERCHANT)
+        .build())
+    .venmo(new VaultVenmoRequest.Builder()
+        .description("description6")
+        .usagePattern(UsagePattern.UNSCHEDULED_PREPAID)
+        .shipping(new VaultedDigitalWalletShippingDetails.Builder()
+            .name(new ShippingName.Builder()
+                .fullName("full_name6")
+                .build())
+            .emailAddress("email_address2")
+            .phoneNumber(new PhoneNumberWithCountryCode.Builder(
+                "country_code2",
+                "national_number6"
+            )
+            .build())
+            .type(FulfillmentType.SHIPPING)
+            .address(new Address.Builder(
+                "country_code6"
+            )
+            .addressLine1("address_line_16")
+            .addressLine2("address_line_26")
+            .adminArea2("admin_area_20")
+            .adminArea1("admin_area_12")
+            .postalCode("postal_code8")
+            .build())
+            .build())
+        .permitMultiplePaymentTokens(false)
+        .usageType(PaypalPaymentTokenUsageType.MERCHANT)
+        .build())
+    .applePay(new VaultApplePayRequest.Builder()
+        .token("token6")
+        .card(new ApplePayRequestCard.Builder()
+            .type(CardType.UNKNOWN)
+            .brand(CardBrand.CB_NATIONALE)
+            .billingAddress(new Address.Builder(
+                "country_code8"
+            )
+            .addressLine1("address_line_12")
+            .addressLine2("address_line_28")
+            .adminArea2("admin_area_28")
+            .adminArea1("admin_area_14")
+            .postalCode("postal_code0")
+            .build())
+            .build())
+        .build())
+    .token(new VaultTokenRequest.Builder(
+        "id6",
+        VaultTokenRequestType.SETUP_TOKEN
+    )
+    .build())
+    .build();
 ```
 

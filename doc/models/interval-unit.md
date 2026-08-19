@@ -16,3 +16,11 @@ The interval at which the subscription is charged or billed.
 | `MONTH` | A monthly billing cycle. |
 | `YEAR` | A yearly billing cycle. |
 
+## Example
+
+```java
+import com.paypal.sdk.models.IntervalUnit;
+
+IntervalUnit intervalUnit = IntervalUnit.DAY;
+```
+

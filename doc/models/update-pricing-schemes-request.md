@@ -13,50 +13,66 @@ The update pricing scheme request details.
 |  --- | --- | --- | --- | --- | --- |
 | `PricingSchemes` | [`List<UpdatePricingScheme>`](../../doc/models/update-pricing-scheme.md) | Required | An array of pricing schemes.<br><br>**Constraints**: *Minimum Items*: `1`, *Maximum Items*: `99` | List<UpdatePricingScheme> getPricingSchemes() | setPricingSchemes(List<UpdatePricingScheme> pricingSchemes) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "pricing_schemes": [
-    {
-      "billing_cycle_sequence": 34,
-      "pricing_scheme": {
-        "version": 10,
-        "fixed_price": {
-          "currency_code": "currency_code4",
-          "value": "value0"
-        },
-        "pricing_model": "VOLUME",
-        "tiers": [
-          {
-            "starting_quantity": "starting_quantity8",
-            "ending_quantity": "ending_quantity6",
-            "amount": {
-              "currency_code": "currency_code6",
-              "value": "value0"
-            }
-          },
-          {
-            "starting_quantity": "starting_quantity8",
-            "ending_quantity": "ending_quantity6",
-            "amount": {
-              "currency_code": "currency_code6",
-              "value": "value0"
-            }
-          },
-          {
-            "starting_quantity": "starting_quantity8",
-            "ending_quantity": "ending_quantity6",
-            "amount": {
-              "currency_code": "currency_code6",
-              "value": "value0"
-            }
-          }
-        ],
-        "create_time": "create_time4"
-      }
-    }
-  ]
-}
+```java
+import com.paypal.sdk.models.Money;
+import com.paypal.sdk.models.PricingTier;
+import com.paypal.sdk.models.SubscriptionPricingModel;
+import com.paypal.sdk.models.SubscriptionPricingScheme;
+import com.paypal.sdk.models.UpdatePricingScheme;
+import com.paypal.sdk.models.UpdatePricingSchemesRequest;
+import java.util.Arrays;
+
+UpdatePricingSchemesRequest updatePricingSchemesRequest = new UpdatePricingSchemesRequest.Builder(
+    Arrays.asList(
+        new UpdatePricingScheme.Builder(
+            34,
+            new SubscriptionPricingScheme.Builder()
+                .fixedPrice(new Money.Builder(
+                    "currency_code4",
+                    "value0"
+                )
+                .build())
+                .pricingModel(SubscriptionPricingModel.VOLUME)
+                .tiers(Arrays.asList(
+                    new PricingTier.Builder(
+                        "starting_quantity8",
+                        new Money.Builder(
+                            "currency_code6",
+                            "value0"
+                        )
+                        .build()
+                    )
+                    .endingQuantity("ending_quantity6")
+                    .build(),
+                    new PricingTier.Builder(
+                        "starting_quantity8",
+                        new Money.Builder(
+                            "currency_code6",
+                            "value0"
+                        )
+                        .build()
+                    )
+                    .endingQuantity("ending_quantity6")
+                    .build(),
+                    new PricingTier.Builder(
+                        "starting_quantity8",
+                        new Money.Builder(
+                            "currency_code6",
+                            "value0"
+                        )
+                        .build()
+                    )
+                    .endingQuantity("ending_quantity6")
+                    .build()
+                ))
+                .createTime("create_time4")
+                .build()
+        )
+        .build()
+    )
+)
+.build();
 ```
 

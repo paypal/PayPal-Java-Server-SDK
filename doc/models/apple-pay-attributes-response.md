@@ -13,28 +13,27 @@ Additional attributes associated with the use of Apple Pay.
 |  --- | --- | --- | --- | --- | --- |
 | `Vault` | [`VaultResponse`](../../doc/models/vault-response.md) | Optional | The details about a saved payment source. | VaultResponse getVault() | setVault(VaultResponse vault) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "vault": {
-    "id": "id6",
-    "status": "APPROVED",
-    "customer": {
-      "id": "id0",
-      "name": {
-        "given_name": "given_name2",
-        "surname": "surname8"
-      }
-    },
-    "links": [
-      {
-        "href": "href6",
-        "rel": "rel0",
-        "method": "HEAD"
-      }
-    ]
-  }
-}
+```java
+import com.paypal.sdk.models.ApplePayAttributesResponse;
+import com.paypal.sdk.models.Name;
+import com.paypal.sdk.models.VaultCustomer;
+import com.paypal.sdk.models.VaultResponse;
+import com.paypal.sdk.models.VaultStatus;
+
+ApplePayAttributesResponse applePayAttributesResponse = new ApplePayAttributesResponse.Builder()
+    .vault(new VaultResponse.Builder()
+        .id("id6")
+        .status(VaultStatus.APPROVED)
+        .customer(new VaultCustomer.Builder()
+            .id("id0")
+            .name(new Name.Builder()
+                .givenName("given_name2")
+                .surname("surname8")
+                .build())
+            .build())
+        .build())
+    .build();
 ```
 

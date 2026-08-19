@@ -17,54 +17,72 @@ The subscriber response information.
 | `ShippingAddress` | [`ShippingDetails`](../../doc/models/shipping-details.md) | Optional | The shipping details. | ShippingDetails getShippingAddress() | setShippingAddress(ShippingDetails shippingAddress) |
 | `PaymentSource` | [`SubscriptionPaymentSourceResponse`](../../doc/models/subscription-payment-source-response.md) | Optional | The payment source used to fund the payment. | SubscriptionPaymentSourceResponse getPaymentSource() | setPaymentSource(SubscriptionPaymentSourceResponse paymentSource) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "email_address": "email_address2",
-  "payer_id": "payer_id2",
-  "name": {
-    "given_name": "given_name2",
-    "surname": "surname8"
-  },
-  "shipping_address": {
-    "name": {
-      "full_name": "full_name6"
-    },
-    "email_address": "email_address8",
-    "phone_number": {
-      "country_code": "country_code2",
-      "national_number": "national_number6"
-    },
-    "type": "PICKUP_IN_STORE",
-    "options": [
-      {
-        "id": "id2",
-        "label": "label2",
-        "type": "SHIPPING",
-        "amount": {
-          "currency_code": "currency_code6",
-          "value": "value0"
-        },
-        "selected": false
-      }
-    ]
-  },
-  "payment_source": {
-    "card": {
-      "name": "name6",
-      "billing_address": {
-        "address_line_1": "address_line_12",
-        "address_line_2": "address_line_28",
-        "admin_area_2": "admin_area_28",
-        "admin_area_1": "admin_area_14",
-        "postal_code": "postal_code0",
-        "country_code": "country_code8"
-      },
-      "expiry": "expiry4",
-      "currency_code": "currency_code2"
-    }
-  }
-}
+```java
+import com.paypal.sdk.models.Address;
+import com.paypal.sdk.models.CardResponseWithBillingAddress;
+import com.paypal.sdk.models.FulfillmentType;
+import com.paypal.sdk.models.Money;
+import com.paypal.sdk.models.Name;
+import com.paypal.sdk.models.PhoneNumberWithCountryCode;
+import com.paypal.sdk.models.ShippingDetails;
+import com.paypal.sdk.models.ShippingName;
+import com.paypal.sdk.models.ShippingOption;
+import com.paypal.sdk.models.ShippingType;
+import com.paypal.sdk.models.Subscriber;
+import com.paypal.sdk.models.SubscriptionPaymentSourceResponse;
+import java.util.Arrays;
+
+Subscriber subscriber = new Subscriber.Builder()
+    .emailAddress("email_address8")
+    .payerId("payer_id8")
+    .name(new Name.Builder()
+        .givenName("given_name2")
+        .surname("surname8")
+        .build())
+    .shippingAddress(new ShippingDetails.Builder()
+        .name(new ShippingName.Builder()
+            .fullName("full_name6")
+            .build())
+        .emailAddress("email_address8")
+        .phoneNumber(new PhoneNumberWithCountryCode.Builder(
+            "country_code2",
+            "national_number6"
+        )
+        .build())
+        .type(FulfillmentType.PICKUP_IN_STORE)
+        .options(Arrays.asList(
+            new ShippingOption.Builder(
+                "id2",
+                "label2",
+                false
+            )
+            .type(ShippingType.SHIPPING)
+            .amount(new Money.Builder(
+                    "currency_code6",
+                    "value0"
+                )
+                .build())
+            .build()
+        ))
+        .build())
+    .paymentSource(new SubscriptionPaymentSourceResponse.Builder()
+        .card(new CardResponseWithBillingAddress.Builder()
+            .name("name6")
+            .billingAddress(new Address.Builder(
+                "country_code8"
+            )
+            .addressLine1("address_line_12")
+            .addressLine2("address_line_28")
+            .adminArea2("admin_area_28")
+            .adminArea1("admin_area_14")
+            .postalCode("postal_code0")
+            .build())
+            .expiry("expiry4")
+            .currencyCode("currency_code2")
+            .build())
+        .build())
+    .build();
 ```
 

@@ -18,30 +18,15 @@ The error details.
 | `Details` | [`List<TransactionSearchErrorDetails>`](../../doc/models/transaction-search-error-details.md) | Optional | An array of additional details about the error. | List<TransactionSearchErrorDetails> getDetails() | setDetails(List<TransactionSearchErrorDetails> details) |
 | `Links` | [`List<LinkDescription>`](../../doc/models/link-description.md) | Optional, Read-only | An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links). | List<LinkDescription> getLinks() | setLinks(List<LinkDescription> links) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "name": "name2",
-  "message": "message2",
-  "debug_id": "debug_id8",
-  "information_link": "information_link4",
-  "details": [
-    {
-      "field": "field4",
-      "value": "value2",
-      "location": "location4",
-      "issue": "issue6",
-      "description": "description0"
-    }
-  ],
-  "links": [
-    {
-      "href": "href6",
-      "rel": "rel0",
-      "method": "HEAD"
-    }
-  ]
+```java
+try {
+    // make the API call
+} catch (DefaultErrorException e) {
+    e.printStackTrace();
+} catch (ApiException e) {
+    e.printStackTrace();
 }
 ```
 

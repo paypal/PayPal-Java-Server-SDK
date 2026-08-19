@@ -21,22 +21,26 @@
 | `BinDetails` | [`BinDetails`](../../doc/models/bin-details.md) | Optional | Bank Identification Number (BIN) details used to fund a payment. | BinDetails getBinDetails() | setBinDetails(BinDetails binDetails) |
 | `Type` | [`CardType`](../../doc/models/card-type.md) | Optional | Type of card. i.e Credit, Debit and so on.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[A-Z_]+$` | CardType getType() | setType(CardType type) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "name": "name8",
-  "last_digits": "last_digits2",
-  "brand": "DISCOVER",
-  "expiry": "expiry6",
-  "billing_address": {
-    "address_line_1": "address_line_12",
-    "address_line_2": "address_line_28",
-    "admin_area_2": "admin_area_28",
-    "admin_area_1": "admin_area_14",
-    "postal_code": "postal_code0",
-    "country_code": "country_code8"
-  }
-}
+```java
+import com.paypal.sdk.models.CardBrand;
+import com.paypal.sdk.models.CardResponseAddress;
+import com.paypal.sdk.models.SetupTokenResponseCard;
+
+SetupTokenResponseCard setupTokenResponseCard = new SetupTokenResponseCard.Builder()
+    .name("name4")
+    .brand(CardBrand.HIPER)
+    .expiry("expiry2")
+    .billingAddress(new CardResponseAddress.Builder(
+        "country_code8"
+    )
+    .addressLine1("address_line_12")
+    .addressLine2("address_line_28")
+    .adminArea2("admin_area_28")
+    .adminArea1("admin_area_14")
+    .postalCode("postal_code0")
+    .build())
+    .build();
 ```
 

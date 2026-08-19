@@ -20,30 +20,38 @@ The breakdown of the refund.
 | `NetAmountBreakdown` | [`List<NetAmountBreakdownItem>`](../../doc/models/net-amount-breakdown-item.md) | Optional, Read-only | An array of breakdown values for the net amount. Returned when the currency of the refund is different from the currency of the PayPal account where the payee holds their funds. | List<NetAmountBreakdownItem> getNetAmountBreakdown() | setNetAmountBreakdown(List<NetAmountBreakdownItem> netAmountBreakdown) |
 | `TotalRefundedAmount` | [`Money`](../../doc/models/money.md) | Optional | The currency and amount for a financial transaction, such as a balance or payment due. | Money getTotalRefundedAmount() | setTotalRefundedAmount(Money totalRefundedAmount) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "gross_amount": {
-    "currency_code": "currency_code4",
-    "value": "value0"
-  },
-  "paypal_fee": {
-    "currency_code": "currency_code4",
-    "value": "value2"
-  },
-  "paypal_fee_in_receivable_currency": {
-    "currency_code": "currency_code2",
-    "value": "value8"
-  },
-  "net_amount": {
-    "currency_code": "currency_code6",
-    "value": "value2"
-  },
-  "net_amount_in_receivable_currency": {
-    "currency_code": "currency_code8",
-    "value": "value4"
-  }
-}
+```java
+import com.paypal.sdk.models.Money;
+import com.paypal.sdk.models.SellerPayableBreakdown;
+
+SellerPayableBreakdown sellerPayableBreakdown = new SellerPayableBreakdown.Builder()
+    .grossAmount(new Money.Builder(
+        "currency_code4",
+        "value0"
+    )
+    .build())
+    .paypalFee(new Money.Builder(
+        "currency_code4",
+        "value2"
+    )
+    .build())
+    .paypalFeeInReceivableCurrency(new Money.Builder(
+        "currency_code2",
+        "value8"
+    )
+    .build())
+    .netAmount(new Money.Builder(
+        "currency_code6",
+        "value2"
+    )
+    .build())
+    .netAmountInReceivableCurrency(new Money.Builder(
+        "currency_code8",
+        "value4"
+    )
+    .build())
+    .build();
 ```
 

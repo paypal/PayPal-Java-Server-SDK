@@ -18,15 +18,17 @@ Information used to pay using P24(Przelewy24).
 | `MethodId` | `String` | Optional | Numeric identifier of the payment scheme or bank used for the payment.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `300` | String getMethodId() | setMethodId(String methodId) |
 | `MethodDescription` | `String` | Optional | Friendly name of the payment scheme or bank used for the payment.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `2000` | String getMethodDescription() | setMethodDescription(String methodDescription) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "name": "name4",
-  "email": "email2",
-  "country_code": "country_code4",
-  "payment_descriptor": "payment_descriptor8",
-  "method_id": "method_id8"
-}
+```java
+import com.paypal.sdk.models.P24PaymentObject;
+
+P24PaymentObject p24PaymentObject = new P24PaymentObject.Builder()
+    .name("name0")
+    .email("email6")
+    .countryCode("country_code0")
+    .paymentDescriptor("payment_descriptor4")
+    .methodId("method_id4")
+    .build();
 ```
 

@@ -14,23 +14,30 @@ A resource representing a request to vault Apple Pay.
 | `Token` | `String` | Optional | Encrypted Apple Pay token, containing card information. This token would be base64 encoded.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `10000`, *Pattern*: `^.*$` | String getToken() | setToken(String token) |
 | `Card` | [`ApplePayRequestCard`](../../doc/models/apple-pay-request-card.md) | Optional | The payment card to be used to fund a payment. Can be a credit or debit card. | ApplePayRequestCard getCard() | setCard(ApplePayRequestCard card) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "token": "token4",
-  "card": {
-    "type": "UNKNOWN",
-    "brand": "CB_NATIONALE",
-    "billing_address": {
-      "address_line_1": "address_line_12",
-      "address_line_2": "address_line_28",
-      "admin_area_2": "admin_area_28",
-      "admin_area_1": "admin_area_14",
-      "postal_code": "postal_code0",
-      "country_code": "country_code8"
-    }
-  }
-}
+```java
+import com.paypal.sdk.models.Address;
+import com.paypal.sdk.models.ApplePayRequestCard;
+import com.paypal.sdk.models.CardBrand;
+import com.paypal.sdk.models.CardType;
+import com.paypal.sdk.models.VaultApplePayRequest;
+
+VaultApplePayRequest vaultApplePayRequest = new VaultApplePayRequest.Builder()
+    .token("token8")
+    .card(new ApplePayRequestCard.Builder()
+        .type(CardType.UNKNOWN)
+        .brand(CardBrand.CB_NATIONALE)
+        .billingAddress(new Address.Builder(
+            "country_code8"
+        )
+        .addressLine1("address_line_12")
+        .addressLine2("address_line_28")
+        .adminArea2("admin_area_28")
+        .adminArea1("admin_area_14")
+        .postalCode("postal_code0")
+        .build())
+        .build())
+    .build();
 ```
 

@@ -13,36 +13,40 @@ Additional attributes associated with the use of this card.
 |  --- | --- | --- | --- | --- | --- |
 | `Vault` | [`CardVaultResponse`](../../doc/models/card-vault-response.md) | Optional | The details about a saved Card payment source. | CardVaultResponse getVault() | setVault(CardVaultResponse vault) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "vault": {
-    "id": "id6",
-    "status": "APPROVED",
-    "links": [
-      {
-        "href": "href6",
-        "rel": "rel0",
-        "method": "HEAD"
-      }
-    ],
-    "customer": {
-      "id": "id0",
-      "email_address": "email_address2",
-      "phone": {
-        "phone_type": "OTHER",
-        "phone_number": {
-          "national_number": "national_number6"
-        }
-      },
-      "name": {
-        "given_name": "given_name2",
-        "surname": "surname8"
-      },
-      "merchant_customer_id": "merchant_customer_id2"
-    }
-  }
-}
+```java
+import com.paypal.sdk.models.CardAttributesResponse;
+import com.paypal.sdk.models.CardCustomerInformation;
+import com.paypal.sdk.models.CardVaultResponse;
+import com.paypal.sdk.models.Name;
+import com.paypal.sdk.models.PhoneNumber;
+import com.paypal.sdk.models.PhoneType;
+import com.paypal.sdk.models.PhoneWithType;
+import com.paypal.sdk.models.VaultStatus;
+
+CardAttributesResponse cardAttributesResponse = new CardAttributesResponse.Builder()
+    .vault(new CardVaultResponse.Builder()
+        .id("id6")
+        .status(VaultStatus.APPROVED)
+        .customer(new CardCustomerInformation.Builder()
+            .id("id0")
+            .emailAddress("email_address2")
+            .phone(new PhoneWithType.Builder(
+                new PhoneNumber.Builder(
+                    "national_number6"
+                )
+                .build()
+            )
+            .phoneType(PhoneType.OTHER)
+            .build())
+            .name(new Name.Builder()
+                .givenName("given_name2")
+                .surname("surname8")
+                .build())
+            .merchantCustomerId("merchant_customer_id2")
+            .build())
+        .build())
+    .build();
 ```
 

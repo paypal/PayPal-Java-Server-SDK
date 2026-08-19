@@ -16,49 +16,72 @@ Information needed to pay using Venmo.
 | `ExperienceContext` | [`VenmoWalletExperienceContext`](../../doc/models/venmo-wallet-experience-context.md) | Optional | Customizes the buyer experience during the approval process for payment with Venmo. Note: Partners and Marketplaces might configure shipping_preference during partner account setup, which overrides the request values. | VenmoWalletExperienceContext getExperienceContext() | setExperienceContext(VenmoWalletExperienceContext experienceContext) |
 | `Attributes` | [`VenmoWalletAdditionalAttributes`](../../doc/models/venmo-wallet-additional-attributes.md) | Optional | Additional attributes associated with the use of this Venmo Wallet. | VenmoWalletAdditionalAttributes getAttributes() | setAttributes(VenmoWalletAdditionalAttributes attributes) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "vault_id": "vault_id2",
-  "email_address": "email_address2",
-  "experience_context": {
-    "brand_name": "brand_name2",
-    "shipping_preference": "NO_SHIPPING",
-    "order_update_callback_config": {
-      "callback_events": [
-        "SHIPPING_OPTIONS",
-        "SHIPPING_ADDRESS",
-        "SHIPPING_OPTIONS"
-      ],
-      "callback_url": "callback_url6"
-    },
-    "user_action": "CONTINUE"
-  },
-  "attributes": {
-    "customer": {
-      "id": "id0",
-      "email_address": "email_address2",
-      "phone": {
-        "phone_type": "OTHER",
-        "phone_number": {
-          "national_number": "national_number6"
-        }
-      },
-      "name": {
-        "given_name": "given_name2",
-        "surname": "surname8"
-      }
-    },
-    "vault": {
-      "store_in_vault": "ON_SUCCESS",
-      "description": "description6",
-      "usage_pattern": "THRESHOLD_PREPAID",
-      "usage_type": "MERCHANT",
-      "customer_type": "CONSUMER",
-      "permit_multiple_payment_tokens": false
-    }
-  }
-}
+```java
+import com.paypal.sdk.models.CallbackConfiguration;
+import com.paypal.sdk.models.CallbackEvents;
+import com.paypal.sdk.models.Name;
+import com.paypal.sdk.models.PhoneNumber;
+import com.paypal.sdk.models.PhoneType;
+import com.paypal.sdk.models.PhoneWithType;
+import com.paypal.sdk.models.StoreInVaultInstruction;
+import com.paypal.sdk.models.VenmoPaymentTokenCustomerType;
+import com.paypal.sdk.models.VenmoPaymentTokenUsagePattern;
+import com.paypal.sdk.models.VenmoPaymentTokenUsageType;
+import com.paypal.sdk.models.VenmoWalletAdditionalAttributes;
+import com.paypal.sdk.models.VenmoWalletCustomerInformation;
+import com.paypal.sdk.models.VenmoWalletExperienceContext;
+import com.paypal.sdk.models.VenmoWalletExperienceContextShippingPreference;
+import com.paypal.sdk.models.VenmoWalletExperienceContextUserAction;
+import com.paypal.sdk.models.VenmoWalletRequest;
+import com.paypal.sdk.models.VenmoWalletVaultAttributes;
+import java.util.Arrays;
+
+VenmoWalletRequest venmoWalletRequest = new VenmoWalletRequest.Builder()
+    .vaultId("vault_id8")
+    .emailAddress("email_address8")
+    .experienceContext(new VenmoWalletExperienceContext.Builder()
+        .brandName("brand_name2")
+        .shippingPreference(VenmoWalletExperienceContextShippingPreference.NO_SHIPPING)
+        .orderUpdateCallbackConfig(new CallbackConfiguration.Builder(
+            Arrays.asList(
+                CallbackEvents.SHIPPING_OPTIONS,
+                CallbackEvents.SHIPPING_ADDRESS,
+                CallbackEvents.SHIPPING_OPTIONS
+            ),
+            "callback_url6"
+        )
+        .build())
+        .userAction(VenmoWalletExperienceContextUserAction.CONTINUE)
+        .build())
+    .attributes(new VenmoWalletAdditionalAttributes.Builder()
+        .customer(new VenmoWalletCustomerInformation.Builder()
+            .id("id0")
+            .emailAddress("email_address2")
+            .phone(new PhoneWithType.Builder(
+                new PhoneNumber.Builder(
+                    "national_number6"
+                )
+                .build()
+            )
+            .phoneType(PhoneType.OTHER)
+            .build())
+            .name(new Name.Builder()
+                .givenName("given_name2")
+                .surname("surname8")
+                .build())
+            .build())
+        .vault(new VenmoWalletVaultAttributes.Builder(
+            StoreInVaultInstruction.ON_SUCCESS,
+            VenmoPaymentTokenUsageType.MERCHANT
+        )
+        .description("description6")
+        .usagePattern(VenmoPaymentTokenUsagePattern.THRESHOLD_PREPAID)
+        .customerType(VenmoPaymentTokenCustomerType.CONSUMER)
+        .permitMultiplePaymentTokens(false)
+        .build())
+        .build())
+    .build();
 ```
 

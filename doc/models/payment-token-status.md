@@ -17,3 +17,11 @@ The status of the payment token.
 | `VAULTED` | The payment token has been vaulted. |
 | `TOKENIZED` | A vaulted payment method token has been tokenized for short term (one time) use. |
 
+## Example
+
+```java
+import com.paypal.sdk.models.PaymentTokenStatus;
+
+PaymentTokenStatus paymentTokenStatus = PaymentTokenStatus.PAYER_ACTION_REQUIRED;
+```
+

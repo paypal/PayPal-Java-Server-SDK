@@ -13,11 +13,13 @@ Information used to pay using BLIK one-click flow.
 |  --- | --- | --- | --- | --- | --- |
 | `ConsumerReference` | `String` | Optional | The merchant generated, unique reference serving as a primary identifier for accounts connected between Blik and a merchant.<br><br>**Constraints**: *Minimum Length*: `3`, *Maximum Length*: `64`, *Pattern*: `^[ -~]{3,64}$` | String getConsumerReference() | setConsumerReference(String consumerReference) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "consumer_reference": "consumer_reference0"
-}
+```java
+import com.paypal.sdk.models.BlikOneClickPaymentObject;
+
+BlikOneClickPaymentObject blikOneClickPaymentObject = new BlikOneClickPaymentObject.Builder()
+    .consumerReference("consumer_reference6")
+    .build();
 ```
 

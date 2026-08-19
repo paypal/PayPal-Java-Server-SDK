@@ -13,3 +13,11 @@ The type of capture.
 |  --- | --- |
 | `OUTSTANDING_BALANCE` | The outstanding balance that the subscriber must clear. |
 
+## Example
+
+```java
+import com.paypal.sdk.models.CaptureType;
+
+CaptureType captureType = CaptureType.OUTSTANDING_BALANCE;
+```
+

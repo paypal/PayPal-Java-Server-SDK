@@ -18,29 +18,38 @@ Information needed to pay using BLIK.
 | `Level0` | [`BlikLevel0PaymentObject`](../../doc/models/blik-level-0-payment-object.md) | Optional | Information used to pay using BLIK level_0 flow. | BlikLevel0PaymentObject getLevel0() | setLevel0(BlikLevel0PaymentObject level0) |
 | `OneClick` | [`BlikOneClickPaymentRequest`](../../doc/models/blik-one-click-payment-request.md) | Optional | Information used to pay using BLIK one-click flow. | BlikOneClickPaymentRequest getOneClick() | setOneClick(BlikOneClickPaymentRequest oneClick) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "name": "name8",
-  "country_code": "country_code8",
-  "email": "email8",
-  "experience_context": {
-    "brand_name": "brand_name2",
-    "locale": "locale6",
-    "shipping_preference": "NO_SHIPPING",
-    "return_url": "return_url4",
-    "cancel_url": "cancel_url6"
-  },
-  "level_0": {
-    "auth_code": "auth_code8"
-  },
-  "one_click": {
-    "auth_code": "auth_code0",
-    "consumer_reference": "consumer_reference2",
-    "alias_label": "alias_label6",
-    "alias_key": "alias_key4"
-  }
-}
+```java
+import com.paypal.sdk.models.BlikExperienceContext;
+import com.paypal.sdk.models.BlikLevel0PaymentObject;
+import com.paypal.sdk.models.BlikOneClickPaymentRequest;
+import com.paypal.sdk.models.BlikPaymentRequest;
+import com.paypal.sdk.models.ExperienceContextShippingPreference;
+
+BlikPaymentRequest blikPaymentRequest = new BlikPaymentRequest.Builder(
+    "name6",
+    "country_code6"
+)
+.email("email0")
+.experienceContext(new BlikExperienceContext.Builder()
+        .brandName("brand_name2")
+        .locale("locale6")
+        .shippingPreference(ExperienceContextShippingPreference.NO_SHIPPING)
+        .returnUrl("return_url4")
+        .cancelUrl("cancel_url6")
+        .build())
+.level0(new BlikLevel0PaymentObject.Builder(
+        "auth_code8"
+    )
+    .build())
+.oneClick(new BlikOneClickPaymentRequest.Builder(
+        "consumer_reference2"
+    )
+    .authCode("auth_code0")
+    .aliasLabel("alias_label6")
+    .aliasKey("alias_key4")
+    .build())
+.build();
 ```
 

@@ -16,22 +16,30 @@ This object represents a merchant’s customer, allowing them to store contact d
 | `Phone` | [`PhoneWithType`](../../doc/models/phone-with-type.md) | Optional | The phone information. | PhoneWithType getPhone() | setPhone(PhoneWithType phone) |
 | `Name` | [`Name`](../../doc/models/name.md) | Optional | The name of the party. | Name getName() | setName(Name name) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "id": "id6",
-  "email_address": "email_address4",
-  "phone": {
-    "phone_type": "OTHER",
-    "phone_number": {
-      "national_number": "national_number6"
-    }
-  },
-  "name": {
-    "given_name": "given_name2",
-    "surname": "surname8"
-  }
-}
+```java
+import com.paypal.sdk.models.CustomerInformation;
+import com.paypal.sdk.models.Name;
+import com.paypal.sdk.models.PhoneNumber;
+import com.paypal.sdk.models.PhoneType;
+import com.paypal.sdk.models.PhoneWithType;
+
+CustomerInformation customerInformation = new CustomerInformation.Builder()
+    .id("id6")
+    .emailAddress("email_address4")
+    .phone(new PhoneWithType.Builder(
+        new PhoneNumber.Builder(
+            "national_number6"
+        )
+        .build()
+    )
+    .phoneType(PhoneType.OTHER)
+    .build())
+    .name(new Name.Builder()
+        .givenName("given_name2")
+        .surname("surname8")
+        .build())
+    .build();
 ```
 

@@ -19,15 +19,17 @@ The name of the party.
 | `AlternateFullName` | `String` | Optional | DEPRECATED. The party's alternate name. Can be a business name, nickname, or any other name that cannot be split into first, last name. Required when the party is a business.<br><br>**Constraints**: *Maximum Length*: `300` | String getAlternateFullName() | setAlternateFullName(String alternateFullName) |
 | `FullName` | `String` | Optional | When the party is a person, the party's full name.<br><br>**Constraints**: *Maximum Length*: `300` | String getFullName() | setFullName(String fullName) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "prefix": "prefix4",
-  "given_name": "given_name8",
-  "surname": "surname8",
-  "middle_name": "middle_name6",
-  "suffix": "suffix6"
-}
+```java
+import com.paypal.sdk.models.PayerName;
+
+PayerName payerName = new PayerName.Builder()
+    .prefix("prefix8")
+    .givenName("given_name2")
+    .surname("surname8")
+    .middleName("middle_name0")
+    .suffix("suffix0")
+    .build();
 ```
 

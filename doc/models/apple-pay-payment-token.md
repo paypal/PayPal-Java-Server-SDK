@@ -13,24 +13,30 @@ A resource representing a response for Apple Pay.
 |  --- | --- | --- | --- | --- | --- |
 | `Card` | [`ApplePayCard`](../../doc/models/apple-pay-card.md) | Optional | The payment card to be used to fund a payment. Can be a credit or debit card. | ApplePayCard getCard() | setCard(ApplePayCard card) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "card": {
-    "name": "name6",
-    "last_digits": "last_digits0",
-    "type": "UNKNOWN",
-    "brand": "CB_NATIONALE",
-    "billing_address": {
-      "address_line_1": "address_line_12",
-      "address_line_2": "address_line_28",
-      "admin_area_2": "admin_area_28",
-      "admin_area_1": "admin_area_14",
-      "postal_code": "postal_code0",
-      "country_code": "country_code8"
-    }
-  }
-}
+```java
+import com.paypal.sdk.models.Address;
+import com.paypal.sdk.models.ApplePayCard;
+import com.paypal.sdk.models.ApplePayPaymentToken;
+import com.paypal.sdk.models.CardBrand;
+import com.paypal.sdk.models.CardType;
+
+ApplePayPaymentToken applePayPaymentToken = new ApplePayPaymentToken.Builder()
+    .card(new ApplePayCard.Builder()
+        .name("name6")
+        .type(CardType.UNKNOWN)
+        .brand(CardBrand.CB_NATIONALE)
+        .billingAddress(new Address.Builder(
+            "country_code8"
+        )
+        .addressLine1("address_line_12")
+        .addressLine2("address_line_28")
+        .adminArea2("admin_area_28")
+        .adminArea1("admin_area_14")
+        .postalCode("postal_code0")
+        .build())
+        .build())
+    .build();
 ```
 

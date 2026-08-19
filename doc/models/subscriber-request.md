@@ -18,48 +18,65 @@ The subscriber request information .
 | `PaymentSource` | [`SubscriptionPaymentSource`](../../doc/models/subscription-payment-source.md) | Optional | The payment source definition. To be eligible to create subscription using debit or credit card, you will need to sign up here (https://www.paypal.com/bizsignup/entry/product/ppcp). Please note, its available only for non-3DS cards and for merchants in US and AU regions. | SubscriptionPaymentSource getPaymentSource() | setPaymentSource(SubscriptionPaymentSource paymentSource) |
 | `Phone` | [`PhoneWithType`](../../doc/models/phone-with-type.md) | Optional | The phone information. | PhoneWithType getPhone() | setPhone(PhoneWithType phone) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "email_address": "email_address0",
-  "payer_id": "payer_id0",
-  "name": {
-    "given_name": "given_name2",
-    "surname": "surname8"
-  },
-  "shipping_address": {
-    "name": {
-      "full_name": "full_name6"
-    },
-    "email_address": "email_address8",
-    "phone_number": {
-      "country_code": "country_code2",
-      "national_number": "national_number6"
-    },
-    "type": "PICKUP_IN_STORE",
-    "options": [
-      {
-        "id": "id2",
-        "label": "label2",
-        "type": "SHIPPING",
-        "amount": {
-          "currency_code": "currency_code6",
-          "value": "value0"
-        },
-        "selected": false
-      }
-    ]
-  },
-  "payment_source": {
-    "card": {
-      "name": "name6",
-      "number": "number6",
-      "expiry": "expiry4",
-      "security_code": "security_code8",
-      "type": "UNKNOWN"
-    }
-  }
-}
+```java
+import com.paypal.sdk.models.CardType;
+import com.paypal.sdk.models.FulfillmentType;
+import com.paypal.sdk.models.Money;
+import com.paypal.sdk.models.Name;
+import com.paypal.sdk.models.PhoneNumberWithCountryCode;
+import com.paypal.sdk.models.ShippingDetails;
+import com.paypal.sdk.models.ShippingName;
+import com.paypal.sdk.models.ShippingOption;
+import com.paypal.sdk.models.ShippingType;
+import com.paypal.sdk.models.SubscriberRequest;
+import com.paypal.sdk.models.SubscriptionCardRequest;
+import com.paypal.sdk.models.SubscriptionPaymentSource;
+import java.util.Arrays;
+
+SubscriberRequest subscriberRequest = new SubscriberRequest.Builder()
+    .emailAddress("email_address4")
+    .payerId("payer_id4")
+    .name(new Name.Builder()
+        .givenName("given_name2")
+        .surname("surname8")
+        .build())
+    .shippingAddress(new ShippingDetails.Builder()
+        .name(new ShippingName.Builder()
+            .fullName("full_name6")
+            .build())
+        .emailAddress("email_address8")
+        .phoneNumber(new PhoneNumberWithCountryCode.Builder(
+            "country_code2",
+            "national_number6"
+        )
+        .build())
+        .type(FulfillmentType.PICKUP_IN_STORE)
+        .options(Arrays.asList(
+            new ShippingOption.Builder(
+                "id2",
+                "label2",
+                false
+            )
+            .type(ShippingType.SHIPPING)
+            .amount(new Money.Builder(
+                    "currency_code6",
+                    "value0"
+                )
+                .build())
+            .build()
+        ))
+        .build())
+    .paymentSource(new SubscriptionPaymentSource.Builder()
+        .card(new SubscriptionCardRequest.Builder()
+            .name("name6")
+            .number("number6")
+            .expiry("expiry4")
+            .securityCode("security_code8")
+            .type(CardType.UNKNOWN)
+            .build())
+        .build())
+    .build();
 ```
 

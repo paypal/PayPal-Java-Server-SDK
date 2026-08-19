@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 
-
 /**
  * OrderTrackerStatus to be used.
  */
@@ -30,7 +29,7 @@ public enum OrderTrackerStatus {
     /**
      * Unknown values will be mapped by this enum member
      */
-    _UNKNOWN;
+    _UNKNOWN;
 
     private static TreeMap<String, OrderTrackerStatus> valueMap = new TreeMap<>();
     private String value;

@@ -26,49 +26,56 @@ The payment source used to fund the payment.
 | `GooglePay` | [`GooglePayWalletResponse`](../../doc/models/google-pay-wallet-response.md) | Optional | Google Pay Wallet payment data. | GooglePayWalletResponse getGooglePay() | setGooglePay(GooglePayWalletResponse googlePay) |
 | `Venmo` | [`VenmoWalletResponse`](../../doc/models/venmo-wallet-response.md) | Optional | Venmo wallet response. | VenmoWalletResponse getVenmo() | setVenmo(VenmoWalletResponse venmo) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "card": {
-    "name": "name6",
-    "last_digits": "last_digits0",
-    "brand": "CB_NATIONALE",
-    "available_networks": [
-      "DELTA"
-    ],
-    "type": "UNKNOWN"
-  },
-  "paypal": {
-    "email_address": "email_address0",
-    "account_id": "account_id4",
-    "account_status": "VERIFIED",
-    "name": {
-      "given_name": "given_name2",
-      "surname": "surname8"
-    },
-    "phone_type": "FAX"
-  },
-  "bancontact": {
-    "name": "name0",
-    "country_code": "country_code0",
-    "bic": "bic2",
-    "iban_last_chars": "iban_last_chars8",
-    "card_last_digits": "card_last_digits4"
-  },
-  "blik": {
-    "name": "name2",
-    "country_code": "country_code2",
-    "email": "email4",
-    "one_click": {
-      "consumer_reference": "consumer_reference2"
-    }
-  },
-  "eps": {
-    "name": "name6",
-    "country_code": "country_code6",
-    "bic": "bic8"
-  }
-}
+```java
+import com.paypal.sdk.models.BancontactPaymentObject;
+import com.paypal.sdk.models.BlikOneClickPaymentObject;
+import com.paypal.sdk.models.BlikPaymentObject;
+import com.paypal.sdk.models.CardBrand;
+import com.paypal.sdk.models.CardResponse;
+import com.paypal.sdk.models.CardType;
+import com.paypal.sdk.models.EpsPaymentObject;
+import com.paypal.sdk.models.Name;
+import com.paypal.sdk.models.PaymentSourceResponse;
+import com.paypal.sdk.models.PaypalWalletResponse;
+import com.paypal.sdk.models.PhoneType;
+
+PaymentSourceResponse paymentSourceResponse = new PaymentSourceResponse.Builder()
+    .card(new CardResponse.Builder()
+        .name("name6")
+        .brand(CardBrand.CB_NATIONALE)
+        .type(CardType.UNKNOWN)
+        .build())
+    .paypal(new PaypalWalletResponse.Builder()
+        .emailAddress("email_address0")
+        .accountId("account_id4")
+        .name(new Name.Builder()
+            .givenName("given_name2")
+            .surname("surname8")
+            .build())
+        .phoneType(PhoneType.FAX)
+        .build())
+    .bancontact(new BancontactPaymentObject.Builder()
+        .name("name0")
+        .countryCode("country_code0")
+        .bic("bic2")
+        .ibanLastChars("iban_last_chars8")
+        .cardLastDigits("card_last_digits4")
+        .build())
+    .blik(new BlikPaymentObject.Builder()
+        .name("name2")
+        .countryCode("country_code2")
+        .email("email4")
+        .oneClick(new BlikOneClickPaymentObject.Builder()
+            .consumerReference("consumer_reference2")
+            .build())
+        .build())
+    .eps(new EpsPaymentObject.Builder()
+        .name("name6")
+        .countryCode("country_code6")
+        .bic("bic8")
+        .build())
+    .build();
 ```
 

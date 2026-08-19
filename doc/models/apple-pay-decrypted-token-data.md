@@ -17,29 +17,37 @@ Information about the Payment data obtained by decrypting Apple Pay token.
 | `PaymentDataType` | [`ApplePayPaymentDataType`](../../doc/models/apple-pay-payment-data-type.md) | Optional | Indicates the type of payment data passed, in case of Non China the payment data is 3DSECURE and for China it is EMV.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `16`, *Pattern*: `^[0-9A-Z_]+$` | ApplePayPaymentDataType getPaymentDataType() | setPaymentDataType(ApplePayPaymentDataType paymentDataType) |
 | `PaymentData` | [`ApplePayPaymentData`](../../doc/models/apple-pay-payment-data.md) | Optional | Information about the decrypted apple pay payment data for the token like cryptogram, eci indicator. | ApplePayPaymentData getPaymentData() | setPaymentData(ApplePayPaymentData paymentData) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "transaction_amount": {
-    "currency_code": "currency_code6",
-    "value": "value2"
-  },
-  "tokenized_card": {
-    "name": "name4",
-    "number": "number2",
-    "expiry": "expiry2",
-    "card_type": "VISA",
-    "type": "UNKNOWN"
-  },
-  "device_manufacturer_id": "device_manufacturer_id2",
-  "payment_data_type": "3DSECURE",
-  "payment_data": {
-    "cryptogram": "cryptogram6",
-    "eci_indicator": "eci_indicator0",
-    "emv_data": "emv_data0",
-    "pin": "pin4"
-  }
-}
+```java
+import com.paypal.sdk.models.ApplePayDecryptedTokenData;
+import com.paypal.sdk.models.ApplePayPaymentData;
+import com.paypal.sdk.models.ApplePayPaymentDataType;
+import com.paypal.sdk.models.ApplePayTokenizedCard;
+import com.paypal.sdk.models.CardType;
+import com.paypal.sdk.models.Money;
+
+ApplePayDecryptedTokenData applePayDecryptedTokenData = new ApplePayDecryptedTokenData.Builder(
+    new ApplePayTokenizedCard.Builder()
+        .name("name4")
+        .number("number2")
+        .expiry("expiry2")
+        .type(CardType.UNKNOWN)
+        .build()
+)
+.transactionAmount(new Money.Builder(
+        "currency_code6",
+        "value2"
+    )
+    .build())
+.deviceManufacturerId("device_manufacturer_id8")
+.paymentDataType(ApplePayPaymentDataType.ENUM_3DSECURE)
+.paymentData(new ApplePayPaymentData.Builder()
+        .cryptogram("cryptogram6")
+        .eciIndicator("eci_indicator0")
+        .emvData("emv_data0")
+        .pin("pin4")
+        .build())
+.build();
 ```
 

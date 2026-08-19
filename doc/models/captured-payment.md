@@ -29,22 +29,26 @@ A captured payment.
 | `SupplementaryData` | [`PaymentSupplementaryData`](../../doc/models/payment-supplementary-data.md) | Optional | The supplementary data. | PaymentSupplementaryData getSupplementaryData() | setSupplementaryData(PaymentSupplementaryData supplementaryData) |
 | `Payee` | [`PayeeBase`](../../doc/models/payee-base.md) | Optional | The details for the merchant who receives the funds and fulfills the order. The merchant is also known as the payee. | PayeeBase getPayee() | setPayee(PayeeBase payee) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "final_capture": false,
-  "disbursement_mode": "INSTANT",
-  "status": "PARTIALLY_REFUNDED",
-  "status_details": {
-    "reason": "VERIFICATION_REQUIRED"
-  },
-  "id": "id4",
-  "amount": {
-    "currency_code": "currency_code6",
-    "value": "value0"
-  },
-  "invoice_id": "invoice_id4"
-}
+```java
+import com.paypal.sdk.models.CaptureIncompleteReason;
+import com.paypal.sdk.models.CaptureStatusDetails;
+import com.paypal.sdk.models.CapturedPayment;
+import com.paypal.sdk.models.DisbursementMode;
+import com.paypal.sdk.models.Money;
+
+CapturedPayment capturedPayment = new CapturedPayment.Builder()
+    .statusDetails(new CaptureStatusDetails.Builder()
+        .reason(CaptureIncompleteReason.VERIFICATION_REQUIRED)
+        .build())
+    .amount(new Money.Builder(
+        "currency_code6",
+        "value0"
+    )
+    .build())
+    .finalCapture(false)
+    .disbursementMode(DisbursementMode.INSTANT)
+    .build();
 ```
 

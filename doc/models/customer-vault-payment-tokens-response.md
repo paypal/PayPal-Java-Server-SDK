@@ -17,242 +17,110 @@ Collection of payment tokens saved for a given customer.
 | `PaymentTokens` | [`List<PaymentTokenResponse>`](../../doc/models/payment-token-response.md) | Optional | **Constraints**: *Minimum Items*: `0`, *Maximum Items*: `64` | List<PaymentTokenResponse> getPaymentTokens() | setPaymentTokens(List<PaymentTokenResponse> paymentTokens) |
 | `Links` | [`List<LinkDescription>`](../../doc/models/link-description.md) | Optional, Read-only | An array of related [HATEOAS links](https://developer.paypal.com/api/rest/responses/#hateoas).<br><br>**Constraints**: *Minimum Items*: `1`, *Maximum Items*: `32` | List<LinkDescription> getLinks() | setLinks(List<LinkDescription> links) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "total_items": 50,
-  "total_pages": 10,
-  "customer": {
-    "id": "id0",
-    "merchant_customer_id": "merchant_customer_id2",
-    "links": [
-      {
-        "key1": "val1",
-        "key2": "val2"
-      },
-      {
-        "key1": "val1",
-        "key2": "val2"
-      }
-    ]
-  },
-  "payment_tokens": [
-    {
-      "id": "id4",
-      "customer": {
-        "id": "id0",
-        "merchant_customer_id": "merchant_customer_id2"
-      },
-      "payment_source": {
-        "card": {
-          "name": "name6",
-          "last_digits": "last_digits0",
-          "brand": "CB_NATIONALE",
-          "expiry": "expiry4",
-          "billing_address": {
-            "address_line_1": "address_line_12",
-            "address_line_2": "address_line_28",
-            "admin_area_2": "admin_area_28",
-            "admin_area_1": "admin_area_14",
-            "postal_code": "postal_code0",
-            "country_code": "country_code8"
-          }
-        },
-        "paypal": {
-          "description": "description2",
-          "usage_pattern": "THRESHOLD_PREPAID",
-          "shipping": {
-            "name": {
-              "full_name": "full_name6"
-            },
-            "email_address": "email_address2",
-            "phone_number": {
-              "country_code": "country_code2",
-              "national_number": "national_number6"
-            },
-            "type": "SHIPPING",
-            "address": {
-              "address_line_1": "address_line_16",
-              "address_line_2": "address_line_26",
-              "admin_area_2": "admin_area_20",
-              "admin_area_1": "admin_area_12",
-              "postal_code": "postal_code8",
-              "country_code": "country_code6"
-            }
-          },
-          "permit_multiple_payment_tokens": false,
-          "usage_type": "MERCHANT"
-        },
-        "venmo": {
-          "description": "description6",
-          "usage_pattern": "UNSCHEDULED_PREPAID",
-          "shipping": {
-            "name": {
-              "full_name": "full_name6"
-            },
-            "email_address": "email_address2",
-            "phone_number": {
-              "country_code": "country_code2",
-              "national_number": "national_number6"
-            },
-            "type": "SHIPPING",
-            "address": {
-              "address_line_1": "address_line_16",
-              "address_line_2": "address_line_26",
-              "admin_area_2": "admin_area_20",
-              "admin_area_1": "admin_area_12",
-              "postal_code": "postal_code8",
-              "country_code": "country_code6"
-            }
-          },
-          "permit_multiple_payment_tokens": false,
-          "usage_type": "MERCHANT"
-        },
-        "apple_pay": {
-          "card": {
-            "name": "name6",
-            "last_digits": "last_digits0",
-            "type": "UNKNOWN",
-            "brand": "CB_NATIONALE",
-            "billing_address": {
-              "address_line_1": "address_line_12",
-              "address_line_2": "address_line_28",
-              "admin_area_2": "admin_area_28",
-              "admin_area_1": "admin_area_14",
-              "postal_code": "postal_code0",
-              "country_code": "country_code8"
-            }
-          }
-        }
-      },
-      "links": [
-        {
-          "href": "href6",
-          "rel": "rel0",
-          "method": "HEAD"
-        },
-        {
-          "href": "href6",
-          "rel": "rel0",
-          "method": "HEAD"
-        }
-      ]
-    },
-    {
-      "id": "id4",
-      "customer": {
-        "id": "id0",
-        "merchant_customer_id": "merchant_customer_id2"
-      },
-      "payment_source": {
-        "card": {
-          "name": "name6",
-          "last_digits": "last_digits0",
-          "brand": "CB_NATIONALE",
-          "expiry": "expiry4",
-          "billing_address": {
-            "address_line_1": "address_line_12",
-            "address_line_2": "address_line_28",
-            "admin_area_2": "admin_area_28",
-            "admin_area_1": "admin_area_14",
-            "postal_code": "postal_code0",
-            "country_code": "country_code8"
-          }
-        },
-        "paypal": {
-          "description": "description2",
-          "usage_pattern": "THRESHOLD_PREPAID",
-          "shipping": {
-            "name": {
-              "full_name": "full_name6"
-            },
-            "email_address": "email_address2",
-            "phone_number": {
-              "country_code": "country_code2",
-              "national_number": "national_number6"
-            },
-            "type": "SHIPPING",
-            "address": {
-              "address_line_1": "address_line_16",
-              "address_line_2": "address_line_26",
-              "admin_area_2": "admin_area_20",
-              "admin_area_1": "admin_area_12",
-              "postal_code": "postal_code8",
-              "country_code": "country_code6"
-            }
-          },
-          "permit_multiple_payment_tokens": false,
-          "usage_type": "MERCHANT"
-        },
-        "venmo": {
-          "description": "description6",
-          "usage_pattern": "UNSCHEDULED_PREPAID",
-          "shipping": {
-            "name": {
-              "full_name": "full_name6"
-            },
-            "email_address": "email_address2",
-            "phone_number": {
-              "country_code": "country_code2",
-              "national_number": "national_number6"
-            },
-            "type": "SHIPPING",
-            "address": {
-              "address_line_1": "address_line_16",
-              "address_line_2": "address_line_26",
-              "admin_area_2": "admin_area_20",
-              "admin_area_1": "admin_area_12",
-              "postal_code": "postal_code8",
-              "country_code": "country_code6"
-            }
-          },
-          "permit_multiple_payment_tokens": false,
-          "usage_type": "MERCHANT"
-        },
-        "apple_pay": {
-          "card": {
-            "name": "name6",
-            "last_digits": "last_digits0",
-            "type": "UNKNOWN",
-            "brand": "CB_NATIONALE",
-            "billing_address": {
-              "address_line_1": "address_line_12",
-              "address_line_2": "address_line_28",
-              "admin_area_2": "admin_area_28",
-              "admin_area_1": "admin_area_14",
-              "postal_code": "postal_code0",
-              "country_code": "country_code8"
-            }
-          }
-        }
-      },
-      "links": [
-        {
-          "href": "href6",
-          "rel": "rel0",
-          "method": "HEAD"
-        },
-        {
-          "href": "href6",
-          "rel": "rel0",
-          "method": "HEAD"
-        }
-      ]
-    }
-  ],
-  "links": [
-    {
-      "href": "href6",
-      "rel": "rel0",
-      "method": "HEAD"
-    },
-    {
-      "href": "href6",
-      "rel": "rel0",
-      "method": "HEAD"
-    }
-  ]
-}
+```java
+import com.paypal.sdk.models.Address;
+import com.paypal.sdk.models.ApplePayCard;
+import com.paypal.sdk.models.ApplePayPaymentToken;
+import com.paypal.sdk.models.CardBrand;
+import com.paypal.sdk.models.CardPaymentTokenEntity;
+import com.paypal.sdk.models.CardResponseAddress;
+import com.paypal.sdk.models.CardType;
+import com.paypal.sdk.models.CustomerResponse;
+import com.paypal.sdk.models.CustomerVaultPaymentTokensResponse;
+import com.paypal.sdk.models.PaymentTokenResponse;
+import com.paypal.sdk.models.PaymentTokenResponsePaymentSource;
+import com.paypal.sdk.models.VaultResponseCustomer;
+import java.util.Arrays;
+
+CustomerVaultPaymentTokensResponse customerVaultPaymentTokensResponse = new CustomerVaultPaymentTokensResponse.Builder()
+    .totalItems(50)
+    .totalPages(10)
+    .customer(new VaultResponseCustomer.Builder()
+        .id("id0")
+        .merchantCustomerId("merchant_customer_id2")
+        .build())
+    .paymentTokens(Arrays.asList(
+        new PaymentTokenResponse.Builder()
+            .id("id4")
+            .customer(new CustomerResponse.Builder()
+                .id("id0")
+                .merchantCustomerId("merchant_customer_id2")
+                .build())
+            .paymentSource(new PaymentTokenResponsePaymentSource.Builder()
+                .card(new CardPaymentTokenEntity.Builder()
+                    .name("name6")
+                    .brand(CardBrand.CB_NATIONALE)
+                    .expiry("expiry4")
+                    .billingAddress(new CardResponseAddress.Builder(
+                        "country_code8"
+                    )
+                    .addressLine1("address_line_12")
+                    .addressLine2("address_line_28")
+                    .adminArea2("admin_area_28")
+                    .adminArea1("admin_area_14")
+                    .postalCode("postal_code0")
+                    .build())
+                    .build())
+                .applePay(new ApplePayPaymentToken.Builder()
+                    .card(new ApplePayCard.Builder()
+                        .name("name6")
+                        .type(CardType.UNKNOWN)
+                        .brand(CardBrand.CB_NATIONALE)
+                        .billingAddress(new Address.Builder(
+                            "country_code8"
+                        )
+                        .addressLine1("address_line_12")
+                        .addressLine2("address_line_28")
+                        .adminArea2("admin_area_28")
+                        .adminArea1("admin_area_14")
+                        .postalCode("postal_code0")
+                        .build())
+                        .build())
+                    .build())
+                .build())
+            .build(),
+        new PaymentTokenResponse.Builder()
+            .id("id4")
+            .customer(new CustomerResponse.Builder()
+                .id("id0")
+                .merchantCustomerId("merchant_customer_id2")
+                .build())
+            .paymentSource(new PaymentTokenResponsePaymentSource.Builder()
+                .card(new CardPaymentTokenEntity.Builder()
+                    .name("name6")
+                    .brand(CardBrand.CB_NATIONALE)
+                    .expiry("expiry4")
+                    .billingAddress(new CardResponseAddress.Builder(
+                        "country_code8"
+                    )
+                    .addressLine1("address_line_12")
+                    .addressLine2("address_line_28")
+                    .adminArea2("admin_area_28")
+                    .adminArea1("admin_area_14")
+                    .postalCode("postal_code0")
+                    .build())
+                    .build())
+                .applePay(new ApplePayPaymentToken.Builder()
+                    .card(new ApplePayCard.Builder()
+                        .name("name6")
+                        .type(CardType.UNKNOWN)
+                        .brand(CardBrand.CB_NATIONALE)
+                        .billingAddress(new Address.Builder(
+                            "country_code8"
+                        )
+                        .addressLine1("address_line_12")
+                        .addressLine2("address_line_28")
+                        .adminArea2("admin_area_28")
+                        .adminArea1("admin_area_14")
+                        .postalCode("postal_code0")
+                        .build())
+                        .build())
+                    .build())
+                .build())
+            .build()
+    ))
+    .build();
 ```
 

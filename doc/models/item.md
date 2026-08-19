@@ -23,24 +23,31 @@ The details for the items to be purchased.
 | `Upc` | [`UniversalProductCode`](../../doc/models/universal-product-code.md) | Optional | The Universal Product Code of the item. | UniversalProductCode getUpc() | setUpc(UniversalProductCode upc) |
 | `BillingPlan` | [`OrderBillingPlan`](../../doc/models/order-billing-plan.md) | Optional | Metadata for merchant-managed recurring billing plans. Valid only during the saved payment method token or billing agreement creation. | OrderBillingPlan getBillingPlan() | setBillingPlan(OrderBillingPlan billingPlan) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "name": "name2",
-  "unit_amount": {
-    "currency_code": "currency_code2",
-    "value": "value8"
-  },
-  "tax": {
-    "currency_code": "currency_code0",
-    "value": "value6"
-  },
-  "quantity": "quantity8",
-  "description": "description2",
-  "sku": "sku8",
-  "url": "url6",
-  "category": "DIGITAL_GOODS"
-}
+```java
+import com.paypal.sdk.models.Item;
+import com.paypal.sdk.models.ItemCategory;
+import com.paypal.sdk.models.Money;
+
+Item item = new Item.Builder(
+    "name2",
+    new Money.Builder(
+        "currency_code2",
+        "value8"
+    )
+    .build(),
+    "quantity8"
+)
+.tax(new Money.Builder(
+        "currency_code0",
+        "value6"
+    )
+    .build())
+.description("description2")
+.sku("sku8")
+.url("url6")
+.category(ItemCategory.DONATION)
+.build();
 ```
 

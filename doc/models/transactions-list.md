@@ -16,65 +16,113 @@ The list transactions for a subscription request details.
 | `TotalPages` | `Integer` | Optional | The total number of pages.<br><br>**Constraints**: `>= 0`, `<= 100000000` | Integer getTotalPages() | setTotalPages(Integer totalPages) |
 | `Links` | [`List<LinkDescription>`](../../doc/models/link-description.md) | Optional, Read-only | An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).<br><br>**Constraints**: *Minimum Items*: `1`, *Maximum Items*: `10` | List<LinkDescription> getLinks() | setLinks(List<LinkDescription> links) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "transactions": [
-    {
-      "status": "PARTIALLY_REFUNDED",
-      "id": "id8",
-      "amount_with_breakdown": {
-        "gross_amount": {
-          "currency_code": "currency_code4",
-          "value": "value0"
-        },
-        "total_item_amount": {
-          "currency_code": "currency_code8",
-          "value": "value4"
-        },
-        "fee_amount": {
-          "currency_code": "currency_code2",
-          "value": "value4"
-        },
-        "shipping_amount": {
-          "currency_code": "currency_code0",
-          "value": "value6"
-        },
-        "tax_amount": {
-          "currency_code": "currency_code2",
-          "value": "value8"
-        },
-        "net_amount": {
-          "currency_code": "currency_code6",
-          "value": "value2"
-        }
-      },
-      "payer_name": {
-        "prefix": "prefix8",
-        "given_name": "given_name2",
-        "surname": "surname8",
-        "middle_name": "middle_name0",
-        "suffix": "suffix0"
-      },
-      "payer_email": "payer_email6",
-      "time": "time8"
-    }
-  ],
-  "total_items": 254,
-  "total_pages": 34,
-  "links": [
-    {
-      "href": "href6",
-      "rel": "rel0",
-      "method": "HEAD"
-    },
-    {
-      "href": "href6",
-      "rel": "rel0",
-      "method": "HEAD"
-    }
-  ]
-}
+```java
+import com.paypal.sdk.models.Money;
+import com.paypal.sdk.models.SubscriptionAmountWithBreakdown;
+import com.paypal.sdk.models.SubscriptionPayerName;
+import com.paypal.sdk.models.SubscriptionTransactionDetails;
+import com.paypal.sdk.models.TransactionsList;
+import java.util.Arrays;
+
+TransactionsList transactionsList = new TransactionsList.Builder()
+    .transactions(Arrays.asList(
+        new SubscriptionTransactionDetails.Builder(
+            null,
+            new SubscriptionAmountWithBreakdown.Builder(
+                new Money.Builder(
+                    "currency_code4",
+                    "value0"
+                )
+                .build()
+            )
+            .totalItemAmount(new Money.Builder(
+                    "currency_code8",
+                    "value4"
+                )
+                .build())
+            .feeAmount(new Money.Builder(
+                    "currency_code2",
+                    "value4"
+                )
+                .build())
+            .shippingAmount(new Money.Builder(
+                    "currency_code0",
+                    "value6"
+                )
+                .build())
+            .taxAmount(new Money.Builder(
+                    "currency_code2",
+                    "value8"
+                )
+                .build())
+            .netAmount(new Money.Builder(
+                    "currency_code6",
+                    "value2"
+                )
+                .build())
+            .build(),
+            "time8"
+        )
+        .payerName(new SubscriptionPayerName.Builder()
+                .prefix("prefix8")
+                .givenName("given_name2")
+                .surname("surname8")
+                .middleName("middle_name0")
+                .suffix("suffix0")
+                .build())
+        .payerEmail("payer_email6")
+        .build(),
+        new SubscriptionTransactionDetails.Builder(
+            null,
+            new SubscriptionAmountWithBreakdown.Builder(
+                new Money.Builder(
+                    "currency_code4",
+                    "value0"
+                )
+                .build()
+            )
+            .totalItemAmount(new Money.Builder(
+                    "currency_code8",
+                    "value4"
+                )
+                .build())
+            .feeAmount(new Money.Builder(
+                    "currency_code2",
+                    "value4"
+                )
+                .build())
+            .shippingAmount(new Money.Builder(
+                    "currency_code0",
+                    "value6"
+                )
+                .build())
+            .taxAmount(new Money.Builder(
+                    "currency_code2",
+                    "value8"
+                )
+                .build())
+            .netAmount(new Money.Builder(
+                    "currency_code6",
+                    "value2"
+                )
+                .build())
+            .build(),
+            "time8"
+        )
+        .payerName(new SubscriptionPayerName.Builder()
+                .prefix("prefix8")
+                .givenName("given_name2")
+                .surname("surname8")
+                .middleName("middle_name0")
+                .suffix("suffix0")
+                .build())
+        .payerEmail("payer_email6")
+        .build()
+    ))
+    .totalItems(36)
+    .totalPages(72)
+    .build();
 ```
 

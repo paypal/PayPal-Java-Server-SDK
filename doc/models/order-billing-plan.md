@@ -15,34 +15,55 @@ Metadata for merchant-managed recurring billing plans. Valid only during the sav
 | `SetupFee` | [`Money`](../../doc/models/money.md) | Optional | The currency and amount for a financial transaction, such as a balance or payment due. | Money getSetupFee() | setSetupFee(Money setupFee) |
 | `Name` | `String` | Optional | Name of the recurring plan.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `127`, *Pattern*: `^[A-Za-z0-9() +',.:-]+$` | String getName() | setName(String name) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "billing_cycles": [
-    {
-      "tenure_type": "REGULAR",
-      "total_cycles": 1,
-      "sequence": 1,
-      "pricing_scheme": {
-        "price": {
-          "currency_code": "currency_code8",
-          "value": "value4"
-        },
-        "pricing_model": "AUTO_RELOAD",
-        "reload_threshold_amount": {
-          "currency_code": "currency_code0",
-          "value": "value6"
-        }
-      },
-      "start_date": "start_date6"
-    }
-  ],
-  "setup_fee": {
-    "currency_code": "currency_code8",
-    "value": "value4"
-  },
-  "name": "name4"
-}
+```java
+import com.paypal.sdk.models.BillingCycle;
+import com.paypal.sdk.models.CycleFrequency;
+import com.paypal.sdk.models.FrequencyIntervalUnit;
+import com.paypal.sdk.models.Money;
+import com.paypal.sdk.models.OrderBillingPlan;
+import com.paypal.sdk.models.PricingModel;
+import com.paypal.sdk.models.PricingScheme;
+import com.paypal.sdk.models.TenureType;
+import java.util.Arrays;
+
+OrderBillingPlan orderBillingPlan = new OrderBillingPlan.Builder(
+    Arrays.asList(
+        new BillingCycle.Builder(
+            TenureType.REGULAR
+        )
+        .pricingScheme(new PricingScheme.Builder(
+                PricingModel.AUTO_RELOAD
+            )
+            .price(new Money.Builder(
+                    "currency_code8",
+                    "value4"
+                )
+                .build())
+            .reloadThresholdAmount(new Money.Builder(
+                    "currency_code0",
+                    "value6"
+                )
+                .build())
+            .build())
+        .totalCycles(1)
+        .sequence(1)
+        .startDate("start_date6")
+        .frequency(new CycleFrequency.Builder(
+                FrequencyIntervalUnit.LIFETIME
+            )
+            .intervalCount(94)
+            .build())
+        .build()
+    )
+)
+.setupFee(new Money.Builder(
+        "currency_code8",
+        "value4"
+    )
+    .build())
+.name("name6")
+.build();
 ```
 

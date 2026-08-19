@@ -16,3 +16,11 @@ The PayPal reference ID type.
 | `SUB` | A subscription ID. |
 | `PAP` | A pre-approved payment ID. |
 
+## Example
+
+```java
+import com.paypal.sdk.models.PaypalReferenceIdType;
+
+PaypalReferenceIdType paypalReferenceIdType = PaypalReferenceIdType.ODR;
+```
+

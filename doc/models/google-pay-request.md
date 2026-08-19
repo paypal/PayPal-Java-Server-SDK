@@ -19,44 +19,57 @@ Information needed to pay using Google Pay.
 | `AssuranceDetails` | [`AssuranceDetails`](../../doc/models/assurance-details.md) | Optional | Information about cardholder possession validation and cardholder identification and verifications (ID&V). | AssuranceDetails getAssuranceDetails() | setAssuranceDetails(AssuranceDetails assuranceDetails) |
 | `ExperienceContext` | [`GooglePayExperienceContext`](../../doc/models/google-pay-experience-context.md) | Optional | Customizes the payer experience during the approval process for the payment. | GooglePayExperienceContext getExperienceContext() | setExperienceContext(GooglePayExperienceContext experienceContext) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "name": "name4",
-  "email_address": "email_address2",
-  "phone_number": {
-    "country_code": "country_code2",
-    "national_number": "national_number6"
-  },
-  "card": {
-    "name": "name6",
-    "type": "UNKNOWN",
-    "brand": "CB_NATIONALE",
-    "billing_address": {
-      "address_line_1": "address_line_12",
-      "address_line_2": "address_line_28",
-      "admin_area_2": "admin_area_28",
-      "admin_area_1": "admin_area_14",
-      "postal_code": "postal_code0",
-      "country_code": "country_code8"
-    }
-  },
-  "decrypted_token": {
-    "message_id": "message_id0",
-    "message_expiration": "message_expiration2",
-    "payment_method": "CARD",
-    "card": {
-      "name": "name6",
-      "number": "number6",
-      "expiry": "expiry4",
-      "last_digits": "last_digits0",
-      "type": "UNKNOWN"
-    },
-    "authentication_method": "PAN_ONLY",
-    "cryptogram": "cryptogram6",
-    "eci_indicator": "eci_indicator0"
-  }
-}
+```java
+import com.paypal.sdk.models.Address;
+import com.paypal.sdk.models.CardBrand;
+import com.paypal.sdk.models.CardType;
+import com.paypal.sdk.models.GooglePayAuthenticationMethod;
+import com.paypal.sdk.models.GooglePayCard;
+import com.paypal.sdk.models.GooglePayDecryptedTokenData;
+import com.paypal.sdk.models.GooglePayPaymentMethod;
+import com.paypal.sdk.models.GooglePayRequest;
+import com.paypal.sdk.models.GooglePayRequestCard;
+import com.paypal.sdk.models.PhoneNumberWithCountryCode;
+
+GooglePayRequest googlePayRequest = new GooglePayRequest.Builder()
+    .name("name6")
+    .emailAddress("email_address6")
+    .phoneNumber(new PhoneNumberWithCountryCode.Builder(
+        "country_code2",
+        "national_number6"
+    )
+    .build())
+    .card(new GooglePayRequestCard.Builder()
+        .name("name6")
+        .type(CardType.UNKNOWN)
+        .brand(CardBrand.CB_NATIONALE)
+        .billingAddress(new Address.Builder(
+            "country_code8"
+        )
+        .addressLine1("address_line_12")
+        .addressLine2("address_line_28")
+        .adminArea2("admin_area_28")
+        .adminArea1("admin_area_14")
+        .postalCode("postal_code0")
+        .build())
+        .build())
+    .decryptedToken(new GooglePayDecryptedTokenData.Builder(
+        GooglePayPaymentMethod.CARD,
+        new GooglePayCard.Builder()
+            .name("name6")
+            .number("number6")
+            .expiry("expiry4")
+            .type(CardType.UNKNOWN)
+            .build(),
+        GooglePayAuthenticationMethod.PAN_ONLY
+    )
+    .messageId("message_id0")
+    .messageExpiration("message_expiration2")
+    .cryptogram("cryptogram6")
+    .eciIndicator("eci_indicator0")
+    .build())
+    .build();
 ```
 
