@@ -16,14 +16,20 @@ Provides additional details to process a payment using the PayPal wallet billing
 | `UsagePattern` | [`UsagePattern`](../../doc/models/usage-pattern.md) | Optional | Expected business/pricing model for the billing agreement.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `30`, *Pattern*: `^[A-Z0-9_]+$` | UsagePattern getUsagePattern() | setUsagePattern(UsagePattern usagePattern) |
 | `Usage` | [`StoredPaymentSourceUsageType`](../../doc/models/stored-payment-source-usage-type.md) | Optional | Indicates if this is a `first` or `subsequent` payment using a stored payment source (also referred to as stored credential or card on file).<br><br>**Default**: `StoredPaymentSourceUsageType.DERIVED`<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[0-9A-Z_]+$` | StoredPaymentSourceUsageType getUsage() | setUsage(StoredPaymentSourceUsageType usage) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "payment_initiator": "CUSTOMER",
-  "usage": "DERIVED",
-  "charge_pattern": "IMMEDIATE",
-  "usage_pattern": "IMMEDIATE"
-}
+```java
+import com.paypal.sdk.models.PaymentInitiator;
+import com.paypal.sdk.models.PaypalWalletStoredCredential;
+import com.paypal.sdk.models.StoredPaymentSourceUsageType;
+import com.paypal.sdk.models.UsagePattern;
+
+PaypalWalletStoredCredential paypalWalletStoredCredential = new PaypalWalletStoredCredential.Builder(
+    PaymentInitiator.CUSTOMER
+)
+.chargePattern(UsagePattern.INSTALLMENT_PREPAID)
+.usagePattern(UsagePattern.RECURRING_PREPAID)
+.usage(StoredPaymentSourceUsageType.DERIVED)
+.build();
 ```
 

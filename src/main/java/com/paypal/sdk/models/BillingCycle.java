@@ -19,6 +19,7 @@ public class BillingCycle {
     private Integer totalCycles;
     private Integer sequence;
     private String startDate;
+    private CycleFrequency frequency;
 
     /**
      * Default constructor.
@@ -28,8 +29,8 @@ public class BillingCycle {
         sequence = 1;
     }
 
-    /**
-     * Initialization constructor.
+       /**
+     * Initialization constructor. Preserved for backwards compatibility.
      * @param  tenureType  TenureType value for tenureType.
      * @param  pricingScheme  PricingScheme value for pricingScheme.
      * @param  totalCycles  Integer value for totalCycles.
@@ -47,6 +48,30 @@ public class BillingCycle {
         this.totalCycles = totalCycles;
         this.sequence = sequence;
         this.startDate = startDate;
+    }
+
+    /**
+     * Initialization constructor.
+     * @param  tenureType  TenureType value for tenureType.
+     * @param  pricingScheme  PricingScheme value for pricingScheme.
+     * @param  totalCycles  Integer value for totalCycles.
+     * @param  sequence  Integer value for sequence.
+     * @param  startDate  String value for startDate.
+     * @param  frequency  CycleFrequency value for frequency.
+     */
+    public BillingCycle(
+            TenureType tenureType,
+            PricingScheme pricingScheme,
+            Integer totalCycles,
+            Integer sequence,
+            String startDate,
+            CycleFrequency frequency) {
+        this.tenureType = tenureType;
+        this.pricingScheme = pricingScheme;
+        this.totalCycles = totalCycles;
+        this.sequence = sequence;
+        this.startDate = startDate;
+        this.frequency = frequency;
     }
 
     /**
@@ -174,6 +199,27 @@ public class BillingCycle {
     }
 
     /**
+     * Getter for Frequency.
+     * The frequency of the terms reset cycle.
+     * @return Returns the CycleFrequency
+     */
+    @JsonGetter("frequency")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public CycleFrequency getFrequency() {
+        return frequency;
+    }
+
+    /**
+     * Setter for Frequency.
+     * The frequency of the terms reset cycle.
+     * @param frequency Value for CycleFrequency
+     */
+    @JsonSetter("frequency")
+    public void setFrequency(CycleFrequency frequency) {
+        this.frequency = frequency;
+    }
+
+    /**
      * Converts this BillingCycle into string format.
      * @return String representation of this class
      */
@@ -181,7 +227,7 @@ public class BillingCycle {
     public String toString() {
         return "BillingCycle [" + "tenureType=" + tenureType + ", pricingScheme=" + pricingScheme
                 + ", totalCycles=" + totalCycles + ", sequence=" + sequence + ", startDate="
-                + startDate + "]";
+                + startDate + ", frequency=" + frequency + "]";
     }
 
     /**
@@ -194,7 +240,8 @@ public class BillingCycle {
                 .pricingScheme(getPricingScheme())
                 .totalCycles(getTotalCycles())
                 .sequence(getSequence())
-                .startDate(getStartDate());
+                .startDate(getStartDate())
+                .frequency(getFrequency());
         return builder;
     }
 
@@ -207,6 +254,7 @@ public class BillingCycle {
         private Integer totalCycles = 1;
         private Integer sequence = 1;
         private String startDate;
+        private CycleFrequency frequency;
 
         /**
          * Initialization constructor.
@@ -273,11 +321,22 @@ public class BillingCycle {
         }
 
         /**
+         * Setter for frequency.
+         * @param  frequency  CycleFrequency value for frequency.
+         * @return Builder
+         */
+        public Builder frequency(CycleFrequency frequency) {
+            this.frequency = frequency;
+            return this;
+        }
+
+        /**
          * Builds a new {@link BillingCycle} object using the set fields.
          * @return {@link BillingCycle}
          */
         public BillingCycle build() {
-            return new BillingCycle(tenureType, pricingScheme, totalCycles, sequence, startDate);
+            return new BillingCycle(tenureType, pricingScheme, totalCycles, sequence, startDate,
+                    frequency);
         }
     }
 }

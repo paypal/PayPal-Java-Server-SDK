@@ -14,14 +14,17 @@ The status and status details of a captured payment.
 | `Status` | [`CaptureStatus`](../../doc/models/capture-status.md) | Optional, Read-only | The status of the captured payment. | CaptureStatus getStatus() | setStatus(CaptureStatus status) |
 | `StatusDetails` | [`CaptureStatusDetails`](../../doc/models/capture-status-details.md) | Optional | The details of the captured payment status. | CaptureStatusDetails getStatusDetails() | setStatusDetails(CaptureStatusDetails statusDetails) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "status": "COMPLETED",
-  "status_details": {
-    "reason": "VERIFICATION_REQUIRED"
-  }
-}
+```java
+import com.paypal.sdk.models.CaptureIncompleteReason;
+import com.paypal.sdk.models.CaptureStatusDetails;
+import com.paypal.sdk.models.CaptureStatusWithDetails;
+
+CaptureStatusWithDetails captureStatusWithDetails = new CaptureStatusWithDetails.Builder()
+    .statusDetails(new CaptureStatusDetails.Builder()
+        .reason(CaptureIncompleteReason.VERIFICATION_REQUIRED)
+        .build())
+    .build();
 ```
 

@@ -16,28 +16,33 @@ The shipping information.
 | `Address` | [`SimplePostalAddressCoarseGrained`](../../doc/models/simple-postal-address-coarse-grained.md) | Optional | A simple postal address with coarse-grained fields. Do not use for an international address. Use for backward compatibility only. Does not contain phone. | SimplePostalAddressCoarseGrained getAddress() | setAddress(SimplePostalAddressCoarseGrained address) |
 | `SecondaryShippingAddress` | [`SimplePostalAddressCoarseGrained`](../../doc/models/simple-postal-address-coarse-grained.md) | Optional | A simple postal address with coarse-grained fields. Do not use for an international address. Use for backward compatibility only. Does not contain phone. | SimplePostalAddressCoarseGrained getSecondaryShippingAddress() | setSecondaryShippingAddress(SimplePostalAddressCoarseGrained secondaryShippingAddress) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "name": "name8",
-  "method": "method2",
-  "address": {
-    "line1": "line18",
-    "line2": "line20",
-    "city": "city6",
-    "state": "state2",
-    "country_code": "country_code6",
-    "postal_code": "postal_code8"
-  },
-  "secondary_shipping_address": {
-    "line1": "line16",
-    "line2": "line28",
-    "city": "city4",
-    "state": "state0",
-    "country_code": "country_code4",
-    "postal_code": "postal_code6"
-  }
-}
+```java
+import com.paypal.sdk.models.ShippingInformation;
+import com.paypal.sdk.models.SimplePostalAddressCoarseGrained;
+
+ShippingInformation shippingInformation = new ShippingInformation.Builder()
+    .name("name2")
+    .method("method4")
+    .address(new SimplePostalAddressCoarseGrained.Builder(
+        "line18",
+        "city6",
+        "country_code6"
+    )
+    .line2("line20")
+    .state("state2")
+    .postalCode("postal_code8")
+    .build())
+    .secondaryShippingAddress(new SimplePostalAddressCoarseGrained.Builder(
+        "line16",
+        "city4",
+        "country_code4"
+    )
+    .line2("line28")
+    .state("state0")
+    .postalCode("postal_code6")
+    .build())
+    .build();
 ```
 

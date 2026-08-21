@@ -14,12 +14,14 @@ Customizes the payer experience during the 3DS Approval for payment.
 | `ReturnUrl` | `String` | Optional | Describes the URL. | String getReturnUrl() | setReturnUrl(String returnUrl) |
 | `CancelUrl` | `String` | Optional | Describes the URL. | String getCancelUrl() | setCancelUrl(String cancelUrl) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "return_url": "return_url2",
-  "cancel_url": "cancel_url0"
-}
+```java
+import com.paypal.sdk.models.CardExperienceContext;
+
+CardExperienceContext cardExperienceContext = new CardExperienceContext.Builder()
+    .returnUrl("return_url0")
+    .cancelUrl("cancel_url2")
+    .build();
 ```
 

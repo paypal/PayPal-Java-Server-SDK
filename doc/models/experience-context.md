@@ -17,15 +17,18 @@ Customizes the payer experience during the approval process for the payment.
 | `ReturnUrl` | `String` | Optional | Describes the URL. | String getReturnUrl() | setReturnUrl(String returnUrl) |
 | `CancelUrl` | `String` | Optional | Describes the URL. | String getCancelUrl() | setCancelUrl(String cancelUrl) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "shipping_preference": "GET_FROM_FILE",
-  "brand_name": "brand_name0",
-  "locale": "locale4",
-  "return_url": "return_url2",
-  "cancel_url": "cancel_url4"
-}
+```java
+import com.paypal.sdk.models.ExperienceContext;
+import com.paypal.sdk.models.ExperienceContextShippingPreference;
+
+ExperienceContext experienceContext = new ExperienceContext.Builder()
+    .brandName("brand_name0")
+    .locale("locale4")
+    .shippingPreference(ExperienceContextShippingPreference.GET_FROM_FILE)
+    .returnUrl("return_url2")
+    .cancelUrl("cancel_url4")
+    .build();
 ```
 

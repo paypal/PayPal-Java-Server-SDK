@@ -26,79 +26,101 @@ The purchase unit details. Used to capture required information for the payment 
 | `Payments` | [`PaymentCollection`](../../doc/models/payment-collection.md) | Optional | The collection of payments, or transactions, for a purchase unit in an order. For example, authorized payments, captured payments, and refunds. | PaymentCollection getPayments() | setPayments(PaymentCollection payments) |
 | `MostRecentErrors` | `List<JsonValue>` | Optional | The error reason code and description that are the reason for the most recent order decline.<br><br>**Constraints**: *Minimum Items*: `1`, *Maximum Items*: `10` | List<JsonValue> getMostRecentErrors() | setMostRecentErrors(List<JsonValue> mostRecentErrors) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "reference_id": "reference_id8",
-  "amount": {
-    "currency_code": "currency_code6",
-    "value": "value0",
-    "breakdown": {
-      "item_total": {
-        "currency_code": "currency_code0",
-        "value": "value6"
-      },
-      "shipping": {
-        "currency_code": "currency_code0",
-        "value": "value6"
-      },
-      "handling": {
-        "currency_code": "currency_code2",
-        "value": "value8"
-      },
-      "tax_total": {
-        "currency_code": "currency_code4",
-        "value": "value0"
-      },
-      "insurance": {
-        "currency_code": "currency_code2",
-        "value": "value8"
-      }
-    }
-  },
-  "payee": {
-    "email_address": "email_address4",
-    "merchant_id": "merchant_id6"
-  },
-  "payment_instruction": {
-    "platform_fees": [
-      {
-        "amount": {
-          "currency_code": "currency_code6",
-          "value": "value0"
-        },
-        "payee": {
-          "email_address": "email_address4",
-          "merchant_id": "merchant_id6"
-        }
-      },
-      {
-        "amount": {
-          "currency_code": "currency_code6",
-          "value": "value0"
-        },
-        "payee": {
-          "email_address": "email_address4",
-          "merchant_id": "merchant_id6"
-        }
-      },
-      {
-        "amount": {
-          "currency_code": "currency_code6",
-          "value": "value0"
-        },
-        "payee": {
-          "email_address": "email_address4",
-          "merchant_id": "merchant_id6"
-        }
-      }
-    ],
-    "disbursement_mode": "INSTANT",
-    "payee_pricing_tier_id": "payee_pricing_tier_id2",
-    "payee_receivable_fx_rate_id": "payee_receivable_fx_rate_id0"
-  },
-  "description": "description0"
-}
+```java
+import com.paypal.sdk.models.AmountBreakdown;
+import com.paypal.sdk.models.AmountWithBreakdown;
+import com.paypal.sdk.models.DisbursementMode;
+import com.paypal.sdk.models.Money;
+import com.paypal.sdk.models.PayeeBase;
+import com.paypal.sdk.models.PaymentInstruction;
+import com.paypal.sdk.models.PlatformFee;
+import com.paypal.sdk.models.PurchaseUnit;
+import java.util.Arrays;
+
+PurchaseUnit purchaseUnit = new PurchaseUnit.Builder()
+    .referenceId("reference_id0")
+    .amount(new AmountWithBreakdown.Builder(
+        "currency_code6",
+        "value0"
+    )
+    .breakdown(new AmountBreakdown.Builder()
+            .itemTotal(new Money.Builder(
+                "currency_code0",
+                "value6"
+            )
+            .build())
+            .shipping(new Money.Builder(
+                "currency_code0",
+                "value6"
+            )
+            .build())
+            .handling(new Money.Builder(
+                "currency_code2",
+                "value8"
+            )
+            .build())
+            .taxTotal(new Money.Builder(
+                "currency_code4",
+                "value0"
+            )
+            .build())
+            .insurance(new Money.Builder(
+                "currency_code2",
+                "value8"
+            )
+            .build())
+            .build())
+    .build())
+    .payee(new PayeeBase.Builder()
+        .emailAddress("email_address4")
+        .merchantId("merchant_id6")
+        .build())
+    .paymentInstruction(new PaymentInstruction.Builder()
+        .platformFees(Arrays.asList(
+            new PlatformFee.Builder(
+                new Money.Builder(
+                    "currency_code6",
+                    "value0"
+                )
+                .build()
+            )
+            .payee(new PayeeBase.Builder()
+                    .emailAddress("email_address4")
+                    .merchantId("merchant_id6")
+                    .build())
+            .build(),
+            new PlatformFee.Builder(
+                new Money.Builder(
+                    "currency_code6",
+                    "value0"
+                )
+                .build()
+            )
+            .payee(new PayeeBase.Builder()
+                    .emailAddress("email_address4")
+                    .merchantId("merchant_id6")
+                    .build())
+            .build(),
+            new PlatformFee.Builder(
+                new Money.Builder(
+                    "currency_code6",
+                    "value0"
+                )
+                .build()
+            )
+            .payee(new PayeeBase.Builder()
+                    .emailAddress("email_address4")
+                    .merchantId("merchant_id6")
+                    .build())
+            .build()
+        ))
+        .disbursementMode(DisbursementMode.INSTANT)
+        .payeePricingTierId("payee_pricing_tier_id2")
+        .payeeReceivableFxRateId("payee_receivable_fx_rate_id0")
+        .build())
+    .description("description2")
+    .build();
 ```
 

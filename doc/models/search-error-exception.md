@@ -20,32 +20,15 @@ The error details.
 | `TotalItems` | `Integer` | Optional | The total number of transactions. Valid only for `RESULTSET_TOO_LARGE`.<br><br>**Constraints**: `>= 0`, `<= 2147483647` | Integer getTotalItems() | setTotalItems(Integer totalItems) |
 | `MaximumItems` | `Integer` | Optional | The maximum number of transactions. Valid only for `RESULTSET_TOO_LARGE`.<br><br>**Constraints**: `>= 0`, `<= 2147483647` | Integer getMaximumItems() | setMaximumItems(Integer maximumItems) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "name": "name8",
-  "message": "message8",
-  "debug_id": "debug_id6",
-  "information_link": "information_link0",
-  "details": [
-    {
-      "field": "field4",
-      "value": "value2",
-      "location": "location4",
-      "issue": "issue6",
-      "description": "description0"
-    }
-  ],
-  "links": [
-    {
-      "href": "href6",
-      "rel": "rel0",
-      "method": "HEAD"
-    }
-  ],
-  "total_items": 20,
-  "maximum_items": 206
+```java
+try {
+    // make the API call
+} catch (SearchErrorException e) {
+    e.printStackTrace();
+} catch (ApiException e) {
+    e.printStackTrace();
 }
 ```
 

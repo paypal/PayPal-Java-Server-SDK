@@ -13,11 +13,14 @@ Basic vault instruction specification that can be extended by specific payment s
 |  --- | --- | --- | --- | --- | --- |
 | `StoreInVault` | [`StoreInVaultInstruction`](../../doc/models/store-in-vault-instruction.md) | Optional | Defines how and when the payment source gets vaulted.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[0-9A-Z_]+$` | StoreInVaultInstruction getStoreInVault() | setStoreInVault(StoreInVaultInstruction storeInVault) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "store_in_vault": "ON_SUCCESS"
-}
+```java
+import com.paypal.sdk.models.StoreInVaultInstruction;
+import com.paypal.sdk.models.VaultInstructionBase;
+
+VaultInstructionBase vaultInstructionBase = new VaultInstructionBase.Builder()
+    .storeInVault(StoreInVaultInstruction.ON_SUCCESS)
+    .build();
 ```
 

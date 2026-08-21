@@ -18,53 +18,68 @@ Captures either a portion or the full authorized amount of an authorized payment
 | `NoteToPayer` | `String` | Optional | An informational note about this settlement. Appears in both the payer's transaction history and the emails that the payer receives.<br><br>**Constraints**: *Maximum Length*: `255` | String getNoteToPayer() | setNoteToPayer(String noteToPayer) |
 | `SoftDescriptor` | `String` | Optional | The payment descriptor on the payer's account statement.<br><br>**Constraints**: *Maximum Length*: `22` | String getSoftDescriptor() | setSoftDescriptor(String softDescriptor) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "final_capture": false,
-  "amount": {
-    "currency_code": "currency_code6",
-    "value": "value0"
-  },
-  "invoice_id": "invoice_id4",
-  "payment_instruction": {
-    "platform_fees": [
-      {
-        "amount": {
-          "currency_code": "currency_code6",
-          "value": "value0"
-        },
-        "payee": {
-          "email_address": "email_address4",
-          "merchant_id": "merchant_id6"
-        }
-      },
-      {
-        "amount": {
-          "currency_code": "currency_code6",
-          "value": "value0"
-        },
-        "payee": {
-          "email_address": "email_address4",
-          "merchant_id": "merchant_id6"
-        }
-      },
-      {
-        "amount": {
-          "currency_code": "currency_code6",
-          "value": "value0"
-        },
-        "payee": {
-          "email_address": "email_address4",
-          "merchant_id": "merchant_id6"
-        }
-      }
-    ],
-    "disbursement_mode": "INSTANT",
-    "payee_receivable_fx_rate_id": "payee_receivable_fx_rate_id0"
-  },
-  "note_to_payer": "note_to_payer6"
-}
+```java
+import com.paypal.sdk.models.CapturePaymentInstruction;
+import com.paypal.sdk.models.CaptureRequest;
+import com.paypal.sdk.models.DisbursementMode;
+import com.paypal.sdk.models.Money;
+import com.paypal.sdk.models.PayeeBase;
+import com.paypal.sdk.models.PlatformFee;
+import java.util.Arrays;
+
+CaptureRequest captureRequest = new CaptureRequest.Builder()
+    .amount(new Money.Builder(
+        "currency_code6",
+        "value0"
+    )
+    .build())
+    .invoiceId("invoice_id8")
+    .finalCapture(false)
+    .paymentInstruction(new CapturePaymentInstruction.Builder()
+        .platformFees(Arrays.asList(
+            new PlatformFee.Builder(
+                new Money.Builder(
+                    "currency_code6",
+                    "value0"
+                )
+                .build()
+            )
+            .payee(new PayeeBase.Builder()
+                    .emailAddress("email_address4")
+                    .merchantId("merchant_id6")
+                    .build())
+            .build(),
+            new PlatformFee.Builder(
+                new Money.Builder(
+                    "currency_code6",
+                    "value0"
+                )
+                .build()
+            )
+            .payee(new PayeeBase.Builder()
+                    .emailAddress("email_address4")
+                    .merchantId("merchant_id6")
+                    .build())
+            .build(),
+            new PlatformFee.Builder(
+                new Money.Builder(
+                    "currency_code6",
+                    "value0"
+                )
+                .build()
+            )
+            .payee(new PayeeBase.Builder()
+                    .emailAddress("email_address4")
+                    .merchantId("merchant_id6")
+                    .build())
+            .build()
+        ))
+        .disbursementMode(DisbursementMode.INSTANT)
+        .payeeReceivableFxRateId("payee_receivable_fx_rate_id0")
+        .build())
+    .noteToPayer("note_to_payer0")
+    .build();
 ```
 

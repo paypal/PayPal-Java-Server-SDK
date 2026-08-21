@@ -18,18 +18,24 @@ The application context, which customizes the payer experience during the subscr
 | `ReturnUrl` | `String` | Required | The URL where the customer is redirected after the customer approves the payment.<br><br>**Constraints**: *Minimum Length*: `10`, *Maximum Length*: `4000` | String getReturnUrl() | setReturnUrl(String returnUrl) |
 | `CancelUrl` | `String` | Required | The URL where the customer is redirected after the customer cancels the payment.<br><br>**Constraints**: *Minimum Length*: `10`, *Maximum Length*: `4000` | String getCancelUrl() | setCancelUrl(String cancelUrl) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "shipping_preference": "GET_FROM_FILE",
-  "return_url": "return_url4",
-  "cancel_url": "cancel_url8",
-  "brand_name": "brand_name4",
-  "locale": "locale8",
-  "payment_method": {
-    "payee_preferred": "UNRESTRICTED"
-  }
-}
+```java
+import com.paypal.sdk.models.ExperienceContextShippingPreference;
+import com.paypal.sdk.models.PayeePaymentMethodPreference;
+import com.paypal.sdk.models.PaymentMethod;
+import com.paypal.sdk.models.SubscriptionPatchApplicationContext;
+
+SubscriptionPatchApplicationContext subscriptionPatchApplicationContext = new SubscriptionPatchApplicationContext.Builder(
+    "return_url0",
+    "cancel_url2"
+)
+.brandName("brand_name8")
+.locale("locale2")
+.shippingPreference(ExperienceContextShippingPreference.GET_FROM_FILE)
+.paymentMethod(new PaymentMethod.Builder()
+        .payeePreferred(PayeePaymentMethodPreference.UNRESTRICTED)
+        .build())
+.build();
 ```
 

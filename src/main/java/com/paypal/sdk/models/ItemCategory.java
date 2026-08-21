@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 
-
 /**
  * ItemCategory to be used.
  */
@@ -35,7 +34,7 @@ public enum ItemCategory {
     /**
      * Unknown values will be mapped by this enum member
      */
-    _UNKNOWN;
+    _UNKNOWN;
 
     private static TreeMap<String, ItemCategory> valueMap = new TreeMap<>();
     private String value;

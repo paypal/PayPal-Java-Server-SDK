@@ -16,14 +16,19 @@ A resource representing an experience context of vault a venmo account.
 | `VaultInstruction` | [`VaultInstructionAction`](../../doc/models/vault-instruction-action.md) | Optional | DEPRECATED. Vault Instruction on action to be performed after a successful payer approval.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[A-Z_]+$` | VaultInstructionAction getVaultInstruction() | setVaultInstruction(VaultInstructionAction vaultInstruction) |
 | `UserAction` | [`VaultUserAction`](../../doc/models/vault-user-action.md) | Optional | User Action on action to be performed after a successful payer approval.<br><br>**Default**: `VaultUserAction.CONTINUE`<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[A-Z_]+$` | VaultUserAction getUserAction() | setUserAction(VaultUserAction userAction) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "shipping_preference": "GET_FROM_FILE",
-  "user_action": "CONTINUE",
-  "brand_name": "brand_name0",
-  "vault_instruction": "ON_CREATE_PAYMENT_TOKENS"
-}
+```java
+import com.paypal.sdk.models.ExperienceContextShippingPreference;
+import com.paypal.sdk.models.VaultInstructionAction;
+import com.paypal.sdk.models.VaultUserAction;
+import com.paypal.sdk.models.VenmoExperienceContext;
+
+VenmoExperienceContext venmoExperienceContext = new VenmoExperienceContext.Builder()
+    .brandName("brand_name6")
+    .shippingPreference(ExperienceContextShippingPreference.GET_FROM_FILE)
+    .vaultInstruction(VaultInstructionAction.ON_CREATE_PAYMENT_TOKENS)
+    .userAction(VaultUserAction.CONTINUE)
+    .build();
 ```
 

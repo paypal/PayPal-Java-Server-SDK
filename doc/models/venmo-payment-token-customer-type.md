@@ -14,3 +14,11 @@ The customer type associated with the Venmo payment token. This is to indicate w
 | `CONSUMER` | The customer vaulting the Venmo payment token is a consumer on the merchant / platform. |
 | `BUSINESS` | The customer vaulting the Venmo payment token is a business on merchant / platform. |
 
+## Example
+
+```java
+import com.paypal.sdk.models.VenmoPaymentTokenCustomerType;
+
+VenmoPaymentTokenCustomerType venmoPaymentTokenCustomerType = VenmoPaymentTokenCustomerType.CONSUMER;
+```
+

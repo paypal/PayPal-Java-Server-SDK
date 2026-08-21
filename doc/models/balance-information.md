@@ -17,24 +17,31 @@ The Balance information.
 | `AvailableBalance` | [`Money`](../../doc/models/money.md) | Optional | The currency and amount for a financial transaction, such as a balance or payment due. | Money getAvailableBalance() | setAvailableBalance(Money availableBalance) |
 | `WithheldBalance` | [`Money`](../../doc/models/money.md) | Optional | The currency and amount for a financial transaction, such as a balance or payment due. | Money getWithheldBalance() | setWithheldBalance(Money withheldBalance) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "currency": "currency4",
-  "primary": false,
-  "total_balance": {
-    "currency_code": "currency_code6",
-    "value": "value2"
-  },
-  "available_balance": {
-    "currency_code": "currency_code8",
-    "value": "value4"
-  },
-  "withheld_balance": {
-    "currency_code": "currency_code2",
-    "value": "value8"
-  }
-}
+```java
+import com.paypal.sdk.models.BalanceInformation;
+import com.paypal.sdk.models.Money;
+
+BalanceInformation balanceInformation = new BalanceInformation.Builder(
+    "currency2",
+    new Money.Builder(
+        "currency_code6",
+        "value2"
+    )
+    .build()
+)
+.primary(false)
+.availableBalance(new Money.Builder(
+        "currency_code8",
+        "value4"
+    )
+    .build())
+.withheldBalance(new Money.Builder(
+        "currency_code2",
+        "value8"
+    )
+    .build())
+.build();
 ```
 

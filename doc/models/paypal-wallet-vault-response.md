@@ -16,34 +16,37 @@ The details about a saved PayPal Wallet payment source.
 | `Links` | [`List<LinkDescription>`](../../doc/models/link-description.md) | Optional, Read-only | An array of request-related HATEOAS links.<br><br>**Constraints**: *Minimum Items*: `1`, *Maximum Items*: `10` | List<LinkDescription> getLinks() | setLinks(List<LinkDescription> links) |
 | `Customer` | [`PaypalWalletCustomer`](../../doc/models/paypal-wallet-customer.md) | Optional | The details about a customer in PayPal's system of record. | PaypalWalletCustomer getCustomer() | setCustomer(PaypalWalletCustomer customer) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "id": "id0",
-  "status": "CREATED",
-  "links": [
-    {
-      "href": "href6",
-      "rel": "rel0",
-      "method": "HEAD"
-    }
-  ],
-  "customer": {
-    "id": "id0",
-    "email_address": "email_address2",
-    "phone": {
-      "phone_type": "OTHER",
-      "phone_number": {
-        "national_number": "national_number6"
-      }
-    },
-    "name": {
-      "given_name": "given_name2",
-      "surname": "surname8"
-    },
-    "merchant_customer_id": "merchant_customer_id2"
-  }
-}
+```java
+import com.paypal.sdk.models.Name;
+import com.paypal.sdk.models.PaypalWalletCustomer;
+import com.paypal.sdk.models.PaypalWalletVaultResponse;
+import com.paypal.sdk.models.PaypalWalletVaultStatus;
+import com.paypal.sdk.models.PhoneNumber;
+import com.paypal.sdk.models.PhoneType;
+import com.paypal.sdk.models.PhoneWithType;
+
+PaypalWalletVaultResponse paypalWalletVaultResponse = new PaypalWalletVaultResponse.Builder()
+    .id("id0")
+    .status(PaypalWalletVaultStatus.APPROVED)
+    .customer(new PaypalWalletCustomer.Builder()
+        .id("id0")
+        .emailAddress("email_address2")
+        .phone(new PhoneWithType.Builder(
+            new PhoneNumber.Builder(
+                "national_number6"
+            )
+            .build()
+        )
+        .phoneType(PhoneType.OTHER)
+        .build())
+        .name(new Name.Builder()
+            .givenName("given_name2")
+            .surname("surname8")
+            .build())
+        .merchantCustomerId("merchant_customer_id2")
+        .build())
+    .build();
 ```
 

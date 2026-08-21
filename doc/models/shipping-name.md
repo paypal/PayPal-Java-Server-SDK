@@ -13,11 +13,13 @@ The name of the party.
 |  --- | --- | --- | --- | --- | --- |
 | `FullName` | `String` | Optional | When the party is a person, the party's full name.<br><br>**Constraints**: *Maximum Length*: `300` | String getFullName() | setFullName(String fullName) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "full_name": "full_name6"
-}
+```java
+import com.paypal.sdk.models.ShippingName;
+
+ShippingName shippingName = new ShippingName.Builder()
+    .fullName("full_name8")
+    .build();
 ```
 

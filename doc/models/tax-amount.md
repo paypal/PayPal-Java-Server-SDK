@@ -13,14 +13,18 @@ The tax levied by a government on the purchase of goods or services.
 |  --- | --- | --- | --- | --- | --- |
 | `TaxAmount` | [`Money`](../../doc/models/money.md) | Optional | The currency and amount for a financial transaction, such as a balance or payment due. | Money getTaxAmount() | setTaxAmount(Money taxAmount) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "tax_amount": {
-    "currency_code": "currency_code2",
-    "value": "value8"
-  }
-}
+```java
+import com.paypal.sdk.models.Money;
+import com.paypal.sdk.models.TaxAmount;
+
+TaxAmount taxAmount = new TaxAmount.Builder()
+    .taxAmount(new Money.Builder(
+        "currency_code2",
+        "value8"
+    )
+    .build())
+    .build();
 ```
 

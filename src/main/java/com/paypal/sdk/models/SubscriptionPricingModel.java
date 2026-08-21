@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 
-
 /**
  * SubscriptionPricingModel to be used.
  */
@@ -30,7 +29,7 @@ public enum SubscriptionPricingModel {
     /**
      * Unknown values will be mapped by this enum member
      */
-    _UNKNOWN;
+    _UNKNOWN;
 
     private static TreeMap<String, SubscriptionPricingModel> valueMap = new TreeMap<>();
     private String value;

@@ -15,19 +15,26 @@ The pricing scheme details.
 | `PricingModel` | [`PricingModel`](../../doc/models/pricing-model.md) | Required | The pricing model for the billing cycle.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `24`, *Pattern*: `^[A-Z_]+$` | PricingModel getPricingModel() | setPricingModel(PricingModel pricingModel) |
 | `ReloadThresholdAmount` | [`Money`](../../doc/models/money.md) | Optional | The currency and amount for a financial transaction, such as a balance or payment due. | Money getReloadThresholdAmount() | setReloadThresholdAmount(Money reloadThresholdAmount) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "price": {
-    "currency_code": "currency_code8",
-    "value": "value4"
-  },
-  "pricing_model": "FIXED",
-  "reload_threshold_amount": {
-    "currency_code": "currency_code0",
-    "value": "value6"
-  }
-}
+```java
+import com.paypal.sdk.models.Money;
+import com.paypal.sdk.models.PricingModel;
+import com.paypal.sdk.models.PricingScheme;
+
+PricingScheme pricingScheme = new PricingScheme.Builder(
+    PricingModel.AUTO_RELOAD
+)
+.price(new Money.Builder(
+        "currency_code8",
+        "value4"
+    )
+    .build())
+.reloadThresholdAmount(new Money.Builder(
+        "currency_code0",
+        "value6"
+    )
+    .build())
+.build();
 ```
 

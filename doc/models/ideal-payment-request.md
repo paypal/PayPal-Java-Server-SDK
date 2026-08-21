@@ -16,20 +16,25 @@ Information needed to pay using iDEAL.
 | `Bic` | `String` | Optional | The business identification code (BIC). In payments systems, a BIC is used to identify a specific business, most commonly a bank.<br><br>**Constraints**: *Minimum Length*: `8`, *Maximum Length*: `11`, *Pattern*: `^[A-Z-a-z0-9]{4}[A-Z-a-z]{2}[A-Z-a-z0-9]{2}([A-Z-a-z0-9]{3})?$` | String getBic() | setBic(String bic) |
 | `ExperienceContext` | [`ExperienceContext`](../../doc/models/experience-context.md) | Optional | Customizes the payer experience during the approval process for the payment. | ExperienceContext getExperienceContext() | setExperienceContext(ExperienceContext experienceContext) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "name": "name6",
-  "country_code": "country_code4",
-  "bic": "bic8",
-  "experience_context": {
-    "brand_name": "brand_name2",
-    "locale": "locale6",
-    "shipping_preference": "NO_SHIPPING",
-    "return_url": "return_url4",
-    "cancel_url": "cancel_url6"
-  }
-}
+```java
+import com.paypal.sdk.models.ExperienceContext;
+import com.paypal.sdk.models.ExperienceContextShippingPreference;
+import com.paypal.sdk.models.IdealPaymentRequest;
+
+IdealPaymentRequest idealPaymentRequest = new IdealPaymentRequest.Builder(
+    "name0",
+    "country_code0"
+)
+.bic("bic2")
+.experienceContext(new ExperienceContext.Builder()
+        .brandName("brand_name2")
+        .locale("locale6")
+        .shippingPreference(ExperienceContextShippingPreference.NO_SHIPPING)
+        .returnUrl("return_url4")
+        .cancelUrl("cancel_url6")
+        .build())
+.build();
 ```
 

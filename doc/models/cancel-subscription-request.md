@@ -13,11 +13,14 @@ The cancel subscription request details.
 |  --- | --- | --- | --- | --- | --- |
 | `Reason` | `String` | Required | The reason for the cancellation of a subscription.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `128`, *Pattern*: `^.*$` | String getReason() | setReason(String reason) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "reason": "reason8"
-}
+```java
+import com.paypal.sdk.models.CancelSubscriptionRequest;
+
+CancelSubscriptionRequest cancelSubscriptionRequest = new CancelSubscriptionRequest.Builder(
+    "reason0"
+)
+.build();
 ```
 

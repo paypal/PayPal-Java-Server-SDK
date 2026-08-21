@@ -18,22 +18,27 @@ The payment card to use to fund a Google Pay payment response. Can be a credit o
 | `BillingAddress` | [`Address`](../../doc/models/address.md) | Optional | The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute). | Address getBillingAddress() | setBillingAddress(Address billingAddress) |
 | `AuthenticationResult` | [`AuthenticationResponse`](../../doc/models/authentication-response.md) | Optional | Results of Authentication such as 3D Secure. | AuthenticationResponse getAuthenticationResult() | setAuthenticationResult(AuthenticationResponse authenticationResult) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "name": "name4",
-  "last_digits": "last_digits8",
-  "type": "DEBIT",
-  "brand": "ACCEL",
-  "billing_address": {
-    "address_line_1": "address_line_12",
-    "address_line_2": "address_line_28",
-    "admin_area_2": "admin_area_28",
-    "admin_area_1": "admin_area_14",
-    "postal_code": "postal_code0",
-    "country_code": "country_code8"
-  }
-}
+```java
+import com.paypal.sdk.models.Address;
+import com.paypal.sdk.models.CardBrand;
+import com.paypal.sdk.models.CardType;
+import com.paypal.sdk.models.GooglePayCardResponse;
+
+GooglePayCardResponse googlePayCardResponse = new GooglePayCardResponse.Builder()
+    .name("name2")
+    .type(CardType.STORE)
+    .brand(CardBrand.DINERS)
+    .billingAddress(new Address.Builder(
+        "country_code8"
+    )
+    .addressLine1("address_line_12")
+    .addressLine2("address_line_28")
+    .adminArea2("admin_area_28")
+    .adminArea1("admin_area_14")
+    .postalCode("postal_code0")
+    .build())
+    .build();
 ```
 

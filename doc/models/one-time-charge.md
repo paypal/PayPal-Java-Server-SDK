@@ -18,34 +18,44 @@ The one-time charge info at the time of checkout.
 | `Subtotal` | [`Money`](../../doc/models/money.md) | Optional | The currency and amount for a financial transaction, such as a balance or payment due. | Money getSubtotal() | setSubtotal(Money subtotal) |
 | `TotalAmount` | [`Money`](../../doc/models/money.md) | Required | The currency and amount for a financial transaction, such as a balance or payment due. | Money getTotalAmount() | setTotalAmount(Money totalAmount) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "setup_fee": {
-    "currency_code": "currency_code8",
-    "value": "value4"
-  },
-  "shipping_amount": {
-    "currency_code": "currency_code0",
-    "value": "value6"
-  },
-  "taxes": {
-    "currency_code": "currency_code6",
-    "value": "value2"
-  },
-  "product_price": {
-    "currency_code": "currency_code6",
-    "value": "value2"
-  },
-  "subtotal": {
-    "currency_code": "currency_code2",
-    "value": "value8"
-  },
-  "total_amount": {
-    "currency_code": "currency_code2",
-    "value": "value8"
-  }
-}
+```java
+import com.paypal.sdk.models.Money;
+import com.paypal.sdk.models.OneTimeCharge;
+
+OneTimeCharge oneTimeCharge = new OneTimeCharge.Builder(
+    new Money.Builder(
+        "currency_code2",
+        "value8"
+    )
+    .build()
+)
+.setupFee(new Money.Builder(
+        "currency_code8",
+        "value4"
+    )
+    .build())
+.shippingAmount(new Money.Builder(
+        "currency_code0",
+        "value6"
+    )
+    .build())
+.taxes(new Money.Builder(
+        "currency_code6",
+        "value2"
+    )
+    .build())
+.productPrice(new Money.Builder(
+        "currency_code6",
+        "value2"
+    )
+    .build())
+.subtotal(new Money.Builder(
+        "currency_code2",
+        "value8"
+    )
+    .build())
+.build();
 ```
 

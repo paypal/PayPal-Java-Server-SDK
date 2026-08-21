@@ -18,16 +18,22 @@ Resource consolidating common request and response attributes for vaulting PayPa
 | `CustomerType` | [`PaypalPaymentTokenCustomerType`](../../doc/models/paypal-payment-token-customer-type.md) | Optional | The customer type associated with the PayPal payment token. This is to indicate whether the customer acting on the merchant / platform is either a business or a consumer.<br><br>**Default**: `PaypalPaymentTokenCustomerType.CONSUMER`<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[0-9A-Z_]+$` | PaypalPaymentTokenCustomerType getCustomerType() | setCustomerType(PaypalPaymentTokenCustomerType customerType) |
 | `PermitMultiplePaymentTokens` | `Boolean` | Optional | Create multiple payment tokens for the same payer, merchant/platform combination. Use this when the customer has not logged in at merchant/platform. The payment token thus generated, can then also be used to create the customer account at merchant/platform. Use this also when multiple payment tokens are required for the same payer, different customer at merchant/platform. This helps to identify customers distinctly even though they may share the same PayPal account. This only applies to PayPal payment source.<br><br>**Default**: `false` | Boolean getPermitMultiplePaymentTokens() | setPermitMultiplePaymentTokens(Boolean permitMultiplePaymentTokens) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "customer_type": "CONSUMER",
-  "permit_multiple_payment_tokens": false,
-  "store_in_vault": "ON_SUCCESS",
-  "description": "description0",
-  "usage_pattern": "RECURRING_PREPAID",
-  "usage_type": "MERCHANT"
-}
+```java
+import com.paypal.sdk.models.PaypalPaymentTokenCustomerType;
+import com.paypal.sdk.models.PaypalWalletVaultBase;
+import com.paypal.sdk.models.StoreInVaultInstruction;
+import com.paypal.sdk.models.UsagePattern;
+import com.paypal.sdk.models.UsageType;
+
+PaypalWalletVaultBase paypalWalletVaultBase = new PaypalWalletVaultBase.Builder()
+    .storeInVault(StoreInVaultInstruction.ON_SUCCESS)
+    .description("description2")
+    .usagePattern(UsagePattern.UNSCHEDULED_PREPAID)
+    .usageType(UsageType.MERCHANT)
+    .customerType(PaypalPaymentTokenCustomerType.CONSUMER)
+    .permitMultiplePaymentTokens(false)
+    .build();
 ```
 

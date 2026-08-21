@@ -26,20 +26,23 @@ The authorized payment transaction.
 | `SupplementaryData` | [`PaymentSupplementaryData`](../../doc/models/payment-supplementary-data.md) | Optional | The supplementary data. | PaymentSupplementaryData getSupplementaryData() | setSupplementaryData(PaymentSupplementaryData supplementaryData) |
 | `Payee` | [`PayeeBase`](../../doc/models/payee-base.md) | Optional | The details for the merchant who receives the funds and fulfills the order. The merchant is also known as the payee. | PayeeBase getPayee() | setPayee(PayeeBase payee) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "status": "VOIDED",
-  "status_details": {
-    "reason": "PENDING_REVIEW"
-  },
-  "id": "id0",
-  "amount": {
-    "currency_code": "currency_code6",
-    "value": "value0"
-  },
-  "invoice_id": "invoice_id0"
-}
+```java
+import com.paypal.sdk.models.AuthorizationIncompleteReason;
+import com.paypal.sdk.models.AuthorizationStatusDetails;
+import com.paypal.sdk.models.Money;
+import com.paypal.sdk.models.PaymentAuthorization;
+
+PaymentAuthorization paymentAuthorization = new PaymentAuthorization.Builder()
+    .statusDetails(new AuthorizationStatusDetails.Builder()
+        .reason(AuthorizationIncompleteReason.PENDING_REVIEW)
+        .build())
+    .amount(new Money.Builder(
+        "currency_code6",
+        "value0"
+    )
+    .build())
+    .build();
 ```
 

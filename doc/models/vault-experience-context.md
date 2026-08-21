@@ -20,16 +20,20 @@ Customizes the Vault creation flow experience for your customers.
 | `AppSwitchContext` | [`AppSwitchContext`](../../doc/models/app-switch-context.md) | Optional | Merchant provided details of the native app or mobile web browser to facilitate buyer's app switch to the PayPal consumer app. | AppSwitchContext getAppSwitchContext() | setAppSwitchContext(AppSwitchContext appSwitchContext) |
 | `UserAction` | [`VaultUserAction`](../../doc/models/vault-user-action.md) | Optional | User Action on action to be performed after a successful payer approval.<br><br>**Default**: `VaultUserAction.CONTINUE`<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[A-Z_]+$` | VaultUserAction getUserAction() | setUserAction(VaultUserAction userAction) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "shipping_preference": "GET_FROM_FILE",
-  "user_action": "CONTINUE",
-  "brand_name": "brand_name0",
-  "locale": "locale4",
-  "return_url": "return_url2",
-  "cancel_url": "cancel_url4"
-}
+```java
+import com.paypal.sdk.models.ExperienceContextShippingPreference;
+import com.paypal.sdk.models.VaultExperienceContext;
+import com.paypal.sdk.models.VaultUserAction;
+
+VaultExperienceContext vaultExperienceContext = new VaultExperienceContext.Builder()
+    .brandName("brand_name4")
+    .locale("locale8")
+    .returnUrl("return_url6")
+    .cancelUrl("cancel_url8")
+    .shippingPreference(ExperienceContextShippingPreference.GET_FROM_FILE)
+    .userAction(VaultUserAction.CONTINUE)
+    .build();
 ```
 

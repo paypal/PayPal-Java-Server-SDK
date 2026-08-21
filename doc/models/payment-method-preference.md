@@ -14,12 +14,16 @@ The customer and merchant payment preferences.
 | `PayeePreferred` | [`PayeePaymentMethodPreference`](../../doc/models/payee-payment-method-preference.md) | Optional | The merchant-preferred payment methods.<br><br>**Default**: `PayeePaymentMethodPreference.UNRESTRICTED`<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[0-9A-Z_]+$` | PayeePaymentMethodPreference getPayeePreferred() | setPayeePreferred(PayeePaymentMethodPreference payeePreferred) |
 | `StandardEntryClassCode` | [`StandardEntryClassCode`](../../doc/models/standard-entry-class-code.md) | Optional | NACHA (the regulatory body governing the ACH network) requires that API callers (merchants, partners) obtain the consumer’s explicit authorization before initiating a transaction. To stay compliant, you’ll need to make sure that you retain a compliant authorization for each transaction that you originate to the ACH Network using this API. ACH transactions are categorized (using SEC codes) by how you capture authorization from the Receiver (the person whose bank account is being debited or credited). PayPal supports the following SEC codes.<br><br>**Default**: `StandardEntryClassCode.WEB`<br><br>**Constraints**: *Minimum Length*: `3`, *Maximum Length*: `255` | StandardEntryClassCode getStandardEntryClassCode() | setStandardEntryClassCode(StandardEntryClassCode standardEntryClassCode) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "payee_preferred": "UNRESTRICTED",
-  "standard_entry_class_code": "WEB"
-}
+```java
+import com.paypal.sdk.models.PayeePaymentMethodPreference;
+import com.paypal.sdk.models.PaymentMethodPreference;
+import com.paypal.sdk.models.StandardEntryClassCode;
+
+PaymentMethodPreference paymentMethodPreference = new PaymentMethodPreference.Builder()
+    .payeePreferred(PayeePaymentMethodPreference.UNRESTRICTED)
+    .standardEntryClassCode(StandardEntryClassCode.WEB)
+    .build();
 ```
 

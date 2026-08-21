@@ -15,23 +15,23 @@ The net amount. Returned when the currency of the refund is different from the c
 | `ConvertedAmount` | [`Money`](../../doc/models/money.md) | Optional | The currency and amount for a financial transaction, such as a balance or payment due. | Money getConvertedAmount() | setConvertedAmount(Money convertedAmount) |
 | `ExchangeRate` | [`ExchangeRate`](../../doc/models/exchange-rate.md) | Optional, Read-only | The exchange rate that determines the amount to convert from one currency to another currency. | ExchangeRate getExchangeRate() | setExchangeRate(ExchangeRate exchangeRate) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "payable_amount": {
-    "currency_code": "currency_code8",
-    "value": "value4"
-  },
-  "converted_amount": {
-    "currency_code": "currency_code0",
-    "value": "value6"
-  },
-  "exchange_rate": {
-    "source_currency": "source_currency4",
-    "target_currency": "target_currency6",
-    "value": "value6"
-  }
-}
+```java
+import com.paypal.sdk.models.Money;
+import com.paypal.sdk.models.NetAmountBreakdownItem;
+
+NetAmountBreakdownItem netAmountBreakdownItem = new NetAmountBreakdownItem.Builder()
+    .payableAmount(new Money.Builder(
+        "currency_code8",
+        "value4"
+    )
+    .build())
+    .convertedAmount(new Money.Builder(
+        "currency_code0",
+        "value6"
+    )
+    .build())
+    .build();
 ```
 

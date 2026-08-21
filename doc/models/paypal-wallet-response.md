@@ -25,18 +25,21 @@ The PayPal Wallet response.
 | `StoredCredential` | [`PaypalWalletStoredCredential`](../../doc/models/paypal-wallet-stored-credential.md) | Optional | Provides additional details to process a payment using the PayPal wallet billing agreement or a vaulted payment method that has been stored or is intended to be stored. | PaypalWalletStoredCredential getStoredCredential() | setStoredCredential(PaypalWalletStoredCredential storedCredential) |
 | `ExperienceStatus` | [`ExperienceStatus`](../../doc/models/experience-status.md) | Optional, Read-only | This field indicates the status of PayPal's Checkout experience throughout the order lifecycle. The values reflect the current stage of the checkout process.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[A-Z_]+$` | ExperienceStatus getExperienceStatus() | setExperienceStatus(ExperienceStatus experienceStatus) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "email_address": "email_address8",
-  "account_id": "account_id2",
-  "account_status": "VERIFIED",
-  "name": {
-    "given_name": "given_name2",
-    "surname": "surname8"
-  },
-  "phone_type": "OTHER"
-}
+```java
+import com.paypal.sdk.models.Name;
+import com.paypal.sdk.models.PaypalWalletResponse;
+import com.paypal.sdk.models.PhoneType;
+
+PaypalWalletResponse paypalWalletResponse = new PaypalWalletResponse.Builder()
+    .emailAddress("email_address0")
+    .accountId("account_id4")
+    .name(new Name.Builder()
+        .givenName("given_name2")
+        .surname("surname8")
+        .build())
+    .phoneType(PhoneType.FAX)
+    .build();
 ```
 

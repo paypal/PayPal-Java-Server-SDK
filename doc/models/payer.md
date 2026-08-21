@@ -19,23 +19,31 @@ The customer who approves and pays for the order. The customer is also known as 
 | `TaxInfo` | [`TaxInfo`](../../doc/models/tax-info.md) | Optional | The tax ID of the customer. The customer is also known as the payer. Both `tax_id` and `tax_id_type` are required. | TaxInfo getTaxInfo() | setTaxInfo(TaxInfo taxInfo) |
 | `Address` | [`Address`](../../doc/models/address.md) | Optional | The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute). | Address getAddress() | setAddress(Address address) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "email_address": "email_address8",
-  "payer_id": "payer_id8",
-  "name": {
-    "given_name": "given_name2",
-    "surname": "surname8"
-  },
-  "phone": {
-    "phone_type": "OTHER",
-    "phone_number": {
-      "national_number": "national_number6"
-    }
-  },
-  "birth_date": "birth_date6"
-}
+```java
+import com.paypal.sdk.models.Name;
+import com.paypal.sdk.models.Payer;
+import com.paypal.sdk.models.PhoneNumber;
+import com.paypal.sdk.models.PhoneType;
+import com.paypal.sdk.models.PhoneWithType;
+
+Payer payer = new Payer.Builder()
+    .emailAddress("email_address6")
+    .payerId("payer_id6")
+    .name(new Name.Builder()
+        .givenName("given_name2")
+        .surname("surname8")
+        .build())
+    .phone(new PhoneWithType.Builder(
+        new PhoneNumber.Builder(
+            "national_number6"
+        )
+        .build()
+    )
+    .phoneType(PhoneType.OTHER)
+    .build())
+    .birthDate("birth_date4")
+    .build();
 ```
 

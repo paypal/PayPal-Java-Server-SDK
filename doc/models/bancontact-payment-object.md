@@ -17,15 +17,17 @@ Information used to pay Bancontact.
 | `IbanLastChars` | `String` | Optional | The last characters of the IBAN used to pay.<br><br>**Constraints**: *Minimum Length*: `4`, *Maximum Length*: `34`, *Pattern*: `[a-zA-Z0-9]{4}` | String getIbanLastChars() | setIbanLastChars(String ibanLastChars) |
 | `CardLastDigits` | `String` | Optional | The last digits of the card used to fund the Bancontact payment.<br><br>**Constraints**: *Minimum Length*: `4`, *Maximum Length*: `4`, *Pattern*: `[0-9]{4}` | String getCardLastDigits() | setCardLastDigits(String cardLastDigits) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "name": "name6",
-  "country_code": "country_code6",
-  "bic": "bic8",
-  "iban_last_chars": "iban_last_chars4",
-  "card_last_digits": "card_last_digits0"
-}
+```java
+import com.paypal.sdk.models.BancontactPaymentObject;
+
+BancontactPaymentObject bancontactPaymentObject = new BancontactPaymentObject.Builder()
+    .name("name6")
+    .countryCode("country_code6")
+    .bic("bic8")
+    .ibanLastChars("iban_last_chars4")
+    .cardLastDigits("card_last_digits0")
+    .build();
 ```
 

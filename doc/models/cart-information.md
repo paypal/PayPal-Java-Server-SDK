@@ -15,21 +15,25 @@ The cart information.
 | `TaxInclusive` | `Boolean` | Optional | Indicates whether the item amount or the shipping amount already includes tax.<br><br>**Default**: `false` | Boolean getTaxInclusive() | setTaxInclusive(Boolean taxInclusive) |
 | `PaypalInvoiceId` | `String` | Optional | The ID of the invoice. Appears for only PayPal-generated invoices.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `127`, *Pattern*: `^[a-zA-Z0-9_'\-., ":;\!?]*$` | String getPaypalInvoiceId() | setPaypalInvoiceId(String paypalInvoiceId) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "tax_inclusive": false,
-  "item_details": [
-    {
-      "item_code": "item_code0",
-      "item_name": "item_name8",
-      "item_description": "item_description4",
-      "item_options": "item_options2",
-      "item_quantity": "item_quantity2"
-    }
-  ],
-  "paypal_invoice_id": "paypal_invoice_id2"
-}
+```java
+import com.paypal.sdk.models.CartInformation;
+import com.paypal.sdk.models.ItemDetails;
+import java.util.Arrays;
+
+CartInformation cartInformation = new CartInformation.Builder()
+    .itemDetails(Arrays.asList(
+        new ItemDetails.Builder()
+            .itemCode("item_code0")
+            .itemName("item_name8")
+            .itemDescription("item_description4")
+            .itemOptions("item_options2")
+            .itemQuantity("item_quantity2")
+            .build()
+    ))
+    .taxInclusive(false)
+    .paypalInvoiceId("paypal_invoice_id4")
+    .build();
 ```
 

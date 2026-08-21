@@ -19,3 +19,11 @@ The Universal Product Code type.
 | `UPC_2` |
 | `UPC_5` |
 
+## Example
+
+```java
+import com.paypal.sdk.models.UpcType;
+
+UpcType upcType = UpcType.UPC_C;
+```
+

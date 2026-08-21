@@ -15,16 +15,19 @@ The customer who approves and pays for the order. The customer is also known as 
 | `PayerId` | `String` | Optional | The account identifier for a PayPal account.<br><br>**Constraints**: *Minimum Length*: `13`, *Maximum Length*: `13`, *Pattern*: `^[2-9A-HJ-NP-Z]{13}$` | String getPayerId() | setPayerId(String payerId) |
 | `Name` | [`Name`](../../doc/models/name.md) | Optional | The name of the party. | Name getName() | setName(Name name) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "email_address": "email_address4",
-  "payer_id": "payer_id4",
-  "name": {
-    "given_name": "given_name2",
-    "surname": "surname8"
-  }
-}
+```java
+import com.paypal.sdk.models.Name;
+import com.paypal.sdk.models.SubscriptionPayer;
+
+SubscriptionPayer subscriptionPayer = new SubscriptionPayer.Builder()
+    .emailAddress("email_address8")
+    .payerId("payer_id8")
+    .name(new Name.Builder()
+        .givenName("given_name2")
+        .surname("surname8")
+        .build())
+    .build();
 ```
 

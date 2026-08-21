@@ -13,11 +13,14 @@ The details of the authorized payment status.
 |  --- | --- | --- | --- | --- | --- |
 | `Reason` | [`AuthorizationIncompleteReason`](../../doc/models/authorization-incomplete-reason.md) | Optional | The reason why the authorized status is `PENDING`.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `64`, *Pattern*: `^[A-Z_]+$` | AuthorizationIncompleteReason getReason() | setReason(AuthorizationIncompleteReason reason) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "reason": "PENDING_REVIEW"
-}
+```java
+import com.paypal.sdk.models.AuthorizationIncompleteReason;
+import com.paypal.sdk.models.AuthorizationStatusDetails;
+
+AuthorizationStatusDetails authorizationStatusDetails = new AuthorizationStatusDetails.Builder()
+    .reason(AuthorizationIncompleteReason.PENDING_REVIEW)
+    .build();
 ```
 

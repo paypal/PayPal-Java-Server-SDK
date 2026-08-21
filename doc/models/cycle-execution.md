@@ -18,16 +18,16 @@ The regular and trial execution details for a billing cycle.
 | `CurrentPricingSchemeVersion` | `Integer` | Optional, Read-only | The active pricing scheme version for the billing cycle.<br><br>**Constraints**: `>= 1`, `<= 99` | Integer getCurrentPricingSchemeVersion() | setCurrentPricingSchemeVersion(Integer currentPricingSchemeVersion) |
 | `TotalCycles` | `Integer` | Optional, Read-only | The number of times this billing cycle gets executed. Trial billing cycles can only be executed a finite number of times (value between 1 and 999 for total_cycles). Regular billing cycles can be executed infinite times (value of 0 for total_cycles) or a finite number of times (value between 1 and 999 for total_cycles).<br><br>**Constraints**: `>= 0`, `<= 999` | Integer getTotalCycles() | setTotalCycles(Integer totalCycles) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "tenure_type": "REGULAR",
-  "sequence": 99,
-  "cycles_completed": 172,
-  "cycles_remaining": 208,
-  "current_pricing_scheme_version": 99,
-  "total_cycles": 60
-}
+```java
+import com.paypal.sdk.models.CycleExecution;
+
+CycleExecution cycleExecution = new CycleExecution.Builder(
+    null,
+    99,
+    0
+)
+.build();
 ```
 

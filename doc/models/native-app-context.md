@@ -14,12 +14,12 @@ Merchant provided, buyer's native app preferences to app switch to the PayPal co
 | `OsType` | [`OsType`](../../doc/models/os-type.md) | Optional, Read-only | Operating System type of the device that the buyer is using.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `7`, *Pattern*: `^[A-Z_]+$` | OsType getOsType() | setOsType(OsType osType) |
 | `OsVersion` | `String` | Optional, Read-only | Operating System version of the device that the buyer is using.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `64`, *Pattern*: `^.*$` | String getOsVersion() | setOsVersion(String osVersion) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "os_type": "ANDROID",
-  "os_version": "os_version0"
-}
+```java
+import com.paypal.sdk.models.NativeAppContext;
+
+NativeAppContext nativeAppContext = new NativeAppContext.Builder()
+    .build();
 ```
 

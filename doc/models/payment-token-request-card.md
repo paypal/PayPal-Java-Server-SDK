@@ -18,15 +18,18 @@ A Resource representing a request to vault a Card.
 | `Brand` | [`CardBrand`](../../doc/models/card-brand.md) | Optional | The card network or brand. Applies to credit, debit, gift, and payment cards.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[A-Z_]+$` | CardBrand getBrand() | setBrand(CardBrand brand) |
 | `BillingAddress` | [`Address`](../../doc/models/address.md) | Optional | The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute). | Address getBillingAddress() | setBillingAddress(Address billingAddress) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "name": "name4",
-  "number": "number8",
-  "expiry": "expiry2",
-  "security_code": "security_code6",
-  "brand": "HIPER"
-}
+```java
+import com.paypal.sdk.models.CardBrand;
+import com.paypal.sdk.models.PaymentTokenRequestCard;
+
+PaymentTokenRequestCard paymentTokenRequestCard = new PaymentTokenRequestCard.Builder()
+    .name("name0")
+    .number("number8")
+    .expiry("expiry8")
+    .securityCode("security_code2")
+    .brand(CardBrand.SOLO)
+    .build();
 ```
 

@@ -19,35 +19,39 @@ The detailed breakdown of the capture activity. This is not available for transa
 | `ExchangeRate` | [`ExchangeRate`](../../doc/models/exchange-rate.md) | Optional, Read-only | The exchange rate that determines the amount to convert from one currency to another currency. | ExchangeRate getExchangeRate() | setExchangeRate(ExchangeRate exchangeRate) |
 | `PlatformFees` | [`List<PlatformFee>`](../../doc/models/platform-fee.md) | Optional | An array of platform or partner fees, commissions, or brokerage fees that associated with the captured payment.<br><br>**Constraints**: *Minimum Items*: `0`, *Maximum Items*: `1` | List<PlatformFee> getPlatformFees() | setPlatformFees(List<PlatformFee> platformFees) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "gross_amount": {
-    "currency_code": "currency_code4",
-    "value": "value0"
-  },
-  "paypal_fee": {
-    "currency_code": "currency_code4",
-    "value": "value2"
-  },
-  "paypal_fee_in_receivable_currency": {
-    "currency_code": "currency_code2",
-    "value": "value8"
-  },
-  "net_amount": {
-    "currency_code": "currency_code6",
-    "value": "value2"
-  },
-  "receivable_amount": {
-    "currency_code": "currency_code2",
-    "value": "value8"
-  },
-  "exchange_rate": {
-    "source_currency": "source_currency4",
-    "target_currency": "target_currency6",
-    "value": "value6"
-  }
-}
+```java
+import com.paypal.sdk.models.Money;
+import com.paypal.sdk.models.SellerReceivableBreakdown;
+
+SellerReceivableBreakdown sellerReceivableBreakdown = new SellerReceivableBreakdown.Builder(
+    new Money.Builder(
+        "currency_code4",
+        "value0"
+    )
+    .build()
+)
+.paypalFee(new Money.Builder(
+        "currency_code4",
+        "value2"
+    )
+    .build())
+.paypalFeeInReceivableCurrency(new Money.Builder(
+        "currency_code2",
+        "value8"
+    )
+    .build())
+.netAmount(new Money.Builder(
+        "currency_code6",
+        "value2"
+    )
+    .build())
+.receivableAmount(new Money.Builder(
+        "currency_code2",
+        "value8"
+    )
+    .build())
+.build();
 ```
 

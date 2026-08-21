@@ -16,90 +16,49 @@ The vaulted payment method details.
 | `Venmo` | [`VenmoPaymentToken`](../../doc/models/venmo-payment-token.md) | Optional, Read-only | Full representation of a Venmo Payment Token. | VenmoPaymentToken getVenmo() | setVenmo(VenmoPaymentToken venmo) |
 | `ApplePay` | [`ApplePayPaymentToken`](../../doc/models/apple-pay-payment-token.md) | Optional | A resource representing a response for Apple Pay. | ApplePayPaymentToken getApplePay() | setApplePay(ApplePayPaymentToken applePay) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "card": {
-    "name": "name6",
-    "last_digits": "last_digits0",
-    "brand": "CB_NATIONALE",
-    "expiry": "expiry4",
-    "billing_address": {
-      "address_line_1": "address_line_12",
-      "address_line_2": "address_line_28",
-      "admin_area_2": "admin_area_28",
-      "admin_area_1": "admin_area_14",
-      "postal_code": "postal_code0",
-      "country_code": "country_code8"
-    }
-  },
-  "paypal": {
-    "description": "description2",
-    "usage_pattern": "THRESHOLD_PREPAID",
-    "shipping": {
-      "name": {
-        "full_name": "full_name6"
-      },
-      "email_address": "email_address2",
-      "phone_number": {
-        "country_code": "country_code2",
-        "national_number": "national_number6"
-      },
-      "type": "SHIPPING",
-      "address": {
-        "address_line_1": "address_line_16",
-        "address_line_2": "address_line_26",
-        "admin_area_2": "admin_area_20",
-        "admin_area_1": "admin_area_12",
-        "postal_code": "postal_code8",
-        "country_code": "country_code6"
-      }
-    },
-    "permit_multiple_payment_tokens": false,
-    "usage_type": "MERCHANT"
-  },
-  "venmo": {
-    "description": "description6",
-    "usage_pattern": "UNSCHEDULED_PREPAID",
-    "shipping": {
-      "name": {
-        "full_name": "full_name6"
-      },
-      "email_address": "email_address2",
-      "phone_number": {
-        "country_code": "country_code2",
-        "national_number": "national_number6"
-      },
-      "type": "SHIPPING",
-      "address": {
-        "address_line_1": "address_line_16",
-        "address_line_2": "address_line_26",
-        "admin_area_2": "admin_area_20",
-        "admin_area_1": "admin_area_12",
-        "postal_code": "postal_code8",
-        "country_code": "country_code6"
-      }
-    },
-    "permit_multiple_payment_tokens": false,
-    "usage_type": "MERCHANT"
-  },
-  "apple_pay": {
-    "card": {
-      "name": "name6",
-      "last_digits": "last_digits0",
-      "type": "UNKNOWN",
-      "brand": "CB_NATIONALE",
-      "billing_address": {
-        "address_line_1": "address_line_12",
-        "address_line_2": "address_line_28",
-        "admin_area_2": "admin_area_28",
-        "admin_area_1": "admin_area_14",
-        "postal_code": "postal_code0",
-        "country_code": "country_code8"
-      }
-    }
-  }
-}
+```java
+import com.paypal.sdk.models.Address;
+import com.paypal.sdk.models.ApplePayCard;
+import com.paypal.sdk.models.ApplePayPaymentToken;
+import com.paypal.sdk.models.CardBrand;
+import com.paypal.sdk.models.CardPaymentTokenEntity;
+import com.paypal.sdk.models.CardResponseAddress;
+import com.paypal.sdk.models.CardType;
+import com.paypal.sdk.models.PaymentTokenResponsePaymentSource;
+
+PaymentTokenResponsePaymentSource paymentTokenResponsePaymentSource = new PaymentTokenResponsePaymentSource.Builder()
+    .card(new CardPaymentTokenEntity.Builder()
+        .name("name6")
+        .brand(CardBrand.CB_NATIONALE)
+        .expiry("expiry4")
+        .billingAddress(new CardResponseAddress.Builder(
+            "country_code8"
+        )
+        .addressLine1("address_line_12")
+        .addressLine2("address_line_28")
+        .adminArea2("admin_area_28")
+        .adminArea1("admin_area_14")
+        .postalCode("postal_code0")
+        .build())
+        .build())
+    .applePay(new ApplePayPaymentToken.Builder()
+        .card(new ApplePayCard.Builder()
+            .name("name6")
+            .type(CardType.UNKNOWN)
+            .brand(CardBrand.CB_NATIONALE)
+            .billingAddress(new Address.Builder(
+                "country_code8"
+            )
+            .addressLine1("address_line_12")
+            .addressLine2("address_line_28")
+            .adminArea2("admin_area_28")
+            .adminArea1("admin_area_14")
+            .postalCode("postal_code0")
+            .build())
+            .build())
+        .build())
+    .build();
 ```
 
