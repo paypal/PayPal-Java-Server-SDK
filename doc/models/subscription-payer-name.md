@@ -18,15 +18,17 @@ The name of the party.
 | `Suffix` | `String` | Optional | The suffix for the party's name.<br><br>**Constraints**: *Maximum Length*: `140` | String getSuffix() | setSuffix(String suffix) |
 | `FullName` | `String` | Optional | When the party is a person, the party's full name.<br><br>**Constraints**: *Maximum Length*: `300` | String getFullName() | setFullName(String fullName) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "prefix": "prefix4",
-  "given_name": "given_name8",
-  "surname": "surname2",
-  "middle_name": "middle_name4",
-  "suffix": "suffix4"
-}
+```java
+import com.paypal.sdk.models.SubscriptionPayerName;
+
+SubscriptionPayerName subscriptionPayerName = new SubscriptionPayerName.Builder()
+    .prefix("prefix8")
+    .givenName("given_name2")
+    .surname("surname8")
+    .middleName("middle_name0")
+    .suffix("suffix0")
+    .build();
 ```
 

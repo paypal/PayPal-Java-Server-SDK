@@ -17,3 +17,11 @@ The phone type.
 | `OTHER` | Other phone number. |
 | `PAGER` | Pager number. |
 
+## Example
+
+```java
+import com.paypal.sdk.models.PhoneType;
+
+PhoneType phoneType = PhoneType.HOME;
+```
+

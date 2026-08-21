@@ -23,18 +23,25 @@ Customizes the payer experience during the approval process for payment with Pay
 | `PaymentMethodPreference` | [`PayeePaymentMethodPreference`](../../doc/models/payee-payment-method-preference.md) | Optional | The merchant-preferred payment methods.<br><br>**Default**: `PayeePaymentMethodPreference.UNRESTRICTED`<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[0-9A-Z_]+$` | PayeePaymentMethodPreference getPaymentMethodPreference() | setPaymentMethodPreference(PayeePaymentMethodPreference paymentMethodPreference) |
 | `OrderUpdateCallbackConfig` | [`CallbackConfiguration`](../../doc/models/callback-configuration.md) | Optional | CallBack Configuration that the merchant can provide to PayPal/Venmo. | CallbackConfiguration getOrderUpdateCallbackConfig() | setOrderUpdateCallbackConfig(CallbackConfiguration orderUpdateCallbackConfig) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "shipping_preference": "GET_FROM_FILE",
-  "contact_preference": "NO_CONTACT_INFO",
-  "landing_page": "NO_PREFERENCE",
-  "user_action": "CONTINUE",
-  "payment_method_preference": "UNRESTRICTED",
-  "brand_name": "brand_name6",
-  "locale": "locale0",
-  "return_url": "return_url8"
-}
+```java
+import com.paypal.sdk.models.PayeePaymentMethodPreference;
+import com.paypal.sdk.models.PaypalExperienceLandingPage;
+import com.paypal.sdk.models.PaypalExperienceUserAction;
+import com.paypal.sdk.models.PaypalWalletContactPreference;
+import com.paypal.sdk.models.PaypalWalletContextShippingPreference;
+import com.paypal.sdk.models.PaypalWalletExperienceContext;
+
+PaypalWalletExperienceContext paypalWalletExperienceContext = new PaypalWalletExperienceContext.Builder()
+    .brandName("brand_name2")
+    .locale("locale6")
+    .shippingPreference(PaypalWalletContextShippingPreference.GET_FROM_FILE)
+    .contactPreference(PaypalWalletContactPreference.NO_CONTACT_INFO)
+    .returnUrl("return_url6")
+    .landingPage(PaypalExperienceLandingPage.NO_PREFERENCE)
+    .userAction(PaypalExperienceUserAction.CONTINUE)
+    .paymentMethodPreference(PayeePaymentMethodPreference.UNRESTRICTED)
+    .build();
 ```
 

@@ -18,31 +18,37 @@ The tracking details of an order.
 | `NotifyPayer` | `Boolean` | Optional | If true, PayPal will send an email notification to the payer of the PayPal transaction. The email contains the tracking details provided through the Orders tracking API request. Independent of any value passed for `notify_payer`, the payer may receive tracking notifications within the PayPal app, based on the user's notification preferences.<br><br>**Default**: `false` | Boolean getNotifyPayer() | setNotifyPayer(Boolean notifyPayer) |
 | `Items` | [`List<OrderTrackerItem>`](../../doc/models/order-tracker-item.md) | Optional | An array of details of items in the shipment. | List<OrderTrackerItem> getItems() | setItems(List<OrderTrackerItem> items) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "capture_id": "capture_id0",
-  "notify_payer": false,
-  "tracking_number": "tracking_number6",
-  "carrier": "ACS_GR",
-  "carrier_name_other": "carrier_name_other0",
-  "items": [
-    {
-      "name": "name8",
-      "quantity": "quantity4",
-      "sku": "sku6",
-      "url": "url2",
-      "image_url": "image_url4"
-    },
-    {
-      "name": "name8",
-      "quantity": "quantity4",
-      "sku": "sku6",
-      "url": "url2",
-      "image_url": "image_url4"
-    }
-  ]
-}
+```java
+import com.paypal.sdk.models.OrderTrackerItem;
+import com.paypal.sdk.models.OrderTrackerRequest;
+import com.paypal.sdk.models.ShipmentCarrier;
+import java.util.Arrays;
+
+OrderTrackerRequest orderTrackerRequest = new OrderTrackerRequest.Builder(
+    "capture_id2"
+)
+.trackingNumber("tracking_number8")
+.carrier(ShipmentCarrier.POSTA_RO)
+.carrierNameOther("carrier_name_other2")
+.notifyPayer(false)
+.items(Arrays.asList(
+        new OrderTrackerItem.Builder()
+            .name("name8")
+            .quantity("quantity4")
+            .sku("sku6")
+            .url("url2")
+            .imageUrl("image_url4")
+            .build(),
+        new OrderTrackerItem.Builder()
+            .name("name8")
+            .quantity("quantity4")
+            .sku("sku6")
+            .url("url2")
+            .imageUrl("image_url4")
+            .build()
+    ))
+.build();
 ```
 

@@ -13,11 +13,13 @@ The activate subscription request details.
 |  --- | --- | --- | --- | --- | --- |
 | `Reason` | `String` | Optional | The reason for activation of a subscription. Required to reactivate the subscription.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `128`, *Pattern*: `^.*$` | String getReason() | setReason(String reason) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "reason": "reason4"
-}
+```java
+import com.paypal.sdk.models.ActivateSubscriptionRequest;
+
+ActivateSubscriptionRequest activateSubscriptionRequest = new ActivateSubscriptionRequest.Builder()
+    .reason("reason6")
+    .build();
 ```
 

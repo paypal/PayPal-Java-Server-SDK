@@ -6,10 +6,11 @@
 
 package com.paypal.sdk.models;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import java.util.List;
 
 /**
  * This is a model class for Subscription type.
@@ -28,6 +29,9 @@ public class Subscription {
     private Boolean planOverridden;
     private PlanDetails plan;
     private List<LinkDescription> links;
+    private SubscriptionStatus status;
+    private String statusChangeNote;
+    private String statusUpdateTime;
 
     /**
      * Default constructor.
@@ -36,7 +40,7 @@ public class Subscription {
     }
 
     /**
-     * Initialization constructor.
+     * Initialization constructor. Preserved for backwards compatibility.
      * @param  id  String value for id.
      * @param  planId  String value for planId.
      * @param  startTime  String value for startTime.
@@ -78,6 +82,60 @@ public class Subscription {
         this.planOverridden = planOverridden;
         this.plan = plan;
         this.links = links;
+    }
+
+    /**
+     * Initialization constructor.
+     * @param  id  String value for id.
+     * @param  planId  String value for planId.
+     * @param  startTime  String value for startTime.
+     * @param  quantity  String value for quantity.
+     * @param  shippingAmount  Money value for shippingAmount.
+     * @param  subscriber  Subscriber value for subscriber.
+     * @param  billingInfo  SubscriptionBillingInformation value for billingInfo.
+     * @param  createTime  String value for createTime.
+     * @param  updateTime  String value for updateTime.
+     * @param  customId  String value for customId.
+     * @param  planOverridden  Boolean value for planOverridden.
+     * @param  plan  PlanDetails value for plan.
+     * @param  links  List of LinkDescription value for links.
+     * @param  status  SubscriptionStatus value for status.
+     * @param  statusChangeNote  String value for statusChangeNote.
+     * @param  statusUpdateTime  String value for statusUpdateTime.
+     */
+    public Subscription(
+            String id,
+            String planId,
+            String startTime,
+            String quantity,
+            Money shippingAmount,
+            Subscriber subscriber,
+            SubscriptionBillingInformation billingInfo,
+            String createTime,
+            String updateTime,
+            String customId,
+            Boolean planOverridden,
+            PlanDetails plan,
+            List<LinkDescription> links,
+            SubscriptionStatus status,
+            String statusChangeNote,
+            String statusUpdateTime) {
+        this.id = id;
+        this.planId = planId;
+        this.startTime = startTime;
+        this.quantity = quantity;
+        this.shippingAmount = shippingAmount;
+        this.subscriber = subscriber;
+        this.billingInfo = billingInfo;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
+        this.customId = customId;
+        this.planOverridden = planOverridden;
+        this.plan = plan;
+        this.links = links;
+        this.status = status;
+        this.statusChangeNote = statusChangeNote;
+        this.statusUpdateTime = statusUpdateTime;
     }
 
     /**
@@ -376,6 +434,75 @@ public class Subscription {
     }
 
     /**
+     * Getter for Status.
+     * The status of the subscription.
+     * @return Returns the SubscriptionStatus
+     */
+    @JsonGetter("status")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public SubscriptionStatus getStatus() {
+        return status;
+    }
+
+    /**
+     * Setter for Status.
+     * The status of the subscription.
+     * @param status Value for SubscriptionStatus
+     */
+    @JsonSetter("status")
+    public void setStatus(SubscriptionStatus status) {
+        this.status = status;
+    }
+
+    /**
+     * Getter for StatusChangeNote.
+     * The reason or notes for the status of the subscription.
+     * @return Returns the String
+     */
+    @JsonGetter("status_change_note")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public String getStatusChangeNote() {
+        return statusChangeNote;
+    }
+
+    /**
+     * Setter for StatusChangeNote.
+     * The reason or notes for the status of the subscription.
+     * @param statusChangeNote Value for String
+     */
+    @JsonSetter("status_change_note")
+    public void setStatusChangeNote(String statusChangeNote) {
+        this.statusChangeNote = statusChangeNote;
+    }
+
+    /**
+     * Getter for StatusUpdateTime.
+     * The date and time, in [Internet date and time
+     * format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while
+     * fractional seconds are optional. Note: The regular expression provides guidance but does not
+     * reject all invalid dates.
+     * @return Returns the String
+     */
+    @JsonGetter("status_update_time")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public String getStatusUpdateTime() {
+        return statusUpdateTime;
+    }
+
+    /**
+     * Setter for StatusUpdateTime.
+     * The date and time, in [Internet date and time
+     * format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while
+     * fractional seconds are optional. Note: The regular expression provides guidance but does not
+     * reject all invalid dates.
+     * @param statusUpdateTime Value for String
+     */
+    @JsonSetter("status_update_time")
+    public void setStatusUpdateTime(String statusUpdateTime) {
+        this.statusUpdateTime = statusUpdateTime;
+    }
+
+    /**
      * Converts this Subscription into string format.
      * @return String representation of this class
      */
@@ -385,7 +512,9 @@ public class Subscription {
                 + ", quantity=" + quantity + ", shippingAmount=" + shippingAmount + ", subscriber="
                 + subscriber + ", billingInfo=" + billingInfo + ", createTime=" + createTime
                 + ", updateTime=" + updateTime + ", customId=" + customId + ", planOverridden="
-                + planOverridden + ", plan=" + plan + ", links=" + links + "]";
+                + planOverridden + ", plan=" + plan + ", links=" + links + ", status=" + status
+                + ", statusChangeNote=" + statusChangeNote + ", statusUpdateTime="
+                + statusUpdateTime + "]";
     }
 
     /**
@@ -407,7 +536,10 @@ public class Subscription {
                 .customId(getCustomId())
                 .planOverridden(getPlanOverridden())
                 .plan(getPlan())
-                .links(getLinks());
+                .links(getLinks())
+                .status(getStatus())
+                .statusChangeNote(getStatusChangeNote())
+                .statusUpdateTime(getStatusUpdateTime());
         return builder;
     }
 
@@ -428,6 +560,9 @@ public class Subscription {
         private Boolean planOverridden;
         private PlanDetails plan;
         private List<LinkDescription> links;
+        private SubscriptionStatus status;
+        private String statusChangeNote;
+        private String statusUpdateTime;
 
 
 
@@ -562,12 +697,43 @@ public class Subscription {
         }
 
         /**
+         * Setter for status.
+         * @param  status  SubscriptionStatus value for status.
+         * @return Builder
+         */
+        public Builder status(SubscriptionStatus status) {
+            this.status = status;
+            return this;
+        }
+
+        /**
+         * Setter for statusChangeNote.
+         * @param  statusChangeNote  String value for statusChangeNote.
+         * @return Builder
+         */
+        public Builder statusChangeNote(String statusChangeNote) {
+            this.statusChangeNote = statusChangeNote;
+            return this;
+        }
+
+        /**
+         * Setter for statusUpdateTime.
+         * @param  statusUpdateTime  String value for statusUpdateTime.
+         * @return Builder
+         */
+        public Builder statusUpdateTime(String statusUpdateTime) {
+            this.statusUpdateTime = statusUpdateTime;
+            return this;
+        }
+
+        /**
          * Builds a new {@link Subscription} object using the set fields.
          * @return {@link Subscription}
          */
         public Subscription build() {
             return new Subscription(id, planId, startTime, quantity, shippingAmount, subscriber,
-                    billingInfo, createTime, updateTime, customId, planOverridden, plan, links);
+                    billingInfo, createTime, updateTime, customId, planOverridden, plan, links,
+                    status, statusChangeNote, statusUpdateTime);
         }
     }
 }

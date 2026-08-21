@@ -17,27 +17,35 @@ The shipping details.
 | `Type` | [`FulfillmentType`](../../doc/models/fulfillment-type.md) | Optional | A classification for the method of purchase fulfillment (e.g shipping, in-store pickup, etc). Either `type` or `options` may be present, but not both.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[0-9A-Z_]+$` | FulfillmentType getType() | setType(FulfillmentType type) |
 | `Address` | [`Address`](../../doc/models/address.md) | Optional | The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute). | Address getAddress() | setAddress(Address address) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "name": {
-    "full_name": "full_name6"
-  },
-  "email_address": "email_address6",
-  "phone_number": {
-    "country_code": "country_code2",
-    "national_number": "national_number6"
-  },
-  "type": "PICKUP_IN_STORE",
-  "address": {
-    "address_line_1": "address_line_16",
-    "address_line_2": "address_line_26",
-    "admin_area_2": "admin_area_20",
-    "admin_area_1": "admin_area_12",
-    "postal_code": "postal_code8",
-    "country_code": "country_code6"
-  }
-}
+```java
+import com.paypal.sdk.models.Address;
+import com.paypal.sdk.models.FulfillmentType;
+import com.paypal.sdk.models.PhoneNumberWithCountryCode;
+import com.paypal.sdk.models.ShippingName;
+import com.paypal.sdk.models.VaultedDigitalWalletShippingDetails;
+
+VaultedDigitalWalletShippingDetails vaultedDigitalWalletShippingDetails = new VaultedDigitalWalletShippingDetails.Builder()
+    .name(new ShippingName.Builder()
+        .fullName("full_name6")
+        .build())
+    .emailAddress("email_address6")
+    .phoneNumber(new PhoneNumberWithCountryCode.Builder(
+        "country_code2",
+        "national_number6"
+    )
+    .build())
+    .type(FulfillmentType.PICKUP_IN_STORE)
+    .address(new Address.Builder(
+        "country_code6"
+    )
+    .addressLine1("address_line_16")
+    .addressLine2("address_line_26")
+    .adminArea2("admin_area_20")
+    .adminArea1("admin_area_12")
+    .postalCode("postal_code8")
+    .build())
+    .build();
 ```
 

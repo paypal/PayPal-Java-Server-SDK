@@ -16,17 +16,21 @@ The incentive details.
 | `IncentiveAmount` | [`Money`](../../doc/models/money.md) | Optional | The currency and amount for a financial transaction, such as a balance or payment due. | Money getIncentiveAmount() | setIncentiveAmount(Money incentiveAmount) |
 | `IncentiveProgramCode` | `String` | Optional | The incentive program code that identifies a merchant loyalty or incentive program.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `100`, *Pattern*: `^[a-zA-Z0-9_'\-., ":;\!?]*$` | String getIncentiveProgramCode() | setIncentiveProgramCode(String incentiveProgramCode) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "incentive_type": "incentive_type4",
-  "incentive_code": "incentive_code0",
-  "incentive_amount": {
-    "currency_code": "currency_code4",
-    "value": "value0"
-  },
-  "incentive_program_code": "incentive_program_code4"
-}
+```java
+import com.paypal.sdk.models.IncentiveDetails;
+import com.paypal.sdk.models.Money;
+
+IncentiveDetails incentiveDetails = new IncentiveDetails.Builder()
+    .incentiveType("incentive_type0")
+    .incentiveCode("incentive_code6")
+    .incentiveAmount(new Money.Builder(
+        "currency_code4",
+        "value0"
+    )
+    .build())
+    .incentiveProgramCode("incentive_program_code0")
+    .build();
 ```
 

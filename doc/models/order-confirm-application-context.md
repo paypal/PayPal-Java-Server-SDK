@@ -17,25 +17,34 @@ Customizes the payer confirmation experience.
 | `CancelUrl` | `String` | Optional | The URL where the customer is redirected after the customer cancels the payment.<br><br>**Constraints**: *Minimum Length*: `10`, *Maximum Length*: `4000` | String getCancelUrl() | setCancelUrl(String cancelUrl) |
 | `StoredPaymentSource` | [`StoredPaymentSource`](../../doc/models/stored-payment-source.md) | Optional | Provides additional details to process a payment using a `payment_source` that has been stored or is intended to be stored (also referred to as stored_credential or card-on-file). Parameter compatibility: `payment_type=ONE_TIME` is compatible only with `payment_initiator=CUSTOMER`. `usage=FIRST` is compatible only with `payment_initiator=CUSTOMER`. `previous_transaction_reference` or `previous_network_transaction_reference` is compatible only with `payment_initiator=MERCHANT`. Only one of the parameters - `previous_transaction_reference` and `previous_network_transaction_reference` - can be present in the request. | StoredPaymentSource getStoredPaymentSource() | setStoredPaymentSource(StoredPaymentSource storedPaymentSource) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "brand_name": "brand_name6",
-  "locale": "locale0",
-  "return_url": "return_url8",
-  "cancel_url": "cancel_url0",
-  "stored_payment_source": {
-    "payment_initiator": "CUSTOMER",
-    "payment_type": "RECURRING",
-    "usage": "FIRST",
-    "previous_network_transaction_reference": {
-      "id": "id6",
-      "date": "date2",
-      "network": "CONFIDIS",
-      "acquirer_reference_number": "acquirer_reference_number8"
-    }
-  }
-}
+```java
+import com.paypal.sdk.models.CardBrand;
+import com.paypal.sdk.models.NetworkTransaction;
+import com.paypal.sdk.models.OrderConfirmApplicationContext;
+import com.paypal.sdk.models.PaymentInitiator;
+import com.paypal.sdk.models.StoredPaymentSource;
+import com.paypal.sdk.models.StoredPaymentSourcePaymentType;
+import com.paypal.sdk.models.StoredPaymentSourceUsageType;
+
+OrderConfirmApplicationContext orderConfirmApplicationContext = new OrderConfirmApplicationContext.Builder()
+    .brandName("brand_name4")
+    .locale("locale8")
+    .returnUrl("return_url6")
+    .cancelUrl("cancel_url8")
+    .storedPaymentSource(new StoredPaymentSource.Builder(
+        PaymentInitiator.CUSTOMER,
+        StoredPaymentSourcePaymentType.RECURRING
+    )
+    .usage(StoredPaymentSourceUsageType.FIRST)
+    .previousNetworkTransactionReference(new NetworkTransaction.Builder()
+            .id("id6")
+            .date("date2")
+            .network(CardBrand.CONFIDIS)
+            .acquirerReferenceNumber("acquirer_reference_number8")
+            .build())
+    .build())
+    .build();
 ```
 

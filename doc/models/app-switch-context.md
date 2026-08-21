@@ -14,18 +14,19 @@ Merchant provided details of the native app or mobile web browser to facilitate 
 | `NativeApp` | [`NativeAppContext`](../../doc/models/native-app-context.md) | Optional | Merchant provided, buyer's native app preferences to app switch to the PayPal consumer app. | NativeAppContext getNativeApp() | setNativeApp(NativeAppContext nativeApp) |
 | `MobileWeb` | [`MobileWebContext`](../../doc/models/mobile-web-context.md) | Optional | Buyer's mobile web browser context to app switch to the PayPal consumer app. | MobileWebContext getMobileWeb() | setMobileWeb(MobileWebContext mobileWeb) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "native_app": {
-    "os_type": "IOS",
-    "os_version": "os_version0"
-  },
-  "mobile_web": {
-    "return_flow": "AUTO",
-    "buyer_user_agent": "buyer_user_agent8"
-  }
-}
+```java
+import com.paypal.sdk.models.AppSwitchContext;
+import com.paypal.sdk.models.MobileWebContext;
+import com.paypal.sdk.models.NativeAppContext;
+
+AppSwitchContext appSwitchContext = new AppSwitchContext.Builder()
+    .nativeApp(new NativeAppContext.Builder()
+        .build())
+    .mobileWeb(new MobileWebContext.Builder()
+        .buyerUserAgent("buyer_user_agent8")
+        .build())
+    .build();
 ```
 

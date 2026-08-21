@@ -14,33 +14,48 @@ Additional attributes associated with the use of this PayPal Wallet.
 | `Customer` | [`PaypalWalletCustomerRequest`](../../doc/models/paypal-wallet-customer-request.md) | Optional | - | PaypalWalletCustomerRequest getCustomer() | setCustomer(PaypalWalletCustomerRequest customer) |
 | `Vault` | [`PaypalWalletVaultInstruction`](../../doc/models/paypal-wallet-vault-instruction.md) | Optional | - | PaypalWalletVaultInstruction getVault() | setVault(PaypalWalletVaultInstruction vault) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "customer": {
-    "id": "id0",
-    "email_address": "email_address2",
-    "phone": {
-      "phone_type": "OTHER",
-      "phone_number": {
-        "national_number": "national_number6"
-      }
-    },
-    "name": {
-      "given_name": "given_name2",
-      "surname": "surname8"
-    },
-    "merchant_customer_id": "merchant_customer_id2"
-  },
-  "vault": {
-    "store_in_vault": "ON_SUCCESS",
-    "description": "description6",
-    "usage_pattern": "THRESHOLD_PREPAID",
-    "usage_type": "MERCHANT",
-    "customer_type": "CONSUMER",
-    "permit_multiple_payment_tokens": false
-  }
-}
+```java
+import com.paypal.sdk.models.Name;
+import com.paypal.sdk.models.PaypalPaymentTokenCustomerType;
+import com.paypal.sdk.models.PaypalPaymentTokenUsageType;
+import com.paypal.sdk.models.PaypalWalletAttributes;
+import com.paypal.sdk.models.PaypalWalletCustomerRequest;
+import com.paypal.sdk.models.PaypalWalletVaultInstruction;
+import com.paypal.sdk.models.PhoneNumber;
+import com.paypal.sdk.models.PhoneType;
+import com.paypal.sdk.models.PhoneWithType;
+import com.paypal.sdk.models.StoreInVaultInstruction;
+import com.paypal.sdk.models.UsagePattern;
+
+PaypalWalletAttributes paypalWalletAttributes = new PaypalWalletAttributes.Builder()
+    .customer(new PaypalWalletCustomerRequest.Builder()
+        .id("id0")
+        .emailAddress("email_address2")
+        .phone(new PhoneWithType.Builder(
+            new PhoneNumber.Builder(
+                "national_number6"
+            )
+            .build()
+        )
+        .phoneType(PhoneType.OTHER)
+        .build())
+        .name(new Name.Builder()
+            .givenName("given_name2")
+            .surname("surname8")
+            .build())
+        .merchantCustomerId("merchant_customer_id2")
+        .build())
+    .vault(new PaypalWalletVaultInstruction.Builder(
+        PaypalPaymentTokenUsageType.MERCHANT
+    )
+    .storeInVault(StoreInVaultInstruction.ON_SUCCESS)
+    .description("description6")
+    .usagePattern(UsagePattern.THRESHOLD_PREPAID)
+    .customerType(PaypalPaymentTokenCustomerType.CONSUMER)
+    .permitMultiplePaymentTokens(false)
+    .build())
+    .build();
 ```
 

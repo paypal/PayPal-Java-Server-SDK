@@ -14,14 +14,12 @@ The level of protection offered as defined by [PayPal Seller Protection for Merc
 | `Status` | [`SellerProtectionStatus`](../../doc/models/seller-protection-status.md) | Optional, Read-only | Indicates whether the transaction is eligible for seller protection. For information, see [PayPal Seller Protection for Merchants](https://www.paypal.com/us/webapps/mpp/security/seller-protection). | SellerProtectionStatus getStatus() | setStatus(SellerProtectionStatus status) |
 | `DisputeCategories` | [`List<DisputeCategory>`](../../doc/models/dispute-category.md) | Optional, Read-only | An array of conditions that are covered for the transaction. | List<DisputeCategory> getDisputeCategories() | setDisputeCategories(List<DisputeCategory> disputeCategories) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "status": "NOT_ELIGIBLE",
-  "dispute_categories": [
-    "ITEM_NOT_RECEIVED"
-  ]
-}
+```java
+import com.paypal.sdk.models.SellerProtection;
+
+SellerProtection sellerProtection = new SellerProtection.Builder()
+    .build();
 ```
 

@@ -27,75 +27,101 @@ The payment source definition.
 | `GooglePay` | [`GooglePayRequest`](../../doc/models/google-pay-request.md) | Optional | Information needed to pay using Google Pay. | GooglePayRequest getGooglePay() | setGooglePay(GooglePayRequest googlePay) |
 | `Venmo` | [`VenmoWalletRequest`](../../doc/models/venmo-wallet-request.md) | Optional | Information needed to pay using Venmo. | VenmoWalletRequest getVenmo() | setVenmo(VenmoWalletRequest venmo) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "card": {
-    "name": "name6",
-    "number": "number6",
-    "expiry": "expiry4",
-    "security_code": "security_code8",
-    "billing_address": {
-      "address_line_1": "address_line_12",
-      "address_line_2": "address_line_28",
-      "admin_area_2": "admin_area_28",
-      "admin_area_1": "admin_area_14",
-      "postal_code": "postal_code0",
-      "country_code": "country_code8"
-    }
-  },
-  "token": {
-    "id": "id6",
-    "type": "BILLING_AGREEMENT"
-  },
-  "paypal": {
-    "vault_id": "vault_id0",
-    "email_address": "email_address0",
-    "name": {
-      "given_name": "given_name2",
-      "surname": "surname8"
-    },
-    "phone": {
-      "phone_type": "OTHER",
-      "phone_number": {
-        "national_number": "national_number6"
-      }
-    },
-    "birth_date": "birth_date8"
-  },
-  "bancontact": {
-    "name": "name0",
-    "country_code": "country_code0",
-    "experience_context": {
-      "brand_name": "brand_name2",
-      "locale": "locale6",
-      "shipping_preference": "NO_SHIPPING",
-      "return_url": "return_url4",
-      "cancel_url": "cancel_url6"
-    }
-  },
-  "blik": {
-    "name": "name2",
-    "country_code": "country_code2",
-    "email": "email4",
-    "experience_context": {
-      "brand_name": "brand_name2",
-      "locale": "locale6",
-      "shipping_preference": "NO_SHIPPING",
-      "return_url": "return_url4",
-      "cancel_url": "cancel_url6"
-    },
-    "level_0": {
-      "auth_code": "auth_code8"
-    },
-    "one_click": {
-      "auth_code": "auth_code0",
-      "consumer_reference": "consumer_reference2",
-      "alias_label": "alias_label6",
-      "alias_key": "alias_key4"
-    }
-  }
-}
+```java
+import com.paypal.sdk.models.Address;
+import com.paypal.sdk.models.BancontactPaymentRequest;
+import com.paypal.sdk.models.BlikExperienceContext;
+import com.paypal.sdk.models.BlikLevel0PaymentObject;
+import com.paypal.sdk.models.BlikOneClickPaymentRequest;
+import com.paypal.sdk.models.BlikPaymentRequest;
+import com.paypal.sdk.models.CardRequest;
+import com.paypal.sdk.models.ExperienceContext;
+import com.paypal.sdk.models.ExperienceContextShippingPreference;
+import com.paypal.sdk.models.Name;
+import com.paypal.sdk.models.PaymentSource;
+import com.paypal.sdk.models.PaypalWallet;
+import com.paypal.sdk.models.PhoneNumber;
+import com.paypal.sdk.models.PhoneType;
+import com.paypal.sdk.models.PhoneWithType;
+import com.paypal.sdk.models.Token;
+import com.paypal.sdk.models.TokenType;
+
+PaymentSource paymentSource = new PaymentSource.Builder()
+    .card(new CardRequest.Builder()
+        .name("name6")
+        .number("number6")
+        .expiry("expiry4")
+        .securityCode("security_code8")
+        .billingAddress(new Address.Builder(
+            "country_code8"
+        )
+        .addressLine1("address_line_12")
+        .addressLine2("address_line_28")
+        .adminArea2("admin_area_28")
+        .adminArea1("admin_area_14")
+        .postalCode("postal_code0")
+        .build())
+        .build())
+    .token(new Token.Builder(
+        "id6",
+        TokenType.BILLING_AGREEMENT
+    )
+    .build())
+    .paypal(new PaypalWallet.Builder()
+        .vaultId("vault_id0")
+        .emailAddress("email_address0")
+        .name(new Name.Builder()
+            .givenName("given_name2")
+            .surname("surname8")
+            .build())
+        .phone(new PhoneWithType.Builder(
+            new PhoneNumber.Builder(
+                "national_number6"
+            )
+            .build()
+        )
+        .phoneType(PhoneType.OTHER)
+        .build())
+        .birthDate("birth_date8")
+        .build())
+    .bancontact(new BancontactPaymentRequest.Builder(
+        "name0",
+        "country_code0"
+    )
+    .experienceContext(new ExperienceContext.Builder()
+            .brandName("brand_name2")
+            .locale("locale6")
+            .shippingPreference(ExperienceContextShippingPreference.NO_SHIPPING)
+            .returnUrl("return_url4")
+            .cancelUrl("cancel_url6")
+            .build())
+    .build())
+    .blik(new BlikPaymentRequest.Builder(
+        "name2",
+        "country_code2"
+    )
+    .email("email4")
+    .experienceContext(new BlikExperienceContext.Builder()
+            .brandName("brand_name2")
+            .locale("locale6")
+            .shippingPreference(ExperienceContextShippingPreference.NO_SHIPPING)
+            .returnUrl("return_url4")
+            .cancelUrl("cancel_url6")
+            .build())
+    .level0(new BlikLevel0PaymentObject.Builder(
+            "auth_code8"
+        )
+        .build())
+    .oneClick(new BlikOneClickPaymentRequest.Builder(
+            "consumer_reference2"
+        )
+        .authCode("auth_code0")
+        .aliasLabel("alias_label6")
+        .aliasKey("alias_key4")
+        .build())
+    .build())
+    .build();
 ```
 

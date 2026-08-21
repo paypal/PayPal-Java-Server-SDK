@@ -20,3 +20,11 @@ Transactions status result identifier. The outcome of the issuer's authenticatio
 | `DECOUPLEDAUTHENTICATION` | Challenge required; decoupled authentication confirmed. |
 | `INFORMATIONALONLY` | Informational only; 3DS requestor challenge preference acknowledged. |
 
+## Example
+
+```java
+import com.paypal.sdk.models.PaResStatus;
+
+PaResStatus paResStatus = PaResStatus.CHALLENGEREQUIRED;
+```
+

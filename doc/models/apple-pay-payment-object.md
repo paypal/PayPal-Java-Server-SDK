@@ -20,17 +20,21 @@ Information needed to pay using ApplePay.
 | `Attributes` | [`ApplePayAttributesResponse`](../../doc/models/apple-pay-attributes-response.md) | Optional | Additional attributes associated with the use of Apple Pay. | ApplePayAttributesResponse getAttributes() | setAttributes(ApplePayAttributesResponse attributes) |
 | `StoredCredential` | [`CardStoredCredential`](../../doc/models/card-stored-credential.md) | Optional | Provides additional details to process a payment using a `card` that has been stored or is intended to be stored (also referred to as stored_credential or card-on-file). Parameter compatibility: `payment_type=ONE_TIME` is compatible only with `payment_initiator=CUSTOMER`. `usage=FIRST` is compatible only with `payment_initiator=CUSTOMER`. `previous_transaction_reference` or `previous_network_transaction_reference` is compatible only with `payment_initiator=MERCHANT`. Only one of the parameters - `previous_transaction_reference` and `previous_network_transaction_reference` - can be present in the request. | CardStoredCredential getStoredCredential() | setStoredCredential(CardStoredCredential storedCredential) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "id": "id6",
-  "token": "token0",
-  "name": "name6",
-  "email_address": "email_address4",
-  "phone_number": {
-    "national_number": "national_number6"
-  }
-}
+```java
+import com.paypal.sdk.models.ApplePayPaymentObject;
+import com.paypal.sdk.models.PhoneNumber;
+
+ApplePayPaymentObject applePayPaymentObject = new ApplePayPaymentObject.Builder()
+    .id("id0")
+    .token("token4")
+    .name("name0")
+    .emailAddress("email_address8")
+    .phoneNumber(new PhoneNumber.Builder(
+        "national_number6"
+    )
+    .build())
+    .build();
 ```
 

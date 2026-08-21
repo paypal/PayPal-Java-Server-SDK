@@ -17,23 +17,31 @@ The details about a customer in PayPal's system of record.
 | `Name` | [`Name`](../../doc/models/name.md) | Optional | The name of the party. | Name getName() | setName(Name name) |
 | `MerchantCustomerId` | `String` | Optional | Merchants and partners may already have a data-store where their customer information is persisted. Use merchant_customer_id to associate the PayPal-generated customer.id to your representation of a customer.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `64`, *Pattern*: `^[0-9a-zA-Z-_.^*$@#]+$` | String getMerchantCustomerId() | setMerchantCustomerId(String merchantCustomerId) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "id": "id0",
-  "email_address": "email_address2",
-  "phone": {
-    "phone_type": "OTHER",
-    "phone_number": {
-      "national_number": "national_number6"
-    }
-  },
-  "name": {
-    "given_name": "given_name2",
-    "surname": "surname8"
-  },
-  "merchant_customer_id": "merchant_customer_id2"
-}
+```java
+import com.paypal.sdk.models.CardCustomerInformation;
+import com.paypal.sdk.models.Name;
+import com.paypal.sdk.models.PhoneNumber;
+import com.paypal.sdk.models.PhoneType;
+import com.paypal.sdk.models.PhoneWithType;
+
+CardCustomerInformation cardCustomerInformation = new CardCustomerInformation.Builder()
+    .id("id0")
+    .emailAddress("email_address8")
+    .phone(new PhoneWithType.Builder(
+        new PhoneNumber.Builder(
+            "national_number6"
+        )
+        .build()
+    )
+    .phoneType(PhoneType.OTHER)
+    .build())
+    .name(new Name.Builder()
+        .givenName("given_name2")
+        .surname("surname8")
+        .build())
+    .merchantCustomerId("merchant_customer_id2")
+    .build();
 ```
 

@@ -16,14 +16,16 @@ Information about the decrypted apple pay payment data for the token like crypto
 | `EmvData` | `String` | Optional | Encoded Apple Pay EMV Payment Structure used for payments in China. The pattern is defined by an external party and supports Unicode.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `2000`, *Pattern*: `^.*$` | String getEmvData() | setEmvData(String emvData) |
 | `Pin` | `String` | Optional | Bank Key encrypted Apple Pay PIN. The pattern is defined by an external party and supports Unicode.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `2000`, *Pattern*: `^.*$` | String getPin() | setPin(String pin) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "cryptogram": "cryptogram6",
-  "eci_indicator": "eci_indicator0",
-  "emv_data": "emv_data0",
-  "pin": "pin4"
-}
+```java
+import com.paypal.sdk.models.ApplePayPaymentData;
+
+ApplePayPaymentData applePayPaymentData = new ApplePayPaymentData.Builder()
+    .cryptogram("cryptogram8")
+    .eciIndicator("eci_indicator2")
+    .emvData("emv_data2")
+    .pin("pin6")
+    .build();
 ```
 

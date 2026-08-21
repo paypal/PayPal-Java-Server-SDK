@@ -19,19 +19,26 @@ The application context, which customizes the payer experience during the subscr
 | `ReturnUrl` | `String` | Required | The URL where the customer is redirected after the customer approves the payment.<br><br>**Constraints**: *Minimum Length*: `10`, *Maximum Length*: `4000` | String getReturnUrl() | setReturnUrl(String returnUrl) |
 | `CancelUrl` | `String` | Required | The URL where the customer is redirected after the customer cancels the payment.<br><br>**Constraints**: *Minimum Length*: `10`, *Maximum Length*: `4000` | String getCancelUrl() | setCancelUrl(String cancelUrl) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "shipping_preference": "GET_FROM_FILE",
-  "user_action": "SUBSCRIBE_NOW",
-  "return_url": "return_url0",
-  "cancel_url": "cancel_url2",
-  "brand_name": "brand_name8",
-  "locale": "locale2",
-  "payment_method": {
-    "payee_preferred": "UNRESTRICTED"
-  }
-}
+```java
+import com.paypal.sdk.models.ApplicationContextUserAction;
+import com.paypal.sdk.models.ExperienceContextShippingPreference;
+import com.paypal.sdk.models.PayeePaymentMethodPreference;
+import com.paypal.sdk.models.PaymentMethod;
+import com.paypal.sdk.models.SubscriptionApplicationContext;
+
+SubscriptionApplicationContext subscriptionApplicationContext = new SubscriptionApplicationContext.Builder(
+    "return_url2",
+    "cancel_url4"
+)
+.brandName("brand_name0")
+.locale("locale4")
+.shippingPreference(ExperienceContextShippingPreference.GET_FROM_FILE)
+.userAction(ApplicationContextUserAction.SUBSCRIBE_NOW)
+.paymentMethod(new PaymentMethod.Builder()
+        .payeePreferred(PayeePaymentMethodPreference.UNRESTRICTED)
+        .build())
+.build();
 ```
 

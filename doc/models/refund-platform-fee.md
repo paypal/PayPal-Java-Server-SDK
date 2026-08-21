@@ -13,14 +13,19 @@ The platform or partner fee, commission, or brokerage fee that is associated wit
 |  --- | --- | --- | --- | --- | --- |
 | `Amount` | [`Money`](../../doc/models/money.md) | Required | The currency and amount for a financial transaction, such as a balance or payment due. | Money getAmount() | setAmount(Money amount) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "amount": {
-    "currency_code": "currency_code6",
-    "value": "value0"
-  }
-}
+```java
+import com.paypal.sdk.models.Money;
+import com.paypal.sdk.models.RefundPlatformFee;
+
+RefundPlatformFee refundPlatformFee = new RefundPlatformFee.Builder(
+    new Money.Builder(
+        "currency_code6",
+        "value0"
+    )
+    .build()
+)
+.build();
 ```
 

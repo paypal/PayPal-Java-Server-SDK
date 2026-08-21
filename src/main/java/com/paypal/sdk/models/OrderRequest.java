@@ -27,9 +27,7 @@ public class OrderRequest {
      * Default constructor.
      */
     public OrderRequest() {
-    }
-
-    /**
+    }    /**
      * Initialization constructor. Preserved for backwards compatibility.
      * @param  intent  CheckoutPaymentIntent value for intent.
      * @param  purchaseUnits  List of PurchaseUnitRequest value for purchaseUnits.

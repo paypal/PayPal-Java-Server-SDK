@@ -14,12 +14,15 @@ Customizes the payer experience during the approval process for the payment.
 | `ReturnUrl` | `String` | Required | Describes the URL. | String getReturnUrl() | setReturnUrl(String returnUrl) |
 | `CancelUrl` | `String` | Required | Describes the URL. | String getCancelUrl() | setCancelUrl(String cancelUrl) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "return_url": "return_url6",
-  "cancel_url": "cancel_url8"
-}
+```java
+import com.paypal.sdk.models.GooglePayExperienceContext;
+
+GooglePayExperienceContext googlePayExperienceContext = new GooglePayExperienceContext.Builder(
+    "return_url6",
+    "cancel_url8"
+)
+.build();
 ```
 

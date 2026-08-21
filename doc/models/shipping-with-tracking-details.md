@@ -17,73 +17,44 @@
 | `Options` | [`List<ShippingOption>`](../../doc/models/shipping-option.md) | Optional | An array of shipping options that the payee or merchant offers to the payer to ship or pick up their items.<br><br>**Constraints**: *Minimum Items*: `0`, *Maximum Items*: `10` | List<ShippingOption> getOptions() | setOptions(List<ShippingOption> options) |
 | `Address` | [`Address`](../../doc/models/address.md) | Optional | The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute). | Address getAddress() | setAddress(Address address) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "trackers": [
-    {
-      "id": "id2",
-      "status": "CANCELLED",
-      "items": [
-        {
-          "name": "name8",
-          "quantity": "quantity4",
-          "sku": "sku6",
-          "url": "url2",
-          "image_url": "image_url4"
-        }
-      ],
-      "links": [
-        {
-          "href": "href6",
-          "rel": "rel0",
-          "method": "HEAD"
-        },
-        {
-          "href": "href6",
-          "rel": "rel0",
-          "method": "HEAD"
-        }
-      ],
-      "create_time": "create_time8"
-    },
-    {
-      "id": "id2",
-      "status": "CANCELLED",
-      "items": [
-        {
-          "name": "name8",
-          "quantity": "quantity4",
-          "sku": "sku6",
-          "url": "url2",
-          "image_url": "image_url4"
-        }
-      ],
-      "links": [
-        {
-          "href": "href6",
-          "rel": "rel0",
-          "method": "HEAD"
-        },
-        {
-          "href": "href6",
-          "rel": "rel0",
-          "method": "HEAD"
-        }
-      ],
-      "create_time": "create_time8"
-    }
-  ],
-  "name": {
-    "full_name": "full_name6"
-  },
-  "email_address": "email_address2",
-  "phone_number": {
-    "country_code": "country_code2",
-    "national_number": "national_number6"
-  },
-  "type": "SHIPPING"
-}
+```java
+import com.paypal.sdk.models.FulfillmentType;
+import com.paypal.sdk.models.OrderTrackerItem;
+import com.paypal.sdk.models.OrderTrackerResponse;
+import com.paypal.sdk.models.OrderTrackerStatus;
+import com.paypal.sdk.models.PhoneNumberWithOptionalCountryCode;
+import com.paypal.sdk.models.ShippingName;
+import com.paypal.sdk.models.ShippingWithTrackingDetails;
+import java.util.Arrays;
+
+ShippingWithTrackingDetails shippingWithTrackingDetails = new ShippingWithTrackingDetails.Builder()
+    .trackers(Arrays.asList(
+        new OrderTrackerResponse.Builder()
+            .status(OrderTrackerStatus.CANCELLED)
+            .items(Arrays.asList(
+                new OrderTrackerItem.Builder()
+                    .name("name8")
+                    .quantity("quantity4")
+                    .sku("sku6")
+                    .url("url2")
+                    .imageUrl("image_url4")
+                    .build()
+            ))
+            .createTime("create_time8")
+            .build()
+    ))
+    .name(new ShippingName.Builder()
+        .fullName("full_name6")
+        .build())
+    .emailAddress("email_address6")
+    .phoneNumber(new PhoneNumberWithOptionalCountryCode.Builder(
+        "national_number6"
+    )
+    .countryCode("country_code2")
+    .build())
+    .type(FulfillmentType.PICKUP_IN_STORE)
+    .build();
 ```
 

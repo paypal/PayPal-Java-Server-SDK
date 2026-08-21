@@ -13,11 +13,14 @@ The API caller can opt in to verify the card through PayPal offered verification
 |  --- | --- | --- | --- | --- | --- |
 | `Method` | [`OrdersCardVerificationMethod`](../../doc/models/orders-card-verification-method.md) | Optional | The method used for card verification.<br><br>**Default**: `OrdersCardVerificationMethod.SCA_WHEN_REQUIRED`<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[0-9A-Z_]+$` | OrdersCardVerificationMethod getMethod() | setMethod(OrdersCardVerificationMethod method) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "method": "SCA_WHEN_REQUIRED"
-}
+```java
+import com.paypal.sdk.models.CardVerification;
+import com.paypal.sdk.models.OrdersCardVerificationMethod;
+
+CardVerification cardVerification = new CardVerification.Builder()
+    .method(OrdersCardVerificationMethod.SCA_WHEN_REQUIRED)
+    .build();
 ```
 

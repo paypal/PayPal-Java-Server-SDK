@@ -13,35 +13,39 @@ Additional attributes associated with the use of a Venmo Wallet.
 |  --- | --- | --- | --- | --- | --- |
 | `Vault` | [`VenmoVaultResponse`](../../doc/models/venmo-vault-response.md) | Optional | The details about a saved venmo payment source. | VenmoVaultResponse getVault() | setVault(VenmoVaultResponse vault) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "vault": {
-    "id": "id6",
-    "status": "APPROVED",
-    "links": [
-      {
-        "href": "href6",
-        "rel": "rel0",
-        "method": "HEAD"
-      }
-    ],
-    "customer": {
-      "id": "id0",
-      "email_address": "email_address2",
-      "phone": {
-        "phone_type": "OTHER",
-        "phone_number": {
-          "national_number": "national_number6"
-        }
-      },
-      "name": {
-        "given_name": "given_name2",
-        "surname": "surname8"
-      }
-    }
-  }
-}
+```java
+import com.paypal.sdk.models.CustomerInformation;
+import com.paypal.sdk.models.Name;
+import com.paypal.sdk.models.PhoneNumber;
+import com.paypal.sdk.models.PhoneType;
+import com.paypal.sdk.models.PhoneWithType;
+import com.paypal.sdk.models.VenmoVaultResponse;
+import com.paypal.sdk.models.VenmoVaultResponseStatus;
+import com.paypal.sdk.models.VenmoWalletAttributesResponse;
+
+VenmoWalletAttributesResponse venmoWalletAttributesResponse = new VenmoWalletAttributesResponse.Builder()
+    .vault(new VenmoVaultResponse.Builder()
+        .id("id6")
+        .status(VenmoVaultResponseStatus.APPROVED)
+        .customer(new CustomerInformation.Builder()
+            .id("id0")
+            .emailAddress("email_address2")
+            .phone(new PhoneWithType.Builder(
+                new PhoneNumber.Builder(
+                    "national_number6"
+                )
+                .build()
+            )
+            .phoneType(PhoneType.OTHER)
+            .build())
+            .name(new Name.Builder()
+                .givenName("given_name2")
+                .surname("surname8")
+                .build())
+            .build())
+        .build())
+    .build();
 ```
 

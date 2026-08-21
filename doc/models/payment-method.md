@@ -13,11 +13,14 @@ The customer and merchant payment preferences.
 |  --- | --- | --- | --- | --- | --- |
 | `PayeePreferred` | [`PayeePaymentMethodPreference`](../../doc/models/payee-payment-method-preference.md) | Optional | The merchant-preferred payment methods.<br><br>**Default**: `PayeePaymentMethodPreference.UNRESTRICTED`<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[0-9A-Z_]+$` | PayeePaymentMethodPreference getPayeePreferred() | setPayeePreferred(PayeePaymentMethodPreference payeePreferred) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "payee_preferred": "UNRESTRICTED"
-}
+```java
+import com.paypal.sdk.models.PayeePaymentMethodPreference;
+import com.paypal.sdk.models.PaymentMethod;
+
+PaymentMethod paymentMethod = new PaymentMethod.Builder()
+    .payeePreferred(PayeePaymentMethodPreference.UNRESTRICTED)
+    .build();
 ```
 

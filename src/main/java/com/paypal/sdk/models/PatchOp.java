@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 
-
 /**
  * PatchOp to be used.
  */
@@ -50,7 +49,7 @@ public enum PatchOp {
     /**
      * Unknown values will be mapped by this enum member
      */
-    _UNKNOWN;
+    _UNKNOWN;
 
     private static TreeMap<String, PatchOp> valueMap = new TreeMap<>();
     private String value;

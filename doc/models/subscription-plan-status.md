@@ -15,3 +15,11 @@ The plan status.
 | `INACTIVE` | The plan is inactive. |
 | `ACTIVE` | The plan is active. You can only create subscriptions for a plan in this state. |
 
+## Example
+
+```java
+import com.paypal.sdk.models.SubscriptionPlanStatus;
+
+SubscriptionPlanStatus subscriptionPlanStatus = SubscriptionPlanStatus.CREATED;
+```
+

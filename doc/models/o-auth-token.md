@@ -19,17 +19,20 @@ OAuth 2 Authorization endpoint response
 | `RefreshToken` | `String` | Optional | Refresh token<br>Used to get a new access token when it expires. | String getRefreshToken() | setRefreshToken(String refreshToken) |
 | `IdToken` | `String` | Optional | An ID token response type is of JSON Web Token (JWT) that contains claims about the identity of the authenticated user. | String getIdToken() | setIdToken(String idToken) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "access_token": "access_token4",
-  "token_type": "token_type6",
-  "expires_in": 74,
-  "scope": "scope6",
-  "expiry": 88,
-  "refresh_token": "refresh_token6",
-  "id_token": "id_token6"
-}
+```java
+import com.paypal.sdk.models.OAuthToken;
+
+OAuthToken oAuthToken = new OAuthToken.Builder(
+    "access_token2",
+    "token_type2"
+)
+.expiresIn(84L)
+.scope("scope8")
+.expiry(78L)
+.refreshToken("refresh_token4")
+.idToken("id_token8")
+.build();
 ```
 

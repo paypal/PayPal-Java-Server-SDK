@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 
-
 /**
  * PaypalReferenceIdType to be used.
  */
@@ -40,7 +39,7 @@ public enum PaypalReferenceIdType {
     /**
      * Unknown values will be mapped by this enum member
      */
-    _UNKNOWN;
+    _UNKNOWN;
 
     private static TreeMap<String, PaypalReferenceIdType> valueMap = new TreeMap<>();
     private String value;

@@ -25,17 +25,17 @@ The Card from Apple Pay Wallet used to fund the payment.
 | `BillingAddress` | [`Address`](../../doc/models/address.md) | Optional | The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute). | Address getBillingAddress() | setBillingAddress(Address billingAddress) |
 | `CountryCode` | `String` | Optional | The [two-character ISO 3166-1 code](https://developer.paypal.com/api/rest/reference/country-codes/) that identifies the country or region. Note: The country code for Great Britain is GB and not UK as used in the top-level domain names for that country. Use the `C2` country code for China worldwide for comparable uncontrolled price (CUP) method, bank card, and cross-border transactions.<br><br>**Constraints**: *Minimum Length*: `2`, *Maximum Length*: `2`, *Pattern*: `^([A-Z]{2}\|C2)$` | String getCountryCode() | setCountryCode(String countryCode) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "name": "name4",
-  "last_digits": "last_digits8",
-  "brand": "ACCEL",
-  "available_networks": [
-    "STAR_ACCESS"
-  ],
-  "type": "DEBIT"
-}
+```java
+import com.paypal.sdk.models.ApplePayCardResponse;
+import com.paypal.sdk.models.CardBrand;
+import com.paypal.sdk.models.CardType;
+
+ApplePayCardResponse applePayCardResponse = new ApplePayCardResponse.Builder()
+    .name("name0")
+    .brand(CardBrand.CETELEM)
+    .type(CardType.CREDIT)
+    .build();
 ```
 

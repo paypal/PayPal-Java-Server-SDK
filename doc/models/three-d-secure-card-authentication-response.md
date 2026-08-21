@@ -15,13 +15,17 @@ Results of 3D Secure Authentication.
 | `EnrollmentStatus` | [`EnrollmentStatus`](../../doc/models/enrollment-status.md) | Optional | Status of Authentication eligibility.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[0-9A-Z_]+$` | EnrollmentStatus getEnrollmentStatus() | setEnrollmentStatus(EnrollmentStatus enrollmentStatus) |
 | `AuthenticationId` | `String` | Optional | The externally received 3ds authentication id, to be returned in card detokenization response.<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[0-9a-zA-Z_-]+$` | String getAuthenticationId() | setAuthenticationId(String authenticationId) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "authentication_status": "D",
-  "enrollment_status": "U",
-  "authentication_id": "authentication_id2"
-}
+```java
+import com.paypal.sdk.models.EnrollmentStatus;
+import com.paypal.sdk.models.PaResStatus;
+import com.paypal.sdk.models.ThreeDSecureCardAuthenticationResponse;
+
+ThreeDSecureCardAuthenticationResponse threeDSecureCardAuthenticationResponse = new ThreeDSecureCardAuthenticationResponse.Builder()
+    .authenticationStatus(PaResStatus.UNABLETOCOMPLETEAUTHENTICATION)
+    .enrollmentStatus(EnrollmentStatus.UNAVAILABLE)
+    .authenticationId("authentication_id4")
+    .build();
 ```
 

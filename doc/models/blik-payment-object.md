@@ -16,16 +16,19 @@ Information used to pay using BLIK.
 | `Email` | `String` | Optional | The internationalized email address. Note: Up to 64 characters are allowed before and 255 characters are allowed after the @ sign. However, the generally accepted maximum length for an email address is 254 characters. The pattern verifies that an unquoted @ sign exists.<br><br>**Constraints**: *Minimum Length*: `3`, *Maximum Length*: `254`, *Pattern*: ``^(?:[A-Za-z0-9!#$%&'*+/=?^_`{\|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{\|}~-]+)*\|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]\|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\|\[(?:(?:25[0-5]\|2[0-4][0-9]\|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]\|2[0-4][0-9]\|[01]?[0-9][0-9]?\|[A-Za-z0-9-]*[A-Za-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]\|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$`` | String getEmail() | setEmail(String email) |
 | `OneClick` | [`BlikOneClickPaymentObject`](../../doc/models/blik-one-click-payment-object.md) | Optional | Information used to pay using BLIK one-click flow. | BlikOneClickPaymentObject getOneClick() | setOneClick(BlikOneClickPaymentObject oneClick) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "name": "name8",
-  "country_code": "country_code8",
-  "email": "email8",
-  "one_click": {
-    "consumer_reference": "consumer_reference2"
-  }
-}
+```java
+import com.paypal.sdk.models.BlikOneClickPaymentObject;
+import com.paypal.sdk.models.BlikPaymentObject;
+
+BlikPaymentObject blikPaymentObject = new BlikPaymentObject.Builder()
+    .name("name2")
+    .countryCode("country_code2")
+    .email("email4")
+    .oneClick(new BlikOneClickPaymentObject.Builder()
+        .consumerReference("consumer_reference2")
+        .build())
+    .build();
 ```
 

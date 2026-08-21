@@ -14,12 +14,13 @@ Representation of card details as received in the request.
 | `Expiry` | `String` | Optional | The year and month, in ISO-8601 `YYYY-MM` date format. See [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).<br><br>**Constraints**: *Minimum Length*: `7`, *Maximum Length*: `7`, *Pattern*: `^[0-9]{4}-(0[1-9]\|1[0-2])$` | String getExpiry() | setExpiry(String expiry) |
 | `LastDigits` | `String` | Optional, Read-only | The last digits of the payment card.<br><br>**Constraints**: *Minimum Length*: `2`, *Maximum Length*: `4`, *Pattern*: `[0-9]{2,}` | String getLastDigits() | setLastDigits(String lastDigits) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "expiry": "expiry6",
-  "last_digits": "last_digits2"
-}
+```java
+import com.paypal.sdk.models.CardFromRequest;
+
+CardFromRequest cardFromRequest = new CardFromRequest.Builder()
+    .expiry("expiry0")
+    .build();
 ```
 

@@ -19,134 +19,171 @@ The response to a request to update the quantity of the product or service in a 
 | `PlanOverridden` | `Boolean` | Optional, Read-only | Indicates whether the subscription has overridden any plan attributes. | Boolean getPlanOverridden() | setPlanOverridden(Boolean planOverridden) |
 | `Links` | [`List<LinkDescription>`](../../doc/models/link-description.md) | Optional, Read-only | An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links). | List<LinkDescription> getLinks() | setLinks(List<LinkDescription> links) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "plan_id": "plan_id6",
-  "quantity": "quantity0",
-  "shipping_amount": {
-    "currency_code": "currency_code0",
-    "value": "value6"
-  },
-  "shipping_address": {
-    "name": {
-      "full_name": "full_name6"
-    },
-    "email_address": "email_address8",
-    "phone_number": {
-      "country_code": "country_code2",
-      "national_number": "national_number6"
-    },
-    "type": "PICKUP_IN_STORE",
-    "options": [
-      {
-        "id": "id2",
-        "label": "label2",
-        "type": "SHIPPING",
-        "amount": {
-          "currency_code": "currency_code6",
-          "value": "value0"
-        },
-        "selected": false
-      }
-    ]
-  },
-  "plan": {
-    "billing_cycles": [
-      {
-        "pricing_scheme": {
-          "version": 10,
-          "fixed_price": {
-            "currency_code": "currency_code4",
-            "value": "value0"
-          },
-          "pricing_model": "VOLUME",
-          "tiers": [
-            {
-              "starting_quantity": "starting_quantity8",
-              "ending_quantity": "ending_quantity6",
-              "amount": {
-                "currency_code": "currency_code6",
-                "value": "value0"
-              }
-            },
-            {
-              "starting_quantity": "starting_quantity8",
-              "ending_quantity": "ending_quantity6",
-              "amount": {
-                "currency_code": "currency_code6",
-                "value": "value0"
-              }
-            },
-            {
-              "starting_quantity": "starting_quantity8",
-              "ending_quantity": "ending_quantity6",
-              "amount": {
-                "currency_code": "currency_code6",
-                "value": "value0"
-              }
-            }
-          ],
-          "create_time": "create_time4"
-        },
-        "sequence": 8,
-        "total_cycles": 198
-      },
-      {
-        "pricing_scheme": {
-          "version": 10,
-          "fixed_price": {
-            "currency_code": "currency_code4",
-            "value": "value0"
-          },
-          "pricing_model": "VOLUME",
-          "tiers": [
-            {
-              "starting_quantity": "starting_quantity8",
-              "ending_quantity": "ending_quantity6",
-              "amount": {
-                "currency_code": "currency_code6",
-                "value": "value0"
-              }
-            },
-            {
-              "starting_quantity": "starting_quantity8",
-              "ending_quantity": "ending_quantity6",
-              "amount": {
-                "currency_code": "currency_code6",
-                "value": "value0"
-              }
-            },
-            {
-              "starting_quantity": "starting_quantity8",
-              "ending_quantity": "ending_quantity6",
-              "amount": {
-                "currency_code": "currency_code6",
-                "value": "value0"
-              }
-            }
-          ],
-          "create_time": "create_time4"
-        },
-        "sequence": 8,
-        "total_cycles": 198
-      }
-    ],
-    "payment_preferences": {
-      "auto_bill_outstanding": false,
-      "setup_fee": {
-        "currency_code": "currency_code8",
-        "value": "value4"
-      },
-      "setup_fee_failure_action": "CONTINUE",
-      "payment_failure_threshold": 104
-    },
-    "taxes": {
-      "percentage": "percentage8",
-      "inclusive": false
-    }
-  }
-}
+```java
+import com.paypal.sdk.models.BillingCycleOverride;
+import com.paypal.sdk.models.FulfillmentType;
+import com.paypal.sdk.models.ModifySubscriptionResponse;
+import com.paypal.sdk.models.Money;
+import com.paypal.sdk.models.PaymentPreferencesOverride;
+import com.paypal.sdk.models.PhoneNumberWithCountryCode;
+import com.paypal.sdk.models.PlanOverride;
+import com.paypal.sdk.models.PricingTier;
+import com.paypal.sdk.models.SetupFeeFailureAction;
+import com.paypal.sdk.models.ShippingDetails;
+import com.paypal.sdk.models.ShippingName;
+import com.paypal.sdk.models.ShippingOption;
+import com.paypal.sdk.models.ShippingType;
+import com.paypal.sdk.models.SubscriptionPricingModel;
+import com.paypal.sdk.models.SubscriptionPricingScheme;
+import com.paypal.sdk.models.TaxesOverride;
+import java.util.Arrays;
+
+ModifySubscriptionResponse modifySubscriptionResponse = new ModifySubscriptionResponse.Builder()
+    .planId("plan_id4")
+    .quantity("quantity8")
+    .shippingAmount(new Money.Builder(
+        "currency_code0",
+        "value6"
+    )
+    .build())
+    .shippingAddress(new ShippingDetails.Builder()
+        .name(new ShippingName.Builder()
+            .fullName("full_name6")
+            .build())
+        .emailAddress("email_address8")
+        .phoneNumber(new PhoneNumberWithCountryCode.Builder(
+            "country_code2",
+            "national_number6"
+        )
+        .build())
+        .type(FulfillmentType.PICKUP_IN_STORE)
+        .options(Arrays.asList(
+            new ShippingOption.Builder(
+                "id2",
+                "label2",
+                false
+            )
+            .type(ShippingType.SHIPPING)
+            .amount(new Money.Builder(
+                    "currency_code6",
+                    "value0"
+                )
+                .build())
+            .build()
+        ))
+        .build())
+    .plan(new PlanOverride.Builder()
+        .billingCycles(Arrays.asList(
+            new BillingCycleOverride.Builder(
+                8
+            )
+            .pricingScheme(new SubscriptionPricingScheme.Builder()
+                    .fixedPrice(new Money.Builder(
+                        "currency_code4",
+                        "value0"
+                    )
+                    .build())
+                    .pricingModel(SubscriptionPricingModel.VOLUME)
+                    .tiers(Arrays.asList(
+                        new PricingTier.Builder(
+                            "starting_quantity8",
+                            new Money.Builder(
+                                "currency_code6",
+                                "value0"
+                            )
+                            .build()
+                        )
+                        .endingQuantity("ending_quantity6")
+                        .build(),
+                        new PricingTier.Builder(
+                            "starting_quantity8",
+                            new Money.Builder(
+                                "currency_code6",
+                                "value0"
+                            )
+                            .build()
+                        )
+                        .endingQuantity("ending_quantity6")
+                        .build(),
+                        new PricingTier.Builder(
+                            "starting_quantity8",
+                            new Money.Builder(
+                                "currency_code6",
+                                "value0"
+                            )
+                            .build()
+                        )
+                        .endingQuantity("ending_quantity6")
+                        .build()
+                    ))
+                    .createTime("create_time4")
+                    .build())
+            .totalCycles(198)
+            .build(),
+            new BillingCycleOverride.Builder(
+                8
+            )
+            .pricingScheme(new SubscriptionPricingScheme.Builder()
+                    .fixedPrice(new Money.Builder(
+                        "currency_code4",
+                        "value0"
+                    )
+                    .build())
+                    .pricingModel(SubscriptionPricingModel.VOLUME)
+                    .tiers(Arrays.asList(
+                        new PricingTier.Builder(
+                            "starting_quantity8",
+                            new Money.Builder(
+                                "currency_code6",
+                                "value0"
+                            )
+                            .build()
+                        )
+                        .endingQuantity("ending_quantity6")
+                        .build(),
+                        new PricingTier.Builder(
+                            "starting_quantity8",
+                            new Money.Builder(
+                                "currency_code6",
+                                "value0"
+                            )
+                            .build()
+                        )
+                        .endingQuantity("ending_quantity6")
+                        .build(),
+                        new PricingTier.Builder(
+                            "starting_quantity8",
+                            new Money.Builder(
+                                "currency_code6",
+                                "value0"
+                            )
+                            .build()
+                        )
+                        .endingQuantity("ending_quantity6")
+                        .build()
+                    ))
+                    .createTime("create_time4")
+                    .build())
+            .totalCycles(198)
+            .build()
+        ))
+        .paymentPreferences(new PaymentPreferencesOverride.Builder()
+            .autoBillOutstanding(false)
+            .setupFee(new Money.Builder(
+                "currency_code8",
+                "value4"
+            )
+            .build())
+            .setupFeeFailureAction(SetupFeeFailureAction.CONTINUE)
+            .paymentFailureThreshold(104)
+            .build())
+        .taxes(new TaxesOverride.Builder()
+            .percentage("percentage8")
+            .inclusive(false)
+            .build())
+        .build())
+    .build();
 ```
 

@@ -18,51 +18,43 @@ The shipping details.
 | `Options` | [`List<ShippingOption>`](../../doc/models/shipping-option.md) | Optional | An array of shipping options that the payee or merchant offers to the payer to ship or pick up their items.<br><br>**Constraints**: *Minimum Items*: `0`, *Maximum Items*: `10` | List<ShippingOption> getOptions() | setOptions(List<ShippingOption> options) |
 | `Address` | [`Address`](../../doc/models/address.md) | Optional | The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute). | Address getAddress() | setAddress(Address address) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "name": {
-    "full_name": "full_name6"
-  },
-  "email_address": "email_address2",
-  "phone_number": {
-    "country_code": "country_code2",
-    "national_number": "national_number6"
-  },
-  "type": "PICKUP_IN_STORE",
-  "options": [
-    {
-      "id": "id2",
-      "label": "label2",
-      "type": "SHIPPING",
-      "amount": {
-        "currency_code": "currency_code6",
-        "value": "value0"
-      },
-      "selected": false
-    },
-    {
-      "id": "id2",
-      "label": "label2",
-      "type": "SHIPPING",
-      "amount": {
-        "currency_code": "currency_code6",
-        "value": "value0"
-      },
-      "selected": false
-    },
-    {
-      "id": "id2",
-      "label": "label2",
-      "type": "SHIPPING",
-      "amount": {
-        "currency_code": "currency_code6",
-        "value": "value0"
-      },
-      "selected": false
-    }
-  ]
-}
+```java
+import com.paypal.sdk.models.FulfillmentType;
+import com.paypal.sdk.models.Money;
+import com.paypal.sdk.models.PhoneNumberWithCountryCode;
+import com.paypal.sdk.models.ShippingDetails;
+import com.paypal.sdk.models.ShippingName;
+import com.paypal.sdk.models.ShippingOption;
+import com.paypal.sdk.models.ShippingType;
+import java.util.Arrays;
+
+ShippingDetails shippingDetails = new ShippingDetails.Builder()
+    .name(new ShippingName.Builder()
+        .fullName("full_name6")
+        .build())
+    .emailAddress("email_address2")
+    .phoneNumber(new PhoneNumberWithCountryCode.Builder(
+        "country_code2",
+        "national_number6"
+    )
+    .build())
+    .type(FulfillmentType.SHIPPING)
+    .options(Arrays.asList(
+        new ShippingOption.Builder(
+            "id2",
+            "label2",
+            false
+        )
+        .type(ShippingType.SHIPPING)
+        .amount(new Money.Builder(
+                "currency_code6",
+                "value0"
+            )
+            .build())
+        .build()
+    ))
+    .build();
 ```
 

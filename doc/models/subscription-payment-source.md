@@ -13,17 +13,21 @@ The payment source definition. To be eligible to create subscription using debit
 |  --- | --- | --- | --- | --- | --- |
 | `Card` | [`SubscriptionCardRequest`](../../doc/models/subscription-card-request.md) | Optional | The payment card to use to fund a payment. Can be a credit or debit card. | SubscriptionCardRequest getCard() | setCard(SubscriptionCardRequest card) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "card": {
-    "name": "name6",
-    "number": "number6",
-    "expiry": "expiry4",
-    "security_code": "security_code8",
-    "type": "UNKNOWN"
-  }
-}
+```java
+import com.paypal.sdk.models.CardType;
+import com.paypal.sdk.models.SubscriptionCardRequest;
+import com.paypal.sdk.models.SubscriptionPaymentSource;
+
+SubscriptionPaymentSource subscriptionPaymentSource = new SubscriptionPaymentSource.Builder()
+    .card(new SubscriptionCardRequest.Builder()
+        .name("name6")
+        .number("number6")
+        .expiry("expiry4")
+        .securityCode("security_code8")
+        .type(CardType.UNKNOWN)
+        .build())
+    .build();
 ```
 

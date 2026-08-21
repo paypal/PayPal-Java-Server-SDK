@@ -16,19 +16,27 @@ Provides additional details to process a payment using a `payment_source` that h
 | `Usage` | [`StoredPaymentSourceUsageType`](../../doc/models/stored-payment-source-usage-type.md) | Optional | Indicates if this is a `first` or `subsequent` payment using a stored payment source (also referred to as stored credential or card on file).<br><br>**Default**: `StoredPaymentSourceUsageType.DERIVED`<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `255`, *Pattern*: `^[0-9A-Z_]+$` | StoredPaymentSourceUsageType getUsage() | setUsage(StoredPaymentSourceUsageType usage) |
 | `PreviousNetworkTransactionReference` | [`NetworkTransaction`](../../doc/models/network-transaction.md) | Optional | Reference values used by the card network to identify a transaction. | NetworkTransaction getPreviousNetworkTransactionReference() | setPreviousNetworkTransactionReference(NetworkTransaction previousNetworkTransactionReference) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "payment_initiator": "CUSTOMER",
-  "payment_type": "RECURRING",
-  "usage": "DERIVED",
-  "previous_network_transaction_reference": {
-    "id": "id6",
-    "date": "date2",
-    "network": "CONFIDIS",
-    "acquirer_reference_number": "acquirer_reference_number8"
-  }
-}
+```java
+import com.paypal.sdk.models.CardBrand;
+import com.paypal.sdk.models.NetworkTransaction;
+import com.paypal.sdk.models.PaymentInitiator;
+import com.paypal.sdk.models.StoredPaymentSource;
+import com.paypal.sdk.models.StoredPaymentSourcePaymentType;
+import com.paypal.sdk.models.StoredPaymentSourceUsageType;
+
+StoredPaymentSource storedPaymentSource = new StoredPaymentSource.Builder(
+    PaymentInitiator.CUSTOMER,
+    StoredPaymentSourcePaymentType.ONE_TIME
+)
+.usage(StoredPaymentSourceUsageType.DERIVED)
+.previousNetworkTransactionReference(new NetworkTransaction.Builder()
+        .id("id6")
+        .date("date2")
+        .network(CardBrand.CONFIDIS)
+        .acquirerReferenceNumber("acquirer_reference_number8")
+        .build())
+.build();
 ```
 

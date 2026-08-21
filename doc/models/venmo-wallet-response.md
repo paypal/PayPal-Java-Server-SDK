@@ -20,21 +20,27 @@ Venmo wallet response.
 | `ReturnFlow` | [`ReturnFlow`](../../doc/models/return-flow.md) | Optional, Read-only | Merchant preference on how the buyer can navigate back to merchant website post approving the transaction on the Venmo App.<br><br>**Default**: `ReturnFlow.AUTO`<br><br>**Constraints**: *Minimum Length*: `1`, *Maximum Length*: `6`, *Pattern*: `^[A-Z_]+$` | ReturnFlow getReturnFlow() | setReturnFlow(ReturnFlow returnFlow) |
 | `Attributes` | [`VenmoWalletAttributesResponse`](../../doc/models/venmo-wallet-attributes-response.md) | Optional | Additional attributes associated with the use of a Venmo Wallet. | VenmoWalletAttributesResponse getAttributes() | setAttributes(VenmoWalletAttributesResponse attributes) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "return_flow": "AUTO",
-  "email_address": "email_address6",
-  "account_id": "account_id8",
-  "user_name": "user_name2",
-  "name": {
-    "given_name": "given_name2",
-    "surname": "surname8"
-  },
-  "phone_number": {
-    "national_number": "national_number6"
-  }
-}
+```java
+import com.paypal.sdk.models.Name;
+import com.paypal.sdk.models.PhoneNumber;
+import com.paypal.sdk.models.ReturnFlow;
+import com.paypal.sdk.models.VenmoWalletResponse;
+
+VenmoWalletResponse venmoWalletResponse = new VenmoWalletResponse.Builder()
+    .emailAddress("email_address0")
+    .accountId("account_id4")
+    .userName("user_name8")
+    .name(new Name.Builder()
+        .givenName("given_name2")
+        .surname("surname8")
+        .build())
+    .phoneNumber(new PhoneNumber.Builder(
+        "national_number6"
+    )
+    .build())
+    .returnFlow(ReturnFlow.AUTO)
+    .build();
 ```
 

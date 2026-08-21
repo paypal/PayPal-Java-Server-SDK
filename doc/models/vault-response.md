@@ -16,26 +16,24 @@ The details about a saved payment source.
 | `Customer` | [`VaultCustomer`](../../doc/models/vault-customer.md) | Optional | This object represents a merchant’s customer, allowing them to store contact details, and track all payments associated with the same customer. | VaultCustomer getCustomer() | setCustomer(VaultCustomer customer) |
 | `Links` | [`List<LinkDescription>`](../../doc/models/link-description.md) | Optional, Read-only | An array of request-related HATEOAS links.<br><br>**Constraints**: *Minimum Items*: `1`, *Maximum Items*: `10` | List<LinkDescription> getLinks() | setLinks(List<LinkDescription> links) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "id": "id2",
-  "status": "CREATED",
-  "customer": {
-    "id": "id0",
-    "name": {
-      "given_name": "given_name2",
-      "surname": "surname8"
-    }
-  },
-  "links": [
-    {
-      "href": "href6",
-      "rel": "rel0",
-      "method": "HEAD"
-    }
-  ]
-}
+```java
+import com.paypal.sdk.models.Name;
+import com.paypal.sdk.models.VaultCustomer;
+import com.paypal.sdk.models.VaultResponse;
+import com.paypal.sdk.models.VaultStatus;
+
+VaultResponse vaultResponse = new VaultResponse.Builder()
+    .id("id2")
+    .status(VaultStatus.VAULTED)
+    .customer(new VaultCustomer.Builder()
+        .id("id0")
+        .name(new Name.Builder()
+            .givenName("given_name2")
+            .surname("surname8")
+            .build())
+        .build())
+    .build();
 ```
 

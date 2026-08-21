@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 
-
 /**
  * UsageType to be used.
  */
@@ -30,7 +29,7 @@ public enum UsageType {
     /**
      * Unknown values will be mapped by this enum member
      */
-    _UNKNOWN;
+    _UNKNOWN;
 
     private static TreeMap<String, UsageType> valueMap = new TreeMap<>();
     private String value;

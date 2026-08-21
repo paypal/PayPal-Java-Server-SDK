@@ -21,78 +21,105 @@ The create plan request details.
 | `Taxes` | [`Taxes`](../../doc/models/taxes.md) | Optional | The tax details. | Taxes getTaxes() | setTaxes(Taxes taxes) |
 | `QuantitySupported` | `Boolean` | Optional | Indicates whether you can subscribe to this plan by providing a quantity for the goods or service.<br><br>**Default**: `false` | Boolean getQuantitySupported() | setQuantitySupported(Boolean quantitySupported) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "product_id": "product_id2",
-  "name": "name2",
-  "status": "ACTIVE",
-  "billing_cycles": [
-    {
-      "frequency": {
-        "interval_unit": "DAY",
-        "interval_count": 1
-      },
-      "tenure_type": "REGULAR",
-      "sequence": 8,
-      "total_cycles": 1,
-      "pricing_scheme": {
-        "version": 10,
-        "fixed_price": {
-          "currency_code": "currency_code4",
-          "value": "value0"
-        },
-        "pricing_model": "VOLUME",
-        "tiers": [
-          {
-            "starting_quantity": "starting_quantity8",
-            "ending_quantity": "ending_quantity6",
-            "amount": {
-              "currency_code": "currency_code6",
-              "value": "value0"
-            }
-          },
-          {
-            "starting_quantity": "starting_quantity8",
-            "ending_quantity": "ending_quantity6",
-            "amount": {
-              "currency_code": "currency_code6",
-              "value": "value0"
-            }
-          },
-          {
-            "starting_quantity": "starting_quantity8",
-            "ending_quantity": "ending_quantity6",
-            "amount": {
-              "currency_code": "currency_code6",
-              "value": "value0"
-            }
-          }
-        ],
-        "create_time": "create_time4"
-      }
-    }
-  ],
-  "payment_preferences": {
-    "auto_bill_outstanding": true,
-    "setup_fee_failure_action": "CANCEL",
-    "payment_failure_threshold": 0,
-    "setup_fee": {
-      "currency_code": "currency_code8",
-      "value": "value4"
-    }
-  },
-  "quantity_supported": false,
-  "description": "description8",
-  "merchant_preferences": {
-    "return_url": "return_url4",
-    "cancel_url": "cancel_url6"
-  },
-  "taxes": {
-    "percentage": "percentage8",
-    "inclusive": false
-  }
-}
+```java
+import com.paypal.sdk.models.Frequency;
+import com.paypal.sdk.models.IntervalUnit;
+import com.paypal.sdk.models.MerchantPreferences;
+import com.paypal.sdk.models.Money;
+import com.paypal.sdk.models.PaymentPreferences;
+import com.paypal.sdk.models.PlanRequest;
+import com.paypal.sdk.models.PlanRequestStatus;
+import com.paypal.sdk.models.PricingTier;
+import com.paypal.sdk.models.SetupFeeFailureAction;
+import com.paypal.sdk.models.SubscriptionBillingCycle;
+import com.paypal.sdk.models.SubscriptionPricingModel;
+import com.paypal.sdk.models.SubscriptionPricingScheme;
+import com.paypal.sdk.models.Taxes;
+import com.paypal.sdk.models.TenureType;
+import java.util.Arrays;
+
+PlanRequest planRequest = new PlanRequest.Builder(
+    "product_id4",
+    "name0",
+    Arrays.asList(
+        new SubscriptionBillingCycle.Builder(
+            new Frequency.Builder(
+                IntervalUnit.DAY
+            )
+            .intervalCount(1)
+            .build(),
+            TenureType.REGULAR,
+            8
+        )
+        .pricingScheme(new SubscriptionPricingScheme.Builder()
+                .fixedPrice(new Money.Builder(
+                    "currency_code4",
+                    "value0"
+                )
+                .build())
+                .pricingModel(SubscriptionPricingModel.VOLUME)
+                .tiers(Arrays.asList(
+                    new PricingTier.Builder(
+                        "starting_quantity8",
+                        new Money.Builder(
+                            "currency_code6",
+                            "value0"
+                        )
+                        .build()
+                    )
+                    .endingQuantity("ending_quantity6")
+                    .build(),
+                    new PricingTier.Builder(
+                        "starting_quantity8",
+                        new Money.Builder(
+                            "currency_code6",
+                            "value0"
+                        )
+                        .build()
+                    )
+                    .endingQuantity("ending_quantity6")
+                    .build(),
+                    new PricingTier.Builder(
+                        "starting_quantity8",
+                        new Money.Builder(
+                            "currency_code6",
+                            "value0"
+                        )
+                        .build()
+                    )
+                    .endingQuantity("ending_quantity6")
+                    .build()
+                ))
+                .createTime("create_time4")
+                .build())
+        .totalCycles(1)
+        .build()
+    ),
+    new PaymentPreferences.Builder()
+        .autoBillOutstanding(true)
+        .setupFee(new Money.Builder(
+            "currency_code8",
+            "value4"
+        )
+        .build())
+        .setupFeeFailureAction(SetupFeeFailureAction.CANCEL)
+        .paymentFailureThreshold(0)
+        .build()
+)
+.status(PlanRequestStatus.ACTIVE)
+.description("description0")
+.merchantPreferences(new MerchantPreferences.Builder()
+        .returnUrl("return_url4")
+        .cancelUrl("cancel_url6")
+        .build())
+.taxes(new Taxes.Builder(
+        "percentage8"
+    )
+    .inclusive(false)
+    .build())
+.quantitySupported(false)
+.build();
 ```
 

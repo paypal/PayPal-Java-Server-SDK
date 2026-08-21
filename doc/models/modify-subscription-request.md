@@ -18,49 +18,68 @@ The request to update the quantity of the product or service in a subscription. 
 | `ApplicationContext` | [`SubscriptionPatchApplicationContext`](../../doc/models/subscription-patch-application-context.md) | Optional | The application context, which customizes the payer experience during the subscription approval process with PayPal. | SubscriptionPatchApplicationContext getApplicationContext() | setApplicationContext(SubscriptionPatchApplicationContext applicationContext) |
 | `Plan` | [`PlanOverride`](../../doc/models/plan-override.md) | Optional | An inline plan object to customise the subscription. You can override plan level default attributes by providing customised values for the subscription in this object. | PlanOverride getPlan() | setPlan(PlanOverride plan) |
 
-## Example (as JSON)
+## Example
 
-```json
-{
-  "plan_id": "plan_id6",
-  "quantity": "quantity0",
-  "shipping_amount": {
-    "currency_code": "currency_code0",
-    "value": "value6"
-  },
-  "shipping_address": {
-    "name": {
-      "full_name": "full_name6"
-    },
-    "email_address": "email_address8",
-    "phone_number": {
-      "country_code": "country_code2",
-      "national_number": "national_number6"
-    },
-    "type": "PICKUP_IN_STORE",
-    "options": [
-      {
-        "id": "id2",
-        "label": "label2",
-        "type": "SHIPPING",
-        "amount": {
-          "currency_code": "currency_code6",
-          "value": "value0"
-        },
-        "selected": false
-      }
-    ]
-  },
-  "application_context": {
-    "brand_name": "brand_name8",
-    "locale": "locale2",
-    "shipping_preference": "SET_PROVIDED_ADDRESS",
-    "payment_method": {
-      "payee_preferred": "UNRESTRICTED"
-    },
-    "return_url": "return_url0",
-    "cancel_url": "cancel_url2"
-  }
-}
+```java
+import com.paypal.sdk.models.ExperienceContextShippingPreference;
+import com.paypal.sdk.models.FulfillmentType;
+import com.paypal.sdk.models.ModifySubscriptionRequest;
+import com.paypal.sdk.models.Money;
+import com.paypal.sdk.models.PayeePaymentMethodPreference;
+import com.paypal.sdk.models.PaymentMethod;
+import com.paypal.sdk.models.PhoneNumberWithCountryCode;
+import com.paypal.sdk.models.ShippingDetails;
+import com.paypal.sdk.models.ShippingName;
+import com.paypal.sdk.models.ShippingOption;
+import com.paypal.sdk.models.ShippingType;
+import com.paypal.sdk.models.SubscriptionPatchApplicationContext;
+import java.util.Arrays;
+
+ModifySubscriptionRequest modifySubscriptionRequest = new ModifySubscriptionRequest.Builder()
+    .planId("plan_id0")
+    .quantity("quantity4")
+    .shippingAmount(new Money.Builder(
+        "currency_code0",
+        "value6"
+    )
+    .build())
+    .shippingAddress(new ShippingDetails.Builder()
+        .name(new ShippingName.Builder()
+            .fullName("full_name6")
+            .build())
+        .emailAddress("email_address8")
+        .phoneNumber(new PhoneNumberWithCountryCode.Builder(
+            "country_code2",
+            "national_number6"
+        )
+        .build())
+        .type(FulfillmentType.PICKUP_IN_STORE)
+        .options(Arrays.asList(
+            new ShippingOption.Builder(
+                "id2",
+                "label2",
+                false
+            )
+            .type(ShippingType.SHIPPING)
+            .amount(new Money.Builder(
+                    "currency_code6",
+                    "value0"
+                )
+                .build())
+            .build()
+        ))
+        .build())
+    .applicationContext(new SubscriptionPatchApplicationContext.Builder(
+        "return_url0",
+        "cancel_url2"
+    )
+    .brandName("brand_name8")
+    .locale("locale2")
+    .shippingPreference(ExperienceContextShippingPreference.SET_PROVIDED_ADDRESS)
+    .paymentMethod(new PaymentMethod.Builder()
+            .payeePreferred(PayeePaymentMethodPreference.UNRESTRICTED)
+            .build())
+    .build())
+    .build();
 ```
 
